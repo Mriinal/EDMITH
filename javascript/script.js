@@ -2,23 +2,111 @@
 // GLOBAL LOGIC (Runs on all pages)
 // =========================================================
 
-// Theme Toggle
+// --- 1. Dynamic Footer Copyright Year ---
+function initDynamicYear() {
+    const currentYear = new Date().getFullYear();
+    document.querySelectorAll('.current-year').forEach(el => {
+        el.textContent = currentYear;
+    });
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDynamicYear);
+} else {
+    initDynamicYear();
+}
+
+// --- 2. Persistent Dark Mode Toggle ---
 const themeToggleBtn = document.getElementById('themeToggle');
+
+function applyTheme(theme) {
+    const isDark = theme === 'dark';
+    document.body.classList.toggle('dark-mode', isDark);
+    if (themeToggleBtn) {
+        const icon = themeToggleBtn.querySelector('i');
+        if (icon) {
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+    }
+}
+
+// Initialize theme on page load
+const savedTheme = localStorage.getItem('edmith-theme');
+const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+const initialTheme = savedTheme ? savedTheme : (systemPrefersDark ? 'dark' : 'light');
+applyTheme(initialTheme);
+
 if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        const icon = this.querySelector('i');
-        if (document.body.classList.contains('dark-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
+        const isCurrentlyDark = document.body.classList.contains('dark-mode');
+        const newTheme = isCurrentlyDark ? 'light' : 'dark';
+        localStorage.setItem('edmith-theme', newTheme);
+        applyTheme(newTheme);
+    });
+}
+
+// Listen for system theme changes if user hasn't set an explicit preference
+if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('edmith-theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
         }
     });
 }
 
-// Smooth Scrolling (For anchor links)
+// --- 3. Mobile Navigation Drawer Toggle ---
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.toggle('nav-active');
+        const icon = this.querySelector('i');
+        if (icon) {
+            if (isOpen) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+    });
+
+    // Close mobile menu when clicking any nav link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('nav-active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+            if (navLinks.classList.contains('nav-active')) {
+                navLinks.classList.remove('nav-active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        }
+    });
+}
+
+// --- 4. Smooth Scrolling (For anchor links) ---
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const targetId = this.getAttribute('href');
@@ -28,25 +116,56 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (targetElement) {
             e.preventDefault();
             window.scrollTo({
-                top: targetElement.offsetTop - 60, 
+                top: targetElement.offsetTop - 70, 
                 behavior: 'smooth'
             });
         }
     });
 });
 
+// --- 5. Code Block Copy Buttons ---
+function initCodeCopyButtons() {
+    document.querySelectorAll('.carousel-content, .lesson-content pre, .code-wrapper').forEach(container => {
+        // Find existing mac-header or create copy button directly
+        const macHeader = container.querySelector('.mac-header');
+        const preCode = container.tagName === 'PRE' ? container : container.querySelector('pre');
+        if (!preCode) return;
+
+        if (macHeader && !macHeader.querySelector('.code-copy-btn')) {
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'code-copy-btn';
+            copyBtn.title = 'Copy Code';
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> <span>Copy</span>';
+            macHeader.appendChild(copyBtn);
+
+            copyBtn.addEventListener('click', () => {
+                const codeText = preCode.innerText || preCode.textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> <span>Copied!</span>';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i> <span>Copy</span>';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', initCodeCopyButtons);
+
 
 // =========================================================
 // HOMEPAGE SPECIFIC LOGIC (index.html)
 // =========================================================
 
-// Ensure these elements only run if we are on index.html
 const carouselItems = document.querySelectorAll('.carousel-item');
 if (carouselItems.length > 0) {
     
     // --- CAROUSEL LOGIC ---
     let currentSlide = 0;
     let slideInterval;
+    const carouselContainer = document.querySelector('.carousel-container');
 
     function updateCarousel() {
         carouselItems.forEach((item, index) => {
@@ -69,21 +188,38 @@ if (carouselItems.length > 0) {
         updateCarousel();
     }
 
-    slideInterval = setInterval(nextSlide, 4000);
+    function startAutoSlide() {
+        if (!slideInterval) {
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+    }
+
+    function stopAutoSlide() {
+        clearInterval(slideInterval);
+        slideInterval = null;
+    }
+
+    startAutoSlide();
+
+    // Pause auto-rotation when hovering carousel
+    if (carouselContainer) {
+        carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+        carouselContainer.addEventListener('mouseleave', startAutoSlide);
+    }
 
     carouselItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             if (index !== currentSlide) {
                 currentSlide = index;
                 updateCarousel();
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 4000);
+                stopAutoSlide();
+                startAutoSlide();
             }
         });
     });
     updateCarousel();
 
-    // --- SEARCH BUTTON LOGIC ---
+    // --- SEARCH BUTTON LOGIC (index.html) ---
     const searchInput = document.getElementById('courseSearch');
     const searchBtn = document.getElementById('searchBtn');
     const courseCards = document.querySelectorAll('.plain-card');
@@ -101,20 +237,19 @@ if (carouselItems.length > 0) {
                 searchInput.placeholder = "Search for SQL, HTML, Python...";
             }
             
-            previewSection.style.display = 'block'; 
-            courseCards.forEach(card => card.style.display = 'flex'); // Show all 5 cards
-            noResultsText.style.display = 'none';
+            if (previewSection) previewSection.style.display = 'block'; 
+            courseCards.forEach(card => card.style.display = 'flex');
+            if (noResultsText) noResultsText.style.display = 'none';
             return;
         }
 
-        previewSection.style.display = 'none'; 
+        if (previewSection) previewSection.style.display = 'none'; 
         searchInput.placeholder = "Search for SQL, HTML, Python..."; 
 
         let visibleCount = 0;
         courseCards.forEach(card => {
-            const title = card.getAttribute('data-title');
+            const title = card.getAttribute('data-title') || '';
             if (title.includes(query)) {
-                // Ensure the view-all-card stays as a flex column if visible
                 card.style.display = card.classList.contains('view-all-card') ? 'flex' : 'block';
                 visibleCount++;
             } else {
@@ -122,16 +257,39 @@ if (carouselItems.length > 0) {
             }
         });
 
-        noResultsText.style.display = visibleCount === 0 ? 'block' : 'none';
+        if (noResultsText) {
+            noResultsText.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // When user explicitly clicks search, smooth scroll to courses section
+        if (isButtonClick) {
+            const coursesSection = document.getElementById('courses');
+            if (coursesSection) {
+                window.scrollTo({
+                    top: coursesSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            }
+        }
     }
 
-    searchInput.addEventListener('keyup', () => handleSearch(false));
-    searchBtn.addEventListener('click', () => handleSearch(true));
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch(true);
+            } else {
+                handleSearch(false);
+            }
+        });
+    }
+    if (searchBtn) {
+        searchBtn.addEventListener('click', () => handleSearch(true));
+    }
 }
 
 
 // =========================================================
-// ALL COURSES CATALOG PAGE LOGIC (courses.html)
+// ALL COURSES CATALOG PAGE LOGIC (course.html)
 // =========================================================
 
 const smartHeader = document.getElementById('smartHeader');
@@ -152,41 +310,39 @@ if (smartHeader) {
     const stickySearchBtn = document.getElementById('stickySearchBtn');
 
     // --- 1. STICKY HEADER SEARCH TRANSITION LOGIC ---
-    window.addEventListener('scroll', () => {
-        const heroBottom = catalogHero.offsetTop + catalogHero.offsetHeight;
-        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Show sticky bar once user scrolls past the main hero section
-        if (currentScroll > heroBottom - 50) {
-            stickySearchBar.classList.add('visible');
-        } else {
-            stickySearchBar.classList.remove('visible');
-        }
-    });
+    if (catalogHero && stickySearchBar) {
+        window.addEventListener('scroll', () => {
+            const heroBottom = catalogHero.offsetTop + catalogHero.offsetHeight;
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (currentScroll > heroBottom - 50) {
+                stickySearchBar.classList.add('visible');
+            } else {
+                stickySearchBar.classList.remove('visible');
+            }
+        });
+    }
 
     // --- 2. UNIFIED FILTER & SEARCH LOGIC ---
     function executeCatalogSearch(queryVal, categoryVal, isButtonClick = false) {
-        let query = queryVal.toLowerCase().trim();
-        let category = categoryVal;
+        let query = (queryVal || '').toLowerCase().trim();
+        let category = categoryVal || 'all';
 
         if (query === "") {
-            if (isButtonClick) {
+            if (isButtonClick && catalogSearchInput) {
                 catalogSearchInput.placeholder = "Please enter a course name...";
-                stickySearchInput.placeholder = "Please enter a course name...";
+                if (stickySearchInput) stickySearchInput.placeholder = "Please enter a course name...";
                 catalogSearchInput.focus();
             } else {
-                catalogSearchInput.placeholder = "Search a course...";
-                stickySearchInput.placeholder = "Search a course...";
+                if (catalogSearchInput) catalogSearchInput.placeholder = "Search a course...";
+                if (stickySearchInput) stickySearchInput.placeholder = "Search a course...";
             }
-        } else {
-            catalogSearchInput.placeholder = "Search a course...";
-            stickySearchInput.placeholder = "Search a course...";
         }
 
         let visibleCount = 0;
         catalogCards.forEach(card => {
-            const cardCategory = card.getAttribute('data-category');
-            const cardTitle = card.getAttribute('data-title');
+            const cardCategory = card.getAttribute('data-category') || '';
+            const cardTitle = card.getAttribute('data-title') || '';
             
             const matchesCategory = (category === 'all' || cardCategory.includes(category));
             const matchesText = cardTitle.includes(query);
@@ -199,45 +355,85 @@ if (smartHeader) {
             }
         });
 
-        catalogNoResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        if (catalogNoResults) {
+            catalogNoResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Update URL query params without reloading
+        const url = new URL(window.location);
+        if (query) {
+            url.searchParams.set('search', query);
+        } else {
+            url.searchParams.delete('search');
+        }
+        if (category && category !== 'all') {
+            url.searchParams.set('category', category);
+        } else {
+            url.searchParams.delete('category');
+        }
+        window.history.replaceState({}, '', url);
+    }
+
+    // --- 3. URL PARAMETERS INIT ON PAGE LOAD ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchParam = urlParams.get('search') || urlParams.get('q') || '';
+    const categoryParam = urlParams.get('category') || 'all';
+
+    if (catalogSearchInput) catalogSearchInput.value = searchParam;
+    if (stickySearchInput) stickySearchInput.value = searchParam;
+    if (categoryFilter) categoryFilter.value = categoryParam;
+    if (stickyCategoryFilter) stickyCategoryFilter.value = categoryParam;
+
+    if (searchParam || categoryParam !== 'all') {
+        executeCatalogSearch(searchParam, categoryParam, false);
     }
 
     // Sync Main Bar -> Sticky Bar & Execute
-    categoryFilter.addEventListener('change', () => {
-        stickyCategoryFilter.value = categoryFilter.value;
-        executeCatalogSearch(catalogSearchInput.value, categoryFilter.value, false);
-    });
-    catalogSearchInput.addEventListener('keyup', () => {
-        stickySearchInput.value = catalogSearchInput.value;
-        executeCatalogSearch(catalogSearchInput.value, categoryFilter.value, false);
-    });
-    catalogSearchBtn.addEventListener('click', () => {
-        stickySearchInput.value = catalogSearchInput.value;
-        executeCatalogSearch(catalogSearchInput.value, categoryFilter.value, true);
-    });
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', () => {
+            if (stickyCategoryFilter) stickyCategoryFilter.value = categoryFilter.value;
+            executeCatalogSearch(catalogSearchInput ? catalogSearchInput.value : '', categoryFilter.value, false);
+        });
+    }
+    if (catalogSearchInput) {
+        catalogSearchInput.addEventListener('keyup', (e) => {
+            if (stickySearchInput) stickySearchInput.value = catalogSearchInput.value;
+            executeCatalogSearch(catalogSearchInput.value, categoryFilter ? categoryFilter.value : 'all', e.key === 'Enter');
+        });
+    }
+    if (catalogSearchBtn) {
+        catalogSearchBtn.addEventListener('click', () => {
+            if (stickySearchInput && catalogSearchInput) stickySearchInput.value = catalogSearchInput.value;
+            executeCatalogSearch(catalogSearchInput ? catalogSearchInput.value : '', categoryFilter ? categoryFilter.value : 'all', true);
+        });
+    }
 
     // Sync Sticky Bar -> Main Bar & Execute
-    stickyCategoryFilter.addEventListener('change', () => {
-        categoryFilter.value = stickyCategoryFilter.value;
-        executeCatalogSearch(stickySearchInput.value, stickyCategoryFilter.value, false);
-    });
-    stickySearchInput.addEventListener('keyup', () => {
-        catalogSearchInput.value = stickySearchInput.value;
-        executeCatalogSearch(stickySearchInput.value, stickyCategoryFilter.value, false);
-    });
-    stickySearchBtn.addEventListener('click', () => {
-        catalogSearchInput.value = stickySearchInput.value;
-        executeCatalogSearch(stickySearchInput.value, stickyCategoryFilter.value, true);
-    });
+    if (stickyCategoryFilter) {
+        stickyCategoryFilter.addEventListener('change', () => {
+            if (categoryFilter) categoryFilter.value = stickyCategoryFilter.value;
+            executeCatalogSearch(stickySearchInput ? stickySearchInput.value : '', stickyCategoryFilter.value, false);
+        });
+    }
+    if (stickySearchInput) {
+        stickySearchInput.addEventListener('keyup', (e) => {
+            if (catalogSearchInput) catalogSearchInput.value = stickySearchInput.value;
+            executeCatalogSearch(stickySearchInput.value, stickyCategoryFilter ? stickyCategoryFilter.value : 'all', e.key === 'Enter');
+        });
+    }
+    if (stickySearchBtn) {
+        stickySearchBtn.addEventListener('click', () => {
+            if (catalogSearchInput && stickySearchInput) catalogSearchInput.value = stickySearchInput.value;
+            executeCatalogSearch(stickySearchInput ? stickySearchInput.value : '', stickyCategoryFilter ? stickyCategoryFilter.value : 'all', true);
+        });
+    }
 }
-
 
 
 // =========================================================
 // COURSE DETAIL PAGE LOGIC (sql/index.html)
 // =========================================================
 
-// Ensure syllabus accordions work on the detail page
 const detailAccordions = document.querySelectorAll('.detail-main .accordion-header');
 if (detailAccordions.length > 0) {
     detailAccordions.forEach(header => {
@@ -245,28 +441,199 @@ if (detailAccordions.length > 0) {
             const item = this.parentElement;
             const body = item.querySelector('.accordion-body');
             
-            // Toggle active state
             if (item.classList.contains('active')) {
                 item.classList.remove('active');
                 body.style.maxHeight = null;
-                body.style.padding = "0 1.5rem"; // Reset padding
+                body.style.padding = "0 1.5rem";
             } else {
                 item.classList.add('active');
-                body.style.maxHeight = body.scrollHeight + 50 + "px"; // Expand
+                body.style.maxHeight = (body.scrollHeight + 50) + "px";
                 body.style.padding = "1.5rem";
             }
         });
     });
 }
+
+
 // =========================================================
-// READING PROGRESS BAR LOGIC (intro.html)
+// LESSON / READING INTERFACE (sql/intro.html)
 // =========================================================
-window.addEventListener('scroll', () => {
-    const progressBar = document.getElementById('progressBar');
-    if (progressBar) {
+
+// 1. Reading Progress Bar
+const progressBar = document.getElementById('progressBar');
+if (progressBar) {
+    window.addEventListener('scroll', () => {
         const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const currentScroll = window.scrollY;
-        const progressPercentage = (currentScroll / totalHeight) * 100;
-        progressBar.style.width = progressPercentage + '%';
+        if (totalHeight > 0) {
+            const progressPercentage = (currentScroll / totalHeight) * 100;
+            progressBar.style.width = Math.min(100, Math.max(0, progressPercentage)) + '%';
+        }
+    });
+}
+
+// 2. Mobile Table of Contents Drawer Toggle
+const mobileTocBtn = document.getElementById('mobileTocBtn');
+const courseSidebarNav = document.querySelector('.course-sidebar-nav');
+
+if (mobileTocBtn && courseSidebarNav) {
+    mobileTocBtn.addEventListener('click', () => {
+        courseSidebarNav.classList.toggle('mobile-open');
+        const icon = mobileTocBtn.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-list');
+            icon.classList.toggle('fa-xmark');
+        }
+    });
+
+    // Close sidebar on link click
+    courseSidebarNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            courseSidebarNav.classList.remove('mobile-open');
+            const icon = mobileTocBtn.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-list');
+            }
+        });
+    });
+}
+
+// 3. Independent Per-Lesson Completion Tracking
+function initLessonCompletion() {
+    // Clear legacy buggy global key so it doesn't falsely mark lessons
+    localStorage.removeItem('edmith_sql_intro_completed');
+
+    const markCompleteBtn = document.getElementById('markCompleteBtn');
+    
+    // Helper to show floating toast
+    function showToast(message, iconClass = 'fa-circle-check') {
+        let toast = document.querySelector('.toast-notification');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = `<i class="fas ${iconClass}"></i> <span>${message}</span>`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
     }
-});
+
+    // Update sidebar checklist icons
+    function updateSidebarCheckmarks() {
+        document.querySelectorAll('.course-sidebar-nav li a').forEach(link => {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('#')) return;
+            const pageName = href.split('/').pop().replace('.html', '').replace(/[-_]/g, '_');
+            const key = 'edmith_lesson_completed_sql_' + pageName;
+            const isDone = localStorage.getItem(key) === 'true';
+            
+            let badge = link.querySelector('.lesson-done-icon');
+            if (isDone) {
+                if (!badge) {
+                    badge = document.createElement('i');
+                    badge.className = 'fas fa-check-circle lesson-done-icon';
+                    badge.style.marginLeft = 'auto';
+                    badge.style.color = '#10b981';
+                    badge.style.fontSize = '0.85rem';
+                    link.appendChild(badge);
+                }
+            } else if (badge) {
+                badge.remove();
+            }
+        });
+    }
+
+    updateSidebarCheckmarks();
+
+    if (markCompleteBtn) {
+        // Derive lesson ID from data attribute or current filename (normalized)
+        const attrId = markCompleteBtn.getAttribute('data-lesson-id');
+        const fileId = window.location.pathname.split('/').pop().replace('.html', '');
+        const cleanId = (attrId ? attrId.replace('sql_', '') : fileId).replace(/[-_]/g, '_');
+        const lessonStorageKey = 'edmith_lesson_completed_sql_' + cleanId;
+
+        function renderButtonState(completed) {
+            if (completed) {
+                markCompleteBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>Completed!</span>';
+                markCompleteBtn.classList.add('completed-btn');
+                markCompleteBtn.title = 'Click to unmark or reset';
+            } else {
+                markCompleteBtn.innerHTML = '<i class="fas fa-check"></i> <span>Mark Complete</span>';
+                markCompleteBtn.classList.remove('completed-btn');
+                markCompleteBtn.title = 'Mark this lesson as completed';
+            }
+        }
+
+        const isInitiallyCompleted = localStorage.getItem(lessonStorageKey) === 'true';
+        renderButtonState(isInitiallyCompleted);
+
+        markCompleteBtn.addEventListener('click', () => {
+            const currentlyCompleted = localStorage.getItem(lessonStorageKey) === 'true';
+            const newStatus = !currentlyCompleted;
+            
+            if (newStatus) {
+                localStorage.setItem(lessonStorageKey, 'true');
+                renderButtonState(true);
+                showToast('Lesson marked as complete! Great job.', 'fa-circle-check');
+            } else {
+                localStorage.removeItem(lessonStorageKey);
+                renderButtonState(false);
+                showToast('Lesson marked as incomplete.', 'fa-arrow-rotate-left');
+            }
+            updateSidebarCheckmarks();
+        });
+    }
+}
+
+// 4. Collapsible Sidebar Modules (Accordion with Hamburger & Chevron)
+function initCollapsibleModules() {
+    const moduleHeaders = document.querySelectorAll('.sidebar-module-header');
+    if (!moduleHeaders.length) return;
+
+    moduleHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+            e.preventDefault();
+            const group = this.closest('.sidebar-module-group');
+            if (!group) return;
+
+            const isCollapsed = group.classList.toggle('collapsed');
+            this.setAttribute('aria-expanded', !isCollapsed);
+        });
+    });
+
+    // Automatically expand the module containing the active lesson
+    const activeItem = document.querySelector('.course-sidebar-nav li.active');
+    if (activeItem) {
+        const activeGroup = activeItem.closest('.sidebar-module-group');
+        if (activeGroup) {
+            activeGroup.classList.remove('collapsed');
+            const header = activeGroup.querySelector('.sidebar-module-header');
+            if (header) header.setAttribute('aria-expanded', 'true');
+            // Scroll active item smoothly into view within sidebar
+            setTimeout(() => {
+                activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 150);
+        }
+    } else {
+        // Default to opening Module 1
+        const firstGroup = document.querySelector('.sidebar-module-group[data-module="module-1"]');
+        if (firstGroup) {
+            firstGroup.classList.remove('collapsed');
+            const header = firstGroup.querySelector('.sidebar-module-header');
+            if (header) header.setAttribute('aria-expanded', 'true');
+        }
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initLessonCompletion();
+        initCollapsibleModules();
+    });
+} else {
+    initLessonCompletion();
+    initCollapsibleModules();
+}

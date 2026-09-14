@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the comprehensive course catalog at EDMITH. Master SQL, Python, Java, C, Cloud Computing, and Testing.">
     <title>All Courses - EDMITH</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -11,30 +23,32 @@
 
     <!-- Smart Header -->
     <header class="header courses-header" id="smartHeader">
-        <div class="navbar">
+        <nav class="navbar">
             <a href="index.html" class="logo">EDMITH</a>
             
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
-                <li><a href="course.html" style="color: var(--accent);">Courses</a></li>
+                <li><a href="course.html" class="active">Courses</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
 
             <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- 30-35% Hero Section with Floating Background Elements -->
+    <!-- Catalog Hero Section with Floating Background Elements -->
     <section class="catalog-hero" id="catalogHero">
-        <i class="fas fa-database float-icon icon-1"></i>
-        <i class="fab fa-python float-icon icon-2"></i>
-        <i class="fas fa-chart-pie float-icon icon-3"></i>
-        <i class="fas fa-code float-icon icon-4"></i>
+        <i class="fas fa-database float-icon icon-1" aria-hidden="true"></i>
+        <i class="fab fa-python float-icon icon-2" aria-hidden="true"></i>
+        <i class="fas fa-chart-pie float-icon icon-3" aria-hidden="true"></i>
+        <i class="fas fa-code float-icon icon-4" aria-hidden="true"></i>
 
         <div class="catalog-hero-content">
             <h1>Explore Our Courses</h1>
@@ -42,33 +56,33 @@
             
             <!-- Fully Rounded Search Bar with Dropdown Filter -->
             <div class="search-container catalog-search">
-                <select id="categoryFilter" class="category-dropdown">
+                <select id="categoryFilter" class="category-dropdown" aria-label="Filter by course category">
                     <option value="all">All Categories</option>
                     <option value="data-engineer">Data Engineer</option>
                     <option value="programming">Programming Languages</option>
                     <option value="testing">Testing</option>
                     <option value="cloud">Cloud</option>
                 </select>
-                <input type="text" id="catalogSearchInput" placeholder="Search a course...">
-                <button type="button" id="catalogSearchBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="catalogSearchInput" placeholder="Search a course..." aria-label="Search course by name">
+                <button type="button" id="catalogSearchBtn" aria-label="Execute search"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </section>
 
     <!-- Sticky Floating Bar when scrolled down -->
-    <div class="sticky-search-bar" id="stickySearchBar">
+    <div class="sticky-search-bar" id="stickySearchBar" role="search">
         <div class="sticky-inner">
             <span class="sticky-title">Explore Our Courses</span>
             <div class="search-container sticky-search">
-                <select id="stickyCategoryFilter" class="category-dropdown">
+                <select id="stickyCategoryFilter" class="category-dropdown" aria-label="Filter by course category (sticky)">
                     <option value="all">All Categories</option>
                     <option value="data-engineer">Data Engineer</option>
                     <option value="programming">Programming Languages</option>
                     <option value="testing">Testing</option>
                     <option value="cloud">Cloud</option>
                 </select>
-                <input type="text" id="stickySearchInput" placeholder="Search a course...">
-                <button type="button" id="stickySearchBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="stickySearchInput" placeholder="Search a course..." aria-label="Search course (sticky)">
+                <button type="button" id="stickySearchBtn" aria-label="Execute sticky search"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </div>
@@ -77,6 +91,18 @@
     <section class="catalog-section">
         <div class="catalog-grid" id="catalogGrid">
             
+            <!-- Data Engineer: SQL (Live Course) -->
+            <div class="catalog-card" data-category="data-engineer" data-title="sql databases">
+                <div class="catalog-img" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="catalog-info">
+                    <h3>SQL & Databases</h3>
+                    <p>Write complex queries, understand RDBMS architecture, and prepare for Data Engineer interviews.</p>
+                    <a href="sql/index.html" class="btn-visit">Visit Course</a>
+                </div>
+            </div>
+
             <!-- Programming: C -->
             <div class="catalog-card" data-category="programming" data-title="c programming language">
                 <div class="catalog-img" style="background: linear-gradient(135deg, #84fab0, #8fd3f4);">
@@ -84,8 +110,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>C Programming</h3>
-                    <p>Master memory management and core computer science principles.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Master memory management, pointers, and core computer science fundamentals.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('C Programming syllabus is launching soon! Redirecting to available SQL Mastery module.');">Preview Course</a>
                 </div>
             </div>
 
@@ -96,8 +122,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Python Mastery</h3>
-                    <p>Learn data structures, automation, backend basics, and scripting.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Learn data structures, automation, backend APIs, and scripting from the ground up.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Python Mastery curriculum is in preparation! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -108,20 +134,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Java Enterprise</h3>
-                    <p>Build scalable applications and master Object-Oriented Design.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
-                </div>
-            </div>
-
-            <!-- Data Engineer: SQL -->
-            <div class="catalog-card" data-category="data-engineer" data-title="sql databases">
-                <div class="catalog-img" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
-                    <i class="fas fa-database"></i>
-                </div>
-                <div class="catalog-info">
-                    <h3>SQL & Databases</h3>
-                    <p>Write complex queries to manage and analyze large datasets.</p>
-                    <a href="sql/index.html" class="btn-visit">Visit Course</a>
+                    <p>Build scalable applications, concurrency pipelines, and master Object-Oriented Design.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Java Enterprise curriculum is launching soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -132,8 +146,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Advanced Excel</h3>
-                    <p>Master PivotTables, VLOOKUP, Macros, and Data Analysis.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Master PivotTables, XLOOKUP, Power Query, Macros, and Business Analytics.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Advanced Excel is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -144,8 +158,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Power BI Mastery</h3>
-                    <p>Create interactive dashboards and stunning data visualizations.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Create interactive dashboards, DAX formulas, and stunning data storytelling models.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Power BI Mastery is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -156,8 +170,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Microsoft Azure</h3>
-                    <p>Deploy applications, manage cloud infrastructure, and data lakes.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Deploy cloud apps, manage storage blobs, virtual machines, and Data Factory pipelines.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Microsoft Azure course is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -168,8 +182,8 @@
                 </div>
                 <div class="catalog-info">
                     <h3>Software Testing (QA)</h3>
-                    <p>Master manual testing, Selenium automation, and bug tracking.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Master manual test design, Selenium automation, test cases, and Jira defect lifecycle.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('Software Testing QA is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
@@ -180,21 +194,21 @@
                 </div>
                 <div class="catalog-info">
                     <h3>ETL Testing</h3>
-                    <p>Verify data integrity during Extract, Transform, and Load processes.</p>
-                    <a href="course.html" class="btn-visit">Visit Course</a>
+                    <p>Verify data integrity across Data Warehouse Extract, Transform, and Load operations.</p>
+                    <a href="sql/index.html" class="btn-visit" onclick="alert('ETL Testing is launching soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
                 </div>
             </div>
 
         </div>
         
-        <p id="catalogNoResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem; font-size: 1.1rem;">No courses match your criteria.</p>
+        <p id="catalogNoResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem; font-size: 1.15rem; font-weight: 600;">No courses match your criteria.</p>
     </section>
 
     <!-- Footer Section -->
     <footer id="contact" class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <h2>EDMITH</h2>
+                <div class="brand-title">EDMITH</div>
                 <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
             </div>
             <div class="footer-links">
@@ -207,13 +221,13 @@
             <div class="footer-links">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#contact">Help Center</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 EDMITH. All rights reserved.</p>
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>
     </footer>
 

@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH - Learn to code with hands-on, practical tutorials in SQL, Python, C, Web Development, and more.">
     <title>EDMITH - Learn to Code</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -11,37 +23,40 @@
 
     <!-- Fixed Header -->
     <header class="header">
-        <div class="navbar">
-            <a href="#" class="logo">EDMITH</a>
+        <nav class="navbar">
+            <a href="index.html" class="logo">EDMITH</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#preview">Live Previews</a></li>
                 <li><a href="#courses">Courses</a></li>
+                <li><a href="course.html">Browse All</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </div>
+        </nav>
     </header>
 
     <!-- Hero with Rounded Search -->
     <section id="home" class="hero">
-        <i class="fab fa-python float-icon icon-1"></i>
-        <i class="fas fa-database float-icon icon-2"></i>
-        <i class="fas fa-c float-icon icon-3"></i>
-        <i class="fas fa-pencil-alt float-icon icon-4"></i>
+        <i class="fab fa-python float-icon icon-1" aria-hidden="true"></i>
+        <i class="fas fa-database float-icon icon-2" aria-hidden="true"></i>
+        <i class="fas fa-c float-icon icon-3" aria-hidden="true"></i>
+        <i class="fas fa-code float-icon icon-4" aria-hidden="true"></i>
 
         <div class="hero-content">
             <h1 class="gradient-text">EDMITH</h1>
             <p>Empowering minds with code. Find your next skill today.</p>
             
             <div class="search-container">
-                <input type="text" id="courseSearch" placeholder="Search for SQL, HTML, Python...">
-                <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="courseSearch" placeholder="Search for SQL, HTML, Python..." aria-label="Search courses">
+                <button type="button" id="searchBtn" aria-label="Execute search"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </section>
@@ -156,7 +171,7 @@
                 <div class="card-icon" style="color: #e34c26; background: rgba(227, 76, 38, 0.15);"><i class="fab fa-html5"></i></div>
                 <h3>HTML & CSS</h3>
                 <p>Build stunning, responsive websites from scratch. Master the core building blocks of the web.</p>
-                <a href=" " class="btn-plain">View Course</a>
+                <a href="course.html?category=programming&search=html" class="btn-plain">View Course</a>
             </div>
 
             <!-- Course 2 -->
@@ -164,7 +179,7 @@
                 <div class="card-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.15);"><i class="fab fa-python"></i></div>
                 <h3>Python Mastery</h3>
                 <p>Go from zero to hero in Python. Learn data structures, automation, and backend basics.</p>
-                <a href=" " class="btn-plain">View Course</a>
+                <a href="course.html?category=programming&search=python" class="btn-plain">View Course</a>
             </div>
 
             <!-- Course 3 -->
@@ -180,7 +195,7 @@
                 <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.15);"><i class="fas fa-c"></i></div>
                 <h3>C Programming</h3>
                 <p>Understand memory management and core computer science concepts with C.</p>
-                <a href="" class="btn-plain">View Course</a>
+                <a href="course.html?category=programming&search=c" class="btn-plain">View Course</a>
             </div>
 
             <!-- Course 5: View All Courses Card -->
@@ -188,7 +203,7 @@
                 <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
                 <h3>View All Courses</h3>
                 <p>Explore our complete catalog of programming, database, and testing courses.</p>
-                <a href="/course.html" class="btn-plain view-all-btn">Browse Catalog</a>
+                <a href="course.html" class="btn-plain view-all-btn">Browse Catalog</a>
             </div>
         </div>
         
@@ -199,7 +214,7 @@
     <footer id="contact" class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <h2>EDMITH</h2>
+                <div class="brand-title">EDMITH</div>
                 <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
             </div>
             <div class="footer-links">
@@ -212,13 +227,13 @@
             <div class="footer-links">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#contact">Help Center</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 EDMITH. All rights reserved.</p>
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>
     </footer>
 

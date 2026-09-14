@@ -3,44 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master SQL and Relational Databases with EDMITH. Hands-on modules covering DDL, DML, DQL, Joins, Window Functions, and Data Warehouse ETL.">
     <title>SQL Mastery - EDMITH</title>
-    <!-- Updated path to CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
     <!-- Smart Header -->
     <header class="header detail-header" id="detailHeader">
-        <div class="navbar">
+        <nav class="navbar">
             <a href="../index.html" class="logo">EDMITH</a>
             <ul class="nav-links">
-                <!-- Corrected path to course.html -->
                 <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../course.html" class="active">Courses</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- 40% Hero Section -->
+    <!-- Hero Section -->
     <section class="detail-hero">
         <div class="detail-hero-bg"></div>
         <div class="detail-hero-content">
             <h1>SQL & Database Mastery</h1>
             <p class="relevance-text">
-                <strong>Why this skill is mandatory today:</strong> SQL is the undisputed, non-negotiable backbone of the data-driven world. Whether you are aiming for Database Development, ETL Development, becoming an ETL Tester, managing a Data Warehouse (DWH), or stepping into a Data Engineer role, mastering SQL is your mandatory first step to handling enterprise data.
+                <strong>Why this skill is mandatory today:</strong> SQL is the undisputed, non-negotiable backbone of the data-driven world. Whether you are aiming for Database Development, ETL Engineering, becoming an ETL Tester, managing a Data Warehouse (DWH), or stepping into a Data Engineer role, mastering SQL is your mandatory first step to handling enterprise data.
             </p>
         </div>
     </section>
 
-<!-- Main Course Detail Grid -->
+    <!-- Main Course Detail Grid -->
     <section class="detail-container">
         
         <!-- Left Side: Course Content & Description -->
@@ -48,16 +60,15 @@
             
             <h2>What You Will Learn</h2>
             
-            <h3 style="color: var(--accent); margin-bottom: 15px;">Part 1: The Basics</h3>
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">Part 1: The Basics</h3>
             <div class="learning-grid" style="margin-bottom: 2rem;">
-                <!-- FIX 1: Wrapped text in <span> to prevent awkward flexbox columns -->
                 <p><i class="fas fa-check-circle"></i> <span><strong>SQL Introduction:</strong> Understand relational databases and how data is stored.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>Order of Execution (Priority):</strong> Learn how SQL actually runs behind the scenes (FROM -> GROUP BY -> SELECT -> ORDER BY).</span></p>
+                <p><i class="fas fa-check-circle"></i> <span><strong>Order of Execution (Priority):</strong> Learn how SQL actually runs behind the scenes (FROM &rarr; GROUP BY &rarr; SELECT &rarr; ORDER BY).</span></p>
                 <p><i class="fas fa-check-circle"></i> <span><strong>The 5 SQL Languages:</strong> Master DDL, DML, DQL, TCL, and DCL commands.</span></p>
                 <p><i class="fas fa-check-circle"></i> <span><strong>Database Foundations:</strong> Learn how to create, manage, and structure database files.</span></p>
             </div>
 
-            <h3 style="color: var(--accent); margin-bottom: 15px;">Part 2: The Advance</h3>
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">Part 2: The Advance</h3>
             <div class="learning-grid">
                 <p><i class="fas fa-check-circle"></i> <span><strong>Complex Joins:</strong> Combine multiple tables effortlessly.</span></p>
                 <p><i class="fas fa-check-circle"></i> <span><strong>Window Functions:</strong> Perform advanced analytics without grouping data.</span></p>
@@ -74,20 +85,62 @@
             <div class="syllabus-accordion">
                 <div class="accordion-item active">
                     <div class="accordion-header">
-                        <h3>Module 1: SQL and Basics</h3>
+                        <h3>Module 1: SQL and Basics (47 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div class="accordion-body" style="max-height: 500px; padding: 1.5rem;">
-                        <ul>
-                            <li><i class="fas fa-play-circle"></i> SQL Introduction</li>
-                            <li><i class="fas fa-play-circle"></i> Database and Files</li>
-                            <li><i class="fas fa-play-circle"></i> SQL Keywords</li>
-                            <li><i class="fas fa-play-circle"></i> The 5 SQL Languages (DDL, DML, DQL, TCL, DCL)</li>
-                            <li><i class="fas fa-play-circle"></i> The Priority Rule (Order of Execution)</li>
+                    <div class="accordion-body" style="max-height: 2500px; padding: 1.5rem; overflow-y: auto;">
+                        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px 20px;">
+                            <li><i class="fas fa-book-open"></i> <a href="intro.html" style="color: var(--accent); font-weight: 600;">SQL Introduction</a></li>
+                            <li><i class="fas fa-laptop-code"></i> <a href="languages.html" style="color: var(--accent); font-weight: 600;">The 5 SQL Languages</a></li>
+                            <li><i class="fas fa-list-ol"></i> <a href="priority-rule.html" style="color: var(--accent); font-weight: 600;">The Priority Rule</a></li>
+                            <li><i class="fas fa-terminal"></i> <a href="syntax.html" style="color: var(--accent); font-weight: 600;">SQL Syntax & Statement Grammar</a></li>
+                            <li><i class="fas fa-search"></i> <a href="select.html" style="color: var(--accent); font-weight: 600;">The SELECT Statement</a></li>
+                            <li><i class="fas fa-filter"></i> <a href="select-distinct.html" style="color: var(--accent); font-weight: 600;">SELECT DISTINCT (Deduplication)</a></li>
+                            <li><i class="fas fa-sliders-h"></i> <a href="where.html" style="color: var(--accent); font-weight: 600;">The WHERE Clause</a></li>
+                            <li><i class="fas fa-sort-amount-down"></i> <a href="order-by.html" style="color: var(--accent); font-weight: 600;">The ORDER BY Clause</a></li>
+                            <li><i class="fas fa-plus"></i> <a href="and.html" style="color: var(--accent); font-weight: 600;">The AND Operator</a></li>
+                            <li><i class="fas fa-random"></i> <a href="or.html" style="color: var(--accent); font-weight: 600;">The OR Operator</a></li>
+                            <li><i class="fas fa-ban"></i> <a href="not.html" style="color: var(--accent); font-weight: 600;">The NOT Operator</a></li>
+                            <li><i class="fas fa-plus-circle"></i> <a href="insert-into.html" style="color: var(--accent); font-weight: 600;">The INSERT INTO Statement</a></li>
+                            <li><i class="fas fa-question-circle"></i> <a href="null-values.html" style="color: var(--accent); font-weight: 600;">NULL Values & Three-Valued Logic</a></li>
+                            <li><i class="fas fa-edit"></i> <a href="update.html" style="color: var(--accent); font-weight: 600;">The UPDATE Statement</a></li>
+                            <li><i class="fas fa-trash-alt"></i> <a href="delete.html" style="color: var(--accent); font-weight: 600;">The DELETE Statement</a></li>
+                            <li><i class="fas fa-stream"></i> <a href="select-top.html" style="color: var(--accent); font-weight: 600;">SELECT TOP, LIMIT & Pagination</a></li>
+                            <li><i class="fas fa-calculator"></i> <a href="aggregate-functions.html" style="color: var(--accent); font-weight: 600;">SQL Aggregate Functions Overview</a></li>
+                            <li><i class="fas fa-arrow-down"></i> <a href="min.html" style="color: var(--accent); font-weight: 600;">The MIN() Function</a></li>
+                            <li><i class="fas fa-arrow-up"></i> <a href="max.html" style="color: var(--accent); font-weight: 600;">The MAX() Function</a></li>
+                            <li><i class="fas fa-hashtag"></i> <a href="count.html" style="color: var(--accent); font-weight: 600;">The COUNT() Function</a></li>
+                            <li><i class="fas fa-sigma"></i> <a href="sum.html" style="color: var(--accent); font-weight: 600;">The SUM() Function</a></li>
+                            <li><i class="fas fa-divide"></i> <a href="avg.html" style="color: var(--accent); font-weight: 600;">The AVG() Function</a></li>
+                            <li><i class="fas fa-asterisk"></i> <a href="like.html" style="color: var(--accent); font-weight: 600;">The LIKE Operator</a></li>
+                            <li><i class="fas fa-percent"></i> <a href="wildcards.html" style="color: var(--accent); font-weight: 600;">SQL Wildcards Reference</a></li>
+                            <li><i class="fas fa-sign-in-alt"></i> <a href="in.html" style="color: var(--accent); font-weight: 600;">The IN Operator</a></li>
+                            <li><i class="fas fa-arrows-alt-h"></i> <a href="between.html" style="color: var(--accent); font-weight: 600;">The BETWEEN Operator</a></li>
+                            <li><i class="fas fa-tag"></i> <a href="aliases.html" style="color: var(--accent); font-weight: 600;">SQL Aliases (The AS Keyword)</a></li>
+                            <li><i class="fas fa-object-group"></i> <a href="joins.html" style="color: var(--accent); font-weight: 600;">SQL Joins Overview</a></li>
+                            <li><i class="fas fa-link"></i> <a href="inner-join.html" style="color: var(--accent); font-weight: 600;">INNER JOIN</a></li>
+                            <li><i class="fas fa-arrow-left"></i> <a href="left-join.html" style="color: var(--accent); font-weight: 600;">LEFT JOIN (Outer Join)</a></li>
+                            <li><i class="fas fa-arrow-right"></i> <a href="right-join.html" style="color: var(--accent); font-weight: 600;">RIGHT JOIN (Outer Join)</a></li>
+                            <li><i class="fas fa-arrows-alt-h"></i> <a href="full-join.html" style="color: var(--accent); font-weight: 600;">FULL OUTER JOIN</a></li>
+                            <li><i class="fas fa-sync"></i> <a href="self-join.html" style="color: var(--accent); font-weight: 600;">SELF JOIN</a></li>
+                            <li><i class="fas fa-layer-group"></i> <a href="union.html" style="color: var(--accent); font-weight: 600;">The UNION Operator</a></li>
+                            <li><i class="fas fa-clone"></i> <a href="union-all.html" style="color: var(--accent); font-weight: 600;">The UNION ALL Operator</a></li>
+                            <li><i class="fas fa-boxes"></i> <a href="group-by.html" style="color: var(--accent); font-weight: 600;">The GROUP BY Statement</a></li>
+                            <li><i class="fas fa-filter"></i> <a href="having.html" style="color: var(--accent); font-weight: 600;">The HAVING Clause</a></li>
+                            <li><i class="fas fa-eye"></i> <a href="exists.html" style="color: var(--accent); font-weight: 600;">The EXISTS Operator</a></li>
+                            <li><i class="fas fa-check-double"></i> <a href="any.html" style="color: var(--accent); font-weight: 600;">The ANY Operator</a></li>
+                            <li><i class="fas fa-check-circle"></i> <a href="all.html" style="color: var(--accent); font-weight: 600;">The ALL Operator</a></li>
+                            <li><i class="fas fa-copy"></i> <a href="select-into.html" style="color: var(--accent); font-weight: 600;">The SELECT INTO Statement</a></li>
+                            <li><i class="fas fa-file-import"></i> <a href="insert-into-select.html" style="color: var(--accent); font-weight: 600;">The INSERT INTO SELECT Statement</a></li>
+                            <li><i class="fas fa-code-branch"></i> <a href="case.html" style="color: var(--accent); font-weight: 600;">The CASE Expression</a></li>
+                            <li><i class="fas fa-shield-alt"></i> <a href="null-functions.html" style="color: var(--accent); font-weight: 600;">SQL NULL Functions (COALESCE & IFNULL)</a></li>
+                            <li><i class="fas fa-cogs"></i> <a href="stored-procedures.html" style="color: var(--accent); font-weight: 600;">Stored Procedures</a></li>
+                            <li><i class="fas fa-comment-dots"></i> <a href="comments.html" style="color: var(--accent); font-weight: 600;">SQL Comments</a></li>
+                            <li><i class="fas fa-percentage"></i> <a href="operators.html" style="color: var(--accent); font-weight: 600;">SQL Operators Reference</a></li>
                         </ul>
                     </div>
                 </div>
-                <!-- FIX 2: Added multiple Coming Soon lines -->
+
                 <div class="accordion-item">
                     <div class="accordion-header">
                         <h3>Module 2: Advanced Data Retrieval (Coming Soon)</h3>
@@ -97,8 +150,20 @@
                         <ul>
                             <li><i class="fas fa-lock"></i> Advanced Joins (Coming Soon...)</li>
                             <li><i class="fas fa-lock"></i> Window Functions (Coming Soon...)</li>
-                            <li><i class="fas fa-lock"></i> Subqueries & CTEs (Coming Soon...)</li>
+                            <li><i class="fas fa-lock"></i> Subqueries &amp; CTEs (Coming Soon...)</li>
                             <li><i class="fas fa-lock"></i> Performance Tuning (Coming Soon...)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accordion-item active">
+                    <div class="accordion-header">
+                        <h3>Module 3: References &amp; Dictionaries</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 500px; padding: 1.5rem;">
+                        <ul>
+                            <li><i class="fas fa-book" style="color: var(--accent);"></i> <a href="keywords.html" style="color: var(--accent); font-weight: 700;">SQL Keywords Dictionary (Full Reference)</a></li>
                         </ul>
                     </div>
                 </div>
@@ -106,9 +171,9 @@
         </div>
 
         <!-- Right Side: Sticky Sidebar -->
-        <div class="detail-sidebar">
+        <aside class="detail-sidebar">
             <div class="sidebar-card">
-                <div class="sidebar-img" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
+                <div class="sidebar-img">
                     <i class="fas fa-database"></i>
                 </div>
                 <div class="sidebar-content">
@@ -134,10 +199,10 @@
                             <div><strong>Access:</strong> Full Lifetime Access</div>
                         </div>
                     </div>
-                    <button class="btn-enroll" onclick="window.location.href='intro.html'">Enroll Now</button>
+                    <button class="btn-enroll" onclick="window.location.href='intro.html'">Start Learning Now</button>
                 </div>
             </div>
-        </div>
+        </aside>
 
     </section>
 
@@ -145,31 +210,30 @@
     <footer id="contact" class="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <h2>EDMITH</h2>
+                <div class="brand-title">EDMITH</div>
                 <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
             </div>
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <!-- Corrected path to course.html -->
                     <li><a href="../course.html">All Courses</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#contact">Help Center</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 EDMITH. All rights reserved.</p>
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Updated path to JavaScript -->
-    <script src="/javascript/script.js"></script>
+    <!-- Fixed relative path to JavaScript -->
+    <script src="../javascript/script.js"></script>
 </body>
 </html>

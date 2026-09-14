@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Module 1: The 5 SQL Languages - Master DDL, DML, DQL, TCL, and DCL with practical syntax examples, execution rules, and interview preparation.">
+    <title>The 5 SQL Languages - EDMITH</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-container" aria-hidden="true">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Smart Header -->
+    <header class="header detail-header" id="detailHeader">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="../index.html#contact">Contact Us</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+        
+                        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Basics (47 Lessons) -->
+            <div class="sidebar-module-group" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+                <li class="active"><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
+                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
+                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
+                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
+                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 2: Advance -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Advance</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 3: References -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: References</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            
+            <!-- Mobile Table of Contents Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The 5 SQL Languages</span>
+                </div>
+                <h1>The 5 SQL Languages (DDL, DML, DQL, TCL, DCL)</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 18 Min Read &bull; <i class="fas fa-signal"></i> Core Foundation</p>
+            </div>
+
+            <div class="lesson-content">
+                
+                <h2>Why is SQL Divided into 5 Sub-Languages?</h2>
+                <p>When working with relational database systems, different tasks require different kinds of authority and functionality. Writing queries is not just about retrieving records; developers must build tables, insert records, manage transactional integrity, and configure user permissions.</p>
+                
+                <p>To organize these distinct responsibilities, SQL is partitioned into five specialized sub-languages: <strong>DDL</strong>, <strong>DML</strong>, <strong>DQL</strong>, <strong>TCL</strong>, and <strong>DCL</strong>. Each group targets a specific operational layer of the database engine.</p>
+
+                <!-- Visual Concept Card: The Architecture Analogy -->
+                <div class="visual-concept-card" style="align-items: flex-start;">
+                    <div class="concept-icon"><i class="fas fa-building"></i></div>
+                    <div class="concept-text">
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Construction &amp; Building Analogy</h4>
+                        <p><strong>1. DDL (The Architect &amp; Builder):</strong> Designs and builds the empty rooms, hallways, and walls (Database Schema, Tables, Columns).</p>
+                        <p style="margin-top: 8px !important;"><strong>2. DML (The Residents &amp; Movers):</strong> Moves furniture in and out, redecorates rooms, or cleans items out (Rows and Data Records).</p>
+                        <p style="margin-top: 8px !important;"><strong>3. DQL (The Inspector / Visitor):</strong> Looks through the building and takes notes on what is inside without changing anything (Querying data).</p>
+                        <p style="margin-top: 8px !important;"><strong>4. TCL (The Legal Notary):</strong> Signs the lease contract permanently or cancels the deal if a mistake occurs (Commit &amp; Rollback transactions).</p>
+                        <p style="margin-top: 8px !important;"><strong>5. DCL (The Security Guard):</strong> Hands out keycards and grants or revokes access to specific rooms (User permissions &amp; privileges).</p>
+                    </div>
+                </div>
+
+                <!-- Section 1: DDL -->
+                <h2>1. DDL — Data Definition Language</h2>
+                <p><strong>Data Definition Language (DDL)</strong> consists of commands that define, create, and alter the fundamental blueprint (schema) of database objects such as tables, schemas, views, and indexes. DDL commands change the structure of the database, not the individual records inside them.</p>
+
+                <div class="info-box">
+                    <p><strong>Important Rule:</strong> DDL operations are <em>auto-committed</em> in almost all relational database engines (like MySQL, Oracle, and SQL Server). Once executed, they cannot be rolled back with a <code>ROLLBACK</code> command!</p>
+                </div>
+
+                <p>The core DDL commands are:</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-code"></i> <span><strong>CREATE:</strong> Builds a new database, table, view, or index.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>ALTER:</strong> Modifies an existing table structure (adding columns, modifying datatypes, adding constraints).</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>DROP:</strong> Permanently deletes an entire database object (structure and data) from disk.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>TRUNCATE:</strong> Deletes all rows from a table rapidly while preserving the empty table structure.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>RENAME:</strong> Changes the name of an existing table or column.</span></li>
+                </ul>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- DDL Example: Defining a new student table and altering its schema</span>
+<span class="code-keyword">CREATE TABLE</span> students (
+    student_id <span class="code-keyword">INT PRIMARY KEY</span>,
+    first_name <span class="code-keyword">VARCHAR</span>(<span class="code-string">50</span>) <span class="code-keyword">NOT NULL</span>,
+    email <span class="code-keyword">VARCHAR</span>(<span class="code-string">100</span>) <span class="code-keyword">UNIQUE</span>,
+    enrollment_date <span class="code-keyword">DATE DEFAULT</span> (<span class="code-func">CURRENT_DATE</span>)
+);
+
+<span class="code-comment">-- Add a new column to the existing table</span>
+<span class="code-keyword">ALTER TABLE</span> students 
+<span class="code-keyword">ADD COLUMN</span> graduation_year <span class="code-keyword">INT</span>;</code></pre>
+                </div>
+
+                <!-- Section 2: DML -->
+                <h2>2. DML — Data Manipulation Language</h2>
+                <p><strong>Data Manipulation Language (DML)</strong> operates on the data records (rows) stored inside existing database tables. When an application adds a new user, updates an account password, or deletes an outdated record, it executes DML statements.</p>
+
+                <div class="info-box">
+                    <p><strong>Transactional Safety:</strong> DML commands are <em>not</em> auto-committed by default in standard transactions. Any DML modification can be inspected, tested, and safely rolled back using <code>ROLLBACK</code> before saving permanently with <code>COMMIT</code>.</p>
+                </div>
+
+                <p>The core DML commands are:</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-code"></i> <span><strong>INSERT:</strong> Adds one or more new rows into a specified table.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>UPDATE:</strong> Modifies values in existing rows based on a <code>WHERE</code> condition.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>DELETE:</strong> Removes specific rows that match a <code>WHERE</code> condition.</span></li>
+                </ul>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- DML Example: Populating and modifying student records</span>
+<span class="code-keyword">INSERT INTO</span> students (student_id, first_name, email, graduation_year)
+<span class="code-keyword">VALUES</span> (<span class="code-string">101</span>, <span class="code-string">'Aarav'</span>, <span class="code-string">'aarav@edmith.com'</span>, <span class="code-string">2027</span>);
+
+<span class="code-comment">-- Update student details</span>
+<span class="code-keyword">UPDATE</span> students 
+<span class="code-keyword">SET</span> email = <span class="code-string">'aarav.kumar@edmith.com'</span> 
+<span class="code-keyword">WHERE</span> student_id = <span class="code-string">101</span>;
+
+<span class="code-comment">-- Remove an inactive student</span>
+<span class="code-keyword">DELETE FROM</span> students 
+<span class="code-keyword">WHERE</span> student_id = <span class="code-string">101</span>;</code></pre>
+                </div>
+
+                <!-- Section 3: DQL -->
+                <h2>3. DQL — Data Query Language</h2>
+                <p><strong>Data Query Language (DQL)</strong> is dedicated entirely to searching, filtering, and reading data from database tables without changing either the records or the schema.</p>
+
+                <p>DQL consists of one command with immense expressive power:</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-code"></i> <span><strong>SELECT:</strong> Retrieves filtered, sorted, aggregated, and joined data sets from one or multiple tables.</span></li>
+                </ul>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- DQL Example: Fetching specific data with conditions and sorting</span>
+<span class="code-keyword">SELECT</span> student_id, first_name, email 
+<span class="code-keyword">FROM</span> students 
+<span class="code-keyword">WHERE</span> graduation_year &gt;= <span class="code-string">2026</span>
+<span class="code-keyword">ORDER BY</span> first_name <span class="code-keyword">ASC</span>;</code></pre>
+                </div>
+
+                <!-- Section 4: TCL -->
+                <h2>4. TCL — Transaction Control Language</h2>
+                <p><strong>Transaction Control Language (TCL)</strong> statements manage database transactions. A transaction represents a bundle of SQL statements executed as a single, indivisible logical unit of work. TCL ensures that enterprise databases maintain strict <strong>ACID</strong> compliance.</p>
+
+                <p>The core TCL commands are:</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-code"></i> <span><strong>COMMIT:</strong> Permanently saves all changes executed during the current transaction to disk.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>ROLLBACK:</strong> Reverts all modifications made during the transaction back to the last committed state.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>SAVEPOINT:</strong> Creates an intermediate checkpoint within a transaction, allowing partial rollbacks.</span></li>
+                </ul>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- TCL Example: Secure banking transfer transaction</span>
+<span class="code-keyword">START TRANSACTION</span>;
+
+<span class="code-keyword">UPDATE</span> accounts <span class="code-keyword">SET</span> balance = balance - <span class="code-string">500</span> <span class="code-keyword">WHERE</span> account_no = <span class="code-string">'ACC_1'</span>;
+<span class="code-keyword">SAVEPOINT</span> deduction_done;
+
+<span class="code-keyword">UPDATE</span> accounts <span class="code-keyword">SET</span> balance = balance + <span class="code-string">500</span> <span class="code-keyword">WHERE</span> account_no = <span class="code-string">'ACC_2'</span>;
+
+<span class="code-comment">-- If everything succeeded without errors:</span>
+<span class="code-keyword">COMMIT</span>;
+
+<span class="code-comment">-- Or in case of failure:</span>
+<span class="code-comment">-- ROLLBACK TO SAVEPOINT deduction_done;</span></code></pre>
+                </div>
+
+                <!-- Section 5: DCL -->
+                <h2>5. DCL — Data Control Language</h2>
+                <p><strong>Data Control Language (DCL)</strong> governs the security and permissions of the database system. Database administrators (DBAs) use DCL statements to dictate which users or application services can read, insert, update, or administer specific database objects.</p>
+
+                <p>The core DCL commands are:</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-code"></i> <span><strong>GRANT:</strong> Gives specified users access privileges to database tables or commands.</span></li>
+                    <li><i class="fas fa-code"></i> <span><strong>REVOKE:</strong> Takes away previously granted access privileges from a user.</span></li>
+                </ul>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- DCL Example: Granting and revoking user privileges</span>
+<span class="code-keyword">GRANT SELECT</span>, <span class="code-keyword">INSERT ON</span> students <span class="code-keyword">TO</span> <span class="code-string">'analyst_user'</span>@<span class="code-string">'localhost'</span>;
+
+<span class="code-comment">-- Revoke insertion capability when role changes</span>
+<span class="code-keyword">REVOKE INSERT ON</span> students <span class="code-keyword">FROM</span> <span class="code-string">'analyst_user'</span>@<span class="code-string">'localhost'</span>;</code></pre>
+                </div>
+
+                <!-- Interview Classic: DELETE vs TRUNCATE vs DROP -->
+                <h2>Interview Essential: DELETE vs TRUNCATE vs DROP</h2>
+                <p>One of the most frequently asked questions in SQL and Data Engineering technical interviews revolves around the exact differences between these three deletion commands:</p>
+
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>DELETE (DML)</th>
+                            <th>TRUNCATE (DDL)</th>
+                            <th>DROP (DDL)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Language Type</strong></td>
+                            <td>DML (Data Manipulation)</td>
+                            <td>DDL (Data Definition)</td>
+                            <td>DDL (Data Definition)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operation</strong></td>
+                            <td>Removes specific rows (using <code>WHERE</code>)</td>
+                            <td>Removes all rows from the table</td>
+                            <td>Deletes the entire table and schema</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rollback Support</strong></td>
+                            <td><strong>Yes</strong> (Can be rolled back)</td>
+                            <td><strong>No</strong> (Auto-committed)</td>
+                            <td><strong>No</strong> (Auto-committed)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Table Structure</strong></td>
+                            <td>Structure remains intact</td>
+                            <td>Structure remains intact (empty)</td>
+                            <td>Structure is permanently destroyed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td>Slower (logs row-by-row deletions)</td>
+                            <td>Extremely fast (deallocates data pages)</td>
+                            <td>Immediate deallocation</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Master Comparison Table -->
+                <h2>Master Summary of All 5 Languages</h2>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Full Name</th>
+                            <th>Primary Purpose</th>
+                            <th>Core Commands</th>
+                            <th>Auto-Commit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>DDL</strong></td>
+                            <td>Data Definition Language</td>
+                            <td>Defines &amp; alters schema structure</td>
+                            <td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code>, <code>RENAME</code></td>
+                            <td><strong>Yes</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>DML</strong></td>
+                            <td>Data Manipulation Language</td>
+                            <td>Manages data records inside tables</td>
+                            <td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td>
+                            <td><strong>No</strong> (Transactional)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DQL</strong></td>
+                            <td>Data Query Language</td>
+                            <td>Retrieves &amp; reads data records</td>
+                            <td><code>SELECT</code></td>
+                            <td>N/A (Read-only)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TCL</strong></td>
+                            <td>Transaction Control Language</td>
+                            <td>Manages transactional boundaries</td>
+                            <td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td>
+                            <td>Enforces state</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DCL</strong></td>
+                            <td>Data Control Language</td>
+                            <td>Controls user permissions &amp; security</td>
+                            <td><code>GRANT</code>, <code>REVOKE</code></td>
+                            <td><strong>Yes</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Chapter Summary -->
+                <h2>Chapter Summary</h2>
+                <p>Understanding the 5 sub-languages of SQL (DDL, DML, DQL, TCL, and DCL) is fundamental to designing, securing, and maintaining robust relational databases. Each sub-language serves a dedicated lifecycle role, from architecting schemas and querying records to managing transactional boundaries and access permissions.</p>
+                <div class="summary-box">
+                    <ul class="summary-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>DDL (Structure):</strong> Manages the database schema. Auto-committed operations like <code>CREATE</code> and <code>ALTER</code> cannot be reversed with rollback.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>DML (Data):</strong> Operates on table records. Commands like <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> can be safely rolled back in transactions.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>DQL (Read):</strong> Centered around the <code>SELECT</code> statement, forming the backbone of all data analytics and reporting.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>TCL (Safety):</strong> Ensures atomic execution through <code>COMMIT</code> and <code>ROLLBACK</code>, safeguarding data against system crashes.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>DCL (Security):</strong> Enforces role-based access control with <code>GRANT</code> and <code>REVOKE</code> statements.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+                        <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a href="intro.html" class="btn-outline" title="Previous: SQL Introduction"><i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Introduction</span></a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_languages">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a href="priority-rule.html" class="btn-enroll" title="Next: The Priority Rule">
+                        <span class="btn-text">Next: The Priority Rule</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer lesson-page-footer">
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

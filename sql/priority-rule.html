@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Module 1: The Priority Rule (SQL Order of Execution) - Understand how the database engine executes queries: FROM, WHERE, GROUP BY, HAVING, SELECT, ORDER BY, LIMIT.">
+    <title>The Priority Rule (Order of Execution) - EDMITH</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-container" aria-hidden="true">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Smart Header -->
+    <header class="header detail-header" id="detailHeader">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="../index.html#contact">Contact Us</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+        
+                        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Basics (47 Lessons) -->
+            <div class="sidebar-module-group" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+                <li class="active"><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
+                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
+                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
+                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
+                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 2: Advance -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Advance</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Module 3: References -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: References</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            
+            <!-- Mobile Table of Contents Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The Priority Rule</span>
+                </div>
+                <h1>The Priority Rule (SQL Order of Execution)</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 20 Min Read &bull; <i class="fas fa-signal"></i> Non-Negotiable Core Rule</p>
+            </div>
+
+            <div class="lesson-content">
+                
+                <h2>The Great SQL Paradox</h2>
+                <p>When you write a sentence in English, you read it from left to right. When you write a SQL query, you naturally begin with the keyword <code>SELECT</code>. However, the database engine does <strong>not</strong> begin executing your query with <code>SELECT</code>!</p>
+                
+                <p>SQL is a <em>declarative language</em>: you specify <strong>what</strong> data you want, not how to retrieve it. To optimize speed and minimize memory consumption, every SQL query engine follows a strict, hidden hierarchy called <strong>The Priority Rule (Logical Order of Query Execution)</strong>.</p>
+
+                <p>Mastering this order is what separates junior coders from senior Data Engineers. It explains why certain queries throw bizarre errors like <em>"Column alias not found"</em> and unlocks your ability to write blazingly fast database queries.</p>
+
+                <!-- Visual Concept Card: The Factory Line Analogy -->
+                <div class="visual-concept-card" style="align-items: flex-start;">
+                    <div class="concept-icon"><i class="fas fa-conveyor-belt"></i></div>
+                    <div class="concept-text">
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Factory Assembly Line Analogy</h4>
+                        <p>Imagine a factory producing custom customized juice packages:</p>
+                        <p style="margin-top: 8px !important;"><strong>1. FROM &amp; JOIN:</strong> The warehouse trucks arrive with crates of raw fruit (Tables &amp; Datasets).</p>
+                        <p style="margin-top: 8px !important;"><strong>2. WHERE:</strong> Workers discard any spoiled or rotten fruit before processing (Row filtering).</p>
+                        <p style="margin-top: 8px !important;"><strong>3. GROUP BY:</strong> The remaining fruit is organized into bins: Oranges, Apples, and Grapes (Aggregation grouping).</p>
+                        <p style="margin-top: 8px !important;"><strong>4. HAVING:</strong> Bins with fewer than 50 fruits are removed from the production line (Group filtering).</p>
+                        <p style="margin-top: 8px !important;"><strong>5. SELECT:</strong> The juice is extracted, measured, and branded with a custom label (Column projection &amp; Aliases).</p>
+                        <p style="margin-top: 8px !important;"><strong>6. DISTINCT:</strong> Duplicate identical bottles are discarded.</p>
+                        <p style="margin-top: 8px !important;"><strong>7. ORDER BY:</strong> The bottles are neatly arranged from highest price to lowest on the display rack (Sorting).</p>
+                        <p style="margin-top: 8px !important;"><strong>8. LIMIT / OFFSET:</strong> Only the first 10 bottles are placed into the delivery basket (Pagination).</p>
+                    </div>
+                </div>
+
+                <!-- Comparison: Lexical vs Logical Order -->
+                <h2>How You Write It vs How the Database Runs It</h2>
+                <p>Notice how <code>SELECT</code> is written first, but executed near the very end:</p>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Phase</th>
+                                <th>Syntactic Order (How You Write It)</th>
+                                <th>Logical Execution Order (The Priority Rule)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Step 1</strong></td>
+                                <td><code>SELECT</code> (Written 1st)</td>
+                                <td><strong style="color: var(--accent);">FROM &amp; JOIN</strong> (Executes 1st)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 2</strong></td>
+                                <td><code>FROM</code> (Written 2nd)</td>
+                                <td><strong style="color: var(--accent);">WHERE</strong> (Executes 2nd)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 3</strong></td>
+                                <td><code>WHERE</code> (Written 3rd)</td>
+                                <td><strong style="color: var(--accent);">GROUP BY</strong> (Executes 3rd)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 4</strong></td>
+                                <td><code>GROUP BY</code> (Written 4th)</td>
+                                <td><strong style="color: var(--accent);">HAVING</strong> (Executes 4th)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 5</strong></td>
+                                <td><code>HAVING</code> (Written 5th)</td>
+                                <td><strong style="color: var(--accent);">SELECT</strong> (Executes 5th)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 6</strong></td>
+                                <td><code>ORDER BY</code> (Written 6th)</td>
+                                <td><strong style="color: var(--accent);">DISTINCT</strong> (Executes 6th)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 7</strong></td>
+                                <td><code>LIMIT / OFFSET</code> (Written 7th)</td>
+                                <td><strong style="color: var(--accent);">ORDER BY</strong> (Executes 7th)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Step 8</strong></td>
+                                <td>—</td>
+                                <td><strong style="color: var(--accent);">LIMIT / OFFSET</strong> (Executes 8th)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Step-by-Step Deep Dive -->
+                <h2>Step-by-Step: The 8 Phases of Execution</h2>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">1. FROM &amp; JOIN (Locate the Data)</h3>
+                <p>The database engine first identifies the source tables. If you are combining tables with <code>INNER JOIN</code>, <code>LEFT JOIN</code>, or <code>CROSS JOIN</code>, the engine merges them into a working Cartesian virtual table. Without source data, nothing else can proceed.</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">2. WHERE (Filter Raw Rows)</h3>
+                <p>The engine applies your boolean predicates to filter individual rows. Any row that does not evaluate to <code>TRUE</code> is immediately discarded. This happens <em>before</em> any grouping or aggregate calculations take place, making it crucial for query performance.</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">3. GROUP BY (Aggregate into Buckets)</h3>
+                <p>The rows surviving the <code>WHERE</code> filter are partitioned into unique group sets based on the columns listed in <code>GROUP BY</code>. From this point forward, the query no longer views single individual rows; it operates on entire summary groups.</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">4. HAVING (Filter Aggregated Buckets)</h3>
+                <p>Once groups exist, <code>HAVING</code> filters out groups that do not meet aggregate conditions (such as <code>COUNT(*) &gt; 5</code> or <code>AVG(salary) &gt; 80000</code>). Rows cannot be filtered with aggregate functions inside <code>WHERE</code> because groups haven't formed yet!</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">5. SELECT (Evaluate Expressions &amp; Aliases)</h3>
+                <p>Only now does the engine evaluate the expressions inside the <code>SELECT</code> clause! It computes mathematical formulas, concatenates strings, formats columns, and assigns column aliases (e.g., <code>AS total_amount</code>).</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">6. DISTINCT (Deduplicate)</h3>
+                <p>If you included the <code>DISTINCT</code> keyword, the engine examines the projected columns from Step 5 and eliminates any duplicate rows.</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">7. ORDER BY (Sort Final Rows)</h3>
+                <p>The engine sorts the final dataset ascending (<code>ASC</code>) or descending (<code>DESC</code>). Because <code>SELECT</code> has already executed, you <strong>can</strong> sort by aliases created in the <code>SELECT</code> clause!</p>
+
+                <h3 style="color: var(--accent); margin-top: 1.75rem;">8. LIMIT / OFFSET (Slice Output)</h3>
+                <p>Finally, the engine discards rows outside your pagination boundary. <code>LIMIT 10</code> takes only the top 10 rows of the ordered result set.</p>
+
+                <!-- Concrete Full Query Walkthrough -->
+                <h2>Concrete Example: Tracing a Real Query</h2>
+                <p>Let's trace how the engine executes this complex query step-by-step:</p>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1.5rem 0 2.5rem; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- Goal: Find top departments with more than 3 high-earning engineers</span>
+<span class="code-keyword">SELECT</span> 
+    dept.department_name,
+    <span class="code-func">COUNT</span>(emp.employee_id) <span class="code-keyword">AS</span> senior_count,
+    <span class="code-func">AVG</span>(emp.salary) <span class="code-keyword">AS</span> avg_senior_salary
+<span class="code-keyword">FROM</span> departments dept
+<span class="code-keyword">JOIN</span> employees emp <span class="code-keyword">ON</span> dept.id = emp.department_id
+<span class="code-keyword">WHERE</span> emp.experience_years &gt;= <span class="code-string">5</span>
+<span class="code-keyword">GROUP BY</span> dept.department_name
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(emp.employee_id) &gt; <span class="code-string">3</span>
+<span class="code-keyword">ORDER BY</span> senior_count <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">5</span>;</code></pre>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Behind the Scenes Execution Trace:</strong><br>
+                    <strong>1.</strong> <code>departments</code> and <code>employees</code> tables are joined on <code>dept.id = emp.department_id</code>.<br>
+                    <strong>2.</strong> Junior employees (<code>experience_years &lt; 5</code>) are discarded immediately.<br>
+                    <strong>3.</strong> Senior employees are grouped into buckets by <code>department_name</code>.<br>
+                    <strong>4.</strong> Departments with 3 or fewer senior employees are eliminated by <code>HAVING</code>.<br>
+                    <strong>5.</strong> Column aliases <code>senior_count</code> and <code>avg_senior_salary</code> are calculated.<br>
+                    <strong>6.</strong> Rows are sorted by <code>senior_count DESC</code>.<br>
+                    <strong>7.</strong> Only the top 5 departments are returned.</p>
+                </div>
+
+                <!-- 3 Classic Traps -->
+                <h2>The 3 Classic Traps (And How to Avoid Them)</h2>
+
+                <h3>Trap 1: The "Unknown Column Alias" in WHERE</h3>
+                <p>Beginners frequently try to filter by a calculated alias inside <code>WHERE</code>:</p>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1rem 0; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- ❌ INCORRECT: Throws "ERROR: column 'annual_pay' does not exist"</span>
+<span class="code-keyword">SELECT</span> employee_id, (monthly_salary * <span class="code-string">12</span>) <span class="code-keyword">AS</span> annual_pay
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> annual_pay &gt; <span class="code-string">100000</span>; <span class="code-comment">-- FAILS! WHERE runs BEFORE SELECT!</span>
+
+<span class="code-comment">-- ✅ CORRECT: Repeat the underlying expression or use a CTE / Subquery</span>
+<span class="code-keyword">SELECT</span> employee_id, (monthly_salary * <span class="code-string">12</span>) <span class="code-keyword">AS</span> annual_pay
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> (monthly_salary * <span class="code-string">12</span>) &gt; <span class="code-string">100000</span>;</code></pre>
+                </div>
+                <p><strong>Why it failed:</strong> When <code>WHERE</code> is evaluated in Step 2, <code>SELECT</code> (Step 5) has not run yet. The label <code>annual_pay</code> does not exist in memory!</p>
+
+                <h3 style="margin-top: 2rem;">Trap 2: Aggregate Functions in WHERE</h3>
+                <p>Trying to filter by <code>SUM()</code>, <code>COUNT()</code>, or <code>AVG()</code> in the <code>WHERE</code> clause:</p>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1rem 0; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- ❌ INCORRECT: Throws "ERROR: An aggregate may not appear in WHERE"</span>
+<span class="code-keyword">SELECT</span> department_id, <span class="code-func">COUNT</span>(*)
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> <span class="code-func">COUNT</span>(*) &gt; <span class="code-string">10</span> <span class="code-comment">-- FAILS! Cannot aggregate before GROUP BY!</span>
+<span class="code-keyword">GROUP BY</span> department_id;
+
+<span class="code-comment">-- ✅ CORRECT: Use HAVING to filter groups</span>
+<span class="code-keyword">SELECT</span> department_id, <span class="code-func">COUNT</span>(*)
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">GROUP BY</span> department_id
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(*) &gt; <span class="code-string">10</span>;</code></pre>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Trap 3: Using Aliases in ORDER BY (Why it WORKS!)</h3>
+                <p>New developers often wonder: <em>"If aliases fail in WHERE, why do they work in ORDER BY?"</em></p>
+
+                <div class="carousel-content" style="border-radius: 12px; margin: 1rem 0; box-shadow: var(--shadow-md);">
+                    <div class="mac-header">
+                        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                    </div>
+                    <pre><code><span class="code-comment">-- ✅ Perfectly Valid SQL</span>
+<span class="code-keyword">SELECT</span> employee_id, (monthly_salary * <span class="code-string">12</span>) <span class="code-keyword">AS</span> annual_pay
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">ORDER BY</span> annual_pay <span class="code-keyword">DESC</span>; <span class="code-comment">-- WORKS! ORDER BY runs AFTER SELECT!</span></code></pre>
+                </div>
+                <p>Because <code>ORDER BY</code> executes in <strong>Step 7</strong>, long after <code>SELECT</code> (Step 5) has calculated and assigned the alias <code>annual_pay</code>, the sorting engine knows exactly what column it refers to!</p>
+
+                <!-- Chapter Summary -->
+                <h2>Chapter Summary</h2>
+                <p>The Priority Rule dictates the non-negotiable logical order in which database engines execute SQL queries. Understanding that queries run in the sequence FROM &rarr; WHERE &rarr; GROUP BY &rarr; HAVING &rarr; SELECT &rarr; DISTINCT &rarr; ORDER BY &rarr; LIMIT is what empowers engineers to write bug-free queries and optimize data retrieval performance.</p>
+                <div class="summary-box">
+                    <ul class="summary-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>The Priority Sequence:</strong> <code>FROM</code> &rarr; <code>WHERE</code> &rarr; <code>GROUP BY</code> &rarr; <code>HAVING</code> &rarr; <code>SELECT</code> &rarr; <code>DISTINCT</code> &rarr; <code>ORDER BY</code> &rarr; <code>LIMIT</code>.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>WHERE vs HAVING:</strong> <code>WHERE</code> filters individual records before grouping; <code>HAVING</code> filters aggregated groups after <code>GROUP BY</code>.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Alias Visibility:</strong> Aliases created in <code>SELECT</code> are inaccessible to <code>WHERE</code> and <code>HAVING</code>, but are fully available to <code>ORDER BY</code>.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Performance Insight:</strong> High-selectivity filters in <code>WHERE</code> reduce the dataset early, drastically accelerating downstream <code>GROUP BY</code> and <code>ORDER BY</code> steps.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+                        <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a href="languages.html" class="btn-outline" title="Previous: The 5 SQL Languages"><i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The 5 SQL Languages</span></a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_priority_rule">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a href="syntax.html" class="btn-enroll" title="Next: SQL Syntax & Statement Grammar">
+                        <span class="btn-text">Next: SQL Syntax &amp; Grammar</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer lesson-page-footer">
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>
