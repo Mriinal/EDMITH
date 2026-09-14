@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Introduction - EDMITH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Smart Header -->
+    <header class="header detail-header" id="detailHeader">
+        <div class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+        
+        <!-- Left Sidebar Course Outline (Hidden on Mobile) -->
+        <!-- Left Sidebar Course Outline (Hidden on Mobile) -->
+        <aside class="course-sidebar-nav">
+            <h3>Module 1: Basics</h3>
+            <ul>
+                <li class="active"><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+                <li><a href="#"><i class="fas fa-database"></i> Database and Files</a></li>
+                <li><a href="#"><i class="fas fa-code"></i> SQL Keywords</a></li>
+                <li><a href="#"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+                <li><a href="#"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+            </ul>
+            <h3 style="margin-top: 2rem;">Module 2: Advance</h3>
+            <ul>
+                <li><a href="#"><i class="fas fa-link"></i> Advanced Joins</a></li>
+                <li><a href="#"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+            </ul>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">SQL Mastery</a> &gt; <span>Module 1: Basics</span>
+                </div>
+                <h1>Introduction to SQL</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Beginner</p>
+            </div>
+
+            <div class="lesson-content">
+                
+                <h2>About SQL: Why is it required?</h2>
+                <p>Structured Query Language serves as the standard medium to communicate with Relational Databases. To visualize how data ecosystems operate, picture a massive, highly structured digital filing cabinet. SQL functions as the precise syntax used to query that cabinet to store, update, extract, or manage structured information.</p>
+                
+                <p>Modern applications generate countless data points every fraction of a second. Whether streaming platforms recommending media, financial institutions executing fund transfers, or social networks rendering feeds, database engines power the backend logic. Mastering SQL is a core technical requirement because of its high execution speed, reliability, and capability to process extensive enterprise data stores.</p>
+
+                <div class="visual-concept-card">
+                    <div class="concept-icon"><i class="fas fa-database"></i></div>
+                    <div class="concept-text">
+                        <h4>The Data Ecosystem</h4>
+                        <p>Applications interface with SQL database management systems to process thousands of simultaneous read and write operations smoothly.</p>
+                    </div>
+                </div>
+
+                <h2>History & Versions of SQL</h2>
+                <p>The foundation of SQL dates back to the early 1970s at IBM research laboratories, where computer scientists conceptualized a query language for relational database prototypes. Originally designated as SEQUEL, the name later evolved to SQL following formal trademark registration adjustments.</p>
+                
+                <p>Standardization bodies like ANSI and ISO formally recognized SQL as a universal database standard in the mid-1980s. Subsequent standard revisions introduced advanced features including window calculations, triggers, and native XML and JSON data handling capabilities.</p>
+
+                <h2>SQL vs MySQL vs NoSQL</h2>
+                <p>A common misconception among developers involves confusing the SQL language with specific database software implementations. SQL represents the descriptive grammar rules used for data manipulation, whereas MySQL functions as a specific relational database management engine engineered to interpret those exact statements. Alternative relational servers include PostgreSQL, Microsoft SQL Server, and Oracle Database.</p>
+                
+                <p>In contrast, NoSQL architectures break away from conventional tabular schemas. Document stores and key-value databases optimize for unstructured records and horizontal scalability using alternative querying APIs.</p>
+
+                <h2>What is DBMS?</h2>
+                <p>A <strong>Database Management System (DBMS)</strong> represents application software structured to build, maintain, and provide controlled access to database files. While traditional DBMS engines organize data efficiently, they store information as isolated files. They often experience limitations regarding cross-file relationships, multi-user concurrency control, and rigorous transactional security.</p>
+
+                <h2>What is RDBMS?</h2>
+                <p>A <strong>Relational Database Management System (RDBMS)</strong> evolves traditional database models by structuring data into strict two-dimensional tables containing rows and columns. Relationships span across separate tables through primary and foreign key constraints, enforcing strict data consistency and preventing redundant information storage.</p>
+
+                <!-- The Coffee Machine Analogy -->
+                <div class="visual-concept-card" style="align-items: flex-start;">
+                    <div class="concept-icon"><i class="fas fa-coffee"></i></div>
+                    <div class="concept-text">
+                        <h4 style="margin-bottom: 12px; font-size: 1.2rem;">The Coffee Machine Analogy</h4>
+                        
+                        <p><strong>DBMS (The Manual Coffee Setup):</strong><br> 
+                        Imagine keeping your coffee powder, sugar, and milk in completely separate jars on different shelves. To make coffee, you have to manually fetch and mix each one. If the milk is spoiled, you might not realize it until you have already ruined the coffee. The ingredients exist, but they are completely isolated and not "aware" of each other.</p>
+                        
+                        <p style="margin-top: 12px !important;"><strong>RDBMS (The Smart Espresso Machine):</strong><br> 
+                        Imagine a high-end, automated machine where the beans, water, and milk are stored in deeply connected compartments. When you press "Latte", the machine knows exactly how the ingredients <em>relate</em> to each other. It automatically pulls the perfect ratio together. If the milk is empty, it halts the transaction immediately so you don't get a bad cup. Everything is perfectly linked, automated, and secure.</p>
+                    </div>
+                </div>
+
+                <h2>Examples and Differences: DBMS vs RDBMS</h2>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>DBMS</th>
+                            <th>RDBMS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Architecture</strong></td>
+                            <td>Hierarchical or flat-file organization</td>
+                            <td>Normalized tabular relations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Scale</strong></td>
+                            <td>Optimized for smaller, isolated workloads</td>
+                            <td>Engineered for massive enterprise demands</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integrity Constraints</strong></td>
+                            <td>Minimal relationship validation</td>
+                            <td>Enforces strict ACID compliance and keys</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Software Examples</strong></td>
+                            <td>Registry files, FoxPro, plain XML stores</td>
+                            <td>MySQL, PostgreSQL, Oracle, SQL Server</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2>Chapter Summary</h2>
+                <p>SQL provides the universal syntax required to communicate with relational database engines. Understanding the distinction between a database language and software engines like MySQL establishes a solid foundation for data engineering, database administration, and backend development careers.</p>
+                
+                <div class="summary-box">
+                    <ul class="summary-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Core Purpose:</strong> SQL (Structured Query Language) is the standard language used to communicate with and manipulate relational databases.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Origins:</strong> Developed at IBM in the 1970s (originally named SEQUEL) and became a recognized ANSI standard in 1986.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>SQL vs MySQL:</strong> SQL is the language (the grammar), while MySQL is the database engine (the software) that understands and executes it.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>DBMS vs RDBMS:</strong> A basic DBMS stores data in simple files, whereas an RDBMS organizes data into highly structured, interconnected tables for enterprise scale.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>NoSQL:</strong> An alternative database architecture that handles unstructured data (like documents or key-value pairs) without using traditional relational tables.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="lesson-footer">
+                <button class="btn-outline" disabled style="opacity: 0.5;">Previous Lesson</button>
+                <button class="btn-enroll" onclick="window.location.href='#'">Mark Complete & Next <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></button>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-bottom" style="border: none; padding-top: 1rem;">
+            <p>&copy; 2026 EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

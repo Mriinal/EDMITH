@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDMITH - Learn to Code</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Fixed Header -->
+    <header class="header">
+        <div class="navbar">
+            <a href="#" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#preview">Live Previews</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero with Rounded Search -->
+    <section id="home" class="hero">
+        <i class="fab fa-python float-icon icon-1"></i>
+        <i class="fas fa-database float-icon icon-2"></i>
+        <i class="fas fa-c float-icon icon-3"></i>
+        <i class="fas fa-pencil-alt float-icon icon-4"></i>
+
+        <div class="hero-content">
+            <h1 class="gradient-text">EDMITH</h1>
+            <p>Empowering minds with code. Find your next skill today.</p>
+            
+            <div class="search-container">
+                <input type="text" id="courseSearch" placeholder="Search for SQL, HTML, Python...">
+                <button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Learning Previews (Carousel) -->
+    <section id="preview" class="preview-section">
+        <div class="section-header">
+            <h2>Interactive Learning Previews</h2>
+        </div>
+        
+        <div class="carousel-container">
+            
+            <!-- Slide 1: Web Dev -->
+            <div class="carousel-item active" data-index="0">
+                <div class="vertical-title">WEB DEV</div>
+                <div class="carousel-inner">
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #FF9A9E, #FECFEF);">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Web Dev</h3>
+                    </div>
+                    <div class="carousel-content">
+                        <div class="mac-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <pre><code><span class="code-comment">// Your Future Starts Here</span>
+<span class="code-keyword">function</span> <span class="code-func">startJourney</span>() {
+    <span class="code-keyword">const</span> platform = <span class="code-string">"EDMITH"</span>;
+    <span class="code-keyword">let</span> skills = [<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>];
+    <span class="code-keyword">return</span> <span class="code-string">"Ready!"</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: C Programming -->
+            <div class="carousel-item next" data-index="1">
+                <div class="vertical-title">C PROG</div>
+                <div class="carousel-inner">
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #84fab0, #8fd3f4);">
+                        <i class="fas fa-c"></i>
+                        <h3>C Language</h3>
+                    </div>
+                    <div class="carousel-content">
+                        <div class="mac-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <pre><code><span class="code-comment">/* Mastering memory */</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;stdio.h&gt;</span>
+
+<span class="code-keyword">int</span> <span class="code-func">main</span>() {
+    <span class="code-func">printf</span>(<span class="code-string">"Hello EDMITH!\n"</span>);
+    <span class="code-keyword">return</span> <span class="code-string">0</span>;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Python -->
+            <div class="carousel-item hidden" data-index="2">
+                <div class="vertical-title">PYTHON</div>
+                <div class="carousel-inner">
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #fccb90, #d57eeb);">
+                        <i class="fab fa-python"></i>
+                        <h3>Python Pro</h3>
+                    </div>
+                    <div class="carousel-content">
+                        <div class="mac-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <pre><code><span class="code-comment"># Automating success</span>
+<span class="code-keyword">def</span> <span class="code-func">future</span>(effort):
+    <span class="code-keyword">if</span> effort > <span class="code-string">99</span>:
+        <span class="code-keyword">return</span> <span class="code-string">"Senior Dev"</span>
+        
+<span class="code-func">print</span>(future(<span class="code-string">100</span>))</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: SQL -->
+            <div class="carousel-item prev" data-index="3">
+                <div class="vertical-title">SQL DB</div>
+                <div class="carousel-inner">
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
+                        <i class="fas fa-database"></i>
+                        <h3>SQL Data</h3>
+                    </div>
+                    <div class="carousel-content">
+                        <div class="mac-header">
+                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <pre><code><span class="code-comment">-- Querying minds</span>
+<span class="code-keyword">SELECT</span> name, career 
+<span class="code-keyword">FROM</span> edmith_students 
+<span class="code-keyword">WHERE</span> skill = <span class="code-string">'Expert'</span>;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="section-header">
+            <h2>Our Important Courses</h2>
+        </div>
+
+        <div class="course-container" id="courseList">
+            <!-- Course 1 -->
+            <div class="plain-card" data-title="html css web">
+                <div class="card-icon" style="color: #e34c26; background: rgba(227, 76, 38, 0.15);"><i class="fab fa-html5"></i></div>
+                <h3>HTML & CSS</h3>
+                <p>Build stunning, responsive websites from scratch. Master the core building blocks of the web.</p>
+                <a href=" " class="btn-plain">View Course</a>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="plain-card" data-title="python">
+                <div class="card-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.15);"><i class="fab fa-python"></i></div>
+                <h3>Python Mastery</h3>
+                <p>Go from zero to hero in Python. Learn data structures, automation, and backend basics.</p>
+                <a href=" " class="btn-plain">View Course</a>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="plain-card" data-title="sql database">
+                <div class="card-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.15);"><i class="fas fa-database"></i></div>
+                <h3>SQL & Databases</h3>
+                <p>Learn how to query, manage, and analyze large datasets using modern relational databases.</p>
+                <a href="sql/index.html" class="btn-plain">View Course</a>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="plain-card" data-title="c programming">
+                <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.15);"><i class="fas fa-c"></i></div>
+                <h3>C Programming</h3>
+                <p>Understand memory management and core computer science concepts with C.</p>
+                <a href="" class="btn-plain">View Course</a>
+            </div>
+
+            <!-- Course 5: View All Courses Card -->
+            <div class="plain-card view-all-card" data-title="view all courses catalog">
+                <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
+                <h3>View All Courses</h3>
+                <p>Explore our complete catalog of programming, database, and testing courses.</p>
+                <a href="/course.html" class="btn-plain view-all-btn">Browse Catalog</a>
+            </div>
+        </div>
+        
+        <p id="noResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem;">No courses found. Try another search.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h2>EDMITH</h2>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="course.html">All Courses</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="javascript/script.js"></script>
+</body>
+</html>
