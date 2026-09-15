@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-puzzle-piece"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Puzzle Pieces Analogy</h4>
-                        <p>In a jigsaw puzzle, individual pieces hold partial pictures. When you snap the interlocking edge of Piece A into Piece B, they form a complete, coherent image.</p>
-                        <p style="margin-top: 8px !important;">SQL Joins snap separate database tables together based on matching relational keys.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Jigsaw Puzzle & Key-Card Interlock Analogy</h4>
+                        <p>Picture two separate specialized filing systems in a university administration office:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Cabinet A (Students)::</strong> Contains Student ID, Full Name, and Major.</li>
+                            <li><strong>2. Cabinet B (Enrollments)::</strong> Contains Course ID, Student ID, and Final Grade.</li>
+                            <li><strong>3. The Foreign Key Interlock::</strong> The Student ID number acts like interlocking puzzle tabs connecting a student's identity to their classes.</li>
+                            <li><strong>4. The Join Spectrum::</strong> We can combine matching records only (INNER), keep all students even with no classes (LEFT), keep all classes even with no students (RIGHT), or keep everything (FULL).</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">SQL joins merge separate normalized tables into unified, coherent views through established primary and foreign key relationships.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Joins Overview</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Joins Overview</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,27 +195,109 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; joins.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; joins.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- General Join Syntax:</span>
-<span class="code-keyword">SELECT</span> a.col, b.col
-<span class="code-keyword">FROM</span> table_a a
-<span class="code-keyword">JOIN</span> table_b b <span class="code-keyword">ON</span> a.id = b.a_id;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. INNER JOIN: Returns strictly matching rows from both tables</span>
+<span class="code-keyword">SELECT</span> c.customer_name, o.order_id, o.order_total
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id;
+
+<span class="code-comment">-- 2. LEFT JOIN: Retains all left rows; pairs matching right rows or NULL</span>
+<span class="code-keyword">SELECT</span> c.customer_name, o.order_id
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id;
+
+<span class="code-comment">-- 3. Multi-Table Join across Three Entities</span>
+<span class="code-keyword">SELECT</span> 
+    c.customer_name,
+    o.order_id,
+    p.product_name,
+    oi.quantity
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> order_items oi <span class="code-keyword">ON</span> o.order_id = oi.order_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> products p <span class="code-keyword">ON</span> oi.product_id = p.product_id;
+
+<span class="code-comment">-- 4. The Cartesian Cross Join (Omitting ON clause produces N x M rows)</span>
+<span class="code-keyword">SELECT</span> s.size_name, c.color_name
+<span class="code-keyword">FROM</span> sizes s
+<span class="code-keyword">CROSS <span class="code-keyword">JOIN</span></span> colors c;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>A <code>JOIN</code> clause combines rows from two or more tables based on a related column between them (typically a Primary Key and Foreign Key relationship).</p>
-        <p>The four primary join categories are:</p>
-        <ul>
-            <li><code>INNER JOIN</code>: Rows matching in both tables.</li>
-            <li><code>LEFT JOIN</code>: All rows from left table + matches from right table.</li>
-            <li><code>RIGHT JOIN</code>: All rows from right table + matches from left table.</li>
-            <li><code>FULL OUTER JOIN</code>: All rows from both tables.</li>
-        </ul>
+                <p>SQL Joins allow you to retrieve data from two or more tables based on a logical relationship between them. Relational database normalization splits entities into separate tables to eliminate redundancy; Joins assemble them back together during query execution.</p>
+                <ul>
+                    <li><strong>Relational Key Linking:</strong> Joins typically correlate the <code>PRIMARY KEY</code> of one table with the <code>FOREIGN KEY</code> of another table.</li>
+                    <li><strong>The ON Clause:</strong> The <code>ON</code> clause defines the join condition predicate (e.g. <code>ON a.id = b.id</code>). Filtering in ON vs WHERE has critical semantic differences in Outer Joins.</li>
+                    <li><strong>Join Algorithms:</strong> The query engine chooses between three core physical join operators: Nested Loops (indexed lookups), Hash Join (large unsorted sets), or Merge Join (sorted inputs).</li>
+                    <li><strong>Cartesian Product Risk:</strong> Omitting an ON condition creates a CROSS JOIN, multiplying every row in table A by every row in table B (N x M rows).</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Join Type</th>
+                                <th>Venn Diagram Concept</th>
+                                <th>Left Table Rows</th>
+                                <th>Right Table Rows</th>
+                                <th>Non-Matching Row Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>INNER JOIN</code></td>
+                                <td>Intersection of sets (A &cap; B)</td>
+                                <td>Only matching rows kept</td>
+                                <td>Only matching rows kept</td>
+                                <td>Discarded completely</td>
+                            </tr>
+                            <tr>
+                                <td><code>LEFT JOIN</code></td>
+                                <td>All of A + matching B</td>
+                                <td>100% preserved</td>
+                                <td>Matching rows only</td>
+                                <td>Right columns padded with NULL</td>
+                            </tr>
+                            <tr>
+                                <td><code>RIGHT JOIN</code></td>
+                                <td>All of B + matching A</td>
+                                <td>Matching rows only</td>
+                                <td>100% preserved</td>
+                                <td>Left columns padded with NULL</td>
+                            </tr>
+                            <tr>
+                                <td><code>FULL OUTER JOIN</code></td>
+                                <td>Union of both sets (A &cup; B)</td>
+                                <td>100% preserved</td>
+                                <td>100% preserved</td>
+                                <td>Opposite columns padded with NULL</td>
+                            </tr>
+                            <tr>
+                                <td><code>CROSS JOIN</code></td>
+                                <td>Cartesian Product (A &times; B)</td>
+                                <td>Repeated for each B row</td>
+                                <td>Repeated for each A row</td>
+                                <td>Every combination created</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Physical Join Algorithms: How Database Engines Execute Joins</h3>
+                <p>Understanding the database engine's internal physical join algorithms helps developers write high-throughput relational queries:</p>
+                <ul>
+                    <li><strong>Nested Loop Join:</strong> For each row in the outer table, the engine performs an index lookup on the inner table. Optimal for small datasets or when the inner table has a tight index seek.</li>
+                    <li><strong>Hash Join:</strong> The engine scans the smaller table into an in-memory hash table, then streams the larger table against the hash buckets. Optimal for large, unsorted analytical joins.</li>
+                    <li><strong>Sort-Merge Join:</strong> Both tables are sorted by the join key, and the engine steps through both streams simultaneously like a zipper. Peak efficiency when indexes already provide sorted order.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Connecting Orders to Customer Profiles:</strong> Standard inner join matching foreign keys to primary keys.</p>
+                <p><strong>E-Commerce Customer Order & Fulfillment Correlation:</strong> Demonstrate the relational interplay between customers, purchase orders, and fulfillment couriers across normalized database schemas.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -217,37 +307,69 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Connecting Orders to Customer Profiles</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Customer Order & Fulfillment Correlation</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    o.order_id, 
-    c.customer_name, 
-    o.order_total
-<span class="code-keyword">FROM</span> orders o
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> customers c <span class="code-keyword">ON</span> o.customer_id = c.customer_id;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   customers: (cust_id, name) -&gt; (1, 'Alice'), (2, 'Bob'), (3, 'Charlie')</span>
+<span class="code-comment">   orders: (order_id, cust_id, amount) -&gt; (101, 1, 150), (102, 1, 300), (103, 2, 75)</span>
+<span class="code-comment">   Note: Charlie (cust_id 3) has placed zero orders.</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: INNER JOIN - Extract customers who have active orders</span>
+<span class="code-keyword">SELECT</span> c.name, o.order_id, o.amount
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.cust_id = o.cust_id;
+<span class="code-comment">-- Matches: Alice (Order 101, 102) and Bob (Order 103). Charlie is excluded.</span>
+
+<span class="code-comment">-- Requirement 2: LEFT JOIN - Retain all customers, showing NULL for non-purchasers</span>
+<span class="code-keyword">SELECT</span> c.name, o.order_id, o.amount
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.cust_id = o.cust_id;
+<span class="code-comment">-- Matches: Alice (101, 102), Bob (103), AND Charlie (order_id = NULL, amount = NULL)</span>
+
+<span class="code-comment">-- Requirement 3: Anti-Join Pattern - Identify customers with zero order history</span>
+<span class="code-keyword">SELECT</span> c.name, c.cust_id
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.cust_id = o.cust_id
+<span class="code-keyword">WHERE</span> o.order_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Charlie (cust_id 3 - completely inactive customer)</span>
+
+<span class="code-comment">-- Requirement 4: Multi-table join across customers, orders, and order_items</span>
+<span class="code-keyword">SELECT</span> c.name, o.order_id, <span class="code-func">COUNT</span>(oi.item_id) <span class="code-keyword">AS</span> total_items_purchased
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.cust_id = o.cust_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> order_items oi <span class="code-keyword">ON</span> o.order_id = oi.order_id
+<span class="code-keyword">GROUP BY</span> c.name, o.order_id;
+<span class="code-comment">-- Matches: Aggregated item counts per customer order</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>SQL joins represent the heart of relational database modeling, merging separate normalized tables into unified, coherent views through established primary and foreign key relationships.</p>
+                <p>SQL joins represent the heart of relational database modeling, merging separate normalized tables into unified, coherent views through primary and foreign key relationships.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Relational Power:</strong> Joins combine columns from separate tables into unified query datasets.</span>
+                            <span><strong>Core Join Types:</strong> Master INNER, LEFT, RIGHT, and FULL OUTER joins to navigate relational intersections and outer unions.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Key Matching:</strong> Typically join on Primary Key to Foreign Key relationships via the ON clause.</span>
+                            <span><strong>Always Specify ON Condition:</strong> Omitting the ON condition triggers an accidental Cartesian CROSS JOIN, resulting in massive row multiplications.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Join Types:</strong> INNER (intersection), LEFT (preserve left), RIGHT (preserve right), FULL (preserve both).</span>
+                            <span><strong>Filtering in ON vs WHERE:</strong> In OUTER JOINs, filtering right-table columns in WHERE converts the query into an INNER JOIN; put optional filters in ON.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Cartesian Trap:</strong> Omitting the ON join condition results in a CROSS JOIN matching every row to every row.</span>
+                            <span><strong>Index Foreign Keys:</strong> Always build B-Tree indexes on foreign key columns to enable lightning-fast Nested Loop and Merge joins.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Table Disambiguation:</strong> Always qualify column references with table aliases (e.g. c.customer_id) to eliminate ambiguity.</span>
                         </li>
                     </ul>
                 </div>
@@ -278,7 +400,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

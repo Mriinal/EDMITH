@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-id-badge"></i></div>
+                    <div class="concept-icon"><i class="fas fa-satellite-dish"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Club Guest List Verification Analogy</h4>
-                        <p>When arriving at a private club, the host doesn't need to know how many times you've visited or read your full biography. They check: 'Does this person's ID exist on tonight's invite list?' The moment they find your name, they stop searching and let you in.</p>
-                        <p style="margin-top: 8px !important;">The EXISTS operator tests for the existence of any record in a subquery and short-circuits instantly.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Submarine Sonar Ping Detector Analogy</h4>
+                        <p>Picture a naval submarine sonar operator scanning an ocean sector for obstacles:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Sonar Pulse::</strong> The operator emits a sonar ping to check if an uncharted reef exists in the forward corridor.</li>
+                            <li><strong>2. The First Echo::</strong> The moment the very first soundwave bounces back from an object, the alarm sounds: Contact Confirmed (TRUE)!</li>
+                            <li><strong>3. No Need to Count::</strong> The operator does not stay around for 2 hours counting how many grains of sand form the reef; finding ONE single point of contact is enough.</li>
+                            <li><strong>4. Immediate Halt::</strong> EXISTS operates like that sonar ping: the instant the engine encounters the first matching subquery row, it halts scanning immediately.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The EXISTS operator performs ultra-fast boolean presence checks against subqueries, halting scanning the moment the first matching record is discovered.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The EXISTS Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The EXISTS Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,21 +195,110 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; exists.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; exists.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_a a
+                    <pre><code><span class="code-comment">-- 1. Standard Correlated EXISTS: Finding Customers with At Least One Order</span>
+<span class="code-keyword">SELECT</span> c.customer_id, c.customer_name
+<span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
-    <span class="code-keyword">SELECT</span> 1 <span class="code-keyword">FROM</span> table_b b <span class="code-keyword">WHERE</span> b.a_id = a.id
-);</code></pre>
+    <span class="code-keyword">SELECT</span> 1 
+    <span class="code-keyword">FROM</span> orders o 
+    <span class="code-keyword">WHERE</span> o.customer_id = c.customer_id
+);
+
+<span class="code-comment">-- 2. NOT EXISTS: Finding Inactive Customers with Zero Orders (Anti-Semi Join)</span>
+<span class="code-keyword">SELECT</span> c.customer_id, c.customer_name
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (
+    <span class="code-keyword">SELECT</span> 1 
+    <span class="code-keyword">FROM</span> orders o 
+    <span class="code-keyword">WHERE</span> o.customer_id = c.customer_id
+);
+
+<span class="code-comment">-- 3. EXISTS with Additional Subquery Filtering</span>
+<span class="code-keyword">SELECT</span> p.product_id, p.product_name
+<span class="code-keyword">FROM</span> products p
+<span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
+    <span class="code-keyword">SELECT</span> 1 
+    <span class="code-keyword">FROM</span> order_items oi 
+    <span class="code-keyword">WHERE</span> oi.product_id = p.product_id 
+      <span class="code-keyword">AND</span> oi.quantity &gt;= 100
+);
+
+<span class="code-comment">-- 4. Correlated Double EXISTS (Cross-Entity Membership)</span>
+<span class="code-keyword">SELECT</span> u.user_id, u.username
+<span class="code-keyword">FROM</span> users u
+<span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (<span class="code-keyword">SELECT</span> 1 <span class="code-keyword">FROM</span> user_roles r <span class="code-keyword">WHERE</span> r.user_id = u.user_id <span class="code-keyword">AND</span> r.role_name = <span class="code-string">'ADMIN'</span>)
+  <span class="code-keyword">AND</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (<span class="code-keyword">SELECT</span> 1 <span class="code-keyword">FROM</span> user_bans b <span class="code-keyword">WHERE</span> b.user_id = u.user_id);</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>EXISTS</code> tests for the presence of records returned by a subquery. It returns <code>TRUE</code> if the subquery returns at least one row, and <code>FALSE</code> if zero rows return.</p>
-        <p>Because <code>EXISTS</code> short-circuits the moment a single matching row is located, it is often substantially faster than <code>IN</code> or <code>COUNT(*) &gt; 0</code> on massive datasets.</p>
+                <p>The <code>EXISTS</code> operator tests for the existence of rows in a subquery. It returns <code>TRUE</code> if the subquery returns at least one row, and <code>FALSE</code> if the subquery returns zero rows.</p>
+                <ul>
+                    <li><strong>Early Short-Circuiting:</strong> The database engine halts subquery execution immediately upon locating the first matching tuple, maximizing query speed.</li>
+                    <li><strong>The SELECT 1 Convention:</strong> Because EXISTS only checks for row presence, the projection list inside the subquery is completely ignored; writing <code>SELECT 1</code> or <code>SELECT *</code> has identical performance.</li>
+                    <li><strong>NULL Immunity:</strong> Unlike <code>IN</code> which fails if subqueries contain NULL values, <code>EXISTS</code> and <code>NOT EXISTS</code> handle NULLs gracefully without logical bugs.</li>
+                    <li><strong>Correlated Subquery Structure:</strong> EXISTS typically references columns from the outer query (e.g. <code>WHERE inner.id = outer.id</code>), allowing the optimizer to transform the query into a Semi-Join.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Operator</th>
+                                <th>Subquery Result</th>
+                                <th>Boolean Return Value</th>
+                                <th>Evaluation Model</th>
+                                <th>NULL Handling</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>EXISTS</code></td>
+                                <td>&gt;= 1 matching row found</td>
+                                <td><code>TRUE</code></td>
+                                <td>Short-circuits on first hit</td>
+                                <td>Immune to NULLs inside subquery</td>
+                            </tr>
+                            <tr>
+                                <td><code>EXISTS</code></td>
+                                <td>0 rows found</td>
+                                <td><code>FALSE</code></td>
+                                <td>Scans until EOF or index limit</td>
+                                <td>Returns FALSE</td>
+                            </tr>
+                            <tr>
+                                <td><code>NOT EXISTS</code></td>
+                                <td>0 rows found</td>
+                                <td><code>TRUE</code></td>
+                                <td>Returns TRUE if set is empty</td>
+                                <td>Safe (Anti-Semi Join)</td>
+                            </tr>
+                            <tr>
+                                <td><code>NOT IN</code></td>
+                                <td>Contains a NULL value</td>
+                                <td><code>UNKNOWN / Empty</code></td>
+                                <td>Full set evaluation</td>
+                                <td>Breaks query output (Returns 0 rows)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why SELECT 1 is the Universal Industry Idiom for EXISTS</h3>
+                <p>Developers almost always write <code>WHERE EXISTS (SELECT 1 FROM ...)</code> instead of <code>SELECT *</code>:</p>
+                <ul>
+                    <li><strong>Projection Independence:</strong> The SQL query planner evaluates the subquery strictly for row count, discarding the SELECT list entirely.</li>
+                    <li><strong>Clear Developer Intent:</strong> Writing <code>SELECT 1</code> communicates to human teammates that the projected values are irrelevant; only the existence of matching rows matters.</li>
+                    <li><strong>Performance Equality:</strong> Both <code>SELECT 1</code> and <code>SELECT *</code> generate identical execution plans in modern database engines.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Finding Suppliers Who Have Active Products Listed:</strong> Correlated subquery identifying manufacturers with live inventory.</p>
+                <p><strong>SaaS Subscription Enterprise Feature Access Gate:</strong> Verify enterprise organization authorization to access premium platform APIs based on active licensing entitlements.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -211,39 +308,88 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Finding Suppliers Who Have Active Products Listed</span>
+                        <span class="terminal-title">Production Queries &bull; SaaS Subscription Enterprise Feature Access Gate</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> supplier_id, company_name, contact_phone
-<span class="code-keyword">FROM</span> suppliers s
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Datasets:</span>
+<span class="code-comment">   organizations: (org_id, org_name, plan_type)</span>
+<span class="code-comment">   #1: 'Stark Ind', 'ENTERPRISE' | #2: 'Wayne Ent', 'ENTERPRISE' | #3: 'Daily Bugle', 'PRO'</span>
+<span class="code-comment">   api_entitlements: (entitlement_id, org_id, feature_key, is_active)</span>
+<span class="code-comment">   #1: Org 1, 'ADVANCED_AI', TRUE</span>
+<span class="code-comment">   #2: Org 1, 'AUDIT_LOGS', TRUE</span>
+<span class="code-comment">   #3: Org 2, 'ADVANCED_AI', FALSE</span>
+<span class="code-comment">   #4: Org 3, 'STANDARD_API', TRUE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Identify organizations with active 'ADVANCED_AI' feature entitlement using EXISTS</span>
+<span class="code-keyword">SELECT</span> org_id, org_name, plan_type
+<span class="code-keyword">FROM</span> organizations org
 <span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> 1 
-    <span class="code-keyword">FROM</span> products p 
-    <span class="code-keyword">WHERE</span> p.supplier_id = s.supplier_id 
-      <span class="code-keyword">AND</span> p.is_active = <span class="code-keyword">TRUE</span>
-);</code></pre>
+    <span class="code-keyword">FROM</span> api_entitlements ent 
+    <span class="code-keyword">WHERE</span> ent.org_id = org.org_id 
+      <span class="code-keyword">AND</span> ent.feature_key = <span class="code-string">'ADVANCED_AI'</span> 
+      <span class="code-keyword">AND</span> ent.is_active = <span class="code-keyword">TRUE</span>
+);
+<span class="code-comment">-- Matches: Org 1 (Stark Ind) - Wayne Ent has the key, but is_active is FALSE!</span>
+
+<span class="code-comment">-- Requirement 2: Audit non-compliant enterprise organizations with ZERO active entitlements (NOT EXISTS)</span>
+<span class="code-keyword">SELECT</span> org_id, org_name
+<span class="code-keyword">FROM</span> organizations org
+<span class="code-keyword">WHERE</span> org.plan_type = <span class="code-string">'ENTERPRISE'</span>
+  <span class="code-keyword">AND</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (
+      <span class="code-keyword">SELECT</span> 1 
+      <span class="code-keyword">FROM</span> api_entitlements ent 
+      <span class="code-keyword">WHERE</span> ent.org_id = org.org_id <span class="code-keyword">AND</span> ent.is_active = <span class="code-keyword">TRUE</span>
+  );
+<span class="code-comment">-- Matches: Org 2 (Wayne Ent) - Flagged for license activation review</span>
+
+<span class="code-comment">-- Requirement 3: Verify organization has at least one active security or AI feature</span>
+<span class="code-keyword">SELECT</span> org_id, org_name
+<span class="code-keyword">FROM</span> organizations org
+<span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
+    <span class="code-keyword">SELECT</span> 1 
+    <span class="code-keyword">FROM</span> api_entitlements ent 
+    <span class="code-keyword">WHERE</span> ent.org_id = org.org_id 
+      <span class="code-keyword">AND</span> ent.feature_key <span class="code-keyword">IN</span> (<span class="code-string">'ADVANCED_AI'</span>, <span class="code-string">'AUDIT_LOGS'</span>) 
+      <span class="code-keyword">AND</span> ent.is_active = <span class="code-keyword">TRUE</span>
+);
+<span class="code-comment">-- Matches: Org 1 (Stark Ind)</span>
+
+<span class="code-comment">-- Requirement 4: Combined positive and negative existence gate</span>
+<span class="code-keyword">SELECT</span> org_id, org_name
+<span class="code-keyword">FROM</span> organizations org
+<span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (<span class="code-keyword">SELECT</span> 1 <span class="code-keyword">FROM</span> api_entitlements e <span class="code-keyword">WHERE</span> e.org_id = org.org_id)
+  <span class="code-keyword">AND</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (<span class="code-keyword">SELECT</span> 1 <span class="code-keyword">FROM</span> api_entitlements e <span class="code-keyword">WHERE</span> e.org_id = org.org_id <span class="code-keyword">AND</span> e.is_active = <span class="code-keyword">FALSE</span>);
+<span class="code-comment">-- Matches organizations whose registered entitlements are all 100% active</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The EXISTS operator performs ultra-fast boolean presence checks against subquery results. Because the database engine halts scanning immediately upon finding the first matching record, EXISTS delivers optimal performance.</p>
+                <p>The EXISTS operator performs ultra-fast boolean presence checks against subquery results, halting execution on the first match and safely handling NULL values.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Existence Testing:</strong> Returns TRUE if subquery yields at least one matching row.</span>
+                            <span><strong>Short-Circuit Execution:</strong> Halts subquery scanning immediately upon encountering the first matching record.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Short-Circuit Speed:</strong> Stops searching immediately upon locating the first match, saving CPU and I/O.</span>
+                            <span><strong>The SELECT 1 Convention:</strong> Use SELECT 1 in the subquery projection list to clearly signal existence-only testing.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Convention: SELECT 1:</strong> Commonly written with SELECT 1 inside subquery since actual projected columns are ignored.</span>
+                            <span><strong>Safe with NULLs:</strong> Immune to the Three-Valued Logic NULL pitfalls that cripple the NOT IN operator.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NOT EXISTS Power:</strong> The cleanest, most reliable method for finding unmatched records across tables.</span>
+                            <span><strong>Anti-Semi Join Power:</strong> NOT EXISTS is the premier tool for finding records that have zero relationships in foreign tables.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Semi-Join Optimization:</strong> Relational optimizers convert correlated EXISTS subqueries into high-speed Semi-Joins.</span>
                         </li>
                     </ul>
                 </div>
@@ -274,7 +420,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

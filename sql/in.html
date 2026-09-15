@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li class="active"><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-tasks"></i></div>
+                    <div class="concept-icon"><i class="fas fa-clipboard-check"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Multiple Choice Checklist Analogy</h4>
-                        <p>A recruiter reviews job applicants and accepts candidates located in London, New York, or Tokyo. Instead of writing three separate rejection rules, they check: 'Is candidate city in [London, New York, Tokyo]?'</p>
-                        <p style="margin-top: 8px !important;">The IN operator tests whether a value matches any item in a specified list.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Airport Baggage Claim Tag Analogy</h4>
+                        <p>Picture an airport baggage handler sorting luggage arriving off an international flight:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Cumbersome Alternative::</strong> Checking if a bag goes to 'JFK' OR 'LHR' OR 'CDG' OR 'DXB' OR 'HND' requires checking five separate rules every time.</li>
+                            <li><strong>2. The Destination Bucket List::</strong> Instead, the handler holds a single laminated list of approved destinations: IN ('JFK', 'LHR', 'CDG', 'DXB', 'HND').</li>
+                            <li><strong>3. Instant Set Membership::</strong> A bag's airport code is checked against the list in one swift motion; if it matches any code, it goes onto the plane.</li>
+                            <li><strong>4. Dynamic Lists::</strong> The list can be printed on the fly based on today's flight schedule (subqueries).</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing messy chains of OR statements.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The IN Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The IN Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,24 +195,101 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; in.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; in.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Value list check:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">IN</span> (value1, value2, value3);
+                    <pre><code><span class="code-comment">-- 1. Matching Against a Discrete List of Literal Values</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, department
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department <span class="code-keyword">IN</span> (<span class="code-string">'Engineering'</span>, <span class="code-string">'Security'</span>, <span class="code-string">'Architecture'</span>);
 
-<span class="code-comment">-- Subquery check:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> col <span class="code-keyword">FROM</span> other_table);</code></pre>
+<span class="code-comment">-- 2. Replacing Verbose Chained OR Clauses with Clean IN Syntax</span>
+<span class="code-comment">-- Instead of: WHERE status = 'SHIPPED' OR status = 'DELIVERED' OR status = 'COMPLETED'</span>
+<span class="code-keyword">SELECT</span> order_id, customer_id, status
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> status <span class="code-keyword">IN</span> (<span class="code-string">'SHIPPED'</span>, <span class="code-string">'DELIVERED'</span>, <span class="code-string">'COMPLETED'</span>);
+
+<span class="code-comment">-- 3. The IN Operator with Dynamic Subquery</span>
+<span class="code-keyword">SELECT</span> customer_id, company_name
+<span class="code-keyword">FROM</span> corporate_clients
+<span class="code-keyword">WHERE</span> customer_id <span class="code-keyword">IN</span> (
+    <span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> customer_id 
+    <span class="code-keyword">FROM</span> high_value_contracts 
+    <span class="code-keyword">WHERE</span> contract_value &gt;= 100000.00
+);
+
+<span class="code-comment">-- 4. The NOT IN Operator for Exclusion</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category
+<span class="code-keyword">FROM</span> store_catalog
+<span class="code-keyword">WHERE</span> category <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'Discontinued'</span>, <span class="code-string">'Seasonal'</span>, <span class="code-string">'Archived'</span>);</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>IN</code> operator allows you to specify multiple values in a <code>WHERE</code> clause. It is a shorthand syntax that replaces cumbersome chains of <code>OR</code> conditions (e.g. <code>col IN ('A', 'B', 'C')</code> vs <code>col = 'A' OR col = 'B' OR col = 'C'</code>).</p>
-        <p>The <code>IN</code> operator can also evaluate against the result of a subquery.</p>
+                <p>The <code>IN</code> operator allows you to determine whether a specified value matches any value within a literal list or returned by a subquery. It functions as concise shorthand for multiple <code>OR</code> conditions.</p>
+                <ul>
+                    <li><strong>Shorthand for Chained OR:</strong> <code>col IN (A, B, C)</code> is semantically equivalent to <code>col = A OR col = B OR col = C</code>, but far more readable.</li>
+                    <li><strong>Subquery Integration:</strong> IN can evaluate against the result set of an independent or correlated subquery (e.g. <code>WHERE id IN (SELECT id FROM...)</code>).</li>
+                    <li><strong>Index Optimization:</strong> Relational query planners optimize IN lists by executing multiple rapid B-Tree index seek operations.</li>
+                    <li><strong>The Deadly NOT IN with NULL Trap:</strong> If an inner subquery evaluated by <code>NOT IN</code> returns a single NULL value, the outer query returns zero rows.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Operator Form</th>
+                                <th>Syntax Example</th>
+                                <th>Evaluation Semantics</th>
+                                <th>Equivalent Logic</th>
+                                <th>Performance Profile</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Literal Set IN</td>
+                                <td><code>WHERE id IN (1, 2, 3)</code></td>
+                                <td>Checks if value exists in array</td>
+                                <td><code>id = 1 OR id = 2 OR id = 3</code></td>
+                                <td>High (Multiple index seeks)</td>
+                            </tr>
+                            <tr>
+                                <td>Subquery IN</td>
+                                <td><code>WHERE id IN (SELECT...)</code></td>
+                                <td>Executes subquery and checks set</td>
+                                <td>Semi-Join transformation</td>
+                                <td>Optimized to Hash or Merge Semi-Join</td>
+                            </tr>
+                            <tr>
+                                <td>Literal Set NOT IN</td>
+                                <td><code>WHERE code NOT IN ('A', 'B')</code></td>
+                                <td>Excludes all matching elements</td>
+                                <td><code>code != 'A' AND code != 'B'</code></td>
+                                <td>Table scan or index range scan</td>
+                            </tr>
+                            <tr>
+                                <td>Subquery NOT IN</td>
+                                <td><code>WHERE id NOT IN (SELECT...)</code></td>
+                                <td>Anti-Semi Join (Danger with NULLs)</td>
+                                <td>Anti-Join logic</td>
+                                <td>Dangerous if subquery contains NULL</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The IN Operator vs Subquery EXISTS: When to Use Which</h3>
+                <p>Database developers frequently debate whether to use <code>IN</code> or <code>EXISTS</code> when filtering with subqueries:</p>
+                <ul>
+                    <li><strong>Small Static Subquery:</strong> If the subquery returns a small, fixed list of IDs, <code>IN</code> is concise, clear, and executes with high efficiency.</li>
+                    <li><strong>Large Dynamic Dataset:</strong> If the subquery spans a large table, <code>EXISTS</code> is often faster because it short-circuits execution as soon as the first matching row is found.</li>
+                    <li><strong>NULL Safety:</strong> <code>NOT EXISTS</code> handles NULL values gracefully, whereas <code>NOT IN</code> breaks if the subquery returns a single NULL.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Filtering Shipments for Priority Regional Hubs:</strong> Filter active distribution shipments heading to specific regional centers.</p>
+                <p><strong>Healthcare Pharmacy Prescription Drug Dispensation:</strong> Audit pharmacy medication dispensation logs to track controlled substances, authorized prescribers, and restricted categories.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -214,35 +299,74 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Filtering Shipments for Priority Regional Hubs</span>
+                        <span class="terminal-title">Production Queries &bull; Healthcare Pharmacy Prescription Drug Dispensation</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> shipment_id, destination_hub, dispatch_date
-<span class="code-keyword">FROM</span> logistics_shipments
-<span class="code-keyword">WHERE</span> destination_hub <span class="code-keyword">IN</span> (<span class="code-string">'CHICAGO'</span>, <span class="code-string">'DALLAS'</span>, <span class="code-string">'ATLANTA'</span>, <span class="code-string">'SEATTLE'</span>)
-  <span class="code-keyword">AND</span> status = <span class="code-string">'IN_TRANSIT'</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: pharmacy_dispensations</span>
+<span class="code-comment">   dispensation_id | patient_id | doctor_id | drug_code | quantity | status</span>
+<span class="code-comment">   ----------------+------------+-----------+-----------+----------+----------</span>
+<span class="code-comment">   5001            | 801        | DOC-12    | OXY-20    | 30       | DISPENSED</span>
+<span class="code-comment">   5002            | 802        | DOC-45    | AMX-500   | 20       | DISPENSED</span>
+<span class="code-comment">   5003            | 803        | DOC-12    | DIA-10    | 15       | DISPENSED</span>
+<span class="code-comment">   5004            | 804        | DOC-88    | IBU-800   | 60       | DISPENSED</span>
+<span class="code-comment">   5005            | 805        | DOC-45    | OXY-20    | 25       | FLAGGED</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Filter controlled substance schedules using literal IN set</span>
+<span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code, quantity
+<span class="code-keyword">FROM</span> pharmacy_dispensations
+<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);
+<span class="code-comment">-- Matches: Dispensation 5001 (OXY-20), 5003 (DIA-10), 5005 (OXY-20)</span>
+
+<span class="code-comment">-- Requirement 2: Audit prescriptions written by authorized senior specialist physicians</span>
+<span class="code-keyword">SELECT</span> dispensation_id, drug_code, doctor_id
+<span class="code-keyword">FROM</span> pharmacy_dispensations
+<span class="code-keyword">WHERE</span> doctor_id <span class="code-keyword">IN</span> (<span class="code-string">'DOC-12'</span>, <span class="code-string">'DOC-88'</span>);
+<span class="code-comment">-- Matches: Dispensation 5001, 5003, 5004</span>
+
+<span class="code-comment">-- Requirement 3: Isolate non-narcotic standard medications using NOT IN</span>
+<span class="code-keyword">SELECT</span> dispensation_id, drug_code, quantity
+<span class="code-keyword">FROM</span> pharmacy_dispensations
+<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);
+<span class="code-comment">-- Matches: Dispensation 5002 (Amoxicillin) and 5004 (Ibuprofen)</span>
+
+<span class="code-comment">-- Requirement 4: Subquery: Identify patients who received medications from audited physicians</span>
+<span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code
+<span class="code-keyword">FROM</span> pharmacy_dispensations
+<span class="code-keyword">WHERE</span> doctor_id <span class="code-keyword">IN</span> (
+    <span class="code-keyword">SELECT</span> doctor_id 
+    <span class="code-keyword">FROM</span> pharmacy_dispensations 
+    <span class="code-keyword">WHERE</span> status = <span class="code-string">'FLAGGED'</span>
+);
+<span class="code-comment">-- Matches: Dispensation 5002 and 5005 (Prescribed by DOC-45)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The IN operator simplifies multi-value membership testing into a clean, concise clause. Replacing messy chained OR statements with IN improves query readability and allows seamless subquery integration.</p>
+                <p>The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing verbose OR statements and seamlessly integrating subqueries.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Set Membership:</strong> Verifies whether a value exists inside a list of values or subquery result.</span>
+                            <span><strong>Cleaner Syntax:</strong> Replaces repetitive chains of OR conditions (col = A OR col = B) with concise set syntax (col IN (A, B)).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Cleaner Syntax:</strong> Replaces repetitive chains of OR statements with clean, readable code.</span>
+                            <span><strong>Subquery Integration:</strong> Supports dynamic subqueries, allowing filtering against sets computed at runtime.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Subquery Support:</strong> Accepts dynamic single-column subqueries for relational filtering.</span>
+                            <span><strong>Index Friendliness:</strong> Query optimizers treat IN lists as multiple high-speed B-Tree index seek operations.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NOT IN Caution:</strong> If a subquery contains even one NULL value, NOT IN evaluates to UNKNOWN for all rows.</span>
+                            <span><strong>The NOT IN (NULL) Trap:</strong> Never use NOT IN if the evaluated column or subquery can contain NULL values; use NOT EXISTS instead.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Readability & Maintainability:</strong> Simplifies query maintenance when adding or removing categorical filter values.</span>
                         </li>
                     </ul>
                 </div>
@@ -252,8 +376,8 @@
             <!-- Professional 3-Column Navigation Footer -->
             <div class="lesson-footer">
                 <div class="lesson-nav-prev">
-                    <a href="wildcards.html" class="btn-outline" title="Previous: SQL Wildcards Reference">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Wildcards Reference</span>
+                    <a href="like.html" class="btn-outline" title="Previous: The LIKE Operator">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The LIKE Operator</span>
                     </a>
                 </div>
                 <div class="lesson-nav-center">
@@ -273,7 +397,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

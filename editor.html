@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH Interactive SQL Editor - Practice SQL queries directly in your browser with real-time relational engine, enterprise sample database, schema explorer, and instant execution results.">
+    <title>Interactive SQL Editor & Sandbox - EDMITH</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- High-Performance Local In-Memory SQL Engine (AlaSQL) -->
+    <script src="javascript/alasql.min.js"></script>
+</head>
+<body>
+
+    <!-- Fixed Header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="course.html">Courses</a></li>
+                <li><a href="sql/index.html">SQL Mastery</a></li>
+                <li><a href="editor.html" class="active"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main SQL Editor Application Area -->
+    <main class="sql-editor-app">
+        
+        <!-- Header Command Bar -->
+        <div class="editor-header-bar">
+            <div class="editor-title-wrap">
+                <h1><i class="fas fa-database" style="color: var(--accent);"></i> SQL Playground</h1>
+                <div class="engine-badge" id="engineBadge">
+                    <span class="pulse-dot"></span>
+                    <span>Initializing Engine...</span>
+                </div>
+            </div>
+            <div class="editor-top-nav-links">
+                <button class="editor-nav-btn" id="toggleHistoryBtn" title="View Query History">
+                    <i class="fas fa-history"></i> Query History
+                </button>
+                <a href="sql/index.html" class="editor-nav-btn">
+                    <i class="fas fa-book-open"></i> SQL Curriculum
+                </a>
+            </div>
+        </div>
+
+        <!-- Workbench 2-Column Split: Left Schema Explorer, Right Workstation -->
+        <div class="sql-workbench-layout">
+            
+            <!-- Left Side: Database Schema Explorer -->
+            <aside class="schema-panel" aria-label="Database Tables & Schema Explorer">
+                <div class="schema-header">
+                    <h3><i class="fas fa-layer-group"></i> Schema Explorer</h3>
+                    <span class="schema-badge">151 Tables</span>
+                </div>
+                <div class="schema-search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="schemaSearchInput" placeholder="Filter tables & views..." aria-label="Filter database tables">
+                </div>
+                <div class="schema-list" id="schemaListContainer">
+                    <div class="schema-empty-state">
+                        <i class="fas fa-circle-notch fa-spin"></i>
+                        <p>Loading enterprise schema...</p>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Side: SQL Editor & Results -->
+            <div class="main-workbench">
+                
+                <!-- Top: Code Editor Window -->
+                <div class="sql-editor-pane">
+                    
+                    <!-- Editor Toolbar -->
+                    <div class="editor-toolbar">
+                        <div class="editor-toolbar-left">
+                            <div class="terminal-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <div class="template-dropdown-wrap">
+                                <select id="queryTemplateSelect" class="template-dropdown" aria-label="Select sample SQL template">
+                                    <option value="" disabled selected>&bull; Load Sample Query &bull;</option>
+                                    <option value="select_basic">1. Basic SELECT &amp; Filtering</option>
+                                    <option value="inner_join">2. INNER JOIN (Students &amp; Depts)</option>
+                                    <option value="aggregate_groupby">3. GROUP BY &amp; Aggregates</option>
+                                    <option value="complex_enrollments">4. Three-Way Relational JOIN</option>
+                                    <option value="self_join">5. Self-Join (Employee Hierarchy)</option>
+                                    <option value="analytics_orders">6. Orders Analytics &amp; HAVING</option>
+                                    <option value="subquery">7. Correlated Subquery</option>
+                                    <option value="case_expression">8. CASE Conditional Logic</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="editor-toolbar-right">
+                            <button class="btn-editor-action btn-run-query" id="runQueryBtn" title="Run Query (Ctrl + Enter)">
+                                <i class="fas fa-play"></i> <span>Run Query</span>
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool" id="formatQueryBtn" title="Auto-Capitalize SQL Keywords">
+                                <i class="fas fa-magic"></i> Format
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool" id="clearQueryBtn" title="Clear Editor">
+                                <i class="fas fa-trash-alt"></i> Clear
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool danger" id="resetDbBtn" title="Revert to original sample dataset">
+                                <i class="fas fa-undo"></i> Reset DB
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Editor Textarea with Line Numbers & Real-Time Syntax Highlighting -->
+                    <div class="editor-input-area">
+                        <div class="editor-line-numbers" id="editorLineNumbers">
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                        </div>
+                        <div class="editor-code-container">
+                            <pre class="editor-highlight-backdrop" id="editorHighlightBackdrop" aria-hidden="true"><code id="editorHighlightedCode"></code></pre>
+                            <textarea id="sqlEditorText" class="sql-editor-textarea" spellcheck="false" placeholder="-- Type standard SQL query here...&#10;SELECT * FROM students LIMIT 10;" aria-label="SQL Query Input"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Editor Status Bar -->
+                    <div class="editor-statusbar">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-indicator" id="executionStatusDot"></span>
+                            <span>Ready</span>
+                        </div>
+                        <div>
+                            <span>Press <kbd style="background: rgba(121,63,224,0.3); padding: 2px 6px; border-radius: 4px; color: #FFF;">Ctrl + Enter</kbd> to execute</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: Query Results Grid -->
+                <div class="sql-results-pane">
+                    
+                    <div class="results-header">
+                        <div class="results-title-wrap">
+                            <h3><i class="fas fa-table" style="color: var(--accent);"></i> Query Output</h3>
+                            <div class="result-meta-badge" id="resultMetaBadge">
+                                <span class="meta-highlight">Awaiting execution...</span>
+                            </div>
+                        </div>
+
+                        <div class="results-actions">
+                            <button class="btn-result-action" id="copyResultBtn" title="Copy table content">
+                                <i class="fas fa-copy"></i> Copy Table
+                            </button>
+                            <button class="btn-result-action" id="exportCsvBtn" title="Download query results as CSV">
+                                <i class="fas fa-file-csv"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Table Output Viewport -->
+                    <div class="results-scroll-container" id="resultsTableContainer">
+                        <div class="result-empty-message">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Click <strong>Run Query</strong> or press <strong>Ctrl+Enter</strong> to view results.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Query History Slide-Over Drawer -->
+    <div class="history-drawer" id="historyDrawer" aria-label="Query Execution History">
+        <div class="history-header">
+            <h3><i class="fas fa-history"></i> Execution History</h3>
+            <div class="history-actions">
+                <button class="btn-result-action" id="clearHistoryBtn" title="Clear History Log">Clear</button>
+                <button class="btn-result-action" id="closeHistoryBtn" title="Close Drawer"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="history-list" id="historyListContainer">
+            <div class="history-empty">
+                <p>No queries executed yet in this session.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Platform Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course.html">All Courses</a></li>
+                    <li><a href="sql/index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="index.html#contact">Help Center</a></li>
+                    <li><a href="index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved. &bull; <a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="javascript/sql-engine.js"></script>
+    <script src="javascript/editor.js"></script>
+    <script src="javascript/script.js"></script>
+</body>
+</html>

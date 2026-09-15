@@ -30,6 +30,7 @@
                 <li><a href="#preview">Live Previews</a></li>
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="course.html">Browse All</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -64,98 +65,240 @@
     <!-- Interactive Learning Previews (Carousel) -->
     <section id="preview" class="preview-section">
         <div class="section-header">
+            <span class="section-tag-badge"><i class="fas fa-sparkles"></i> Live Code Playground</span>
             <h2>Interactive Learning Previews</h2>
+            <p class="section-subtitle">Experience our interactive curriculums across full-stack web, systems programming, data science, and database engineering.</p>
         </div>
         
         <div class="carousel-container">
             
             <!-- Slide 1: Web Dev -->
             <div class="carousel-item active" data-index="0">
-                <div class="vertical-title">WEB DEV</div>
+                <div class="vertical-title"><i class="fas fa-laptop-code"></i> WEB DEV</div>
                 <div class="carousel-inner">
-                    <div class="carousel-picture" style="background: linear-gradient(135deg, #FF9A9E, #FECFEF);">
-                        <i class="fas fa-laptop-code"></i>
-                        <h3>Web Dev</h3>
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #FF6B6B 0%, #793FE4 100%);">
+                        <span class="track-badge"><i class="fas fa-layer-group"></i> Track 01 • Frontend</span>
+                        <div class="picture-center">
+                            <div class="picture-icon-wrap"><i class="fas fa-laptop-code"></i></div>
+                            <h3>Full-Stack Web</h3>
+                            <p class="picture-desc">HTML5 • Modern CSS3 • JavaScript ES6+</p>
+                        </div>
+                        <a href="course.html?category=programming&search=html" class="track-cta-link">Start Track <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="carousel-content">
                         <div class="mac-header">
-                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <div class="editor-window-controls">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                                </div>
+                                <div class="editor-tabs">
+                                    <span class="editor-tab active"><i class="fab fa-js-square editor-tab-icon js"></i> app.js</span>
+                                    <span class="editor-tab"><i class="fab fa-css3-alt editor-tab-icon" style="color: #38BDF8;"></i> style.css</span>
+                                </div>
+                            </div>
+                            <div class="editor-action-buttons">
+                                <button class="editor-btn editor-run-btn" type="button" title="Execute Code"><i class="fas fa-play"></i> <span>Run</span></button>
+                                <button class="editor-btn editor-copy-btn" type="button" title="Copy Snippet"><i class="fas fa-copy"></i> <span>Copy</span></button>
+                            </div>
                         </div>
-                        <pre><code><span class="code-comment">// Your Future Starts Here</span>
-<span class="code-keyword">function</span> <span class="code-func">startJourney</span>() {
-    <span class="code-keyword">const</span> platform = <span class="code-string">"EDMITH"</span>;
-    <span class="code-keyword">let</span> skills = [<span class="code-string">"HTML"</span>, <span class="code-string">"CSS"</span>];
-    <span class="code-keyword">return</span> <span class="code-string">"Ready!"</span>;
-}</code></pre>
+                        <div class="editor-workspace">
+                            <div class="editor-line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                            </div>
+                            <pre><code><span class="code-comment">// Interactive Web Application Engine</span>
+<span class="code-keyword">const</span> app = <span class="code-keyword">new</span> <span class="code-func">EdmithPlatform</span>({
+    course: <span class="code-string">"Full-Stack Web Dev"</span>,
+    interactive: <span class="code-keyword">true</span>,
+    engine: <span class="code-string">"Vite v5.0"</span>
+});
+
+app.<span class="code-func">onReady</span>(() =&gt; {
+    <span class="code-func">console</span>.<span class="code-func">log</span>(<span class="code-string">"Welcome to EDMITH • Live Server Ready!"</span>);
+});</code></pre>
+                        </div>
+                        <div class="editor-terminal-tray">
+                            <div class="terminal-tray-output">
+                                <span class="tray-status-dot"></span>
+                                <code>▶ [EDMITH Engine] Server running at http://localhost:3000 • <span class="term-highlight">Status: 200 OK</span></code>
+                            </div>
+                            <span class="term-meta">12ms • ES6+</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Slide 2: C Programming -->
             <div class="carousel-item next" data-index="1">
-                <div class="vertical-title">C PROG</div>
+                <div class="vertical-title"><i class="fas fa-microchip"></i> C PROG</div>
                 <div class="carousel-inner">
-                    <div class="carousel-picture" style="background: linear-gradient(135deg, #84fab0, #8fd3f4);">
-                        <i class="fas fa-c"></i>
-                        <h3>C Language</h3>
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 50%, #4F46E5 100%);">
+                        <span class="track-badge"><i class="fas fa-memory"></i> Track 02 • Systems</span>
+                        <div class="picture-center">
+                            <div class="picture-icon-wrap"><i class="fas fa-microchip"></i></div>
+                            <h3>C Programming</h3>
+                            <p class="picture-desc">Memory Control • Pointers • Systems Architecture</p>
+                        </div>
+                        <a href="course.html?category=programming&search=c" class="track-cta-link">Start Track <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="carousel-content">
                         <div class="mac-header">
-                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <div class="editor-window-controls">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                                </div>
+                                <div class="editor-tabs">
+                                    <span class="editor-tab active"><i class="fas fa-file-code editor-tab-icon c"></i> main.c</span>
+                                    <span class="editor-tab"><i class="fas fa-file-alt editor-tab-icon" style="color: #94A3B8;"></i> memory.h</span>
+                                </div>
+                            </div>
+                            <div class="editor-action-buttons">
+                                <button class="editor-btn editor-run-btn" type="button" title="Execute Code"><i class="fas fa-play"></i> <span>Run</span></button>
+                                <button class="editor-btn editor-copy-btn" type="button" title="Copy Snippet"><i class="fas fa-copy"></i> <span>Copy</span></button>
+                            </div>
                         </div>
-                        <pre><code><span class="code-comment">/* Mastering memory */</span>
+                        <div class="editor-workspace">
+                            <div class="editor-line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                            </div>
+                            <pre><code><span class="code-comment">/* Mastering Low-Level Memory &amp; Algorithms */</span>
 <span class="code-keyword">#include</span> <span class="code-string">&lt;stdio.h&gt;</span>
+<span class="code-keyword">#include</span> <span class="code-string">&lt;stdlib.h&gt;</span>
 
-<span class="code-keyword">int</span> <span class="code-func">main</span>() {
-    <span class="code-func">printf</span>(<span class="code-string">"Hello EDMITH!\n"</span>);
+<span class="code-keyword">int</span> <span class="code-func">main</span>(<span class="code-keyword">void</span>) {
+    <span class="code-keyword">char</span> *status = <span class="code-string">"C Systems Engineer"</span>;
+    <span class="code-func">printf</span>(<span class="code-string">"Hello EDMITH! Level: %s\n"</span>, status);
     <span class="code-keyword">return</span> <span class="code-string">0</span>;
 }</code></pre>
+                        </div>
+                        <div class="editor-terminal-tray">
+                            <div class="terminal-tray-output">
+                                <span class="tray-status-dot"></span>
+                                <code>▶ gcc -O3 main.c -o app &amp;&amp; ./app: Hello EDMITH! <span class="term-highlight">Process exited (code 0)</span></code>
+                            </div>
+                            <span class="term-meta">0.3ms • 64-bit</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Slide 3: Python -->
             <div class="carousel-item hidden" data-index="2">
-                <div class="vertical-title">PYTHON</div>
+                <div class="vertical-title"><i class="fab fa-python"></i> PYTHON</div>
                 <div class="carousel-inner">
-                    <div class="carousel-picture" style="background: linear-gradient(135deg, #fccb90, #d57eeb);">
-                        <i class="fab fa-python"></i>
-                        <h3>Python Pro</h3>
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #F59E0B 0%, #EC4899 50%, #8B5CF6 100%);">
+                        <span class="track-badge"><i class="fas fa-brain"></i> Track 03 • AI &amp; Data</span>
+                        <div class="picture-center">
+                            <div class="picture-icon-wrap"><i class="fab fa-python"></i></div>
+                            <h3>Python Pro</h3>
+                            <p class="picture-desc">Automation • Scripting • Machine Learning Pipelines</p>
+                        </div>
+                        <a href="course.html?category=programming&search=python" class="track-cta-link">Start Track <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="carousel-content">
                         <div class="mac-header">
-                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <div class="editor-window-controls">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                                </div>
+                                <div class="editor-tabs">
+                                    <span class="editor-tab active"><i class="fab fa-python editor-tab-icon py"></i> pipeline.py</span>
+                                    <span class="editor-tab"><i class="fas fa-chart-line editor-tab-icon" style="color: #F472B6;"></i> model.py</span>
+                                </div>
+                            </div>
+                            <div class="editor-action-buttons">
+                                <button class="editor-btn editor-run-btn" type="button" title="Execute Code"><i class="fas fa-play"></i> <span>Run</span></button>
+                                <button class="editor-btn editor-copy-btn" type="button" title="Copy Snippet"><i class="fas fa-copy"></i> <span>Copy</span></button>
+                            </div>
                         </div>
-                        <pre><code><span class="code-comment"># Automating success</span>
-<span class="code-keyword">def</span> <span class="code-func">future</span>(effort):
-    <span class="code-keyword">if</span> effort > <span class="code-string">99</span>:
-        <span class="code-keyword">return</span> <span class="code-string">"Senior Dev"</span>
-        
-<span class="code-func">print</span>(future(<span class="code-string">100</span>))</code></pre>
+                        <div class="editor-workspace">
+                            <div class="editor-line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                            </div>
+                            <pre><code><span class="code-comment"># Automated AI Data Science Pipeline</span>
+<span class="code-keyword">def</span> <span class="code-func">predict_success</span>(skills, dedication=<span class="code-string">100</span>):
+    score = <span class="code-func">sum</span>(skills) * (dedication / <span class="code-string">100</span>)
+    <span class="code-keyword">return</span> <span class="code-string">f"Milestone Achieved: {score:.0f}% Mastery"</span>
+
+result = <span class="code-func">predict_success</span>([<span class="code-string">94</span>, <span class="code-string">98</span>, <span class="code-string">92</span>])
+<span class="code-func">print</span>(result)</code></pre>
+                        </div>
+                        <div class="editor-terminal-tray">
+                            <div class="terminal-tray-output">
+                                <span class="tray-status-dot"></span>
+                                <code>▶ python3 pipeline.py: Milestone Achieved: 284% Mastery • <span class="term-highlight">Success ✓</span></code>
+                            </div>
+                            <span class="term-meta">4.2ms • Py 3.12</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Slide 4: SQL -->
             <div class="carousel-item prev" data-index="3">
-                <div class="vertical-title">SQL DB</div>
+                <div class="vertical-title"><i class="fas fa-database"></i> SQL DB</div>
                 <div class="carousel-inner">
-                    <div class="carousel-picture" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
-                        <i class="fas fa-database"></i>
-                        <h3>SQL Data</h3>
+                    <div class="carousel-picture" style="background: linear-gradient(135deg, #793FE4 0%, #4F46E5 50%, #06B6D4 100%);">
+                        <span class="track-badge"><i class="fas fa-coins"></i> Track 04 • Databases</span>
+                        <div class="picture-center">
+                            <div class="picture-icon-wrap"><i class="fas fa-database"></i></div>
+                            <h3>SQL Data Engine</h3>
+                            <p class="picture-desc">Relational Architecture • Joins • Query Optimization</p>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1rem;">
+                            <a href="sql/index.html" class="track-cta-link" style="margin-top: 0;">Start Track <i class="fas fa-arrow-right"></i></a>
+                            <a href="editor.html" class="track-cta-link" style="margin-top: 0; background: rgba(16, 185, 129, 0.92); color: #FFFFFF;" title="Practice in SQL Editor"><i class="fas fa-terminal"></i> Try Editor</a>
+                        </div>
                     </div>
                     <div class="carousel-content">
                         <div class="mac-header">
-                            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                            <div class="editor-window-controls">
+                                <div class="terminal-dots">
+                                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                                </div>
+                                <div class="editor-tabs">
+                                    <span class="editor-tab active"><i class="fas fa-database editor-tab-icon sql"></i> query.sql</span>
+                                    <span class="editor-tab"><i class="fas fa-table editor-tab-icon" style="color: #38BDF8;"></i> schema.sql</span>
+                                </div>
+                            </div>
+                            <div class="editor-action-buttons">
+                                <button class="editor-btn editor-run-btn" type="button" title="Execute Code"><i class="fas fa-play"></i> <span>Run</span></button>
+                                <button class="editor-btn editor-copy-btn" type="button" title="Copy Snippet"><i class="fas fa-copy"></i> <span>Copy</span></button>
+                            </div>
                         </div>
-                        <pre><code><span class="code-comment">-- Querying minds</span>
-<span class="code-keyword">SELECT</span> name, career 
-<span class="code-keyword">FROM</span> edmith_students 
-<span class="code-keyword">WHERE</span> skill = <span class="code-string">'Expert'</span>;</code></pre>
+                        <div class="editor-workspace">
+                            <div class="editor-line-numbers">
+                                <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                            </div>
+                            <pre><code><span class="code-comment">-- Advanced Relational Analytics &amp; Reporting</span>
+<span class="code-keyword">SELECT</span> s.name, s.track, <span class="code-func">COUNT</span>(c.id) <span class="code-keyword">AS</span> certs
+<span class="code-keyword">FROM</span> edmith_students s
+<span class="code-keyword">INNER JOIN</span> certifications c <span class="code-keyword">ON</span> s.id = c.student_id
+<span class="code-keyword">WHERE</span> s.status = <span class="code-string">'Active'</span>
+<span class="code-keyword">GROUP BY</span> s.name, s.track;</code></pre>
+                        </div>
+                        <div class="editor-terminal-tray">
+                            <div class="terminal-tray-output">
+                                <span class="tray-status-dot"></span>
+                                <code>▶ PostgreSQL: 3 rows returned in 1.4ms • <span class="term-highlight">Query OK (Index Scan)</span></code>
+                            </div>
+                            <span class="term-meta">1.4ms • PG 16</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
+        </div>
+
+        <!-- Carousel Interactive Controls -->
+        <div class="carousel-controls">
+            <button class="carousel-arrow prev-arrow" type="button" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-dots">
+                <button class="carousel-dot active" type="button" data-slide="0" aria-label="Slide 1: Web Dev"></button>
+                <button class="carousel-dot" type="button" data-slide="1" aria-label="Slide 2: C Programming"></button>
+                <button class="carousel-dot" type="button" data-slide="2" aria-label="Slide 3: Python"></button>
+                <button class="carousel-dot" type="button" data-slide="3" aria-label="Slide 4: SQL"></button>
+            </div>
+            <button class="carousel-arrow next-arrow" type="button" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
@@ -222,6 +365,8 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="course.html">All Courses</a></li>
+                    <li><a href="sql/index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
                 </ul>
             </div>
             <div class="footer-links">
@@ -229,6 +374,7 @@
                 <ul>
                     <li><a href="#contact">Help Center</a></li>
                     <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
                 </ul>
             </div>
         </div>

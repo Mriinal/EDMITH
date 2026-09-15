@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-object-ungroup"></i></div>
+                    <div class="concept-icon"><i class="fas fa-layer-group"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Combined Mailing List Analogy</h4>
-                        <p>A university merges the alumni list with the donor list to send a holiday card. If John Smith is both an alumnus AND a donor, they only want to send John one card. The university deduplicates the lists.</p>
-                        <p style="margin-top: 8px !important;">UNION combines the results of two queries and automatically eliminates duplicate rows.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Merged Contact Address Book Analogy</h4>
+                        <p>Imagine combining contacts from two different smartphone address books into a single master contact list:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Address Book A (Personal Phone)::</strong> Contains family and close friends: Alice, Bob, Charlie.</li>
+                            <li><strong>2. Address Book B (Work Phone)::</strong> Contains colleagues and professional contacts: Bob, Diana, Edward.</li>
+                            <li><strong>3. The UNION Merge::</strong> You stack both lists into one master directory. Bob is in both books, but your master phone list records him once!</li>
+                            <li><strong>4. Schema Compatibility::</strong> Both address books must have compatible formats (Name, Phone Number) to be stacked together.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The UNION set operator combines result sets from multiple queries into a single dataset, automatically deduplicating identical rows.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The UNION Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The UNION Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,101 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; union.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; union.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> column1, column2 <span class="code-keyword">FROM</span> table1
+                    <pre><code><span class="code-comment">-- 1. Standard UNION (Combines and Deduplicates)</span>
+<span class="code-keyword">SELECT</span> customer_name, email, <span class="code-string">'RETAIL'</span> <span class="code-keyword">AS</span> account_type
+<span class="code-keyword">FROM</span> retail_customers
 <span class="code-keyword">UNION</span>
-<span class="code-keyword">SELECT</span> column1, column2 <span class="code-keyword">FROM</span> table2;</code></pre>
+<span class="code-keyword">SELECT</span> client_name, email, <span class="code-string">'WHOLESALE'</span> <span class="code-keyword">AS</span> account_type
+<span class="code-keyword">FROM</span> wholesale_clients;
+
+<span class="code-comment">-- 2. Combining Historical Archives with Live Active Tables</span>
+<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, order_date
+<span class="code-keyword">FROM</span> current_orders
+<span class="code-keyword">UNION</span>
+<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, order_date
+<span class="code-keyword">FROM</span> archived_orders_2025;
+
+<span class="code-comment">-- 3. Strict Rule: Column Count and Data Types Must Match</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, department <span class="code-keyword">FROM</span> active_staff
+<span class="code-keyword">UNION</span>
+<span class="code-keyword">SELECT</span> contractor_id, contractor_name, agency <span class="code-keyword">FROM</span> active_contractors;
+
+<span class="code-comment">-- 4. Global Sorting with ORDER BY (Placed at the very end of final query)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, unit_price <span class="code-keyword">FROM</span> domestic_catalog
+<span class="code-keyword">UNION</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, unit_price <span class="code-keyword">FROM</span> import_catalog
+<span class="code-keyword">ORDER BY</span> unit_price <span class="code-keyword">DESC</span>;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>UNION</code> operator combines the result sets of two or more <code>SELECT</code> statements into a single result set, automatically removing duplicate rows.</p>
-        <p>Strict rules apply: each <code>SELECT</code> query must project the <strong>same number of columns</strong>, with <strong>compatible data types</strong>, in the <strong>same order</strong>.</p>
+                <p>The <code>UNION</code> operator combines the result sets of two or more <code>SELECT</code> statements into a single unified result set. It automatically performs row deduplication, removing duplicate records across the combined outputs.</p>
+                <ul>
+                    <li><strong>Column Alignment Rules:</strong> Every query in the UNION must have the exact same number of projected columns in identical sequence, and data types must be compatible.</li>
+                    <li><strong>Automatic Deduplication Cost:</strong> UNION performs an expensive sort or hash operation across the entire combined dataset to detect and discard duplicates.</li>
+                    <li><strong>Column Headers from First Query:</strong> The column aliases and header labels of the final output are determined exclusively by the first SELECT statement.</li>
+                    <li><strong>Single Global ORDER BY:</strong> Individual queries cannot have their own ORDER BY clauses; a single ORDER BY placed at the very end sorts the combined final dataset.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Set Operation</th>
+                                <th>Duplicate Handling</th>
+                                <th>Underlying Algorithm</th>
+                                <th>Memory / CPU Overhead</th>
+                                <th>Ideal Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>UNION</code></td>
+                                <td>Removes duplicate rows automatically</td>
+                                <td>Sorts or builds hash table across all rows</td>
+                                <td>Higher (Requires sort/hash buffer)</td>
+                                <td>Merging overlapping customer lists</td>
+                            </tr>
+                            <tr>
+                                <td><code>UNION ALL</code></td>
+                                <td>Preserves every duplicate row</td>
+                                <td>Direct streaming concatenation</td>
+                                <td>Minimal (Zero sorting or hashing)</td>
+                                <td>Partitioned logs, unioning disjoint tables</td>
+                            </tr>
+                            <tr>
+                                <td><code>INTERSECT</code></td>
+                                <td>Returns only rows present in BOTH queries</td>
+                                <td>Hash or sort intersection</td>
+                                <td>Moderate</td>
+                                <td>Finding shared customers between apps</td>
+                            </tr>
+                            <tr>
+                                <td><code>EXCEPT / MINUS</code></td>
+                                <td>Returns rows in query 1 NOT in query 2</td>
+                                <td>Hash anti-join</td>
+                                <td>Moderate</td>
+                                <td>Customer churn, list subtraction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>UNION vs UNION ALL: The Senior Performance Tradeoff</h3>
+                <p>The difference between UNION and UNION ALL is one of the most critical performance optimizations in SQL engineering:</p>
+                <ul>
+                    <li><strong>The Performance Overhead:</strong> UNION requires the database engine to sort millions of rows in memory (or spill to disk temporary files) to eliminate duplicates.</li>
+                    <li><strong>When Deduplication is Pointless:</strong> If query 1 selects <code>WHERE year = 2025</code> and query 2 selects <code>WHERE year = 2026</code>, duplicates are mathematically impossible!</li>
+                    <li><strong>The Best Practice:</strong> Always default to <code>UNION ALL</code> unless business requirements strictly dictate deduplication.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Combining Customer and Supplier Contacts into Master Address Book:</strong> Merge distinct contact directories into a unified notification feed.</p>
+                <p><strong>Enterprise Unified Customer Communication Directory:</strong> Synthesize active subscriber email rosters with legacy corporate mailing lists to generate a clean, deduplicated newsletter recipient list.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,34 +299,78 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Combining Customer and Supplier Contacts into Master Address Book</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Unified Customer Communication Directory</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> <span class="code-string">'CUSTOMER'</span> <span class="code-keyword">AS</span> contact_type, full_name, email <span class="code-keyword">FROM</span> retail_customers
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Datasets:</span>
+<span class="code-comment">   active_subscribers: (email, first_name)</span>
+<span class="code-comment">   'alice@acme.com', 'Alice' | 'bob@vance.net', 'Bob' | 'charlie@web.io', 'Charlie'</span>
+<span class="code-comment">   newsletter_signups: (email, first_name)</span>
+<span class="code-comment">   'bob@vance.net', 'Bob' | 'diana@cyber.com', 'Diana' | 'alice@acme.com', 'Alice'</span>
+<span class="code-comment">   Note: Alice and Bob exist in BOTH tables.</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Merge both recipient tables into a unified deduplicated email list</span>
+<span class="code-keyword">SELECT</span> email, first_name
+<span class="code-keyword">FROM</span> active_subscribers
 <span class="code-keyword">UNION</span>
-<span class="code-keyword">SELECT</span> <span class="code-string">'SUPPLIER'</span> <span class="code-keyword">AS</span> contact_type, company_rep, contact_email <span class="code-keyword">FROM</span> vendors_directory;</code></pre>
+<span class="code-keyword">SELECT</span> email, first_name
+<span class="code-keyword">FROM</span> newsletter_signups;
+<span class="code-comment">-- Matches: Exactly 4 unique individuals (Alice, Bob, Charlie, Diana). Duplicates purged.</span>
+
+<span class="code-comment">-- Requirement 2: Add origin metadata tag to track source channels</span>
+<span class="code-keyword">SELECT</span> email, <span class="code-string">'ACTIVE_SUBSCRIBER'</span> <span class="code-keyword">AS</span> lead_source
+<span class="code-keyword">FROM</span> active_subscribers
+<span class="code-keyword">UNION</span>
+<span class="code-keyword">SELECT</span> email, <span class="code-string">'NEWSLETTER_LANDING_PAGE'</span> <span class="code-keyword">AS</span> lead_source
+<span class="code-keyword">FROM</span> newsletter_signups;
+<span class="code-comment">-- Matches: Categorized recipient channels</span>
+
+<span class="code-comment">-- Requirement 3: Enforce global alphabetical sorting on final merged roster</span>
+<span class="code-keyword">SELECT</span> email, first_name
+<span class="code-keyword">FROM</span> active_subscribers
+<span class="code-keyword">UNION</span>
+<span class="code-keyword">SELECT</span> email, first_name
+<span class="code-keyword">FROM</span> newsletter_signups
+<span class="code-keyword">ORDER BY</span> email <span class="code-keyword">ASC</span>;
+<span class="code-comment">-- Matches: Sorted alphabetically by email: alice@..., bob@..., charlie@..., diana@...</span>
+
+<span class="code-comment">-- Requirement 4: Count unique reach across all marketing touchpoints</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_unique_contacts
+<span class="code-keyword">FROM</span> (
+    <span class="code-keyword">SELECT</span> email <span class="code-keyword">FROM</span> active_subscribers
+    <span class="code-keyword">UNION</span>
+    <span class="code-keyword">SELECT</span> email <span class="code-keyword">FROM</span> newsletter_signups
+) <span class="code-keyword">AS</span> unified_audience;
+<span class="code-comment">-- Matches: 4 unique reachable individuals</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The UNION set operator stacks the results of multiple independent queries into a unified, deduplicated dataset. Enforcing identical column counts and compatible data types guarantees predictable relational outputs.</p>
+                <p>The UNION set operator stacks the results of multiple independent queries into a unified, deduplicated dataset, enforcing schema alignment and relational uniqueness.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Set Combination:</strong> Merges rows from multiple SELECT queries into a unified result set.</span>
+                            <span><strong>Automatic Deduplication:</strong> UNION automatically removes duplicate identical rows across combined queries.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Automatic Deduplication:</strong> UNION filters out duplicate records across datasets.</span>
+                            <span><strong>Schema Compatibility:</strong> All joined queries must return the same number of columns with compatible data types in identical order.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Schema Alignment:</strong> Every query in the union must have matching column counts and compatible data types.</span>
+                            <span><strong>First Query Header Naming:</strong> Column names and aliases in the final output are determined by the first SELECT statement.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Sorting Placement:</strong> Only one ORDER BY clause is permitted, placed at the very end of the final query.</span>
+                            <span><strong>Single Terminal ORDER BY:</strong> Place a single ORDER BY at the very end of the final query to sort the combined result set.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Default to UNION ALL:</strong> If duplicates are impossible or acceptable, use UNION ALL to avoid the heavy CPU/RAM sorting overhead of UNION.</span>
                         </li>
                     </ul>
                 </div>
@@ -268,7 +401,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

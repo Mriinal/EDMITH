@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li class="active"><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-life-ring"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Spare Tire Analogy</h4>
-                        <p>When driving on a road trip, you use your primary tires. But if a tire goes flat and fails, you don't abandon the car; you immediately switch to the spare tire stored in your trunk.</p>
-                        <p style="margin-top: 8px !important;">NULL functions like COALESCE provide automatic fallback values whenever a column is missing or NULL.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Emergency Power Generator Fallback Analogy</h4>
+                        <p>Picture a mission-critical surgical hospital equipped with an uninterrupted power supply grid:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Primary Source (Grid Power)::</strong> Under standard operations, the hospital runs on municipal city grid power.</li>
+                            <li><strong>2. Secondary Fallback (Diesel Generator)::</strong> If city grid power fails (is NULL), automated transfer switches instantly flip to the on-site diesel backup generator.</li>
+                            <li><strong>3. Tertiary Fallback (Battery Bank)::</strong> If the diesel generator fails to start (is NULL), emergency battery banks keep life support online.</li>
+                            <li><strong>4. The COALESCE Cascade::</strong> COALESCE operates like that exact fallback cascade: it inspects options in order, returning the very first non-null power source!</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">NULL handling functions like COALESCE and IFNULL replace missing values with reliable fallback defaults, safeguarding calculations and frontend displays.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL NULL Functions (COALESCE & IFNULL)</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL NULL Functions (COALESCE & IFNULL)</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,24 +195,107 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; null-functions.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; null-functions.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- ANSI Standard (PostgreSQL, MySQL, SQL Server, Oracle, SQLite):</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COALESCE</span>(phone, mobile, <span class="code-string">'NO_PHONE_ON_FILE'</span>) <span class="code-keyword">FROM</span> contacts;
+                    <pre><code><span class="code-comment">-- 1. ANSI Standard COALESCE (Accepts multiple arguments; returns first NON-NULL)</span>
+<span class="code-keyword">SELECT</span> 
+    product_name,
+    <span class="code-func">COALESCE</span>(discount_price, member_price, regular_price, 0.00) <span class="code-keyword">AS</span> final_price
+<span class="code-keyword">FROM</span> store_inventory;
 
-<span class="code-comment">-- Engine specific alternatives:</span>
-<span class="code-comment">-- MySQL: IFNULL(col, default)</span>
-<span class="code-comment">-- SQL Server: ISNULL(col, default)</span>
-<span class="code-comment">-- Oracle: NVL(col, default)</span></code></pre>
+<span class="code-comment">-- 2. Contact Information Fallback Priority</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id,
+    <span class="code-func">COALESCE</span>(mobile_phone, work_phone, home_phone, <span class="code-string">'NO_PHONE_ON_RECORD'</span>) <span class="code-keyword">AS</span> contact_phone
+<span class="code-keyword">FROM</span> customer_profiles;
+
+<span class="code-comment">-- 3. MySQL IFNULL / SQLite IFNULL Syntax (Two-Argument Fallback)</span>
+<span class="code-comment">-- SELECT username, IFNULL(display_name, username) AS public_profile FROM accounts;</span>
+
+<span class="code-comment">-- 4. NULLIF Function: Returns NULL if two arguments are equal (Prevents Divide-by-Zero!)</span>
+<span class="code-keyword">SELECT</span> 
+    order_id,
+    revenue,
+    item_count,
+    revenue / <span class="code-func">NULLIF</span>(item_count, 0) <span class="code-keyword">AS</span> safe_unit_price
+<span class="code-keyword">FROM</span> order_batches;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>Null functions safeguard your queries from missing data. The ANSI SQL standard function is <code>COALESCE(val1, val2, ... valN)</code>, which evaluates arguments in sequence and returns the <strong>first non-null</strong> value.</p>
-        <p><code>NULLIF(val1, val2)</code> returns <code>NULL</code> if both values are equal, making it the industry standard pattern to prevent fatal divide-by-zero errors (e.g. <code>amount / NULLIF(total, 0)</code>).</p>
+                <p>SQL NULL functions provide defensive programming tools to inspect, replace, and sanitize missing data values. The ANSI standard function is <code>COALESCE()</code>, while dialect-specific equivalents include <code>IFNULL()</code> (MySQL/SQLite), <code>ISNULL()</code> (SQL Server), and <code>NVL()</code> (Oracle).</p>
+                <ul>
+                    <li><strong>The Power of COALESCE:</strong> <code>COALESCE(val1, val2, val3, ...)</code> accepts an arbitrary number of arguments and returns the <strong>first non-null</strong> expression in the sequence.</li>
+                    <li><strong>Dialect Portability:</strong> <code>COALESCE</code> is part of the official ANSI SQL-92 standard and is natively supported across PostgreSQL, SQL Server, MySQL, Oracle, and SQLite.</li>
+                    <li><strong>The NULLIF Divide-by-Zero Savior:</strong> <code>NULLIF(a, b)</code> returns <code>NULL</code> if <code>a = b</code>. Writing <code>x / NULLIF(y, 0)</code> elegantly prevents catastrophic divide-by-zero crashes!</li>
+                    <li><strong>Arithmetic Shielding:</strong> Adding numbers containing NULL results in NULL (e.g. <code>100 + NULL = NULL</code>); wrapping columns in <code>COALESCE(col, 0)</code> ensures mathematical safety.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Function</th>
+                                <th>Dialect Portability</th>
+                                <th>Argument Count</th>
+                                <th>Operational Behavior</th>
+                                <th>Primary Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>COALESCE(...)</code></td>
+                                <td>ANSI Standard (Universal)</td>
+                                <td>Unlimited (2+)</td>
+                                <td>Returns first non-null argument</td>
+                                <td>Production fallbacks & defaults</td>
+                            </tr>
+                            <tr>
+                                <td><code>IFNULL(a, b)</code></td>
+                                <td>MySQL, SQLite</td>
+                                <td>Strictly 2</td>
+                                <td>Returns b if a is NULL; else a</td>
+                                <td>Simple two-tier fallback</td>
+                            </tr>
+                            <tr>
+                                <td><code>ISNULL(a, b)</code></td>
+                                <td>SQL Server (T-SQL)</td>
+                                <td>Strictly 2</td>
+                                <td>Returns b if a is NULL; else a</td>
+                                <td>SQL Server legacy queries</td>
+                            </tr>
+                            <tr>
+                                <td><code>NVL(a, b)</code></td>
+                                <td>Oracle PL/SQL</td>
+                                <td>Strictly 2</td>
+                                <td>Returns b if a is NULL; else a</td>
+                                <td>Oracle legacy migrations</td>
+                            </tr>
+                            <tr>
+                                <td><code>NULLIF(a, b)</code></td>
+                                <td>ANSI Standard (Universal)</td>
+                                <td>Strictly 2</td>
+                                <td>Returns NULL if a = b; else a</td>
+                                <td>Preventing Divide-by-Zero</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>How NULLIF(col, 0) Prevents Production Divide-by-Zero Crashes</h3>
+                <p>In relational database engines, executing <code>SELECT 100 / 0;</code> causes an immediate transaction-aborting exception:</p>
+                <ul>
+                    <li><strong>The Vulnerability:</strong> A financial analytics query calculates average price: <code>total_revenue / total_units_sold</code>. On days with zero sales, the whole pipeline crashes.</li>
+                    <li><strong>The Elegant Solution:</strong> Rewrite as: <code>total_revenue / NULLIF(total_units_sold, 0)</code>.</li>
+                    <li><strong>How it Works:</strong> If <code>total_units_sold</code> is 0, NULLIF converts it to NULL. Dividing by NULL safely yields <code>NULL</code> instead of an application crash!</li>
+                    <li><strong>The Final Polish:</strong> Combine with COALESCE: <code>COALESCE(total_revenue / NULLIF(total_units_sold, 0), 0.00)</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Preventing Division-by-Zero in Financial Margin Calculations:</strong> Calculate gross profit margin percentage safely even when revenue is zero.</p>
+                <p><strong>Global Communications Multi-Channel Notification Dispatch:</strong> Determine routing dispatch destinations across customer notification channels with multi-tier emergency contact fallbacks.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -214,41 +305,74 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Preventing Division-by-Zero in Financial Margin Calculations</span>
+                        <span class="terminal-title">Production Queries &bull; Global Communications Multi-Channel Notification Dispatch</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    product_sku,
-    profit_amount,
-    revenue_amount,
-    <span class="code-func">ROUND</span>(
-        (profit_amount / <span class="code-func">NULLIF</span>(revenue_amount, 0.00)) * 100, 
-        2
-    ) <span class="code-keyword">AS</span> profit_margin_pct,
-    <span class="code-func">COALESCE</span>(vendor_phone, customer_support_hotline, <span class="code-string">'UNKNOWN'</span>) <span class="code-keyword">AS</span> contact_channel
-<span class="code-keyword">FROM</span> product_financials;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: user_contacts</span>
+<span class="code-comment">   user_id | direct_email       | work_email        | sms_number   | billing_contact</span>
+<span class="code-comment">   --------+--------------------+-------------------+--------------+----------------</span>
+<span class="code-comment">   101     | sarah@personal.com | sarah@work.com    | +15550192    | NULL</span>
+<span class="code-comment">   102     | NULL               | john@company.com  | +15554820    | NULL</span>
+<span class="code-comment">   103     | NULL               | NULL              | +15559911    | NULL</span>
+<span class="code-comment">   104     | NULL               | NULL              | NULL         | billing@firm.org</span>
+<span class="code-comment">   105     | NULL               | NULL              | NULL         | NULL</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Resolve primary email destination using multi-tier fallback cascade</span>
+<span class="code-keyword">SELECT</span> 
+    user_id,
+    <span class="code-func">COALESCE</span>(direct_email, work_email, <span class="code-string">'NO_EMAIL_REGISTERED'</span>) <span class="code-keyword">AS</span> resolved_email_destination
+<span class="code-keyword">FROM</span> user_contacts;
+<span class="code-comment">-- Matches: User 101 (sarah@personal), User 102 (john@company), Users 103-105 ('NO_EMAIL_REGISTERED')</span>
+
+<span class="code-comment">-- Requirement 2: Ultimate omni-channel dispatch address (Email -&gt; SMS -&gt; Billing Contact)</span>
+<span class="code-keyword">SELECT</span> 
+    user_id,
+    <span class="code-func">COALESCE</span>(direct_email, work_email, sms_number, billing_contact, <span class="code-string">'UNREACHABLE'</span>) <span class="code-keyword">AS</span> dispatch_target
+<span class="code-keyword">FROM</span> user_contacts;
+<span class="code-comment">-- Matches: 101 (sarah@personal), 102 (john@company), 103 (+15559911), 104 (billing@firm), 105 ('UNREACHABLE')</span>
+
+<span class="code-comment">-- Requirement 3: Safe conversion of unrecorded billing contacts to prevent UI errors</span>
+<span class="code-keyword">SELECT</span> 
+    user_id,
+    <span class="code-func">COALESCE</span>(billing_contact, <span class="code-string">'ACCOUNTS_RECEIVABLE_DEFAULT'</span>) <span class="code-keyword">AS</span> billing_target
+<span class="code-keyword">FROM</span> user_contacts;
+<span class="code-comment">-- Matches: Replaces NULL billing values with standard accounts receivable address</span>
+
+<span class="code-comment">-- Requirement 4: Divide-by-zero protection in quota utilization reporting</span>
+<span class="code-keyword">SELECT</span> 
+    user_id,
+    <span class="code-func">COALESCE</span>(<span class="code-func">ROUND</span>(100.0 / <span class="code-func">NULLIF</span>(user_id - 101, 0), 2), 0.00) <span class="code-keyword">AS</span> safe_quota_metric
+<span class="code-keyword">FROM</span> user_contacts;
+<span class="code-comment">-- Matches: For user 101 (101-101=0), NULLIF prevents division by zero and returns 0.00 cleanly!</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>NULL handling functions such as COALESCE and IFNULL replace missing or unassigned values with reliable fallbacks. They protect downstream arithmetic and frontend displays from unexpected NULL propagation.</p>
+                <p>NULL handling functions such as COALESCE and NULLIF replace missing values with dependable fallbacks and shield database calculations against unexpected NULL propagation and divide-by-zero crashes.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Fallback Protection:</strong> COALESCE returns the first non-null argument in a comma-separated list.</span>
+                            <span><strong>Prefer ANSI COALESCE:</strong> Use COALESCE for all fallback logic to ensure universal portability across all database engines.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Divide-by-Zero Defense:</strong> NULLIF(divisor, 0) turns zeros into nulls, preventing query crashes on division.</span>
+                            <span><strong>First Non-Null Value:</strong> COALESCE evaluates arguments sequentially and returns the first non-null value.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Cross-Engine Portability:</strong> COALESCE is ANSI standard and works in PostgreSQL, MySQL, SQL Server, Oracle, SQLite.</span>
+                            <span><strong>Prevent Divide-by-Zero:</strong> Always wrap denominators in NULLIF(denominator, 0) to avoid fatal division crashes.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Chained Defaults:</strong> Support multiple fallbacks: COALESCE(mobile, work_phone, home_phone, 'None').</span>
+                            <span><strong>Arithmetic Protection:</strong> Wrap nullable numeric columns in COALESCE(col, 0) before addition or multiplication to avoid NULL contagion.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Dialect Equivalents:</strong> Be aware of dialect-specific equivalents: IFNULL in MySQL/SQLite, ISNULL in SQL Server, and NVL in Oracle.</span>
                         </li>
                     </ul>
                 </div>
@@ -279,7 +403,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

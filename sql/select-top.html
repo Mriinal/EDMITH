@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -171,13 +172,20 @@
                     <div class="concept-icon"><i class="fas fa-book-open"></i></div>
                     <div class="concept-text">
                         <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Book Chapter Pagination Analogy</h4>
-                        <p>When reading a 500-page book, you don't read all 500 pages at once. You read page 1 (rows 1-20), then turn to page 2 (rows 21-40). Pagination slices massive amounts of data into digestible chunks.</p>
-                        <p style="margin-top: 8px !important;">LIMIT and OFFSET slice query results into pages, enabling search engines and web applications to paginate large tables effortlessly.</p>
+                        <p>Imagine reading a 1,000-page historical encyclopedia:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Impossible Scroll::</strong> You would never print all 1,000 pages on a continuous 500-foot paper scroll to read at once.</li>
+                            <li><strong>2. Bounded Pages::</strong> The publisher slices the content into bite-sized pages containing 25 lines each (LIMIT 25).</li>
+                            <li><strong>3. Page Turning (Offset)::</strong> To read Page 2, you skip the first 25 lines (OFFSET 25) and inspect the next 25 lines.</li>
+                            <li><strong>4. Deterministic Sequence::</strong> Pagination only makes sense because the book has an authoritative table of contents and page numbers (ORDER BY).</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">Limiting and paginating queries controls data transfer size, delivers responsive web page loads, and protects database memory buffers.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SELECT TOP, LIMIT & Pagination</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SELECT TOP, LIMIT & Pagination</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,34 +195,99 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; select-top.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; select-top.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- PostgreSQL / MySQL / SQLite:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">ORDER BY</span> sort_column
-<span class="code-keyword">LIMIT</span> 10 <span class="code-keyword">OFFSET</span> 20;
+                    <pre><code><span class="code-comment">-- 1. ANSI SQL standard / PostgreSQL / MySQL / SQLite LIMIT</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, price
+<span class="code-keyword">FROM</span> products
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 10;
 
-<span class="code-comment">-- SQL Server syntax:</span>
-<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">TOP</span></span> 10 * <span class="code-keyword">FROM</span> table_name <span class="code-keyword">ORDER BY</span> sort_column;
+<span class="code-comment">-- 2. Pagination with LIMIT and OFFSET (Page 3 of 20 items: skip 40, take 20)</span>
+<span class="code-keyword">SELECT</span> customer_id, full_name, signup_date
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> 20 <span class="code-keyword">OFFSET</span> 40;
 
-<span class="code-comment">-- Oracle / ANSI Standard:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">ORDER BY</span> sort_column
-<span class="code-keyword">OFFSET</span> 20 ROWS FETCH NEXT 10 ROWS ONLY;</code></pre>
+<span class="code-comment">-- 3. SQL Server / MS Access SELECT TOP syntax</span>
+<span class="code-comment">-- SELECT TOP 5 employee_id, first_name, salary</span>
+<span class="code-comment">-- FROM employees</span>
+<span class="code-comment">-- ORDER BY salary DESC;</span>
+
+<span class="code-comment">-- 4. ANSI SQL:2008 Standard FETCH FIRST syntax (Oracle / DB2 / Modern PG)</span>
+<span class="code-keyword">SELECT</span> order_id, order_total
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">ORDER BY</span> order_total <span class="code-keyword">DESC</span>
+<span class="code-keyword">OFFSET</span> 0 ROWS FETCH NEXT 10 ROWS ONLY;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>Limiting output rows is essential for web applications, APIs, and dashboard reporting. Because relational databases use different syntax across engines, understanding the variants is critical:</p>
-        <ul>
-            <li><strong>PostgreSQL, MySQL, SQLite:</strong> <code>LIMIT count OFFSET start</code></li>
-            <li><strong>SQL Server:</strong> <code>SELECT TOP (count)</code> or <code>OFFSET start ROWS FETCH NEXT count ROWS ONLY</code></li>
-            <li><strong>Oracle Database:</strong> <code>FETCH FIRST count ROWS ONLY</code></li>
-        </ul>
-        <p>Always pair pagination with an explicit <code>ORDER BY</code> clause. Without sorting, the database engine can return arbitrary rows in non-deterministic order.</p>
+                <p>Restricting query result sets allows applications to fetch only the top-ranked records or implement responsive multi-page web interfaces. While SQL Server uses <code>SELECT TOP (n)</code>, modern relational engines (PostgreSQL, MySQL, SQLite) utilize <code>LIMIT n OFFSET m</code>.</p>
+                <ul>
+                    <li><strong>Strict ORDER BY Dependency:</strong> A LIMIT or TOP clause without an ORDER BY clause is non-deterministic; the database can return any arbitrary rows.</li>
+                    <li><strong>Pipeline Execution Order:</strong> LIMIT / TOP executes in Step 8 (the very final stage of the query lifecycle), slicing the already projected and sorted rows.</li>
+                    <li><strong>The Deep Pagination Trap:</strong> <code>OFFSET 1000000 LIMIT 10</code> forces the database to read and discard 1,000,000 rows before returning 10, degrading latency.</li>
+                    <li><strong>Keyset Pagination Alternative:</strong> For massive datasets, keyset (cursor) pagination (<code>WHERE id &gt; last_seen_id ORDER BY id LIMIT 10</code>) achieves O(1) seek performance.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Database Engine</th>
+                                <th>Top / Limit Syntax</th>
+                                <th>Pagination Syntax (Page 2)</th>
+                                <th>Deterministic Requirement</th>
+                                <th>Performance Traps</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PostgreSQL / MySQL / SQLite</td>
+                                <td><code>LIMIT 10</code></td>
+                                <td><code>LIMIT 10 OFFSET 10</code></td>
+                                <td>Must include <code>ORDER BY</code></td>
+                                <td>Large offsets force full index scans</td>
+                            </tr>
+                            <tr>
+                                <td>SQL Server (T-SQL)</td>
+                                <td><code>SELECT TOP (10) ...</code></td>
+                                <td><code>OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY</code></td>
+                                <td>Must include <code>ORDER BY</code></td>
+                                <td>TOP without ORDER BY returns random rows</td>
+                            </tr>
+                            <tr>
+                                <td>Oracle / DB2 (ANSI)</td>
+                                <td><code>FETCH FIRST 10 ROWS ONLY</code></td>
+                                <td><code>OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY</code></td>
+                                <td>Mandatory ORDER BY in standard</td>
+                                <td>High CPU cost on deep table scans</td>
+                            </tr>
+                            <tr>
+                                <td>Cursor / Keyset Seek</td>
+                                <td><code>WHERE id &gt; 500 LIMIT 10</code></td>
+                                <td><code>WHERE id &gt; 510 LIMIT 10</code></td>
+                                <td>Requires indexed sequential key</td>
+                                <td>Optimal: Constant O(1) seek speed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Danger of Offset Pagination vs Keyset Seeking</h3>
+                <p>Understanding the computational difference between Offset-based pagination and Keyset (Cursor-based) pagination is vital for web engineers:</p>
+                <ul>
+                    <li><strong>The Offset Penalty:</strong> When executing <code>OFFSET 50000 LIMIT 10</code>, the database must retrieve 50,010 records from the B-Tree index and discard the first 50,000 in memory.</li>
+                    <li><strong>The Keyset Alternative:</strong> Instead of skipping rows, track the last seen primary key: <code>WHERE id &gt; 14920 ORDER BY id ASC LIMIT 10;</code>.</li>
+                    <li><strong>The Performance Leap:</strong> Keyset pagination jumps directly to the target key in O(log N) time, maintaining instantaneous response times whether on page 1 or page 10,000.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>API Pagination Formula for Page 3 (Page Size 25):</strong> Calculate offset dynamically: OFFSET = (page_number - 1) * page_size.</p>
+                <p><strong>E-Commerce Product Catalog Web Pagination:</strong> Power an online storefront catalog with responsive 3-item page navigation and top-selling product spotlights.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -224,35 +297,76 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; API Pagination Formula for Page 3 (Page Size 25)</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Product Catalog Web Pagination</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> product_id, product_name, price
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: store_catalog</span>
+<span class="code-comment">   product_id | product_name   | category    | sales_count | rating</span>
+<span class="code-comment">   -----------+----------------+-------------+-------------+-------</span>
+<span class="code-comment">   101        | Ultra Drone    | Gadgets     | 1450        | 4.8</span>
+<span class="code-comment">   102        | Smart Watch    | Wearables   | 920         | 4.6</span>
+<span class="code-comment">   103        | Solar Charger  | Outdoor     | 850         | 4.7</span>
+<span class="code-comment">   104        | Bluetooth Spkr | Audio       | 620         | 4.3</span>
+<span class="code-comment">   105        | Noise-Canc Ear | Audio       | 1890        | 4.9</span>
+<span class="code-comment">   106        | Fitness Tracker| Wearables   | 410         | 4.1</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Retrieve Top 3 Best-Selling Products globally</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, sales_count, rating
 <span class="code-keyword">FROM</span> store_catalog
-<span class="code-keyword">ORDER BY</span> product_id <span class="code-keyword">ASC</span>
-<span class="code-keyword">LIMIT</span> 25 <span class="code-keyword">OFFSET</span> 50; <span class="code-comment">-- Skips first 50 rows (pages 1-2) and takes 25 rows (page 3)</span></code></pre>
+<span class="code-keyword">ORDER BY</span> sales_count <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 3;
+<span class="code-comment">-- Matches Top 3: Earbuds (1890), Ultra Drone (1450), Smart Watch (920)</span>
+
+<span class="code-comment">-- Requirement 2: Web Catalog Page 1 (Items 1 to 3 sorted alphabetically)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category
+<span class="code-keyword">FROM</span> store_catalog
+<span class="code-keyword">ORDER BY</span> product_name <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> 3 <span class="code-keyword">OFFSET</span> 0;
+<span class="code-comment">-- Matches Page 1: Bluetooth Spkr, Fitness Tracker, Noise-Canc Ear</span>
+
+<span class="code-comment">-- Requirement 3: Web Catalog Page 2 (Items 4 to 6 sorted alphabetically)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category
+<span class="code-keyword">FROM</span> store_catalog
+<span class="code-keyword">ORDER BY</span> product_name <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> 3 <span class="code-keyword">OFFSET</span> 3;
+<span class="code-comment">-- Matches Page 2: Smart Watch, Solar Charger, Ultra Drone</span>
+
+<span class="code-comment">-- Requirement 4: Top rated product spotlight in Audio category</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, rating
+<span class="code-keyword">FROM</span> store_catalog
+<span class="code-keyword">WHERE</span> category = <span class="code-string">'Audio'</span>
+<span class="code-keyword">ORDER BY</span> rating <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 1;
+<span class="code-comment">-- Matches: Noise-Canc Ear (Rating 4.9)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>Limiting and paginating query results with SELECT TOP or LIMIT/OFFSET controls data transfer sizes. Paired with deterministic ORDER BY sorting, pagination delivers responsive web applications and predictable API latency.</p>
+                <p>The SELECT TOP and LIMIT clauses restrict result set volume, enabling efficient web pagination, top-N reporting, and predictable API payload sizes.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Output Slicing:</strong> Limits the maximum number of rows returned across the network.</span>
+                            <span><strong>Always Pair with ORDER BY:</strong> Never use LIMIT or TOP without an explicit ORDER BY clause; without sorting, returned records are arbitrary.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Mandatory Sorting:</strong> Always pair LIMIT with ORDER BY to guarantee consistent, repeatable pagination.</span>
+                            <span><strong>Pagination Formula:</strong> To fetch page P with page size S: OFFSET = (P - 1) * S and LIMIT = S.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Offset Formula:</strong> Page OFFSET = (Page - 1) * PageSize (e.g. Page 3 of 25 = OFFSET 50).</span>
+                            <span><strong>Final Stage Execution:</strong> LIMIT executes in the very last step of query evaluation after all sorting and projection completes.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Cross-Engine Syntax:</strong> LIMIT/OFFSET in PostgreSQL/MySQL; TOP in older SQL Server; FETCH FIRST in ANSI/Oracle.</span>
+                            <span><strong>Beware Deep Offsets:</strong> Large OFFSET values force database engines to read and discard millions of rows; switch to keyset pagination for deep tables.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Conserve Network Bandwidth:</strong> Limiting result sets prevents accidental multi-gigabyte queries from overloading application web servers.</span>
                         </li>
                     </ul>
                 </div>
@@ -283,7 +397,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

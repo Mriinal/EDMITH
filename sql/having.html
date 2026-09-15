@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-funnel-dollar"></i></div>
+                    <div class="concept-icon"><i class="fas fa-box"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The High-Volume Bins Quality Check Analogy</h4>
-                        <p>After coins are sorted into bins, the bank manager inspects the room and says: 'Only deposit bins that hold more than $500 total into the armored truck.' Individual coins don't matter; the total value of the bin is what is filtered.</p>
-                        <p style="margin-top: 8px !important;">HAVING filters aggregated groups. WHERE filters individual rows before grouping; HAVING filters summary groups after grouping.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Commercial Shipping Container Scale Analogy</h4>
+                        <p>Picture a maritime cargo port loading export containers onto a freighter vessel:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Individual Boxes (WHERE)::</strong> Before packing, broken or hazardous individual cardboard boxes are thrown out (WHERE box_status = 'CLEARED').</li>
+                            <li><strong>2. Packing the Containers (GROUP BY)::</strong> Boxes are packed into massive metal shipping containers labeled by Destination Port: Tokyo, London, Sydney.</li>
+                            <li><strong>3. The Container Scale (HAVING)::</strong> The ship crane weighs each shipping container. The captain enforces a rule: ONLY load containers weighing over 50,000 lbs (HAVING SUM(weight) > 50000).</li>
+                            <li><strong>4. Group-Level Rejection::</strong> The scale does not weigh individual boxes; it rejects entire containers that fail the aggregate weight threshold!</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The HAVING clause filters aggregated groups created by GROUP BY, whereas WHERE filters individual rows before grouping occurs.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The HAVING Clause</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The HAVING Clause</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,21 +195,110 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; having.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; having.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> department, <span class="code-func">COUNT</span>(*)
+                    <pre><code><span class="code-comment">-- 1. Standard HAVING Clause Filtering on Aggregate Metric</span>
+<span class="code-keyword">SELECT</span> 
+    department,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> employee_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> avg_salary
 <span class="code-keyword">FROM</span> employees
 <span class="code-keyword">GROUP BY</span> department
-<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(*) &gt; 5;</code></pre>
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(*) &gt;= 5;
+
+<span class="code-comment">-- 2. Combining Row-Level WHERE and Group-Level HAVING</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id,
+    <span class="code-func">COUNT</span>(order_id) <span class="code-keyword">AS</span> order_count,
+    <span class="code-func">SUM</span>(order_total) <span class="code-keyword">AS</span> total_spend
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span> <span class="code-comment">-- Step 1: Filter individual rows</span>
+<span class="code-keyword">GROUP BY</span> customer_id       <span class="code-comment">-- Step 2: Group rows by customer</span>
+<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(order_total) &gt;= 10000.00; <span class="code-comment">-- Step 3: Filter aggregated groups</span>
+
+<span class="code-comment">-- 3. Filtering by Multiple Aggregate Thresholds</span>
+<span class="code-keyword">SELECT</span> 
+    category_id,
+    <span class="code-func">AVG</span>(unit_price) <span class="code-keyword">AS</span> avg_price,
+    <span class="code-func">SUM</span>(units_in_stock) <span class="code-keyword">AS</span> total_inventory
+<span class="code-keyword">FROM</span> store_products
+<span class="code-keyword">GROUP BY</span> category_id
+<span class="code-keyword">HAVING</span> <span class="code-func">AVG</span>(unit_price) &gt; 50.00 <span class="code-keyword">AND</span> <span class="code-func">SUM</span>(units_in_stock) &lt; 100;
+
+<span class="code-comment">-- 4. HAVING with Aggregate Not in SELECT List</span>
+<span class="code-keyword">SELECT</span> department
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">GROUP BY</span> department
+<span class="code-keyword">HAVING</span> <span class="code-func">MAX</span>(salary) &gt; 150000.00;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>HAVING</code> clause was added to SQL because the <code>WHERE</code> keyword cannot be used with aggregate functions. Groups do not exist yet when <code>WHERE</code> executes!</p>
-        <p><code>HAVING</code> executes in Step 4 of the query pipeline, immediately following <code>GROUP BY</code>. It discards entire groups that fail aggregate boolean conditions.</p>
+                <p>The <code>HAVING</code> clause was added to SQL because the <code>WHERE</code> keyword cannot be used with aggregate functions. <code>HAVING</code> filters aggregated summary groups in Step 4 of query execution (immediately following <code>GROUP BY</code>).</p>
+                <ul>
+                    <li><strong>WHERE vs HAVING Lifecycle:</strong> WHERE filters individual tuples <em>before</em> grouping; HAVING filters aggregated bucket metrics <em>after</em> GROUP BY.</li>
+                    <li><strong>Aggregate Predicate Requirement:</strong> Conditions in HAVING almost always evaluate aggregate expressions (e.g. <code>HAVING COUNT(*) &gt; 10</code> or <code>HAVING AVG(price) &lt; 100</code>).</li>
+                    <li><strong>Performance Optimization Rule:</strong> Never put row-level filters in HAVING (e.g. <code>HAVING department = 'Sales'</code>); moving them to WHERE reduces the dataset before expensive grouping.</li>
+                    <li><strong>Aggregate Presence Not Required in SELECT:</strong> An aggregate expression evaluated in HAVING does not need to appear in the SELECT projection list.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Evaluation Phase</th>
+                                <th>Clause Used</th>
+                                <th>Operates On</th>
+                                <th>Allows Aggregates?</th>
+                                <th>Query Lifecycle Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Row-Level Filtering</td>
+                                <td><code>WHERE</code></td>
+                                <td>Individual table rows / tuples</td>
+                                <td>NO (Triggers syntax error)</td>
+                                <td>Step 2 (Immediately after FROM)</td>
+                            </tr>
+                            <tr>
+                                <td>Group-Level Filtering</td>
+                                <td><code>HAVING</code></td>
+                                <td>Aggregated summary buckets</td>
+                                <td>YES (Designed for aggregates)</td>
+                                <td>Step 4 (Immediately after GROUP BY)</td>
+                            </tr>
+                            <tr>
+                                <td>Incorrect Practice</td>
+                                <td><code>HAVING status = 'ACTIVE'</code></td>
+                                <td>Filters rows late after grouping</td>
+                                <td>Allowed but slow</td>
+                                <td>Anti-pattern; move to WHERE</td>
+                            </tr>
+                            <tr>
+                                <td>Optimal Synergy</td>
+                                <td><code>WHERE active=1 GROUP BY d HAVING COUNT(*)&gt;5</code></td>
+                                <td>Filters rows, then groups</td>
+                                <td>YES</td>
+                                <td>Best practice pipeline architecture</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Moving WHERE Predicates Out of HAVING Speeds Up Queries by 10x</h3>
+                <p>Many developers write: <code>SELECT dept, AVG(salary) FROM emp GROUP BY dept HAVING dept = 'IT';</code>. This is a severe performance anti-pattern:</p>
+                <ul>
+                    <li><strong>What the Database Does in HAVING:</strong> The engine loads all 1,000,000 employees from all 50 departments into RAM, builds 50 hash buckets, computes averages for everyone, and finally throws 49 departments away!</li>
+                    <li><strong>What the Database Does in WHERE:</strong> With <code>WHERE dept = 'IT'</code>, the engine performs a B-Tree index seek on IT employees, grouping only the 200 IT staff.</li>
+                    <li><strong>The Golden Performance Rule:</strong> Filter raw rows as early as possible in WHERE; reserve HAVING strictly for aggregate calculations.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Isolating Stores with Exceptional Sales Volume:</strong> Find retail store locations that achieved more than $1,000,000 in total sales.</p>
+                <p><strong>E-Commerce Wholesale High-Value Merchant Auditing:</strong> Identify high-volume enterprise corporate customers who have completed multiple transactions and surpassed cumulative annual spending thresholds.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -211,38 +308,86 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Isolating Stores with Exceptional Sales Volume</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Wholesale High-Value Merchant Auditing</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    store_city,
-    <span class="code-func">COUNT</span>(order_id) <span class="code-keyword">AS</span> total_orders_completed,
-    <span class="code-func">SUM</span>(order_amount) <span class="code-keyword">AS</span> gross_store_sales
-<span class="code-keyword">FROM</span> retail_orders
-<span class="code-keyword">GROUP BY</span> store_city
-<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(order_amount) &gt; 1000000.00;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: customer_purchases</span>
+<span class="code-comment">   purchase_id | customer_name | status    | purchase_amount</span>
+<span class="code-comment">   ------------+---------------+-----------+----------------</span>
+<span class="code-comment">   101         | Acme Corp     | COMPLETED | 12000.00</span>
+<span class="code-comment">   102         | Beta LLC      | COMPLETED | 450.00</span>
+<span class="code-comment">   103         | Acme Corp     | COMPLETED | 18000.00</span>
+<span class="code-comment">   104         | Gamma Inc     | CANCELLED | 50000.00</span>
+<span class="code-comment">   105         | Beta LLC      | COMPLETED | 850.00</span>
+<span class="code-comment">   106         | Acme Corp     | COMPLETED | 5000.00</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Isolate high-tier enterprise clients with total completed purchases &gt;= $20,000</span>
+<span class="code-keyword">SELECT</span> 
+    customer_name,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> completed_transactions,
+    <span class="code-func">SUM</span>(purchase_amount) <span class="code-keyword">AS</span> total_cumulative_spend
+<span class="code-keyword">FROM</span> customer_purchases
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">GROUP BY</span> customer_name
+<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(purchase_amount) &gt;= 20000.00;
+<span class="code-comment">-- Matches: Acme Corp ($35,000 total spend across 3 transactions)</span>
+
+<span class="code-comment">-- Requirement 2: Frequent buyer audit: Identify customers with at least 2 completed transactions</span>
+<span class="code-keyword">SELECT</span> 
+    customer_name,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> transaction_volume
+<span class="code-keyword">FROM</span> customer_purchases
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">GROUP BY</span> customer_name
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(*) &gt;= 2;
+<span class="code-comment">-- Matches: Acme Corp (3 transactions) and Beta LLC (2 transactions)</span>
+
+<span class="code-comment">-- Requirement 3: High average ticket size: Customers whose average transaction exceeds $5,000</span>
+<span class="code-keyword">SELECT</span> 
+    customer_name,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(purchase_amount), 2) <span class="code-keyword">AS</span> avg_transaction_size
+<span class="code-keyword">FROM</span> customer_purchases
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">GROUP BY</span> customer_name
+<span class="code-keyword">HAVING</span> <span class="code-func">AVG</span>(purchase_amount) &gt; 5000.00;
+<span class="code-comment">-- Matches: Acme Corp ($11,666.67 average purchase size)</span>
+
+<span class="code-comment">-- Requirement 4: Combined multi-aggregate constraint (Volume &gt;= 2 AND Total Spend &gt; $1,000)</span>
+<span class="code-keyword">SELECT</span> customer_name, <span class="code-func">COUNT</span>(*), <span class="code-func">SUM</span>(purchase_amount)
+<span class="code-keyword">FROM</span> customer_purchases
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">GROUP BY</span> customer_name
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(*) &gt;= 2 <span class="code-keyword">AND</span> <span class="code-func">SUM</span>(purchase_amount) &gt; 1000.00;
+<span class="code-comment">-- Matches: Acme Corp ($35,000) and Beta LLC ($1,300)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The HAVING clause filters aggregated summary groups created by GROUP BY. Separating row-level WHERE filtering from group-level HAVING filtering is a core architectural rule for scalable SQL queries.</p>
+                <p>The HAVING clause filters aggregated summary groups created by GROUP BY, providing the essential mechanism for threshold enforcement on calculated metrics.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Group-Level Filtering:</strong> Filters entire summarized groups produced by GROUP BY.</span>
+                            <span><strong>Group-Level Filtering:</strong> HAVING evaluates aggregated metrics across groups after GROUP BY executes.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Aggregate Support:</strong> Allows aggregate functions (HAVING SUM(amount) > 500) in boolean expressions.</span>
+                            <span><strong>WHERE vs HAVING:</strong> WHERE filters individual rows before grouping; HAVING filters aggregated buckets after grouping.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>HAVING vs WHERE:</strong> WHERE filters individual rows before grouping; HAVING filters groups after aggregation.</span>
+                            <span><strong>Never Place Row Filters in HAVING:</strong> Always put row-level column conditions in WHERE to reduce dataset size before grouping.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Pipeline Execution:</strong> Executes in Step 4, directly before the SELECT projection phase.</span>
+                            <span><strong>Multiple Aggregate Filters:</strong> Combine multiple aggregate conditions in HAVING using AND / OR (e.g. COUNT(*) > 5 AND SUM(val) > 1000).</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Flexible Projection:</strong> Aggregate expressions evaluated in HAVING do not need to be declared in the SELECT clause.</span>
                         </li>
                     </ul>
                 </div>
@@ -273,7 +418,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

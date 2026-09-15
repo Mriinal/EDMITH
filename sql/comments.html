@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li class="active"><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-sticky-note"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Sticky Note on Complex Machinery Analogy</h4>
-                        <p>An engineer building a complicated industrial circuit attaches sticky notes explaining: 'Warning: Turn off Valve B before Valve A during maintenance.' The sticky notes don't affect how the machine runs; they guide future engineers who service it.</p>
-                        <p style="margin-top: 8px !important;">SQL Comments document code for humans while being completely ignored by the database engine.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Architectural Blueprint Sticky Note Analogy</h4>
+                        <p>Picture a structural civil engineer reviewing the blueprint schematics for a 60-story skyscraper:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Construction Lines::</strong> The structural walls, steel beams, and electrical conduits are formal construction directives executed by builders.</li>
+                            <li><strong>2. The Yellow Sticky Note (Comment)::</strong> The lead architect attaches a yellow note: 'Reinforced concrete required here due to high seismic activity.'</li>
+                            <li><strong>3. Invisible to Concrete Pourers::</strong> The sticky note does not add physical steel or concrete to the building; it informs future inspectors <em>why</em> the beam is reinforced.</li>
+                            <li><strong>4. Zero Structural Cost::</strong> The note adds zero weight to the building, but saves the next engineering team weeks of confusion during future renovations.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">SQL comments document code intent, business logic, and analytical assumptions for developer collaboration, carrying zero runtime execution cost.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Comments</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Comments</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,29 +195,107 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; comments.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; comments.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Single line comment:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> users; <span class="code-comment">-- Fetches all users</span>
+                    <pre><code><span class="code-comment">-- 1. Single-Line Comment (Two consecutive hyphens)</span>
+<span class="code-comment">-- This query calculates Monthly Active Users (MAU) for Q1 reporting</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> user_id) <span class="code-keyword">AS</span> monthly_active_users
+<span class="code-keyword">FROM</span> user_activity_logs
+<span class="code-keyword">WHERE</span> activity_date &gt;= <span class="code-string">'2026-01-01'</span>;
 
-/*
-   Multi-line block comment:
-   Author: Data Team
-   Purpose: Monthly retention calculation
-*/
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> monthly_kpis;</code></pre>
+<span class="code-comment">-- 2. Inline Comment at End of Line</span>
+<span class="code-keyword">SELECT</span> 
+    employee_id,
+    salary,
+    salary * 0.15 <span class="code-keyword">AS</span> bonus_amount <span class="code-comment">-- Standard 15% corporate bonus multiplier</span>
+<span class="code-keyword">FROM</span> employees;
+
+<span class="code-comment">-- 3. Multi-Line Comment Block (/* ... */)</span>
+<span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Author: Data Platform Team</span>
+<span class="code-comment">   Date:   2026-03-15</span>
+<span class="code-comment">   Purpose: Generate executive revenue reconciliations</span>
+<span class="code-comment">   JIRA:   DATA-4920</span>
+<span class="code-comment">   ======================================================== */</span>
+<span class="code-keyword">SELECT</span> department, <span class="code-func">SUM</span>(order_total) <span class="code-keyword">AS</span> revenue
+<span class="code-keyword">FROM</span> sales_records
+<span class="code-keyword">GROUP BY</span> department;
+
+<span class="code-comment">-- 4. Commenting Out Code Blocks for Debugging</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id, 
+    account_status
+<span class="code-comment">    /* , credit_score -- Temporarily disabled pending compliance review */</span>
+<span class="code-keyword">FROM</span> customer_accounts;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>Comments are used to explain sections of SQL statements, or to prevent execution of SQL statements when testing alternative queries.</p>
-        <ul>
-            <li><strong>Single-line comments:</strong> Start with two hyphens (<code>--</code>). Everything until the end of the line is ignored.</li>
-            <li><strong>Multi-line comments:</strong> Start with <code>/*</code> and end with <code>*/</code>. Can span multiple lines.</li>
-        </ul>
+                <p>SQL comments are explanatory notes authored by developers to document code intent, explain complex algorithms, and temporarily disable code blocks during debugging. Comments are stripped out by the database lexer during query parsing and have zero impact on execution speed.</p>
+                <ul>
+                    <li><strong>Single-Line Comments (--):</strong> Two consecutive hyphens (<code>--</code>) instruct the parser to ignore everything from the hyphens to the end of that physical line.</li>
+                    <li><strong>Multi-Line Comments (/* */):</strong> Characters between <code>/*</code> and <code>*/</code> are ignored across multiple lines, ideal for query header documentation.</li>
+                    <li><strong>Zero Runtime Overhead:</strong> The database parser discards comments in microseconds during the lexical analysis tokenization phase; comments do not affect query execution time.</li>
+                    <li><strong>Optimizer Hints:</strong> Some database engines (Oracle, MySQL) support special comment syntax (e.g. <code>/*+ INDEX(t idx_name) */</code>) to pass directives to the query optimizer.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Comment Type</th>
+                                <th>Syntax Marker</th>
+                                <th>Span Scope</th>
+                                <th>Ignored by Engine?</th>
+                                <th>Common Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single-Line</td>
+                                <td><code>-- comment text</code></td>
+                                <td>Rest of line</td>
+                                <td>Yes (Discarded by lexer)</td>
+                                <td>Explaining specific column filters</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-Line Block</td>
+                                <td><code>/* comment text */</code></td>
+                                <td>Multiple lines</td>
+                                <td>Yes (Discarded by lexer)</td>
+                                <td>File header docs, JIRA ticket notes</td>
+                            </tr>
+                            <tr>
+                                <td>Inline Comment</td>
+                                <td><code>col -- note</code></td>
+                                <td>End of code line</td>
+                                <td>Yes</td>
+                                <td>Explaining business constants (tax rates)</td>
+                            </tr>
+                            <tr>
+                                <td>Optimizer Hint</td>
+                                <td><code>/*+ HINT */</code></td>
+                                <td>Engine-specific</td>
+                                <td>No (Parsed by optimizer)</td>
+                                <td>Forcing index seeks or hash joins</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Database Optimizer Hints Inside Comments</h3>
+                <p>While standard comments are stripped out by parsers, specialized comment markers can be used to pass hints to query optimizers:</p>
+                <ul>
+                    <li><strong>The Oracle / MySQL Hint Syntax:</strong> Comments beginning with a plus sign (<code>/*+ ... */</code>) are treated as optimizer directives rather than plain comments.</li>
+                    <li><strong>Example:</strong> <code>SELECT /*+ INDEX(employees idx_emp_salary) */ * FROM employees WHERE salary &gt; 100000;</code> instructs the engine to use that specific index.</li>
+                    <li><strong>Caution:</strong> Optimizer hints should be used sparingly; modern cost-based query optimizers generally make superior plan choices based on real-time statistics.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Documenting Complex Financial Logic and Disabling Test Queries:</strong> Annotate a complex quarterly revenue calculation query.</p>
+                <p><strong>Financial Audit Algorithm Documentation & Maintenance:</strong> Author production-grade documented SQL scripts detailing complex tax calculations, compliance exemptions, and fiscal calendar definitions.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -219,43 +305,72 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Documenting Complex Financial Logic and Disabling Test Queries</span>
+                        <span class="terminal-title">Production Queries &bull; Financial Audit Algorithm Documentation & Maintenance</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code>/* ========================================================
-   Quarterly Revenue Reconciliation
-   Author: Senior Analytics Engineer
-   Target: Fiscal Year 2026 Q3
-   ======================================================== */
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: corporate_tax_filings</span>
+<span class="code-comment">   corp_id | jurisdiction | gross_revenue | tax_exempt_flag</span>
+<span class="code-comment">   --------+--------------+---------------+----------------</span>
+<span class="code-comment">   101     | US_DELAWARE  | 2500000.00    | FALSE</span>
+<span class="code-comment">   102     | US_CALIF     | 1800000.00    | FALSE</span>
+<span class="code-comment">   103     | IRELAND      | 5500000.00    | TRUE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   PROJECT:   International Corporate Tax Provisioning</span>
+<span class="code-comment">   ENGINEER:  Platform Data Architecture</span>
+<span class="code-comment">   NOTE:      Complies with 2026 Statutory Tax Reform Act</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Step 1: Calculate corporate tax liability with inline explanations</span>
 <span class="code-keyword">SELECT</span> 
-    quarter_name,
-    <span class="code-func">SUM</span>(net_amount) <span class="code-keyword">AS</span> verified_revenue
-<span class="code-comment">    -- , SUM(tax_amount) AS estimated_tax (Disabled during audit)</span>
-<span class="code-keyword">FROM</span> enterprise_ledger
-<span class="code-keyword">WHERE</span> is_settled = <span class="code-keyword">TRUE</span>
-<span class="code-keyword">GROUP BY</span> quarter_name;</code></pre>
+    corp_id,
+    jurisdiction,
+    gross_revenue,
+<span class="code-comment">    -- Apply statutory 21% rate for US jurisdictions; exempt foreign entities</span>
+    <span class="code-keyword">CASE</span> 
+        <span class="code-keyword">WHEN</span> tax_exempt_flag = <span class="code-keyword">TRUE</span> <span class="code-keyword">THEN</span> 0.00 <span class="code-comment">-- 100% treaty exemption</span>
+        <span class="code-keyword">WHEN</span> jurisdiction <span class="code-keyword">LIKE</span> <span class="code-string">'US_%'</span> <span class="code-keyword">THEN</span> <span class="code-func">ROUND</span>(gross_revenue * 0.21, 2) <span class="code-comment">-- 21% federal baseline</span>
+        <span class="code-keyword">ELSE</span> <span class="code-func">ROUND</span>(gross_revenue * 0.15, 2) <span class="code-comment">-- Default international rate</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> estimated_tax_due
+<span class="code-keyword">FROM</span> corporate_tax_filings;
+<span class="code-comment">-- Matches: US_DELAWARE ($525,000), US_CALIF ($378,000), IRELAND ($0.00 - Treaty Exempt)</span>
+
+<span class="code-comment">-- Step 2: Debugging filter: Temporarily isolate domestic entities</span>
+<span class="code-keyword">SELECT</span> corp_id, jurisdiction, gross_revenue
+<span class="code-keyword">FROM</span> corporate_tax_filings
+<span class="code-keyword">WHERE</span> jurisdiction <span class="code-keyword">LIKE</span> <span class="code-string">'US_%'</span>
+<span class="code-comment">  -- AND gross_revenue &gt; 2000000.00 -- Commented out to inspect all domestic tiers</span>
+<span class="code-keyword">ORDER BY</span> gross_revenue <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: Safely queries domestic entities with disabled secondary filter</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>SQL comments document code intent, business rules, and analytical assumptions for developer collaboration. Ignored by query parsers, comments provide critical engineering clarity without any runtime cost.</p>
+                <p>SQL comments document code intent, business rules, and analytical assumptions for developer collaboration, carrying zero runtime execution cost.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Code Documentation:</strong> Explains complex business rules and algorithmic logic to fellow developers.</span>
+                            <span><strong>Single-Line Syntax:</strong> Use two hyphens (--) to comment out single lines or provide inline column explanations.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Single-Line (--):</strong> Two hyphens comment out everything from the marker to the end of the line.</span>
+                            <span><strong>Multi-Line Syntax:</strong> Use /* ... */ to encapsulate multi-line header documentation, authorship tags, and changelogs.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multi-Line (/* ... */):</strong> Encloses blocks across multiple lines; useful for file headers and disabling query sections.</span>
+                            <span><strong>Zero Performance Cost:</strong> Comments are stripped out by the database parser in microseconds during lexical analysis.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Ignored by Engine:</strong> Comments have zero performance impact and are stripped during database parsing.</span>
+                            <span><strong>Debugging Aid:</strong> Use comments to temporarily disable clauses or expressions during troubleshooting.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Optimizer Hints:</strong> Be aware that specialized comments (/*+ HINT */) pass directives to database query planners.</span>
                         </li>
                     </ul>
                 </div>
@@ -275,8 +390,8 @@
                     </button>
                 </div>
                 <div class="lesson-nav-next">
-                    <a href="operators.html" class="btn-enroll" title="Next: SQL Operators Reference">
-                        <span class="btn-text">Next: SQL Operators Reference</span> <i class="fas fa-arrow-right"></i>
+                    <a href="wildcards.html" class="btn-enroll" title="Next: SQL Wildcards Reference">
+                        <span class="btn-text">Next: SQL Wildcards Reference</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -286,7 +401,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

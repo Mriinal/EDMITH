@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-box-open"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Empty Box vs Zero Analogy</h4>
-                        <p>Imagine three boxes on a table: Box 1 contains a piece of paper with the number 0. Box 2 contains an empty string (an empty paper). Box 3 is sealed and completely unknown—you have no idea whether something exists inside it or not.</p>
-                        <p style="margin-top: 8px !important;">Box 3 represents NULL. NULL is not zero, and NULL is not empty text. It represents missing, absent, or unknown information.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Unopened Amazon Mystery Package Analogy</h4>
+                        <p>Imagine receiving a sealed, unlabeled cardboard box on your front porch with no return address:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. It is NOT Empty::</strong> The box is not empty (which would be an empty string <code>''</code>).</li>
+                            <li><strong>2. It is NOT Zero::</strong> The box does not contain the number zero (<code>0</code> is a concrete mathematical integer).</li>
+                            <li><strong>3. It is UNKNOWN::</strong> The contents are completely unknown until someone opens and populates it.</li>
+                            <li><strong>4. Equality Fails::</strong> If your neighbor also receives an unopened mystery box, you cannot say both boxes contain the same item; <code>NULL = NULL</code> is UNKNOWN!</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">In SQL, NULL represents the total absence of a value. It is governed by Three-Valued Logic (TRUE, FALSE, UNKNOWN).</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>NULL Values & Three-Valued Logic</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>NULL Values & Three-Valued Logic</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,23 +195,103 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; null-values.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; null-values.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Correct syntax for testing NULL:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span>;
+                    <pre><code><span class="code-comment">-- 1. Correct: Checking for Missing Data with IS NULL</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, manager_id
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> manager_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
 
-<span class="code-comment">-- ❌ NEVER USE = NULL:</span>
-<span class="code-comment">-- WHERE column_name = NULL; (Always evaluates to UNKNOWN!)</span></code></pre>
+<span class="code-comment">-- 2. Correct: Checking for Populated Data with IS NOT NULL</span>
+<span class="code-keyword">SELECT</span> customer_id, email, phone_number
+<span class="code-keyword">FROM</span> customer_profiles
+<span class="code-keyword">WHERE</span> phone_number <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span>;
+
+<span class="code-comment">-- 3. WRONG Anti-Pattern: NEVER use = NULL or != NULL</span>
+<span class="code-comment">-- This query returns ZERO rows because NULL = NULL evaluates to UNKNOWN!</span>
+<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> orders <span class="code-keyword">WHERE</span> delivery_date = <span class="code-keyword">NULL</span>; <span class="code-comment">-- INCORRECT!</span>
+
+<span class="code-comment">-- 4. Handling NULLs with COALESCE Fallback Values</span>
+<span class="code-keyword">SELECT</span> 
+    product_name,
+    <span class="code-func">COALESCE</span>(discount_price, regular_price) <span class="code-keyword">AS</span> current_price
+<span class="code-keyword">FROM</span> store_products;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>In relational databases, <code>NULL</code> denotes the absence of data. Because SQL implements <strong>Three-Valued Logic</strong> (<code>TRUE</code>, <code>FALSE</code>, <code>UNKNOWN</code>), standard equality checks like <code>col = NULL</code> or <code>col != NULL</code> never evaluate to true.</p>
-        <p>You must always use the specialized predicates <code>IS NULL</code> and <code>IS NOT NULL</code> to verify whether a column holds a null value. When performing calculations or joins, nulls require defensive handling via <code>COALESCE()</code>.</p>
+                <p>In relational database theory, <code>NULL</code> is a special marker indicating that a data value does not exist in the database. NULL is not a value itself; it represents missing, unrecorded, or inapplicable data.</p>
+                <ul>
+                    <li><strong>Three-Valued Logic (3VL):</strong> Boolean expressions in SQL evaluate to <code>TRUE</code>, <code>FALSE</code>, or <code>UNKNOWN</code>.</li>
+                    <li><strong>Equality Failure:</strong> Comparing anything to NULL with standard comparison operators (<code>=</code>, <code>!=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>) always results in <code>UNKNOWN</code>.</li>
+                    <li><strong>The IS NULL Operator:</strong> Because equality operators fail, ANSI SQL provides the dedicated <code>IS NULL</code> and <code>IS NOT NULL</code> predicates.</li>
+                    <li><strong>Aggregate Function Behavior:</strong> Standard aggregate functions (SUM, AVG, MIN, MAX, COUNT(col)) automatically ignore NULL values; only COUNT(*) counts rows with NULLs.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Expression</th>
+                                <th>Evaluates To</th>
+                                <th>Logical Meaning</th>
+                                <th>Common Developer Assumption</th>
+                                <th>Correct Handling</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>NULL = NULL</code></td>
+                                <td>UNKNOWN</td>
+                                <td>Two unknowns cannot be proven equal</td>
+                                <td>Assumed TRUE</td>
+                                <td>Use <code>IS NULL</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>NULL != NULL</code></td>
+                                <td>UNKNOWN</td>
+                                <td>Two unknowns cannot be proven unequal</td>
+                                <td>Assumed FALSE</td>
+                                <td>Use <code>IS NOT NULL</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>10 + NULL</code></td>
+                                <td>NULL</td>
+                                <td>Adding to unknown yields unknown</td>
+                                <td>Assumed 10</td>
+                                <td>Use <code>COALESCE(val, 0)</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>'Hi ' || NULL</code></td>
+                                <td>NULL (Standard)</td>
+                                <td>Concatenating unknown yields unknown</td>
+                                <td>Assumed 'Hi '</td>
+                                <td>Use <code>COALESCE(str, '')</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>WHERE col = NULL</code></td>
+                                <td>UNKNOWN (Dropped)</td>
+                                <td>Condition never evaluates to TRUE</td>
+                                <td>Assumed matches NULLs</td>
+                                <td>Rewrite as <code>col IS NULL</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why col = NULL Silently Breaks Database Applications</h3>
+                <p>The single most common bug in novice SQL queries is filtering with <code>WHERE col = NULL</code>:</p>
+                <ul>
+                    <li><strong>The Silent Failure:</strong> A WHERE clause only retains rows where the predicate evaluates strictly to TRUE. Since <code>col = NULL</code> evaluates to UNKNOWN, every single row is rejected!</li>
+                    <li><strong>No Error Thrown:</strong> The database engine throws no syntax error; it simply returns an empty result set, deceiving developers into thinking no data exists.</li>
+                    <li><strong>The Fix:</strong> Always use the designated keyword operators: <code>WHERE col IS NULL</code> or <code>WHERE col IS NOT NULL</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Finding Users Missing Emergency Contact Phone Numbers:</strong> Audit customer records to isolate profiles that haven't verified phone contact details.</p>
+                <p><strong>Healthcare Clinical Patient Follow-up System:</strong> Identify discharged hospital patients whose post-op follow-up consultations or lab test results remain unrecorded.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -213,35 +301,72 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Finding Users Missing Emergency Contact Phone Numbers</span>
+                        <span class="terminal-title">Production Queries &bull; Healthcare Clinical Patient Follow-up System</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> user_id, first_name, email, phone_number
-<span class="code-keyword">FROM</span> user_profiles
-<span class="code-keyword">WHERE</span> phone_number <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>
-   <span class="code-keyword">OR</span> emergency_contact <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: clinical_discharges</span>
+<span class="code-comment">   record_id | patient_name   | discharge_date | follow_up_date | lab_result_mg</span>
+<span class="code-comment">   ----------+----------------+----------------+----------------+--------------</span>
+<span class="code-comment">   501       | Walter White   | 2026-03-01     | 2026-03-08     | 14.5</span>
+<span class="code-comment">   502       | Jesse Pinkman  | 2026-03-02     | NULL           | NULL</span>
+<span class="code-comment">   503       | Gustavo Fring  | 2026-03-02     | 2026-03-09     | 12.0</span>
+<span class="code-comment">   504       | Saul Goodman   | 2026-03-03     | NULL           | 18.2</span>
+<span class="code-comment">   505       | Hank Schrader  | 2026-03-04     | 2026-03-11     | NULL</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Identify all patients who have NOT yet scheduled a follow-up appointment</span>
+<span class="code-keyword">SELECT</span> record_id, patient_name, discharge_date
+<span class="code-keyword">FROM</span> clinical_discharges
+<span class="code-keyword">WHERE</span> follow_up_date <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Record 502 (Jesse Pinkman) and Record 504 (Saul Goodman)</span>
+
+<span class="code-comment">-- Requirement 2: Identify patients with pending lab test results</span>
+<span class="code-keyword">SELECT</span> record_id, patient_name, discharge_date
+<span class="code-keyword">FROM</span> clinical_discharges
+<span class="code-keyword">WHERE</span> lab_result_mg <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Record 502 (Jesse Pinkman) and Record 505 (Hank Schrader)</span>
+
+<span class="code-comment">-- Requirement 3: Isolate fully-resolved patients with BOTH follow-up and lab results recorded</span>
+<span class="code-keyword">SELECT</span> record_id, patient_name, follow_up_date, lab_result_mg
+<span class="code-keyword">FROM</span> clinical_discharges
+<span class="code-keyword">WHERE</span> follow_up_date <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span> <span class="code-keyword">AND</span> lab_result_mg <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Record 501 (Walter White) and Record 503 (Gustavo Fring)</span>
+
+<span class="code-comment">-- Requirement 4: Generate outpatient report with graceful fallback for unrecorded values</span>
+<span class="code-keyword">SELECT</span> 
+    patient_name,
+    <span class="code-func">COALESCE</span>(CAST(follow_up_date <span class="code-keyword">AS</span> VARCHAR), <span class="code-string">'PENDING_SCHEDULING'</span>) <span class="code-keyword">AS</span> follow_up_status,
+    <span class="code-func">COALESCE</span>(CAST(lab_result_mg <span class="code-keyword">AS</span> VARCHAR), <span class="code-string">'PENDING_LAB'</span>) <span class="code-keyword">AS</span> lab_status
+<span class="code-keyword">FROM</span> clinical_discharges;
+<span class="code-comment">-- Matches: 5 rows with human-readable status strings instead of raw NULLs</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>NULL in SQL denotes the absence of data rather than zero or an empty string, governed by Three-Valued Logic. Using IS NULL and IS NOT NULL instead of standard equality operators prevents critical logical bugs in analytics.</p>
+                <p>NULL in SQL denotes missing or unassigned information governed by Three-Valued Logic, requiring explicit IS NULL and COALESCE handling to prevent critical query bugs.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Missing Data:</strong> NULL signifies unknown, unassigned, or absent information—not zero and not an empty string.</span>
+                            <span><strong>Absence of Data:</strong> NULL indicates missing data; it is completely distinct from numeric zero or empty string ''.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Three-Valued Logic:</strong> Comparisons with NULL evaluate to UNKNOWN; col = NULL is always false in practice.</span>
+                            <span><strong>Never Use = NULL:</strong> Always use IS NULL and IS NOT NULL; standard equality comparisons (=, !=) with NULL evaluate to UNKNOWN.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Proper Predicates:</strong> Always use IS NULL or IS NOT NULL to test for presence of null values.</span>
+                            <span><strong>Arithmetic Contamination:</strong> Any arithmetic operation with NULL (5 + NULL) results in NULL; use COALESCE to supply fallbacks.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Aggregation Behavior:</strong> Statistical aggregate functions (SUM, AVG, COUNT(col)) ignore null values during computation.</span>
+                            <span><strong>Aggregate Exclusion:</strong> Aggregate functions (SUM, AVG, MIN, MAX) automatically ignore NULL rows during calculation.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Three-Valued Truth Logic:</strong> Remember that WHERE clauses reject rows evaluating to UNKNOWN just as they reject FALSE.</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +397,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

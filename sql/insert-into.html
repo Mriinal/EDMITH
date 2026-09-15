@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-box"></i></div>
+                    <div class="concept-icon"><i class="fas fa-archive"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Ingestion Analogy</h4>
-                        <p>When a delivery truck drops off fresh inventory at a fulfillment warehouse, workers open each box, check the SKU, barcode, and description, and place the items into newly allocated shelving slots.</p>
-                        <p style="margin-top: 8px !important;">INSERT INTO is your database ingestion pipeline. It adds brand-new physical rows into a table, populating designated columns with verified data.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Freight Receiving Dock Analogy</h4>
+                        <p>Picture a central logistics distribution center receiving newly manufactured merchandise:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Blank Storage Bay::</strong> An empty shelf in the warehouse is designed with labeled slots for Item ID, Description, Quantity, and Weight.</li>
+                            <li><strong>2. The Manifest Declaration::</strong> The dock worker fills out a manifest declaring which slot receives which item: (id, name, qty).</li>
+                            <li><strong>3. Single Pallet Delivery::</strong> A worker slides a single box onto the conveyor with exact measurements.</li>
+                            <li><strong>4. Bulk Freight Delivery::</strong> A forklift unloads 50 boxes at once in a single high-efficiency batch maneuver.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The INSERT INTO command persists brand new rows into tables, either one row at a time or through high-speed multi-row bulk batches.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The INSERT INTO Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The INSERT INTO Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,26 +195,96 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; insert-into.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; insert-into.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Insert single row with explicit columns:</span>
-<span class="code-keyword">INSERT INTO</span> table_name (column1, column2)
-<span class="code-keyword">VALUES</span> (value1, value2);
+                    <pre><code><span class="code-comment">-- 1. Standard Single Row Insert with Explicit Column Declaration</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> customers (first_name, last_name, email, created_at)
+<span class="code-keyword">VALUES</span> (<span class="code-string">'Michael'</span>, <span class="code-string">'Scott'</span>, <span class="code-string">'m.scott@dundermifflin.com'</span>, CURRENT_TIMESTAMP);
 
-<span class="code-comment">-- Insert multiple rows in a batch:</span>
-<span class="code-keyword">INSERT INTO</span> table_name (column1, column2)
+<span class="code-comment">-- 2. Multi-Row Bulk Insert (High Performance)</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> inventory_locations (aisle_number, shelf_code, capacity)
 <span class="code-keyword">VALUES</span> 
-    (value1, value2),
-    (value3, value4);</code></pre>
+    (10, <span class="code-string">'A-01'</span>, 500),
+    (10, <span class="code-string">'A-02'</span>, 450),
+    (11, <span class="code-string">'B-01'</span>, 600);
+
+<span class="code-comment">-- 3. Inserting with Default Column Values</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> user_profiles (username, country, account_status)
+<span class="code-keyword">VALUES</span> (<span class="code-string">'claire_dev'</span>, <span class="code-string">'Canada'</span>, DEFAULT);
+
+<span class="code-comment">-- 4. INSERT INTO with Returning ID (PostgreSQL / SQL Server OUTPUT)</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> orders (customer_id, order_total)
+<span class="code-keyword">VALUES</span> (402, 129.50)
+<span class="code-keyword">RETURNING</span> order_id, created_at;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>INSERT INTO</code> is the primary Data Manipulation Language (DML) statement used to create new records in database tables. You can insert a single row or batch insert hundreds of rows in a single query.</p>
-        <p>Always declare the column names explicitly in the <code>INSERT INTO table (col1, col2)</code> clause. If columns with default values or auto-incrementing IDs exist, omitting them lets the engine auto-populate them safely.</p>
+                <p>The <code>INSERT INTO</code> statement is the foundational Data Manipulation Language (DML) command used to add new rows to existing tables. It populates table attributes either through explicit value declarations or computed expressions.</p>
+                <ul>
+                    <li><strong>Explicit Column Best Practice:</strong> Always specify target column names in parentheses; omitting them makes your code fragile against future column additions or reordering.</li>
+                    <li><strong>Bulk Transaction Speed:</strong> Inserting multiple rows in a single batch statement (<code>VALUES (...), (...)</code>) reduces network roundtrips and transaction commit overhead by over 80%.</li>
+                    <li><strong>Constraint Enforcement:</strong> The database engine enforces PRIMARY KEY, UNIQUE, FOREIGN KEY, NOT NULL, and CHECK constraints before committing the new record.</li>
+                    <li><strong>Identity & Serial Keys:</strong> Auto-incrementing columns (SERIAL, IDENTITY) automatically generate primary key numbers without explicit user input.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Insert Technique</th>
+                                <th>SQL Pattern</th>
+                                <th>Operational Behavior</th>
+                                <th>Use Case</th>
+                                <th>Performance Metric</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Explicit Column Insert</td>
+                                <td><code>INSERT INTO t (col1, col2) VALUES (...)</code></td>
+                                <td>Declares exact column mapping</td>
+                                <td>Production API inserts</td>
+                                <td>Safest, schema-resilient</td>
+                            </tr>
+                            <tr>
+                                <td>Positional Insert</td>
+                                <td><code>INSERT INTO t VALUES (...)</code></td>
+                                <td>Relies on physical column sequence in schema</td>
+                                <td>Quick ad-hoc testing</td>
+                                <td>Dangerous; breaks on ALTER TABLE</td>
+                            </tr>
+                            <tr>
+                                <td>Bulk Multi-Row Insert</td>
+                                <td><code>VALUES (r1), (r2), (r3)</code></td>
+                                <td>Inserts multiple rows in one atomic transaction</td>
+                                <td>Data seeding, ETL ingestion</td>
+                                <td>Very High (1 network roundtrip)</td>
+                            </tr>
+                            <tr>
+                                <td>Insert with Defaults</td>
+                                <td><code>VALUES ('val', DEFAULT)</code></td>
+                                <td>Utilizes schema default column definitions</td>
+                                <td>Auto-timestamps, default active flags</td>
+                                <td>Enforces schema constraints</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Omitting Column Names in INSERT INTO is an Anti-Pattern</h3>
+                <p>Writing <code>INSERT INTO table_name VALUES ('John', 'Doe')</code> without declaring column names is an architectural disaster waiting to happen:</p>
+                <ul>
+                    <li><strong>Schema Evolution Failure:</strong> If a DBA runs <code>ALTER TABLE table_name ADD COLUMN middle_name VARCHAR(50)</code>, positional INSERT statements crash immediately.</li>
+                    <li><strong>Silent Data Corruption:</strong> If two compatible columns (e.g. <code>billing_zip</code> and <code>shipping_zip</code>) are reordered, data silently lands in the wrong attributes.</li>
+                    <li><strong>Golden Rule:</strong> Always explicitly write out: <code>INSERT INTO table_name (first_name, last_name) VALUES ('John', 'Doe')</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Batch Inserting New Employees into Corporate Directory:</strong> Add multiple new hires with explicit column definitions.</p>
+                <p><strong>E-Commerce User Onboarding Pipeline:</strong> Onboard new customer accounts, populate profile preferences, and log welcome voucher credits into database tables.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -216,35 +294,67 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Batch Inserting New Employees into Corporate Directory</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce User Onboarding Pipeline</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">INSERT INTO</span> company_employees (first_name, last_name, email, department_id, hire_date)
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Target Schema: customer_accounts</span>
+<span class="code-comment">   customer_id (PK Auto) | full_name   | email            | loyalty_points | status</span>
+<span class="code-comment">   ----------------------+-------------+------------------+----------------+--------</span>
+<span class="code-comment">   (Auto Generated)      | VARCHAR(50) | VARCHAR(100)     | INT DEFAULT 0  | ACTIVE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Insert a single new user with explicit column names</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> customer_accounts (full_name, email, loyalty_points, status)
+<span class="code-keyword">VALUES</span> (<span class="code-string">'Eleanor Vance'</span>, <span class="code-string">'eleanor@vancecorp.com'</span>, 100, <span class="code-string">'ACTIVE'</span>);
+<span class="code-comment">-- Matches: 1 row inserted with ID 1001</span>
+
+<span class="code-comment">-- Requirement 2: Insert using default loyalty points (0) and default status ('ACTIVE')</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> customer_accounts (full_name, email)
+<span class="code-keyword">VALUES</span> (<span class="code-string">'Arthur Pendelton'</span>, <span class="code-string">'arthur@camelot.co.uk'</span>);
+<span class="code-comment">-- Matches: Arthur inserted with loyalty_points=0, status='ACTIVE' automatically</span>
+
+<span class="code-comment">-- Requirement 3: Multi-row bulk insert for corporate client batch migration</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> customer_accounts (full_name, email, loyalty_points, status)
 <span class="code-keyword">VALUES</span> 
-    (<span class="code-string">'Meera'</span>, <span class="code-string">'Patel'</span>, <span class="code-string">'meera.patel@edmith.com'</span>, 4, CURRENT_DATE),
-    (<span class="code-string">'Rohan'</span>, <span class="code-string">'Sharma'</span>, <span class="code-string">'rohan.sharma@edmith.com'</span>, 2, CURRENT_DATE);</code></pre>
+    (<span class="code-string">'Marcus Brody'</span>, <span class="code-string">'brody@museum.edu'</span>, 250, <span class="code-string">'ACTIVE'</span>),
+    (<span class="code-string">'Marion Ravenwood'</span>, <span class="code-string">'marion@nepalbar.com'</span>, 500, <span class="code-string">'ACTIVE'</span>),
+    (<span class="code-string">'Henry Jones'</span>, <span class="code-string">'jones_sr@grail.org'</span>, 150, <span class="code-string">'PENDING'</span>);
+<span class="code-comment">-- Matches: 3 rows inserted in a single atomic database roundtrip</span>
+
+<span class="code-comment">-- Requirement 4: Verification query checking newly inserted accounts</span>
+<span class="code-keyword">SELECT</span> customer_id, full_name, email, loyalty_points, status
+<span class="code-keyword">FROM</span> customer_accounts
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 5;
+<span class="code-comment">-- Matches: Returns all 5 newly inserted customer records in order</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The INSERT INTO command represents the fundamental Data Manipulation Language (DML) mechanism for creating new persistent records. Explicitly declaring column names ensures schema resilience and transaction safety across enterprise tables.</p>
+                <p>The INSERT INTO command represents the primary DML mechanism for persisting new data records into relational tables while maintaining schema constraints and transaction boundaries.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Record Creation:</strong> INSERT INTO adds one or more brand-new data records into an existing table.</span>
+                            <span><strong>Explicit Column Mapping:</strong> Always list target column names in parentheses to guarantee resilience against schema changes.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Batch Efficiency:</strong> Inserting multiple rows in a single VALUES statement is dramatically faster than running individual inserts.</span>
+                            <span><strong>Multi-Row Efficiency:</strong> Batch multiple row inserts into a single INSERT statement to dramatically minimize network latency and transaction log locks.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Column Declaration:</strong> Always list target column names explicitly to prevent column order mismatch errors.</span>
+                            <span><strong>Respect Schema Defaults:</strong> Omit nullable or defaulted columns to let the database automatically populate timestamps and default flags.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Default Fallbacks:</strong> Columns configured with DEFAULT or auto-incrementing serial IDs populate automatically when omitted.</span>
+                            <span><strong>Constraint Validation:</strong> Ensure all inserted records satisfy Primary Key, Foreign Key, and NOT NULL integrity rules.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Atomic Rollback:</strong> If a single row in a multi-row insert violates a constraint, the entire transaction is rolled back safely.</span>
                         </li>
                     </ul>
                 </div>
@@ -275,7 +385,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

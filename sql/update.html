@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-pencil-alt"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Address Change Form Analogy</h4>
-                        <p>When you move to a new apartment, you file an address update form with the post office. You don't create a new identity; you find your existing profile and modify the street address field while keeping your name and history unchanged.</p>
-                        <p style="margin-top: 8px !important;">The UPDATE statement modifies values in existing rows. You specify which columns to change, what new values to assign, and use a WHERE filter to target the exact records.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Hotel Room Keycard Reprogramming Analogy</h4>
+                        <p>Picture a luxury 400-room hotel where guests extend their stays or change rooms:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Existing Record::</strong> Room 304 is already assigned to an existing guest with their checkout date logged.</li>
+                            <li><strong>2. The Targeted Update::</strong> The receptionist locates Room 304 specifically (WHERE room_number = 304) and updates the checkout date.</li>
+                            <li><strong>3. Preserving Other Data::</strong> The guest's name, luggage count, and payment method remain untouched.</li>
+                            <li><strong>4. The Catastrophe of No WHERE::</strong> If the receptionist accidentally runs an update without specifying the room number, EVERY room in the hotel is overwritten!</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The UPDATE statement modifies specific columns in existing rows; always double-check your WHERE clause to prevent catastrophic mass alterations.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The UPDATE Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The UPDATE Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,98 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; update.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; update.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">UPDATE</span> table_name
-<span class="code-keyword">SET</span> column1 = value1, column2 = value2
-<span class="code-keyword">WHERE</span> condition;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Single-Column Update with Precise WHERE Filter</span>
+<span class="code-keyword">UPDATE</span> employees
+<span class="code-keyword">SET</span> salary = 95000.00
+<span class="code-keyword">WHERE</span> employee_id = 104;
+
+<span class="code-comment">-- 2. Multi-Column Simultaneous Update</span>
+<span class="code-keyword">UPDATE</span> customer_accounts
+<span class="code-keyword">SET</span> account_tier = <span class="code-string">'PLATINUM'</span>, 
+    discount_pct = 0.15,
+    updated_at = CURRENT_TIMESTAMP
+<span class="code-keyword">WHERE</span> total_spend &gt;= 50000.00;
+
+<span class="code-comment">-- 3. Arithmetic Increment Update</span>
+<span class="code-keyword">UPDATE</span> store_inventory
+<span class="code-keyword">SET</span> units_in_stock = units_in_stock + 50
+<span class="code-keyword">WHERE</span> product_sku = <span class="code-string">'TECH-992'</span>;
+
+<span class="code-comment">-- 4. Conditional Update with Subquery</span>
+<span class="code-keyword">UPDATE</span> user_memberships
+<span class="code-keyword">SET</span> is_active = <span class="code-keyword">FALSE</span>
+<span class="code-keyword">WHERE</span> user_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> user_id <span class="code-keyword">FROM</span> inactive_sessions <span class="code-keyword">WHERE</span> last_login &lt; <span class="code-string">'2025-01-01'</span>);</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>UPDATE</code> statement modifies data in existing table rows. You can update a single column, multiple columns simultaneously, or apply computed arithmetic updates (e.g. <code>SET salary = salary * 1.05</code>).</p>
-        <p><strong>Critical Safety Rule:</strong> Always specify a <code>WHERE</code> clause unless you intentionally want to overwrite every single row in the entire table! Senior developers always test their <code>WHERE</code> condition with a <code>SELECT</code> query before running an <code>UPDATE</code>.</p>
+                <p>The <code>UPDATE</code> statement modifies the data values of existing rows in a table. It allows engineers to alter single columns, multiple columns simultaneously, or evaluate dynamic mathematical expressions.</p>
+                <ul>
+                    <li><strong>Crucial WHERE Clause:</strong> An UPDATE without a WHERE clause modifies every single record in the table. In production, always test your WHERE clause with a SELECT first.</li>
+                    <li><strong>Atomicity & Locking:</strong> The database engine locks affected rows (Row-Level Locking) during the update to prevent conflicting concurrent writes.</li>
+                    <li><strong>Constraint Verification:</strong> Every updated value must satisfy table CHECK constraints, Foreign Key relationships, and Data Type declarations.</li>
+                    <li><strong>Trigger Execution:</strong> Updates automatically fire any associated AFTER UPDATE or BEFORE UPDATE triggers defined on the table.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Update Pattern</th>
+                                <th>SQL Syntax Example</th>
+                                <th>Operational Scope</th>
+                                <th>Risk Level</th>
+                                <th>Best Practice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single Row Update</td>
+                                <td><code>UPDATE t SET col = 1 WHERE id = 10</code></td>
+                                <td>Modifies exact row by Primary Key</td>
+                                <td>Very Low</td>
+                                <td>Target unique PK for precision</td>
+                            </tr>
+                            <tr>
+                                <td>Batch Conditional</td>
+                                <td><code>UPDATE t SET col = 2 WHERE status = 'X'</code></td>
+                                <td>Modifies all matching category rows</td>
+                                <td>Moderate</td>
+                                <td>Run SELECT first to verify row count</td>
+                            </tr>
+                            <tr>
+                                <td>Arithmetic Increment</td>
+                                <td><code>UPDATE t SET qty = qty + 10 WHERE ...</code></td>
+                                <td>Increments current value atomically</td>
+                                <td>Low</td>
+                                <td>Prevents race conditions in counters</td>
+                            </tr>
+                            <tr>
+                                <td>Unqualified Update</td>
+                                <td><code>UPDATE t SET col = 1</code></td>
+                                <td>Wipes and modifies every row in entire table</td>
+                                <td>CRITICAL</td>
+                                <td>Disallow in production connection pools</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Golden Rule of Safe Production Updates</h3>
+                <p>Accidental unqualified UPDATE statements have brought down entire corporations. Follow this battle-tested protocol before executing any production UPDATE:</p>
+                <ul>
+                    <li><strong>Step 1: Write as a SELECT:</strong> Before typing UPDATE, run: <code>SELECT COUNT(*) FROM table WHERE your_conditions</code> to verify the exact number of rows that will change.</li>
+                    <li><strong>Step 2: Wrap in an Explicit Transaction:</strong> Always wrap in a transaction: <code>BEGIN TRANSACTION; UPDATE ...; SELECT ...; ROLLBACK; (or COMMIT)</code>.</li>
+                    <li><strong>Step 3: Leverage Safe-Update Mode:</strong> Enable MySQL's <code>sql_safe_updates</code> flag, which rejects any UPDATE statement that lacks a key-based WHERE clause.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Applying Merit Salary Adjustments by Performance Tier:</strong> Give a 7% compensation increase to top performers in the technology division.</p>
+                <p><strong>E-Commerce Black Friday Price Modification & Inventory Replenishment:</strong> Apply seasonal discounts, update promotional banners, and restock warehouse inventories across enterprise product lines.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,37 +296,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Applying Merit Salary Adjustments by Performance Tier</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Black Friday Price Modification & Inventory Replenishment</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">UPDATE</span> company_staff
-<span class="code-keyword">SET</span> 
-    annual_salary = annual_salary * 1.07,
-    last_review_date = CURRENT_DATE
-<span class="code-keyword">WHERE</span> performance_rating = <span class="code-string">'EXCEEDS_EXPECTATIONS'</span>
-  <span class="code-keyword">AND</span> department = <span class="code-string">'ENGINEERING'</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: product_catalog</span>
+<span class="code-comment">   product_id | product_name   | category    | retail_price | stock_qty | promo_active</span>
+<span class="code-comment">   -----------+----------------+-------------+--------------+-----------+-------------</span>
+<span class="code-comment">   101        | 4K Gaming Mon  | Electronics | 499.99       | 15        | FALSE</span>
+<span class="code-comment">   102        | Wireless Mouse | Accessories | 49.99        | 120       | FALSE</span>
+<span class="code-comment">   103        | Mech Keyboard  | Accessories | 129.99       | 45        | FALSE</span>
+<span class="code-comment">   104        | Noise-Canc Head| Electronics | 299.99       | 8         | FALSE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Apply 20% Black Friday discount to all Electronics category products</span>
+<span class="code-keyword">UPDATE</span> product_catalog
+<span class="code-keyword">SET</span> retail_price = <span class="code-func">ROUND</span>(retail_price * 0.80, 2),
+    promo_active = <span class="code-keyword">TRUE</span>
+<span class="code-keyword">WHERE</span> category = <span class="code-string">'Electronics'</span>;
+<span class="code-comment">-- Matches: Monitor updated to $399.99, Headphones updated to $239.99</span>
+
+<span class="code-comment">-- Requirement 2: Replenish stock for low-inventory Accessories</span>
+<span class="code-keyword">UPDATE</span> product_catalog
+<span class="code-keyword">SET</span> stock_qty = stock_qty + 100
+<span class="code-keyword">WHERE</span> category = <span class="code-string">'Accessories'</span> <span class="code-keyword">AND</span> stock_qty &lt; 50;
+<span class="code-comment">-- Matches: Mech Keyboard stock increased from 45 to 145</span>
+
+<span class="code-comment">-- Requirement 3: Update individual product price and promotional flag by Primary Key</span>
+<span class="code-keyword">UPDATE</span> product_catalog
+<span class="code-keyword">SET</span> retail_price = 39.99, promo_active = <span class="code-keyword">TRUE</span>
+<span class="code-keyword">WHERE</span> product_id = 102;
+<span class="code-comment">-- Matches: Wireless Mouse updated to $39.99 with promo_active = TRUE</span>
+
+<span class="code-comment">-- Requirement 4: Verification query checking updated catalog values</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, retail_price, stock_qty, promo_active
+<span class="code-keyword">FROM</span> product_catalog
+<span class="code-keyword">ORDER BY</span> product_id <span class="code-keyword">ASC</span>;
+<span class="code-comment">-- Matches: Verified catalog reflecting all price cuts and restocked inventories</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The UPDATE statement modifies existing database records in place. Always pairing UPDATE commands with precise WHERE clauses and staging filters safeguards production databases against accidental catastrophic mass alterations.</p>
+                <p>The UPDATE statement modifies existing database rows in place, requiring strict WHERE clause precision and transactional safeguards to prevent unintended mass data overwrites.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Data Modification:</strong> UPDATE alters existing records without inserting new rows or deleting tables.</span>
+                            <span><strong>Mandatory WHERE Clause:</strong> Always specify a precise WHERE clause; an unqualified UPDATE overwrites every single row in the table.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Mandatory WHERE:</strong> Omitting WHERE will update all rows in the entire table; always verify filter criteria first.</span>
+                            <span><strong>Verify with SELECT First:</strong> Run a SELECT query with the identical WHERE clause first to confirm the exact rows slated for modification.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multiple Columns:</strong> Update multiple columns in a single statement by separating assignments with commas.</span>
+                            <span><strong>Wrap in Transactions:</strong> Use BEGIN TRANSACTION and test updates before issuing COMMIT in production environments.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Computed Updates:</strong> Supports arithmetic expressions, string formatting, and CASE expressions in the SET clause.</span>
+                            <span><strong>Atomic Increments:</strong> Use SET col = col + 1 for counters to ensure thread-safe atomic updates without lost update anomalies.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Row-Level Locking:</strong> Be aware that updates acquire row-level exclusive locks; keep update transactions brief to prevent deadlocks.</span>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +390,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

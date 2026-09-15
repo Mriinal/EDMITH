@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="concept-icon"><i class="fas fa-chart-pie"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Dashboard Instrument Cluster Analogy</h4>
-                        <p>When driving a car, you don't inspect every single drop of fuel burnt or tire rotation. You glance at the dashboard cluster: your speedometer displays your average speed, and the odometer displays your total mileage.</p>
-                        <p style="margin-top: 8px !important;">Aggregate functions condense thousands of individual records into high-level business summaries like totals, averages, and extremes.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Census Bureau Demographics Analogy</h4>
+                        <p>Picture the national census bureau processing survey responses from 300 million citizens:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Raw Detail vs Summary::</strong> Government officials cannot read through 300 million individual sheets of paper to understand the economy.</li>
+                            <li><strong>2. The Aggregation Process::</strong> They summarize the raw data into decisive metrics: Total Population (COUNT), Average Income (AVG), Total Tax Collected (SUM), and Youngest/Oldest Citizens (MIN/MAX).</li>
+                            <li><strong>3. Collapsing Millions to One::</strong> Aggregate functions collapse thousands of individual records into a single authoritative scalar metric.</li>
+                            <li><strong>4. Grouping by State::</strong> Adding GROUP BY partitions these calculations state-by-state, comparing metrics across regions.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">Aggregate functions synthesize massive tables into decisive summary metrics, forming the foundation of business intelligence dashboards.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Aggregate Functions Overview</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Aggregate Functions Overview</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,24 +195,109 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; aggregate-functions.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; aggregate-functions.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_rows,
-    <span class="code-func">SUM</span>(amount) <span class="code-keyword">AS</span> total_revenue,
-    <span class="code-func">AVG</span>(amount) <span class="code-keyword">AS</span> average_sale,
-    <span class="code-func">MIN</span>(amount) <span class="code-keyword">AS</span> lowest_sale,
-    <span class="code-func">MAX</span>(amount) <span class="code-keyword">AS</span> highest_sale
-<span class="code-keyword">FROM</span> sales_transactions;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. All Five Core Aggregate Functions in a Single Query</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_employees,
+    <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> minimum_salary,
+    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> maximum_salary,
+    <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> total_payroll,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> average_salary
+<span class="code-keyword">FROM</span> company_payroll;
+
+<span class="code-comment">-- 2. Aggregates with Filtering (WHERE evaluated before Aggregates)</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> engineering_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> engineering_avg_salary
+<span class="code-keyword">FROM</span> company_payroll
+<span class="code-keyword">WHERE</span> department = <span class="code-string">'Engineering'</span>;
+
+<span class="code-comment">-- 3. Aggregates with Column Deduplication (DISTINCT)</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">AS</span> unique_operating_countries,
+    <span class="code-func">SUM</span>(<span class="code-keyword">DISTINCT</span> customer_credit) <span class="code-keyword">AS</span> unique_credit_sum
+<span class="code-keyword">FROM</span> international_clients;
+
+<span class="code-comment">-- 4. Aggregate Function Inside Math Expression</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">MAX</span>(salary) - <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> salary_spread
+<span class="code-keyword">FROM</span> company_payroll;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>Aggregate functions perform calculations on multiple values across rows and return a single summary value. Standard SQL provides five foundational aggregate functions: <code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, and <code>MAX</code>.</p>
-        <p>Crucially, all aggregate functions (except <code>COUNT(*)</code>) completely ignore <code>NULL</code> values during calculation. When querying individual columns alongside aggregates, you must group the non-aggregated columns using <code>GROUP BY</code>.</p>
+                <p>SQL aggregate functions calculate a single scalar value from a collection of row values across a column. The five ANSI standard aggregate functions are <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MIN()</code>, and <code>MAX()</code>.</p>
+                <ul>
+                    <li><strong>NULL Discard Rule:</strong> With the sole exception of <code>COUNT(*)</code>, all aggregate functions automatically ignore NULL values during computation.</li>
+                    <li><strong>WHERE vs HAVING:</strong> WHERE filters individual rows before aggregation occurs; HAVING filters the aggregated results after GROUP BY.</li>
+                    <li><strong>Scalar vs Vector Aggregation:</strong> Without GROUP BY, aggregates produce a single scalar row. With GROUP BY, aggregates produce one summary row per group.</li>
+                    <li><strong>Mathematical Type Safety:</strong> SUM and AVG on integers can cause integer overflow or truncated decimals; cast to NUMERIC/DECIMAL for financial precision.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Aggregate Function</th>
+                                <th>Description</th>
+                                <th>Supported Data Types</th>
+                                <th>NULL Value Handling</th>
+                                <th>Common Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>COUNT()</code></td>
+                                <td>Counts number of rows or non-null values</td>
+                                <td>Any data type (*, numbers, strings)</td>
+                                <td>COUNT(*) includes NULLs; COUNT(col) ignores</td>
+                                <td>User volume, transaction frequency</td>
+                            </tr>
+                            <tr>
+                                <td><code>SUM()</code></td>
+                                <td>Calculates cumulative mathematical total</td>
+                                <td>Numeric data types only</td>
+                                <td>Ignores NULLs completely</td>
+                                <td>Total revenue, gross payroll</td>
+                            </tr>
+                            <tr>
+                                <td><code>AVG()</code></td>
+                                <td>Computes arithmetic mean of column</td>
+                                <td>Numeric data types only</td>
+                                <td>Ignores NULLs; does not divide by them</td>
+                                <td>Average order value (AOV), mean latency</td>
+                            </tr>
+                            <tr>
+                                <td><code>MIN()</code></td>
+                                <td>Extracts lowest or earliest value</td>
+                                <td>Numeric, Date/Time, String</td>
+                                <td>Ignores NULLs</td>
+                                <td>Oldest order date, lowest bid price</td>
+                            </tr>
+                            <tr>
+                                <td><code>MAX()</code></td>
+                                <td>Extracts highest or latest value</td>
+                                <td>Numeric, Date/Time, String</td>
+                                <td>Ignores NULLs</td>
+                                <td>Peak daily traffic, highest score</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Aggregates Cannot Be Used in WHERE Clauses</h3>
+                <p>A frequent error among SQL learners is attempting to write <code>WHERE salary &gt; AVG(salary)</code>:</p>
+                <ul>
+                    <li><strong>Lifecycle Conflict:</strong> WHERE executes in Step 2 of query processing, before the engine has grouped or aggregated the dataset. The AVG() does not exist yet!</li>
+                    <li><strong>The Subquery Solution:</strong> To filter against an aggregate scalar, use a subquery: <code>WHERE salary &gt; (SELECT AVG(salary) FROM employees);</code>.</li>
+                    <li><strong>The Grouping Solution:</strong> To filter aggregated groups, use the <code>HAVING</code> clause post-grouping: <code>GROUP BY dept HAVING AVG(salary) &gt; 80000;</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Complete Departmental Compensation Dashboard:</strong> Calculate complete workforce metrics in a single query.</p>
+                <p><strong>Enterprise Cloud Infrastructure Cost Dashboard:</strong> Synthesize cloud compute server operational metrics across data centers to generate executive executive cost and performance dashboards.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -214,38 +307,77 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Complete Departmental Compensation Dashboard</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Cloud Infrastructure Cost Dashboard</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(employee_id) <span class="code-keyword">AS</span> active_headcount,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> mean_compensation,
-    <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> total_payroll_expense,
-    <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> floor_salary,
-    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> ceiling_salary
-<span class="code-keyword">FROM</span> corporate_employees;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: cloud_server_instances</span>
+<span class="code-comment">   instance_id | datacenter | hourly_cost | cpu_usage_pct | uptime_days</span>
+<span class="code-comment">   ------------+------------+-------------+---------------+------------</span>
+<span class="code-comment">   vm-101      | us-east    | 0.45        | 78.5          | 120</span>
+<span class="code-comment">   vm-102      | us-west    | 0.85        | 42.0          | 45</span>
+<span class="code-comment">   vm-103      | us-east    | 1.20        | 91.2          | 310</span>
+<span class="code-comment">   vm-104      | eu-central | 0.60        | 64.0          | 80</span>
+<span class="code-comment">   vm-105      | us-east    | 0.45        | 55.0          | 15</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: High-level infrastructure summary KPI card</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_vms,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(hourly_cost), 2) <span class="code-keyword">AS</span> total_hourly_burn,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(cpu_usage_pct), 1) <span class="code-keyword">AS</span> fleet_avg_cpu,
+    <span class="code-func">MIN</span>(uptime_days) <span class="code-keyword">AS</span> newest_vm_days,
+    <span class="code-func">MAX</span>(uptime_days) <span class="code-keyword">AS</span> oldest_vm_days
+<span class="code-keyword">FROM</span> cloud_server_instances;
+<span class="code-comment">-- Matches: 5 total VMs, $3.55/hr burn, 66.1% avg CPU, 15 to 310 day uptime range</span>
+
+<span class="code-comment">-- Requirement 2: Financial auditing: Calculate annualized fleet cost estimate</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(hourly_cost) * 24 * 365, 2) <span class="code-keyword">AS</span> projected_annual_cost
+<span class="code-keyword">FROM</span> cloud_server_instances;
+<span class="code-comment">-- Matches: $31,098.00 annualized cloud infrastructure expenditure</span>
+
+<span class="code-comment">-- Requirement 3: Regional performance audit: Isolate us-east compute metrics</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> east_vm_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(cpu_usage_pct), 1) <span class="code-keyword">AS</span> east_avg_cpu,
+    <span class="code-func">MAX</span>(hourly_cost) <span class="code-keyword">AS</span> east_max_hourly_rate
+<span class="code-keyword">FROM</span> cloud_server_instances
+<span class="code-keyword">WHERE</span> datacenter = <span class="code-string">'us-east'</span>;
+<span class="code-comment">-- Matches: 3 VMs in us-east, 74.9% avg CPU, $1.20 peak hourly rate</span>
+
+<span class="code-comment">-- Requirement 4: High-utilization server count (CPU &gt; 70%)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> high_load_servers
+<span class="code-keyword">FROM</span> cloud_server_instances
+<span class="code-keyword">WHERE</span> cpu_usage_pct &gt; 70.0;
+<span class="code-comment">-- Matches: 2 server instances under high load (vm-101 and vm-103)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>Aggregate functions synthesize thousands of rows into decisive scalar summary metrics. Combining aggregates with GROUP BY forms the cornerstone of executive dashboards, financial auditing, and business intelligence.</p>
+                <p>SQL aggregate functions condense thousands of rows into decisive scalar summary metrics, serving as the foundational engine of business reporting and executive dashboards.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multi-Row Summary:</strong> Aggregates condense multiple rows into a single scalar metric.</span>
+                            <span><strong>Five Core Functions:</strong> Master COUNT, SUM, AVG, MIN, and MAX to perform complete statistical summaries on relational tables.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>The Big Five:</strong> COUNT (tally), SUM (addition), AVG (mean), MIN (lowest), MAX (highest).</span>
+                            <span><strong>NULL Values Ignored:</strong> All aggregate functions ignore NULL values except COUNT(*); AVG divides only by rows with non-null values.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NULL Elimination:</strong> Aggregates ignore null values; SUM on nulls returns NULL unless wrapped with COALESCE.</span>
+                            <span><strong>WHERE Clause Exclusion:</strong> Never place aggregate functions in WHERE; use subqueries or the HAVING clause instead.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Grouping Requirement:</strong> Any non-aggregate column in the SELECT clause must appear in the GROUP BY clause.</span>
+                            <span><strong>Data Type Awareness:</strong> SUM and AVG require numeric fields; MIN and MAX operate on numbers, dates, and alphabetical strings.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Scalar vs Grouped:</strong> Aggregates without GROUP BY output a single row; combining aggregates with GROUP BY partitions data into summary categories.</span>
                         </li>
                     </ul>
                 </div>
@@ -276,7 +408,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

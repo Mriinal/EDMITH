@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-handshake-slash"></i></div>
+                    <div class="concept-icon"><i class="fas fa-compress-arrows-alt"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Corporate Merger Audit Analogy</h4>
-                        <p>Two merging banks combine their client rosters. Bank A has clients that Bank B doesn't have, and Bank B has clients that Bank A doesn't have. The auditor needs a master spreadsheet listing every single client from both banks, showing who had accounts where.</p>
-                        <p style="margin-top: 8px !important;">FULL OUTER JOIN preserves all rows from both tables, padding NULLs in whichever table lacked a match.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Corporate Merger Employee Reconciliation Analogy</h4>
+                        <p>Imagine Company A acquiring Company B, and HR combining both separate payroll databases into a single master audit:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Employees in Both Companies::</strong> Engineers who worked jointly on shared projects appear paired together across the row.</li>
+                            <li><strong>2. Company A Exclusives::</strong> Legacy Company A staff have no records in Company B; they appear with Company B attributes filled with NULL.</li>
+                            <li><strong>3. Company B Exclusives::</strong> New Company B staff have no records in Company A; they appear with Company A attributes filled with NULL.</li>
+                            <li><strong>4. Complete Visibility::</strong> Zero employees are discarded from either company; every human being from both sides is represented.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">FULL OUTER JOIN merges the complete contents of both tables, retaining all records regardless of whether a matching relationship exists.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>FULL OUTER JOIN</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>FULL OUTER JOIN</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; full-join.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; full-join.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> columns
-<span class="code-keyword">FROM</span> table_a
-<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> table_b <span class="code-keyword">ON</span> table_a.key = table_b.key;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Standard Full Outer Join between Two Datasets</span>
+<span class="code-keyword">SELECT</span> 
+    a.client_name <span class="code-keyword">AS</span> domestic_client,
+    b.client_name <span class="code-keyword">AS</span> international_client,
+    <span class="code-func">COALESCE</span>(a.account_id, b.account_id) <span class="code-keyword">AS</span> master_account_id
+<span class="code-keyword">FROM</span> domestic_accounts a
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> international_accounts b <span class="code-keyword">ON</span> a.account_id = b.account_id;
+
+<span class="code-comment">-- 2. Bidirectional Anti-Join: Isolating Records Unique to Either Side</span>
+<span class="code-keyword">SELECT</span> 
+    a.account_id <span class="code-keyword">AS</span> unique_to_domestic,
+    b.account_id <span class="code-keyword">AS</span> unique_to_intl
+<span class="code-keyword">FROM</span> domestic_accounts a
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> international_accounts b <span class="code-keyword">ON</span> a.account_id = b.account_id
+<span class="code-keyword">WHERE</span> a.account_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span> <span class="code-keyword">OR</span> b.account_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+
+<span class="code-comment">-- 3. Full Outer Join with Aggregation &amp; COALESCE</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COALESCE</span>(e.department_name, d.department_name) <span class="code-keyword">AS</span> department,
+    <span class="code-func">COUNT</span>(e.employee_id) <span class="code-keyword">AS</span> staff_count
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id
+<span class="code-keyword">GROUP BY</span> <span class="code-func">COALESCE</span>(e.department_name, d.department_name);
+
+<span class="code-comment">-- 4. Simulating FULL OUTER JOIN in MySQL (Using UNION of LEFT and RIGHT)</span>
+<span class="code-comment">-- SELECT * FROM a LEFT JOIN b ON a.id = b.id</span>
+<span class="code-comment">-- UNION</span>
+<span class="code-comment">-- SELECT * FROM a RIGHT JOIN b ON a.id = b.id;</span></code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>FULL OUTER JOIN</code> combines the results of both <code>LEFT JOIN</code> and <code>RIGHT JOIN</code>. It returns all records from both tables, with <code>NULL</code> values where the join condition does not match.</p>
-        <p>In databases like MySQL that lack native <code>FULL OUTER JOIN</code> syntax, you can achieve the exact same result by combining a <code>LEFT JOIN</code> and a <code>RIGHT JOIN</code> using <code>UNION</code>.</p>
+                <p>The <code>FULL OUTER JOIN</code> (or <code>FULL JOIN</code>) combines the results of both <code>LEFT JOIN</code> and <code>RIGHT JOIN</code>. It returns all rows from both tables, matching rows where possible and placing <code>NULL</code> values in attributes where no counterpart exists.</p>
+                <ul>
+                    <li><strong>Symmetric Complete Union:</strong> Every row from Table A and every row from Table B appears in the output. Non-matching attributes on either side become NULL.</li>
+                    <li><strong>The Reconciliation Standard:</strong> FULL OUTER JOIN is the premier tool in data warehousing for financial auditing, data reconciliation, and gap analysis between staging and production systems.</li>
+                    <li><strong>MySQL Workaround:</strong> MySQL does not natively support FULL OUTER JOIN syntax; developers simulate it by taking the <code>UNION</code> of a <code>LEFT JOIN</code> and a <code>RIGHT JOIN</code>.</li>
+                    <li><strong>Pairing with COALESCE:</strong> Always use <code>COALESCE(a.id, b.id)</code> to extract a consolidated, non-null identifier from the combined result.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Join Condition State</th>
+                                <th>Left Table Output</th>
+                                <th>Right Table Output</th>
+                                <th>Resulting Tuple</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Match in both A and B</td>
+                                <td>Populated values</td>
+                                <td>Populated values</td>
+                                <td>Combined non-null row</td>
+                                <td>Shared records</td>
+                            </tr>
+                            <tr>
+                                <td>Row in A only (No B)</td>
+                                <td>Populated values</td>
+                                <td>NULL values</td>
+                                <td>Left populated, right NULL</td>
+                                <td>Entities unique to A</td>
+                            </tr>
+                            <tr>
+                                <td>Row in B only (No A)</td>
+                                <td>NULL values</td>
+                                <td>Populated values</td>
+                                <td>Left NULL, right populated</td>
+                                <td>Entities unique to B</td>
+                            </tr>
+                            <tr>
+                                <td>Bidirectional Gap Check</td>
+                                <td><code>WHERE a.id IS NULL OR b.id IS NULL</code></td>
+                                <td>Isolates all non-matches</td>
+                                <td>Discrepancy reconciliation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>How to Emulate FULL OUTER JOIN in MySQL</h3>
+                <p>Because MySQL is one of the few major relational engines that lacks native <code>FULL OUTER JOIN</code> syntax, developers use set unions:</p>
+                <ul>
+                    <li><strong>The Architecture:</strong> Combine a <code>LEFT JOIN</code> (all A + matched B) and a <code>RIGHT JOIN</code> (all B + matched A) using <code>UNION</code>.</li>
+                    <li><strong>The Deduplication:</strong> Because standard <code>UNION</code> automatically deduplicates identical rows, the intersecting matches are preserved exactly once.</li>
+                    <li><strong>Example:</strong> <code>SELECT * FROM A LEFT JOIN B ON A.id = B.id UNION SELECT * FROM A RIGHT JOIN B ON A.id = B.id;</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Reconciling Partner Accounts and Master Customers:</strong> Produce a master reconciliation report showing matched and unmatched records on both sides.</p>
+                <p><strong>Enterprise Banking Ledger Reconciliation Audit:</strong> Compare internal core banking accounting transactions against external Federal Reserve clearinghouse settlement records.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,38 +302,76 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Reconciling Partner Accounts and Master Customers</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Banking Ledger Reconciliation Audit</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    c.customer_id, 
-    c.email <span class="code-keyword">AS</span> internal_email,
-    p.partner_client_id,
-    p.email <span class="code-keyword">AS</span> partner_email
-<span class="code-keyword">FROM</span> internal_customers c
-<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> partner_clients p <span class="code-keyword">ON</span> c.tax_id = p.tax_id;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   internal_ledger: (txn_id, amount, status)</span>
+<span class="code-comment">   #T1: $500, POSTED | #T2: $1200, POSTED | #T3: $350, POSTED</span>
+<span class="code-comment">   fedwire_settlement: (wire_id, txn_id, settled_amount)</span>
+<span class="code-comment">   #W1: Txn T1, $500 | #W2: Txn T2, $1200 | #W3: Txn T99, $8000</span>
+<span class="code-comment">   Note: Txn T3 is in internal ledger only. Wire W3 (Txn T99) is in Fedwire only.</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Comprehensive reconciliation audit of internal vs external banking ledgers</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COALESCE</span>(i.txn_id, f.txn_id) <span class="code-keyword">AS</span> reconciled_txn_id,
+    i.amount <span class="code-keyword">AS</span> internal_amount,
+    f.settled_amount <span class="code-keyword">AS</span> clearinghouse_amount,
+    <span class="code-keyword">CASE</span> 
+        <span class="code-keyword">WHEN</span> i.txn_id <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span> <span class="code-keyword">AND</span> f.txn_id <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span> <span class="code-keyword">THEN</span> <span class="code-string">'MATCHED'</span>
+        <span class="code-keyword">WHEN</span> i.txn_id <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span> <span class="code-keyword">AND</span> f.txn_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span> <span class="code-keyword">THEN</span> <span class="code-string">'MISSING_IN_CLEARINGHOUSE'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'UNRECOGNIZED_INCOMING_WIRE'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> reconciliation_status
+<span class="code-keyword">FROM</span> internal_ledger i
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> fedwire_settlement f <span class="code-keyword">ON</span> i.txn_id = f.txn_id;
+<span class="code-comment">-- Matches: T1 (Matched), T2 (Matched), T3 (Missing in Clearinghouse), T99 (Unrecognized Wire)</span>
+
+<span class="code-comment">-- Requirement 2: Audit Discrepancies Only (Bidirectional Anti-Join)</span>
+<span class="code-keyword">SELECT</span> 
+    i.txn_id <span class="code-keyword">AS</span> unposted_internal_txn,
+    f.txn_id <span class="code-keyword">AS</span> unrecorded_clearinghouse_txn
+<span class="code-keyword">FROM</span> internal_ledger i
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> fedwire_settlement f <span class="code-keyword">ON</span> i.txn_id = f.txn_id
+<span class="code-keyword">WHERE</span> i.txn_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span> <span class="code-keyword">OR</span> f.txn_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Identifies discrepancy pair T3 and T99 for immediate fraud review</span>
+
+<span class="code-comment">-- Requirement 3: Quantify reconciled dollar discrepancy</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(i.amount), 0) <span class="code-keyword">AS</span> total_internal_booked,
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(f.settled_amount), 0) <span class="code-keyword">AS</span> total_clearinghouse_settled,
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(i.amount), 0) - <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(f.settled_amount), 0) <span class="code-keyword">AS</span> net_reconciliation_variance
+<span class="code-keyword">FROM</span> internal_ledger i
+<span class="code-keyword">FULL OUTER <span class="code-keyword">JOIN</span></span> fedwire_settlement f <span class="code-keyword">ON</span> i.txn_id = f.txn_id;
+<span class="code-comment">-- Matches: Audits net financial variance across banking networks</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>FULL OUTER JOIN merges the complete contents of both tables, retaining all records regardless of whether a matching relationship exists. It is the premier tool for database synchronization and reconciliation audits.</p>
+                <p>FULL OUTER JOIN merges the complete contents of both tables, retaining all records regardless of whether a matching relationship exists, making it the premier tool for database synchronization and reconciliation audits.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Bidirectional Preservation:</strong> Returns all rows from both tables, with NULLs on either side when no match exists.</span>
+                            <span><strong>Bidirectional Retention:</strong> Preserves 100% of rows from both the left and right tables; non-matching attributes are filled with NULL.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Reconciliation Auditing:</strong> Ideal for financial reconciliation, data migration audits, and master index syncs.</span>
+                            <span><strong>The Reconciliation Standard:</strong> Ideal for financial audits, data warehouse discrepancy checks, and gap analysis.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>MySQL Workaround:</strong> Simulate in MySQL by unioning a LEFT JOIN and a RIGHT JOIN.</span>
+                            <span><strong>Always Use COALESCE:</strong> Wrap primary keys with COALESCE(a.id, b.id) to maintain a valid identifier across all output rows.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Symmetric Difference:</strong> Filter WHERE a.id IS NULL OR b.id IS NULL to isolate rows that exist in only one table.</span>
+                            <span><strong>Bidirectional Anti-Join:</strong> Filter with WHERE a.id IS NULL OR b.id IS NULL to isolate discrepancies unique to either table.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>MySQL Workaround:</strong> Simulate FULL OUTER JOIN in MySQL by taking the UNION of a LEFT JOIN and a RIGHT JOIN.</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +402,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

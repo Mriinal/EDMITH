@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-receipt"></i></div>
+                    <div class="concept-icon"><i class="fas fa-copy"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Raw Transaction Ledger Analogy</h4>
-                        <p>An auditor collects all credit card transactions from Terminal 1 and all transactions from Terminal 2. Even if two customers happen to buy a $4.50 coffee at the exact same minute, every single transaction must be recorded without deduplication.</p>
-                        <p style="margin-top: 8px !important;">UNION ALL combines datasets while preserving every single row, including duplicates, at maximum speed.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Dual Cash Register Cash Drop Analogy</h4>
+                        <p>Imagine a bustling coffee shop with two cash registers operating side by side during morning rush hour:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Register A Envelope::</strong> Register 1 records twenty $5 bills and ten $20 bills in an envelope.</li>
+                            <li><strong>2. Register B Envelope::</strong> Register 2 records fifteen $5 bills and eight $20 bills in another envelope.</li>
+                            <li><strong>3. The Nightly Deposit (UNION ALL)::</strong> The manager dumps both envelopes into the bank deposit bag. They do NOT discard duplicate $5 bills! Every single physical bill must be deposited.</li>
+                            <li><strong>4. High-Speed Pipeline::</strong> Pouring the envelopes together takes 2 seconds because no one wastes time checking for duplicate serial numbers.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">UNION ALL concatenates multiple query results directly without the CPU sorting overhead of deduplication, preserving every single row.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The UNION ALL Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The UNION ALL Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,106 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; union-all.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; union-all.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> column1, column2 <span class="code-keyword">FROM</span> table1
+                    <pre><code><span class="code-comment">-- 1. High-Speed Direct Set Concatenation (Preserves All Duplicates)</span>
+<span class="code-keyword">SELECT</span> transaction_id, customer_id, amount, <span class="code-string">'POS_TERMINAL_1'</span> <span class="code-keyword">AS</span> source
+<span class="code-keyword">FROM</span> terminal_1_sales
 <span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
-<span class="code-keyword">SELECT</span> column1, column2 <span class="code-keyword">FROM</span> table2;</code></pre>
+<span class="code-keyword">SELECT</span> transaction_id, customer_id, amount, <span class="code-string">'POS_TERMINAL_2'</span> <span class="code-keyword">AS</span> source
+<span class="code-keyword">FROM</span> terminal_2_sales;
+
+<span class="code-comment">-- 2. Partitioned Table Union across Calendar Quarters</span>
+<span class="code-keyword">SELECT</span> order_id, order_total, order_date <span class="code-keyword">FROM</span> sales_q1_2026
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> order_id, order_total, order_date <span class="code-keyword">FROM</span> sales_q2_2026
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> order_id, order_total, order_date <span class="code-keyword">FROM</span> sales_q3_2026
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> order_id, order_total, order_date <span class="code-keyword">FROM</span> sales_q4_2026;
+
+<span class="code-comment">-- 3. Combining Disparate Event Telemetry Streams</span>
+<span class="code-keyword">SELECT</span> user_id, <span class="code-string">'PAGE_VIEW'</span> <span class="code-keyword">AS</span> event_type, created_at <span class="code-keyword">FROM</span> page_views
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> user_id, <span class="code-string">'BUTTON_CLICK'</span> <span class="code-keyword">AS</span> event_type, created_at <span class="code-keyword">FROM</span> ui_clicks
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> user_id, <span class="code-string">'PURCHASE'</span> <span class="code-keyword">AS</span> event_type, created_at <span class="code-keyword">FROM</span> transactions;
+
+<span class="code-comment">-- 4. UNION ALL with Terminal Sorting and Pagination</span>
+<span class="code-keyword">SELECT</span> log_id, severity, message, logged_at <span class="code-keyword">FROM</span> security_logs
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> log_id, severity, message, logged_at <span class="code-keyword">FROM</span> application_logs
+<span class="code-keyword">ORDER BY</span> logged_at <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 50;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>UNION ALL</code> combines query results like <code>UNION</code>, but it <strong>preserves all duplicate rows</strong>. Because it does not perform in-memory sorting or hashing to identify duplicates, it is dramatically faster than <code>UNION</code>.</p>
-        <p>In high-throughput analytics and big data ETL pipelines, always default to <code>UNION ALL</code> unless deduplication is explicitly required by business rules.</p>
+                <p>The <code>UNION ALL</code> operator combines the result sets of two or more <code>SELECT</code> statements without removing duplicate rows. Because it skips the sorting and hashing phase required for deduplication, it delivers peak query throughput.</p>
+                <ul>
+                    <li><strong>Complete Row Preservation:</strong> If an identical record appears 3 times in Query A and 2 times in Query B, UNION ALL outputs that record exactly 5 times.</li>
+                    <li><strong>Peak I/O Performance:</strong> Executes as a simple streaming concatenation; the database engine pipelines rows directly to the client without buffering or sorting.</li>
+                    <li><strong>Partitioned Table Standard:</strong> UNION ALL is the foundational building block for partitioned views and Big Data distributed table scans.</li>
+                    <li><strong>Column Matching Constraints:</strong> Like standard UNION, all chained queries must project the same number of columns with compatible data types.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>UNION ALL</th>
+                                <th>Standard UNION</th>
+                                <th>Performance Winner</th>
+                                <th>Engineering Recommendation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Deduplication</td>
+                                <td>No (Preserves all rows)</td>
+                                <td>Yes (Drops identical duplicates)</td>
+                                <td>UNION ALL (Zero CPU sort)</td>
+                                <td>Use UNION ALL by default</td>
+                            </tr>
+                            <tr>
+                                <td>Execution Model</td>
+                                <td>Streaming concatenation</td>
+                                <td>Sort-Merge or Hash-Aggregate</td>
+                                <td>UNION ALL (O(1) buffering)</td>
+                                <td>UNION ALL for high volume</td>
+                            </tr>
+                            <tr>
+                                <td>Handling Disjoint Sets</td>
+                                <td>Preserves unique datasets</td>
+                                <td>Wastes CPU checking non-existent dupes</td>
+                                <td>UNION ALL</td>
+                                <td>Always use for partitioned tables</td>
+                            </tr>
+                            <tr>
+                                <td>Result Set Size</td>
+                                <td>Sum of all queries (A + B)</td>
+                                <td>Unique records (&lt;= A + B)</td>
+                                <td>Varies by data</td>
+                                <td>UNION only when uniqueness required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Production Codebases Mandate UNION ALL by Default</h3>
+                <p>Senior database administrators frequently enforce a strict linting rule: 'Never write UNION when UNION ALL is sufficient':</p>
+                <ul>
+                    <li><strong>The Memory Hazard:</strong> Running <code>UNION</code> across two 5-million row tables forces the query optimizer to allocate huge memory buffers or spill 10GB of temporary files to disk to perform deduplication sorting.</li>
+                    <li><strong>The Streaming Advantage:</strong> <code>UNION ALL</code> begins returning the first rows to the API caller in milliseconds because no sorting barrier exists.</li>
+                    <li><strong>Golden Rule:</strong> Only use plain UNION if duplicate rows would cause business logic failures or financial reporting errors.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Consolidating Regional Event Logs for Central Warehouse:</strong> Combine server logs across geographic regions with zero deduplication overhead.</p>
+                <p><strong>Enterprise Microservice Distributed Log Aggregator:</strong> Stream and synthesize application event telemetry across independent microservice cluster logging tables into a single real-time observability feed.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,34 +304,81 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Consolidating Regional Event Logs for Central Warehouse</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Microservice Distributed Log Aggregator</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> event_id, event_type, created_at <span class="code-keyword">FROM</span> us_east_server_logs
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   auth_service_logs: (log_id, service_name, level, message, event_time)</span>
+<span class="code-comment">   #1: AUTH, INFO, 'Token generated', 10:00:01</span>
+<span class="code-comment">   #2: AUTH, WARN, 'Invalid password attempt', 10:00:05</span>
+<span class="code-comment">   billing_service_logs: (log_id, service_name, level, message, event_time)</span>
+<span class="code-comment">   #1: BILLING, INFO, 'Payment processed', 10:00:02</span>
+<span class="code-comment">   #2: BILLING, ERROR, 'Gateway timeout', 10:00:06</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Concatenate all microservice log streams in real-time</span>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> auth_service_logs
 <span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
-<span class="code-keyword">SELECT</span> event_id, event_type, created_at <span class="code-keyword">FROM</span> eu_west_server_logs;</code></pre>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> billing_service_logs;
+<span class="code-comment">-- Matches: All 4 log events preserved in full without deduplication overhead</span>
+
+<span class="code-comment">-- Requirement 2: Stream critical errors and warnings across both services</span>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> auth_service_logs
+<span class="code-keyword">WHERE</span> level <span class="code-keyword">IN</span> (<span class="code-string">'WARN'</span>, <span class="code-string">'ERROR'</span>)
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> billing_service_logs
+<span class="code-keyword">WHERE</span> level <span class="code-keyword">IN</span> (<span class="code-string">'WARN'</span>, <span class="code-string">'ERROR'</span>);
+<span class="code-comment">-- Matches: AUTH 'Invalid password' (WARN) and BILLING 'Gateway timeout' (ERROR)</span>
+
+<span class="code-comment">-- Requirement 3: Unified chronological audit trail with terminal ORDER BY</span>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> auth_service_logs
+<span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+<span class="code-keyword">SELECT</span> service_name, level, message, event_time
+<span class="code-keyword">FROM</span> billing_service_logs
+<span class="code-keyword">ORDER BY</span> event_time <span class="code-keyword">ASC</span>;
+<span class="code-comment">-- Matches: Clean chronological stream (10:00:01 -&gt; 10:00:02 -&gt; 10:00:05 -&gt; 10:00:06)</span>
+
+<span class="code-comment">-- Requirement 4: Total platform event volume tally across services</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_telemetry_events
+<span class="code-keyword">FROM</span> (
+    <span class="code-keyword">SELECT</span> log_id <span class="code-keyword">FROM</span> auth_service_logs
+    <span class="code-keyword"><span class="code-keyword">UNION</span> <span class="code-keyword">ALL</span></span>
+    <span class="code-keyword">SELECT</span> log_id <span class="code-keyword">FROM</span> billing_service_logs
+) <span class="code-keyword">AS</span> combined_stream;
+<span class="code-comment">-- Matches: 4 total events processed</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>UNION ALL concatenates multiple query results without the expensive CPU sorting overhead of deduplication. When duplicate records are permitted or mathematically impossible, UNION ALL delivers peak throughput.</p>
+                <p>UNION ALL concatenates multiple query results without the expensive CPU sorting overhead of deduplication, providing maximum streaming throughput across enterprise datasets.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Fast Combination:</strong> Merges datasets without sorting or deduplication overhead.</span>
+                            <span><strong>Preserves All Duplicates:</strong> Retains every single row returned by each query without deduplication.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Preserves Duplicates:</strong> Retains duplicate records from both contributing queries.</span>
+                            <span><strong>Maximum Performance:</strong> Zero sorting or hashing overhead; streams rows directly to the client with minimal memory usage.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Performance Superiority:</strong> Significantly faster and less memory-intensive than standard UNION.</span>
+                            <span><strong>Partitioned Table Workhorse:</strong> The standard tool for querying partitioned historical tables and distributed log streams.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Big Data Best Practice:</strong> The default operator for data warehouse ingestion and log consolidation.</span>
+                            <span><strong>Schema Alignment Required:</strong> Chained queries must match in column count and data type compatibility.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Default Choice:</strong> Always prefer UNION ALL over UNION unless business requirements strictly mandate duplicate removal.</span>
                         </li>
                     </ul>
                 </div>
@@ -268,7 +409,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

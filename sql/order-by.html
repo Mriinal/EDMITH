@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-list-ol"></i></div>
+                    <div class="concept-icon"><i class="fas fa-sort-numeric-down"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Podium Finish Analogy</h4>
-                        <p>At the Olympic Games, athletes cross the finish line at different times. Before awarding medals, officials record all completion times and arrange the competitors from fastest to slowest so gold, silver, and bronze can be presented accurately.</p>
-                        <p style="margin-top: 8px !important;">ORDER BY is your database podium. After selecting and filtering records, it sorts the final rows in ascending (ASC) or descending (DESC) order based on designated columns.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The High School Graduation Roll Call Analogy</h4>
+                        <p>Imagine 600 graduating students gathering backstage in the gymnasium before commencement ceremonies:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Chaotic Natural State::</strong> Backstage, students mill around randomly without any pre-ordained seating arrangement.</li>
+                            <li><strong>2. The Graduation Marshal::</strong> The marshal lines everyone up strictly by Last Name (A to Z), and ties are broken by First Name.</li>
+                            <li><strong>3. The ORDER BY Clause::</strong> Without an explicit ORDER BY clause, relational databases return rows in arbitrary order, just like students backstage.</li>
+                            <li><strong>4. Ascending vs Descending::</strong> Graduates can walk in alphabetical order (ASC) or reverse order by GPA honors (DESC).</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">Unless an explicit ORDER BY clause is specified, the database engine makes zero guarantees about row ordering in query results.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The ORDER BY Clause</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The ORDER BY Clause</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,103 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; order-by.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; order-by.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> column1, column2
-<span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">ORDER BY</span> column1 <span class="code-keyword">ASC</span>, column2 <span class="code-keyword">DESC</span>;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Single Column Ascending Sort (Default is ASC)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, price
+<span class="code-keyword">FROM</span> products
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;
+
+<span class="code-comment">-- 2. Multi-Column Sorting with Mixed Direction</span>
+<span class="code-keyword">SELECT</span> department, last_name, hire_date, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">ORDER BY</span> department <span class="code-keyword">ASC</span>, salary <span class="code-keyword">DESC</span>;
+
+<span class="code-comment">-- 3. Sorting by Output Column Aliases (Executed after SELECT)</span>
+<span class="code-keyword">SELECT</span> product_name, (unit_price * units_in_stock) <span class="code-keyword">AS</span> inventory_value
+<span class="code-keyword">FROM</span> warehouse_products
+<span class="code-keyword">ORDER BY</span> inventory_value <span class="code-keyword">DESC</span>;
+
+<span class="code-comment">-- 4. Controlling NULL Positioning (NULLS FIRST / NULLS LAST)</span>
+<span class="code-keyword">SELECT</span> task_id, title, priority, due_date
+<span class="code-keyword">FROM</span> project_tasks
+<span class="code-keyword">ORDER BY</span> due_date <span class="code-keyword">ASC</span> NULLS LAST;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>ORDER BY</code> clause sorts the query result set. By default, relational databases do not guarantee any specific row order unless <code>ORDER BY</code> is explicitly declared.</p>
-        <p>Sorting can be ascending (<code>ASC</code>, the default) or descending (<code>DESC</code>). You can sort by multiple columns, computed expressions, column aliases created in <code>SELECT</code>, or positional numbers (e.g. <code>ORDER BY 1, 2</code>).</p>
+                <p>The <code>ORDER BY</code> clause sorts the final projected result set according to one or more column expressions, positional indices, or aliases. Sorting can be in ascending (<code>ASC</code>, default) or descending (<code>DESC</code>) sequence.</p>
+                <ul>
+                    <li><strong>Late Lifecycle Phase:</strong> Executing in Step 7 of the query pipeline, ORDER BY runs after SELECT, which is why column aliases are fully visible to it.</li>
+                    <li><strong>Relational Set Theory:</strong> Relational tables are unordered mathematical sets. Without ORDER BY, row ordering is non-deterministic and can vary between runs.</li>
+                    <li><strong>Multi-Level Tie Breaking:</strong> When sorting by multiple columns, subsequent columns resolve ties from preceding sort criteria.</li>
+                    <li><strong>Sorting In-Memory vs Disk:</strong> Large sorts exceeding the database's <code>work_mem</code> or sort buffer spill to temporary disk files, degrading performance.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Sorting Strategy</th>
+                                <th>SQL Example</th>
+                                <th>Ordering Rule</th>
+                                <th>Tie-Breaking</th>
+                                <th>Engine Overhead</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single Column ASC</td>
+                                <td><code>ORDER BY price ASC</code></td>
+                                <td>Lowest numeric or earliest alphabetical first</td>
+                                <td>Arbitrary row tie-break</td>
+                                <td>Fast (Can leverage index ordering)</td>
+                            </tr>
+                            <tr>
+                                <td>Single Column DESC</td>
+                                <td><code>ORDER BY salary DESC</code></td>
+                                <td>Highest value or latest date first</td>
+                                <td>Arbitrary row tie-break</td>
+                                <td>Fast (Reads index backwards)</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-Column Sort</td>
+                                <td><code>ORDER BY dept ASC, name ASC</code></td>
+                                <td>Sorts by department, then breaks ties by name</td>
+                                <td>Resolved by secondary column</td>
+                                <td>Moderate CPU sorting cost</td>
+                            </tr>
+                            <tr>
+                                <td>Sort by Alias</td>
+                                <td><code>ORDER BY total_rev DESC</code></td>
+                                <td>Sorts calculated column expressions</td>
+                                <td>Resolved by engine</td>
+                                <td>Valid (ORDER BY runs after SELECT)</td>
+                            </tr>
+                            <tr>
+                                <td>Explicit NULL Ordering</td>
+                                <td><code>ORDER BY date NULLS LAST</code></td>
+                                <td>Guarantees unassigned rows placed at end</td>
+                                <td>Follows direction rules</td>
+                                <td>Engine-specific default handling</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Column Aliases Work in ORDER BY but Fail in WHERE</h3>
+                <p>Engineers frequently ask why column aliases created in SELECT can be used in ORDER BY, but trigger errors in WHERE clauses:</p>
+                <ul>
+                    <li><strong>WHERE Runs in Step 2:</strong> When the engine evaluates the WHERE clause, the SELECT list has not been projected yet, meaning aliases do not yet exist.</li>
+                    <li><strong>ORDER BY Runs in Step 7:</strong> ORDER BY executes long after SELECT (Step 5) has calculated and assigned all aliases.</li>
+                    <li><strong>Example:</strong> <code>SELECT (salary * 12) AS annual_pay FROM emp ORDER BY annual_pay DESC;</code> is 100% valid and standard SQL.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Sorting Product Catalog by Rating and Price:</strong> Display top-rated products first; for items with identical ratings, show the lowest price first.</p>
+                <p><strong>Leaderboard Rankings & Performance Scoring:</strong> Generate real-time gaming leaderboard standings sorted by division level, high score, and account creation seniority.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,35 +301,73 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Sorting Product Catalog by Rating and Price</span>
+                        <span class="terminal-title">Production Queries &bull; Leaderboard Rankings & Performance Scoring</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> product_id, product_name, star_rating, unit_price
-<span class="code-keyword">FROM</span> store_products
-<span class="code-keyword">WHERE</span> is_in_stock = <span class="code-keyword">TRUE</span>
-<span class="code-keyword">ORDER BY</span> star_rating <span class="code-keyword">DESC</span>, unit_price <span class="code-keyword">ASC</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: gamer_leaderboards</span>
+<span class="code-comment">   player_id | gamertag      | tier_division | match_score | win_streak | registered_date</span>
+<span class="code-comment">   ----------+---------------+---------------+-------------+------------+----------------</span>
+<span class="code-comment">   101       | ShadowNinja   | DIAMOND       | 9450        | 8          | 2024-05-10</span>
+<span class="code-comment">   102       | PixelQueen    | PLATINUM      | 8800        | 4          | 2024-06-15</span>
+<span class="code-comment">   103       | CyberValkyrie | DIAMOND       | 9450        | 12         | 2024-01-20</span>
+<span class="code-comment">   104       | TurboBlaster  | GOLD          | 7200        | 2          | 2025-02-01</span>
+<span class="code-comment">   105       | ApexPredator  | DIAMOND       | 9900        | 15         | 2024-03-12</span>
+<span class="code-comment">   106       | IronFist      | PLATINUM      | 8800        | 9          | 2024-08-01</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Rank global players by highest match score descending</span>
+<span class="code-keyword">SELECT</span> player_id, gamertag, match_score
+<span class="code-keyword">FROM</span> gamer_leaderboards
+<span class="code-keyword">ORDER BY</span> match_score <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches sorted: ApexPredator (9900), ShadowNinja (9450), CyberValkyrie (9450), ...</span>
+
+<span class="code-comment">-- Requirement 2: Multi-column tie-breaker: Sort by score DESC, break ties with win_streak DESC</span>
+<span class="code-keyword">SELECT</span> player_id, gamertag, match_score, win_streak
+<span class="code-keyword">FROM</span> gamer_leaderboards
+<span class="code-keyword">ORDER BY</span> match_score <span class="code-keyword">DESC</span>, win_streak <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: ApexPredator (9900/15), CyberValkyrie (9450/12 beats ShadowNinja's 9450/8)</span>
+
+<span class="code-comment">-- Requirement 3: Categorical grouping sort: Division ASC, then match_score DESC</span>
+<span class="code-keyword">SELECT</span> gamertag, tier_division, match_score
+<span class="code-keyword">FROM</span> gamer_leaderboards
+<span class="code-keyword">ORDER BY</span> tier_division <span class="code-keyword">ASC</span>, match_score <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: DIAMOND group first (Apex, Cyber, Shadow), then GOLD, then PLATINUM</span>
+
+<span class="code-comment">-- Requirement 4: Top 3 Diamond players for global championship invite</span>
+<span class="code-keyword">SELECT</span> gamertag, match_score, win_streak
+<span class="code-keyword">FROM</span> gamer_leaderboards
+<span class="code-keyword">WHERE</span> tier_division = <span class="code-string">'DIAMOND'</span>
+<span class="code-keyword">ORDER BY</span> match_score <span class="code-keyword">DESC</span>, win_streak <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 3;
+<span class="code-comment">-- Matches Top 3: ApexPredator, CyberValkyrie, ShadowNinja</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The ORDER BY clause determines the deterministic presentation of query results. Sorting rows by single or multiple ascending/descending expressions transforms raw database tuples into structured, human-readable insights for frontend applications.</p>
+                <p>The ORDER BY clause establishes deterministic output sorting, turning chaotic database records into structured, predictable sequences for human users and API consumers.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Explicit Ordering:</strong> Relational tables are unordered sets; ORDER BY is required whenever consistent sorting is needed.</span>
+                            <span><strong>Non-Deterministic Default:</strong> Without an ORDER BY clause, relational query results have no guaranteed order; never rely on implicit table storage order.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Direction Control:</strong> ASC sorts from smallest to largest (A-Z, 0-9); DESC sorts largest to smallest (Z-A, 9-0).</span>
+                            <span><strong>ASC vs DESC:</strong> ASC sorts lowest to highest (default); DESC sorts highest to lowest (reverse chronological or highest numerical first).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multi-Tiered Sorting:</strong> Sort by primary column first, then secondary tie-breaker columns separated by commas.</span>
+                            <span><strong>Alias Availability:</strong> Because ORDER BY runs after SELECT, calculated expressions and column aliases can be referenced directly in sort criteria.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Alias Recognition:</strong> Because ORDER BY runs after SELECT in logical query execution, it can safely reference column aliases.</span>
+                            <span><strong>Multi-Column Hierarchy:</strong> Chain multiple columns in ORDER BY to define authoritative, multi-tier tie-breaking rules.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Index Scan Optimization:</strong> Sorting along an existing B-Tree index avoids costly in-memory sort runs and temporary disk spills.</span>
                         </li>
                     </ul>
                 </div>
@@ -269,7 +398,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

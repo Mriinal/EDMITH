@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-sitemap"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Family Tree / Org Chart Analogy</h4>
-                        <p>In a corporate organization chart, an employee is a person, and their manager is also an employee! Both exist inside the exact same employee directory table. To find an employee's manager, you join the employees table to itself.</p>
-                        <p style="margin-top: 8px !important;">A SELF JOIN joins a table to itself using distinct table aliases.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Corporate Organizational Chart Analogy</h4>
+                        <p>Picture a Fortune 500 corporate directory where every employee, manager, and vice president is stored in a single table called 'employees':</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Everyone is an Employee::</strong> The CEO, regional directors, team leads, and summer interns all have an employee_id and a name in the same table.</li>
+                            <li><strong>2. The Manager Pointer::</strong> Each employee's row contains a <code>manager_id</code> column that stores the <code>employee_id</code> of their boss.</li>
+                            <li><strong>3. Two Copies in Memory::</strong> To list an employee beside their boss's name, you make two virtual copies of the same table: Copy A (Employees) and Copy B (Managers).</li>
+                            <li><strong>4. Interlocking Identities::</strong> You connect Copy A's <code>manager_id</code> to Copy B's <code>employee_id</code> using table aliases (emp and mgr).</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">A SELF JOIN correlates rows within the same physical table using distinct table aliases, effortlessly modeling hierarchies and sequential row comparisons.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SELF JOIN</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SELF JOIN</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,114 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; self-join.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; self-join.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> a.employee_name, b.employee_name <span class="code-keyword">AS</span> manager_name
-<span class="code-keyword">FROM</span> employees a
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees b <span class="code-keyword">ON</span> a.manager_id = b.employee_id;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Classic Hierarchical Manager-Employee Self Join</span>
+<span class="code-keyword">SELECT</span> 
+    emp.first_name <span class="code-keyword">AS</span> employee_name,
+    <span class="code-func">COALESCE</span>(mgr.first_name, <span class="code-string">'TOP_EXECUTIVE'</span>) <span class="code-keyword">AS</span> manager_name
+<span class="code-keyword">FROM</span> employees emp
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees mgr <span class="code-keyword">ON</span> emp.manager_id = mgr.employee_id;
+
+<span class="code-comment">-- 2. Finding Peers in the Same Department (Excluding Self Match)</span>
+<span class="code-keyword">SELECT</span> 
+    e1.first_name <span class="code-keyword">AS</span> employee_1,
+    e2.first_name <span class="code-keyword">AS</span> employee_2,
+    e1.department_id
+<span class="code-keyword">FROM</span> employees e1
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> employees e2 
+    <span class="code-keyword">ON</span> e1.department_id = e2.department_id 
+   <span class="code-keyword">AND</span> e1.employee_id &lt; e2.employee_id; <span class="code-comment">-- Avoid self-pairing &amp; duplicate combinations</span>
+
+<span class="code-comment">-- 3. Comparing Consecutive Date Records within Same Account</span>
+<span class="code-keyword">SELECT</span> 
+    curr.account_id,
+    curr.log_date <span class="code-keyword">AS</span> current_date,
+    prev.log_date <span class="code-keyword">AS</span> previous_date,
+    (curr.balance - prev.balance) <span class="code-keyword">AS</span> daily_balance_change
+<span class="code-keyword">FROM</span> account_snapshots curr
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> account_snapshots prev 
+    <span class="code-keyword">ON</span> curr.account_id = prev.account_id 
+   <span class="code-keyword">AND</span> curr.log_date = prev.log_date + 1;
+
+<span class="code-comment">-- 4. Multi-Level Organizational Tree (Employee -&gt; Manager -&gt; Director)</span>
+<span class="code-keyword">SELECT</span> 
+    e.first_name <span class="code-keyword">AS</span> employee,
+    m.first_name <span class="code-keyword">AS</span> direct_manager,
+    d.first_name <span class="code-keyword">AS</span> department_director
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees m <span class="code-keyword">ON</span> e.manager_id = m.employee_id
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees d <span class="code-keyword">ON</span> m.manager_id = d.employee_id;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>A <code>SELF JOIN</code> is a regular join, but the table is joined with itself. It is the definitive technique for querying hierarchical trees, recursive categories, and sequential row comparisons.</p>
-        <p>Table aliases (e.g. <code>e AS emp</code> and <code>e AS mgr</code>) are strictly mandatory in a self join so the SQL query engine can distinguish which instance of the table is being referenced.</p>
+                <p>A <code>SELF JOIN</code> is a regular join operation in which a table is joined with itself. It is not a distinct SQL keyword, but rather an architectural technique that utilizes table aliasing to treat a single physical table as two distinct logical entities.</p>
+                <ul>
+                    <li><strong>Mandatory Table Aliases:</strong> Because both sides of the join reference the exact same physical table name, table aliases (e.g. <code>e1</code> and <code>e2</code>) are mathematically mandatory.</li>
+                    <li><strong>Hierarchical Graph Traversal:</strong> SELF JOIN is the classic relational technique for querying adjacency lists, such as employee managers, product category parents, and threaded comment replies.</li>
+                    <li><strong>Duplicate Elimination with Inequality:</strong> When pairing rows within the same table (e.g. finding teammates), use <code>e1.id &lt; e2.id</code> to avoid matching a person with themselves or returning duplicate reverse pairs (A, B and B, A).</li>
+                    <li><strong>Recursive CTE Alternative:</strong> For arbitrarily deep trees (e.g. 10 levels of ancestry), Recursive Common Table Expressions (<code>WITH RECURSIVE</code>) are cleaner than chaining multiple self joins.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Self Join Use Case</th>
+                                <th>Left Role (Alias 1)</th>
+                                <th>Right Role (Alias 2)</th>
+                                <th>Join Condition</th>
+                                <th>Key Objective</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manager Hierarchy</td>
+                                <td><code>emp</code> (Employee)</td>
+                                <td><code>mgr</code> (Manager)</td>
+                                <td><code>emp.mgr_id = mgr.emp_id</code></td>
+                                <td>Pairs each worker with supervisor</td>
+                            </tr>
+                            <tr>
+                                <td>Teammate Pairing</td>
+                                <td><code>e1</code> (Teammate A)</td>
+                                <td><code>e2</code> (Teammate B)</td>
+                                <td><code>e1.dept = e2.dept AND e1.id &lt; e2.id</code></td>
+                                <td>Discovers peers without duplicates</td>
+                            </tr>
+                            <tr>
+                                <td>Chronological Compare</td>
+                                <td><code>today</code> (Current)</td>
+                                <td><code>yesterday</code> (Prior)</td>
+                                <td><code>today.day = yesterday.day + 1</code></td>
+                                <td>Computes day-over-day metric deltas</td>
+                            </tr>
+                            <tr>
+                                <td>Threaded Replies</td>
+                                <td><code>reply</code> (Comment)</td>
+                                <td><code>parent</code> (OP Post)</td>
+                                <td><code>reply.parent_id = parent.id</code></td>
+                                <td>Builds forum discussion trees</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why e1.id < e2.id is Critical in Peer Self Joins</h3>
+                <p>When joining a table to itself to find pairs (e.g. customers living in the same city), novices often write <code>ON e1.city = e2.city</code>:</p>
+                <ul>
+                    <li><strong>Problem 1 (Self Pairing):</strong> Every person matches with themselves! (Alice pairs with Alice).</li>
+                    <li><strong>Problem 2 (Duplicate Mirror Pairs):</strong> You get both (Alice, Bob) and (Bob, Alice) in the output.</li>
+                    <li><strong>The Mathematical Fix:</strong> Use inequality: <code>ON e1.city = e2.city AND e1.id &lt; e2.id</code>.</li>
+                    <li><strong>The Result:</strong> Self-matches are eliminated (an ID is never < itself), and pairs are returned in one canonical order.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Generating Corporate Manager Hierarchy Report:</strong> Display each team member alongside their direct supervisor.</p>
+                <p><strong>Enterprise IT Asset Parent-Child Component Topology:</strong> Map server infrastructure parent chassis racks and their installed blade server subcomponents using a single hardware inventory table.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,37 +312,78 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Generating Corporate Manager Hierarchy Report</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise IT Asset Parent-Child Component Topology</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    staff.employee_id,
-    staff.first_name || <span class="code-string">' '</span> || staff.last_name <span class="code-keyword">AS</span> employee_name,
-    mgr.first_name || <span class="code-string">' '</span> || mgr.last_name <span class="code-keyword">AS</span> supervisor_name
-<span class="code-keyword">FROM</span> corporate_staff staff
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> corporate_staff mgr <span class="code-keyword">ON</span> staff.supervisor_id = mgr.employee_id;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: hardware_assets</span>
+<span class="code-comment">   asset_id | asset_name     | asset_type   | parent_chassis_id</span>
+<span class="code-comment">   ---------+----------------+--------------+------------------</span>
+<span class="code-comment">   1        | Datacenter-A   | FACILITY     | NULL</span>
+<span class="code-comment">   2        | Primary Rack 1 | CHASSIS      | 1</span>
+<span class="code-comment">   3        | Blade Server 1 | BLADE        | 2</span>
+<span class="code-comment">   4        | Blade Server 2 | BLADE        | 2</span>
+<span class="code-comment">   5        | Backup Rack 2  | CHASSIS      | 1</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Pair each hardware asset with its hosting parent chassis container</span>
+<span class="code-keyword">SELECT</span> 
+    child.asset_id,
+    child.asset_name <span class="code-keyword">AS</span> component_name,
+    child.asset_type,
+    <span class="code-func">COALESCE</span>(parent.asset_name, <span class="code-string">'ROOT_FACILITY'</span>) <span class="code-keyword">AS</span> hosted_inside_chassis
+<span class="code-keyword">FROM</span> hardware_assets child
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> hardware_assets parent <span class="code-keyword">ON</span> child.parent_chassis_id = parent.asset_id;
+<span class="code-comment">-- Matches: Blade 1 inside Rack 1, Blade 2 inside Rack 1, Rack 1 inside Datacenter-A</span>
+
+<span class="code-comment">-- Requirement 2: Isolate blade servers sharing the same parent rack (Peer pairing)</span>
+<span class="code-keyword">SELECT</span> 
+    b1.asset_name <span class="code-keyword">AS</span> blade_alpha,
+    b2.asset_name <span class="code-keyword">AS</span> blade_beta,
+    b1.parent_chassis_id <span class="code-keyword">AS</span> shared_rack_id
+<span class="code-keyword">FROM</span> hardware_assets b1
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets b2 
+    <span class="code-keyword">ON</span> b1.parent_chassis_id = b2.parent_chassis_id 
+   <span class="code-keyword">AND</span> b1.asset_id &lt; b2.asset_id
+<span class="code-keyword">WHERE</span> b1.asset_type = <span class="code-string">'BLADE'</span>;
+<span class="code-comment">-- Matches: Blade Server 1 paired with Blade Server 2 in Rack 2 (0 self matches, 0 reverse duplicates)</span>
+
+<span class="code-comment">-- Requirement 3: Multi-level 3-tier hierarchy (Component -&gt; Rack -&gt; Datacenter)</span>
+<span class="code-keyword">SELECT</span> 
+    comp.asset_name <span class="code-keyword">AS</span> device,
+    rack.asset_name <span class="code-keyword">AS</span> rack_location,
+    facility.asset_name <span class="code-keyword">AS</span> datacenter_facility
+<span class="code-keyword">FROM</span> hardware_assets comp
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets rack <span class="code-keyword">ON</span> comp.parent_chassis_id = rack.asset_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets facility <span class="code-keyword">ON</span> rack.parent_chassis_id = facility.asset_id;
+<span class="code-comment">-- Matches: Blade 1 -&gt; Primary Rack 1 -&gt; Datacenter-A</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>A SELF JOIN correlates rows within the same physical table using table aliases. It models complex organizational hierarchies, manager-employee relationships, and chronological sequence comparisons effortlessly.</p>
+                <p>A SELF JOIN correlates rows within the same physical table using table aliases, modeling hierarchical trees, sequential comparisons, and peer pairings effortlessly.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Same Table Linking:</strong> A table joined to itself to resolve internal relational hierarchies.</span>
+                            <span><strong>Mandatory Aliasing:</strong> Assign distinct table aliases (e.g. emp and mgr) to distinguish the virtual instances of the table.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Mandatory Aliasing:</strong> Requires distinct table aliases (e.g. t1 and t2) to disambiguate column references.</span>
+                            <span><strong>Hierarchical Adjacency:</strong> Ideal for modeling manager-employee, parent-category, and threaded comment relationships.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Hierarchical Data:</strong> Standard method for modeling org charts, threaded comment replies, and category subtrees.</span>
+                            <span><strong>Prevent Self-Matches:</strong> Use e1.id < e2.id when pairing peer records to eliminate self-matching and duplicate mirror combinations.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Comparing Rows:</strong> Can compare adjacent rows in the same table (e.g. finding pairs of items with the same price).</span>
+                            <span><strong>Always Use LEFT JOIN for Roots:</strong> Use LEFT JOIN so top-level entities (CEOs, root categories) are preserved with NULL manager fields.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Deep Trees Alternative:</strong> For organizational trees deeper than 3 tiers, consider Recursive CTEs (WITH RECURSIVE) for cleaner navigation.</span>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +414,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

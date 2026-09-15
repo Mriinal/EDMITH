@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-recycle"></i></div>
+                    <div class="concept-icon"><i class="fas fa-file-excel"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Filing Cabinet Shredder Analogy</h4>
-                        <p>In a corporate office filing cabinet, folders are organized by client. When a client closes their account, the clerk pulls only that specific client's folder and shreds it. The filing cabinet and all other client folders remain intact.</p>
-                        <p style="margin-top: 8px !important;">DELETE removes specific rows from a table while preserving the table structure, column constraints, and all other rows.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Archival Paper Shredder Analogy</h4>
+                        <p>Picture a corporate compliance department purging expired audit documents from physical filing cabinets:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Selective Document Purge::</strong> The archivist pulls files specifically stamped 'Expired Prior to 2020' (WHERE expiration_year < 2020) and feeds them into the shredder.</li>
+                            <li><strong>2. Cabinet Structure Remains::</strong> The filing cabinet, drawer dividers, and folder labels remain completely intact; only the paper contents inside are removed.</li>
+                            <li><strong>3. Reversible Trash Bin (Transactions)::</strong> If the archivist makes a mistake, items in the shredding staging bin can be pulled back out before the final dumpster collection (ROLLBACK).</li>
+                            <li><strong>4. The Catastrophe of No Filter::</strong> Feeding the entire drawer into the shredder without checking tags permanently destroys every document in the company!</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The DELETE statement removes specific records from a table while preserving table structure, constraints, and indexes; always use a precise WHERE clause.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The DELETE Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The DELETE Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,22 +195,94 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; delete.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; delete.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> condition;
+                    <pre><code><span class="code-comment">-- 1. Targeted Single Row Deletion by Primary Key</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> user_sessions
+<span class="code-keyword">WHERE</span> session_id = <span class="code-string">'sess_9921_x'</span>;
 
-<span class="code-comment">-- ❌ Danger: Deletes all rows:</span>
-<span class="code-comment">-- DELETE FROM table_name;</span></code></pre>
+<span class="code-comment">-- 2. Conditional Batch Deletion</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> shopping_carts
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'ABANDONED'</span> <span class="code-keyword">AND</span> last_updated &lt; <span class="code-string">'2025-01-01'</span>;
+
+<span class="code-comment">-- 3. Deleting with Subquery Filter</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> order_items
+<span class="code-keyword">WHERE</span> order_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> order_id <span class="code-keyword">FROM</span> cancelled_orders <span class="code-keyword">WHERE</span> cancel_reason = <span class="code-string">'FRAUD'</span>);
+
+<span class="code-comment">-- 4. Safe Transaction Wrapper Protocol</span>
+<span class="code-keyword">BEGIN</span> TRANSACTION;
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> temporary_import_logs <span class="code-keyword">WHERE</span> imported_at &lt; CURRENT_DATE - 30;
+<span class="code-comment">-- Verify row count, then:</span>
+COMMIT; <span class="code-comment">-- Or ROLLBACK; if count is unexpected</span></code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>DELETE</code> removes rows from a table based on a predicate condition. Unlike <code>DROP TABLE</code> (which destroys the table schema) or <code>TRUNCATE TABLE</code> (which rapidly resets the entire table), <code>DELETE</code> can target precise records with a <code>WHERE</code> clause.</p>
-        <p>Every row deleted via <code>DELETE</code> is recorded in the transaction log, allowing changes to be rolled back if executed inside an open transaction block (<code>BEGIN ... ROLLBACK</code>).</p>
+                <p>The <code>DELETE</code> statement is a Data Manipulation Language (DML) command that removes one or more existing rows from a table based on a filtering predicate. If no <code>WHERE</code> clause is supplied, all rows in the table are deleted.</p>
+                <ul>
+                    <li><strong>Transactional Logging:</strong> DELETE logs every deleted row in the database Write-Ahead Log (WAL) or transaction log, allowing full rollback via <code>ROLLBACK</code>.</li>
+                    <li><strong>DELETE vs TRUNCATE:</strong> While DELETE removes rows transactionally and fires DELETE triggers, <code>TRUNCATE TABLE</code> is a DDL operation that drops storage pages instantly without row-level logging.</li>
+                    <li><strong>Foreign Key Cascades:</strong> If foreign key constraints have <code>ON DELETE CASCADE</code> configured, deleting a parent row automatically purges all child records.</li>
+                    <li><strong>Space Reclamation:</strong> Deleted table rows leave empty space in storage pages; databases like PostgreSQL require <code>VACUUM</code> to reclaim disk space.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Command / Clause</th>
+                                <th>Syntax Pattern</th>
+                                <th>Transaction Logging</th>
+                                <th>Fires Triggers?</th>
+                                <th>Storage Reclamation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DELETE with WHERE</td>
+                                <td><code>DELETE FROM t WHERE id = 1</code></td>
+                                <td>Row-by-row WAL logging</td>
+                                <td>Yes (BEFORE/AFTER DELETE)</td>
+                                <td>Marks row dead; reclaimed later</td>
+                            </tr>
+                            <tr>
+                                <td>DELETE without WHERE</td>
+                                <td><code>DELETE FROM t</code></td>
+                                <td>Logs every individual row deletion</td>
+                                <td>Yes (Fires for every row)</td>
+                                <td>Slow for large tables; full WAL bloat</td>
+                            </tr>
+                            <tr>
+                                <td>TRUNCATE TABLE</td>
+                                <td><code>TRUNCATE TABLE t</code></td>
+                                <td>Deallocates entire data pages</td>
+                                <td>No (Bypasses row triggers)</td>
+                                <td>Immediate storage deallocation</td>
+                            </tr>
+                            <tr>
+                                <td>DROP TABLE</td>
+                                <td><code>DROP TABLE t</code></td>
+                                <td>Removes table schema and catalog</td>
+                                <td>No</td>
+                                <td>Complete physical disk release</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>DELETE vs TRUNCATE: The Engineering Architectural Difference</h3>
+                <p>When clearing large tables, choosing between DELETE and TRUNCATE is a critical database architectural decision:</p>
+                <ul>
+                    <li><strong>Row-by-Row Cost:</strong> Deleting 10 million rows with <code>DELETE FROM logs;</code> writes 10 million individual delete records to disk logs, often causing disk exhaustion.</li>
+                    <li><strong>Deallocation Speed:</strong> <code>TRUNCATE TABLE logs;</code> instantly deallocates the table's underlying storage extent pointers, executing in milliseconds.</li>
+                    <li><strong>Safety Rule:</strong> Never use TRUNCATE if you need to rollback, if child tables have foreign keys pointing to this table, or if business auditing triggers must run.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Purging Expired User Sessions and Inactive Carts:</strong> Safely clean up temporary session cookies expired for more than 30 days.</p>
+                <p><strong>GDPR Compliance & Account Deletion Pipeline:</strong> Safely purge customer personal identification data, expired guest sessions, and unverified accounts in accordance with data privacy regulations.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -212,34 +292,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Purging Expired User Sessions and Inactive Carts</span>
+                        <span class="terminal-title">Production Queries &bull; GDPR Compliance & Account Deletion Pipeline</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> web_sessions
-<span class="code-keyword">WHERE</span> last_activity &lt; CURRENT_TIMESTAMP - INTERVAL <span class="code-string">'30 days'</span>
-  <span class="code-keyword">AND</span> is_persistent = <span class="code-keyword">FALSE</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: customer_registrations</span>
+<span class="code-comment">   user_id | email               | verified | last_active | status</span>
+<span class="code-comment">   --------+---------------------+----------+-------------+---------</span>
+<span class="code-comment">   601     | privacy_req@eu.com  | TRUE     | 2025-10-12  | PENDING_DELETE</span>
+<span class="code-comment">   602     | spammer_99@temp.org | FALSE    | 2024-01-01  | UNVERIFIED</span>
+<span class="code-comment">   603     | regular_user@web.com| TRUE     | 2026-03-01  | ACTIVE</span>
+<span class="code-comment">   604     | old_guest@test.net  | FALSE    | 2023-05-15  | UNVERIFIED</span>
+<span class="code-comment">   605     | vip_client@acme.com | TRUE     | 2026-03-04  | ACTIVE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Execute GDPR Right-to-be-Forgotten deletion by Primary Key</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
+<span class="code-keyword">WHERE</span> user_id = 601 <span class="code-keyword">AND</span> status = <span class="code-string">'PENDING_DELETE'</span>;
+<span class="code-comment">-- Matches: 1 row safely deleted for privacy compliance</span>
+
+<span class="code-comment">-- Requirement 2: Purge stale unverified accounts inactive for over 1 year</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
+<span class="code-keyword">WHERE</span> verified = <span class="code-keyword">FALSE</span> <span class="code-keyword">AND</span> last_active &lt; <span class="code-string">'2025-01-01'</span>;
+<span class="code-comment">-- Matches: Record 602 (spammer_99) and Record 604 (old_guest) deleted</span>
+
+<span class="code-comment">-- Requirement 3: Safe transaction protocol with verification count</span>
+<span class="code-keyword">BEGIN</span> TRANSACTION;
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'UNVERIFIED'</span>;
+<span class="code-comment">-- If verification shows expected rows affected:</span>
+COMMIT;
+<span class="code-comment">-- Matches: Purges unverified accounts cleanly with zero rollback risk</span>
+
+<span class="code-comment">-- Requirement 4: Verification query confirming active users remain untouched</span>
+<span class="code-keyword">SELECT</span> user_id, email, status
+<span class="code-keyword">FROM</span> customer_registrations
+<span class="code-keyword">ORDER BY</span> user_id <span class="code-keyword">ASC</span>;
+<span class="code-comment">-- Matches: Verified active users 603 and 605 remain fully preserved</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The DELETE statement removes specific records from persistent storage while maintaining table definitions and constraints. Combining transactions with targeted WHERE filters ensures safe, reversible row deletions in production systems.</p>
+                <p>The DELETE statement removes specific records from persistent storage while maintaining table schema definitions and referential integrity constraints.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Targeted Removal:</strong> DELETE removes specific rows matching your WHERE criteria while preserving table structure.</span>
+                            <span><strong>Mandatory WHERE Filter:</strong> Always verify your WHERE clause before executing DELETE; an unqualified DELETE wipes all table rows.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Rollback Logging:</strong> Row deletions are individually written to transaction logs, allowing recovery inside transactions.</span>
+                            <span><strong>Transactional Rollback:</strong> DELETE is fully transactional; you can rollback accidental deletions if wrapped inside an active transaction block.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>DELETE vs TRUNCATE:</strong> DELETE supports WHERE and triggers; TRUNCATE resets the whole table without per-row logging.</span>
+                            <span><strong>DELETE vs TRUNCATE:</strong> Use DELETE for filtered, trigger-safe deletions; use TRUNCATE for fast, unlogged wipes of entire tables.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Referential Integrity:</strong> Foreign key constraints with ON DELETE RESTRICT will prevent deleting parent records with active children.</span>
+                            <span><strong>Foreign Key Cascades:</strong> Be mindful of ON DELETE CASCADE rules that may delete associated child records in foreign tables.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Dead Tuple Maintenance:</strong> High-volume DELETE operations require database maintenance (VACUUM / OPTIMIZE) to reclaim physical disk space.</span>
                         </li>
                     </ul>
                 </div>
@@ -270,7 +386,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

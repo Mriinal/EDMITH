@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-lock"></i></div>
+                    <div class="concept-icon"><i class="fas fa-key"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Dual-Key Bank Vault Analogy</h4>
-                        <p>To open a high-security bank vault, two keys must be inserted and turned at the exact same moment: the bank manager's key AND the security officer's key. If either key is missing, the vault stays locked.</p>
-                        <p style="margin-top: 8px !important;">The AND operator requires every single condition to evaluate to TRUE. If even one condition fails, the row is rejected.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Two-Factor Bank Vault Analogy</h4>
+                        <p>Think of the AND operator like a high-security bank vault equipped with two independent safety mechanisms:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Key 1 (The Customer)::</strong> The customer inserts their personal safety deposit box key into lock A.</li>
+                            <li><strong>2. Key 2 (The Vault Manager)::</strong> The bank branch manager inserts the master security key into lock B.</li>
+                            <li><strong>3. Both Required Simultaneously::</strong> The vault door opens IF AND ONLY IF both Key 1 is turned AND Key 2 is turned simultaneously.</li>
+                            <li><strong>4. Rejection If Either Fails::</strong> If the customer is absent or the manager is unauthorized, the vault remains tightly sealed.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The AND boolean operator requires every single chained condition to evaluate strictly to TRUE for a row to be admitted.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The AND Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The AND Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,19 +195,107 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; and.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; and.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> condition1 <span class="code-keyword">AND</span> condition2 <span class="code-keyword">AND</span> condition3;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Dual-Predicate Conjunction</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department = <span class="code-string">'Engineering'</span> <span class="code-keyword">AND</span> salary &gt;= 90000;
+
+<span class="code-comment">-- 2. Tri-Predicate Filtering with Dates and Statuses</span>
+<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, status
+<span class="code-keyword">FROM</span> orders
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'SHIPPED'</span>
+  <span class="code-keyword">AND</span> order_total &gt; 250.00
+  <span class="code-keyword">AND</span> order_date &gt;= <span class="code-string">'2026-01-01'</span>;
+
+<span class="code-comment">-- 3. Combining Range Checks with Equality</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, units_in_stock, unit_price
+<span class="code-keyword">FROM</span> warehouse_inventory
+<span class="code-keyword">WHERE</span> discontinued = 0
+  <span class="code-keyword">AND</span> units_in_stock &gt; 0
+  <span class="code-keyword">AND</span> unit_price <span class="code-keyword">BETWEEN</span> 20.00 <span class="code-keyword">AND</span> 50.00;
+
+<span class="code-comment">-- 4. Compound AND with NULL Verification</span>
+<span class="code-keyword">SELECT</span> account_id, username, email_verified
+<span class="code-keyword">FROM</span> user_credentials
+<span class="code-keyword">WHERE</span> email_verified = <span class="code-keyword">TRUE</span> <span class="code-keyword">AND</span> deactivated_at <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>AND</code> is a logical conjunction operator that joins two or more conditions in a <code>WHERE</code> or <code>HAVING</code> clause. It returns <code>TRUE</code> only when <strong>all</strong> joined conditions evaluate to true.</p>
-        <p>Database query optimizers evaluate <code>AND</code> conditions efficiently and can short-circuit: if the first condition is false, subsequent conditions are skipped.</p>
+                <p>The <code>AND</code> operator performs logical conjunction between two or more boolean conditions. In SQL's Three-Valued Logic, <code>condition1 AND condition2</code> returns <code>TRUE</code> only if both predicates evaluate to <code>TRUE</code>.</p>
+                <ul>
+                    <li><strong>Strict Intersecting Logic:</strong> AND narrows query results by finding the strict intersection of records matching all declared conditions.</li>
+                    <li><strong>Truth Table Mechanics:</strong> TRUE AND TRUE = TRUE; TRUE AND FALSE = FALSE; TRUE AND UNKNOWN = UNKNOWN; FALSE AND UNKNOWN = FALSE.</li>
+                    <li><strong>Short-Circuit Optimization:</strong> Database query planners often evaluate the most selective (most restrictive) condition first to short-circuit processing.</li>
+                    <li><strong>Composite Index Matching:</strong> Chaining columns linked by AND matches multi-column composite B-Tree indexes with optimal seek performance.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Left Operand</th>
+                                <th>Operator</th>
+                                <th>Right Operand</th>
+                                <th>Resulting Truth Value</th>
+                                <th>Row Inclusion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TRUE</td>
+                                <td>AND</td>
+                                <td>TRUE</td>
+                                <td>TRUE</td>
+                                <td>Row Accepted into Result Set</td>
+                            </tr>
+                            <tr>
+                                <td>TRUE</td>
+                                <td>AND</td>
+                                <td>FALSE</td>
+                                <td>FALSE</td>
+                                <td>Row Rejected immediately</td>
+                            </tr>
+                            <tr>
+                                <td>FALSE</td>
+                                <td>AND</td>
+                                <td>TRUE</td>
+                                <td>FALSE</td>
+                                <td>Row Rejected (Short-circuited)</td>
+                            </tr>
+                            <tr>
+                                <td>TRUE</td>
+                                <td>AND</td>
+                                <td>UNKNOWN (NULL)</td>
+                                <td>UNKNOWN</td>
+                                <td>Row Rejected (Not strictly TRUE)</td>
+                            </tr>
+                            <tr>
+                                <td>FALSE</td>
+                                <td>AND</td>
+                                <td>UNKNOWN (NULL)</td>
+                                <td>FALSE</td>
+                                <td>Row Rejected (False dominates AND)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Short-Circuiting & Composite Index Exploitation</h3>
+                <p>Modern database optimizers evaluate AND conjunctions using cost-based statistics to maximize I/O efficiency:</p>
+                <ul>
+                    <li><strong>Index Seek Matching:</strong> If a composite index exists on <code>(tenant_id, user_status)</code>, an AND clause on both columns pinpoint exact index pages in O(log N) time.</li>
+                    <li><strong>Selectivity Ordering:</strong> The query engine automatically rearranges AND conditions to test the lowest-cardinality, highest-selectivity predicate first.</li>
+                    <li><strong>Three-Valued Trap:</strong> If column A is NULL and evaluated with <code>A = 5 AND B = 10</code>, the expression yields UNKNOWN and the row is dropped.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Targeting Active Premium Subscribers in North America:</strong> Identify subscribers who meet tier, region, and activity criteria simultaneously.</p>
+                <p><strong>Enterprise Cloud Access Security Audit:</strong> Scan employee IAM permission logs to detect sensitive system access privileges granted to unverified or contractor accounts.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -209,36 +305,74 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Targeting Active Premium Subscribers in North America</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Cloud Access Security Audit</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> user_id, email, subscription_tier, region
-<span class="code-keyword">FROM</span> user_accounts
-<span class="code-keyword">WHERE</span> subscription_tier = <span class="code-string">'ENTERPRISE'</span>
-  <span class="code-keyword">AND</span> region = <span class="code-string">'NORTH_AMERICA'</span>
-  <span class="code-keyword">AND</span> is_active = <span class="code-keyword">TRUE</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: security_access_logs</span>
+<span class="code-comment">   log_id | username    | role_tier   | mfa_enabled | vpn_connected | country</span>
+<span class="code-comment">   -------+-------------+-------------+-------------+---------------+---------</span>
+<span class="code-comment">   401    | admin_sarah | SUPERADMIN  | TRUE        | TRUE          | US</span>
+<span class="code-comment">   402    | dev_jake    | DEVELOPER   | FALSE       | TRUE          | CA</span>
+<span class="code-comment">   403    | sec_mark    | AUDITOR     | TRUE        | FALSE         | US</span>
+<span class="code-comment">   404    | dev_elena   | DEVELOPER   | TRUE        | TRUE          | UK</span>
+<span class="code-comment">   405    | contractor1 | CONTRACTOR  | FALSE       | FALSE         | IN</span>
+<span class="code-comment">   406    | admin_bob   | SUPERADMIN  | TRUE        | TRUE          | US</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Audit fully-compliant superadmins (MFA + VPN + US region)</span>
+<span class="code-keyword">SELECT</span> log_id, username, role_tier
+<span class="code-keyword">FROM</span> security_access_logs
+<span class="code-keyword">WHERE</span> role_tier = <span class="code-string">'SUPERADMIN'</span> 
+  <span class="code-keyword">AND</span> mfa_enabled = <span class="code-keyword">TRUE</span> 
+  <span class="code-keyword">AND</span> vpn_connected = <span class="code-keyword">TRUE</span> 
+  <span class="code-keyword">AND</span> country = <span class="code-string">'US'</span>;
+<span class="code-comment">-- Matches: Log 401 (admin_sarah) and Log 406 (admin_bob)</span>
+
+<span class="code-comment">-- Requirement 2: Detect non-compliant developers who lack MFA</span>
+<span class="code-keyword">SELECT</span> log_id, username, role_tier, vpn_connected
+<span class="code-keyword">FROM</span> security_access_logs
+<span class="code-keyword">WHERE</span> role_tier = <span class="code-string">'DEVELOPER'</span> <span class="code-keyword">AND</span> mfa_enabled = <span class="code-keyword">FALSE</span>;
+<span class="code-comment">-- Matches: Log 402 (dev_jake)</span>
+
+<span class="code-comment">-- Requirement 3: Identify secure offshore development sessions (UK + MFA + VPN)</span>
+<span class="code-keyword">SELECT</span> log_id, username, country
+<span class="code-keyword">FROM</span> security_access_logs
+<span class="code-keyword">WHERE</span> country = <span class="code-string">'UK'</span> <span class="code-keyword">AND</span> mfa_enabled = <span class="code-keyword">TRUE</span> <span class="code-keyword">AND</span> vpn_connected = <span class="code-keyword">TRUE</span>;
+<span class="code-comment">-- Matches: Log 404 (dev_elena)</span>
+
+<span class="code-comment">-- Requirement 4: Zero-trust compliance audit: Find users failing BOTH MFA and VPN</span>
+<span class="code-keyword">SELECT</span> log_id, username, role_tier
+<span class="code-keyword">FROM</span> security_access_logs
+<span class="code-keyword">WHERE</span> mfa_enabled = <span class="code-keyword">FALSE</span> <span class="code-keyword">AND</span> vpn_connected = <span class="code-keyword">FALSE</span>;
+<span class="code-comment">-- Matches critical: Log 405 (contractor1)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The AND boolean operator enforces strict conjunction, requiring every chained condition to evaluate to true. Combining AND with indexed columns allows database query planners to pinpoint matching records with maximum speed.</p>
+                <p>The AND logical operator enforces rigorous conjunction, guaranteeing that every row returned strictly satisfies all specified filtering conditions.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Strict Conjunction:</strong> Returns TRUE only when all joined boolean conditions are simultaneously true.</span>
+                            <span><strong>Strict Conjunction:</strong> Every condition joined by AND must evaluate to TRUE; a single FALSE or UNKNOWN drops the row.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Short-Circuiting:</strong> If any condition in an AND chain evaluates to FALSE, the remaining checks are aborted for speed.</span>
+                            <span><strong>Dataset Narrowing:</strong> Each additional AND predicate progressively narrows the size of the returned result set.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Higher Precedence:</strong> AND has higher operator precedence than OR; always use parentheses when combining them.</span>
+                            <span><strong>Short-Circuiting:</strong> Engines evaluate restrictive predicates first to rapidly eliminate non-qualifying tuples.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Three-Valued Logic:</strong> TRUE AND NULL evaluates to NULL; FALSE AND NULL evaluates to FALSE.</span>
+                            <span><strong>Composite Indexes:</strong> AND conditions on multiple columns allow database query engines to leverage multi-column composite indexes.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Three-Valued Trap:</strong> Remember that TRUE AND UNKNOWN yields UNKNOWN, meaning rows containing NULL comparisons are safely excluded.</span>
                         </li>
                     </ul>
                 </div>
@@ -269,7 +403,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

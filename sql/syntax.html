@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="concept-icon"><i class="fas fa-file-signature"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Legal Contract Analogy</h4>
-                        <p>Writing SQL is like writing a formal legal contract. Every clause has a designated position, every command must be clear and unambiguous, and a semicolon at the end acts like a signature that seals the document.</p>
-                        <p style="margin-top: 8px !important;">If you miss a keyword or write clauses in the wrong order, the database engine refuses to process the contract and raises a syntax error immediately.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Formal Legal Contract Analogy</h4>
+                        <p>Think of writing SQL like drafting a binding legal contract between your application and the database storage engine:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Designated Clause Order:</strong> Every clause has an immutable assigned place; you cannot put WHERE before FROM any more than you can sign a contract before writing the clauses.</li>
+                            <li><strong>2. Clear Unambiguous Language:</strong> Keywords (SELECT, FROM, WHERE) establish exact legal intent without ambiguity.</li>
+                            <li><strong>3. Case-Insensitive Freedom:</strong> The law recognizes the contract whether typed in uppercase or lowercase, though UPPERCASE is industry standard for clarity.</li>
+                            <li><strong>4. The Semicolon Seal:</strong> The terminating semicolon (;) acts as the legal seal and signature that marks the boundary of each enforceable transaction.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">If you violate the grammar or omit a required clause, the query parser instantly rejects the entire contract with a syntax compilation error.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Syntax & Statement Grammar</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Syntax & Statement Grammar</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,22 +195,96 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; syntax.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; syntax.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Basic SQL statement structure</span>
-<span class="code-keyword">SELECT</span> column1, column2
+                    <pre><code><span class="code-comment">-- 1. Standard Multi-Clause Data Query (DQL)</span>
+<span class="code-keyword">SELECT</span> column1, column2, column3
 <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> condition
-<span class="code-keyword">ORDER BY</span> column1 <span class="code-keyword">ASC</span>;</code></pre>
+<span class="code-keyword">WHERE</span> condition_predicate
+<span class="code-keyword">ORDER BY</span> column1 <span class="code-keyword">ASC</span>;
+
+<span class="code-comment">-- 2. Expression Evaluation and Aliasing</span>
+<span class="code-keyword">SELECT</span> customer_id, (order_total * 0.90) <span class="code-keyword">AS</span> discounted_price
+<span class="code-keyword">FROM</span> customer_orders
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'COMPLETED'</span>;
+
+<span class="code-comment">-- 3. Case-Insensitive Keyword Demonstration</span>
+<span class="code-keyword">select</span> employee_id, first_name
+<span class="code-keyword">from</span> employees
+<span class="code-keyword">where</span> department_id = 10;
+
+<span class="code-comment">-- 4. Batch Multiple Statements Terminated by Semicolons</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">FROM</span> active_subscriptions;
+<span class="code-keyword">SELECT</span> <span class="code-func">AVG</span>(latency_ms) <span class="code-keyword">FROM</span> service_health_metrics;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>SQL syntax comprises a set of established grammatical rules for authoring database queries. SQL statements are <strong>case-insensitive</strong> by default (e.g. <code>SELECT</code> is identical to <code>select</code>), though industry standard dictates capitalizing SQL keywords for readability.</p>
-        <p>A SQL query consists of <strong>Clauses</strong> (such as <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>), <strong>Predicates</strong> (conditions that evaluate to true/false), and <strong>Expressions</strong> (mathematical formulas or string manipulations). Most database engines require a terminating semicolon (<code>;</code>) to signal the end of a statement.</p>
+                <p>SQL (Structured Query Language) is a declarative language governed by ANSI and ISO standards. Unlike procedural code where you describe step-by-step algorithms, in SQL you describe <em>what</em> data you require, and the relational query optimizer determines <em>how</em> to retrieve it.</p>
+                <ul>
+                    <li><strong>Case Insensitivity:</strong> Keywords are case-insensitive by standard, but writing them in UPPERCASE distinguishes language constructs from schema identifiers.</li>
+                    <li><strong>Whitespace Agnostic:</strong> Freeform line breaks, tabs, and indentations are ignored by query parsers, allowing developers to format queries for team legibility.</li>
+                    <li><strong>Clause Hierarchy:</strong> Clauses must strictly follow grammar rules: SELECT &rarr; FROM &rarr; WHERE &rarr; GROUP BY &rarr; HAVING &rarr; ORDER BY &rarr; LIMIT.</li>
+                    <li><strong>Statement Delimiters:</strong> The semicolon (;) tells the query engine where an execution block finishes, preventing syntax collisions during batch executions.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Grammar Component</th>
+                                <th>SQL Construct</th>
+                                <th>Parser Rule & Semantics</th>
+                                <th>Practical Example</th>
+                                <th>Engine Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Clauses</td>
+                                <td>SELECT, FROM, WHERE</td>
+                                <td>Mandatory blocks that declare data sources and projections</td>
+                                <td><code>FROM customers WHERE active = 1</code></td>
+                                <td>Determines logical query plan tree</td>
+                            </tr>
+                            <tr>
+                                <td>Predicates</td>
+                                <td>=, &lt;&gt;, LIKE, IN</td>
+                                <td>Boolean evaluation returning TRUE, FALSE, or UNKNOWN</td>
+                                <td><code>WHERE balance &gt; 1000</code></td>
+                                <td>Drives index seek vs full table scan</td>
+                            </tr>
+                            <tr>
+                                <td>Expressions</td>
+                                <td>col1 + col2, UPPER(col)</td>
+                                <td>Scalar transformations and mathematical formulas</td>
+                                <td><code>UPPER(first_name) AS clean_name</code></td>
+                                <td>Evaluated during projection phase</td>
+                            </tr>
+                            <tr>
+                                <td>Delimiters</td>
+                                <td>Semicolon (;)</td>
+                                <td>Explicit boundary separating consecutive query statements</td>
+                                <td><code>SELECT 1; SELECT 2;</code></td>
+                                <td>Critical for batch execution buffers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Grammatical Clause Order Differs from Execution Order</h3>
+                <p>The grammatical order in which you write a query is designed for human readability, whereas the query planner evaluates clauses logically based on relational algebra:</p>
+                <ul>
+                    <li><strong>Written Order (Grammar):</strong> <code>SELECT</code> &rarr; <code>FROM</code> &rarr; <code>WHERE</code> &rarr; <code>GROUP BY</code> &rarr; <code>HAVING</code> &rarr; <code>ORDER BY</code> &rarr; <code>LIMIT</code>.</li>
+                    <li><strong>Execution Order (Engine):</strong> <code>FROM</code> (load tables) &rarr; <code>WHERE</code> (filter rows) &rarr; <code>GROUP BY</code> (aggregate) &rarr; <code>HAVING</code> (filter groups) &rarr; <code>SELECT</code> (project) &rarr; <code>ORDER BY</code> (sort) &rarr; <code>LIMIT</code> (slice).</li>
+                    <li><strong>The Parser Phase:</strong> Before executing, the database lexer tokenizes your SQL string, builds an Abstract Syntax Tree (AST), and validates all column references against the catalog cache.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Verifying Table Syntax in Production:</strong> Standard multi-clause query fetching verified customer accounts.</p>
+                <p><strong>E-Commerce Core Order Audit:</strong> Demonstrating grammatical clause structure across verified customer transactions with filtering, projection, and sorting.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -212,36 +294,73 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Verifying Table Syntax in Production</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Core Order Audit</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, email, account_status
-<span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> account_status = <span class="code-string">'ACTIVE'</span>
-<span class="code-keyword">ORDER BY</span> signup_date <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> 10;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: customer_orders</span>
+<span class="code-comment">   order_id | customer_name | order_status | order_total | created_at</span>
+<span class="code-comment">   ---------+---------------+--------------+-------------+-------------------</span>
+<span class="code-comment">   5001     | Alice Smith   | COMPLETED    | 249.99      | 2026-03-01 10:15</span>
+<span class="code-comment">   5002     | Bob Vance     | PENDING      | 89.50       | 2026-03-01 11:30</span>
+<span class="code-comment">   5003     | Charlie Day   | COMPLETED    | 499.00      | 2026-03-02 09:45</span>
+<span class="code-comment">   5004     | David Miller  | CANCELLED    | 120.00      | 2026-03-02 14:20</span>
+<span class="code-comment">   5005     | Eva Green     | COMPLETED    | 75.25       | 2026-03-03 16:00</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Retrieve only completed orders with selective column projection</span>
+<span class="code-keyword">SELECT</span> order_id, customer_name, order_total
+<span class="code-keyword">FROM</span> customer_orders
+<span class="code-keyword">WHERE</span> order_status = <span class="code-string">'COMPLETED'</span>;
+<span class="code-comment">-- Matches: Order 5001 ($249.99), 5003 ($499.00), 5005 ($75.25)</span>
+
+<span class="code-comment">-- Requirement 2: Apply arithmetic expression to compute tax in SELECT clause</span>
+<span class="code-keyword">SELECT</span> order_id, order_total, (order_total * 0.08) <span class="code-keyword">AS</span> tax_amount
+<span class="code-keyword">FROM</span> customer_orders
+<span class="code-keyword">WHERE</span> order_status = <span class="code-string">'COMPLETED'</span>;
+<span class="code-comment">-- Matches: Order 5001 (Tax: $20.00), 5003 (Tax: $39.92), 5005 (Tax: $6.02)</span>
+
+<span class="code-comment">-- Requirement 3: Enforce deterministic sorting with ORDER BY clause</span>
+<span class="code-keyword">SELECT</span> order_id, customer_name, order_total
+<span class="code-keyword">FROM</span> customer_orders
+<span class="code-keyword">WHERE</span> order_status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">ORDER BY</span> order_total <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches sorted: 5003 ($499.00), 5001 ($249.99), 5005 ($75.25)</span>
+
+<span class="code-comment">-- Requirement 4: Restrict result set size using LIMIT / TOP pagination clause</span>
+<span class="code-keyword">SELECT</span> order_id, customer_name, order_total
+<span class="code-keyword">FROM</span> customer_orders
+<span class="code-keyword">WHERE</span> order_status = <span class="code-string">'COMPLETED'</span>
+<span class="code-keyword">ORDER BY</span> order_total <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> 2;
+<span class="code-comment">-- Matches top 2: Charlie Day (5003) and Alice Smith (5001)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>Mastering SQL syntax and grammatical clause order provides the structural blueprint for writing error-free database queries. A disciplined query architecture ensures predictable execution, clean teamwork, and rapid query optimization across all major relational database engines.</p>
+                <p>Mastering standard SQL syntax and clause architecture provides the structural blueprint for writing clean, performant, and error-free database queries across enterprise systems.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Core Rules:</strong> SQL keywords are case-insensitive, but writing them in UPPERCASE is the universal industry standard for readability.</span>
+                            <span><strong>Standard Keyword Casing:</strong> Capitalize SQL keywords (SELECT, FROM, WHERE) to clearly distinguish commands from table and column identifiers.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Clause Structure:</strong> Statements are composed of mandatory clauses executed in a logical sequence.</span>
+                            <span><strong>Strict Clause Structure:</strong> Adhere to ANSI grammatical clause order to avoid syntax parsing compilation errors.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Statement Terminator:</strong> The semicolon (;) marks the completion of an individual SQL command and is required when batching multiple statements.</span>
+                            <span><strong>Statement Termination:</strong> Always terminate statements with a semicolon (;) to ensure safe multi-query and batch script executions.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Whitespace Freedom:</strong> Spaces, tabs, and line breaks can be used freely to format and indent queries cleanly.</span>
+                            <span><strong>Logical vs Grammatical:</strong> Remember that query engines evaluate FROM and WHERE long before evaluating the SELECT projection list.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Whitespace Formatting:</strong> Use clean multi-line indentation to enhance code maintainability and streamline peer reviews.</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +391,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,28 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-filter"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Airport Security Scanner Analogy</h4>
-                        <p>At airport security, every passenger passes through a metal detector and luggage scanner. Only passengers whose luggage meets strict safety requirements (no prohibited liquids, valid boarding passes) are allowed into the departure terminal.</p>
-                        <p style="margin-top: 8px !important;">The WHERE clause is your database security checkpoint. It inspects every single raw row in the source table and permits only rows satisfying your boolean conditions to continue through the query pipeline.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Security Guard Checkpoint Analogy</h4>
+                        <p>Picture an international airport security checkpoint where thousands of passengers arrive every hour:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Gate Filter::</strong> Security guards check boarding passes at the gate, immediately rejecting anyone without a valid ticket.</li>
+                            <li><strong>2. The WHERE Clause::</strong> The WHERE clause acts as that security gate, testing every single row against boolean criteria before admitting it into the query.</li>
+                            <li><strong>3. Early Discard::</strong> Unqualified passengers are turned away at the perimeter, saving terminal staff from processing unneeded luggage.</li>
+                            <li><strong>4. Multi-Condition Gates::</strong> Guards can inspect multiple criteria simultaneously: Ticket Valid AND Luggage Clear AND Passport Verified.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The WHERE clause executes right after FROM, filtering out unwanted records before costly grouping, sorting, and projection operations occur.</p>
                     </div>
+                </div>
+                <!-- Reference Guide Callout Box -->
+                <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                    <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+                        <i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+                        <strong>Looking for the complete list of operators?</strong> Explore all SQL comparison, logical, and arithmetic operators in our dedicated reference guide: 
+                        <a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">Check out the SQL Operators Reference (Module 3) &rarr;</a>
+                    </p>
                 </div>
 
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The WHERE Clause</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The WHERE Clause</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +202,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; where.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; where.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> column1, column2
-<span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> condition;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Numeric Comparison Filtering</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, unit_price
+<span class="code-keyword">FROM</span> inventory_items
+<span class="code-keyword">WHERE</span> unit_price &gt;= 100.00;
+
+<span class="code-comment">-- 2. Exact String Matching (Case-Sensitive in most engines)</span>
+<span class="code-keyword">SELECT</span> user_id, email, account_type
+<span class="code-keyword">FROM</span> user_accounts
+<span class="code-keyword">WHERE</span> account_type = <span class="code-string">'ENTERPRISE'</span>;
+
+<span class="code-comment">-- 3. Range and Set Filtering (BETWEEN &amp; IN)</span>
+<span class="code-keyword">SELECT</span> order_id, order_date, total_amount
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-03-31'</span>
+  <span class="code-keyword">AND</span> customer_id <span class="code-keyword">IN</span> (101, 105, 210);
+
+<span class="code-comment">-- 4. NULL Value Examination</span>
+<span class="code-keyword">SELECT</span> task_id, title, completed_at
+<span class="code-keyword">FROM</span> project_tasks
+<span class="code-keyword">WHERE</span> completed_at <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>WHERE</code> clause filters records before any grouping, aggregation, or sorting occurs. It executes in Step 2 of the logical query execution pipeline, evaluating a boolean expression for each row.</p>
-        <p>Standard comparison operators include <code>=</code> (equals), <code>&lt;&gt;</code> or <code>!=</code> (not equal), <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>. Multiple criteria can be combined using boolean logic (<code>AND</code>, <code>OR</code>, <code>NOT</code>).</p>
+                <p>The <code>WHERE</code> clause specifies boolean search conditions (predicates) that each table record must satisfy to be included in query results. Rows evaluating to <code>TRUE</code> pass through; rows evaluating to <code>FALSE</code> or <code>UNKNOWN</code> (due to NULLs) are dropped.</p>
+                <ul>
+                    <li><strong>Early Pipeline Execution:</strong> Executing in Step 2 of the query lifecycle (immediately after FROM), WHERE filters rows before aggregation or sorting begins.</li>
+                    <li><strong>Index Seek Acceleration:</strong> Predicates matching B-Tree indexed columns allow the database engine to perform rapid index seeks rather than full table scans.</li>
+                    <li><strong>SARGable Queries:</strong> Search Argument Able (SARGable) expressions avoid wrapping indexed columns in functions, enabling database optimizer index usage.</li>
+                    <li><strong>Three-Valued Logic:</strong> Predicates evaluate to TRUE, FALSE, or UNKNOWN; only rows evaluating strictly to TRUE survive the filter.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Comparison Operator</th>
+                                <th>SQL Syntax Example</th>
+                                <th>Evaluation Meaning</th>
+                                <th>Sample Match</th>
+                                <th>Index Friendliness</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Equality (=)</td>
+                                <td><code>WHERE status = 'PAID'</code></td>
+                                <td>Matches exact scalar value</td>
+                                <td>Rows where status is 'PAID'</td>
+                                <td>Excellent (B-Tree Seek)</td>
+                            </tr>
+                            <tr>
+                                <td>Inequality (!= / &lt;&gt;)</td>
+                                <td><code>WHERE code &lt;&gt; 500</code></td>
+                                <td>Excludes matching values</td>
+                                <td>All HTTP codes other than 500</td>
+                                <td>Poor (Usually triggers scan)</td>
+                            </tr>
+                            <tr>
+                                <td>Relational (&gt;, &lt;, &gt;=, &lt;=)</td>
+                                <td><code>WHERE salary &gt;= 75000</code></td>
+                                <td>Evaluates numeric or chronological order</td>
+                                <td>All salaries $75,000 and above</td>
+                                <td>Excellent (Index Range Scan)</td>
+                            </tr>
+                            <tr>
+                                <td>Set Inclusion (IN)</td>
+                                <td><code>WHERE tier IN ('GOLD', 'PLAT')</code></td>
+                                <td>Matches against a finite list or subquery</td>
+                                <td>Members with Gold or Platinum tier</td>
+                                <td>High (Multiple index lookups)</td>
+                            </tr>
+                            <tr>
+                                <td>Null Check (IS NULL)</td>
+                                <td><code>WHERE closed_at IS NULL</code></td>
+                                <td>Tests for absence of data value</td>
+                                <td>Open tickets with unrecorded dates</td>
+                                <td>Good (If index includes NULLs)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>SARGable Predicates: Why WHERE col + 1 = 10 Destroys Performance</h3>
+                <p>For a WHERE clause to leverage high-speed B-Tree indexes, predicates must be written in SARGable (Search Argument Able) format:</p>
+                <ul>
+                    <li><strong>Non-SARGable (Slow):</strong> <code>WHERE YEAR(signup_date) = 2026</code> forces the database to invoke the YEAR() function on every single row in the table (Full Table Scan).</li>
+                    <li><strong>SARGable (Fast):</strong> <code>WHERE signup_date &gt;= '2026-01-01' AND signup_date &lt; '2027-01-01'</code> allows the engine to jump directly to the index range.</li>
+                    <li><strong>Column Side Isolation:</strong> Never apply mathematical operators, typecasts, or functions to the column side of a comparison predicate.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Filtering Orders by Value and Date:</strong> Fetch high-value wholesale transactions executed within the current fiscal quarter.</p>
+                <p><strong>FinTech High-Risk Transaction Screening:</strong> Audit financial payment logs for potential fraud alerts based on transaction thresholds, foreign currencies, and review flags.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,35 +309,71 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Filtering Orders by Value and Date</span>
+                        <span class="terminal-title">Production Queries &bull; FinTech High-Risk Transaction Screening</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> order_id, customer_id, order_total, order_date
-<span class="code-keyword">FROM</span> retail_orders
-<span class="code-keyword">WHERE</span> order_total &gt;= 5000.00 
-  <span class="code-keyword">AND</span> order_status = <span class="code-string">'SHIPPED'</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: payment_transactions</span>
+<span class="code-comment">   txn_id | customer_id | amount    | currency | risk_score | flagged</span>
+<span class="code-comment">   -------+-------------+-----------+----------+------------+---------</span>
+<span class="code-comment">   801    | 4091        | 12500.00  | USD      | 88         | TRUE</span>
+<span class="code-comment">   802    | 1205        | 45.00     | EUR      | 12         | FALSE</span>
+<span class="code-comment">   803    | 8812        | 9950.00   | USD      | 74         | TRUE</span>
+<span class="code-comment">   804    | 3390        | 320.00    | GBP      | 25         | FALSE</span>
+<span class="code-comment">   805    | 6710        | 150000.00 | USD      | 95         | TRUE</span>
+<span class="code-comment">   806    | 4091        | 800.00    | USD      | 40         | FALSE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Filter transactions exceeding high-dollar threshold of $10,000 USD</span>
+<span class="code-keyword">SELECT</span> txn_id, customer_id, amount, risk_score
+<span class="code-keyword">FROM</span> payment_transactions
+<span class="code-keyword">WHERE</span> amount &gt;= 10000.00 <span class="code-keyword">AND</span> currency = <span class="code-string">'USD'</span>;
+<span class="code-comment">-- Matches: Txn 801 ($12,500.00) and Txn 805 ($150,000.00)</span>
+
+<span class="code-comment">-- Requirement 2: Isolate high-risk transactions with risk scores between 70 and 90</span>
+<span class="code-keyword">SELECT</span> txn_id, customer_id, amount, risk_score
+<span class="code-keyword">FROM</span> payment_transactions
+<span class="code-keyword">WHERE</span> risk_score <span class="code-keyword">BETWEEN</span> 70 <span class="code-keyword">AND</span> 90;
+<span class="code-comment">-- Matches: Txn 801 (Score: 88) and Txn 803 (Score: 74)</span>
+
+<span class="code-comment">-- Requirement 3: Identify flagged transactions requiring compliance officer review</span>
+<span class="code-keyword">SELECT</span> txn_id, customer_id, amount, risk_score
+<span class="code-keyword">FROM</span> payment_transactions
+<span class="code-keyword">WHERE</span> flagged = <span class="code-keyword">TRUE</span>;
+<span class="code-comment">-- Matches: Txn 801, 803, 805</span>
+
+<span class="code-comment">-- Requirement 4: Multi-predicate filter excluding domestic low-risk transactions</span>
+<span class="code-keyword">SELECT</span> txn_id, customer_id, amount, currency
+<span class="code-keyword">FROM</span> payment_transactions
+<span class="code-keyword">WHERE</span> currency &lt;&gt; <span class="code-string">'USD'</span> <span class="code-keyword">AND</span> amount &gt; 100.00;
+<span class="code-comment">-- Matches: Txn 804 (GBP 320.00)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The WHERE clause is the primary row-level filtering mechanism in SQL. Executing before aggregation and sorting, high-selectivity WHERE filters drastically reduce disk I/O, filter out unneeded records early, and unlock database index scans.</p>
+                <p>The WHERE clause acts as the primary row-filtering engine in SQL, purging unqualified records at the database storage boundary to maximize query performance.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Row-Level Filtering:</strong> WHERE filters individual table rows based on true/false boolean evaluation.</span>
+                            <span><strong>Early Execution:</strong> WHERE executes immediately after FROM, eliminating rows prior to grouping, aggregation, and sorting.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Early Execution:</strong> Executes immediately after FROM, eliminating irrelevant rows before heavy grouping or sorting.</span>
+                            <span><strong>Index Utilization:</strong> Craft SARGable comparison predicates to ensure queries leverage fast B-Tree index seeks rather than table scans.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Index Utilization:</strong> Conditions in the WHERE clause can leverage B-Tree database indexes for sub-millisecond lookups.</span>
+                            <span><strong>Three-Valued Truth Logic:</strong> Only records evaluating strictly to TRUE are returned; FALSE and UNKNOWN entries are automatically excluded.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>No Aggregate Functions:</strong> Aggregate functions like SUM() or COUNT() cannot be used inside WHERE; use HAVING instead.</span>
+                            <span><strong>Avoid Column Functions:</strong> Refrain from wrapping indexed columns in functions (e.g. UPPER(col)) to preserve index usability.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Compound Conditionals:</strong> Combine multiple filters using AND, OR, and parentheses to build precise business validation rules.</span>
                         </li>
                     </ul>
                 </div>
@@ -269,7 +404,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

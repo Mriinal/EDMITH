@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li class="active"><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-id-badge"></i></div>
+                    <div class="concept-icon"><i class="fas fa-address-card"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Stage Name Analogy</h4>
-                        <p>An author born with a long, complex name writes best-selling novels under a concise, memorable pen name. Readers and bookstores refer to the author by their pen name on the book cover.</p>
-                        <p style="margin-top: 8px !important;">SQL Aliases provide temporary, concise names to columns and tables during a query's execution.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Superhero Secret Identity Nickname Analogy</h4>
+                        <p>Picture an international intelligence agency filing confidential operative profiles:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Cumbersome Real Names::</strong> An operative's official birth record might be 'Bartholomew Henry Allen II, Central City Forensics Lab'.</li>
+                            <li><strong>2. The Field Alias (AS)::</strong> In mission radio communications, commanders use a punchy field alias: 'The Flash' (Bartholomew AS Flash).</li>
+                            <li><strong>3. Temporary Identity::</strong> The alias exists only during the mission (the query duration); it does not alter the operative's birth certificate in the physical archives.</li>
+                            <li><strong>4. Multi-Table Clarity::</strong> When coordinating five different operatives, short 1-letter callsigns (o1, o2) prevent confusion in command headsets.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">SQL aliases assign temporary, human-readable identities to columns and tables, enhancing query clarity and downstream code maintainability.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Aliases (The AS Keyword)</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Aliases (The AS Keyword)</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,22 +195,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; aliases.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; aliases.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- Column Alias:</span>
-<span class="code-keyword">SELECT</span> column_name <span class="code-keyword">AS</span> display_name <span class="code-keyword">FROM</span> table_name;
+                    <pre><code><span class="code-comment">-- 1. Column Alias with AS Keyword (Best Practice)</span>
+<span class="code-keyword">SELECT</span> 
+    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> full_name,
+    annual_salary / 12.0 <span class="code-keyword">AS</span> monthly_gross_pay
+<span class="code-keyword">FROM</span> employees;
 
-<span class="code-comment">-- Table Alias:</span>
-<span class="code-keyword">SELECT</span> t.col1, t.col2 <span class="code-keyword">FROM</span> very_long_table_name <span class="code-keyword">AS</span> t;</code></pre>
+<span class="code-comment">-- 2. Column Alias with Spaces (Enclosed in Double Quotes or Brackets)</span>
+<span class="code-keyword">SELECT</span> 
+    product_name,
+    unit_price * 1.08 <span class="code-keyword">AS</span> "Price with Sales Tax"
+<span class="code-keyword">FROM</span> store_products;
+
+<span class="code-comment">-- 3. Table Aliases in Relational Joins</span>
+<span class="code-keyword">SELECT</span> 
+    c.customer_name,
+    o.order_id,
+    o.order_total
+<span class="code-keyword">FROM</span> customers <span class="code-keyword">AS</span> c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders <span class="code-keyword">AS</span> o <span class="code-keyword">ON</span> c.customer_id = o.customer_id;
+
+<span class="code-comment">-- 4. Table Aliases in Self Joins (Mandatory for Disambiguation)</span>
+<span class="code-keyword">SELECT</span> 
+    emp.first_name <span class="code-keyword">AS</span> employee_name,
+    mgr.first_name <span class="code-keyword">AS</span> manager_name
+<span class="code-keyword">FROM</span> employees emp
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees mgr <span class="code-keyword">ON</span> emp.manager_id = mgr.employee_id;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>AS</code> keyword creates temporary aliases for columns, expressions, or tables. Aliases exist only for the duration of the query.</p>
-        <p>Crucially, column aliases created in <code>SELECT</code> cannot be referenced in <code>WHERE</code> or <code>HAVING</code> clauses because filtering executes prior to projection in logical query execution.</p>
+                <p>SQL aliases are temporary names assigned to columns, computed expressions, or physical tables within the scope of a single query. Column aliases make output names clear, while table aliases simplify multi-table joins.</p>
+                <ul>
+                    <li><strong>The AS Keyword:</strong> The <code>AS</code> keyword is optional in most dialects (e.g. <code>SELECT col alias</code>), but explicitly including <code>AS</code> prevents accidental aliasing when commas are forgotten.</li>
+                    <li><strong>Lifecycle Visibility Rules:</strong> Column aliases created in SELECT are invisible to WHERE and HAVING clauses because SELECT executes <em>after</em> them, but are fully accessible to ORDER BY.</li>
+                    <li><strong>Self-Join Disambiguation:</strong> When joining a table to itself, table aliases are mathematically mandatory to distinguish left-side rows from right-side rows.</li>
+                    <li><strong>API Payload Alignment:</strong> Column aliases transform snake_case database identifiers (e.g. <code>cust_id</code>) into clear camelCase JSON keys (e.g. <code>customerId</code>).</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Alias Target</th>
+                                <th>Syntax Example</th>
+                                <th>Scope of Existence</th>
+                                <th>Visible in WHERE?</th>
+                                <th>Visible in ORDER BY?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calculated Column</td>
+                                <td><code>SELECT price * 0.9 AS sale_price</code></td>
+                                <td>Single query execution</td>
+                                <td>No (WHERE runs before SELECT)</td>
+                                <td>Yes (ORDER BY runs after SELECT)</td>
+                            </tr>
+                            <tr>
+                                <td>Raw Table Column</td>
+                                <td><code>SELECT c_id AS customer_id</code></td>
+                                <td>Single query execution</td>
+                                <td>No</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Joined Table</td>
+                                <td><code>FROM customer_accounts AS c</code></td>
+                                <td>Entire query lifecycle</td>
+                                <td>Yes (Table alias visible everywhere)</td>
+                                <td>Yes</td>
+                            </tr>
+                            <tr>
+                                <td>Derived Subquery Table</td>
+                                <td><code>FROM (SELECT ...) AS temp_t</code></td>
+                                <td>Outer query scope</td>
+                                <td>Yes</td>
+                                <td>Yes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Missing Comma Alias Catastrophe</h3>
+                <p>Because the <code>AS</code> keyword is optional, forgetting a simple comma can silently corrupt your query output without throwing an error:</p>
+                <ul>
+                    <li><strong>The Buggy Query:</strong> <code>SELECT first_name last_name FROM employees;</code> (Notice the missing comma between first_name and last_name!).</li>
+                    <li><strong>What the Database Does:</strong> The parser assumes you meant: <code>SELECT first_name AS last_name</code>!</li>
+                    <li><strong>The Devastating Output:</strong> The query returns only one column containing the first names, mislabeled with the header 'last_name'!</li>
+                    <li><strong>The Prevention Rule:</strong> Always use explicit <code>AS</code> for aliases so missing commas generate immediate syntax errors rather than silent data bugs.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Disambiguating Multi-Table Join Columns with Aliases:</strong> Join customers and orders while providing clear column headers for reporting.</p>
+                <p><strong>Enterprise Financial Multi-Entity Billing Consolidation:</strong> Merge corporate accounts and transaction ledgers with clean table prefixes and user-friendly executive reporting headers.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -212,38 +302,76 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Disambiguating Multi-Table Join Columns with Aliases</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Financial Multi-Entity Billing Consolidation</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    c.customer_id <span class="code-keyword">AS</span> account_id,
-    c.email <span class="code-keyword">AS</span> customer_email,
-    o.order_id <span class="code-keyword">AS</span> invoice_number,
-    o.order_amount <span class="code-keyword">AS</span> total_billed
-<span class="code-keyword">FROM</span> customers <span class="code-keyword">AS</span> c
-<span class="code-keyword">JOIN</span> orders <span class="code-keyword">AS</span> o <span class="code-keyword">ON</span> c.customer_id = o.customer_id;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   Table a: corporate_accounts (acc_id, legal_name, country_code)</span>
+<span class="code-comment">   Table t: billing_transactions (txn_id, acc_id, amount_cents, status)</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Assign readable names and convert cents to dollars with column aliases</span>
+<span class="code-keyword">SELECT</span> 
+    acc_id <span class="code-keyword">AS</span> account_identifier,
+    legal_name <span class="code-keyword">AS</span> corporate_client,
+    country_code <span class="code-keyword">AS</span> jurisdiction
+<span class="code-keyword">FROM</span> corporate_accounts;
+<span class="code-comment">-- Matches: Clean API output headers: account_identifier, corporate_client, jurisdiction</span>
+
+<span class="code-comment">-- Requirement 2: Multi-table join using concise table aliases (a and t)</span>
+<span class="code-keyword">SELECT</span> 
+    a.legal_name <span class="code-keyword">AS</span> company,
+    t.txn_id <span class="code-keyword">AS</span> invoice_number,
+    <span class="code-func">ROUND</span>(t.amount_cents / 100.0, 2) <span class="code-keyword">AS</span> billed_amount_usd
+<span class="code-keyword">FROM</span> corporate_accounts a
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> billing_transactions t <span class="code-keyword">ON</span> a.acc_id = t.acc_id
+<span class="code-keyword">WHERE</span> t.status = <span class="code-string">'SETTLED'</span>;
+<span class="code-comment">-- Matches: Joined rows with clean table prefixes and formatted dollar amounts</span>
+
+<span class="code-comment">-- Requirement 3: Demonstrate alias availability in ORDER BY clause</span>
+<span class="code-keyword">SELECT</span> 
+    legal_name,
+    <span class="code-func">ROUND</span>(amount_cents / 100.0, 2) <span class="code-keyword">AS</span> invoice_usd
+<span class="code-keyword">FROM</span> corporate_accounts a
+<span class="code-keyword">JOIN</span> billing_transactions t <span class="code-keyword">ON</span> a.acc_id = t.acc_id
+<span class="code-keyword">ORDER BY</span> invoice_usd <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: Sorts correctly by the calculated column alias 'invoice_usd'</span>
+
+<span class="code-comment">-- Requirement 4: Self-join with table aliases to represent organizational manager hierarchy</span>
+<span class="code-keyword">SELECT</span> 
+    e.first_name <span class="code-keyword">AS</span> employee_name,
+    m.first_name <span class="code-keyword">AS</span> reports_to_manager
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees m <span class="code-keyword">ON</span> e.manager_id = m.employee_id;
+<span class="code-comment">-- Matches: Clearly pairs employees with their respective manager names</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>SQL aliases created via the AS keyword assign clear, temporary identities to complex expressions, aggregated metrics, and joined tables, dramatically enhancing query readability and downstream code maintainability.</p>
+                <p>SQL aliases assign temporary, intuitive identities to columns and tables, dramatically enhancing query readability, eliminating multi-table ambiguity, and formatting API outputs.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Temporary Renaming:</strong> Assigns readable, query-scoped names to columns and source tables.</span>
+                            <span><strong>Always Use AS:</strong> Explicitly include the AS keyword to prevent accidental aliasing when commas are inadvertently omitted.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Disambiguation:</strong> Resolves naming conflicts when multiple joined tables share identical column names.</span>
+                            <span><strong>Lifecycle Visibility:</strong> Column aliases created in SELECT are visible to ORDER BY, but are strictly inaccessible to WHERE and HAVING.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Clause Visibility:</strong> Column aliases are visible in ORDER BY, but invisible in WHERE and HAVING.</span>
+                            <span><strong>Table Prefixing:</strong> Use table aliases (e.g. c, o) to qualify ambiguous column names in multi-table JOIN queries.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Derived Tables:</strong> Table aliases are mandatory when querying derived subqueries in the FROM clause.</span>
+                            <span><strong>Mandatory for Self-Joins:</strong> Table aliases are required to distinguish different roles when joining a table to itself.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Special Character Enclosure:</strong> Enclose aliases containing spaces or special characters in double quotes (ANSI) or square brackets (SQL Server).</span>
                         </li>
                     </ul>
                 </div>
@@ -274,7 +402,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

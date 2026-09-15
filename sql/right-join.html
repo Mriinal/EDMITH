@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <div class="concept-icon"><i class="fas fa-handshake-alt-slash"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Mirror Image Analogy</h4>
-                        <p>Looking into a mirror reflects your left hand on the right side. Any LEFT JOIN between Table A and Table B can be converted into an identical RIGHT JOIN by simply swapping the order of the tables.</p>
-                        <p style="margin-top: 8px !important;">RIGHT JOIN preserves all rows from the right table, padding missing left-table columns with NULL.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Mirror Image Billboard Analogy</h4>
+                        <p>Picture an advertising agency managing roadside commercial billboards:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Billboard Inventory (Right Table)::</strong> The agency owns 50 prime roadside billboard locations (the right table).</li>
+                            <li><strong>2. Corporate Advertisers (Left Table)::</strong> Advertisers contract specific billboards; only 35 locations currently have active ad campaigns.</li>
+                            <li><strong>3. Preserving Every Billboard Location::</strong> The agency wants a report preserving every single billboard in inventory, displaying active campaign details or 'VACANT' (NULL) beside empty boards.</li>
+                            <li><strong>4. The Mirror of Left Join::</strong> A RIGHT JOIN is simply a mirror image of a LEFT JOIN, prioritizing the preservation of the secondary right table.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">RIGHT JOIN retains all records from the right table, matching left rows where available and padding missing left attributes with NULL.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>RIGHT JOIN (Outer Join)</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>RIGHT JOIN (Outer Join)</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,108 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; right-join.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; right-join.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> columns
-<span class="code-keyword">FROM</span> table_a
-<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> table_b <span class="code-keyword">ON</span> table_a.key = table_b.key;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Standard Right Join Preserving All Right-Side Records</span>
+<span class="code-keyword">SELECT</span> 
+    e.first_name,
+    d.department_id,
+    d.department_name
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id;
+
+<span class="code-comment">-- 2. Anti-Join: Identifying Departments with Zero Assigned Staff</span>
+<span class="code-keyword">SELECT</span> d.department_id, d.department_name
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id
+<span class="code-keyword">WHERE</span> e.employee_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+
+<span class="code-comment">-- 3. The Left Join Equivalent (Industry Preferred Architecture)</span>
+<span class="code-comment">-- Exactly identical to query #1, but rewritten as LEFT JOIN for readability:</span>
+<span class="code-keyword">SELECT</span> 
+    e.first_name,
+    d.department_id,
+    d.department_name
+<span class="code-keyword">FROM</span> departments d
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees e <span class="code-keyword">ON</span> d.department_id = e.department_id;
+
+<span class="code-comment">-- 4. Right Join with Department Budget Rollup</span>
+<span class="code-keyword">SELECT</span> 
+    d.department_name,
+    <span class="code-func">COUNT</span>(e.employee_id) <span class="code-keyword">AS</span> staff_count,
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(e.salary), 0.00) <span class="code-keyword">AS</span> total_payroll
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id
+<span class="code-keyword">GROUP BY</span> d.department_name;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>RIGHT JOIN</code> (or <code>RIGHT OUTER JOIN</code>) returns all records from the right table, and the matched records from the left table.</p>
-        <p>Because code readability is prioritized in enterprise engineering, almost all teams prefer writing <code>LEFT JOIN</code> by ordering the primary table first in the <code>FROM</code> clause.</p>
+                <p>The <code>RIGHT JOIN</code> (or <code>RIGHT OUTER JOIN</code>) returns all records from the right table (Table B), and the matched records from the left table (Table A). If there is no match, the result set contains <code>NULL</code> for all columns of the left table.</p>
+                <ul>
+                    <li><strong>Relational Symmetry:</strong> <code>A RIGHT JOIN B</code> is semantically 100% equivalent to <code>B LEFT JOIN A</code>.</li>
+                    <li><strong>Industry Convention:</strong> Most enterprise engineering teams ban RIGHT JOIN in their style guides, standardizing strictly on LEFT JOIN so queries read naturally from left-to-right.</li>
+                    <li><strong>Third-Party Schema Alignment:</strong> RIGHT JOIN is occasionally useful when appending your primary table onto a pre-existing complex subquery without refactoring the whole pipeline.</li>
+                    <li><strong>The WHERE Filter Trap:</strong> Placing conditions on left-table columns in the WHERE clause converts the RIGHT JOIN into an INNER JOIN.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Join Form</th>
+                                <th>Equivalent Expression</th>
+                                <th>Preserved Table</th>
+                                <th>Null-Padded Table</th>
+                                <th>Industry Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>A RIGHT JOIN B</code></td>
+                                <td><code>B LEFT JOIN A</code></td>
+                                <td>Table B (Right)</td>
+                                <td>Table A (Left)</td>
+                                <td>Rarely used; legal in standard</td>
+                            </tr>
+                            <tr>
+                                <td><code>B LEFT JOIN A</code></td>
+                                <td><code>A RIGHT JOIN B</code></td>
+                                <td>Table B (Left)</td>
+                                <td>Table A (Right)</td>
+                                <td>Standard industry convention</td>
+                            </tr>
+                            <tr>
+                                <td>Anti-Join with RIGHT</td>
+                                <td><code>WHERE a.id IS NULL</code></td>
+                                <td>Table B (Right)</td>
+                                <td>Table A (Left)</td>
+                                <td>Finds unlinked B records</td>
+                            </tr>
+                            <tr>
+                                <td>RIGHT JOIN with ON Filter</td>
+                                <td><code>ON a.id = b.id AND a.flag=1</code></td>
+                                <td>Table B (Right)</td>
+                                <td>Table A (Left)</td>
+                                <td>Preserves all B rows</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Enterprise Engineering Teams Prefer LEFT JOIN Over RIGHT JOIN</h3>
+                <p>While supported in standard SQL, senior database architects almost universally recommend rewriting RIGHT JOINs as LEFT JOINs:</p>
+                <ul>
+                    <li><strong>Cognitive Flow:</strong> Western written languages read left-to-right and top-to-bottom. A query reading <code>FROM master LEFT JOIN details</code> matches natural mental parsing.</li>
+                    <li><strong>Chaining Complexity:</strong> Mixing <code>LEFT JOIN</code> and <code>RIGHT JOIN</code> in the same 5-table query creates immense cognitive load and makes debugging execution plans difficult.</li>
+                    <li><strong>The Simple Refactor:</strong> Simply swap the table positions: change <code>FROM child RIGHT JOIN parent</code> to <code>FROM parent LEFT JOIN child</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Auditing Departments with No Assigned Staff:</strong> Preserve all departments on the right side to identify vacant teams.</p>
+                <p><strong>Enterprise Cloud Server Rack Inventory Allocation:</strong> Audit datacenter physical server rack allocations to identify empty server chassis slots available for new hardware deployments.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,37 +306,77 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Auditing Departments with No Assigned Staff</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Cloud Server Rack Inventory Allocation</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    e.employee_name, 
-    d.department_name
-<span class="code-keyword">FROM</span> employees e
-<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id
-<span class="code-keyword">WHERE</span> e.employee_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   servers: (server_id, hostname, rack_id)</span>
+<span class="code-comment">   racks: (rack_id, rack_code, max_kw_power)</span>
+<span class="code-comment">   Racks: Rack 1 (R-101), Rack 2 (R-102), Rack 3 (R-103), Rack 4 (R-104)</span>
+<span class="code-comment">   Servers: s1 in Rack 1, s2 in Rack 1, s3 in Rack 2</span>
+<span class="code-comment">   Note: Rack 3 (R-103) and Rack 4 (R-104) have ZERO installed servers.</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Retain all physical racks in datacenter inventory using RIGHT JOIN</span>
+<span class="code-keyword">SELECT</span> 
+    s.hostname,
+    r.rack_id,
+    r.rack_code,
+    r.max_kw_power
+<span class="code-keyword">FROM</span> servers s
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> racks r <span class="code-keyword">ON</span> s.rack_id = r.rack_id;
+<span class="code-comment">-- Matches: R-101 (2 servers), R-102 (1 server), R-103 (hostname=NULL), R-104 (hostname=NULL)</span>
+
+<span class="code-comment">-- Requirement 2: Anti-Join: Identify vacant racks ready for new server deployments</span>
+<span class="code-keyword">SELECT</span> r.rack_id, r.rack_code, r.max_kw_power
+<span class="code-keyword">FROM</span> servers s
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> racks r <span class="code-keyword">ON</span> s.rack_id = r.rack_id
+<span class="code-keyword">WHERE</span> s.server_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Rack 3 (R-103) and Rack 4 (R-104) - Vacant hardware slots</span>
+
+<span class="code-comment">-- Requirement 3: Professional Refactor: The identical query written as clean LEFT JOIN</span>
+<span class="code-keyword">SELECT</span> r.rack_id, r.rack_code, r.max_kw_power
+<span class="code-keyword">FROM</span> racks r
+<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> servers s <span class="code-keyword">ON</span> r.rack_id = s.rack_id
+<span class="code-keyword">WHERE</span> s.server_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
+<span class="code-comment">-- Matches: Exactly identical results, but reads naturally from primary to detail</span>
+
+<span class="code-comment">-- Requirement 4: Rack capacity density report</span>
+<span class="code-keyword">SELECT</span> 
+    r.rack_code,
+    <span class="code-func">COUNT</span>(s.server_id) <span class="code-keyword">AS</span> installed_units
+<span class="code-keyword">FROM</span> servers s
+<span class="code-keyword">RIGHT <span class="code-keyword">JOIN</span></span> racks r <span class="code-keyword">ON</span> s.rack_id = r.rack_id
+<span class="code-keyword">GROUP BY</span> r.rack_code;
+<span class="code-comment">-- Matches: R-101 (2), R-102 (1), R-103 (0), R-104 (0)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>RIGHT JOIN retains all records from the secondary right table, complementing the left join architecture. It provides relational symmetry when querying third-party schemas or prioritizing target reference tables.</p>
+                <p>RIGHT JOIN retains all records from the secondary right table, complementing the left join architecture and providing relational symmetry when prioritizing target reference tables.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Preserves Right Dataset:</strong> Every record from the right-hand table is preserved in the output.</span>
+                            <span><strong>Right Table Preservation:</strong> Every record from the right table is preserved; non-matching left columns are populated with NULL.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Symmetric to LEFT JOIN:</strong> A RIGHT JOIN B is logically identical to B LEFT JOIN A.</span>
+                            <span><strong>Left-to-Right Equivalence:</strong> A RIGHT JOIN B is mathematically identical to B LEFT JOIN A.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Readability Convention:</strong> Most senior engineers write LEFT JOIN for consistent left-to-right query reading flow.</span>
+                            <span><strong>Code Readability Standard:</strong> Prefer LEFT JOIN in production codebases to maintain consistent left-to-right cognitive reading order.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NULL Filling:</strong> Missing left-side columns are populated with NULL.</span>
+                            <span><strong>Anti-Join Pattern:</strong> Filter with WHERE left_table.key IS NULL to isolate right-side records that lack foreign relationships.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Avoid Mixed Outer Joins:</strong> Never mix LEFT JOIN and RIGHT JOIN in the same query; stick to a consistent direction.</span>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +407,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

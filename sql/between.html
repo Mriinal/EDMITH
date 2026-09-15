@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li class="active"><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-ruler-horizontal"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Height Requirement Rollercoaster Analogy</h4>
-                        <p>At a theme park roller coaster, a sign reads: 'Riders must be between 120cm and 190cm tall.' Anyone shorter than 120cm or taller than 190cm cannot ride. Both 120cm and 190cm riders are included.</p>
-                        <p style="margin-top: 8px !important;">BETWEEN selects values within a given range, and the boundaries are strictly inclusive.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Highway Vehicle Weigh Station Analogy</h4>
+                        <p>Picture a highway commercial vehicle inspection weigh station monitoring freight trucks:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Lower Boundary (Inclusive)::</strong> Trucks weighing 10,000 lbs or more must enter the inspection lane (weight >= 10000).</li>
+                            <li><strong>2. The Upper Boundary (Inclusive)::</strong> Trucks weighing up to 26,000 lbs qualify for standard commercial class (weight <= 26000).</li>
+                            <li><strong>3. The Inclusive BETWEEN Window::</strong> The rule: BETWEEN 10000 AND 26000. Exactly 10,000 lbs and exactly 26,000 lbs are BOTH included inside the boundary!</li>
+                            <li><strong>4. Boundary Inversion::</strong> Trucks NOT BETWEEN 10,000 and 26,000 are diverted to special light-duty or heavy-overweight lanes.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The BETWEEN operator filters metrics within an inclusive lower and upper boundary, streamlining numerical ranges and date intervals.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The BETWEEN Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The BETWEEN Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,23 +195,96 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; between.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; between.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">BETWEEN</span> val1 <span class="code-keyword">AND</span> val2;
+                    <pre><code><span class="code-comment">-- 1. Numeric Range Filtering (Inclusive of Boundaries)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, unit_price
+<span class="code-keyword">FROM</span> store_products
+<span class="code-keyword">WHERE</span> unit_price <span class="code-keyword">BETWEEN</span> 50.00 <span class="code-keyword">AND</span> 150.00;
 
-<span class="code-comment">-- NOT BETWEEN:</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> val1 <span class="code-keyword">AND</span> val2;</code></pre>
+<span class="code-comment">-- 2. Chronological Date Filtering</span>
+<span class="code-keyword">SELECT</span> order_id, customer_id, order_date, total_amount
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-03-31'</span>;
+
+<span class="code-comment">-- 3. Alphabetical Text Range Filtering</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> last_name <span class="code-keyword">BETWEEN</span> <span class="code-string">'Adams'</span> <span class="code-keyword">AND</span> <span class="code-string">'Miller'</span>;
+
+<span class="code-comment">-- 4. Inverting the Interval with NOT BETWEEN</span>
+<span class="code-keyword">SELECT</span> student_id, exam_score
+<span class="code-keyword">FROM</span> examination_results
+<span class="code-keyword">WHERE</span> exam_score <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> 60 <span class="code-keyword">AND</span> 80;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>BETWEEN</code> operator filters values within an inclusive range. It is equivalent to <code>col &gt;= val1 AND col &lt;= val2</code>.</p>
-        <p><code>BETWEEN</code> works seamlessly across numbers, dates, and text strings. When querying timestamps, remember that <code>'2026-09-01'</code> defaults to midnight (<code>00:00:00</code>).</p>
+                <p>The <code>BETWEEN</code> operator tests whether an expression falls within an inclusive specified range. The syntax <code>expression BETWEEN low AND high</code> is semantically identical to <code>expression &gt;= low AND expression &lt;= high</code>.</p>
+                <ul>
+                    <li><strong>Inclusive Boundaries Rule:</strong> BETWEEN is strictly inclusive on both ends; values that exactly match either boundary are included in the result set.</li>
+                    <li><strong>Order of Operands:</strong> The lower boundary must be declared first; writing <code>BETWEEN 100 AND 50</code> returns zero rows because no value can be >= 100 and <= 50 simultaneously.</li>
+                    <li><strong>Timestamp Truncation Trap:</strong> Filtering timestamps with <code>BETWEEN '2026-01-01' AND '2026-01-31'</code> cuts off at midnight <code>2026-01-31 00:00:00</code>, missing transactions later that day!</li>
+                    <li><strong>Index Range Scans:</strong> BETWEEN operations on indexed columns leverage efficient B-Tree Index Range Scans.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Data Type</th>
+                                <th>Syntax Pattern</th>
+                                <th>Equivalent SQL Expression</th>
+                                <th>Boundary Inclusivity</th>
+                                <th>Common Gotcha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Numeric (INT / DECIMAL)</td>
+                                <td><code>WHERE price BETWEEN 10 AND 50</code></td>
+                                <td><code>price &gt;= 10 AND price &lt;= 50</code></td>
+                                <td>Includes 10 and 50</td>
+                                <td>Inverting low/high returns 0 rows</td>
+                            </tr>
+                            <tr>
+                                <td>Date (DATE)</td>
+                                <td><code>WHERE d BETWEEN '2026-01-01' AND '2026-01-31'</code></td>
+                                <td><code>d &gt;= '2026-01-01' AND d &lt;= '2026-01-31'</code></td>
+                                <td>Includes both end dates</td>
+                                <td>Safe for pure DATE types</td>
+                            </tr>
+                            <tr>
+                                <td>Timestamp (DATETIME)</td>
+                                <td><code>WHERE ts BETWEEN '2026-01-01' AND '2026-01-31'</code></td>
+                                <td><code>ts &gt;= '2026-01-01' AND ts &lt;= '2026-01-31 00:00:00'</code></td>
+                                <td>Cuts off at midnight!</td>
+                                <td>Misses hours on final day</td>
+                            </tr>
+                            <tr>
+                                <td>Text (VARCHAR)</td>
+                                <td><code>WHERE name BETWEEN 'A' AND 'M'</code></td>
+                                <td><code>name &gt;= 'A' AND name &lt;= 'M'</code></td>
+                                <td>Includes 'A' up to 'M'</td>
+                                <td>Excludes 'Miller' (comes after 'M')</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Timestamp Midnight Trap with BETWEEN</h3>
+                <p>The most pervasive reporting error in SQL occurs when querying DATETIME or TIMESTAMP columns using BETWEEN:</p>
+                <ul>
+                    <li><strong>The Flawed Query:</strong> <code>WHERE order_timestamp BETWEEN '2026-01-01' AND '2026-01-31'</code> expands to <code>order_timestamp &lt;= '2026-01-31 00:00:00'</code>.</li>
+                    <li><strong>The Missed Revenue:</strong> An order placed at <code>2026-01-31 14:30:00</code> is completely excluded from the month-end report!</li>
+                    <li><strong>The Best Practice Fix:</strong> Always use explicit half-open intervals: <code>WHERE order_timestamp &gt;= '2026-01-01' AND order_timestamp &lt; '2026-02-01';</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Selecting Orders Within Summer Promotional Campaign:</strong> Extract orders placed between June 1 and August 31.</p>
+                <p><strong>Corporate Performance Bonus & Compensation Review:</strong> Audit enterprise compensation brackets and performance review scoring tiers for quarterly merit increases.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -213,35 +294,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Selecting Orders Within Summer Promotional Campaign</span>
+                        <span class="terminal-title">Production Queries &bull; Corporate Performance Bonus & Compensation Review</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> order_id, order_date, order_amount
-<span class="code-keyword">FROM</span> store_orders
-<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-06-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-08-31'</span>
-  <span class="code-keyword">AND</span> order_amount <span class="code-keyword">BETWEEN</span> 100.00 <span class="code-keyword">AND</span> 500.00;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: employee_compensation</span>
+<span class="code-comment">   emp_id | full_name       | department    | base_salary | rating_score | hire_date</span>
+<span class="code-comment">   -------+-----------------+---------------+-------------+--------------+------------</span>
+<span class="code-comment">   101    | Marcus Cole     | Engineering   | 85000.00    | 4.2          | 2024-03-15</span>
+<span class="code-comment">   102    | Susan Ivanova   | Operations    | 72000.00    | 3.8          | 2025-06-01</span>
+<span class="code-comment">   103    | John Sheridan   | Executive     | 130000.00   | 4.9          | 2023-01-10</span>
+<span class="code-comment">   104    | Stephen Franklin| Medical       | 95000.00    | 4.5          | 2024-08-20</span>
+<span class="code-comment">   105    | Michael Garibaldi| Security     | 68000.00    | 3.4          | 2025-11-05</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Isolate employees in the mid-tier salary band ($70,000 to $95,000)</span>
+<span class="code-keyword">SELECT</span> emp_id, full_name, base_salary
+<span class="code-keyword">FROM</span> employee_compensation
+<span class="code-keyword">WHERE</span> base_salary <span class="code-keyword">BETWEEN</span> 70000.00 <span class="code-keyword">AND</span> 95000.00;
+<span class="code-comment">-- Matches: Susan ($72,000), Marcus ($85,000), Stephen ($95,000 - boundary included)</span>
+
+<span class="code-comment">-- Requirement 2: Target high-performance ratings between 4.0 and 5.0 for bonus pool</span>
+<span class="code-keyword">SELECT</span> emp_id, full_name, rating_score, department
+<span class="code-keyword">FROM</span> employee_compensation
+<span class="code-keyword">WHERE</span> rating_score <span class="code-keyword">BETWEEN</span> 4.0 <span class="code-keyword">AND</span> 5.0;
+<span class="code-comment">-- Matches: Marcus (4.2), Stephen (4.5), John (4.9)</span>
+
+<span class="code-comment">-- Requirement 3: Identify staff hired during the 2024 calendar year</span>
+<span class="code-keyword">SELECT</span> emp_id, full_name, hire_date
+<span class="code-keyword">FROM</span> employee_compensation
+<span class="code-keyword">WHERE</span> hire_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2024-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2024-12-31'</span>;
+<span class="code-comment">-- Matches: Marcus Cole (2024-03-15) and Stephen Franklin (2024-08-20)</span>
+
+<span class="code-comment">-- Requirement 4: Isolate salary outliers falling outside standard range with NOT BETWEEN</span>
+<span class="code-keyword">SELECT</span> emp_id, full_name, base_salary
+<span class="code-keyword">FROM</span> employee_compensation
+<span class="code-keyword">WHERE</span> base_salary <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> 70000.00 <span class="code-keyword">AND</span> 100000.00;
+<span class="code-comment">-- Matches outliers: Michael ($68,000 - below) and John ($130,000 - above)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The BETWEEN operator filters metrics within an inclusive lower and upper boundary. It streamlines numerical ranges and chronological date intervals into elegant, readable SQL expressions.</p>
+                <p>The BETWEEN operator filters metrics within an inclusive lower and upper boundary, providing concise and readable interval checking across numbers, dates, and text.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Inclusive Range:</strong> Selects values within an interval where both the start and end values are included.</span>
+                            <span><strong>Inclusive on Both Ends:</strong> BETWEEN includes both the lower and upper threshold values in the evaluated range.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multi-Datatype:</strong> Applies to numbers, dates, timestamps, and alphabetical strings.</span>
+                            <span><strong>Operand Ordering:</strong> Always specify the lower boundary first; low AND high (e.g. BETWEEN 10 AND 50).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Syntactic Sugar:</strong> Directly equivalent to column >= val1 AND column <= val2.</span>
+                            <span><strong>The Timestamp Midnight Trap:</strong> For DATETIME or TIMESTAMP attributes, prefer half-open intervals (>= start AND < end) over BETWEEN to avoid missing end-day records.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Timestamp Precaution:</strong> Be aware that date literals default to midnight (00:00:00); use < next_day for full end-day coverage.</span>
+                            <span><strong>Index Range Scans:</strong> B-Tree indexes can satisfy BETWEEN queries efficiently using index range scans.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Negative Ranges:</strong> Use NOT BETWEEN to identify outlier records falling outside approved operational thresholds.</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +388,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

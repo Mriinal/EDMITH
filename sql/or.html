@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-id-card"></i></div>
+                    <div class="concept-icon"><i class="fas fa-ticket-alt"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Club Entry ID Analogy</h4>
-                        <p>When entering a venue, the security guard asks for proof of age. You can present a Driver's License, OR a Passport, OR a Military ID. Showing any single valid document grants you entry.</p>
-                        <p style="margin-top: 8px !important;">The OR operator requires only ONE condition to evaluate to TRUE. As long as any single condition matches, the row is accepted.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Concert Gate VIP Pass or Ticket Analogy</h4>
+                        <p>Imagine entering an arena for a major rock concert with thousands of fans queued up outside:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Regular Ticket Holder::</strong> A fan presents a general admission ticket at the gate; security admits them immediately.</li>
+                            <li><strong>2. The VIP Backstage Pass Holder::</strong> A celebrity has no standard ticket, but wears an official VIP wristband; security admits them too.</li>
+                            <li><strong>3. The Guest List Invitee::</strong> A journalist has neither, but their name is verified on the guest list; they are also admitted.</li>
+                            <li><strong>4. Inclusive Admission::</strong> Possessing Ticket OR VIP Wristband OR Guest List status is enough to enter; having more than one is fine.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The OR operator evaluates conditions disjunctively: if any single condition evaluates to TRUE, the record is immediately admitted.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The OR Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The OR Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,19 +195,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; or.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; or.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> condition1 <span class="code-keyword">OR</span> condition2;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Dual-Predicate Disjunction</span>
+<span class="code-keyword">SELECT</span> customer_id, name, membership_tier
+<span class="code-keyword">FROM</span> members
+<span class="code-keyword">WHERE</span> membership_tier = <span class="code-string">'GOLD'</span> <span class="code-keyword">OR</span> membership_tier = <span class="code-string">'PLATINUM'</span>;
+
+<span class="code-comment">-- 2. Multi-Column OR Condition</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, clearance_sale, units_in_stock
+<span class="code-keyword">FROM</span> store_catalog
+<span class="code-keyword">WHERE</span> clearance_sale = <span class="code-keyword">TRUE</span> <span class="code-keyword">OR</span> units_in_stock &lt; 5;
+
+<span class="code-comment">-- 3. Critical: Combining AND and OR with Parentheses</span>
+<span class="code-keyword">SELECT</span> order_id, order_status, total_amount, payment_method
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> (order_status = <span class="code-string">'PENDING'</span> <span class="code-keyword">OR</span> order_status = <span class="code-string">'PROCESSING'</span>)
+  <span class="code-keyword">AND</span> total_amount &gt; 500.00;
+
+<span class="code-comment">-- 4. Multi-Condition Regional Disjunction</span>
+<span class="code-keyword">SELECT</span> store_id, city, country
+<span class="code-keyword">FROM</span> retail_outlets
+<span class="code-keyword">WHERE</span> country = <span class="code-string">'France'</span> <span class="code-keyword">OR</span> country = <span class="code-string">'Germany'</span> <span class="code-keyword">OR</span> country = <span class="code-string">'Italy'</span>;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>OR</code> is a logical disjunction operator. A row is included in the query result if <strong>any</strong> of the conditions connected by <code>OR</code> evaluates to <code>TRUE</code>.</p>
-        <p>Because <code>AND</code> binds tighter than <code>OR</code> in standard SQL precedence, you should always wrap <code>OR</code> expressions in parentheses when mixing both in a single query.</p>
+                <p>The <code>OR</code> operator performs logical disjunction between boolean expressions. A compound condition returns <code>TRUE</code> if <strong>at least one</strong> of the evaluated predicates evaluates to <code>TRUE</code>.</p>
+                <ul>
+                    <li><strong>Dataset Expansion:</strong> Unlike AND which narrows result sets, OR expands result sets by accumulating records that satisfy disparate criteria.</li>
+                    <li><strong>Operator Precedence Danger:</strong> In SQL operator precedence, <code>AND</code> binds tighter than <code>OR</code>; failing to group OR conditions in parentheses causes critical logic bugs.</li>
+                    <li><strong>Index Merge Limitations:</strong> Queries combining conditions on separate columns with OR often require Index Merge scans or fall back to full table scans.</li>
+                    <li><strong>Alternative to IN:</strong> Multiple OR conditions checking the same column (e.g. <code>c = 1 OR c = 2 OR c = 3</code>) should be rewritten using <code>c IN (1, 2, 3)</code>.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Left Operand</th>
+                                <th>Operator</th>
+                                <th>Right Operand</th>
+                                <th>Resulting Truth Value</th>
+                                <th>Row Inclusion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TRUE</td>
+                                <td>OR</td>
+                                <td>FALSE</td>
+                                <td>TRUE</td>
+                                <td>Row Accepted into Result Set</td>
+                            </tr>
+                            <tr>
+                                <td>FALSE</td>
+                                <td>OR</td>
+                                <td>TRUE</td>
+                                <td>TRUE</td>
+                                <td>Row Accepted into Result Set</td>
+                            </tr>
+                            <tr>
+                                <td>FALSE</td>
+                                <td>OR</td>
+                                <td>FALSE</td>
+                                <td>FALSE</td>
+                                <td>Row Rejected immediately</td>
+                            </tr>
+                            <tr>
+                                <td>TRUE</td>
+                                <td>OR</td>
+                                <td>UNKNOWN (NULL)</td>
+                                <td>TRUE</td>
+                                <td>Row Accepted (TRUE dominates OR)</td>
+                            </tr>
+                            <tr>
+                                <td>FALSE</td>
+                                <td>OR</td>
+                                <td>UNKNOWN (NULL)</td>
+                                <td>UNKNOWN</td>
+                                <td>Row Rejected (Not strictly TRUE)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Parentheses Trap: Why AND Binds Tighter Than OR</h3>
+                <p>The most common bug in SQL condition authoring is forgetting operator precedence rules between AND and OR:</p>
+                <ul>
+                    <li><strong>The Buggy Query:</strong> <code>WHERE status = 'ACTIVE' OR status = 'TRIAL' AND score &gt; 90</code> is parsed as: <code>WHERE status = 'ACTIVE' OR (status = 'TRIAL' AND score &gt; 90)</code>!</li>
+                    <li><strong>The Devastating Result:</strong> Every single ACTIVE user is returned regardless of score, because the OR branch evaluates to TRUE independently.</li>
+                    <li><strong>The Fix:</strong> Always wrap OR statements in parentheses: <code>WHERE (status = 'ACTIVE' OR status = 'TRIAL') AND score &gt; 90</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Filtering Expedited or Priority Shipping Orders:</strong> Select shipments requiring urgent delivery across multiple shipping classes.</p>
+                <p><strong>Hospital Emergency Triage Alert System:</strong> Filter emergency room incoming patient telemetry to trigger physician alerts for critical vitals or trauma categories.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -209,36 +302,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Filtering Expedited or Priority Shipping Orders</span>
+                        <span class="terminal-title">Production Queries &bull; Hospital Emergency Triage Alert System</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> tracking_number, shipping_method, customer_id
-<span class="code-keyword">FROM</span> customer_shipments
-<span class="code-keyword">WHERE</span> shipping_method = <span class="code-string">'OVERNIGHT_AIR'</span>
-   <span class="code-keyword">OR</span> shipping_method = <span class="code-string">'SAME_DAY_COURIER'</span>
-   <span class="code-keyword">OR</span> is_emergency_order = <span class="code-keyword">TRUE</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: emergency_triage</span>
+<span class="code-comment">   patient_id | patient_name | heart_rate | oxygen_sat | trauma_flag | age</span>
+<span class="code-comment">   -----------+--------------+------------+------------+-------------+-----</span>
+<span class="code-comment">   301        | Marcus Vance | 135        | 98         | FALSE       | 42</span>
+<span class="code-comment">   302        | Lucy Chen    | 72         | 86         | FALSE       | 68</span>
+<span class="code-comment">   303        | David King   | 80         | 97         | TRUE        | 29</span>
+<span class="code-comment">   304        | Sarah Lee    | 75         | 99         | FALSE       | 35</span>
+<span class="code-comment">   305        | Robert Fox   | 140        | 84         | TRUE        | 77</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Trigger alert if patient has abnormal tachycardia (HR &gt; 120) OR low oxygen (&lt; 90%)</span>
+<span class="code-keyword">SELECT</span> patient_id, patient_name, heart_rate, oxygen_sat
+<span class="code-keyword">FROM</span> emergency_triage
+<span class="code-keyword">WHERE</span> heart_rate &gt; 120 <span class="code-keyword">OR</span> oxygen_sat &lt; 90;
+<span class="code-comment">-- Matches: Marcus (HR 135), Lucy (O2 86%), Robert (HR 140, O2 84%)</span>
+
+<span class="code-comment">-- Requirement 2: Immediate physician summons: Trauma flag TRUE OR oxygen &lt; 88%</span>
+<span class="code-keyword">SELECT</span> patient_id, patient_name, trauma_flag, oxygen_sat
+<span class="code-keyword">FROM</span> emergency_triage
+<span class="code-keyword">WHERE</span> trauma_flag = <span class="code-keyword">TRUE</span> <span class="code-keyword">OR</span> oxygen_sat &lt; 88;
+<span class="code-comment">-- Matches: Lucy (O2 86), David (Trauma TRUE), Robert (Trauma TRUE, O2 84)</span>
+
+<span class="code-comment">-- Requirement 3: Geriatric priority screening: (Age &gt;= 65) AND (Heart Rate &gt; 100 OR Oxygen &lt; 90)</span>
+<span class="code-keyword">SELECT</span> patient_id, patient_name, age, heart_rate, oxygen_sat
+<span class="code-keyword">FROM</span> emergency_triage
+<span class="code-keyword">WHERE</span> age &gt;= 65 <span class="code-keyword">AND</span> (heart_rate &gt; 100 <span class="code-keyword">OR</span> oxygen_sat &lt; 90);
+<span class="code-comment">-- Matches: Lucy (Age 68, O2 86) and Robert (Age 77, HR 140, O2 84)</span>
+
+<span class="code-comment">-- Requirement 4: Stable patient verification: Neither high HR NOR low oxygen</span>
+<span class="code-keyword">SELECT</span> patient_id, patient_name
+<span class="code-keyword">FROM</span> emergency_triage
+<span class="code-keyword">WHERE</span> heart_rate &lt;= 120 <span class="code-keyword">AND</span> oxygen_sat &gt;= 90 <span class="code-keyword">AND</span> trauma_flag = <span class="code-keyword">FALSE</span>;
+<span class="code-comment">-- Matches stable: Sarah Lee (HR 75, O2 99%)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The OR operator expands query horizons by including records that satisfy at least one filtering predicate. Grouping OR conditions inside explicit parentheses prevents logical evaluation pitfalls with neighboring AND expressions.</p>
+                <p>The OR operator broadens query scope by including records that satisfy at least one filtering predicate, serving as a flexible tool for inclusive categorical filtering.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Inclusive Disjunction:</strong> Returns TRUE if at least one condition in the expression evaluates to true.</span>
+                            <span><strong>Inclusive Disjunction:</strong> Records evaluating to TRUE on any single OR branch are admitted into the query output.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Parentheses Protection:</strong> Always enclose OR expressions in parentheses when combining with AND to prevent logic bugs.</span>
+                            <span><strong>Mandatory Parentheses:</strong> Always wrap OR statements in explicit parentheses when combining with AND to prevent precedence bugs.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Alternative to IN:</strong> Multiple OR checks on the same column (col = 'A' OR col = 'B') can be written concisely using IN ('A', 'B').</span>
+                            <span><strong>Prefer IN for Equality:</strong> Replace repeated OR equality checks on the same column (col = 1 OR col = 2) with the cleaner IN operator.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NULL Evaluation:</strong> TRUE OR NULL evaluates to TRUE; FALSE OR NULL evaluates to NULL.</span>
+                            <span><strong>Index Merge Considerations:</strong> OR conditions spanning different columns may require full table scans unless union indexes exist.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Three-Valued Truth Dominance:</strong> TRUE OR UNKNOWN evaluates to TRUE, allowing matching records to survive even if other attributes contain NULL.</span>
                         </li>
                     </ul>
                 </div>
@@ -269,7 +396,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

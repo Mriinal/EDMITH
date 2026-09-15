@@ -125,20 +125,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // --- 5. Code Block Copy Buttons ---
 function initCodeCopyButtons() {
+    // 1. Standalone tutorial blocks and carousel copy buttons
     document.querySelectorAll('.carousel-content, .lesson-content pre, .code-wrapper').forEach(container => {
-        // Find existing mac-header or create copy button directly
         const macHeader = container.querySelector('.mac-header');
         const preCode = container.tagName === 'PRE' ? container : container.querySelector('pre');
         if (!preCode) return;
 
-        if (macHeader && !macHeader.querySelector('.code-copy-btn')) {
+        // Skip if a copy button already exists in this header
+        if (macHeader && !macHeader.querySelector('.code-copy-btn, .editor-copy-btn')) {
             const copyBtn = document.createElement('button');
             copyBtn.className = 'code-copy-btn';
             copyBtn.title = 'Copy Code';
             copyBtn.innerHTML = '<i class="fas fa-copy"></i> <span>Copy</span>';
             macHeader.appendChild(copyBtn);
 
-            copyBtn.addEventListener('click', () => {
+            copyBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const codeText = preCode.innerText || preCode.textContent;
                 navigator.clipboard.writeText(codeText).then(() => {
                     copyBtn.innerHTML = '<i class="fas fa-check"></i> <span>Copied!</span>';
@@ -150,6 +152,63 @@ function initCodeCopyButtons() {
                 });
             });
         }
+    });
+
+    // 2. Pre-rendered editor-copy-btn buttons (e.g. homepage carousel)
+    document.querySelectorAll('.editor-copy-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const container = btn.closest('.carousel-content');
+            const preCode = container ? container.querySelector('pre') : null;
+            if (!preCode) return;
+
+            const codeText = preCode.innerText || preCode.textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> <span>Copied!</span>';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    });
+
+    // 3. Interactive Run Code simulation buttons on homepage carousel
+    document.querySelectorAll('.editor-run-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const container = btn.closest('.carousel-content');
+            const tray = container ? container.querySelector('.terminal-tray-output') : null;
+            const originalHTML = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Running...</span>';
+            btn.classList.add('running');
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> <span>Executed</span>';
+                btn.classList.remove('running');
+                btn.classList.add('success');
+
+                if (tray) {
+                    const now = new Date();
+                    const timeStr = now.toTimeString().split(' ')[0];
+                    const highlight = tray.querySelector('.term-highlight');
+                    if (highlight) {
+                        highlight.textContent = `Executed at ${timeStr} • OK (0.6ms)`;
+                    }
+                    tray.style.transition = 'opacity 0.2s ease';
+                    tray.style.opacity = '0.3';
+                    setTimeout(() => { tray.style.opacity = '1'; }, 100);
+                }
+
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('success');
+                }, 1800);
+            }, 350);
+        });
     });
 }
 document.addEventListener('DOMContentLoaded', initCodeCopyButtons);
@@ -166,6 +225,9 @@ if (carouselItems.length > 0) {
     let currentSlide = 0;
     let slideInterval;
     const carouselContainer = document.querySelector('.carousel-container');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    const prevArrow = document.querySelector('.carousel-arrow.prev-arrow');
+    const nextArrow = document.querySelector('.carousel-arrow.next-arrow');
 
     function updateCarousel() {
         carouselItems.forEach((item, index) => {
@@ -181,6 +243,17 @@ if (carouselItems.length > 0) {
                 item.classList.add('hidden'); 
             }
         });
+
+        // Synchronize dots
+        if (carouselDots.length > 0) {
+            carouselDots.forEach((dot, idx) => {
+                if (idx === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
     }
 
     function nextSlide() {
@@ -188,9 +261,14 @@ if (carouselItems.length > 0) {
         updateCarousel();
     }
 
+    function prevSlideAction() {
+        currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+        updateCarousel();
+    }
+
     function startAutoSlide() {
         if (!slideInterval) {
-            slideInterval = setInterval(nextSlide, 4000);
+            slideInterval = setInterval(nextSlide, 4500);
         }
     }
 
@@ -207,6 +285,7 @@ if (carouselItems.length > 0) {
         carouselContainer.addEventListener('mouseleave', startAutoSlide);
     }
 
+    // Slide card clicks
     carouselItems.forEach((item, index) => {
         item.addEventListener('click', () => {
             if (index !== currentSlide) {
@@ -217,6 +296,60 @@ if (carouselItems.length > 0) {
             }
         });
     });
+
+    // Dot indicators clicks
+    carouselDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            currentSlide = idx;
+            updateCarousel();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    });
+
+    // Arrow navigation buttons
+    if (prevArrow) {
+        prevArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevSlideAction();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+
+    if (nextArrow) {
+        nextArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+
+    // Touch Swipe Gestures for Mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    if (carouselContainer) {
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 45) {
+                // Swiped Left -> Next
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide();
+            } else if (touchEndX - touchStartX > 45) {
+                // Swiped Right -> Prev
+                prevSlideAction();
+                stopAutoSlide();
+                startAutoSlide();
+            }
+        }, { passive: true });
+    }
+
     updateCarousel();
 
     // --- SEARCH BUTTON LOGIC (index.html) ---
@@ -612,10 +745,25 @@ function initCollapsibleModules() {
             activeGroup.classList.remove('collapsed');
             const header = activeGroup.querySelector('.sidebar-module-header');
             if (header) header.setAttribute('aria-expanded', 'true');
-            // Scroll active item smoothly into view within sidebar
+            // Scroll active item smoothly into the vertical middle of the sidebar nav
             setTimeout(() => {
-                activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 150);
+                const sidebarNav = document.querySelector('.course-sidebar-nav');
+                if (sidebarNav) {
+                    const sidebarRect = sidebarNav.getBoundingClientRect();
+                    const activeRect = activeItem.getBoundingClientRect();
+                    // Calculate target scrollTop so activeItem is centered vertically in sidebarNav
+                    const currentScroll = sidebarNav.scrollTop;
+                    const relativeActiveTop = activeRect.top - sidebarRect.top + currentScroll;
+                    const targetScroll = relativeActiveTop - (sidebarRect.height / 2) + (activeRect.height / 2);
+
+                    sidebarNav.scrollTo({
+                        top: Math.max(0, targetScroll),
+                        behavior: 'smooth'
+                    });
+                } else {
+                    activeItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 180);
         }
     } else {
         // Default to opening Module 1

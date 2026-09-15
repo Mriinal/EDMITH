@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-address-book"></i></div>
+                    <div class="concept-icon"><i class="fas fa-id-badge"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Guest List Bouncer Analogy</h4>
-                        <p>Imagine hosting an exclusive conference where 500 attendees registered. Some attendees accidentally submitted the registration form three times with identical names and emails. The bouncer at the door checks off each name once, ensuring only unique guests are admitted.</p>
-                        <p style="margin-top: 8px !important;">SELECT DISTINCT is your database bouncer. It scrutinizes the projected output and eliminates duplicate identical rows, returning only distinct values.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The VIP Conference Bouncer Analogy</h4>
+                        <p>Imagine 500 attendees registering for an international developer summit, with some people accidentally clicking submit three times:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Duplicate Submissions::</strong> The attendee roster contains multiple duplicate registrations with identical names and corporate titles.</li>
+                            <li><strong>2. The Security Bouncer::</strong> The conference bouncer checks badges at the entrance, admitting each unique guest once and turning away duplicate passes.</li>
+                            <li><strong>3. Multi-Attribute Verification::</strong> If checking both Name and Company, two attendees named 'Alex' from different companies are both admitted.</li>
+                            <li><strong>4. The Memory Ledger::</strong> The bouncer maintains a mental tally of everyone admitted, which requires memory and sorting effort.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">SELECT DISTINCT evaluates the entire projected column combination and strips away duplicate identical rows from the final result set.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SELECT DISTINCT (Deduplication)</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SELECT DISTINCT (Deduplication)</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,22 +195,94 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; select-distinct.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; select-distinct.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> column1, column2
-<span class="code-keyword">FROM</span> table_name;
+                    <pre><code><span class="code-comment">-- 1. Deduplicate a Single Categorical Column</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> department
+<span class="code-keyword">FROM</span> employees;
 
-<span class="code-comment">-- Counting distinct items:</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">FROM</span> customers;</code></pre>
+<span class="code-comment">-- 2. Deduplicate Multi-Column Combinations (Tuple Uniqueness)</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> country, city
+<span class="code-keyword">FROM</span> customer_addresses
+<span class="code-keyword">ORDER BY</span> country, city;
+
+<span class="code-comment">-- 3. Count Unique Values using Aggregate COUNT(DISTINCT col)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> customer_id) <span class="code-keyword">AS</span> unique_purchasers
+<span class="code-keyword">FROM</span> online_orders;
+
+<span class="code-comment">-- 4. Deduplicate Joined Records Across Foreign Key Relations</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> p.category_name
+<span class="code-keyword">FROM</span> products p
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> order_items oi <span class="code-keyword">ON</span> p.product_id = oi.product_id;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>SELECT DISTINCT</code> evaluates the projected columns and eliminates all duplicate rows from the final result set. If multiple columns are specified, duplicate elimination applies to the <strong>combination</strong> of all listed columns.</p>
-        <p>Because deduplication requires sorting or building in-memory hash tables, using <code>DISTINCT</code> on large datasets incurs a measurable CPU cost. Apply it when you genuinely need unique categories or values.</p>
+                <p><code>SELECT DISTINCT</code> eliminates duplicate rows from the final projected output. Deduplication operates across the <strong>entire combination</strong> of projected columns rather than evaluating individual columns separately.</p>
+                <ul>
+                    <li><strong>Tuple-Level Uniqueness:</strong> A row is only dropped if every single column value in the projection list matches an already processed output row.</li>
+                    <li><strong>Memory Hash Cost:</strong> The query engine builds an in-memory hash set or performs a sort operation to detect duplicates, incurring measurable CPU and memory cost.</li>
+                    <li><strong>NULL Value Uniqueness:</strong> Under ANSI SQL rules, all NULL values in a column are considered duplicates of each other for DISTINCT operations.</li>
+                    <li><strong>Aggregation Synergy:</strong> Pairing <code>COUNT(DISTINCT column)</code> computes high-cardinality metrics such as Unique Monthly Active Users (MAU).</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Deduplication Pattern</th>
+                                <th>SQL Syntax</th>
+                                <th>Uniqueness Scope</th>
+                                <th>Sample Output</th>
+                                <th>Engine Execution</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single Column</td>
+                                <td><code>SELECT DISTINCT country</code></td>
+                                <td>Evaluates uniqueness of a single attribute</td>
+                                <td>US, UK, Germany, Japan</td>
+                                <td>HashAggregate or StreamAggregate</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-Column</td>
+                                <td><code>SELECT DISTINCT state, city</code></td>
+                                <td>Evaluates composite tuple (state + city)</td>
+                                <td>CA-San Francisco, CA-Oakland</td>
+                                <td>Sorts or hashes composite keys</td>
+                            </tr>
+                            <tr>
+                                <td>Count Unique</td>
+                                <td><code>SELECT COUNT(DISTINCT id)</code></td>
+                                <td>Returns scalar integer of distinct elements</td>
+                                <td>14,820 unique accounts</td>
+                                <td>Maintains bitmap / hyperloglog counter</td>
+                            </tr>
+                            <tr>
+                                <td>Distinct with Joins</td>
+                                <td><code>SELECT DISTINCT u.role FROM...</code></td>
+                                <td>Flattens 1-to-Many row duplications</td>
+                                <td>Admin, Editor, Reviewer</td>
+                                <td>Deduplicates post-join projection stream</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Understanding Multi-Column Tuple Deduplication</h3>
+                <p>A common point of confusion is assuming <code>DISTINCT</code> applies only to the first column. In SQL grammar, <code>DISTINCT</code> applies to the entire projected row tuple:</p>
+                <ul>
+                    <li><strong>The Tuple Rule:</strong> In <code>SELECT DISTINCT department, role FROM employees</code>, rows are only merged if BOTH department and role are identical.</li>
+                    <li><strong>Example:</strong> Row 1: (Engineering, Lead) and Row 2: (Engineering, Junior) are both retained because their composite tuples are distinct.</li>
+                    <li><strong>Performance Warning:</strong> Never place <code>DISTINCT</code> blindly on queries just to hide duplicate rows caused by incorrect JOIN conditions; fix the join criteria instead.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Extracting Unique Operating Countries and Cities:</strong> Generate a clean list of unique international locations where your platform has active subscribers.</p>
+                <p><strong>International E-Commerce Logistics Analysis:</strong> Identify unique delivery territories, shipping providers, and customer distribution channels from parcel logs.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -212,36 +292,69 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Extracting Unique Operating Countries and Cities</span>
+                        <span class="terminal-title">Production Queries &bull; International E-Commerce Logistics Analysis</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> 
-    billing_country, 
-    billing_city
-<span class="code-keyword">FROM</span> subscription_orders
-<span class="code-keyword">ORDER BY</span> billing_country <span class="code-keyword">ASC</span>, billing_city <span class="code-keyword">ASC</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: shipping_manifests</span>
+<span class="code-comment">   package_id | dest_country | dest_city     | courier   | status</span>
+<span class="code-comment">   -----------+--------------+---------------+-----------+-----------</span>
+<span class="code-comment">   901        | Canada       | Toronto       | FedEx     | DELIVERED</span>
+<span class="code-comment">   902        | USA          | New York      | UPS       | DELIVERED</span>
+<span class="code-comment">   903        | Canada       | Toronto       | FedEx     | DELIVERED</span>
+<span class="code-comment">   904        | USA          | San Francisco | FedEx     | DELIVERED</span>
+<span class="code-comment">   905        | Canada       | Vancouver     | DHL       | DELIVERED</span>
+<span class="code-comment">   906        | USA          | New York      | UPS       | IN_TRANSIT</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Extract all unique destination countries</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> dest_country
+<span class="code-keyword">FROM</span> shipping_manifests;
+<span class="code-comment">-- Matches: Canada, USA (2 unique nations extracted from 6 rows)</span>
+
+<span class="code-comment">-- Requirement 2: Extract unique geographic delivery corridors (Country + City)</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> dest_country, dest_city
+<span class="code-keyword">FROM</span> shipping_manifests
+<span class="code-keyword">ORDER BY</span> dest_country, dest_city;
+<span class="code-comment">-- Matches: (Canada, Toronto), (Canada, Vancouver), (USA, New York), (USA, San Francisco)</span>
+
+<span class="code-comment">-- Requirement 3: Extract unique courier carriers operating per city</span>
+<span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> dest_city, courier
+<span class="code-keyword">FROM</span> shipping_manifests
+<span class="code-keyword">ORDER BY</span> dest_city;
+<span class="code-comment">-- Matches: (New York, UPS), (San Francisco, FedEx), (Toronto, FedEx), (Vancouver, DHL)</span>
+
+<span class="code-comment">-- Requirement 4: Quantify total unique cities serviced across manifests</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> dest_city) <span class="code-keyword">AS</span> total_serviced_cities
+<span class="code-keyword">FROM</span> shipping_manifests;
+<span class="code-comment">-- Matches scalar: 4 unique serviced metropolitan areas</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>Deduplication via SELECT DISTINCT enforces relational uniqueness at the output layer. Understanding multi-column uniqueness and memory hash cost ensures precise analytics reports without unnecessarily degrading server throughput.</p>
+                <p>SELECT DISTINCT enforces output deduplication across projected columns, transforming duplicate-heavy transaction logs into clean categorical summaries.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Deduplication:</strong> SELECT DISTINCT filters out repeating rows and retains only unique instances.</span>
+                            <span><strong>Composite Uniqueness:</strong> DISTINCT evaluates the entire combination of projected columns together, not just the first column.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Multi-Column Scope:</strong> Uniqueness is evaluated across the tuple of all projected columns together, not individually.</span>
+                            <span><strong>Memory & Sorting Cost:</strong> Deduplication requires database memory for hash tables or sorting; use only when duplicates legitimately exist.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Counting Uniques:</strong> Combine with COUNT(DISTINCT col) to compute unique user or product metrics.</span>
+                            <span><strong>NULL Consolidation:</strong> ANSI SQL treats all NULL entries as identical duplicates, returning exactly one NULL per column.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Performance Cost:</strong> Requires sorting or hashing in database memory; use intentionally when duplicates exist.</span>
+                            <span><strong>Unique Aggregation:</strong> Combine COUNT(DISTINCT col) to compute authoritative metric counts like unique customers or sessions.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Join Discipline:</strong> Do not use DISTINCT as a quick fix for duplicate rows generated by misconfigured or Cartesian JOIN operations.</span>
                         </li>
                     </ul>
                 </div>
@@ -272,7 +385,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

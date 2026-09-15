@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Report a Bug & Platform Feedback - Help us keep EDMITH bug-free, lightning fast, and pedagogically sound.">
+    <title>Report a Bug - EDMITH</title>
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-container" aria-hidden="true">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Smart Header -->
+    <header class="header detail-header" id="detailHeader">
+        <nav class="navbar">
+            <a href="index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="course.html">Courses</a></li>
+                <li><a href="sql/index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+                <li><a href="index.html#contact">Contact Us</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="report-bug-container">
+        
+        <!-- Breadcrumbs -->
+        <div class="lesson-breadcrumbs" style="margin-bottom: 2rem;">
+            <a href="index.html">Home</a> &gt; <span>Report a Bug</span>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="report-bug-hero">
+            <span class="badge-coming-soon"><i class="fas fa-tools"></i> Coming Soon</span>
+            <h1>Report a Bug &amp; Feedback</h1>
+            <p>Help us maintain an impeccable learning experience across all courses and query terminals. Our unified bug tracking portal is currently under active development.</p>
+        </div>
+
+        <!-- Bug Portal Card Preview -->
+        <div class="bug-portal-card">
+            <div class="portal-banner">
+                <span class="portal-banner-text">
+                    <i class="fas fa-satellite-dish" style="color: var(--accent);"></i>
+                    Issue Tracker Portal Preview (v2.0)
+                </span>
+                <span class="badge-coming-soon"><i class="fas fa-clock"></i> Feature Launching Soon</span>
+            </div>
+
+            <form class="bug-form-body" onsubmit="event.preventDefault(); alert('🎉 Thank you for testing! Our automated bug reporting API is currently in final rollout. In the meantime, please send your bug reports directly to support@edmith.com or via GitHub Issues.');">
+                <div class="bug-form-grid">
+                    <div>
+                        <label class="bug-label" for="bugCategory">Bug Category</label>
+                        <select id="bugCategory" class="bug-select" required>
+                            <option value="" disabled selected>Select issue category...</option>
+                            <option value="syntax">SQL Query Syntax / Code Error</option>
+                            <option value="broken-link">Broken Link or 404 Navigation</option>
+                            <option value="ui">Theme / Dark Mode / Visual Glitch</option>
+                            <option value="mobile">Mobile Layout / Responsive Defect</option>
+                            <option value="terminal">Interactive Code Terminal Malfunction</option>
+                            <option value="typo">Lesson Typo or Pedagogical Suggestion</option>
+                            <option value="other">Other Technical Inconsistency</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="bug-label" for="pageUrl">Affected Webpage / Lesson URL</label>
+                        <input type="text" id="pageUrl" class="bug-input" placeholder="e.g. /sql/like.html or /sql/where.html" value="" />
+                    </div>
+
+                    <div class="form-group-full">
+                        <label class="bug-label" for="bugTitle">Issue Summary</label>
+                        <input type="text" id="bugTitle" class="bug-input" placeholder="Brief summary of the issue (e.g., Typo in WHERE clause scenario query)" required />
+                    </div>
+
+                    <div class="form-group-full">
+                        <label class="bug-label" for="bugSteps">Steps to Reproduce</label>
+                        <textarea id="bugSteps" class="bug-textarea" placeholder="1. Navigate to /sql/where.html&#10;2. Scroll to Practical Scenario&#10;3. Click the Copy button on the second terminal..." rows="3"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="bug-label" for="expectedBehavior">Expected Behavior</label>
+                        <textarea id="expectedBehavior" class="bug-textarea" placeholder="What did you expect to happen?" rows="3"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="bug-label" for="actualBehavior">Actual Behavior</label>
+                        <textarea id="actualBehavior" class="bug-textarea" placeholder="What actually occurred?" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group-full">
+                        <label class="bug-label">System Diagnostics (Auto-Detected)</label>
+                        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);" id="diagnosticInfo">
+                            Platform: Web Standard Engine &bull; Environment: Browser Client &bull; Viewport: Active
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bug-submit-row">
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">
+                        <i class="fas fa-info-circle"></i> Reports are automatically reviewed by the EDMITH curriculum &amp; engineering teams.
+                    </p>
+                    <button type="submit" class="btn-enroll" style="cursor: pointer;">
+                        <i class="fas fa-paper-plane"></i> Submit Bug Report
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Alternative Support Channels -->
+        <h2 style="font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--text-primary);">Alternative Reporting Channels</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">While the direct in-app portal is in final testing, use any of our live channels below:</p>
+
+        <div class="bug-channels-grid">
+            <div class="channel-card">
+                <div class="channel-icon"><i class="fas fa-envelope"></i></div>
+                <h3>Email Engineering</h3>
+                <p>Send details, screenshots, and logs directly to our platform maintenance team.</p>
+                <a href="mailto:support@edmith.com?subject=[Bug%20Report]%20EDMITH%20Platform" class="channel-link">
+                    support@edmith.com <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="channel-card">
+                <div class="channel-icon"><i class="fab fa-github"></i></div>
+                <h3>GitHub Issues</h3>
+                <p>Track open defects, inspect PR status, and contribute documentation fixes directly.</p>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="channel-link">
+                    Open an Issue <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+
+            <div class="channel-card">
+                <div class="channel-icon"><i class="fas fa-comments"></i></div>
+                <h3>Community Discord</h3>
+                <p>Discuss query edge cases and get live help from instructors and fellow students.</p>
+                <a href="index.html#contact" class="channel-link">
+                    Join Community <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="course.html">All Courses</a></li>
+                    <li><a href="sql/index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="index.html#contact">Help Center</a></li>
+                    <li><a href="index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="javascript/script.js"></script>
+    <script>
+        // Populate system diagnostics
+        document.addEventListener('DOMContentLoaded', () => {
+            const diag = document.getElementById('diagnosticInfo');
+            if (diag) {
+                diag.innerHTML = `Platform: ${navigator.platform || 'Unknown'} &bull; Browser: ${navigator.userAgent.split(' ')[0]} &bull; Viewport: ${window.innerWidth}x${window.innerHeight} &bull; Screen: ${screen.width}x${screen.height}`;
+            }
+        });
+    </script>
+</body>
+</html>

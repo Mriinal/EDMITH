@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-clone"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Blueprint Snapshot Copy Analogy</h4>
-                        <p>Before remodeling a house, an architect photocopies the entire architectural blueprint and stamps it 'Archive Backup 2026'. They keep the original intact and work on the duplicate.</p>
-                        <p style="margin-top: 8px !important;">SELECT INTO creates a brand-new table and populates it with the result set of a query in one step.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Emergency Disaster Backup Clone Analogy</h4>
+                        <p>Picture a corporate IT administrator creating an instantaneous physical disk backup before running major system maintenance:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Live Production Drive::</strong> The live production drive contains critical customer records actively being queried.</li>
+                            <li><strong>2. The Brand New Backup Drive::</strong> The administrator does not format a blank disk by hand; they insert a brand new cloned drive and issue a single clone command.</li>
+                            <li><strong>3. Single-Step Creation & Population::</strong> The command creates the drive partition and copies every file into it simultaneously in one atomic step!</li>
+                            <li><strong>4. Instant Staging Table::</strong> If anything goes wrong during maintenance, the cloned backup drive is immediately available to restore the system.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic operation.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The SELECT INTO Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The SELECT INTO Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,21 +195,100 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; select-into.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; select-into.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * 
-INTO new_table_name
-<span class="code-keyword">FROM</span> existing_table
-<span class="code-keyword">WHERE</span> condition;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. SQL Server / PostgreSQL / Sybase SELECT INTO Syntax</span>
+<span class="code-comment">-- Creates new table 'customers_backup_2026' and populates it in one step</span>
+<span class="code-keyword">SELECT</span> customer_id, customer_name, email, account_tier
+<span class="code-keyword">INTO</span> customers_backup_2026
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> account_status = <span class="code-string">'ACTIVE'</span>;
+
+<span class="code-comment">-- 2. Cloning Table Structure with ZERO Rows (WHERE 1 = 0)</span>
+<span class="code-keyword">SELECT</span> *
+<span class="code-keyword">INTO</span> empty_staging_template
+<span class="code-keyword">FROM</span> master_inventory
+<span class="code-keyword">WHERE</span> 1 = 0; <span class="code-comment">-- Copies column definitions and types with 0 data rows</span>
+
+<span class="code-comment">-- 3. ANSI Standard &amp; MySQL / Oracle Alternative: CREATE TABLE AS SELECT (CTAS)</span>
+<span class="code-comment">-- CREATE TABLE archived_orders_2025 AS</span>
+<span class="code-comment">-- SELECT * FROM sales_orders WHERE order_date &lt; '2026-01-01';</span>
+
+<span class="code-comment">-- 4. SELECT INTO with Computed Columns and Joins</span>
+<span class="code-keyword">SELECT</span> 
+    c.customer_name,
+    o.order_id,
+    o.order_total,
+    CURRENT_TIMESTAMP <span class="code-keyword">AS</span> snapshot_taken_at
+<span class="code-keyword">INTO</span> high_value_orders_snapshot
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
+<span class="code-keyword">WHERE</span> o.order_total &gt;= 5000.00;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>SELECT INTO</code> statement copies data from one table into a <strong>new table</strong>. The new table is created automatically with column names and data types inferred from the query.</p>
-        <p>In databases like PostgreSQL and Oracle that prefer standard SQL syntax, the equivalent standard command is <code>CREATE TABLE new_table AS SELECT ...</code>.</p>
+                <p>The <code>SELECT INTO</code> statement creates a new table in the database and populates it with the result set returned by the query. Unlike <code>INSERT INTO</code> which requires the destination table to already exist, <code>SELECT INTO</code> automatically creates the destination table.</p>
+                <ul>
+                    <li><strong>Atomic Creation and Load:</strong> The table schema is inferred automatically from the projected columns and populated in a single atomic transaction.</li>
+                    <li><strong>Dialect Variations:</strong> <code>SELECT ... INTO new_table</code> is native to SQL Server, PostgreSQL, and SQLite. MySQL and Oracle utilize <code>CREATE TABLE new_table AS SELECT ...</code> (CTAS).</li>
+                    <li><strong>Constraints & Indexes Not Copied:</strong> While column names and data types are copied, Primary Keys, Foreign Keys, Indexes, and Default constraints are <strong>not</strong> copied to the new table!</li>
+                    <li><strong>Fast Table Cloning:</strong> Using <code>WHERE 1 = 0</code> creates a blank schema clone instantly without transferring any data rows.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Feature / Aspect</th>
+                                <th><code>SELECT INTO</code></th>
+                                <th><code>INSERT INTO SELECT</code></th>
+                                <th><code>CREATE TABLE AS (CTAS)</code></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Target Table Status</td>
+                                <td>Must NOT exist (Created automatically)</td>
+                                <td>Must ALREADY exist in schema</td>
+                                <td>Must NOT exist (Created automatically)</td>
+                            </tr>
+                            <tr>
+                                <td>Schema Inference</td>
+                                <td>Automatically inferred from query</td>
+                                <td>Strictly uses pre-existing schema</td>
+                                <td>Automatically inferred from query</td>
+                            </tr>
+                            <tr>
+                                <td>Supported Engines</td>
+                                <td>SQL Server, PostgreSQL, SQLite</td>
+                                <td>All ANSI SQL databases</td>
+                                <td>MySQL, Oracle, PostgreSQL</td>
+                            </tr>
+                            <tr>
+                                <td>Index / Constraint Copy</td>
+                                <td>No (Indexes must be rebuilt manually)</td>
+                                <td>Uses existing table indexes</td>
+                                <td>No (Indexes must be rebuilt manually)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Missing Index Hazard of SELECT INTO Staging Tables</h3>
+                <p>A frequent operational hazard in data engineering is relying on SELECT INTO for high-speed reporting without recreating indexes:</p>
+                <ul>
+                    <li><strong>What Gets Copied:</strong> Column names, data types, and nullability flags are copied perfectly.</li>
+                    <li><strong>What is LOST:</strong> Primary Keys, B-Tree Indexes, Auto-Increment (IDENTITY) attributes, and Foreign Keys are stripped completely!</li>
+                    <li><strong>The Production Impact:</strong> If you query the new backup table in production without adding indexes, queries will perform slow full-table scans.</li>
+                    <li><strong>The Remedy:</strong> Always script <code>CREATE INDEX</code> statements immediately after running SELECT INTO for staging tables.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Creating an Audit Backup Table for End-of-Year Processing:</strong> Create a physical backup table of active customers before schema migration.</p>
+                <p><strong>Enterprise Cloud Migration & Data Warehouse Snapshot:</strong> Snapshot critical customer financial records into an isolated staging table prior to running destructive database schema migrations.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -211,35 +298,76 @@ INTO new_table_name
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Creating an Audit Backup Table for End-of-Year Processing</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Cloud Migration & Data Warehouse Snapshot</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> customer_id, email, account_balance, created_at
-INTO customers_backup_2026
-<span class="code-keyword">FROM</span> active_customers
-<span class="code-keyword">WHERE</span> is_verified = <span class="code-keyword">TRUE</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Live Production Table: live_customer_balances</span>
+<span class="code-comment">   cust_id | legal_name        | balance_usd | currency | tier</span>
+<span class="code-comment">   --------+-------------------+-------------+----------+-----------</span>
+<span class="code-comment">   101     | Vanguard Corp     | 450000.00   | USD      | TIER_1</span>
+<span class="code-comment">   102     | Cyberdyne Systems | 120000.00   | USD      | TIER_2</span>
+<span class="code-comment">   103     | Weyland Yutani    | 890000.00   | USD      | TIER_1</span>
+<span class="code-comment">   104     | Initech LLC       | 15000.00    | USD      | TIER_3</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Create an emergency pre-migration backup table of Tier 1 enterprise accounts</span>
+<span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd, tier
+<span class="code-keyword">INTO</span> migration_backup_tier1_2026
+<span class="code-keyword">FROM</span> live_customer_balances
+<span class="code-keyword">WHERE</span> tier = <span class="code-string">'TIER_1'</span>;
+<span class="code-comment">-- Matches: Creates table 'migration_backup_tier1_2026' with Vanguard and Weyland Yutani</span>
+
+<span class="code-comment">-- Requirement 2: Fast Schema Cloning: Create an empty staging template for ETL pipeline</span>
+<span class="code-keyword">SELECT</span> *
+<span class="code-keyword">INTO</span> staging_balances_template
+<span class="code-keyword">FROM</span> live_customer_balances
+<span class="code-keyword">WHERE</span> 1 = 0;
+<span class="code-comment">-- Matches: Creates 'staging_balances_template' with identical column types and 0 rows</span>
+
+<span class="code-comment">-- Requirement 3: Create denormalized reporting table with calculated metrics</span>
+<span class="code-keyword">SELECT</span> 
+    cust_id,
+    legal_name,
+    balance_usd,
+    <span class="code-func">ROUND</span>(balance_usd * 0.045, 2) <span class="code-keyword">AS</span> annual_interest_accrual,
+    CURRENT_DATE <span class="code-keyword">AS</span> snapshot_date
+<span class="code-keyword">INTO</span> financial_annual_accruals
+<span class="code-keyword">FROM</span> live_customer_balances;
+<span class="code-comment">-- Matches: New table created with calculated annual interest and audit snapshot date</span>
+
+<span class="code-comment">-- Requirement 4: Verification query inspecting records in the newly created backup table</span>
+<span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd
+<span class="code-keyword">FROM</span> migration_backup_tier1_2026
+<span class="code-keyword">ORDER BY</span> balance_usd <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: 2 records verified safely in isolated backup table</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The SELECT INTO statement creates a brand new physical table on the fly and populates it with the projected query results in a single atomic step, making it ideal for backups and ETL staging.</p>
+                <p>The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic step, making it ideal for backups and ETL staging.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Automatic Table Creation:</strong> Creates a new physical table directly from a query result set.</span>
+                            <span><strong>Automatic Table Creation:</strong> Creates and populates the destination table in a single atomic step without pre-defining the schema.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Schema Inference:</strong> Column names and datatypes are automatically inherited from source columns.</span>
+                            <span><strong>Dialect Syntax:</strong> Used in SQL Server, PostgreSQL, and SQLite; MySQL and Oracle use CREATE TABLE AS SELECT (CTAS).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Backup Utility:</strong> Standard practice for generating staging tables, snapshots, and migration backups.</span>
+                            <span><strong>Constraints Not Copied:</strong> Indexes, Primary Keys, and Foreign Keys are NOT copied; recreate them manually on the new table.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>ANSI Alternative:</strong> In PostgreSQL/MySQL/Oracle, use CREATE TABLE new_table AS SELECT...</span>
+                            <span><strong>Empty Schema Cloning:</strong> Use WHERE 1 = 0 to rapidly clone a table's schema structure with zero data rows.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Temporary Tables:</strong> Combine with temp table prefixes (e.g. INTO #temp_table) for scratchpad data processing.</span>
                         </li>
                     </ul>
                 </div>
@@ -270,7 +398,30 @@ INTO customers_backup_2026
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

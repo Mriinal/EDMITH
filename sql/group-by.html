@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,23 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-shapes"></i></div>
+                    <div class="concept-icon"><i class="fas fa-boxes"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Coin Sorting Machine Analogy</h4>
-                        <p>A coin sorting machine takes a mixed jar of coins and drops pennies into the penny bin, nickels into the nickel bin, and quarters into the quarter bin. You can then count each bin individually.</p>
-                        <p style="margin-top: 8px !important;">GROUP BY partitions your rows into summary buckets based on common column values.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Postal Mail Sorter Cubbyhole Analogy</h4>
+                        <p>Picture a central postal office processing 10,000 letters stamped for delivery across a metropolitan area:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Unsorted Pile::</strong> Letters arrive in one chaotic mountain on the warehouse floor.</li>
+                            <li><strong>2. The Sorter Cubbyholes (GROUP BY)::</strong> A mail clerk sorts letters into labeled pigeonhole cubbies based on ZIP code: 90210, 90211, 90212.</li>
+                            <li><strong>3. Aggregating Each Cubby::</strong> Once sorted, the clerk counts the letters in each cubby (COUNT) or weighs each batch (SUM/AVG).</li>
+                            <li><strong>4. One Summary per Bucket::</strong> Instead of 10,000 individual letters, the output is a clean summary report: 50 cubbies with their respective statistics.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The GROUP BY clause collapses detailed rows into aggregated summary buckets based on common categorical values.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The GROUP BY Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The GROUP BY Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,111 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; group-by.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; group-by.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> column_group, <span class="code-func">COUNT</span>(*), <span class="code-func">SUM</span>(metric)
-<span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">GROUP BY</span> column_group;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Single-Column Grouping with Standard Aggregates</span>
+<span class="code-keyword">SELECT</span> 
+    department,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> employee_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> average_salary,
+    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> peak_salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">GROUP BY</span> department;
+
+<span class="code-comment">-- 2. Multi-Column Grouping (Sub-Bucketing)</span>
+<span class="code-keyword">SELECT</span> 
+    country,
+    city,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_customers,
+    <span class="code-func">SUM</span>(account_balance) <span class="code-keyword">AS</span> total_regional_deposits
+<span class="code-keyword">FROM</span> customer_accounts
+<span class="code-keyword">GROUP BY</span> country, city;
+
+<span class="code-comment">-- 3. Grouping with WHERE Filter (WHERE filters rows BEFORE grouping)</span>
+<span class="code-keyword">SELECT</span> 
+    category_id,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> in_stock_product_count,
+    <span class="code-func">AVG</span>(unit_price) <span class="code-keyword">AS</span> avg_active_price
+<span class="code-keyword">FROM</span> store_products
+<span class="code-keyword">WHERE</span> discontinued = 0
+<span class="code-keyword">GROUP BY</span> category_id;
+
+<span class="code-comment">-- 4. Grouping by Expression or Date Truncation</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">EXTRACT</span>(YEAR <span class="code-keyword">FROM</span> order_date) <span class="code-keyword">AS</span> order_year,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> annual_order_volume,
+    <span class="code-func">SUM</span>(total_amount) <span class="code-keyword">AS</span> annual_revenue
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">GROUP BY</span> <span class="code-func">EXTRACT</span>(YEAR <span class="code-keyword">FROM</span> order_date);</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>GROUP BY</code> clause groups rows that have the same values into summary rows. It is almost always used in combination with aggregate functions (<code>COUNT</code>, <code>MAX</code>, <code>MIN</code>, <code>SUM</code>, <code>AVG</code>).</p>
-        <p><strong>The Golden Rule of GROUP BY:</strong> Any column appearing in the <code>SELECT</code> clause that is not wrapped inside an aggregate function <strong>must</strong> be listed in the <code>GROUP BY</code> clause.</p>
+                <p>The <code>GROUP BY</code> clause collapses multiple table records sharing identical values in specified columns into summary rows. It is almost always paired with aggregate functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>) to compute statistics for each group.</p>
+                <ul>
+                    <li><strong>The Non-Aggregated Column Rule:</strong> Every column in the SELECT projection list that is not wrapped in an aggregate function <strong>must</strong> be listed in the GROUP BY clause.</li>
+                    <li><strong>Lifecycle Execution Order:</strong> GROUP BY executes in Step 3 of query processing: after FROM and WHERE, but before HAVING, SELECT, and ORDER BY.</li>
+                    <li><strong>Multi-Column Hierarchies:</strong> Listing multiple columns (e.g. <code>GROUP BY department, role</code>) partitions data into granular sub-buckets for detailed analytics.</li>
+                    <li><strong>NULL Grouping Semantics:</strong> Under ANSI SQL rules, all NULL values in the grouping column are gathered together into a single distinct group.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Grouping Architecture</th>
+                                <th>Syntax Pattern</th>
+                                <th>Result Granularity</th>
+                                <th>Valid SELECT Projection</th>
+                                <th>Execution Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single Column</td>
+                                <td><code>GROUP BY dept</code></td>
+                                <td>1 row per distinct department</td>
+                                <td>dept + any aggregates</td>
+                                <td>Step 3 (After WHERE)</td>
+                            </tr>
+                            <tr>
+                                <td>Multi-Column</td>
+                                <td><code>GROUP BY state, city</code></td>
+                                <td>1 row per state/city combination</td>
+                                <td>state, city + aggregates</td>
+                                <td>Step 3 (Composite hash)</td>
+                            </tr>
+                            <tr>
+                                <td>Group by Expression</td>
+                                <td><code>GROUP BY YEAR(date)</code></td>
+                                <td>1 row per evaluated expression</td>
+                                <td>YEAR(date) + aggregates</td>
+                                <td>Evaluates formula per row</td>
+                            </tr>
+                            <tr>
+                                <td>Group by Rollup / Cube</td>
+                                <td><code>GROUP BY ROLLUP(a, b)</code></td>
+                                <td>Hierarchical subtotals + grand total</td>
+                                <td>Includes automatic subtotal rows</td>
+                                <td>Advanced OLAP aggregation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Famous 'Non-Aggregate Column' SQL Syntax Error</h3>
+                <p>The most notorious syntax error in database development is: <em>'Column X is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause'</em>:</p>
+                <ul>
+                    <li><strong>Why the Error Occurs:</strong> If you write <code>SELECT department, first_name, COUNT(*) FROM emp GROUP BY department;</code>, the engine cannot pick which <code>first_name</code> to display when 50 employees exist in Engineering!</li>
+                    <li><strong>The Resolution:</strong> Either add <code>first_name</code> to the GROUP BY clause, or wrap it in an aggregate function like <code>MIN(first_name)</code> or <code>STRING_AGG(first_name, ', ')</code>.</li>
+                    <li><strong>The Deterministic Rule:</strong> A query must never ask the database to guess which row value to display for a summary bucket.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Calculating Departmental Salary Expenses and Headcount:</strong> Group staff records by department to calculate financial totals.</p>
+                <p><strong>E-Commerce Departmental Sales Performance Dashboard:</strong> Group order transactions by product categories and fulfillment regions to power executive business intelligence revenue dashboards.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,37 +309,86 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Calculating Departmental Salary Expenses and Headcount</span>
+                        <span class="terminal-title">Production Queries &bull; E-Commerce Departmental Sales Performance Dashboard</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    department_name,
-    <span class="code-func">COUNT</span>(employee_id) <span class="code-keyword">AS</span> total_employees,
-    <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> total_department_payroll
-<span class="code-keyword">FROM</span> company_payroll
-<span class="code-keyword">GROUP BY</span> department_name;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: sales_transactions</span>
+<span class="code-comment">   txn_id | product_category | sales_rep   | sale_amount | region</span>
+<span class="code-comment">   -------+------------------+-------------+-------------+-------</span>
+<span class="code-comment">   501    | Hardware         | Alex        | 1200.00     | East</span>
+<span class="code-comment">   502    | Software         | Jordan      | 450.00      | West</span>
+<span class="code-comment">   503    | Hardware         | Taylor      | 800.00      | East</span>
+<span class="code-comment">   504    | Services         | Alex        | 2500.00     | East</span>
+<span class="code-comment">   505    | Software         | Jordan      | 950.00      | East</span>
+<span class="code-comment">   506    | Hardware         | Taylor      | 300.00      | West</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Summarize total revenue and deal counts by Product Category</span>
+<span class="code-keyword">SELECT</span> 
+    product_category,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> deals_closed,
+    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> category_revenue,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(sale_amount), 2) <span class="code-keyword">AS</span> avg_deal_size
+<span class="code-keyword">FROM</span> sales_transactions
+<span class="code-keyword">GROUP BY</span> product_category;
+<span class="code-comment">-- Matches: Hardware ($2,300 across 3 deals), Software ($1,400 across 2 deals), Services ($2,500 across 1 deal)</span>
+
+<span class="code-comment">-- Requirement 2: Multi-Column Sub-Bucket Grouping: Category and Geographic Region</span>
+<span class="code-keyword">SELECT</span> 
+    product_category,
+    region,
+    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> deals,
+    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> regional_revenue
+<span class="code-keyword">FROM</span> sales_transactions
+<span class="code-keyword">GROUP BY</span> product_category, region
+<span class="code-keyword">ORDER BY</span> product_category, region;
+<span class="code-comment">-- Matches: Hardware-East ($2000), Hardware-West ($300), Services-East ($2500), Software-East ($950), Software-West ($450)</span>
+
+<span class="code-comment">-- Requirement 3: Combine row-level WHERE filtering before grouping</span>
+<span class="code-keyword">SELECT</span> 
+    sales_rep,
+    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> total_east_sales
+<span class="code-keyword">FROM</span> sales_transactions
+<span class="code-keyword">WHERE</span> region = <span class="code-string">'East'</span>
+<span class="code-keyword">GROUP BY</span> sales_rep;
+<span class="code-comment">-- Matches: Alex ($3700), Taylor ($800), Jordan ($950) in East region</span>
+
+<span class="code-comment">-- Requirement 4: High-volume category identification with sorting</span>
+<span class="code-keyword">SELECT</span> 
+    product_category,
+    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> total_revenue
+<span class="code-keyword">FROM</span> sales_transactions
+<span class="code-keyword">GROUP BY</span> product_category
+<span class="code-keyword">ORDER BY</span> total_revenue <span class="code-keyword">DESC</span>;
+<span class="code-comment">-- Matches: Services ($2500) first, Hardware ($2300) second, Software ($1400) third</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The GROUP BY clause collapses detailed rows into aggregated summary buckets. Executing before HAVING and SELECT, GROUP BY is the indispensable engine powering analytical rollups and categorical business reports.</p>
+                <p>The GROUP BY clause collapses detailed rows into aggregated summary buckets, powering analytical rollups and categorical business reports across database systems.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Row Bucketing:</strong> Collapses individual records into distinct summary groups based on shared values.</span>
+                            <span><strong>The Non-Aggregate Rule:</strong> Every non-aggregated column in the SELECT list must be explicitly declared in the GROUP BY clause.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Aggregate Pairing:</strong> Used with SUM, AVG, COUNT, MIN, MAX to compute group-level statistics.</span>
+                            <span><strong>Execution Sequence:</strong> GROUP BY executes in Step 3, right after WHERE, but before HAVING, SELECT, and ORDER BY.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>The Projection Rule:</strong> Every non-aggregated column in SELECT must be declared in GROUP BY.</span>
+                            <span><strong>Multi-Column Grouping:</strong> Chain multiple columns in GROUP BY to create multi-level hierarchical sub-buckets.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Logical Position:</strong> Executes in Step 3, immediately following the WHERE clause filtering.</span>
+                            <span><strong>NULL Grouping:</strong> All NULL values in a grouping column are gathered together into a single summary group.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Synergy with HAVING:</strong> Filter raw records with WHERE before grouping, and filter aggregated groups with HAVING after grouping.</span>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +419,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

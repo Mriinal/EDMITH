@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-handshake"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Two-Party Signature Handshake Analogy</h4>
-                        <p>For a legal business partnership to be official, both partners must show up, agree, and sign the registry. If partner A attends but partner B does not, no partnership record is created.</p>
-                        <p style="margin-top: 8px !important;">INNER JOIN selects records that have matching values in BOTH tables. Unmatched rows are excluded.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Mutual Passport Border Control Analogy</h4>
+                        <p>Picture a bilateral international trade agreement between Country A and Country B:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Mutual Agreement Required::</strong> A traveler is granted passage across the border IF AND ONLY IF their credentials match both Country A's registry AND Country B's visa database.</li>
+                            <li><strong>2. Citizens Without Visas::</strong> A Country A citizen with no entry visa in Country B is turned away (discarded).</li>
+                            <li><strong>3. Orphaned Visas::</strong> An approved visa record in Country B with no corresponding traveler at the gate is discarded.</li>
+                            <li><strong>4. The Perfect Match::</strong> Only active pairs where keys match on both sides pass through the checkpoint.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">INNER JOIN returns strictly matching records where common relationship keys intersect across two tables, discarding non-matching rows from both sides.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>INNER JOIN</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>INNER JOIN</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,20 +195,114 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; inner-join.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; inner-join.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> columns
-<span class="code-keyword">FROM</span> table_a
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> table_b <span class="code-keyword">ON</span> table_a.key = table_b.key;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Standard Two-Table Inner Join with Primary/Foreign Key</span>
+<span class="code-keyword">SELECT</span> 
+    e.employee_id,
+    e.first_name,
+    d.department_name
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id;
+
+<span class="code-comment">-- 2. Inner Join with Multiple Join Conditions (Composite Key)</span>
+<span class="code-keyword">SELECT</span> 
+    oi.order_id,
+    p.product_name,
+    oi.quantity,
+    oi.unit_price
+<span class="code-keyword">FROM</span> order_items oi
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> products p 
+    <span class="code-keyword">ON</span> oi.product_id = p.product_id 
+   <span class="code-keyword">AND</span> oi.warehouse_id = p.warehouse_id;
+
+<span class="code-comment">-- 3. Chaining Multiple Inner Joins across Business Entities</span>
+<span class="code-keyword">SELECT</span> 
+    u.username,
+    o.order_id,
+    p.product_name,
+    c.category_name
+<span class="code-keyword">FROM</span> users u
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> u.user_id = o.user_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> order_items oi <span class="code-keyword">ON</span> o.order_id = oi.order_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> products p <span class="code-keyword">ON</span> oi.product_id = p.product_id
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> categories c <span class="code-keyword">ON</span> p.category_id = c.category_id;
+
+<span class="code-comment">-- 4. Inner Join Combined with WHERE and ORDER BY</span>
+<span class="code-keyword">SELECT</span> e.first_name, d.department_name, e.salary
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> departments d <span class="code-keyword">ON</span> e.department_id = d.department_id
+<span class="code-keyword">WHERE</span> e.salary &gt;= 80000.00
+<span class="code-keyword">ORDER BY</span> e.salary <span class="code-keyword">DESC</span>;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>INNER JOIN</code> is the default and most widely used join type in relational databases. It returns rows only when there is a match in both the left and right tables.</p>
-        <p>If a row in Table A does not have a matching key in Table B, it is discarded from the result set. Database query planners use indexes on join columns to make inner joins extremely fast.</p>
+                <p><code>INNER JOIN</code> is the default and most widely utilized join type in SQL. It evaluates the join predicate declared in the <code>ON</code> clause and returns only the rows where matching values exist in <strong>both</strong> the left and right tables.</p>
+                <ul>
+                    <li><strong>Strict Intersection:</strong> Non-matching rows from either the left or right table are completely excluded from the result set.</li>
+                    <li><strong>Symmetric Invariance:</strong> <code>A INNER JOIN B</code> is semantically identical to <code>B INNER JOIN A</code>; the optimizer chooses the driving table based on statistics.</li>
+                    <li><strong>Index Seek Performance:</strong> When the join column in the right table has a primary or foreign key index, the database performs index seeks in O(log N) time.</li>
+                    <li><strong>Implicit Syntax Deprecation:</strong> Avoid legacy comma-separated joins (<code>FROM A, B WHERE A.id = B.id</code>); explicit <code>INNER JOIN ... ON</code> is ANSI standard and less error-prone.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Join Condition</th>
+                                <th>Syntax Pattern</th>
+                                <th>Left Match Requirement</th>
+                                <th>Right Match Requirement</th>
+                                <th>Index Behavior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Single Key Equality</td>
+                                <td><code>ON a.id = b.id</code></td>
+                                <td>Must match b.id</td>
+                                <td>Must match a.id</td>
+                                <td>Indexed: Fast Nested Loop / Hash Join</td>
+                            </tr>
+                            <tr>
+                                <td>Composite Key Equality</td>
+                                <td><code>ON a.k1 = b.k1 AND a.k2 = b.k2</code></td>
+                                <td>Both keys must match</td>
+                                <td>Both keys must match</td>
+                                <td>Utilizes composite multi-column index</td>
+                            </tr>
+                            <tr>
+                                <td>Range / Inequality Join</td>
+                                <td><code>ON a.val BETWEEN b.low AND b.high</code></td>
+                                <td>Must fall in range</td>
+                                <td>Range must bracket value</td>
+                                <td>Index range scan or nested loops</td>
+                            </tr>
+                            <tr>
+                                <td>Implicit Comma Join</td>
+                                <td><code>FROM a, b WHERE a.id = b.id</code></td>
+                                <td>Identical to INNER JOIN</td>
+                                <td>Identical to INNER JOIN</td>
+                                <td>Deprecated; prone to accidental cross joins</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Why Explicit INNER JOIN ... ON Replaced the Comma Syntax</h3>
+                <p>Decades ago, developers wrote joins using commas: <code>SELECT * FROM customers c, orders o WHERE c.id = o.cust_id</code>:</p>
+                <ul>
+                    <li><strong>The Accidental Cartesian Threat:</strong> If a developer forgets the WHERE clause in comma syntax, the query silently becomes a massive CROSS JOIN, freezing the database.</li>
+                    <li><strong>Logical Separation:</strong> Explicit ANSI syntax separates the relational connection rules (in the <code>ON</code> clause) from the row filtering rules (in the <code>WHERE</code> clause).</li>
+                    <li><strong>Optimizer Portability:</strong> Explicit joins adhere strictly to SQL-92 standards and ensure optimal execution plan choices across PostgreSQL, MySQL, and SQL Server.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Joining Students with Course Registrations:</strong> Fetch only students who are actively registered in at least one university course.</p>
+                <p><strong>Hospital Surgical Department & Physician Procedure Scheduling:</strong> Correlate hospital patient surgical bookings with assigned board-certified surgeons and surgical theater suites.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -210,39 +312,84 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Joining Students with Course Registrations</span>
+                        <span class="terminal-title">Production Queries &bull; Hospital Surgical Department & Physician Procedure Scheduling</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> 
-    s.student_id, 
-    s.full_name, 
-    c.course_name, 
-    c.department
-<span class="code-keyword">FROM</span> students s
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> enrollments e <span class="code-keyword">ON</span> s.student_id = e.student_id
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> courses c <span class="code-keyword">ON</span> e.course_id = c.course_id;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset:</span>
+<span class="code-comment">   surgeons: (doc_id, doctor_name, specialty)</span>
+<span class="code-comment">   surgeries: (surgery_id, patient_name, doc_id, theater_room)</span>
+<span class="code-comment">   Surgeon 10: Dr. House (Diagnostic), Surgeon 20: Dr. Grey (General), Surgeon 30: Dr. Strange (Neuro)</span>
+<span class="code-comment">   Surgeries: </span>
+<span class="code-comment">   #1: Alice with Doc 20</span>
+<span class="code-comment">   #2: Bob with Doc 30</span>
+<span class="code-comment">   #3: Charlie with Doc 20</span>
+<span class="code-comment">   #4: David with Doc 99 (Unassigned / visiting physician)</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Match scheduled surgical procedures with certified staff physicians</span>
+<span class="code-keyword">SELECT</span> 
+    s.surgery_id,
+    s.patient_name,
+    doc.doctor_name,
+    doc.specialty,
+    s.theater_room
+<span class="code-keyword">FROM</span> surgeries s
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> surgeons doc <span class="code-keyword">ON</span> s.doc_id = doc.doc_id;
+<span class="code-comment">-- Matches: Alice (Dr. Grey), Bob (Dr. Strange), Charlie (Dr. Grey). Surgery 4 (Doc 99) is excluded.</span>
+
+<span class="code-comment">-- Requirement 2: Filter for General Surgery department procedures</span>
+<span class="code-keyword">SELECT</span> 
+    s.patient_name,
+    doc.doctor_name,
+    s.theater_room
+<span class="code-keyword">FROM</span> surgeries s
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> surgeons doc <span class="code-keyword">ON</span> s.doc_id = doc.doc_id
+<span class="code-keyword">WHERE</span> doc.specialty = <span class="code-string">'General'</span>;
+<span class="code-comment">-- Matches: Alice and Charlie with Dr. Grey</span>
+
+<span class="code-comment">-- Requirement 3: Count procedures completed per surgeon</span>
+<span class="code-keyword">SELECT</span> 
+    doc.doctor_name,
+    <span class="code-func">COUNT</span>(s.surgery_id) <span class="code-keyword">AS</span> procedures_scheduled
+<span class="code-keyword">FROM</span> surgeons doc
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> surgeries s <span class="code-keyword">ON</span> doc.doc_id = s.doc_id
+<span class="code-keyword">GROUP BY</span> doc.doctor_name;
+<span class="code-comment">-- Matches: Dr. Grey (2 procedures), Dr. Strange (1 procedure). Dr. House (0) is excluded by INNER JOIN.</span>
+
+<span class="code-comment">-- Requirement 4: Disambiguate procedures in Theater Room 1</span>
+<span class="code-keyword">SELECT</span> s.surgery_id, s.patient_name, doc.doctor_name
+<span class="code-keyword">FROM</span> surgeries s
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> surgeons doc <span class="code-keyword">ON</span> s.doc_id = doc.doc_id
+<span class="code-keyword">WHERE</span> s.theater_room = <span class="code-string">'Suite-1'</span>;
+<span class="code-comment">-- Matches procedures assigned to Suite-1</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>INNER JOIN extracts strictly matching records where common relationship keys intersect across two tables. It guarantees referential correlation and serves as the most widely used join pattern in software engineering.</p>
+                <p>INNER JOIN extracts strictly matching records where common relationship keys intersect across two tables, guaranteeing referential correlation across production queries.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Relational Intersection:</strong> Returns rows only where matching keys exist in both tables.</span>
+                            <span><strong>Strict Intersection:</strong> Returns rows only when the join condition evaluates to TRUE for both tables; non-matching rows are omitted.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Excludes Non-Matches:</strong> Orphan rows with no counterpart are automatically eliminated.</span>
+                            <span><strong>Always Use Explicit ON:</strong> Use explicit INNER JOIN ... ON syntax rather than legacy comma-separated WHERE joins.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Default Join:</strong> Writing plain JOIN defaults to INNER JOIN in standard SQL.</span>
+                            <span><strong>Symmetric Property:</strong> A INNER JOIN B is semantically equivalent to B INNER JOIN A; table ordering does not change the result set.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Index Utilization:</strong> Placing B-Tree indexes on foreign keys dramatically accelerates inner join performance.</span>
+                            <span><strong>Index Matching:</strong> Index foreign keys to enable database optimizers to execute high-speed Nested Loop or Hash joins.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Chaining Joins:</strong> Multiple tables can be joined consecutively to build complex relational views across normalized schemas.</span>
                         </li>
                     </ul>
                 </div>
@@ -273,7 +420,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

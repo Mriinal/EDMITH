@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -168,16 +169,31 @@
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="concept-icon"><i class="fas fa-user-slash"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The VIP Exclusion Filter Analogy</h4>
-                        <p>Imagine an invitation system that sends announcements to everyone in a database EXCEPT accounts on the blocked spammer list. You want to invert the check: include all records that are NOT on the blacklist.</p>
-                        <p style="margin-top: 8px !important;">The NOT operator inverts any boolean condition: TRUE becomes FALSE, and FALSE becomes TRUE.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Security Do-Not-Admit Blacklist Analogy</h4>
+                        <p>Imagine security staff at a premier financial trading building managing perimeter entry:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Default Admission::</strong> Regular visitors and credentialed employees walk through turnstiles automatically.</li>
+                            <li><strong>2. The Blacklist Document::</strong> Security maintains a specific blacklist of terminated staff, revoked badges, and suspended contractors.</li>
+                            <li><strong>3. The NOT Operator::</strong> The NOT operator applies negation: Admit visitor IF NOT On Blacklist.</li>
+                            <li><strong>4. Inverted Logic::</strong> If a candidate matches the criteria, they are turned away; only candidates outside the blacklist enter.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The NOT operator inverts boolean evaluations: TRUE becomes FALSE, FALSE becomes TRUE, and UNKNOWN remains UNKNOWN.</p>
                     </div>
+                </div>
+                <!-- Reference Guide Callout Box -->
+                <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                    <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+                        <i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+                        <strong>Looking for more operators &amp; pattern-matching rules?</strong> Check out our dedicated reference guides in Module 3:
+                        <br>&bull; <a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Operators Reference (Module 3)</a> &mdash; Full catalog of comparison, logical, and arithmetic operators.
+                        <br>&bull; <a href="wildcards.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Wildcards Reference (Module 3)</a> &mdash; Complete rules and symbols for <code>NOT LIKE</code> pattern matching.
+                    </p>
                 </div>
 
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The NOT Operator</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The NOT Operator</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,25 +203,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; not.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; not.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> table_name
-<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> condition;
+                    <pre><code><span class="code-comment">-- 1. Simple Boolean Negation with Inequality</span>
+<span class="code-keyword">SELECT</span> user_id, username, is_banned
+<span class="code-keyword">FROM</span> community_members
+<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> (is_banned = <span class="code-keyword">TRUE</span>);
 
-<span class="code-comment">-- Common combinations:</span>
-<span class="code-keyword">WHERE</span> column <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'A'</span>, <span class="code-string">'B'</span>);
-<span class="code-keyword">WHERE</span> column <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> 10 <span class="code-keyword">AND</span> 20;
-<span class="code-keyword">WHERE</span> column <span class="code-keyword">NOT</span> <span class="code-keyword">LIKE</span> <span class="code-string">'Test%'</span>;
-<span class="code-keyword">WHERE</span> column <span class="code-keyword">IS <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span></span>;</code></pre>
+<span class="code-comment">-- 2. Exclusion Set Filtering using NOT IN</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, department
+<span class="code-keyword">FROM</span> company_staff
+<span class="code-keyword">WHERE</span> department <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'Executive'</span>, <span class="code-string">'Legal'</span>, <span class="code-string">'Auditing'</span>);
+
+<span class="code-comment">-- 3. Inverting Pattern Searches with NOT LIKE</span>
+<span class="code-keyword">SELECT</span> file_id, file_name, file_extension
+<span class="code-keyword">FROM</span> system_assets
+<span class="code-keyword">WHERE</span> file_name <span class="code-keyword">NOT</span> <span class="code-keyword">LIKE</span> <span class="code-string">'temp_%'</span>;
+
+<span class="code-comment">-- 4. Range Exclusion using NOT BETWEEN</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, unit_price
+<span class="code-keyword">FROM</span> store_inventory
+<span class="code-keyword">WHERE</span> unit_price <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> 50.00 <span class="code-keyword">AND</span> 150.00;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>NOT</code> operator is a unary operator that negates the result of any boolean expression. It frequently pairs with other keywords, such as <code>NOT IN</code>, <code>NOT BETWEEN</code>, <code>NOT LIKE</code>, and <code>IS NOT NULL</code>.</p>
-        <p>Be cautious with <code>NOT IN</code> when the subquery contains <code>NULL</code> values: in standard SQL, if any item in a <code>NOT IN</code> list is null, the entire expression evaluates to UNKNOWN and returns zero rows.</p>
+                <p>The <code>NOT</code> operator inverts the truth value of any boolean expression. It is frequently combined with secondary operators such as <code>IN</code>, <code>LIKE</code>, <code>BETWEEN</code>, and <code>NULL</code> checks (<code>IS NOT NULL</code>).</p>
+                <ul>
+                    <li><strong>Truth Inversion:</strong> NOT TRUE = FALSE; NOT FALSE = TRUE; NOT UNKNOWN = UNKNOWN.</li>
+                    <li><strong>Index Invalidation Warning:</strong> Applying NOT or <code>!=</code> frequently prevents B-Tree index seeks because the engine cannot use index ordering to find non-matches.</li>
+                    <li><strong>The Deadly NOT IN with NULL Trap:</strong> If a subquery or list inside <code>NOT IN</code> contains a single NULL, the entire expression evaluates to UNKNOWN and returns zero rows!</li>
+                    <li><strong>Syntax Clarity:</strong> Using <code>IS NOT NULL</code> is universally preferred over writing <code>NOT (col IS NULL)</code> for team readability.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Inversion Operator</th>
+                                <th>SQL Syntax Example</th>
+                                <th>Negation Behavior</th>
+                                <th>Matching Example</th>
+                                <th>Index Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NOT IN</td>
+                                <td><code>WHERE role NOT IN ('ADMIN')</code></td>
+                                <td>Excludes all elements in specified set</td>
+                                <td>Employees who are not Admin</td>
+                                <td>Moderate (Scan or Anti-Join)</td>
+                            </tr>
+                            <tr>
+                                <td>NOT LIKE</td>
+                                <td><code>WHERE code NOT LIKE 'ERR%'</code></td>
+                                <td>Excludes matching wildcard patterns</td>
+                                <td>Codes not starting with 'ERR'</td>
+                                <td>Usually triggers Table Scan</td>
+                            </tr>
+                            <tr>
+                                <td>NOT BETWEEN</td>
+                                <td><code>WHERE val NOT BETWEEN 10 AND 20</code></td>
+                                <td>Excludes inclusive numeric/date range</td>
+                                <td>Values &lt; 10 or &gt; 20</td>
+                                <td>Requires multiple range scans</td>
+                            </tr>
+                            <tr>
+                                <td>IS NOT NULL</td>
+                                <td><code>WHERE email IS NOT NULL</code></td>
+                                <td>Verifies presence of valid value</td>
+                                <td>Accounts with known email</td>
+                                <td>High (Can use partial index)</td>
+                            </tr>
+                            <tr>
+                                <td>NOT EXISTS</td>
+                                <td><code>WHERE NOT EXISTS (subquery)</code></td>
+                                <td>Returns TRUE if subquery is empty</td>
+                                <td>Customers with zero returns</td>
+                                <td>Optimized Anti-Semi Join</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>The Deadly NOT IN (NULL) Trap in Production SQL</h3>
+                <p>The most dangerous pitfall in SQL logic involves combining <code>NOT IN</code> with a dataset containing NULL values:</p>
+                <ul>
+                    <li><strong>The Mathematical Problem:</strong> <code>x NOT IN (1, 2, NULL)</code> expands to: <code>x != 1 AND x != 2 AND x != NULL</code>.</li>
+                    <li><strong>The Three-Valued Collapse:</strong> Because <code>x != NULL</code> evaluates to UNKNOWN, any boolean ANDed with UNKNOWN yields UNKNOWN or FALSE!</li>
+                    <li><strong>The Result:</strong> The query returns <strong>0 rows</strong>, even if thousands of valid records exist!</li>
+                    <li><strong>The Solution:</strong> Always use <code>NOT EXISTS</code> or ensure target columns have strict <code>NOT NULL</code> constraints.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Excluding Inactive or Cancelled Accounts:</strong> Pull active customer orders while filtering out test accounts and cancelled states.</p>
+                <p><strong>Enterprise Subscription Churn & Suppression Audit:</strong> Identify active software subscribers who have not opted into marketing suppression lists and do not belong to internal testing accounts.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -215,34 +310,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Excluding Inactive or Cancelled Accounts</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise Subscription Churn & Suppression Audit</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> order_id, customer_email, order_status
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> (order_status = <span class="code-string">'CANCELLED'</span> <span class="code-keyword">OR</span> is_test_account = <span class="code-keyword">TRUE</span>);</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: customer_subscribers</span>
+<span class="code-comment">   sub_id | email                | plan_tier  | is_test_user | unsubscribed</span>
+<span class="code-comment">   -------+----------------------+------------+--------------+--------------</span>
+<span class="code-comment">   701    | alice@acme.corp      | ENTERPRISE | FALSE        | FALSE</span>
+<span class="code-comment">   702    | bob_qa@test.com      | DEVELOPER  | TRUE         | FALSE</span>
+<span class="code-comment">   703    | charlie@startup.io   | PRO        | FALSE        | TRUE</span>
+<span class="code-comment">   704    | dev_mock@internal    | ENTERPRISE | TRUE         | TRUE</span>
+<span class="code-comment">   705    | diana@globaltech.com | PRO        | FALSE        | FALSE</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Filter out internal QA and test accounts using boolean NOT</span>
+<span class="code-keyword">SELECT</span> sub_id, email, plan_tier
+<span class="code-keyword">FROM</span> customer_subscribers
+<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> is_test_user;
+<span class="code-comment">-- Matches real users: Alice (701), Charlie (703), Diana (705)</span>
+
+<span class="code-comment">-- Requirement 2: Exclude unsubscribed customers to generate live email outreach list</span>
+<span class="code-keyword">SELECT</span> sub_id, email, plan_tier
+<span class="code-keyword">FROM</span> customer_subscribers
+<span class="code-keyword">WHERE</span> is_test_user = <span class="code-keyword">FALSE</span> <span class="code-keyword">AND</span> <span class="code-keyword">NOT</span> unsubscribed;
+<span class="code-comment">-- Matches: Alice (701) and Diana (705)</span>
+
+<span class="code-comment">-- Requirement 3: Target non-enterprise customers using NOT IN</span>
+<span class="code-keyword">SELECT</span> sub_id, email, plan_tier
+<span class="code-keyword">FROM</span> customer_subscribers
+<span class="code-keyword">WHERE</span> plan_tier <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'ENTERPRISE'</span>, <span class="code-string">'DEVELOPER'</span>);
+<span class="code-comment">-- Matches PRO tiers: Charlie (703) and Diana (705)</span>
+
+<span class="code-comment">-- Requirement 4: Suppress internal domain emails using NOT LIKE</span>
+<span class="code-keyword">SELECT</span> sub_id, email
+<span class="code-keyword">FROM</span> customer_subscribers
+<span class="code-keyword">WHERE</span> email <span class="code-keyword">NOT</span> <span class="code-keyword">LIKE</span> <span class="code-string">'%@test.com'</span> <span class="code-keyword">AND</span> email <span class="code-keyword">NOT</span> <span class="code-keyword">LIKE</span> <span class="code-string">'%@internal'</span>;
+<span class="code-comment">-- Matches valid production domains: Alice, Charlie, Diana</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The NOT operator inverts boolean logic, excluding records that match specified criteria. Combining NOT with IN, LIKE, and BETWEEN provides precise exclusion rules for data audits, security filters, and data hygiene pipelines.</p>
+                <p>The NOT operator inverts boolean evaluations to enforce strict exclusions, forming the cornerstone of data cleansing, anti-joins, and blacklist suppression filters.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Boolean Inversion:</strong> NOT reverses the truth value of a condition (TRUE -> FALSE, FALSE -> TRUE).</span>
+                            <span><strong>Boolean Inversion:</strong> NOT flips TRUE to FALSE and FALSE to TRUE, but leaves UNKNOWN (NULL) as UNKNOWN.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Keyword Pairs:</strong> Commonly pairs as NOT IN, NOT LIKE, NOT BETWEEN, and IS NOT NULL.</span>
+                            <span><strong>The NOT IN (NULL) Danger:</strong> Never use NOT IN with nullable columns; a single NULL in the target list causes the query to return zero rows.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>NULL Hazard with NOT IN:</strong> If a NOT IN set contains even one NULL, the entire check fails; use NOT EXISTS instead.</span>
+                            <span><strong>Use NOT EXISTS:</strong> Prefer NOT EXISTS over NOT IN for subqueries to safely handle NULL values and leverage anti-semi join plans.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Index Consideration:</strong> NOT conditions may cause database planners to perform full table scans rather than index lookups.</span>
+                            <span><strong>Performance Considerations:</strong> Negative conditions (NOT, !=) often force full table scans as they cannot leverage standard B-Tree index seeks.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Idiomatic Syntax:</strong> Use IS NOT NULL rather than NOT (col IS NULL) for cleaner, idiomatic SQL code.</span>
                         </li>
                     </ul>
                 </div>
@@ -273,7 +404,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

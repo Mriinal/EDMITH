@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,14 +171,21 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-truck-loading"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Bin Transfer Analogy</h4>
-                        <p>A warehouse has an empty seasonal storage bin that was already built last year. Workers take inventory from the arrival dock and transfer the items into the pre-existing seasonal bin.</p>
-                        <p style="margin-top: 8px !important;">INSERT INTO SELECT copies data from one table and appends it into an EXISTING target table.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Bulk Freight Transfer Conveyor Analogy</h4>
+                        <p>Picture a warehouse operations team transferring merchandise from an intake dock to a permanent warehouse bin:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. The Pre-Existing Destination Rack::</strong> A heavy-duty industrial storage rack is already built, bolted to the floor, and labeled with inventory barcodes.</li>
+                            <li><strong>2. The Source Pallet::</strong> A forklift brings in a pallet of newly manufactured electronics from the factory.</li>
+                            <li><strong>3. The Automated Conveyor (INSERT INTO SELECT)::</strong> The conveyor scans items matching specific criteria (SELECT ... WHERE category = 'Gadgets') and transfers them directly into the pre-existing storage rack.</li>
+                            <li><strong>4. Schema Alignment::</strong> The items fit perfectly because the destination rack was built specifically to accommodate those exact product dimensions.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">The INSERT INTO SELECT command extracts rows from source tables and inserts them into an existing destination table, providing a high-throughput pipeline for data migration.</p>
                     </div>
                 </div>
 
+
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>The INSERT INTO SELECT Statement</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>The INSERT INTO SELECT Statement</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,21 +195,106 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; insert-into-select.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; insert-into-select.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">INSERT INTO</span> target_table (column1, column2)
-<span class="code-keyword">SELECT</span> column1, column2
-<span class="code-keyword">FROM</span> source_table
-<span class="code-keyword">WHERE</span> condition;</code></pre>
+                    <pre><code><span class="code-comment">-- 1. Standard INSERT INTO SELECT into an Existing Destination Table</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> archived_orders (order_id, customer_id, order_total, order_date)
+<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, order_date
+<span class="code-keyword">FROM</span> active_orders
+<span class="code-keyword">WHERE</span> order_date &lt; <span class="code-string">'2025-01-01'</span>;
+
+<span class="code-comment">-- 2. Appending Aggregated Summary Data into a Daily Reporting Table</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> daily_revenue_summary (report_date, total_transactions, gross_revenue)
+<span class="code-keyword">SELECT</span> 
+    CURRENT_DATE,
+    <span class="code-func">COUNT</span>(*),
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(total_amount), 0.00)
+<span class="code-keyword">FROM</span> sales_orders
+<span class="code-keyword">WHERE</span> CAST(created_at <span class="code-keyword">AS</span> DATE) = CURRENT_DATE;
+
+<span class="code-comment">-- 3. Inserting with Computed Expressions and Literal Values</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> audit_log_history (event_id, user_id, action_name, logged_by)
+<span class="code-keyword">SELECT</span> 
+    log_id,
+    account_id,
+    <span class="code-string">'SECURITY_SCAN_PASSED'</span>,
+    <span class="code-string">'CRON_SYSTEM_DAEMON'</span>
+<span class="code-keyword">FROM</span> temp_security_events;
+
+<span class="code-comment">-- 4. Multi-Table Source Join with INSERT INTO SELECT</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> customer_vip_roster (customer_id, full_name, total_annual_spend)
+<span class="code-keyword">SELECT</span> 
+    c.customer_id,
+    c.first_name || <span class="code-string">' '</span> || c.last_name,
+    <span class="code-func">SUM</span>(o.order_total)
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
+<span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
+<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(o.order_total) &gt;= 50000.00;</code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p><code>INSERT INTO SELECT</code> copies data from one table and inserts it into an <strong>already existing</strong> table. The data types in the target and source tables must match.</p>
-        <p>Unlike <code>SELECT INTO</code> (which builds a new table from scratch), <code>INSERT INTO SELECT</code> appends rows into an established table, respecting its existing constraints, indexes, and primary keys.</p>
+                <p>The <code>INSERT INTO SELECT</code> statement copies data from one or more tables and inserts it into an existing target table. The destination table must already exist in the database catalog with compatible data types.</p>
+                <ul>
+                    <li><strong>Destination Table Pre-Requisite:</strong> Unlike SELECT INTO, the destination table must already be defined with its schema, primary keys, and indexes in place.</li>
+                    <li><strong>Column Matching by Position:</strong> Values are mapped into target columns based on position in the SELECT list, not by name; column counts and data types must match.</li>
+                    <li><strong>High-Throughput ETL Pipeline:</strong> Because operations occur internally within the database storage engine without sending rows to the client, performance is extraordinarily fast.</li>
+                    <li><strong>Constraint Enforcement:</strong> The target table enforces all PRIMARY KEY, FOREIGN KEY, and NOT NULL constraints on inserted rows during execution.</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th><code>INSERT INTO SELECT</code></th>
+                                <th><code>SELECT INTO</code></th>
+                                <th>Performance Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Destination Table</td>
+                                <td>Must ALREADY exist</td>
+                                <td>Must NOT exist (Created on fly)</td>
+                                <td>INSERT INTO allows pre-tuned indexes</td>
+                            </tr>
+                            <tr>
+                                <td>Existing Data</td>
+                                <td>Appends to existing records</td>
+                                <td>Wipes/creates new table</td>
+                                <td>Preserves target historical records</td>
+                            </tr>
+                            <tr>
+                                <td>Constraint Enforcement</td>
+                                <td>Enforces target PK, FK, CHECK</td>
+                                <td>Only retains nullability</td>
+                                <td>Protects relational integrity</td>
+                            </tr>
+                            <tr>
+                                <td>ETL Batching</td>
+                                <td>Supports incremental batch loads</td>
+                                <td>One-shot table replacement</td>
+                                <td>Standard pattern for nightly ETL jobs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Column Positional Mapping: The Silent Data Swap Trap</h3>
+                <p>When using INSERT INTO SELECT, the query engine maps values based on column order, not column names:</p>
+                <ul>
+                    <li><strong>The Hazard:</strong> If you write <code>INSERT INTO users (email, phone) SELECT phone, email FROM temp;</code>, phone numbers land in the email column!</li>
+                    <li><strong>No Error Thrown:</strong> If both columns are <code>VARCHAR</code>, the database cannot detect the swap and commits corrupted data silently.</li>
+                    <li><strong>The Best Practice:</strong> Always explicitly list the target columns in parentheses and double-check that the SELECT projection order matches the target list 1-to-1.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Archiving Completed Financial Orders into Historical Ledger:</strong> Transfer fulfilled transactions older than one year into long-term cold storage.</p>
+                <p><strong>Enterprise E-Commerce Cold Storage Order Archival:</strong> Migrate completed orders older than one year from high-speed transactional tables into cost-effective historical cold storage tables.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -211,36 +304,72 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Archiving Completed Financial Orders into Historical Ledger</span>
+                        <span class="terminal-title">Production Queries &bull; Enterprise E-Commerce Cold Storage Order Archival</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">INSERT INTO</span> historical_order_archive (order_id, customer_id, order_total, fulfilled_date)
-<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, completed_at
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Pre-Existing Target Table: order_cold_storage</span>
+<span class="code-comment">   order_id (PK) | customer_id | order_total | closed_date | archived_at</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Archive completed historical orders into existing cold storage table</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> order_cold_storage (order_id, customer_id, order_total, closed_date, archived_at)
+<span class="code-keyword">SELECT</span> 
+    order_id,
+    customer_id,
+    order_total,
+    order_date,
+    CURRENT_TIMESTAMP
 <span class="code-keyword">FROM</span> live_orders
-<span class="code-keyword">WHERE</span> status = <span class="code-string">'FULFILLED'</span>
-  <span class="code-keyword">AND</span> completed_at &lt; CURRENT_DATE - INTERVAL <span class="code-string">'1 year'</span>;</code></pre>
+<span class="code-keyword">WHERE</span> order_date &lt; <span class="code-string">'2025-01-01'</span> <span class="code-keyword">AND</span> status = <span class="code-string">'COMPLETED'</span>;
+<span class="code-comment">-- Matches: Appends qualifying historical orders into the archival partition table</span>
+
+<span class="code-comment">-- Requirement 2: Clean up migrated records from live transactional table</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> live_orders
+<span class="code-keyword">WHERE</span> order_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> order_id <span class="code-keyword">FROM</span> order_cold_storage);
+<span class="code-comment">-- Matches: Purges archived orders from live table to optimize transactional index size</span>
+
+<span class="code-comment">-- Requirement 3: Nightly aggregate revenue snapshot appended to analytics ledger</span>
+<span class="code-keyword">INSERT <span class="code-keyword">INTO</span></span> monthly_revenue_ledger (ledger_year, ledger_month, total_revenue)
+<span class="code-keyword">SELECT</span> 
+    2026,
+    3,
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(order_total), 0)
+<span class="code-keyword">FROM</span> live_orders
+<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-03-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-03-31'</span>;
+<span class="code-comment">-- Matches: Appends monthly summary row into financial audit ledger</span>
+
+<span class="code-comment">-- Requirement 4: Verification query confirming record migration</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> archived_order_count
+<span class="code-keyword">FROM</span> order_cold_storage;
+<span class="code-comment">-- Matches: Quantifies successful bulk archival transfer volume</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>The INSERT INTO SELECT command extracts rows from one or more source tables and inserts them into an existing destination table, providing a high-throughput pipeline for data archiving and warehouse transforms.</p>
+                <p>The INSERT INTO SELECT command extracts rows from source tables and appends them into an existing destination table, providing a high-throughput pipeline for data archiving and warehouse transforms.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Appends to Existing Table:</strong> Inserts query results into a pre-existing target table.</span>
+                            <span><strong>Pre-Existing Table Required:</strong> The destination table must already exist in the database before running INSERT INTO SELECT.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Schema Preservation:</strong> Maintains target table constraints, default values, and primary keys.</span>
+                            <span><strong>Explicit Column Mapping:</strong> Always declare destination column names in parentheses to avoid positional data swap errors.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>ETL Workhorse:</strong> Foundational pattern for batch migrations, archiving jobs, and data warehousing pipelines.</span>
+                            <span><strong>Schema Integrity:</strong> Target table constraints (Primary Keys, Foreign Keys, NOT NULL) are strictly enforced during insertion.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Column Mapping:</strong> Declared column list ensures precise mapping between source and target fields.</span>
+                            <span><strong>ETL Workhorse:</strong> The premier SQL command for data warehousing pipelines, table partitioning, and data migration.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Batch Transaction Safety:</strong> Wrap in explicit transactions when performing migration followed by source table deletion.</span>
                         </li>
                     </ul>
                 </div>
@@ -271,7 +400,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

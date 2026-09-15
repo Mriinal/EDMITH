@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,7 +53,7 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
+            <!-- Module 1: Basics -->
             <div class="sidebar-module-group" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
                     <div class="module-header-left">
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li class="active"><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -170,16 +171,24 @@
                 <div class="visual-concept-card" style="align-items: flex-start;">
                     <div class="concept-icon"><i class="fas fa-search-plus"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Directory Search &amp; Position Matching Analogy</h4>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Directory Search & Position Matching Analogy</h4>
                         <p>Imagine searching an enterprise directory of 50,000 employees for the name <strong>Mrinal</strong>:</p>
                         <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
                             <li><strong>1. Starts with 'M':</strong> You search with <code>'M%'</code> (the letter <em>M</em> followed by any number of characters).</li>
                             <li><strong>2. Ends with 'L':</strong> You search with <code>'%l'</code> (any sequence of characters that concludes with the letter <em>l</em>).</li>
-                            <li><strong>3. Fixed 2nd &amp; 3rd Characters ('RI'):</strong> You search with <code>'_ri%'</code> (the underscore <code>_</code> matches exactly one character at position 1, followed strictly by <code>ri</code> at positions 2 and 3).</li>
-                            <li><strong>4. Precision Combination:</strong> Combining all three rules (starts with <em>M</em>, 2nd &amp; 3rd are <em>ri</em>, and ends with <em>l</em>) gives <code>'Mri%l'</code>, pinpointing <strong>Mrinal</strong> instantly!</li>
+                            <li><strong>3. Fixed 2nd & 3rd Characters ('RI'):</strong> You search with <code>'_ri%'</code> (the underscore <code>_</code> matches exactly one character at position 1, followed strictly by <code>ri</code> at positions 2 and 3).</li>
+                            <li><strong>4. Precision Combination:</strong> Combining all three rules (starts with <em>M</em>, 2nd & 3rd are <em>ri</em>, and ends with <em>l</em>) gives <code>'Mri%l'</code>, pinpointing <strong>Mrinal</strong> instantly!</li>
                         </ul>
                         <p style="margin-top: 8px !important;">The <code>LIKE</code> operator combines the power of the <code>%</code> wildcard (multiple characters) and the <code>_</code> wildcard (exact single position) for surgical pattern matching.</p>
                     </div>
+                </div>
+                <!-- Reference Guide Callout Box -->
+                <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                    <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+                        <i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+                        <strong>Looking for more pattern-matching symbols?</strong> Explore our comprehensive reference guide covering character sets <code>[a-z]</code>, bracket negations <code>[^abc]</code>, wildcards comparison, and escaping techniques: 
+                        <a href="wildcards.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">Check out the SQL Wildcards Reference (Module 3) &rarr;</a>
+                    </p>
                 </div>
 
                 <h2>Syntax &amp; Statement Grammar</h2>
@@ -193,7 +202,8 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Pattern Grammar &bull; like_patterns.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; like.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
                     <pre><code><span class="code-comment">-- 1. Search for names STARTING with 'M' (% matches any trailing characters)</span>
@@ -215,13 +225,15 @@
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>LIKE</code> operator evaluates strings against pattern definitions using two fundamental ANSI SQL wildcard tokens:</p>
+                <p>The <code>LIKE</code> operator evaluates strings against pattern definitions using two fundamental ANSI SQL wildcard tokens: <code>%</code> (zero or more arbitrary characters) and <code>_</code> (strictly one single character at an exact position).</p>
                 <ul>
-                    <li><code>%</code> (Percent Sign): Represents <strong>zero, one, or multiple</strong> arbitrary characters.</li>
-                    <li><code>_</code> (Underscore): Represents <strong>strictly one single character</strong> at an exact position.</li>
+                    <li><strong>The Percent (%) Wildcard:</strong> Represents zero, one, or multiple arbitrary characters.</li>
+                    <li><strong>The Underscore (_) Wildcard:</strong> Represents strictly one single character at an exact positional slot.</li>
+                    <li><strong>Index Friendliness (SARGability):</strong> Patterns with fixed prefixes (e.g. <code>'M%'</code>) can utilize B-Tree index seeks; patterns with leading wildcards (e.g. <code>'%l'</code> or <code>'_ri%'</code>) force full table scans.</li>
+                    <li><strong>Case Sensitivity:</strong> Standard SQL LIKE is case-sensitive in PostgreSQL and case-insensitive in MySQL; use ILIKE or UPPER() for case-insensitive portability.</li>
                 </ul>
 
-                <h3>Detailed Breakdown of the 3 Key Search Patterns</h3>
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
 
                 <div class="table-responsive">
                     <table class="compare-table">
@@ -236,30 +248,30 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>1. Starts with 'M'</strong></td>
+                                <td>1. Starts with 'M'</td>
                                 <td><code>LIKE 'M%'</code></td>
                                 <td>Position 1 must be <code>M</code>. <code>%</code> matches any remaining characters.</td>
                                 <td><em>Mrinal, Michael, Maria, Maya, Mark</em></td>
                                 <td><strong>Yes</strong> (B-Tree Index Seek)</td>
                             </tr>
                             <tr>
-                                <td><strong>2. Ends with 'l'</strong></td>
+                                <td>2. Ends with 'l'</td>
                                 <td><code>LIKE '%l'</code></td>
                                 <td><code>%</code> accepts any prefix. The final character must strictly be <code>l</code>.</td>
                                 <td><em>Mrinal, Daniel, Michael, Paul, Gabriel</em></td>
                                 <td><strong>No</strong> (Full Table Scan)</td>
                             </tr>
                             <tr>
-                                <td><strong>3. Fixed 2nd &amp; 3rd 'RI'</strong></td>
+                                <td>3. Fixed 2nd & 3rd 'RI'</td>
                                 <td><code>LIKE '_ri%'</code></td>
-                                <td><code>_</code> (1 arbitrary letter) + <code>ri</code> (fixed slots 2 &amp; 3) + <code>%</code> (rest).</td>
+                                <td><code>_</code> (1 arbitrary letter) + <code>ri</code> (fixed slots 2 & 3) + <code>%</code> (rest).</td>
                                 <td><em>Mrinal, Brian, Eric, Kristin, Aria</em></td>
                                 <td><strong>No</strong> (Leading wildcard)</td>
                             </tr>
                             <tr>
-                                <td><strong>4. Precision Combo</strong></td>
+                                <td>4. Precision Combo</td>
                                 <td><code>LIKE 'Mri%l'</code></td>
-                                <td>Starts with <code>M</code>, fixed <code>ri</code> at slots 2 &amp; 3, and ends with <code>l</code>.</td>
+                                <td>Starts with <code>M</code>, fixed <code>ri</code> at slots 2 & 3, and ends with <code>l</code>.</td>
                                 <td><em>Mrinal</em></td>
                                 <td><strong>Yes</strong> (Starts with fixed prefix)</td>
                             </tr>
@@ -267,12 +279,12 @@
                     </table>
                 </div>
 
-                <h3>Why the Underscore (<code>_</code>) is Critical for Positional Searches</h3>
+                <h3>Why the Underscore (_) is Critical for Positional Searches</h3>
                 <p>While the percent sign (<code>%</code>) is greedy and matches an arbitrary length of characters, the underscore (<code>_</code>) acts as a single-character placeholder. Each underscore accounts for precisely <strong>one byte / character position</strong>:</p>
                 <ul>
-                    <li><code>'_ri%'</code> &rarr; Character 1 is anything, Characters 2 and 3 are strictly <code>ri</code>, followed by any text. Matches: <em>Mrinal</em>, <em>Brian</em>, <em>Eric</em>.</li>
-                    <li><code>'__ri%'</code> &rarr; Characters 1 and 2 are anything, Characters 3 and 4 are strictly <code>ri</code>. Matches: <em>Chris</em>, <em>Adrian</em>.</li>
-                    <li><code>'Mri___'</code> &rarr; Starts with <code>Mri</code> and has <strong>exactly 6 characters in total</strong> (3 letters + 3 underscores). Matches: <em>Mrinal</em> (6 letters), but rejects longer names like <em>Mrinalini</em> (9 letters).</li>
+                    <li><strong>Positional Offset:</strong> <code>'_ri%'</code> &rarr; Character 1 is anything, Characters 2 and 3 are strictly <code>ri</code>, followed by any text. Matches: <em>Mrinal</em>, <em>Brian</em>, <em>Eric</em>.</li>
+                    <li><strong>Multiple Offset Underscores:</strong> <code>'__ri%'</code> &rarr; Characters 1 and 2 are anything, Characters 3 and 4 are strictly <code>ri</code>. Matches: <em>Chris</em>, <em>Adrian</em>.</li>
+                    <li><strong>Exact Length Locking:</strong> <code>'Mri___'</code> &rarr; Starts with <code>Mri</code> and has <strong>exactly 6 characters in total</strong> (3 letters + 3 underscores). Matches: <em>Mrinal</em> (6 letters), but rejects longer names like <em>Mrinalini</em> (9 letters).</li>
                 </ul>
 
                 <h2>Real-World Practical Scenario</h2>
@@ -286,18 +298,19 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Queries &bull; Name Pattern Filtering</span>
+                        <span class="terminal-title">Production Queries &bull; Employee Directory Lookup (Finding 'Mrinal' and Pattern Filtering)</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">/* ========================================================
-   Sample Employee Roster:
-   101 | Mrinal  | Sharma    | Data Platform   | mrinal@edmith.com
-   102 | Michael | Vance     | Cloud DevOps    | michael@edmith.com
-   103 | Daniel  | Craig     | QA Security     | daniel@edmith.com
-   104 | Brian   | Kernighan | Systems Kernel  | brian@edmith.com
-   105 | Maria   | Garcia    | Data Science    | maria@edmith.com
-   106 | Eric    | Raymond   | Architecture    | eric@edmith.com
-   ======================================================== */</span>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Employee Roster:</span>
+<span class="code-comment">   101 | Mrinal  | Sharma    | Data Platform   | mrinal@edmith.com</span>
+<span class="code-comment">   102 | Michael | Vance     | Cloud DevOps    | michael@edmith.com</span>
+<span class="code-comment">   103 | Daniel  | Craig     | QA Security     | daniel@edmith.com</span>
+<span class="code-comment">   104 | Brian   | Kernighan | Systems Kernel  | brian@edmith.com</span>
+<span class="code-comment">   105 | Maria   | Garcia    | Data Science    | maria@edmith.com</span>
+<span class="code-comment">   106 | Eric    | Raymond   | Architecture    | eric@edmith.com</span>
+<span class="code-comment">   ======================================================== */</span>
 
 <span class="code-comment">-- Requirement 1: Search for all employees whose name starts with 'M'</span>
 <span class="code-keyword">SELECT</span> employee_id, first_name, department, email
@@ -331,23 +344,23 @@
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Starts With ('M%'):</strong> The character 'M' followed by <code>%</code> matches any string beginning with M (e.g. <em>Mrinal, Michael</em>) and efficiently uses B-Tree indexes.</span>
+                            <span><strong>Starts With ('M%'):</strong> The character 'M' followed by % matches any string beginning with M (e.g. Mrinal, Michael) and efficiently uses B-Tree indexes.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Ends With ('%l'):</strong> A leading <code>%</code> followed by 'l' matches any string concluding with the letter l (e.g. <em>Mrinal, Daniel</em>).</span>
+                            <span><strong>Ends With ('%l'):</strong> A leading % followed by 'l' matches any string concluding with the letter l (e.g. Mrinal, Daniel).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Fixed Position ('_ri%'):</strong> The single underscore <code>_</code> skips exactly 1 character, fixing 'ri' strictly at character slots 2 and 3 (e.g. <em>Mrinal, Brian, Eric</em>).</span>
+                            <span><strong>Fixed Position ('_ri%'):</strong> The single underscore _ skips exactly 1 character, fixing 'ri' strictly at character slots 2 and 3 (e.g. Mrinal, Brian, Eric).</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Targeted Combination ('Mri%l'):</strong> Combining fixed prefixes, positional characters, and suffixes isolates exact target records like <em>Mrinal</em>.</span>
+                            <span><strong>Targeted Combination ('Mri%l'):</strong> Combining fixed prefixes, positional characters, and suffixes isolates exact target records like Mrinal.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Leading Wildcard Warning:</strong> Patterns beginning with a wildcard (e.g. <code>LIKE '%l'</code> or <code>LIKE '_ri%'</code>) cannot use standard B-Tree index prefixes and trigger full table scans.</span>
+                            <span><strong>Leading Wildcard Warning:</strong> Patterns beginning with a wildcard (e.g. LIKE '%l' or LIKE '_ri%') cannot use standard B-Tree index prefixes and trigger full table scans.</span>
                         </li>
                     </ul>
                 </div>
@@ -367,8 +380,8 @@
                     </button>
                 </div>
                 <div class="lesson-nav-next">
-                    <a href="wildcards.html" class="btn-enroll" title="Next: SQL Wildcards Reference">
-                        <span class="btn-text">Next: SQL Wildcards Reference</span> <i class="fas fa-arrow-right"></i>
+                    <a href="in.html" class="btn-enroll" title="Next: The IN Operator">
+                        <span class="btn-text">Next: The IN Operator</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -378,7 +391,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>

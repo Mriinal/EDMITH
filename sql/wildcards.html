@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: SQL Wildcards Reference - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
+    <meta name="description" content="Module 3: SQL Wildcards Reference - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
     <title>SQL Wildcards Reference - EDMITH</title>
     <!-- Prevent theme flicker before paint -->
     <script>
@@ -34,6 +34,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -52,9 +53,9 @@
         
         <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics (47 Lessons) -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
+            <!-- Module 1: Basics -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
                     <div class="module-header-left">
                         <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
                         <span class="module-title">Module 1: Basics</span>
@@ -83,10 +84,9 @@
                 <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
                 <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
                 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-sigma"></i> The SUM() Function</a></li>
+                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
                 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
                 <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li class="active"><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
                 <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
                 <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
                 <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
@@ -109,7 +109,6 @@
                 <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
                 <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
                 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
                     </ul>
                 </div>
             </div>
@@ -132,8 +131,8 @@
             </div>
 
             <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+            <div class="sidebar-module-group" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod3-list">
                     <div class="module-header-left">
                         <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
                         <span class="module-title">Module 3: References</span>
@@ -142,7 +141,9 @@
                 </div>
                 <div class="sidebar-module-list" id="mod3-list">
                     <ul>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Reference</a></li>
+                        <li class="active"><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
                     </ul>
                 </div>
             </div>
@@ -158,26 +159,39 @@
 
             <div class="lesson-header">
                 <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>SQL Wildcards Reference</span>
+                    <a href="index.html">SQL Mastery</a> &gt; <a href="keywords.html">Module 3: References</a> &gt; <span>SQL Wildcards Reference</span>
                 </div>
                 <h1>SQL Wildcards Reference</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-book"></i> Module 3: References</p>
             </div>
 
             <div class="lesson-content">
                 
                 <!-- Visual Concept Card: Real-World Analogy -->
                 <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <div class="concept-icon"><i class="fas fa-asterisk"></i></div>
                     <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Scrabble Blank Tile Analogy</h4>
-                        <p>In a game of Scrabble, a blank tile can represent any letter of the alphabet. You use it flexibly to complete words when the exact letter is unknown.</p>
-                        <p style="margin-top: 8px !important;">SQL wildcards act as flexible blank tiles that substitute for unknown characters in search queries.</p>
+                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Card Game Wildcard Joker Analogy</h4>
+                        <p>Picture playing a card game with a deck containing standard numbered cards and special wild Jokers:</p>
+                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+                            <li><strong>1. Standard Cards::</strong> A regular card like the 7 of Spades represents strictly that exact card and nothing else.</li>
+                            <li><strong>2. The Percent (%) Joker::</strong> The % wildcard is like a magic chameleon card that can morph into an entire straight flush of any length, or vanish completely (zero characters).</li>
+                            <li><strong>3. The Underscore (_) Single Joker::</strong> The _ wildcard is a single wild card that must represent exactly one specific card position.</li>
+                            <li><strong>4. Exact Replacement::</strong> Combining fixed letters with Jokers lets you build flexible winning hands (patterns) without knowing every card in advance.</li>
+                        </ul>
+                        <p style="margin-top: 8px !important;">SQL wildcards substitute for arbitrary characters in text searches, allowing developers to craft prefix, suffix, and positional matching queries.</p>
                     </div>
+                </div>
+                <!-- Beginner Tutorial Link Callout Box -->
+                <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+                    <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+                        <i class="fas fa-graduation-cap" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+                        <strong>Beginner Tutorials:</strong> Learn how to apply these wildcard patterns in hands-on production queries with step-by-step examples in <a href="like.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The LIKE Operator</a> and <a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The NOT Operator</a> in Module 1.
+                    </p>
                 </div>
 
                 <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and clause requirements for <strong>SQL Wildcards Reference</strong>:</p>
+                <p>The standard SQL syntax and pattern rules for <strong>SQL Wildcards Reference</strong>:</p>
 
                 <!-- Code Terminal (Obsidian Purple Theme) -->
                 <div class="code-terminal">
@@ -187,25 +201,104 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">SQL Grammar &bull; wildcards.sql</span>
+                        <span class="terminal-title">SQL Syntax Grammar &bull; wildcards.sql</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-comment">-- %: zero or more characters</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> users <span class="code-keyword">WHERE</span> username <span class="code-keyword">LIKE</span> <span class="code-string">'dev_%'</span>;
+                    <pre><code><span class="code-comment">-- 1. Percent (%) Wildcard: Matches zero, one, or multiple characters</span>
+<span class="code-keyword">SELECT</span> product_id, product_name
+<span class="code-keyword">FROM</span> products
+<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'Micro%'</span>; <span class="code-comment">-- Matches Microsoft, Microchip, Micro</span>
 
-<span class="code-comment">-- _: single character</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> codes <span class="code-keyword">WHERE</span> postal_code <span class="code-keyword">LIKE</span> <span class="code-string">'9021_'</span>;
+<span class="code-comment">-- 2. Underscore (_) Wildcard: Matches strictly ONE single character</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, department
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'J_ne'</span>; <span class="code-comment">-- Matches Jane, June, Jone</span>
 
-<span class="code-comment">-- [charlist] (SQL Server / regex):</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> contacts <span class="code-keyword">WHERE</span> name <span class="code-keyword">LIKE</span> <span class="code-string">'[A-C]%'</span>;</code></pre>
+<span class="code-comment">-- 3. Escaping Wildcard Literals with ESCAPE Keyword</span>
+<span class="code-comment">-- Search for actual '100%' literal string without treating % as wildcard</span>
+<span class="code-keyword">SELECT</span> report_id, notes
+<span class="code-keyword">FROM</span> audit_logs
+<span class="code-keyword">WHERE</span> notes <span class="code-keyword">LIKE</span> <span class="code-string">'%100!%%'</span> ESCAPE <span class="code-string">'!'</span>;
+
+<span class="code-comment">-- 4. Multiple Underscores for Fixed Length Searches</span>
+<span class="code-keyword">SELECT</span> license_plate
+<span class="code-keyword">FROM</span> vehicles
+<span class="code-keyword">WHERE</span> license_plate <span class="code-keyword">LIKE</span> <span class="code-string">'AB-___-CD'</span>; <span class="code-comment">-- Exactly 3 characters in middle</span></code></pre>
                 </div>
 
                 <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>SQL wildcards substitute for one or more characters when searching for text data. Beyond the standard ANSI <code>%</code> and <code>_</code> symbols, several database engines support character range brackets (e.g. <code>[a-f]</code>) and negated character brackets (<code>[!a-f]</code>).</p>
-        <p>If you need to search for a literal <code>%</code> or <code>_</code> character, use the <code>ESCAPE</code> clause (e.g. <code>LIKE '%10!%%' ESCAPE '!'</code>).</p>
+                <p>SQL wildcards are specialized pattern-matching symbols used in conjunction with the <code>LIKE</code> and <code>NOT LIKE</code> operators. ANSI SQL defines two universal wildcard characters: the percent sign (<code>%</code>) and the underscore (<code>_</code>).</p>
+                <ul>
+                    <li><strong>The Percent (%) Token:</strong> Represents zero, one, or any arbitrary sequence of multiple characters.</li>
+                    <li><strong>The Underscore (_) Token:</strong> Represents exactly one single character at that precise character position.</li>
+                    <li><strong>Escaping Special Characters:</strong> When querying strings that contain literal <code>%</code> or <code>_</code> characters, declare an explicit <code>ESCAPE</code> character.</li>
+                    <li><strong>Database Variations:</strong> Some database engines (SQL Server, Access) provide bracketed sets like <code>[a-z]</code> or <code>[^abc]</code>, while others (PostgreSQL) provide POSIX regular expressions (<code>~</code>).</li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Wildcard Symbol</th>
+                                <th>Pattern Example</th>
+                                <th>Match Mechanics</th>
+                                <th>Matching Values</th>
+                                <th>Index SARGable?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>%</code> (Suffix)</td>
+                                <td><code>LIKE 'Dev%'</code></td>
+                                <td>Starts with 'Dev', followed by any length</td>
+                                <td>Dev, Developer, DevOps</td>
+                                <td>Yes (B-Tree Index Seek)</td>
+                            </tr>
+                            <tr>
+                                <td><code>%</code> (Prefix)</td>
+                                <td><code>LIKE '%tion'</code></td>
+                                <td>Any characters ending with 'tion'</td>
+                                <td>Action, Solution, Nation</td>
+                                <td>No (Full Table Scan)</td>
+                            </tr>
+                            <tr>
+                                <td><code>%</code> (Infix)</td>
+                                <td><code>LIKE '%log%'</code></td>
+                                <td>Contains 'log' anywhere in the string</td>
+                                <td>Catalog, Blogger, Logic</td>
+                                <td>No (Full Table Scan)</td>
+                            </tr>
+                            <tr>
+                                <td><code>_</code> (Single Pos)</td>
+                                <td><code>LIKE '_at'</code></td>
+                                <td>Exactly 3 letters ending in 'at'</td>
+                                <td>Cat, Hat, Bat, Rat</td>
+                                <td>No (Leading wildcard)</td>
+                            </tr>
+                            <tr>
+                                <td><code>_</code> (Fixed Prefix)</td>
+                                <td><code>LIKE 'C_t'</code></td>
+                                <td>Starts with C, 1 arbitrary char, ends in t</td>
+                                <td>Cat, Cot, Cut</td>
+                                <td>Yes (Bounded prefix seek)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Escaping Literal % and _ Characters in SQL Queries</h3>
+                <p>When searching for financial discounts, percentages, or database identifiers with underscores, wildcards must be escaped:</p>
+                <ul>
+                    <li><strong>The Problem:</strong> <code>WHERE discount LIKE '%50%%'</code> fails because the database treats the middle percent sign as a wildcard instead of a literal percentage!</li>
+                    <li><strong>The Solution:</strong> Use the <code>ESCAPE</code> clause to designate an escape character: <code>WHERE discount LIKE '%50!%%' ESCAPE '!';</code>.</li>
+                    <li><strong>Underscore File Search:</strong> To find file names like <code>invoice_2026.pdf</code>: <code>WHERE filename LIKE '%invoice!_%.pdf' ESCAPE '!';</code>.</li>
+                </ul>
 
                 <h2>Real-World Practical Scenario</h2>
-                <p><strong>Searching for Literal Percent Discount Codes:</strong> Escape wildcards to search for coupons containing genuine '%' signs.</p>
+                <p><strong>Security Log Forensics & User Agent Classification:</strong> Analyze web server HTTP access logs to detect automated bot scrapers, mobile client requests, and security exploit attempts.</p>
 
                 <!-- Scenario Code Terminal -->
                 <div class="code-terminal">
@@ -215,34 +308,70 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Production Example &bull; Searching for Literal Percent Discount Codes</span>
+                        <span class="terminal-title">Production Queries &bull; Security Log Forensics & User Agent Classification</span>
+                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                         <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                     </div>
-                    <pre><code><span class="code-keyword">SELECT</span> coupon_id, promo_code, discount_value
-<span class="code-keyword">FROM</span> store_coupons
-<span class="code-keyword">WHERE</span> promo_code <span class="code-keyword">LIKE</span> <span class="code-string">'%20!%%'</span> ESCAPE <span class="code-string">'!'</span>;</code></pre>
+                    <pre><code><span class="code-comment">/* ========================================================</span>
+<span class="code-comment">   Sample Dataset: web_access_logs</span>
+<span class="code-comment">   log_id | ip_address     | user_agent                        | http_code | request_path</span>
+<span class="code-comment">   -------+----------------+-----------------------------------+-----------+----------------------</span>
+<span class="code-comment">   701    | 192.168.1.50   | Mozilla/5.0 (iPhone; CPU OS 17)   | 200       | /api/v1/checkout</span>
+<span class="code-comment">   702    | 10.0.0.88      | Googlebot/2.1 (+http://google)    | 200       | /products/page_1</span>
+<span class="code-comment">   703    | 172.16.0.4     | curl/7.88.1                       | 401       | /admin/login</span>
+<span class="code-comment">   704    | 192.168.1.95   | Mozilla/5.0 (Windows NT 10.0)     | 200       | /api/v1/account</span>
+<span class="code-comment">   705    | 45.33.32.156   | Python-urllib/3.10                | 403       | /admin/.env</span>
+<span class="code-comment">   ======================================================== */</span>
+
+<span class="code-comment">-- Requirement 1: Detect automated bot traffic containing 'bot' anywhere in User-Agent</span>
+<span class="code-keyword">SELECT</span> log_id, ip_address, user_agent
+<span class="code-keyword">FROM</span> web_access_logs
+<span class="code-keyword">WHERE</span> user_agent <span class="code-keyword">LIKE</span> <span class="code-string">'%bot%'</span>;
+<span class="code-comment">-- Matches: Log 702 (Googlebot)</span>
+
+<span class="code-comment">-- Requirement 2: Isolate API version 1 traffic using wildcard path pattern</span>
+<span class="code-keyword">SELECT</span> log_id, request_path, http_code
+<span class="code-keyword">FROM</span> web_access_logs
+<span class="code-keyword">WHERE</span> request_path <span class="code-keyword">LIKE</span> <span class="code-string">'/api/v1/%'</span>;
+<span class="code-comment">-- Matches: Log 701 (/api/v1/checkout) and Log 704 (/api/v1/account)</span>
+
+<span class="code-comment">-- Requirement 3: Identify administrative probe attacks targeting hidden files</span>
+<span class="code-keyword">SELECT</span> log_id, ip_address, request_path
+<span class="code-keyword">FROM</span> web_access_logs
+<span class="code-keyword">WHERE</span> request_path <span class="code-keyword">LIKE</span> <span class="code-string">'/admin/.%'</span>;
+<span class="code-comment">-- Matches: Log 705 (/admin/.env)</span>
+
+<span class="code-comment">-- Requirement 4: Search for IP addresses on local subnet with exact 3-digit octet</span>
+<span class="code-keyword">SELECT</span> log_id, ip_address, user_agent
+<span class="code-keyword">FROM</span> web_access_logs
+<span class="code-keyword">WHERE</span> ip_address <span class="code-keyword">LIKE</span> <span class="code-string">'192.168.1.___'</span>;
+<span class="code-comment">-- Matches: Log 701 (192.168.1.50 - 2 chars won't match 3 underscores, but Log with 3 digits matches)</span></code></pre>
                 </div>
 
                 <!-- Chapter Summary -->
                 <h2>Chapter Summary</h2>
-                <p>SQL wildcards (% and _) transform static filters into dynamic pattern search engines. Applying wildcards judiciously protects database query execution times and prevents costly full-table scans.</p>
+                <p>SQL wildcards (% and _) provide dynamic pattern matching capabilities in text filters, allowing engineers to query substrings, prefixes, and fixed-position characters across database records.</p>
                 <div class="summary-box">
                     <ul class="summary-list">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Flexible Substitution:</strong> Wildcards substitute for unknown characters in search expressions.</span>
+                            <span><strong>Percent Wildcard (%):</strong> % matches zero, one, or multiple arbitrary characters anywhere in the string.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Standard Symbols:</strong> % (multi-character) and _ (single character) are universal across all SQL engines.</span>
+                            <span><strong>Underscore Wildcard (_):</strong> _ matches strictly one character at that exact positional slot.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Escaping Characters:</strong> Use the ESCAPE keyword to search for literal % or _ symbols.</span>
+                            <span><strong>B-Tree SARGability:</strong> Prefix patterns (LIKE 'Prefix%') leverage B-Tree indexes; leading wildcards (LIKE '%Suffix') force full table scans.</span>
                         </li>
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <span><strong>Modern Regex:</strong> For complex pattern matching, use native database regular expression functions (REGEXP_LIKE, ~).</span>
+                            <span><strong>Literal Escaping:</strong> Use the ESCAPE keyword (e.g. ESCAPE '!') when searching for literal '%' or '_' characters.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span><strong>Case Sensitivity:</strong> Standard LIKE is case-sensitive in PostgreSQL and case-insensitive in MySQL; use ILIKE or UPPER() for case-insensitive matching.</span>
                         </li>
                     </ul>
                 </div>
@@ -252,8 +381,8 @@
             <!-- Professional 3-Column Navigation Footer -->
             <div class="lesson-footer">
                 <div class="lesson-nav-prev">
-                    <a href="like.html" class="btn-outline" title="Previous: The LIKE Operator">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The LIKE Operator</span>
+                    <a href="comments.html" class="btn-outline" title="Previous: SQL Comments">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Comments</span>
                     </a>
                 </div>
                 <div class="lesson-nav-center">
@@ -262,8 +391,8 @@
                     </button>
                 </div>
                 <div class="lesson-nav-next">
-                    <a href="in.html" class="btn-enroll" title="Next: The IN Operator">
-                        <span class="btn-text">Next: The IN Operator</span> <i class="fas fa-arrow-right"></i>
+                    <a href="operators.html" class="btn-enroll" title="Next: SQL Operators Reference">
+                        <span class="btn-text">Next: SQL Operators Reference</span> <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -273,7 +402,30 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer lesson-page-footer">
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="index.html">SQL Mastery</a></li>
+                    <li><a href="editor.html">SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
             <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
         </div>
