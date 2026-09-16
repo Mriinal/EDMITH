@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Report a Bug & Platform Feedback - Help us keep EDMITH bug-free, lightning fast, and pedagogically sound.">
+    <meta name="description"
+        content="Report a Bug & Platform Feedback - Submit defects directly to EDMITH Development Team.">
     <title>Report a Bug - EDMITH</title>
     <!-- Prevent theme flicker before paint -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (theme === 'dark' || (!theme && prefersDark)) {
@@ -19,6 +21,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
 
     <!-- Reading Progress Bar -->
@@ -34,7 +37,8 @@
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="course.html">Courses</a></li>
                 <li><a href="sql/index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a>
+                </li>
                 <li><a href="index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -49,7 +53,7 @@
     </header>
 
     <main class="report-bug-container">
-        
+
         <!-- Breadcrumbs -->
         <div class="lesson-breadcrumbs" style="margin-bottom: 2rem;">
             <a href="index.html">Home</a> &gt; <span>Report a Bug</span>
@@ -57,92 +61,185 @@
 
         <!-- Hero Section -->
         <div class="report-bug-hero">
-            <span class="badge-coming-soon"><i class="fas fa-tools"></i> Coming Soon</span>
+            <span class="badge-live"><span class="live-dot"></span> Live Defect Dispatch System</span>
             <h1>Report a Bug &amp; Feedback</h1>
-            <p>Help us maintain an impeccable learning experience across all courses and query terminals. Our unified bug tracking portal is currently under active development.</p>
+            <p>Help us maintain an impeccable learning experience across all courses and query terminals. Every
+                submission is directly routed to <strong>Development Team</strong> for rapid investigation.</p>
         </div>
 
-        <!-- Bug Portal Card Preview -->
-        <div class="bug-portal-card">
+        <!-- Bug Portal Card -->
+        <div class="bug-portal-card" id="bugPortalCard">
             <div class="portal-banner">
                 <span class="portal-banner-text">
-                    <i class="fas fa-satellite-dish" style="color: var(--accent);"></i>
-                    Issue Tracker Portal Preview (v2.0)
+                    <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
+                    Official Defect &amp; Feedback Dispatcher
                 </span>
-                <span class="badge-coming-soon"><i class="fas fa-clock"></i> Feature Launching Soon</span>
+                <span
+                    style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
+                    <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Direct to:
+                    <strong>Development Team</strong>
+                </span>
             </div>
 
-            <form class="bug-form-body" onsubmit="event.preventDefault(); alert('🎉 Thank you for testing! Our automated bug reporting API is currently in final rollout. In the meantime, please send your bug reports directly to support@edmith.com or via GitHub Issues.');">
+            <!-- Main Interactive Form -->
+            <form class="bug-form-body" id="bugReportForm"
+                action="https://formsubmit.co/a17946fc1c022cd57d76cfe775919a3d" method="POST">
                 <div class="bug-form-grid">
                     <div>
-                        <label class="bug-label" for="bugCategory">Bug Category</label>
+                        <label class="bug-label" for="reporterName">Your Name <span
+                                style="color: #EF4444;">*</span></label>
+                        <input type="text" id="reporterName" class="bug-input" placeholder="e.g. John Doe" required />
+                    </div>
+
+                    <div>
+                        <label class="bug-label" for="reporterEmail">Your Email Address <span
+                                style="color: #EF4444;">*</span></label>
+                        <input type="email" id="reporterEmail" class="bug-input" placeholder="e.g. john.doe@example.com"
+                            required />
+                    </div>
+
+                    <div>
+                        <label class="bug-label" for="bugCategory">Bug Category <span
+                                style="color: #EF4444;">*</span></label>
                         <select id="bugCategory" class="bug-select" required>
                             <option value="" disabled selected>Select issue category...</option>
-                            <option value="syntax">SQL Query Syntax / Code Error</option>
-                            <option value="broken-link">Broken Link or 404 Navigation</option>
-                            <option value="ui">Theme / Dark Mode / Visual Glitch</option>
-                            <option value="mobile">Mobile Layout / Responsive Defect</option>
-                            <option value="terminal">Interactive Code Terminal Malfunction</option>
-                            <option value="typo">Lesson Typo or Pedagogical Suggestion</option>
-                            <option value="other">Other Technical Inconsistency</option>
+                            <option value="SQL Query Syntax / Code Error">SQL Query Syntax / Code Error</option>
+                            <option value="SQL Editor Malfunction">Interactive SQL Editor Malfunction</option>
+                            <option value="Database Record Anomaly">Database Record Anomaly / Missing Table</option>
+                            <option value="Broken Link or Navigation">Broken Link or 404 Navigation</option>
+                            <option value="Theme / Visual Glitch">Theme / Dark Mode / Visual Glitch</option>
+                            <option value="Mobile Responsive Defect">Mobile Layout / Responsive Defect</option>
+                            <option value="Typo or Pedagogical Suggestion">Lesson Typo or Pedagogical Suggestion
+                            </option>
+                            <option value="Other Technical Issue">Other Technical Inconsistency</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="bug-label" for="pageUrl">Affected Webpage / Lesson URL</label>
-                        <input type="text" id="pageUrl" class="bug-input" placeholder="e.g. /sql/like.html or /sql/where.html" value="" />
+                        <label class="bug-label" for="severityLevel">Severity Level <span
+                                style="color: #EF4444;">*</span></label>
+                        <select id="severityLevel" class="bug-select" required>
+                            <option value="Medium - Normal Defect" selected>Medium - Normal Defect (Default)</option>
+                            <option value="Low - Minor Visual / Typo">Low - Minor Visual / Typo</option>
+                            <option value="High - Query / Feature Failure">High - Query / Feature Failure</option>
+                            <option value="Critical - Blocker / Page Crash">Critical - Blocker / Page Crash</option>
+                        </select>
                     </div>
 
                     <div class="form-group-full">
-                        <label class="bug-label" for="bugTitle">Issue Summary</label>
-                        <input type="text" id="bugTitle" class="bug-input" placeholder="Brief summary of the issue (e.g., Typo in WHERE clause scenario query)" required />
+                        <label class="bug-label" for="pageUrl">Affected Webpage / Lesson URL</label>
+                        <input type="text" id="pageUrl" class="bug-input"
+                            placeholder="e.g. /sql/where.html or /sql/editor.html" value="" />
+                    </div>
+
+                    <div class="form-group-full">
+                        <label class="bug-label" for="bugTitle">Issue Summary <span
+                                style="color: #EF4444;">*</span></label>
+                        <input type="text" id="bugTitle" class="bug-input"
+                            placeholder="Brief summary of the issue (e.g., Query syntax error in WHERE clause scenario)"
+                            required />
                     </div>
 
                     <div class="form-group-full">
                         <label class="bug-label" for="bugSteps">Steps to Reproduce</label>
-                        <textarea id="bugSteps" class="bug-textarea" placeholder="1. Navigate to /sql/where.html&#10;2. Scroll to Practical Scenario&#10;3. Click the Copy button on the second terminal..." rows="3"></textarea>
+                        <textarea id="bugSteps" class="bug-textarea"
+                            placeholder="1. Navigate to /sql/where.html&#10;2. Click 'Try in Editor' on Query 2&#10;3. Observe the unexpected output..."
+                            rows="3"></textarea>
                     </div>
 
                     <div>
                         <label class="bug-label" for="expectedBehavior">Expected Behavior</label>
-                        <textarea id="expectedBehavior" class="bug-textarea" placeholder="What did you expect to happen?" rows="3"></textarea>
+                        <textarea id="expectedBehavior" class="bug-textarea"
+                            placeholder="What did you expect to happen?" rows="3"></textarea>
                     </div>
 
                     <div>
                         <label class="bug-label" for="actualBehavior">Actual Behavior</label>
-                        <textarea id="actualBehavior" class="bug-textarea" placeholder="What actually occurred?" rows="3"></textarea>
+                        <textarea id="actualBehavior" class="bug-textarea"
+                            placeholder="What error message or behavior actually occurred?" rows="3"></textarea>
                     </div>
 
                     <div class="form-group-full">
-                        <label class="bug-label">System Diagnostics (Auto-Detected)</label>
-                        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);" id="diagnosticInfo">
-                            Platform: Web Standard Engine &bull; Environment: Browser Client &bull; Viewport: Active
+                        <label class="bug-label">System Diagnostics (Auto-Attached)</label>
+                        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);"
+                            id="diagnosticInfo">
+                            Collecting system metadata...
                         </div>
                     </div>
                 </div>
 
                 <div class="bug-submit-row">
-                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin: 0;">
-                        <i class="fas fa-info-circle"></i> Reports are automatically reviewed by the EDMITH curriculum &amp; engineering teams.
-                    </p>
-                    <button type="submit" class="btn-enroll" style="cursor: pointer;">
-                        <i class="fas fa-paper-plane"></i> Submit Bug Report
-                    </button>
+                    <div class="bug-security-meta">
+                        <div class="security-icon-badge">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="security-text-group">
+                            <span class="security-headline">
+                                <span class="security-status-indicator"></span> Encrypted Token Dispatch
+                            </span>
+                            <span class="security-subline">
+                                Transmitted directly to <strong>EDMITH Engineering</strong> via encrypted token
+                                dispatch.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="bug-submit-actions">
+                        <button type="button" class="btn-bug-secondary" id="mailtoFallbackBtn"
+                            title="Prepare report in your personal email client">
+                            <i class="fas fa-envelope-open-text"></i> Open in Mail Client
+                        </button>
+                        <button type="submit" class="btn-bug-primary" id="submitBugBtn" style="cursor: pointer;">
+                            <i class="fas fa-paper-plane"></i> Submit Bug Report
+                        </button>
+                    </div>
                 </div>
             </form>
+
+            <!-- Success Confirmation State (Rendered upon successful submission) -->
+            <div id="bugSuccessState" class="bug-success-state" style="display: none;">
+                <div class="bug-success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h3>Defect Report Successfully Dispatched!</h3>
+                <p>Thank you for helping improve EDMITH. Your report has been delivered directly to <strong>Development
+                        Team</strong>. Our engineering team has logged your submission and will review the diagnostic
+                    traces.</p>
+
+                <div
+                    style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px 20px; max-width: 600px; margin: 0 auto 1.8rem; text-align: left; font-size: 0.92rem;">
+                    <p style="margin: 0 0 6px;"><strong>Recipient:</strong> Development Team</p>
+                    <p style="margin: 0 0 6px;" id="summaryTicketTitle"><strong>Summary:</strong> Issue Title</p>
+                    <p style="margin: 0 0 6px;" id="summaryTicketSeverity"><strong>Severity:</strong> Medium</p>
+                    <p style="margin: 0;" id="summaryTicketStatus"><strong>Status:</strong> <span
+                            style="color: #10B981; font-weight: 700;">Dispatched &amp; Queued</span></p>
+                </div>
+
+                <div class="bug-success-actions">
+                    <button class="btn-enroll" id="newReportBtn" onclick="location.reload();">
+                        <i class="fas fa-plus"></i> Submit Another Report
+                    </button>
+                    <a href="index.html" class="btn-outline">
+                        <i class="fas fa-home"></i> Return Home
+                    </a>
+                </div>
+            </div>
         </div>
 
         <!-- Alternative Support Channels -->
-        <h2 style="font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--text-primary);">Alternative Reporting Channels</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">While the direct in-app portal is in final testing, use any of our live channels below:</p>
+        <h2
+            style="font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--text-primary);">
+            Alternative Reporting Channels</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">You can also reach out through
+            our direct engineering channels:</p>
 
         <div class="bug-channels-grid">
             <div class="channel-card">
                 <div class="channel-icon"><i class="fas fa-envelope"></i></div>
-                <h3>Email Engineering</h3>
-                <p>Send details, screenshots, and logs directly to our platform maintenance team.</p>
-                <a href="mailto:support@edmith.com?subject=[Bug%20Report]%20EDMITH%20Platform" class="channel-link">
-                    support@edmith.com <i class="fas fa-arrow-right"></i>
+                <h3>Email Platform Lead</h3>
+                <p>Direct defect routing to founder &amp; lead architect Mrinal Prashar.</p>
+                <a href="#" id="emailUsLink" class="channel-link">
+                    Email Us <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
 
@@ -188,7 +285,7 @@
                 <ul>
                     <li><a href="index.html#contact">Help Center</a></li>
                     <li><a href="index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug</a></li>
                 </ul>
             </div>
         </div>
@@ -199,13 +296,167 @@
 
     <script src="javascript/script.js"></script>
     <script>
-        // Populate system diagnostics
         document.addEventListener('DOMContentLoaded', () => {
-            const diag = document.getElementById('diagnosticInfo');
-            if (diag) {
-                diag.innerHTML = `Platform: ${navigator.platform || 'Unknown'} &bull; Browser: ${navigator.userAgent.split(' ')[0]} &bull; Viewport: ${window.innerWidth}x${window.innerHeight} &bull; Screen: ${screen.width}x${screen.height}`;
+            const form = document.getElementById('bugReportForm');
+            const submitBtn = document.getElementById('submitBugBtn');
+            const mailtoBtn = document.getElementById('mailtoFallbackBtn');
+            const successState = document.getElementById('bugSuccessState');
+            const diagDiv = document.getElementById('diagnosticInfo');
+            const pageUrlInput = document.getElementById('pageUrl');
+
+            // 1. Auto-detect source page from URL parameter or document.referrer
+            const urlParams = new URLSearchParams(window.location.search);
+            const sourceParam = urlParams.get('page') || urlParams.get('url');
+            if (sourceParam) {
+                pageUrlInput.value = sourceParam;
+            } else if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                try {
+                    const refUrl = new URL(document.referrer);
+                    pageUrlInput.value = refUrl.pathname;
+                } catch (e) { }
+            }
+
+            // 2. Build system diagnostics string
+            const diagString = `Platform: ${navigator.platform || 'Unknown'} | UserAgent: ${navigator.userAgent} | Screen: ${screen.width}x${screen.height} | Viewport: ${window.innerWidth}x${window.innerHeight} | Timestamp: ${new Date().toISOString()}`;
+            if (diagDiv) {
+                diagDiv.innerText = diagString;
+            }
+
+            // 3. Helper to construct mailto link
+            function buildMailtoLink() {
+                const name = document.getElementById('reporterName').value.trim() || 'Anonymous';
+                const email = document.getElementById('reporterEmail').value.trim() || 'Not Provided';
+                const category = document.getElementById('bugCategory').value || 'Unspecified';
+                const severity = document.getElementById('severityLevel').value;
+                const page = pageUrlInput.value.trim() || 'Not Specified';
+                const title = document.getElementById('bugTitle').value.trim() || 'Defect Report';
+                const steps = document.getElementById('bugSteps').value.trim() || 'None provided';
+                const expected = document.getElementById('expectedBehavior').value.trim() || 'None provided';
+                const actual = document.getElementById('actualBehavior').value.trim() || 'None provided';
+
+                const subject = encodeURIComponent(`[EDMITH Bug Report] ${severity.split('-')[0].trim()}: ${title}`);
+                const body = encodeURIComponent(
+                    `EDMITH Bug & Defect Report
+=======================================
+Reporter Name: ${name}
+Reporter Email: ${email}
+Severity: ${severity}
+Category: ${category}
+Affected URL: ${page}
+Issue Summary: ${title}
+
+Steps to Reproduce:
+${steps}
+
+Expected Behavior:
+${expected}
+
+Actual Behavior:
+${actual}
+
+Diagnostics:
+${diagString}
+=======================================`
+                );
+
+                const recipient = atob('bXJpaW5hbEBpY2xvdWQuY29t');
+                return `mailto:${recipient}?subject=${subject}&body=${body}`;
+            }
+
+            // 4. Manual Mailto button click
+            if (mailtoBtn) {
+                mailtoBtn.addEventListener('click', () => {
+                    const mailtoUrl = buildMailtoLink();
+                    window.location.href = mailtoUrl;
+                });
+            }
+
+            // Direct email link click
+            const emailUsBtn = document.getElementById('emailUsLink');
+            if (emailUsBtn) {
+                emailUsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const recipient = atob('bXJpaW5hbEBpY2xvdWQuY29t');
+                    window.location.href = `mailto:${recipient}?subject=[Bug%20Report]%20EDMITH%20Platform`;
+                });
+            }
+
+            // 5. Automated Form Submission via FormSubmit Secure Token Endpoint
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('reporterName').value.trim();
+                    const email = document.getElementById('reporterEmail').value.trim();
+                    const category = document.getElementById('bugCategory').value;
+                    const severity = document.getElementById('severityLevel').value;
+                    const page = pageUrlInput.value.trim();
+                    const title = document.getElementById('bugTitle').value.trim();
+                    const steps = document.getElementById('bugSteps').value.trim();
+                    const expected = document.getElementById('expectedBehavior').value.trim();
+                    const actual = document.getElementById('actualBehavior').value.trim();
+
+                    // Visual loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Dispatching...';
+
+                    const payload = {
+                        name: name,
+                        email: email,
+                        _replyto: email,
+                        _subject: `[EDMITH Defect Report] ${severity.split('-')[0].trim()}: ${title}`,
+                        category: category,
+                        severity: severity,
+                        affected_url: page,
+                        issue_summary: title,
+                        steps_to_reproduce: steps,
+                        expected_behavior: expected,
+                        actual_behavior: actual,
+                        system_diagnostics: diagString,
+                        _captcha: "false"
+                    };
+
+                    try {
+                        const response = await fetch("https://formsubmit.co/ajax/a17946fc1c022cd57d76cfe775919a3d", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Accept": "application/json"
+                            },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const data = await response.json();
+
+                        // Show success confirmation
+                        form.style.display = "none";
+                        successState.style.display = "block";
+                        document.getElementById('summaryTicketTitle').innerHTML = `<strong>Summary:</strong> ${title}`;
+                        document.getElementById('summaryTicketSeverity').innerHTML = `<strong>Severity:</strong> ${severity}`;
+
+                        // Scroll card into view
+                        document.getElementById('bugPortalCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    } catch (err) {
+                        console.warn('Direct API submission encountered network error, invoking mailto fallback:', err);
+                        // Fallback: If network/adblocker blocks the API, open the user's email client directly
+                        const mailtoUrl = buildMailtoLink();
+                        window.location.href = mailtoUrl;
+
+                        // Also reveal success view
+                        form.style.display = "none";
+                        successState.style.display = "block";
+                        document.getElementById('summaryTicketTitle').innerHTML = `<strong>Summary:</strong> ${title}`;
+                        document.getElementById('summaryTicketSeverity').innerHTML = `<strong>Severity:</strong> ${severity}`;
+                        document.getElementById('summaryTicketStatus').innerHTML = `<strong>Status:</strong> <span style="color: #3B82F6; font-weight: 700;">Dispatched via Email Client</span>`;
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Bug Report';
+                    }
+                });
             }
         });
     </script>
 </body>
+
 </html>

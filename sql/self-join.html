@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: SELF JOIN - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>SELF JOIN - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: SELF JOIN - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>SELF JOIN - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,433 +17,520 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li class="active"><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li class="active"><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>SELF JOIN</span>
-                </div>
-                <h1>SELF JOIN</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-sitemap"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Corporate Organizational Chart Analogy</h4>
-                        <p>Picture a Fortune 500 corporate directory where every employee, manager, and vice president is stored in a single table called 'employees':</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. Everyone is an Employee::</strong> The CEO, regional directors, team leads, and summer interns all have an employee_id and a name in the same table.</li>
-                            <li><strong>2. The Manager Pointer::</strong> Each employee's row contains a <code>manager_id</code> column that stores the <code>employee_id</code> of their boss.</li>
-                            <li><strong>3. Two Copies in Memory::</strong> To list an employee beside their boss's name, you make two virtual copies of the same table: Copy A (Employees) and Copy B (Managers).</li>
-                            <li><strong>4. Interlocking Identities::</strong> You connect Copy A's <code>manager_id</code> to Copy B's <code>employee_id</code> using table aliases (emp and mgr).</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">A SELF JOIN correlates rows within the same physical table using distinct table aliases, effortlessly modeling hierarchies and sequential row comparisons.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>SELF JOIN</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; self-join.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Classic Hierarchical Manager-Employee Self Join</span>
-<span class="code-keyword">SELECT</span> 
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>SELF JOIN</span>
+</div>
+<h1>SELF JOIN</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-sitemap"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Corporate Organizational Chart Analogy</h4>
+<p>Picture a Fortune 500 corporate directory where every employee, manager, and vice president is stored in a single table called 'employees':</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. Everyone is an Employee::</strong> The CEO, regional directors, team leads, and summer interns all have an employee_id and a name in the same table.</li>
+<li><strong>2. The Manager Pointer::</strong> Each employee's row contains a <code>manager_id</code> column that stores the <code>employee_id</code> of their boss.</li>
+<li><strong>3. Two Copies in Memory::</strong> To list an employee beside their boss's name, you make two virtual copies of the same table: Copy A (Employees) and Copy B (Managers).</li>
+<li><strong>4. Interlocking Identities::</strong> You connect Copy A's <code>manager_id</code> to Copy B's <code>employee_id</code> using table aliases (emp and mgr).</li>
+</ul>
+<p style="margin-top: 8px !important;">A SELF JOIN correlates rows within the same physical table using distinct table aliases, effortlessly modeling hierarchies and sequential row comparisons.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>SELF JOIN</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     emp.first_name <span class="code-keyword">AS</span> employee_name,
     <span class="code-func">COALESCE</span>(mgr.first_name, <span class="code-string">'TOP_EXECUTIVE'</span>) <span class="code-keyword">AS</span> manager_name
 <span class="code-keyword">FROM</span> employees emp
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees mgr <span class="code-keyword">ON</span> emp.manager_id = mgr.employee_id;
-
-<span class="code-comment">-- 2. Finding Peers in the Same Department (Excluding Self Match)</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> employees mgr <span class="code-keyword">ON</span> emp.manager_id <span class="code-op">=</span> mgr.employee_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>employees</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     e1.first_name <span class="code-keyword">AS</span> employee_1,
     e2.first_name <span class="code-keyword">AS</span> employee_2,
     e1.department_id
 <span class="code-keyword">FROM</span> employees e1
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> employees e2 
-    <span class="code-keyword">ON</span> e1.department_id = e2.department_id 
-   <span class="code-keyword">AND</span> e1.employee_id &lt; e2.employee_id; <span class="code-comment">-- Avoid self-pairing &amp; duplicate combinations</span>
-
-<span class="code-comment">-- 3. Comparing Consecutive Date Records within Same Account</span>
-<span class="code-keyword">SELECT</span> 
+INNER <span class="code-keyword">JOIN</span> employees e2 
+    <span class="code-keyword">ON</span> e1.department_id <span class="code-op">=</span> e2.department_id 
+   <span class="code-keyword">AND</span> e1.employee_id <span class="code-op">&lt;</span> e2.employee_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>employees</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     curr.account_id,
     curr.log_date <span class="code-keyword">AS</span> current_date,
     prev.log_date <span class="code-keyword">AS</span> previous_date,
-    (curr.balance - prev.balance) <span class="code-keyword">AS</span> daily_balance_change
+    (curr.balance <span class="code-op">-</span> prev.balance) <span class="code-keyword">AS</span> daily_balance_change
 <span class="code-keyword">FROM</span> account_snapshots curr
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> account_snapshots prev 
-    <span class="code-keyword">ON</span> curr.account_id = prev.account_id 
-   <span class="code-keyword">AND</span> curr.log_date = prev.log_date + 1;
-
-<span class="code-comment">-- 4. Multi-Level Organizational Tree (Employee -&gt; Manager -&gt; Director)</span>
-<span class="code-keyword">SELECT</span> 
+INNER <span class="code-keyword">JOIN</span> account_snapshots prev 
+    <span class="code-keyword">ON</span> curr.account_id <span class="code-op">=</span> prev.account_id 
+   <span class="code-keyword">AND</span> curr.log_date <span class="code-op">=</span> prev.log_date <span class="code-op">+</span> <span class="code-num">1</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>account_snapshots</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     e.first_name <span class="code-keyword">AS</span> employee,
     m.first_name <span class="code-keyword">AS</span> direct_manager,
     d.first_name <span class="code-keyword">AS</span> department_director
 <span class="code-keyword">FROM</span> employees e
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees m <span class="code-keyword">ON</span> e.manager_id = m.employee_id
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> employees d <span class="code-keyword">ON</span> m.manager_id = d.employee_id;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>A <code>SELF JOIN</code> is a regular join operation in which a table is joined with itself. It is not a distinct SQL keyword, but rather an architectural technique that utilizes table aliasing to treat a single physical table as two distinct logical entities.</p>
-                <ul>
-                    <li><strong>Mandatory Table Aliases:</strong> Because both sides of the join reference the exact same physical table name, table aliases (e.g. <code>e1</code> and <code>e2</code>) are mathematically mandatory.</li>
-                    <li><strong>Hierarchical Graph Traversal:</strong> SELF JOIN is the classic relational technique for querying adjacency lists, such as employee managers, product category parents, and threaded comment replies.</li>
-                    <li><strong>Duplicate Elimination with Inequality:</strong> When pairing rows within the same table (e.g. finding teammates), use <code>e1.id &lt; e2.id</code> to avoid matching a person with themselves or returning duplicate reverse pairs (A, B and B, A).</li>
-                    <li><strong>Recursive CTE Alternative:</strong> For arbitrarily deep trees (e.g. 10 levels of ancestry), Recursive Common Table Expressions (<code>WITH RECURSIVE</code>) are cleaner than chaining multiple self joins.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Self Join Use Case</th>
-                                <th>Left Role (Alias 1)</th>
-                                <th>Right Role (Alias 2)</th>
-                                <th>Join Condition</th>
-                                <th>Key Objective</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Manager Hierarchy</td>
-                                <td><code>emp</code> (Employee)</td>
-                                <td><code>mgr</code> (Manager)</td>
-                                <td><code>emp.mgr_id = mgr.emp_id</code></td>
-                                <td>Pairs each worker with supervisor</td>
-                            </tr>
-                            <tr>
-                                <td>Teammate Pairing</td>
-                                <td><code>e1</code> (Teammate A)</td>
-                                <td><code>e2</code> (Teammate B)</td>
-                                <td><code>e1.dept = e2.dept AND e1.id &lt; e2.id</code></td>
-                                <td>Discovers peers without duplicates</td>
-                            </tr>
-                            <tr>
-                                <td>Chronological Compare</td>
-                                <td><code>today</code> (Current)</td>
-                                <td><code>yesterday</code> (Prior)</td>
-                                <td><code>today.day = yesterday.day + 1</code></td>
-                                <td>Computes day-over-day metric deltas</td>
-                            </tr>
-                            <tr>
-                                <td>Threaded Replies</td>
-                                <td><code>reply</code> (Comment)</td>
-                                <td><code>parent</code> (OP Post)</td>
-                                <td><code>reply.parent_id = parent.id</code></td>
-                                <td>Builds forum discussion trees</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>Why e1.id < e2.id is Critical in Peer Self Joins</h3>
-                <p>When joining a table to itself to find pairs (e.g. customers living in the same city), novices often write <code>ON e1.city = e2.city</code>:</p>
-                <ul>
-                    <li><strong>Problem 1 (Self Pairing):</strong> Every person matches with themselves! (Alice pairs with Alice).</li>
-                    <li><strong>Problem 2 (Duplicate Mirror Pairs):</strong> You get both (Alice, Bob) and (Bob, Alice) in the output.</li>
-                    <li><strong>The Mathematical Fix:</strong> Use inequality: <code>ON e1.city = e2.city AND e1.id &lt; e2.id</code>.</li>
-                    <li><strong>The Result:</strong> Self-matches are eliminated (an ID is never < itself), and pairs are returned in one canonical order.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Enterprise IT Asset Parent-Child Component Topology:</strong> Map server infrastructure parent chassis racks and their installed blade server subcomponents using a single hardware inventory table.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Enterprise IT Asset Parent-Child Component Topology</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: hardware_assets</span>
-<span class="code-comment">   asset_id | asset_name     | asset_type   | parent_chassis_id</span>
-<span class="code-comment">   ---------+----------------+--------------+------------------</span>
-<span class="code-comment">   1        | Datacenter-A   | FACILITY     | NULL</span>
-<span class="code-comment">   2        | Primary Rack 1 | CHASSIS      | 1</span>
-<span class="code-comment">   3        | Blade Server 1 | BLADE        | 2</span>
-<span class="code-comment">   4        | Blade Server 2 | BLADE        | 2</span>
-<span class="code-comment">   5        | Backup Rack 2  | CHASSIS      | 1</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Pair each hardware asset with its hosting parent chassis container</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> employees m <span class="code-keyword">ON</span> e.manager_id <span class="code-op">=</span> m.employee_id
+LEFT <span class="code-keyword">JOIN</span> employees d <span class="code-keyword">ON</span> m.manager_id <span class="code-op">=</span> d.employee_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>employees</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>A <code>SELF JOIN</code> is a regular join operation in which a table is joined with itself. It is not a distinct SQL keyword, but rather an architectural technique that utilizes table aliasing to treat a single physical table as two distinct logical entities.</p>
+<ul>
+<li><strong>Mandatory Table Aliases:</strong> Because both sides of the join reference the exact same physical table name, table aliases (e.g. <code>e1</code> and <code>e2</code>) are mathematically mandatory.</li>
+<li><strong>Hierarchical Graph Traversal:</strong> SELF JOIN is the classic relational technique for querying adjacency lists, such as employee managers, product category parents, and threaded comment replies.</li>
+<li><strong>Duplicate Elimination with Inequality:</strong> When pairing rows within the same table (e.g. finding teammates), use <code>e1.id &lt; e2.id</code> to avoid matching a person with themselves or returning duplicate reverse pairs (A, B and B, A).</li>
+<li><strong>Recursive CTE Alternative:</strong> For arbitrarily deep trees (e.g. 10 levels of ancestry), Recursive Common Table Expressions (<code>WITH RECURSIVE</code>) are cleaner than chaining multiple self joins.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Self Join Use Case</th>
+<th>Left Role (Alias 1)</th>
+<th>Right Role (Alias 2)</th>
+<th>Join Condition</th>
+<th>Key Objective</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manager Hierarchy</td>
+<td><code>emp</code> (Employee)</td>
+<td><code>mgr</code> (Manager)</td>
+<td><code>emp.mgr_id = mgr.emp_id</code></td>
+<td>Pairs each worker with supervisor</td>
+</tr>
+<tr>
+<td>Teammate Pairing</td>
+<td><code>e1</code> (Teammate A)</td>
+<td><code>e2</code> (Teammate B)</td>
+<td><code>e1.dept = e2.dept AND e1.id &lt; e2.id</code></td>
+<td>Discovers peers without duplicates</td>
+</tr>
+<tr>
+<td>Chronological Compare</td>
+<td><code>today</code> (Current)</td>
+<td><code>yesterday</code> (Prior)</td>
+<td><code>today.day = yesterday.day + 1</code></td>
+<td>Computes day-over-day metric deltas</td>
+</tr>
+<tr>
+<td>Threaded Replies</td>
+<td><code>reply</code> (Comment)</td>
+<td><code>parent</code> (OP Post)</td>
+<td><code>reply.parent_id = parent.id</code></td>
+<td>Builds forum discussion trees</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Why e1.id &lt; e2.id is Critical in Peer Self Joins</h3>
+<p>When joining a table to itself to find pairs (e.g. customers living in the same city), novices often write <code>ON e1.city = e2.city</code>:</p>
+<ul>
+<li><strong>Problem 1 (Self Pairing):</strong> Every person matches with themselves! (Alice pairs with Alice).</li>
+<li><strong>Problem 2 (Duplicate Mirror Pairs):</strong> You get both (Alice, Bob) and (Bob, Alice) in the output.</li>
+<li><strong>The Mathematical Fix:</strong> Use inequality: <code>ON e1.city = e2.city AND e1.id &lt; e2.id</code>.</li>
+<li><strong>The Result:</strong> Self-matches are eliminated (an ID is never &lt; itself), and pairs are returned in one canonical order.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Enterprise IT Asset Parent-Child Component Topology:</strong> Map server infrastructure parent chassis racks and their installed blade server subcomponents using a single hardware inventory table.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: hardware_assets
+   asset_id | asset_name     | asset_type   | parent_chassis_id
+   ---------+----------------+--------------+------------------
+   1        | Datacenter-A   | FACILITY     | NULL
+   2        | Primary Rack 1 | CHASSIS      | 1
+   3        | Blade Server 1 | BLADE        | 2
+   4        | Blade Server 2 | BLADE        | 2
+   5        | Backup Rack 2  | CHASSIS      | 1
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     child.asset_id,
     child.asset_name <span class="code-keyword">AS</span> component_name,
     child.asset_type,
     <span class="code-func">COALESCE</span>(parent.asset_name, <span class="code-string">'ROOT_FACILITY'</span>) <span class="code-keyword">AS</span> hosted_inside_chassis
 <span class="code-keyword">FROM</span> hardware_assets child
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> hardware_assets parent <span class="code-keyword">ON</span> child.parent_chassis_id = parent.asset_id;
-<span class="code-comment">-- Matches: Blade 1 inside Rack 1, Blade 2 inside Rack 1, Rack 1 inside Datacenter-A</span>
-
-<span class="code-comment">-- Requirement 2: Isolate blade servers sharing the same parent rack (Peer pairing)</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> hardware_assets parent <span class="code-keyword">ON</span> child.parent_chassis_id <span class="code-op">=</span> parent.asset_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>hardware_assets</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     b1.asset_name <span class="code-keyword">AS</span> blade_alpha,
     b2.asset_name <span class="code-keyword">AS</span> blade_beta,
     b1.parent_chassis_id <span class="code-keyword">AS</span> shared_rack_id
 <span class="code-keyword">FROM</span> hardware_assets b1
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets b2 
-    <span class="code-keyword">ON</span> b1.parent_chassis_id = b2.parent_chassis_id 
-   <span class="code-keyword">AND</span> b1.asset_id &lt; b2.asset_id
-<span class="code-keyword">WHERE</span> b1.asset_type = <span class="code-string">'BLADE'</span>;
-<span class="code-comment">-- Matches: Blade Server 1 paired with Blade Server 2 in Rack 2 (0 self matches, 0 reverse duplicates)</span>
-
-<span class="code-comment">-- Requirement 3: Multi-level 3-tier hierarchy (Component -&gt; Rack -&gt; Datacenter)</span>
-<span class="code-keyword">SELECT</span> 
+INNER <span class="code-keyword">JOIN</span> hardware_assets b2 
+    <span class="code-keyword">ON</span> b1.parent_chassis_id <span class="code-op">=</span> b2.parent_chassis_id 
+   <span class="code-keyword">AND</span> b1.asset_id <span class="code-op">&lt;</span> b2.asset_id
+<span class="code-keyword">WHERE</span> b1.asset_type <span class="code-op">=</span> <span class="code-string">'BLADE'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>hardware_assets</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     comp.asset_name <span class="code-keyword">AS</span> device,
     rack.asset_name <span class="code-keyword">AS</span> rack_location,
     facility.asset_name <span class="code-keyword">AS</span> datacenter_facility
 <span class="code-keyword">FROM</span> hardware_assets comp
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets rack <span class="code-keyword">ON</span> comp.parent_chassis_id = rack.asset_id
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> hardware_assets facility <span class="code-keyword">ON</span> rack.parent_chassis_id = facility.asset_id;
-<span class="code-comment">-- Matches: Blade 1 -&gt; Primary Rack 1 -&gt; Datacenter-A</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>A SELF JOIN correlates rows within the same physical table using table aliases, modeling hierarchical trees, sequential comparisons, and peer pairings effortlessly.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Mandatory Aliasing:</strong> Assign distinct table aliases (e.g. emp and mgr) to distinguish the virtual instances of the table.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Hierarchical Adjacency:</strong> Ideal for modeling manager-employee, parent-category, and threaded comment relationships.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Prevent Self-Matches:</strong> Use e1.id < e2.id when pairing peer records to eliminate self-matching and duplicate mirror combinations.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Always Use LEFT JOIN for Roots:</strong> Use LEFT JOIN so top-level entities (CEOs, root categories) are preserved with NULL manager fields.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Deep Trees Alternative:</strong> For organizational trees deeper than 3 tiers, consider Recursive CTEs (WITH RECURSIVE) for cleaner navigation.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="full-join.html" class="btn-outline" title="Previous: FULL OUTER JOIN">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: FULL OUTER JOIN</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_self_join">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="union.html" class="btn-enroll" title="Next: The UNION Operator">
-                        <span class="btn-text">Next: The UNION Operator</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+INNER <span class="code-keyword">JOIN</span> hardware_assets rack <span class="code-keyword">ON</span> comp.parent_chassis_id <span class="code-op">=</span> rack.asset_id
+INNER <span class="code-keyword">JOIN</span> hardware_assets facility <span class="code-keyword">ON</span> rack.parent_chassis_id <span class="code-op">=</span> facility.asset_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>hardware_assets</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>A SELF JOIN correlates rows within the same physical table using table aliases, modeling hierarchical trees, sequential comparisons, and peer pairings effortlessly.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Mandatory Aliasing:</strong> Assign distinct table aliases (e.g. emp and mgr) to distinguish the virtual instances of the table.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Hierarchical Adjacency:</strong> Ideal for modeling manager-employee, parent-category, and threaded comment relationships.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Prevent Self-Matches:</strong> Use e1.id &lt; e2.id when pairing peer records to eliminate self-matching and duplicate mirror combinations.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Always Use LEFT JOIN for Roots:</strong> Use LEFT JOIN so top-level entities (CEOs, root categories) are preserved with NULL manager fields.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Deep Trees Alternative:</strong> For organizational trees deeper than 3 tiers, consider Recursive CTEs (WITH RECURSIVE) for cleaner navigation.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="full-join.html" title="Previous: FULL OUTER JOIN">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: FULL OUTER JOIN</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_self_join" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="union.html" title="Next: The UNION Operator">
+<span class="btn-text">Next: The UNION Operator</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

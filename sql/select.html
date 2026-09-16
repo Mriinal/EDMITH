@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The SELECT Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The SELECT Statement - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The SELECT Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The SELECT Statement - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,410 +17,514 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li class="active"><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li class="active"><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The SELECT Statement</span>
-                </div>
-                <h1>The SELECT Statement</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-shopping-cart"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Supermarket Shopping List Analogy</h4>
-                        <p>Imagine walking through an enterprise supermarket stocking 100,000 distinct warehouse items:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. Selective Shopping::</strong> You do not load every item on the shelves into your cart; you consult your shopping list and pick only eggs, bread, and milk.</li>
-                            <li><strong>2. The SELECT Statement::</strong> The SELECT clause acts as your shopping list, declaring the exact columns your application requires.</li>
-                            <li><strong>3. The Danger of SELECT *::</strong> Requesting <code>SELECT *</code> is like demanding the supermarket haul all 100,000 items onto a freight truck, wasting enormous network bandwidth.</li>
-                            <li><strong>4. Instant Transformations::</strong> You can weigh goods and compute prices directly in your cart, just as SQL calculates formulas and aliases in the SELECT list.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">Restricting column projections protects database memory, minimizes I/O latency, and insulates frontend code from table schema modifications.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The SELECT Statement</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; select.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Explicit Column Projection (Best Practice)</span>
-<span class="code-keyword">SELECT</span> first_name, last_name, email
-<span class="code-keyword">FROM</span> users;
-
-<span class="code-comment">-- 2. Computed Column with Arithmetic Expression and Alias</span>
-<span class="code-keyword">SELECT</span> product_id, unit_price, (unit_price * 0.85) <span class="code-keyword">AS</span> sale_price
-<span class="code-keyword">FROM</span> product_inventory;
-
-<span class="code-comment">-- 3. String Concatenation and Literal Projections</span>
-<span class="code-keyword">SELECT</span> 
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The SELECT Statement</span>
+</div>
+<h1>The SELECT Statement</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-shopping-cart"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Supermarket Shopping List Analogy</h4>
+<p>Imagine walking through an enterprise supermarket stocking 100,000 distinct warehouse items:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. Selective Shopping::</strong> You do not load every item on the shelves into your cart; you consult your shopping list and pick only eggs, bread, and milk.</li>
+<li><strong>2. The SELECT Statement::</strong> The SELECT clause acts as your shopping list, declaring the exact columns your application requires.</li>
+<li><strong>3. The Danger of SELECT *::</strong> Requesting <code>SELECT *</code> is like demanding the supermarket haul all 100,000 items onto a freight truck, wasting enormous network bandwidth.</li>
+<li><strong>4. Instant Transformations::</strong> You can weigh goods and compute prices directly in your cart, just as SQL calculates formulas and aliases in the SELECT list.</li>
+</ul>
+<p style="margin-top: 8px !important;">Restricting column projections protects database memory, minimizes I/O latency, and insulates frontend code from table schema modifications.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The SELECT Statement</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> first_name, last_name, email
+<span class="code-keyword">FROM</span> users;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>users</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> product_id, unit_price, (unit_price <span class="code-op">*</span> <span class="code-num">0.85</span>) <span class="code-keyword">AS</span> sale_price
+<span class="code-keyword">FROM</span> product_inventory;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>product_inventory</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     employee_id,
-    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> full_name,
+    first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name <span class="code-keyword">AS</span> full_name,
     <span class="code-string">'ACTIVE_MEMBER'</span> <span class="code-keyword">AS</span> member_status
-<span class="code-keyword">FROM</span> employees;
-
-<span class="code-comment">-- 4. SELECT * (Development &amp; Ad-Hoc Inspection Only)</span>
-<span class="code-keyword">SELECT</span> * <span class="code-keyword">FROM</span> system_configuration;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>SELECT</code> statement is the foundational command of Data Query Language (DQL). It specifies the projected columns, scalar functions, literal constants, and calculated expressions returned by the database engine.</p>
-                <ul>
-                    <li><strong>Column Projection:</strong> Declaring explicit column names instructs the storage engine to read only relevant attributes from disk or memory buffers.</li>
-                    <li><strong>Calculated Fields:</strong> Perform mathematical operations, string concatenations, and date functions directly within the SELECT clause.</li>
-                    <li><strong>Alias Declaration:</strong> Use the <code>AS</code> keyword to give calculated expressions intuitive, developer-friendly field names in API payloads.</li>
-                    <li><strong>Bandwidth Conservation:</strong> Omitting unneeded columns avoids transferring multi-megabyte BLOBs or large text descriptions across the network.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Projection Pattern</th>
-                                <th>Syntax Example</th>
-                                <th>Operational Behavior</th>
-                                <th>Use Case</th>
-                                <th>Performance Impact</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Named Columns</td>
-                                <td><code>SELECT id, name</code></td>
-                                <td>Retrieves strictly declared column vectors</td>
-                                <td>Production APIs & web UI queries</td>
-                                <td>High (Enables index-only covering scans)</td>
-                            </tr>
-                            <tr>
-                                <td>Wildcard (*)</td>
-                                <td><code>SELECT *</code></td>
-                                <td>Pulls every single column in physical table</td>
-                                <td>Quick ad-hoc debugging in CLI</td>
-                                <td>Poor (Forces full row reads & network bloat)</td>
-                            </tr>
-                            <tr>
-                                <td>Computed Fields</td>
-                                <td><code>SELECT price * 1.18</code></td>
-                                <td>Evaluates CPU expressions on each output row</td>
-                                <td>Tax calculation, string formatting</td>
-                                <td>Low CPU cost; done during projection phase</td>
-                            </tr>
-                            <tr>
-                                <td>Literal Constants</td>
-                                <td><code>SELECT 'US' AS region</code></td>
-                                <td>Injects static scalar value into result set</td>
-                                <td>Tagging query sources or mock responses</td>
-                                <td>Negligible memory footprint</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>Why SELECT * Degrades Production Performance</h3>
-                <p>While convenient in quick command-line diagnostics, <code>SELECT *</code> introduces serious architectural and scalability liabilities in production applications:</p>
-                <ul>
-                    <li><strong>Breaks Covering Indexes:</strong> If an index contains columns A and B, <code>SELECT A, B</code> is satisfied entirely in RAM (Index-Only Scan). <code>SELECT *</code> forces costly random disk seeks to fetch table pages.</li>
-                    <li><strong>Network & Serialization Bloat:</strong> Transporting unused JSON or text fields consumes network throughput and increases JSON serialization latency on backend application servers.</li>
-                    <li><strong>Schema Evolution Fragility:</strong> If a DBA adds or reorders columns in the physical table, positional array decoders in frontend code will break immediately.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Enterprise Payroll & Compensation Projection:</strong> Calculate annualized bonuses and format full employee identities from enterprise human resources payroll tables.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Enterprise Payroll & Compensation Projection</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: employee_payroll</span>
-<span class="code-comment">   emp_id | first_name | last_name  | base_salary | bonus_pct | department</span>
-<span class="code-comment">   -------+------------+------------+-------------+-----------+----------------</span>
-<span class="code-comment">   101    | Sarah      | Connor     | 85000.00    | 0.15      | Engineering</span>
-<span class="code-comment">   102    | John       | Wick       | 92000.00    | 0.20      | Security</span>
-<span class="code-comment">   103    | Ellen      | Ripley     | 78000.00    | 0.10      | Operations</span>
-<span class="code-comment">   104    | James      | Holden     | 81000.00    | 0.12      | Logistics</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Retrieve only identification and department columns</span>
-<span class="code-keyword">SELECT</span> emp_id, first_name, last_name, department
-<span class="code-keyword">FROM</span> employee_payroll;
-<span class="code-comment">-- Matches: 4 rows projected with zero unnecessary salary columns exposed</span>
-
-<span class="code-comment">-- Requirement 2: Combine first and last name into full_name expression</span>
-<span class="code-keyword">SELECT</span> 
+<span class="code-keyword">FROM</span> employees;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> system_configuration;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>system_configuration</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>SELECT</code> statement is the foundational command of Data Query Language (DQL). It specifies the projected columns, scalar functions, literal constants, and calculated expressions returned by the database engine.</p>
+<ul>
+<li><strong>Column Projection:</strong> Declaring explicit column names instructs the storage engine to read only relevant attributes from disk or memory buffers.</li>
+<li><strong>Calculated Fields:</strong> Perform mathematical operations, string concatenations, and date functions directly within the SELECT clause.</li>
+<li><strong>Alias Declaration:</strong> Use the <code>AS</code> keyword to give calculated expressions intuitive, developer-friendly field names in API payloads.</li>
+<li><strong>Bandwidth Conservation:</strong> Omitting unneeded columns avoids transferring multi-megabyte BLOBs or large text descriptions across the network.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Projection Pattern</th>
+<th>Syntax Example</th>
+<th>Operational Behavior</th>
+<th>Use Case</th>
+<th>Performance Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Named Columns</td>
+<td><code>SELECT id, name</code></td>
+<td>Retrieves strictly declared column vectors</td>
+<td>Production APIs &amp; web UI queries</td>
+<td>High (Enables index-only covering scans)</td>
+</tr>
+<tr>
+<td>Wildcard (*)</td>
+<td><code>SELECT *</code></td>
+<td>Pulls every single column in physical table</td>
+<td>Quick ad-hoc debugging in CLI</td>
+<td>Poor (Forces full row reads &amp; network bloat)</td>
+</tr>
+<tr>
+<td>Computed Fields</td>
+<td><code>SELECT price * 1.18</code></td>
+<td>Evaluates CPU expressions on each output row</td>
+<td>Tax calculation, string formatting</td>
+<td>Low CPU cost; done during projection phase</td>
+</tr>
+<tr>
+<td>Literal Constants</td>
+<td><code>SELECT 'US' AS region</code></td>
+<td>Injects static scalar value into result set</td>
+<td>Tagging query sources or mock responses</td>
+<td>Negligible memory footprint</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Why SELECT * Degrades Production Performance</h3>
+<p>While convenient in quick command-line diagnostics, <code>SELECT *</code> introduces serious architectural and scalability liabilities in production applications:</p>
+<ul>
+<li><strong>Breaks Covering Indexes:</strong> If an index contains columns A and B, <code>SELECT A, B</code> is satisfied entirely in RAM (Index-Only Scan). <code>SELECT *</code> forces costly random disk seeks to fetch table pages.</li>
+<li><strong>Network &amp; Serialization Bloat:</strong> Transporting unused JSON or text fields consumes network throughput and increases JSON serialization latency on backend application servers.</li>
+<li><strong>Schema Evolution Fragility:</strong> If a DBA adds or reorders columns in the physical table, positional array decoders in frontend code will break immediately.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Enterprise Payroll &amp; Compensation Projection:</strong> Calculate annualized bonuses and format full employee identities from enterprise human resources payroll tables.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: employee_payroll
+   emp_id | first_name | last_name  | base_salary | bonus_pct | department
+   -------+------------+------------+-------------+-----------+----------------
+   101    | Sarah      | Connor     | 85000.00    | 0.15      | Engineering
+   102    | John       | Wick       | 92000.00    | 0.20      | Security
+   103    | Ellen      | Ripley     | 78000.00    | 0.10      | Operations
+   104    | James      | Holden     | 81000.00    | 0.12      | Logistics
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> emp_id, first_name, last_name, department
+<span class="code-keyword">FROM</span> employee_payroll;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employee_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     emp_id,
-    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> full_name,
+    first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name <span class="code-keyword">AS</span> full_name,
     department
-<span class="code-keyword">FROM</span> employee_payroll;
-<span class="code-comment">-- Matches: 'Sarah Connor', 'John Wick', 'Ellen Ripley', 'James Holden'</span>
-
-<span class="code-comment">-- Requirement 3: Compute gross total compensation with bonus in SELECT clause</span>
-<span class="code-keyword">SELECT</span> 
+<span class="code-keyword">FROM</span> employee_payroll;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employee_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     emp_id,
-    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> full_name,
+    first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name <span class="code-keyword">AS</span> full_name,
     base_salary,
-    (base_salary * bonus_pct) <span class="code-keyword">AS</span> bonus_amount,
-    (base_salary + (base_salary * bonus_pct)) <span class="code-keyword">AS</span> total_compensation
-<span class="code-keyword">FROM</span> employee_payroll;
-<span class="code-comment">-- Matches: Sarah ($97,750), John ($110,400), Ellen ($85,800), James ($90,720)</span>
-
-<span class="code-comment">-- Requirement 4: Calculate monthly gross pay breakdown</span>
-<span class="code-keyword">SELECT</span> 
+    (base_salary <span class="code-op">*</span> bonus_pct) <span class="code-keyword">AS</span> bonus_amount,
+    (base_salary <span class="code-op">+</span> (base_salary <span class="code-op">*</span> bonus_pct)) <span class="code-keyword">AS</span> total_compensation
+<span class="code-keyword">FROM</span> employee_payroll;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employee_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     emp_id,
-    <span class="code-func">ROUND</span>(base_salary / 12.0, 2) <span class="code-keyword">AS</span> monthly_base_pay
-<span class="code-keyword">FROM</span> employee_payroll;
-<span class="code-comment">-- Matches: Sarah ($7,083.33), John ($7,666.67), Ellen ($6,500.00), James ($6,750.00)</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The SELECT statement forms the core data projection mechanism in relational queries, allowing engineers to cherry-pick precise columns, compute expressions, and optimize network throughput.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Explicit Column Names:</strong> Always list explicit column names in production queries to minimize I/O and conserve network bandwidth.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Eliminate SELECT *:</strong> Avoid SELECT * in production code to maintain covering index efficiency and prevent schema breakage.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Meaningful Column Aliases:</strong> Use the AS keyword to name calculated expressions clearly for downstream API consumers.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>In-Query Calculations:</strong> Compute arithmetic formulas, string concatenations, and formatting inside SELECT to offload client CPU overhead.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Deterministic Schema Decoupling:</strong> Explicit projections ensure application queries remain stable even when database tables gain new columns.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="syntax.html" class="btn-outline" title="Previous: SQL Syntax & Statement Grammar">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Syntax & Statement Grammar</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_select">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="select-distinct.html" class="btn-enroll" title="Next: SELECT DISTINCT (Deduplication)">
-                        <span class="btn-text">Next: SELECT DISTINCT (Deduplication)</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+    <span class="code-func">ROUND</span>(base_salary <span class="code-op">/</span> <span class="code-num">12.0</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> monthly_base_pay
+<span class="code-keyword">FROM</span> employee_payroll;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employee_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The SELECT statement forms the core data projection mechanism in relational queries, allowing engineers to cherry-pick precise columns, compute expressions, and optimize network throughput.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Explicit Column Names:</strong> Always list explicit column names in production queries to minimize I/O and conserve network bandwidth.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Eliminate SELECT *:</strong> Avoid SELECT * in production code to maintain covering index efficiency and prevent schema breakage.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Meaningful Column Aliases:</strong> Use the AS keyword to name calculated expressions clearly for downstream API consumers.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>In-Query Calculations:</strong> Compute arithmetic formulas, string concatenations, and formatting inside SELECT to offload client CPU overhead.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Deterministic Schema Decoupling:</strong> Explicit projections ensure application queries remain stable even when database tables gain new columns.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="syntax.html" title="Previous: SQL Syntax &amp; Statement Grammar">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Syntax &amp; Statement Grammar</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_select" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="select-distinct.html" title="Next: SELECT DISTINCT (Deduplication)">
+<span class="btn-text">Next: SELECT DISTINCT (Deduplication)</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

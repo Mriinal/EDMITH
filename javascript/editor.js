@@ -609,41 +609,143 @@ ORDER BY gpa DESC;`
         });
     }
 
+    // Helper function to load query into editor, highlight, and execute
+    window.loadQueryIntoEditor = function(sql, autoRun = true) {
+        if (!editorTextarea) return;
+        const cleaned = (sql || '').trim();
+        if (!cleaned) return;
+        editorTextarea.value = cleaned;
+        updateLineNumbers();
+        updateSyntaxHighlight();
+        if (autoRun) {
+            executeEditorQuery();
+        }
+    };
+
     // 11. Deep Linking: Handle ?query= and ?table= from URL
     const urlParams = new URLSearchParams(window.location.search);
     const queryParam = urlParams.get('query');
     const tableParam = urlParams.get('table');
 
-    if (queryParam) {
-        try {
-            editorTextarea.value = decodeURIComponent(queryParam);
-            updateLineNumbers();
-            updateSyntaxHighlight();
-            executeEditorQuery();
-        } catch (e) {
-            console.warn('Failed to parse query parameter:', e);
-            editorTextarea.value = queryTemplates['select_basic'];
-            updateLineNumbers();
-            updateSyntaxHighlight();
-            executeEditorQuery();
-        }
-    } else if (tableParam) {
-        editorTextarea.value = `SELECT * FROM ${decodeURIComponent(tableParam)} LIMIT 10;`;
-        updateLineNumbers();
-        updateSyntaxHighlight();
-        executeEditorQuery();
+    if (queryParam !== null && queryParam.trim() !== '') {
+        // NOTE: URLSearchParams.get() ALREADY performs full percent-decoding!
+        // Never call decodeURIComponent(queryParam) because strings with % (e.g. LIKE '%dev%')
+        // will throw URIError: URI malformed and corrupt the query.
+        window.loadQueryIntoEditor(queryParam, true);
+    } else if (tableParam !== null && tableParam.trim() !== '') {
+        window.loadQueryIntoEditor(`SELECT * FROM ${tableParam.trim()} LIMIT 10;`, true);
     } else {
-        // Default initial query
-        editorTextarea.value = queryTemplates['select_basic'];
-        updateLineNumbers();
-        updateSyntaxHighlight();
-        executeEditorQuery();
+        // Check if there is an incoming pending query from localStorage
+        let pendingQuery = null;
+        try {
+            const raw = localStorage.getItem('edmith_sql_editor_incoming');
+            if (raw) {
+                const data = JSON.parse(raw);
+                if (data && data.query && (Date.now() - (data.ts || 0) < 60000)) {
+                    pendingQuery = data.query;
+                }
+            }
+        } catch (e) {}
+
+        if (pendingQuery) {
+            window.loadQueryIntoEditor(pendingQuery, true);
+        } else {
+            // Default initial query
+            window.loadQueryIntoEditor(queryTemplates['select_basic'], true);
+        }
     }
+
+    // 12. Cross-Tab / Cross-Window Live Query Receiver
+    // Allows any tutorial lesson to send queries to an ALREADY OPEN editor tab!
+    if ('BroadcastChannel' in window) {
+        try {
+            const bc = new BroadcastChannel('edmith_sql_channel');
+            bc.onmessage = (event) => {
+                if (event.data && event.data.action === 'load_query' && event.data.query) {
+                    window.loadQueryIntoEditor(event.data.query, true);
+                }
+            };
+        } catch (e) {}
+    }
+
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'edmith_sql_editor_incoming' && e.newValue) {
+            try {
+                const data = JSON.parse(e.newValue);
+                if (data && data.query) {
+                    window.loadQueryIntoEditor(data.query, true);
+                }
+            } catch (err) {}
+        }
+    });
+
+    window.addEventListener('message', (e) => {
+        if (e.data && e.data.action === 'load_query' && e.data.query) {
+            window.loadQueryIntoEditor(e.data.query, true);
+        }
+    });
+
+    window.addEventListener('pageshow', () => {
+        const freshParams = new URLSearchParams(window.location.search);
+        const q = freshParams.get('query');
+        if (q && q.trim() !== '') {
+            window.loadQueryIntoEditor(q, true);
+        }
+    });
 }
+
+/**
+ * Global helper to open or update the EDMITH SQL Editor with specified code.
+ * Works whether called with a code string or a button element (using `this`).
+ */
+window.openEdmithEditor = function(target) {
+    let sql = '';
+    if (typeof target === 'string') {
+        sql = target.trim();
+    } else if (target && target.closest) {
+        const terminal = target.closest('.code-terminal');
+        const codeEl = terminal ? terminal.querySelector('code') : null;
+        sql = codeEl ? codeEl.innerText.trim() : '';
+    }
+
+    if (!sql) return;
+
+    // 1. Save to localStorage for instant cross-tab catch
+    try {
+        localStorage.setItem('edmith_sql_editor_incoming', JSON.stringify({
+            query: sql,
+            ts: Date.now()
+        }));
+    } catch (e) {}
+
+    // 2. Broadcast to any already-open editor tabs
+    try {
+        if ('BroadcastChannel' in window) {
+            const bc = new BroadcastChannel('edmith_sql_channel');
+            bc.postMessage({ action: 'load_query', query: sql });
+            bc.close();
+        }
+    } catch (e) {}
+
+    // 3. Resolve target URL based on current page location
+    const isSqlSubdir = window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/');
+    const editorPath = isSqlSubdir ? 'editor.html' : 'sql/editor.html';
+    const targetUrl = editorPath + '?query=' + encodeURIComponent(sql);
+
+    // 4. Open or focus the named editor window
+    const editorWin = window.open(targetUrl, 'edmith_sql_editor');
+    if (editorWin) {
+        try {
+            editorWin.focus();
+            editorWin.postMessage({ action: 'load_query', query: sql }, '*');
+        } catch (e) {}
+    }
+};
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initEdmithEditor);
 } else {
     initEdmithEditor();
 }
+
 

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The MIN() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The MIN() Function - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The MIN() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The MIN() Function - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,404 +17,508 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li class="active"><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li class="active"><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The MIN() Function</span>
-                </div>
-                <h1>The MIN() Function</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-temperature-low"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Daily Weather Low Thermometer Analogy</h4>
-                        <p>Picture a digital meteorological weather station monitoring environmental temperatures throughout the day:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. Continuous Readings::</strong> Every minute, the sensor logs temperature readings: 72°, 68°, 54°, 49°, 58°.</li>
-                            <li><strong>2. The MIN() Function::</strong> At midnight, the meteorologist queries the sensor for the daily low: MIN(temperature).</li>
-                            <li><strong>3. Instant Minimum::</strong> The system returns 49° instantly, ignoring peak hours and focusing strictly on the bottom floor.</li>
-                            <li><strong>4. Non-Numeric Lows::</strong> Just as it finds the lowest number, it also finds the earliest timestamp (the sunrise moment).</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">The MIN() function scans a column to extract the smallest numeric value, earliest chronological date, or first alphabetical string.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The MIN() Function</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; min.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Numeric Minimum: Finding the lowest priced product</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(unit_price) <span class="code-keyword">AS</span> lowest_price
-<span class="code-keyword">FROM</span> store_products;
-
-<span class="code-comment">-- 2. Chronological Minimum: Finding the earliest account signup date</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(signup_date) <span class="code-keyword">AS</span> earliest_member_since
-<span class="code-keyword">FROM</span> user_accounts;
-
-<span class="code-comment">-- 3. Alphabetical Minimum: Finding first name alphabetically (A to Z)</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(last_name) <span class="code-keyword">AS</span> first_alphabetical_name
-<span class="code-keyword">FROM</span> employees;
-
-<span class="code-comment">-- 4. Minimum with WHERE Filtering</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(order_total) <span class="code-keyword">AS</span> lowest_enterprise_order
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The MIN() Function</span>
+</div>
+<h1>The MIN() Function</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-temperature-low"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Daily Weather Low Thermometer Analogy</h4>
+<p>Picture a digital meteorological weather station monitoring environmental temperatures throughout the day:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. Continuous Readings::</strong> Every minute, the sensor logs temperature readings: 72°, 68°, 54°, 49°, 58°.</li>
+<li><strong>2. The MIN() Function::</strong> At midnight, the meteorologist queries the sensor for the daily low: MIN(temperature).</li>
+<li><strong>3. Instant Minimum::</strong> The system returns 49° instantly, ignoring peak hours and focusing strictly on the bottom floor.</li>
+<li><strong>4. Non-Numeric Lows::</strong> Just as it finds the lowest number, it also finds the earliest timestamp (the sunrise moment).</li>
+</ul>
+<p style="margin-top: 8px !important;">The MIN() function scans a column to extract the smallest numeric value, earliest chronological date, or first alphabetical string.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The MIN() Function</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(unit_price) <span class="code-keyword">AS</span> lowest_price
+<span class="code-keyword">FROM</span> store_products;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>store_products</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(signup_date) <span class="code-keyword">AS</span> earliest_member_since
+<span class="code-keyword">FROM</span> user_accounts;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>user_accounts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(last_name) <span class="code-keyword">AS</span> first_alphabetical_name
+<span class="code-keyword">FROM</span> employees;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(order_total) <span class="code-keyword">AS</span> lowest_enterprise_order
 <span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> account_tier = <span class="code-string">'ENTERPRISE'</span>;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>MIN()</code> aggregate function inspects all non-null values in a column or expression and returns the minimum value found. It is polymorphic, natively supporting numbers, dates, timestamps, and alphabetical strings.</p>
-                <ul>
-                    <li><strong>Index Optimization (O(1)):</strong> If a B-Tree index exists on the column, MIN() executes in O(1) constant time by reading the very first entry on the index leaf page.</li>
-                    <li><strong>NULL Exclusion:</strong> MIN() automatically ignores NULL values; it only evaluates records where data is actively populated.</li>
-                    <li><strong>Date & Time Chronology:</strong> Applied to timestamps, MIN() extracts the oldest or earliest chronological occurrence.</li>
-                    <li><strong>Collating Order Strings:</strong> Applied to text columns, MIN() follows the database collation rules to return the first alphabetical string.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Data Type</th>
-                                <th>Evaluation Principle</th>
-                                <th>Sample Data Input</th>
-                                <th>MIN() Return Value</th>
-                                <th>Index Execution</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Numeric (INT / FLOAT)</td>
-                                <td>Mathematical smallest value</td>
-                                <td>45, 12, 89, 5, 102</td>
-                                <td><code>5</code></td>
-                                <td>B-Tree First Leaf Seek (Instant)</td>
-                            </tr>
-                            <tr>
-                                <td>Date / Timestamp</td>
-                                <td>Earliest chronological point in time</td>
-                                <td>2026-03-01, 2024-01-15, 2025-08-20</td>
-                                <td><code>2024-01-15</code></td>
-                                <td>B-Tree First Leaf Seek (Instant)</td>
-                            </tr>
-                            <tr>
-                                <td>Text / VARCHAR</td>
-                                <td>First alphabetical string by collation</td>
-                                <td>'Zebra', 'Apple', 'Mango'</td>
-                                <td><code>'Apple'</code></td>
-                                <td>B-Tree Index Scan (A-Z)</td>
-                            </tr>
-                            <tr>
-                                <td>Nullable Column</td>
-                                <td>Ignores NULLs completely</td>
-                                <td>10, NULL, 50, NULL, 5</td>
-                                <td><code>5</code></td>
-                                <td>Skips NULL entries in B-Tree</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>How B-Tree Indexes Turn MIN() into a Microsecond Query</h3>
-                <p>Understanding how database storage engines evaluate MIN() reveals the extreme power of B-Tree indexing:</p>
-                <ul>
-                    <li><strong>Without an Index (Full Table Scan):</strong> The database engine must load every single page from disk into RAM and test all 10 million rows to guarantee no smaller number exists.</li>
-                    <li><strong>With an Index (Index Seek):</strong> Because B-Trees store keys in sorted ascending order, the minimum value is stored in the very first slot of the leftmost leaf node.</li>
-                    <li><strong>Execution Result:</strong> The query plan shows <code>Index Full Scan (Min/Max)</code>, executing in single-digit microseconds regardless of table size!</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Airline Flight Pricing & Route Optimization:</strong> Scan flight booking inventories to display the lowest available fare ticket prices and earliest departure times for travelers.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Airline Flight Pricing & Route Optimization</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: flight_inventory</span>
-<span class="code-comment">   flight_id | origin | destination | departure_time   | fare_usd | seats_left</span>
-<span class="code-comment">   ----------+--------+-------------+------------------+----------+-----------</span>
-<span class="code-comment">   AA-101    | JFK    | LHR         | 2026-06-01 08:00 | 450.00   | 14</span>
-<span class="code-comment">   BA-204    | JFK    | LHR         | 2026-06-01 11:30 | 389.00   | 3</span>
-<span class="code-comment">   DL-305    | JFK    | LHR         | 2026-06-01 18:45 | 520.00   | 28</span>
-<span class="code-comment">   VS-402    | JFK    | LHR         | 2026-06-01 21:00 | 389.00   | 8</span>
-<span class="code-comment">   UA-509    | JFK    | LHR         | 2026-06-01 06:15 | 410.00   | 0</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Discover the lowest available airfare for JFK to London route</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">AS</span> lowest_fare
-<span class="code-keyword">FROM</span> flight_inventory
-<span class="code-keyword">WHERE</span> origin = <span class="code-string">'JFK'</span> <span class="code-keyword">AND</span> destination = <span class="code-string">'LHR'</span> <span class="code-keyword">AND</span> seats_left &gt; 0;
-<span class="code-comment">-- Matches: $389.00 (Lowest available ticket price)</span>
-
-<span class="code-comment">-- Requirement 2: Identify the earliest departure flight of the day</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(departure_time) <span class="code-keyword">AS</span> first_flight_departure
-<span class="code-keyword">FROM</span> flight_inventory
-<span class="code-keyword">WHERE</span> origin = <span class="code-string">'JFK'</span> <span class="code-keyword">AND</span> destination = <span class="code-string">'LHR'</span>;
-<span class="code-comment">-- Matches: 2026-06-01 06:15 (UA-509)</span>
-
-<span class="code-comment">-- Requirement 3: Subquery: Retrieve full flight details for the lowest fare flight</span>
-<span class="code-keyword">SELECT</span> flight_id, departure_time, fare_usd, seats_left
-<span class="code-keyword">FROM</span> flight_inventory
-<span class="code-keyword">WHERE</span> fare_usd = (<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">FROM</span> flight_inventory <span class="code-keyword">WHERE</span> seats_left &gt; 0);
-<span class="code-comment">-- Matches: BA-204 ($389.00) and VS-402 ($389.00)</span>
-
-<span class="code-comment">-- Requirement 4: Lowest fare among flights with at least 10 seats remaining</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">AS</span> lowest_group_fare
-<span class="code-keyword">FROM</span> flight_inventory
-<span class="code-keyword">WHERE</span> seats_left &gt;= 10;
-<span class="code-comment">-- Matches: AA-101 ($450.00)</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The MIN() aggregate function swiftly scans datasets to extract the smallest numeric value, earliest timestamp, or first alphabetical string while automatically skipping NULL entries.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Polymorphic Capability:</strong> MIN() operates seamlessly across numbers (smallest), dates (earliest), and strings (alphabetically first).</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>B-Tree Optimization:</strong> Indexed columns allow MIN() to complete in O(1) constant time by reading the first leaf entry.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Automatic NULL Exclusion:</strong> NULL entries are completely ignored and do not affect the minimum calculation.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Subquery Matching:</strong> Combine WHERE col = (SELECT MIN(col)...) to fetch the entire row associated with the minimum value.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Filtering Precedence:</strong> WHERE clauses execute before MIN(), calculating the minimum strictly across qualified subsets.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="aggregate-functions.html" class="btn-outline" title="Previous: SQL Aggregate Functions Overview">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Aggregate Functions Overview</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_min">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="max.html" class="btn-enroll" title="Next: The MAX() Function">
-                        <span class="btn-text">Next: The MAX() Function</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+<span class="code-keyword">WHERE</span> account_tier <span class="code-op">=</span> <span class="code-string">'ENTERPRISE'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>sales_orders</code> using the condition <code>account_tier = 'ENTERPRISE'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>MIN()</code> aggregate function inspects all non-null values in a column or expression and returns the minimum value found. It is polymorphic, natively supporting numbers, dates, timestamps, and alphabetical strings.</p>
+<ul>
+<li><strong>Index Optimization (O(1)):</strong> If a B-Tree index exists on the column, MIN() executes in O(1) constant time by reading the very first entry on the index leaf page.</li>
+<li><strong>NULL Exclusion:</strong> MIN() automatically ignores NULL values; it only evaluates records where data is actively populated.</li>
+<li><strong>Date &amp; Time Chronology:</strong> Applied to timestamps, MIN() extracts the oldest or earliest chronological occurrence.</li>
+<li><strong>Collating Order Strings:</strong> Applied to text columns, MIN() follows the database collation rules to return the first alphabetical string.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Evaluation Principle</th>
+<th>Sample Data Input</th>
+<th>MIN() Return Value</th>
+<th>Index Execution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Numeric (INT / FLOAT)</td>
+<td>Mathematical smallest value</td>
+<td>45, 12, 89, 5, 102</td>
+<td><code>5</code></td>
+<td>B-Tree First Leaf Seek (Instant)</td>
+</tr>
+<tr>
+<td>Date / Timestamp</td>
+<td>Earliest chronological point in time</td>
+<td>2026-03-01, 2024-01-15, 2025-08-20</td>
+<td><code>2024-01-15</code></td>
+<td>B-Tree First Leaf Seek (Instant)</td>
+</tr>
+<tr>
+<td>Text / VARCHAR</td>
+<td>First alphabetical string by collation</td>
+<td>'Zebra', 'Apple', 'Mango'</td>
+<td><code>'Apple'</code></td>
+<td>B-Tree Index Scan (A-Z)</td>
+</tr>
+<tr>
+<td>Nullable Column</td>
+<td>Ignores NULLs completely</td>
+<td>10, NULL, 50, NULL, 5</td>
+<td><code>5</code></td>
+<td>Skips NULL entries in B-Tree</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>How B-Tree Indexes Turn MIN() into a Microsecond Query</h3>
+<p>Understanding how database storage engines evaluate MIN() reveals the extreme power of B-Tree indexing:</p>
+<ul>
+<li><strong>Without an Index (Full Table Scan):</strong> The database engine must load every single page from disk into RAM and test all 10 million rows to guarantee no smaller number exists.</li>
+<li><strong>With an Index (Index Seek):</strong> Because B-Trees store keys in sorted ascending order, the minimum value is stored in the very first slot of the leftmost leaf node.</li>
+<li><strong>Execution Result:</strong> The query plan shows <code>Index Full Scan (Min/Max)</code>, executing in single-digit microseconds regardless of table size!</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Airline Flight Pricing &amp; Route Optimization:</strong> Scan flight booking inventories to display the lowest available fare ticket prices and earliest departure times for travelers.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: flight_inventory
+   flight_id | origin | destination | departure_time   | fare_usd | seats_left
+   ----------+--------+-------------+------------------+----------+-----------
+   AA-101    | JFK    | LHR         | 2026-06-01 08:00 | 450.00   | 14
+   BA-204    | JFK    | LHR         | 2026-06-01 11:30 | 389.00   | 3
+   DL-305    | JFK    | LHR         | 2026-06-01 18:45 | 520.00   | 28
+   VS-402    | JFK    | LHR         | 2026-06-01 21:00 | 389.00   | 8
+   UA-509    | JFK    | LHR         | 2026-06-01 06:15 | 410.00   | 0
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">AS</span> lowest_fare
+<span class="code-keyword">FROM</span> flight_inventory
+<span class="code-keyword">WHERE</span> origin <span class="code-op">=</span> <span class="code-string">'JFK'</span> <span class="code-keyword">AND</span> destination <span class="code-op">=</span> <span class="code-string">'LHR'</span> <span class="code-keyword">AND</span> seats_left <span class="code-op">&gt;</span> <span class="code-num">0</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>flight_inventory</code> using the condition <code>origin = 'JFK' AND destination = 'LHR' AND seats_left &gt; 0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
         </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(departure_time) <span class="code-keyword">AS</span> first_flight_departure
+<span class="code-keyword">FROM</span> flight_inventory
+<span class="code-keyword">WHERE</span> origin <span class="code-op">=</span> <span class="code-string">'JFK'</span> <span class="code-keyword">AND</span> destination <span class="code-op">=</span> <span class="code-string">'LHR'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>flight_inventory</code> using the condition <code>origin = 'JFK' AND destination = 'LHR'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> flight_id, departure_time, fare_usd, seats_left
+<span class="code-keyword">FROM</span> flight_inventory
+<span class="code-keyword">WHERE</span> fare_usd <span class="code-op">=</span> (<span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">FROM</span> flight_inventory <span class="code-keyword">WHERE</span> seats_left <span class="code-op">&gt;</span> <span class="code-num">0</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>flight_inventory</code> using the condition <code>fare_usd = (SELECT MIN(fare_usd) FROM flight_inventory WHERE seats_left &gt; 0)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MIN</span>(fare_usd) <span class="code-keyword">AS</span> lowest_group_fare
+<span class="code-keyword">FROM</span> flight_inventory
+<span class="code-keyword">WHERE</span> seats_left <span class="code-op">&gt;=</span> <span class="code-num">10</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>flight_inventory</code> using the condition <code>seats_left &gt;= 10</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The MIN() aggregate function swiftly scans datasets to extract the smallest numeric value, earliest timestamp, or first alphabetical string while automatically skipping NULL entries.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Polymorphic Capability:</strong> MIN() operates seamlessly across numbers (smallest), dates (earliest), and strings (alphabetically first).</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>B-Tree Optimization:</strong> Indexed columns allow MIN() to complete in O(1) constant time by reading the first leaf entry.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Automatic NULL Exclusion:</strong> NULL entries are completely ignored and do not affect the minimum calculation.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Subquery Matching:</strong> Combine WHERE col = (SELECT MIN(col)...) to fetch the entire row associated with the minimum value.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Filtering Precedence:</strong> WHERE clauses execute before MIN(), calculating the minimum strictly across qualified subsets.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="aggregate-functions.html" title="Previous: SQL Aggregate Functions Overview">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Aggregate Functions Overview</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_min" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="max.html" title="Next: The MAX() Function">
+<span class="btn-text">Next: The MAX() Function</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

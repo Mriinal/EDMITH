@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: LEFT JOIN (Outer Join) - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>LEFT JOIN (Outer Join) - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: LEFT JOIN (Outer Join) - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>LEFT JOIN (Outer Join) - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,427 +17,552 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li class="active"><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li class="active"><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>LEFT JOIN (Outer Join)</span>
-                </div>
-                <h1>LEFT JOIN (Outer Join)</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-clipboard-list"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The School Roster Attendance Sheet Analogy</h4>
-                        <p>Picture a high school homeroom teacher taking morning attendance using the official class roster:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. The Master Roster (Left Table)::</strong> Every enrolled student is printed on the sheet: Alice, Bob, Charlie, and Diana.</li>
-                            <li><strong>2. The Homework Submissions (Right Table)::</strong> Only Alice and Diana turned in their homework assignment this morning.</li>
-                            <li><strong>3. Preserving Every Student::</strong> The teacher does NOT erase Bob and Charlie from the school roll; their names remain on the list with 'NO SUBMISSION' (NULL) marked beside them.</li>
-                            <li><strong>4. Zero Data Loss::</strong> A LEFT JOIN guarantees that every single record from the master left table is preserved, regardless of whether matching right records exist.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">LEFT JOIN preserves all rows from the left table, matching rows from the right table where available and filling missing right attributes with NULL.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>LEFT JOIN (Outer Join)</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; left-join.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Standard Left Join Preserving All Customers</span>
-<span class="code-keyword">SELECT</span> 
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>LEFT JOIN (Outer Join)</span>
+</div>
+<h1>LEFT JOIN (Outer Join)</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-clipboard-list"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The School Roster Attendance Sheet Analogy</h4>
+<p>Picture a high school homeroom teacher taking morning attendance using the official class roster:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. The Master Roster (Left Table)::</strong> Every enrolled student is printed on the sheet: Alice, Bob, Charlie, and Diana.</li>
+<li><strong>2. The Homework Submissions (Right Table)::</strong> Only Alice and Diana turned in their homework assignment this morning.</li>
+<li><strong>3. Preserving Every Student::</strong> The teacher does NOT erase Bob and Charlie from the school roll; their names remain on the list with 'NO SUBMISSION' (NULL) marked beside them.</li>
+<li><strong>4. Zero Data Loss::</strong> A LEFT JOIN guarantees that every single record from the master left table is preserved, regardless of whether matching right records exist.</li>
+</ul>
+<p style="margin-top: 8px !important;">LEFT JOIN preserves all rows from the left table, matching rows from the right table where available and filling missing right attributes with NULL.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>LEFT JOIN (Outer Join)</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.customer_name,
     o.order_id,
     o.order_total
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id;
-
-<span class="code-comment">-- 2. Anti-Join: Finding Orphaned Left Records (Customers with ZERO Orders)</span>
-<span class="code-keyword">SELECT</span> c.customer_id, c.customer_name
+LEFT <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>customers</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> c.customer_id, c.customer_name
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
-<span class="code-keyword">WHERE</span> o.order_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
-
-<span class="code-comment">-- 3. Left Join with Aggregation and COALESCE Fallbacks</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id
+<span class="code-keyword">WHERE</span> o.order_id <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>customers</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     c.customer_name,
     <span class="code-func">COUNT</span>(o.order_id) <span class="code-keyword">AS</span> total_orders,
-    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(o.order_total), 0.00) <span class="code-keyword">AS</span> total_spend
+    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(o.order_total), <span class="code-num">0.00</span>) <span class="code-keyword">AS</span> total_spend
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
-<span class="code-keyword">GROUP BY</span> c.customer_name;
-
-<span class="code-comment">-- 4. Critical: Filtering Right Table in ON Clause vs WHERE Clause</span>
-<span class="code-comment">-- Correct: Keeps all customers, shows only 2026 orders</span>
+LEFT <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id
+GROUP BY c.customer_name;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>customers</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Correct: Keeps all customers, shows only 2026 orders</span>
 <span class="code-keyword">SELECT</span> c.customer_name, o.order_id, o.order_date
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id <span class="code-keyword">AND</span> o.order_date &gt;= <span class="code-string">'2026-01-01'</span>;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>LEFT JOIN</code> (or <code>LEFT OUTER JOIN</code>) returns all records from the left table (Table A), and the matched records from the right table (Table B). If there is no match, the result set contains <code>NULL</code> for all columns of the right table.</p>
-                <ul>
-                    <li><strong>100% Left Retention:</strong> Every single row from the left table appears in the output at least once. If a left row has multiple matches in the right table, it is duplicated for each match.</li>
-                    <li><strong>The Anti-Join Pattern:</strong> Filtering with <code>WHERE right_table.primary_key IS NULL</code> is the premier SQL design pattern for finding missing, inactive, or orphaned entities.</li>
-                    <li><strong>The WHERE Filter Trap:</strong> Placing a condition on the right table inside the <code>WHERE</code> clause (e.g. <code>WHERE o.status = 'PAID'</code>) accidentally converts the query into an INNER JOIN!</li>
-                    <li><strong>Asymmetric Nature:</strong> Unlike INNER JOIN, order matters: <code>A LEFT JOIN B</code> produces completely different results than <code>B LEFT JOIN A</code>.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Join Scenario</th>
-                                <th>Syntax Pattern</th>
-                                <th>Left Table Rows</th>
-                                <th>Right Table Rows</th>
-                                <th>Output Row Count</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Standard Left Join</td>
-                                <td><code>FROM a LEFT JOIN b ON a.id = b.id</code></td>
-                                <td>100% retained</td>
-                                <td>Matched or NULL</td>
-                                <td>&gt;= count of A</td>
-                            </tr>
-                            <tr>
-                                <td>Anti-Join (Exclusion)</td>
-                                <td><code>LEFT JOIN b ON ... WHERE b.id IS NULL</code></td>
-                                <td>Only rows with NO match</td>
-                                <td>All NULL</td>
-                                <td>Count of unlinked A rows</td>
-                            </tr>
-                            <tr>
-                                <td>Filtered Right in ON</td>
-                                <td><code>LEFT JOIN b ON ... AND b.flag = 1</code></td>
-                                <td>100% retained</td>
-                                <td>Matched if flag=1 else NULL</td>
-                                <td>&gt;= count of A</td>
-                            </tr>
-                            <tr>
-                                <td>Filtered Right in WHERE</td>
-                                <td><code>LEFT JOIN b ON ... WHERE b.flag = 1</code></td>
-                                <td>Converted to INNER JOIN!</td>
-                                <td>Matched if flag=1</td>
-                                <td>Only matching rows (Bug!)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>The Deadly WHERE Clause Trap in LEFT JOINs</h3>
-                <p>The most common and destructive bug in SQL reporting occurs when filtering right-table columns in an outer join:</p>
-                <ul>
-                    <li><strong>The Buggy Query:</strong> <code>SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.id = o.cust_id WHERE o.status = 'COMPLETED';</code></li>
-                    <li><strong>Why it Fails:</strong> For customers with zero orders, <code>o.status</code> is NULL. The WHERE clause tests: <code>NULL = 'COMPLETED'</code>, which evaluates to UNKNOWN and purges the customer!</li>
-                    <li><strong>The Devastating Result:</strong> The LEFT JOIN is silently converted into an INNER JOIN, eliminating all inactive customers.</li>
-                    <li><strong>The Fix:</strong> Move the condition into the ON clause: <code>LEFT JOIN orders o ON c.id = o.cust_id AND o.status = 'COMPLETED';</code>.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Enterprise Lead Generation & Inactive Account Auditing:</strong> Audit sales CRM pipelines to isolate prospective client accounts that have never been contacted by sales representatives.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Enterprise Lead Generation & Inactive Account Auditing</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset:</span>
-<span class="code-comment">   leads: (lead_id, company_name, industry)</span>
-<span class="code-comment">   #101: Apex Corp, Tech | #102: Beacon Media, Media | #103: Cyberdyne, Defense | #104: Delta Air, Travel</span>
-<span class="code-comment">   calls: (call_id, lead_id, rep_name, outcome)</span>
-<span class="code-comment">   #1: Lead 101, Rep Miller, INTERESTED</span>
-<span class="code-comment">   #2: Lead 101, Rep Miller, DEMO_SET</span>
-<span class="code-comment">   #3: Lead 102, Rep Sarah, VOICEMAIL</span>
-<span class="code-comment">   Note: Lead 103 (Cyberdyne) and Lead 104 (Delta Air) have ZERO calls logged.</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Comprehensive CRM report keeping all leads regardless of contact history</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id <span class="code-keyword">AND</span> o.order_date <span class="code-op">&gt;=</span> <span class="code-string">'2026-01-01'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>customers</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>LEFT JOIN</code> (or <code>LEFT OUTER JOIN</code>) returns all records from the left table (Table A), and the matched records from the right table (Table B). If there is no match, the result set contains <code>NULL</code> for all columns of the right table.</p>
+<ul>
+<li><strong>100% Left Retention:</strong> Every single row from the left table appears in the output at least once. If a left row has multiple matches in the right table, it is duplicated for each match.</li>
+<li><strong>The Anti-Join Pattern:</strong> Filtering with <code>WHERE right_table.primary_key IS NULL</code> is the premier SQL design pattern for finding missing, inactive, or orphaned entities.</li>
+<li><strong>The WHERE Filter Trap:</strong> Placing a condition on the right table inside the <code>WHERE</code> clause (e.g. <code>WHERE o.status = 'PAID'</code>) accidentally converts the query into an INNER JOIN!</li>
+<li><strong>Asymmetric Nature:</strong> Unlike INNER JOIN, order matters: <code>A LEFT JOIN B</code> produces completely different results than <code>B LEFT JOIN A</code>.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Join Scenario</th>
+<th>Syntax Pattern</th>
+<th>Left Table Rows</th>
+<th>Right Table Rows</th>
+<th>Output Row Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard Left Join</td>
+<td><code>FROM a LEFT JOIN b ON a.id = b.id</code></td>
+<td>100% retained</td>
+<td>Matched or NULL</td>
+<td>&gt;= count of A</td>
+</tr>
+<tr>
+<td>Anti-Join (Exclusion)</td>
+<td><code>LEFT JOIN b ON ... WHERE b.id IS NULL</code></td>
+<td>Only rows with NO match</td>
+<td>All NULL</td>
+<td>Count of unlinked A rows</td>
+</tr>
+<tr>
+<td>Filtered Right in ON</td>
+<td><code>LEFT JOIN b ON ... AND b.flag = 1</code></td>
+<td>100% retained</td>
+<td>Matched if flag=1 else NULL</td>
+<td>&gt;= count of A</td>
+</tr>
+<tr>
+<td>Filtered Right in WHERE</td>
+<td><code>LEFT JOIN b ON ... WHERE b.flag = 1</code></td>
+<td>Converted to INNER JOIN!</td>
+<td>Matched if flag=1</td>
+<td>Only matching rows (Bug!)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>The Deadly WHERE Clause Trap in LEFT JOINs</h3>
+<p>The most common and destructive bug in SQL reporting occurs when filtering right-table columns in an outer join:</p>
+<ul>
+<li><strong>The Buggy Query:</strong> <code>SELECT c.name, o.order_id FROM customers c LEFT JOIN orders o ON c.id = o.cust_id WHERE o.status = 'COMPLETED';</code></li>
+<li><strong>Why it Fails:</strong> For customers with zero orders, <code>o.status</code> is NULL. The WHERE clause tests: <code>NULL = 'COMPLETED'</code>, which evaluates to UNKNOWN and purges the customer!</li>
+<li><strong>The Devastating Result:</strong> The LEFT JOIN is silently converted into an INNER JOIN, eliminating all inactive customers.</li>
+<li><strong>The Fix:</strong> Move the condition into the ON clause: <code>LEFT JOIN orders o ON c.id = o.cust_id AND o.status = 'COMPLETED';</code>.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Enterprise Lead Generation &amp; Inactive Account Auditing:</strong> Audit sales CRM pipelines to isolate prospective client accounts that have never been contacted by sales representatives.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset:
+   leads: (lead_id, company_name, industry)
+   #101: Apex Corp, Tech | #102: Beacon Media, Media | #103: Cyberdyne, Defense | #104: Delta Air, Travel
+   calls: (call_id, lead_id, rep_name, outcome)
+   #1: Lead 101, Rep Miller, INTERESTED
+   #2: Lead 101, Rep Miller, DEMO_SET
+   #3: Lead 102, Rep Sarah, VOICEMAIL
+   Note: Lead 103 (Cyberdyne) and Lead 104 (Delta Air) have ZERO calls logged.
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     l.lead_id,
     l.company_name,
     l.industry,
     c.rep_name,
     c.outcome
 <span class="code-keyword">FROM</span> leads l
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> calls c <span class="code-keyword">ON</span> l.lead_id = c.lead_id;
-<span class="code-comment">-- Matches: Apex (2 calls), Beacon (1 call), Cyberdyne (rep=NULL), Delta Air (rep=NULL)</span>
-
-<span class="code-comment">-- Requirement 2: Anti-Join: Identify neglected leads that have NEVER received a sales call</span>
-<span class="code-keyword">SELECT</span> l.lead_id, l.company_name, l.industry
+LEFT <span class="code-keyword">JOIN</span> calls c <span class="code-keyword">ON</span> l.lead_id <span class="code-op">=</span> c.lead_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>leads</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> l.lead_id, l.company_name, l.industry
 <span class="code-keyword">FROM</span> leads l
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> calls c <span class="code-keyword">ON</span> l.lead_id = c.lead_id
-<span class="code-keyword">WHERE</span> c.call_id <span class="code-keyword">IS <span class="code-keyword">NULL</span></span>;
-<span class="code-comment">-- Matches: Lead 103 (Cyberdyne) and Lead 104 (Delta Air) - High-priority outreach targets!</span>
-
-<span class="code-comment">-- Requirement 3: Aggregated outreach summary per company</span>
-<span class="code-keyword">SELECT</span> 
+LEFT <span class="code-keyword">JOIN</span> calls c <span class="code-keyword">ON</span> l.lead_id <span class="code-op">=</span> c.lead_id
+<span class="code-keyword">WHERE</span> c.call_id <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>leads</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     l.company_name,
     <span class="code-func">COUNT</span>(c.call_id) <span class="code-keyword">AS</span> total_touchpoints
 <span class="code-keyword">FROM</span> leads l
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> calls c <span class="code-keyword">ON</span> l.lead_id = c.lead_id
-<span class="code-keyword">GROUP BY</span> l.company_name;
-<span class="code-comment">-- Matches: Apex (2), Beacon (1), Cyberdyne (0), Delta Air (0)</span>
-
-<span class="code-comment">-- Requirement 4: Correct filtering: Retain all leads, but pair only 'INTERESTED' calls</span>
-<span class="code-keyword">SELECT</span> l.company_name, c.rep_name, c.outcome
+LEFT <span class="code-keyword">JOIN</span> calls c <span class="code-keyword">ON</span> l.lead_id <span class="code-op">=</span> c.lead_id
+GROUP BY l.company_name;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>leads</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> l.company_name, c.rep_name, c.outcome
 <span class="code-keyword">FROM</span> leads l
-<span class="code-keyword">LEFT <span class="code-keyword">JOIN</span></span> calls c <span class="code-keyword">ON</span> l.lead_id = c.lead_id <span class="code-keyword">AND</span> c.outcome = <span class="code-string">'INTERESTED'</span>;
-<span class="code-comment">-- Matches: All 4 leads retained; only Apex displays call details</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>LEFT JOIN preserves every single record from the primary left table while pairing matching right-table attributes or returning NULL, making it essential for detecting missing relations and inactive entities.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Left Table Preservation:</strong> Every row from the left table is guaranteed to appear in the output at least once.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>NULL Filling:</strong> Unmatched right-table columns are populated with NULL values.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>The Anti-Join Pattern:</strong> Use WHERE right_table.key IS NULL to pinpoint unlinked, inactive, or orphan records.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Filter in ON, Not WHERE:</strong> Place filtering conditions for the right table in the ON clause to avoid accidentally converting the LEFT JOIN into an INNER JOIN.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Order Dependence:</strong> A LEFT JOIN B is fundamentally different from B LEFT JOIN A; choose your primary driver table intentionally.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="inner-join.html" class="btn-outline" title="Previous: INNER JOIN">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: INNER JOIN</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_left_join">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="right-join.html" class="btn-enroll" title="Next: RIGHT JOIN (Outer Join)">
-                        <span class="btn-text">Next: RIGHT JOIN (Outer Join)</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+LEFT <span class="code-keyword">JOIN</span> calls c <span class="code-keyword">ON</span> l.lead_id <span class="code-op">=</span> c.lead_id <span class="code-keyword">AND</span> c.outcome <span class="code-op">=</span> <span class="code-string">'INTERESTED'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>leads</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 5: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>only Apex displays call details;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
         </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>LEFT JOIN preserves every single record from the primary left table while pairing matching right-table attributes or returning NULL, making it essential for detecting missing relations and inactive entities.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Left Table Preservation:</strong> Every row from the left table is guaranteed to appear in the output at least once.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>NULL Filling:</strong> Unmatched right-table columns are populated with NULL values.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>The Anti-Join Pattern:</strong> Use WHERE right_table.key IS NULL to pinpoint unlinked, inactive, or orphan records.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Filter in ON, Not WHERE:</strong> Place filtering conditions for the right table in the ON clause to avoid accidentally converting the LEFT JOIN into an INNER JOIN.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Order Dependence:</strong> A LEFT JOIN B is fundamentally different from B LEFT JOIN A; choose your primary driver table intentionally.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="inner-join.html" title="Previous: INNER JOIN">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: INNER JOIN</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_left_join" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="right-join.html" title="Next: RIGHT JOIN (Outer Join)">
+<span class="btn-text">Next: RIGHT JOIN (Outer Join)</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

@@ -2,13 +2,14 @@
  * EDMITH SQL Engine
  * High-performance, zero-latency in-browser Relational SQL Database powered by AlaSQL.
  * Runs 100% locally and synchronously with zero external network downloads.
- * Pre-loaded with complete 150+ Enterprise Relational Database Tables.
+ * Pre-loaded with 150+ Enterprise Relational Database Tables, each containing 612 records.
+ * Prominently features student & professional records for 'Mrinal Prashar'.
  */
 
 class EdmithSqlEngine {
     constructor() {
         this.isInitialized = false;
-        this.engineType = 'AlaSQL In-Memory Engine';
+        this.engineType = 'AlaSQL In-Memory Engine (612 Records/Table)';
         this.queryHistory = [];
         this.schemaData = EdmithSqlEngine.DATABASE_SCHEMA;
         this.tableNames = Object.keys(this.schemaData);
@@ -25,14 +26,45 @@ class EdmithSqlEngine {
     }
 
     /**
-     * Initializes the relational database and seeds all 150+ enterprise tables
+     * Splits SQL text into individual statements, respecting quotes and comments
+     */
+    splitStatements(sql) {
+        const statements = [];
+        let current = '';
+        let inSingleQuote = false;
+        let inDoubleQuote = false;
+        
+        for (let i = 0; i < sql.length; i++) {
+            const ch = sql[i];
+            const prev = i > 0 ? sql[i - 1] : '';
+
+            if (ch === "'" && prev !== '\\') {
+                if (!inDoubleQuote) inSingleQuote = !inSingleQuote;
+            } else if (ch === '"' && prev !== '\\') {
+                if (!inSingleQuote) inDoubleQuote = !inDoubleQuote;
+            }
+
+            if (ch === ';' && !inSingleQuote && !inDoubleQuote) {
+                const trimmed = current.trim();
+                if (trimmed) statements.push(trimmed);
+                current = '';
+            } else {
+                current += ch;
+            }
+        }
+        const trimmed = current.trim();
+        if (trimmed) statements.push(trimmed);
+        return statements;
+    }
+
+    /**
+     * Initializes the relational database and seeds all 150+ enterprise tables with 612 rows each
      */
     init() {
         if (this.isInitialized) return true;
 
         if (typeof alasql === 'undefined') {
-            console.warn('[EDMITH SQL Engine] AlaSQL not found, initializing in-memory fallback.');
-            this.initFallbackEngine();
+            console.warn('[EDMITH SQL Engine] AlaSQL not found, initializing fallback.');
             this.engineType = 'In-Memory Client Engine';
             this.isInitialized = true;
             return true;
@@ -42,18 +74,134 @@ class EdmithSqlEngine {
             alasql.options.errorlog = false;
             this.seedDatabase();
             this.isInitialized = true;
-            this.engineType = 'AlaSQL v4.2 Engine (150+ Tables Ready)';
+            this.engineType = 'AlaSQL v4.2 Engine (150+ Tables, 612 Rows Each)';
             return true;
         } catch (err) {
             console.error('[EDMITH SQL Engine] Failed to seed database:', err);
-            this.initFallbackEngine();
             this.isInitialized = true;
             return false;
         }
     }
 
     /**
-     * Seeds all 150+ enterprise relational database tables with rich sample records
+     * Deterministic, realistic row generator producing exactly 612 records for any table
+     */
+    generate612RowsForTable(tblName, meta) {
+        const rows = [];
+        const cols = meta.columns || [];
+
+        const firstNames = ['Sarah', 'Michael', 'Emily', 'David', 'Jessica', 'James', 'Aisha', 'Alex', 'Elena', 'Carlos', 'Priya', 'Daniel', 'Sophia', 'Liam', 'Olivia', 'Ethan', 'Zoe', 'Lucas', 'Mia', 'Noah'];
+        const lastNames = ['Jenkins', 'Chen', 'Rodriguez', 'Patel', 'Kim', 'O\'Connor', 'Nakamura', 'Gupta', 'Taylor', 'Smith', 'Johnson', 'Brown', 'Williams', 'Davis', 'Miller', 'Wilson', 'Anderson', 'Thomas', 'Jackson', 'White'];
+        const departments = ['Engineering', 'Computer Science', 'Data Science', 'Business Analytics', 'Finance', 'Marketing', 'Cybersecurity', 'Operations'];
+        const cities = ['San Francisco', 'New York', 'London', 'Berlin', 'Tokyo', 'Toronto', 'Sydney', 'Singapore', 'Chicago', 'Austin'];
+        const countries = ['USA', 'USA', 'UK', 'Germany', 'Japan', 'Canada', 'Australia', 'Singapore', 'USA', 'India'];
+        const statuses = ['Active', 'Active', 'Active', 'Pending', 'Active', 'Completed', 'Active', 'Suspended'];
+        const grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'A', 'A+'];
+        const titles = ['Software Engineer', 'Senior Database Architect', 'Data Scientist', 'DevOps Specialist', 'Systems Analyst', 'Full Stack Developer', 'Cloud Architect', 'Security Engineer'];
+
+        for (let i = 1; i <= 612; i++) {
+            const rowObj = {};
+            const isFirst = (i === 1);
+            const fn = isFirst ? 'Mrinal' : firstNames[(i - 1) % firstNames.length];
+            const ln = isFirst ? 'Prashar' : lastNames[(i - 1) % lastNames.length];
+            const fullName = isFirst ? 'Mrinal Prashar' : `${fn} ${ln}`;
+            const dept = departments[(i - 1) % departments.length];
+            const city = cities[(i - 1) % cities.length];
+            const country = countries[(i - 1) % countries.length];
+            const status = statuses[(i - 1) % statuses.length];
+            const email = isFirst ? 'mrinal.prashar@edmith.com' : `${fn.toLowerCase()}.${ln.toLowerCase().replace(/[^a-z]/g, '')}${i}@edmith.com`;
+
+            cols.forEach(col => {
+                const cname = col.name;
+                const ctype = (col.type || 'STRING').toUpperCase();
+                const lower = cname.toLowerCase();
+
+                // IDs / Primary Keys
+                if (col.isPk || lower.endsWith('_id') || lower === 'id') {
+                    if (lower === 'department_id') {
+                        rowObj[cname] = ((i - 1) % departments.length) + 1;
+                    } else if (lower === 'manager_id') {
+                        rowObj[cname] = i === 1 ? null : 1001; // Mrinal is manager #1001
+                    } else if (lower === 'student_id') {
+                        rowObj[cname] = i;
+                    } else if (lower === 'employee_id' || lower === 'emp_id') {
+                        rowObj[cname] = 1000 + i;
+                    } else if (lower === 'course_id') {
+                        rowObj[cname] = ((i - 1) % 20) + 1;
+                    } else {
+                        rowObj[cname] = i;
+                    }
+                    return;
+                }
+
+                // Name columns
+                if (lower === 'first_name') {
+                    rowObj[cname] = fn;
+                } else if (lower === 'last_name') {
+                    rowObj[cname] = ln;
+                } else if (lower === 'full_name' || lower === 'name' || lower.endsWith('_name')) {
+                    if (lower.includes('department')) {
+                        rowObj[cname] = dept;
+                    } else if (lower.includes('course')) {
+                        rowObj[cname] = isFirst ? 'Advanced SQL Systems & Database Architecture' : `Enterprise Systems Module ${((i - 1) % 15) + 1}`;
+                    } else if (lower.includes('product')) {
+                        rowObj[cname] = `Enterprise Server Unit ${100 + i}`;
+                    } else if (lower.includes('exam')) {
+                        rowObj[cname] = 'Midterm Certification';
+                    } else if (lower.includes('cert')) {
+                        rowObj[cname] = 'Certified Database Administrator';
+                    } else if (lower.includes('client') || lower.includes('customer') || lower.includes('user') || lower.includes('student') || lower.includes('employee') || lower.includes('contact') || lower.includes('instructor') || lower.includes('author') || lower.includes('patient') || lower.includes('staff')) {
+                        rowObj[cname] = fullName;
+                    } else {
+                        rowObj[cname] = fullName;
+                    }
+                } else if (lower === 'email' || lower.includes('email')) {
+                    rowObj[cname] = email;
+                } else if (lower === 'job_title' || lower === 'title' || lower === 'role' || lower === 'position') {
+                    rowObj[cname] = isFirst ? 'Lead Systems Architect' : titles[(i - 1) % titles.length];
+                } else if (lower === 'department' || lower === 'dept_name') {
+                    rowObj[cname] = dept;
+                } else if (lower === 'city' || lower === 'location' || lower === 'building') {
+                    rowObj[cname] = city;
+                } else if (lower === 'country') {
+                    rowObj[cname] = country;
+                } else if (lower === 'status' || lower.endsWith('_status')) {
+                    rowObj[cname] = status;
+                } else if (lower === 'grade') {
+                    rowObj[cname] = isFirst ? 'A+' : grades[(i - 1) % grades.length];
+                } else if (lower === 'gpa') {
+                    rowObj[cname] = isFirst ? 4.0 : Number((2.8 + ((i % 12) * 0.1)).toFixed(2));
+                } else if (lower.includes('salary') || lower.includes('budget') || lower.includes('price') || lower.includes('amount') || lower.includes('balance') || lower.includes('revenue') || lower.includes('credit_limit')) {
+                    if (lower.includes('salary')) {
+                        rowObj[cname] = isFirst ? 165000.00 : Number((60000 + (i % 70) * 1200).toFixed(2));
+                    } else if (lower.includes('credit_limit') || lower.includes('balance')) {
+                        rowObj[cname] = isFirst ? 250000.00 : Number((15000 + (i % 40) * 2500).toFixed(2));
+                    } else {
+                        rowObj[cname] = isFirst ? 1200.00 : Number((25.50 + (i % 80) * 14.25).toFixed(2));
+                    }
+                } else if (lower.includes('date') || lower.includes('hire') || lower.includes('created') || lower.includes('time')) {
+                    const month = String(((i - 1) % 12) + 1).padStart(2, '0');
+                    const day = String(((i - 1) % 28) + 1).padStart(2, '0');
+                    rowObj[cname] = `2025-${month}-${day}`;
+                } else if (ctype.includes('INT')) {
+                    rowObj[cname] = ((i - 1) % 100) + 1;
+                } else if (ctype.includes('FLOAT') || ctype.includes('DECIMAL') || ctype.includes('NUMERIC')) {
+                    rowObj[cname] = Number(((i % 50) * 2.5 + 10.0).toFixed(2));
+                } else if (ctype.includes('BOOL')) {
+                    rowObj[cname] = (i % 4 !== 0);
+                } else {
+                    rowObj[cname] = `${cname.replace(/_/g, ' ')} ${i}`;
+                }
+            });
+
+            rows.push(rowObj);
+        }
+
+        return rows;
+    }
+
+    /**
+     * Seeds all 150+ enterprise relational database tables with 612 rows each
      */
     seedDatabase() {
         if (typeof alasql === 'undefined') return;
@@ -61,13 +209,21 @@ class EdmithSqlEngine {
         const startTime = performance.now();
         const schema = this.schemaData;
 
+        // Clear any previous local storage caches
+        try {
+            localStorage.removeItem('edmith_sql_db');
+        } catch (e) {}
+
         for (const [tblName, meta] of Object.entries(schema)) {
             try {
                 alasql(`DROP TABLE IF EXISTS ${tblName}`);
             } catch (e) {}
 
-            // Build CREATE TABLE statement
-            const colDefs = meta.columnDefs.map(([cname, ctype]) => `${cname} ${ctype}`).join(', ');
+            // Build CREATE TABLE statement (strip PRIMARY KEY from DDL to allow clean in-memory array data)
+            const colDefs = meta.columnDefs.map(([cname, ctype]) => {
+                const cleanType = (ctype || 'STRING').replace(/PRIMARY\s+KEY/ig, '').trim() || 'STRING';
+                return `${cname} ${cleanType}`;
+            }).join(', ');
             try {
                 alasql(`CREATE TABLE ${tblName} (${colDefs})`);
             } catch (e) {
@@ -75,28 +231,15 @@ class EdmithSqlEngine {
                 continue;
             }
 
-            // Insert rows in batch
-            if (meta.rows && meta.rows.length > 0) {
-                const colNames = meta.columnDefs.map(([cname]) => cname).join(', ');
-                for (const row of meta.rows) {
-                    const formatted = row.map(val => {
-                        if (val === null || val === undefined) return 'NULL';
-                        if (typeof val === 'number') return String(val);
-                        if (typeof val === 'boolean') return val ? 'TRUE' : 'FALSE';
-                        const escaped = String(val).replace(/'/g, "''");
-                        return `'${escaped}'`;
-                    }).join(', ');
-                    try {
-                        alasql(`INSERT INTO ${tblName} (${colNames}) VALUES (${formatted})`);
-                    } catch (e) {
-                        console.warn(`Error inserting row into ${tblName}:`, e);
-                    }
-                }
+            // Populate exactly 612 high-quality records directly in AlaSQL memory
+            const rows = this.generate612RowsForTable(tblName, meta);
+            if (alasql.tables && alasql.tables[tblName]) {
+                alasql.tables[tblName].data = rows;
             }
         }
 
         const elapsed = (performance.now() - startTime).toFixed(1);
-        console.log(`[EDMITH SQL Engine] Seeded ${Object.keys(schema).length} tables in ${elapsed}ms.`);
+        console.log(`[EDMITH SQL Engine] Seeded ${Object.keys(schema).length} tables with 612 records each in ${elapsed}ms.`);
     }
 
     /**
@@ -112,90 +255,97 @@ class EdmithSqlEngine {
     getSchemaExplorerData() {
         const result = [];
         for (const [tblName, meta] of Object.entries(this.schemaData)) {
-            let currentCount = meta.rows ? meta.rows.length : 0;
+            let currentCount = 612;
             if (typeof alasql !== 'undefined' && alasql.tables && alasql.tables[tblName] && Array.isArray(alasql.tables[tblName].data)) {
                 currentCount = alasql.tables[tblName].data.length;
             }
             result.push({
                 name: tblName,
-                tableName: tblName,
-                category: meta.category,
+                category: meta.category || 'General Enterprise',
                 rowCount: currentCount,
-                columns: meta.columns
+                columns: meta.columns || []
             });
         }
         return result;
     }
 
     /**
-     * Executes an arbitrary SQL statement and returns formatted structured results
+     * Synchronous Query Execution Engine supporting single & sequential multi-statements
      */
     runQuery(sqlText) {
         if (!sqlText || !sqlText.trim()) {
-            throw new Error('Please enter an SQL query to execute.');
+            throw new Error('Please enter a valid SQL query.');
         }
 
-        const cleaned = this.cleanSql(sqlText);
-        if (!cleaned) {
-            throw new Error('Query contains only comments. Please enter an executable SQL statement.');
-        }
+        const cleanedFull = this.cleanSql(sqlText);
+        const statements = this.splitStatements(cleanedFull);
 
-        // Strict leading verb validation
-        const validSqlVerbs = /^(SELECT|INSERT|UPDATE|DELETE|CREATE|DROP|ALTER|WITH|SHOW|DESCRIBE|EXPLAIN|TRUNCATE)\b/i;
-        if (!validSqlVerbs.test(cleaned)) {
-            const firstWord = cleaned.split(/\s+/)[0] || 'statement';
-            throw new Error(`Syntax Error: Unknown or unsupported SQL command '${firstWord}'. Query must begin with SELECT, INSERT, UPDATE, DELETE, etc.`);
+        if (statements.length === 0) {
+            throw new Error('Please enter a valid SQL query.');
         }
 
         const startTime = performance.now();
+        let finalResult = null;
+        let lastSelectResult = null;
+        let totalAffected = 0;
 
         if (typeof alasql !== 'undefined') {
-            try {
-                alasql.options.errorlog = false;
-                const res = alasql(cleaned);
+            for (let idx = 0; idx < statements.length; idx++) {
+                const stmt = statements[idx];
+                try {
+                    alasql.options.errorlog = false;
+                    const res = alasql(stmt);
 
-                if (alasql.error) {
-                    const err = alasql.error;
-                    alasql.error = null;
-                    throw err;
+                    if (alasql.error) {
+                        const err = alasql.error;
+                        alasql.error = null;
+                        throw err;
+                    }
+
+                    if (Array.isArray(res)) {
+                        lastSelectResult = res;
+                        finalResult = res;
+                    } else {
+                        totalAffected += (typeof res === 'number' ? res : 1);
+                        if (!lastSelectResult) {
+                            finalResult = res;
+                        }
+                    }
+                } catch (err) {
+                    const executionTimeMs = Math.round(performance.now() - startTime);
+                    this.recordHistory(sqlText, false, executionTimeMs);
+                    const prefix = statements.length > 1 ? `[Statement ${idx + 1} of ${statements.length}] ` : '';
+                    throw new Error(prefix + this.formatErrorMessage(err, stmt));
                 }
-
-                if (res === undefined) {
-                    throw new Error('SQL Execution failed: Query returned undefined without result set.');
-                }
-
-                const executionTimeMs = Math.round(performance.now() - startTime);
-
-                // SELECT query returning array of objects
-                if (Array.isArray(res)) {
-                    const columns = res.length > 0 ? Object.keys(res[0]) : [];
-                    const values = res.map(row => columns.map(col => row[col]));
-                    
-                    this.recordHistory(sqlText, true, executionTimeMs);
-                    return {
-                        columns,
-                        values,
-                        executionTimeMs,
-                        affectedRows: res.length,
-                        isSelect: true
-                    };
-                }
-
-                // DDL or DML (INSERT, UPDATE, DELETE, CREATE, DROP)
-                const affectedRows = typeof res === 'number' ? res : 1;
-                this.recordHistory(sqlText, true, executionTimeMs);
-                return {
-                    columns: ['Status', 'Message', 'Rows Affected'],
-                    values: [['Success', 'Query executed successfully.', affectedRows]],
-                    executionTimeMs,
-                    affectedRows,
-                    isSelect: false
-                };
-            } catch (err) {
-                const executionTimeMs = Math.round(performance.now() - startTime);
-                this.recordHistory(sqlText, false, executionTimeMs);
-                throw new Error(this.formatErrorMessage(err, cleaned));
             }
+
+            const executionTimeMs = Math.round(performance.now() - startTime);
+            this.recordHistory(sqlText, true, executionTimeMs);
+
+            // If at least one SELECT query was executed, return that result set
+            const displaySet = lastSelectResult || (Array.isArray(finalResult) ? finalResult : null);
+            if (displaySet) {
+                const columns = displaySet.length > 0 ? Object.keys(displaySet[0]) : [];
+                const values = displaySet.map(row => columns.map(col => row[col]));
+                return {
+                    columns,
+                    values,
+                    executionTimeMs,
+                    affectedRows: displaySet.length,
+                    isSelect: true,
+                    statementCount: statements.length
+                };
+            }
+
+            // Otherwise return DDL/DML execution summary
+            return {
+                columns: ['Status', 'Message', 'Statements Executed', 'Rows Affected'],
+                values: [['Success', 'All SQL statements executed successfully.', statements.length, totalAffected]],
+                executionTimeMs,
+                affectedRows: totalAffected,
+                isSelect: false,
+                statementCount: statements.length
+            };
         }
 
         throw new Error('AlaSQL engine is not initialized.');
@@ -259,13 +409,9 @@ class EdmithSqlEngine {
         link.click();
         document.body.removeChild(link);
     }
-
-    initFallbackEngine() {
-        this.tableNames = ['students', 'courses', 'departments', 'employees'];
-    }
 }
 
-// Complete 150+ Enterprise Database Schema and Seed Data
+// 150+ Enterprise Database Table Definitions
 EdmithSqlEngine.DATABASE_SCHEMA = {
   "departments": {
     "category": "Academic & University",
@@ -316,43 +462,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "head_professor",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Computer Science",
-        "Turing Hall",
-        1450000.0,
-        "Dr. Alan Turing"
-      ],
-      [
-        102,
-        "Data Science & AI",
-        "Ada Lovelace Wing",
-        1200000.0,
-        "Dr. Andrew Ng"
-      ],
-      [
-        103,
-        "Information Systems",
-        "Shannon Center",
-        850000.0,
-        "Dr. Claude Shannon"
-      ],
-      [
-        104,
-        "Software Engineering",
-        "Hopper Tower",
-        980000.0,
-        "Dr. Grace Hopper"
-      ],
-      [
-        105,
-        "Cybersecurity",
-        "Diffie Complex",
-        920000.0,
-        "Dr. Whitfield Diffie"
       ]
     ]
   },
@@ -433,128 +542,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Alex",
-        "Morgan",
-        "alex.morgan@edmith.edu",
-        101,
-        3.85,
-        2022,
-        "Active"
-      ],
-      [
-        2,
-        "Sophia",
-        "Chen",
-        "sophia.chen@edmith.edu",
-        101,
-        3.95,
-        2021,
-        "Active"
-      ],
-      [
-        3,
-        "Marcus",
-        "Vance",
-        "marcus.v@edmith.edu",
-        102,
-        3.42,
-        2023,
-        "Active"
-      ],
-      [
-        4,
-        "Elena",
-        "Rostova",
-        "elena.r@edmith.edu",
-        102,
-        3.88,
-        2022,
-        "Active"
-      ],
-      [
-        5,
-        "Liam",
-        "O'Connor",
-        "liam.oc@edmith.edu",
-        103,
-        2.95,
-        2021,
-        "Probation"
-      ],
-      [
-        6,
-        "Priya",
-        "Sharma",
-        "priya.s@edmith.edu",
-        101,
-        3.75,
-        2023,
-        "Active"
-      ],
-      [
-        7,
-        "David",
-        "Kim",
-        "david.kim@edmith.edu",
-        104,
-        3.6,
-        2022,
-        "Active"
-      ],
-      [
-        8,
-        "Amara",
-        "Okafor",
-        "amara.o@edmith.edu",
-        105,
-        3.9,
-        2021,
-        "Active"
-      ],
-      [
-        9,
-        "Lucas",
-        "Silva",
-        "lucas.silva@edmith.edu",
-        104,
-        3.15,
-        2023,
-        "Active"
-      ],
-      [
-        10,
-        "Zoe",
-        "Kovacs",
-        "zoe.k@edmith.edu",
-        null,
-        3.5,
-        2024,
-        "Enrolled"
-      ],
-      [
-        11,
-        "Ethan",
-        "Hunt",
-        "ethan.h@edmith.edu",
-        105,
-        3.3,
-        2022,
-        "Active"
-      ],
-      [
-        12,
-        "Maya",
-        "Lin",
-        "maya.lin@edmith.edu",
-        102,
-        4.0,
-        2021,
-        "Active"
-      ]
     ]
   },
   "courses": {
@@ -615,72 +602,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "max_capacity",
         "INT"
-      ]
-    ],
-    "rows": [
-      [
-        201,
-        "CS101",
-        "Intro to Algorithms & Structures",
-        101,
-        4,
-        60
-      ],
-      [
-        202,
-        "CS204",
-        "Relational Database Architecture",
-        101,
-        3,
-        45
-      ],
-      [
-        203,
-        "DS301",
-        "Machine Learning Foundations",
-        102,
-        4,
-        40
-      ],
-      [
-        204,
-        "DS305",
-        "Big Data Engineering & Spark",
-        102,
-        3,
-        35
-      ],
-      [
-        205,
-        "SE202",
-        "Full-Stack Web Architecture",
-        104,
-        3,
-        50
-      ],
-      [
-        206,
-        "SE401",
-        "Cloud Microservices & DevOps",
-        104,
-        4,
-        30
-      ],
-      [
-        207,
-        "SEC101",
-        "Applied Cryptography & Security",
-        105,
-        3,
-        40
-      ],
-      [
-        208,
-        "IS205",
-        "Enterprise Systems & Analytics",
-        103,
-        3,
-        55
       ]
     ]
   },
@@ -743,144 +664,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "attendance_pct",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        201,
-        "Fall 2023",
-        "A",
-        96.5
-      ],
-      [
-        2,
-        1,
-        202,
-        "Fall 2023",
-        "A-",
-        94.0
-      ],
-      [
-        3,
-        2,
-        201,
-        "Fall 2023",
-        "A+",
-        99.0
-      ],
-      [
-        4,
-        2,
-        203,
-        "Spring 2024",
-        "A",
-        98.0
-      ],
-      [
-        5,
-        3,
-        203,
-        "Fall 2023",
-        "B+",
-        88.5
-      ],
-      [
-        6,
-        3,
-        204,
-        "Spring 2024",
-        "B",
-        85.0
-      ],
-      [
-        7,
-        4,
-        203,
-        "Fall 2023",
-        "A",
-        95.0
-      ],
-      [
-        8,
-        4,
-        204,
-        "Spring 2024",
-        "A-",
-        92.5
-      ],
-      [
-        9,
-        5,
-        208,
-        "Fall 2023",
-        "C+",
-        76.0
-      ],
-      [
-        10,
-        6,
-        201,
-        "Spring 2024",
-        "A-",
-        91.0
-      ],
-      [
-        11,
-        7,
-        205,
-        "Fall 2023",
-        "B+",
-        89.0
-      ],
-      [
-        12,
-        7,
-        206,
-        "Spring 2024",
-        "A",
-        94.0
-      ],
-      [
-        13,
-        8,
-        207,
-        "Fall 2023",
-        "A",
-        97.5
-      ],
-      [
-        14,
-        9,
-        205,
-        "Spring 2024",
-        "B",
-        83.0
-      ],
-      [
-        15,
-        11,
-        207,
-        "Fall 2023",
-        "B+",
-        87.0
-      ],
-      [
-        16,
-        12,
-        203,
-        "Fall 2023",
-        "A+",
-        100.0
-      ],
-      [
-        17,
-        12,
-        204,
-        "Spring 2024",
-        "A+",
-        99.5
-      ]
     ]
   },
   "certifications": {
@@ -941,88 +724,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "score_pct",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "PostgreSQL Certified Professional",
-        "PostgreSQL Org",
-        "2023-08-15",
-        94.5
-      ],
-      [
-        2,
-        1,
-        "AWS Certified Solutions Architect",
-        "Amazon Web Services",
-        "2024-01-10",
-        89.0
-      ],
-      [
-        3,
-        2,
-        "Oracle Certified Professional: SQL",
-        "Oracle University",
-        "2023-06-20",
-        98.0
-      ],
-      [
-        4,
-        2,
-        "Google Cloud Professional Data Engineer",
-        "Google Cloud",
-        "2023-11-12",
-        95.0
-      ],
-      [
-        5,
-        4,
-        "TensorFlow Developer Certificate",
-        "Google",
-        "2023-09-05",
-        92.5
-      ],
-      [
-        6,
-        7,
-        "Certified Kubernetes Administrator",
-        "Linux Foundation",
-        "2024-02-18",
-        88.0
-      ],
-      [
-        7,
-        8,
-        "Certified Ethical Hacker (CEH)",
-        "EC-Council",
-        "2023-10-30",
-        96.0
-      ],
-      [
-        8,
-        8,
-        "CompTIA Security+",
-        "CompTIA",
-        "2023-04-14",
-        91.5
-      ],
-      [
-        9,
-        12,
-        "Databricks Certified Spark Developer",
-        "Databricks",
-        "2023-12-01",
-        99.0
-      ],
-      [
-        10,
-        12,
-        "Azure Data Scientist Associate",
-        "Microsoft",
-        "2024-03-02",
-        97.0
       ]
     ]
   },
@@ -1093,53 +794,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "exam_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        201,
-        "Midterm Algorithms",
-        94.5,
-        70.0,
-        "2023-10-15"
-      ],
-      [
-        2,
-        2,
-        201,
-        "Midterm Algorithms",
-        98.0,
-        70.0,
-        "2023-10-15"
-      ],
-      [
-        3,
-        3,
-        203,
-        "Midterm Machine Learning",
-        68.5,
-        70.0,
-        "2023-10-18"
-      ],
-      [
-        4,
-        4,
-        203,
-        "Midterm Machine Learning",
-        91.0,
-        70.0,
-        "2023-10-18"
-      ],
-      [
-        5,
-        5,
-        208,
-        "Midterm Enterprise Systems",
-        55.0,
-        70.0,
-        "2023-10-20"
       ]
     ]
   },
@@ -1274,168 +928,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1001,
-        1001,
-        "Sarah",
-        "Connor",
-        "Sarah Connor",
-        "Sarah Connor",
-        "sarah.c@edmith.com",
-        "Chief Technology Officer",
-        "Executive",
-        1,
-        225000.0,
-        null,
-        "2019-03-15",
-        "Active"
-      ],
-      [
-        1002,
-        1002,
-        "David",
-        "Miller",
-        "David Miller",
-        "David Miller",
-        "david.m@edmith.com",
-        "Lead Data Architect",
-        "Engineering",
-        2,
-        165000.0,
-        1001,
-        "2020-06-01",
-        "Active"
-      ],
-      [
-        1003,
-        1003,
-        "Rebecca",
-        "Hall",
-        "Rebecca Hall",
-        "Rebecca Hall",
-        "rebecca.h@edmith.com",
-        "Principal Software Engineer",
-        "Engineering",
-        2,
-        158000.0,
-        1001,
-        "2020-08-15",
-        "Active"
-      ],
-      [
-        1004,
-        1004,
-        "Jason",
-        "Bourne",
-        "Jason Bourne",
-        "Jason Bourne",
-        "jason.b@edmith.com",
-        "Senior Database Administrator",
-        "Infrastructure",
-        3,
-        135000.0,
-        1002,
-        "2021-02-10",
-        "Active"
-      ],
-      [
-        1005,
-        1005,
-        "Amita",
-        "Patel",
-        "Amita Patel",
-        "Amita Patel",
-        "amita.p@edmith.com",
-        "Senior ETL Developer",
-        "Engineering",
-        2,
-        128000.0,
-        1002,
-        "2021-05-18",
-        "Active"
-      ],
-      [
-        1006,
-        1006,
-        "Carlos",
-        "Mendes",
-        "Carlos Mendes",
-        "Carlos Mendes",
-        "carlos.m@edmith.com",
-        "Full-Stack Engineer",
-        "Engineering",
-        2,
-        112000.0,
-        1003,
-        "2022-01-20",
-        "Active"
-      ],
-      [
-        1007,
-        1007,
-        "Emily",
-        "Watson",
-        "Emily Watson",
-        "Emily Watson",
-        "emily.w@edmith.com",
-        "Security Operations Analyst",
-        "Infrastructure",
-        3,
-        105000.0,
-        1004,
-        "2022-07-11",
-        "Active"
-      ],
-      [
-        1008,
-        1008,
-        "Kevin",
-        "Hart",
-        "Kevin Hart",
-        "Kevin Hart",
-        "kevin.h@edmith.com",
-        "Junior SQL Developer",
-        "Engineering",
-        2,
-        85000.0,
-        1005,
-        "2023-03-01",
-        "Active"
-      ],
-      [
-        1009,
-        1009,
-        "Priya",
-        "Nair",
-        "Priya Nair",
-        "Priya Nair",
-        "priya.n@edmith.com",
-        "Data Analyst",
-        "Analytics",
-        4,
-        92000.0,
-        1002,
-        "2022-11-15",
-        "Active"
-      ],
-      [
-        1010,
-        1010,
-        "Tariq",
-        "Mansoor",
-        "Tariq Mansoor",
-        "Tariq Mansoor",
-        "tariq.m@edmith.com",
-        "Cloud Infrastructure Engineer",
-        "Infrastructure",
-        3,
-        118000.0,
-        1004,
-        "2021-09-01",
-        "Active"
-      ]
     ]
   },
   "company_employees": {
@@ -1524,85 +1016,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "hire_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Alex",
-        "Rivera",
-        "alex.rivera@company.com",
-        "Engineering",
-        101,
-        142000.0,
-        "San Francisco",
-        "2021-03-15"
-      ],
-      [
-        102,
-        "Sarah",
-        "Chen",
-        "sarah.chen@company.com",
-        "Engineering",
-        101,
-        138000.0,
-        "New York",
-        "2021-08-01"
-      ],
-      [
-        103,
-        "Marcus",
-        "Vance",
-        "marcus.vance@company.com",
-        "Analytics",
-        102,
-        115000.0,
-        "Chicago",
-        "2022-02-10"
-      ],
-      [
-        104,
-        "Elena",
-        "Rostova",
-        "elena.rostova@company.com",
-        "Analytics",
-        102,
-        122000.0,
-        "Boston",
-        "2022-06-20"
-      ],
-      [
-        105,
-        "David",
-        "Kim",
-        "david.kim@company.com",
-        "Infrastructure",
-        103,
-        128000.0,
-        "Seattle",
-        "2020-11-15"
-      ],
-      [
-        106,
-        "Priya",
-        "Sharma",
-        "priya.sharma@company.com",
-        "Engineering",
-        101,
-        148000.0,
-        "Austin",
-        "2020-04-10"
-      ],
-      [
-        107,
-        "Liam",
-        "O'Connor",
-        "liam.oc@company.com",
-        "Support",
-        104,
-        82000.0,
-        "Denver",
-        "2023-01-05"
-      ]
     ]
   },
   "active_staff": {
@@ -1672,44 +1085,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Sarah",
-        "Sarah Connor",
-        "Engineering",
-        135000.0,
-        "2021-04-10",
-        "Full-Time"
-      ],
-      [
-        102,
-        "David",
-        "David Miller",
-        "Engineering",
-        142000.0,
-        "2022-01-15",
-        "Full-Time"
-      ],
-      [
-        103,
-        "Elena",
-        "Elena Rostova",
-        "Analytics",
-        118000.0,
-        "2022-09-01",
-        "Full-Time"
-      ],
-      [
-        104,
-        "Marcus",
-        "Marcus Vance",
-        "Security",
-        125000.0,
-        "2023-03-12",
-        "Full-Time"
       ]
     ]
   },
@@ -1781,44 +1156,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        501,
-        "Alex Rivera",
-        "Alex",
-        "Apex Staffing",
-        "Engineering",
-        95.0,
-        "Active"
-      ],
-      [
-        502,
-        "Nina Patel",
-        "Nina",
-        "TechTalent Inc",
-        "Infrastructure",
-        110.0,
-        "Active"
-      ],
-      [
-        503,
-        "James Chen",
-        "James",
-        "Global Resources",
-        "Engineering",
-        85.0,
-        "Active"
-      ],
-      [
-        504,
-        "Maria Gomez",
-        "Maria",
-        "Apex Staffing",
-        "Analytics",
-        90.0,
-        "Active"
-      ]
     ]
   },
   "company_staff": {
@@ -1879,32 +1216,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "hire_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Arthur",
-        "Dent",
-        "Logistics",
-        65000.0,
-        "2022-04-01"
-      ],
-      [
-        102,
-        "Ford",
-        "Prefect",
-        "Research",
-        85000.0,
-        "2021-08-15"
-      ],
-      [
-        103,
-        "Trillian",
-        "Astra",
-        "Engineering",
-        120000.0,
-        "2020-02-10"
       ]
     ]
   },
@@ -2003,68 +1314,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "pay_month",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        1001,
-        "Sarah Connor",
-        "Sarah",
-        "Executive",
-        225000.0,
-        225000.0,
-        45000.0,
-        "2026-02"
-      ],
-      [
-        2,
-        1002,
-        1002,
-        "David Miller",
-        "David",
-        "Engineering",
-        165000.0,
-        165000.0,
-        25000.0,
-        "2026-02"
-      ],
-      [
-        3,
-        1003,
-        1003,
-        "Rebecca Hall",
-        "Rebecca",
-        "Engineering",
-        158000.0,
-        158000.0,
-        22000.0,
-        "2026-02"
-      ],
-      [
-        4,
-        1004,
-        1004,
-        "Jason Bourne",
-        "Jason",
-        "Infrastructure",
-        135000.0,
-        135000.0,
-        15000.0,
-        "2026-02"
-      ],
-      [
-        5,
-        1005,
-        1005,
-        "Amita Patel",
-        "Amita",
-        "Engineering",
-        128000.0,
-        128000.0,
-        14000.0,
-        "2026-02"
-      ]
     ]
   },
   "company_payroll": {
@@ -2125,32 +1374,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "pay_period",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        18750.0,
-        3000.0,
-        21750.0,
-        "2026-02"
-      ],
-      [
-        2,
-        1002,
-        13750.0,
-        1500.0,
-        15250.0,
-        "2026-02"
-      ],
-      [
-        3,
-        1003,
-        13166.0,
-        1200.0,
-        14366.0,
-        "2026-02"
       ]
     ]
   },
@@ -2258,73 +1481,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "effective_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        1001,
-        "Sarah Connor",
-        "Executive",
-        225000.0,
-        4.9,
-        "2019-03-15",
-        150000.0,
-        45000.0,
-        "2024-01-01"
-      ],
-      [
-        2,
-        1002,
-        1002,
-        "David Miller",
-        "Engineering",
-        165000.0,
-        4.8,
-        "2020-06-01",
-        80000.0,
-        25000.0,
-        "2024-01-01"
-      ],
-      [
-        3,
-        1003,
-        1003,
-        "Rebecca Hall",
-        "Engineering",
-        158000.0,
-        4.7,
-        "2020-08-15",
-        75000.0,
-        22000.0,
-        "2024-01-01"
-      ],
-      [
-        4,
-        1004,
-        1004,
-        "Jason Bourne",
-        "Infrastructure",
-        135000.0,
-        4.5,
-        "2021-02-10",
-        40000.0,
-        15000.0,
-        "2024-01-01"
-      ],
-      [
-        5,
-        1005,
-        1005,
-        "Amita Patel",
-        "Engineering",
-        128000.0,
-        4.6,
-        "2021-05-18",
-        35000.0,
-        14000.0,
-        "2024-01-01"
-      ]
     ]
   },
   "employee_payroll": {
@@ -2431,73 +1587,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "pay_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        1001,
-        "Sarah",
-        "Connor",
-        "Executive",
-        225000.0,
-        225000.0,
-        108.17,
-        45000.0,
-        "2026-02-28"
-      ],
-      [
-        2,
-        1002,
-        1002,
-        "David",
-        "Miller",
-        "Engineering",
-        165000.0,
-        165000.0,
-        79.33,
-        25000.0,
-        "2026-02-28"
-      ],
-      [
-        3,
-        1003,
-        1003,
-        "Rebecca",
-        "Hall",
-        "Engineering",
-        158000.0,
-        158000.0,
-        75.96,
-        22000.0,
-        "2026-02-28"
-      ],
-      [
-        4,
-        1004,
-        1004,
-        "Jason",
-        "Bourne",
-        "Infrastructure",
-        135000.0,
-        135000.0,
-        64.9,
-        15000.0,
-        "2026-02-28"
-      ],
-      [
-        5,
-        1005,
-        1005,
-        "Amita",
-        "Patel",
-        "Engineering",
-        128000.0,
-        128000.0,
-        61.54,
-        14000.0,
-        "2026-02-28"
-      ]
     ]
   },
   "staff_directory": {
@@ -2550,29 +1639,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "extension",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Alan",
-        "Turing",
-        "alan.turing@edmith.com",
-        "x4101"
-      ],
-      [
-        2,
-        "Ada",
-        "Lovelace",
-        "ada.lovelace@edmith.com",
-        "x4102"
-      ],
-      [
-        3,
-        "Grace",
-        "Hopper",
-        "grace.hopper@edmith.com",
-        "x4103"
-      ]
     ]
   },
   "high_growth_departments": {
@@ -2615,26 +1681,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "headcount_target",
         "INT"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Computer Science",
-        24.5,
-        50
-      ],
-      [
-        102,
-        "Data Science & AI",
-        42.0,
-        45
-      ],
-      [
-        105,
-        "Cybersecurity",
-        35.8,
-        30
       ]
     ]
   },
@@ -2778,144 +1824,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Apex Corp Solutions",
-        "Apex Corp Solutions",
-        "Apex Corp Solutions",
-        "Apex Corp Solutions",
-        "Sarah Connor",
-        "sarah@apex.com",
-        "Enterprise",
-        "+1-555-0101",
-        "San Jose",
-        "USA",
-        "2022-03-15",
-        50000.0,
-        "Active"
-      ],
-      [
-        102,
-        102,
-        "Vanguard Tech",
-        "Vanguard Tech",
-        "Vanguard Tech",
-        "Vanguard Tech",
-        "David Miller",
-        "david@vanguard.com",
-        "Enterprise",
-        "+49-89-123456",
-        "Munich",
-        "Germany",
-        "2021-08-20",
-        75000.0,
-        "Active"
-      ],
-      [
-        103,
-        103,
-        "Nippon Systems",
-        "Nippon Systems",
-        "Nippon Systems",
-        "Nippon Systems",
-        "Kenji Sato",
-        "kenji@nippon.com",
-        "Standard",
-        "+81-3-555-0199",
-        "Tokyo",
-        "Japan",
-        "2023-01-10",
-        40000.0,
-        "Active"
-      ],
-      [
-        104,
-        104,
-        "Helios Quantum",
-        "Helios Quantum",
-        "Helios Quantum",
-        "Helios Quantum",
-        "Elena Rostova",
-        "elena@helios.com",
-        "Enterprise",
-        "+44-20-123456",
-        "London",
-        "UK",
-        "2022-11-05",
-        60000.0,
-        "Active"
-      ],
-      [
-        105,
-        105,
-        "Cyberdyne Global",
-        "Cyberdyne Global",
-        "Cyberdyne Global",
-        "Cyberdyne Global",
-        "Marcus Vance",
-        "marcus@cyberdyne.com",
-        "Standard",
-        "+1-555-0105",
-        "Austin",
-        "USA",
-        "2023-05-12",
-        30000.0,
-        "Active"
-      ],
-      [
-        106,
-        106,
-        "Nordic Telecomm",
-        "Nordic Telecomm",
-        "Nordic Telecomm",
-        "Nordic Telecomm",
-        "Freja Lind",
-        "freja@nordic.se",
-        "Enterprise",
-        "+46-8-555-012",
-        "Stockholm",
-        "Sweden",
-        "2021-04-18",
-        90000.0,
-        "Active"
-      ],
-      [
-        107,
-        107,
-        "Swiss Private Bank",
-        "Swiss Private Bank",
-        "Swiss Private Bank",
-        "Swiss Private Bank",
-        "Lucas Weber",
-        "lucas@swissbank.ch",
-        "Enterprise",
-        "+41-44-555-018",
-        "Zurich",
-        "Switzerland",
-        "2020-09-25",
-        120000.0,
-        "Active"
-      ],
-      [
-        108,
-        108,
-        "BlueSky Media",
-        "BlueSky Media",
-        "BlueSky Media",
-        "BlueSky Media",
-        "Amara Okafor",
-        "amara@bluesky.com",
-        "Standard",
-        "+234-1-555-019",
-        "Lagos",
-        "Nigeria",
-        "2023-09-01",
-        35000.0,
-        "Active"
-      ]
     ]
   },
   "customer_accounts": {
@@ -2995,48 +1903,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Arthur Pendelton",
-        "Arthur Pendelton",
-        "arthur.p@corp.com",
-        450,
-        1420.0,
-        "Active",
-        "2023-01-15"
-      ],
-      [
-        102,
-        "David Miller",
-        "David Miller",
-        "david.m@corp.com",
-        820,
-        3500.0,
-        "Active",
-        "2022-05-20"
-      ],
-      [
-        103,
-        "Elena Rostova",
-        "Elena Rostova",
-        "elena.r@corp.com",
-        1200,
-        890.0,
-        "Active",
-        "2021-11-10"
-      ],
-      [
-        104,
-        "Marcus Vance",
-        "Marcus Vance",
-        "marcus.v@corp.com",
-        150,
-        0.0,
-        "Active",
-        "2023-08-01"
-      ]
     ]
   },
   "customer_orders": {
@@ -3106,35 +1972,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "order_status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Apex Corp",
-        "2026-03-01",
-        1450.0,
-        "Delivered",
-        "Delivered"
-      ],
-      [
-        2,
-        102,
-        "Vanguard Tech",
-        "2026-03-01",
-        890.0,
-        "Shipped",
-        "Shipped"
-      ],
-      [
-        3,
-        103,
-        "Nippon Systems",
-        "2026-03-02",
-        2300.0,
-        "Processing",
-        "Processing"
       ]
     ]
   },
@@ -3232,56 +2069,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "country",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Alex",
-        "Morgan",
-        "alex@apex.com",
-        "+1-555-0101",
-        "+1-555-0101",
-        "+1-555-0102",
-        null,
-        "San Jose",
-        "USA"
-      ],
-      [
-        102,
-        "Sophia",
-        "Chen",
-        "sophia@vanguard.com",
-        "+49-89-123456",
-        null,
-        "+49-89-123456",
-        null,
-        "Munich",
-        "Germany"
-      ],
-      [
-        103,
-        "Kenji",
-        "Sato",
-        "kenji@nippon.com",
-        null,
-        null,
-        null,
-        "+81-3-555-0199",
-        "Tokyo",
-        "Japan"
-      ],
-      [
-        104,
-        "Elena",
-        "Rostova",
-        "elena@russtech.io",
-        "+44-20-7946-0950",
-        "+44-20-7946-0950",
-        null,
-        null,
-        "London",
-        "UK"
       ]
     ]
   },
@@ -3398,78 +2185,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "updated_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Apex Corp Solutions",
-        142000.0,
-        "24/7 Dedicated",
-        0.05,
-        142000.0,
-        1,
-        9,
-        "2026-03-10",
-        "Enterprise Tier 1",
-        "2026-03-10"
-      ],
-      [
-        2,
-        102,
-        "Vanguard Tech",
-        98000.0,
-        "Priority Business",
-        0.12,
-        98000.0,
-        3,
-        8,
-        "2026-03-12",
-        "Enterprise Tier 2",
-        "2026-03-12"
-      ],
-      [
-        3,
-        103,
-        "Nippon Systems",
-        210000.0,
-        "24/7 Dedicated",
-        0.02,
-        210000.0,
-        0,
-        10,
-        "2026-03-14",
-        "Enterprise Tier 1",
-        "2026-03-14"
-      ],
-      [
-        4,
-        104,
-        "Helios Quantum",
-        34000.0,
-        "Standard Business",
-        0.45,
-        34000.0,
-        7,
-        5,
-        "2026-02-28",
-        "Mid-Market",
-        "2026-03-01"
-      ],
-      [
-        5,
-        105,
-        "Cyberdyne Global",
-        12000.0,
-        "Community",
-        0.88,
-        12000.0,
-        12,
-        3,
-        "2026-01-15",
-        "At-Risk",
-        "2026-03-05"
-      ]
     ]
   },
   "customer_purchases": {
@@ -3512,44 +2227,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "purchase_amount",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Quantum Server",
-        4200.0
-      ],
-      [
-        2,
-        101,
-        "Firewall License",
-        1250.0
-      ],
-      [
-        3,
-        102,
-        "4K Monitor Array",
-        2550.0
-      ],
-      [
-        4,
-        103,
-        "Mechanical Keyboards Batch",
-        890.0
-      ],
-      [
-        5,
-        104,
-        "Optic Transceivers Pack",
-        3400.0
-      ],
-      [
-        6,
-        101,
-        "Extended Warranty Care",
-        750.0
       ]
     ]
   },
@@ -3620,53 +2297,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "created_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "alex@apex.com",
-        "VERIFIED",
-        "192.168.1.10",
-        "EDMITH2026",
-        "2026-01-10"
-      ],
-      [
-        2,
-        102,
-        "sophia@vanguard.com",
-        "VERIFIED",
-        "192.168.1.15",
-        "DIRECT",
-        "2026-01-12"
-      ],
-      [
-        3,
-        103,
-        "test_bot@dummy.io",
-        "SUSPENDED",
-        "45.33.32.156",
-        "SPAM",
-        "2026-02-01"
-      ],
-      [
-        4,
-        104,
-        "kenji@nippon.com",
-        "VERIFIED",
-        "192.168.1.20",
-        "PARTNER_JP",
-        "2026-02-14"
-      ],
-      [
-        5,
-        105,
-        "fraud_check@temp.xyz",
-        "FLAGGED",
-        "185.220.101.5",
-        "UNKNOWN",
-        "2026-02-20"
       ]
     ]
   },
@@ -3747,58 +2377,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "renewal_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "sarah@apex.com",
-        "Enterprise Cloud Ultra",
-        "Enterprise",
-        2499.0,
-        false,
-        "2026-04-01"
-      ],
-      [
-        2,
-        102,
-        "david@vanguard.com",
-        "Business Scale Pro",
-        "Business",
-        999.0,
-        false,
-        "2026-04-15"
-      ],
-      [
-        3,
-        103,
-        "kenji@nippon.com",
-        "Enterprise Cloud Ultra",
-        "Enterprise",
-        2499.0,
-        false,
-        "2026-05-01"
-      ],
-      [
-        4,
-        104,
-        "tester@test.com",
-        "Startup Acceleration",
-        "Startup",
-        299.0,
-        true,
-        "2026-03-25"
-      ],
-      [
-        5,
-        105,
-        "dev@test.com",
-        "Developer Essential",
-        "Starter",
-        99.0,
-        true,
-        "2026-04-10"
-      ]
     ]
   },
   "customer_vip_roster": {
@@ -3850,22 +2428,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "assigned_manager",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Black Diamond",
-        1250000.0,
-        "Sarah Connor"
-      ],
-      [
-        2,
-        102,
-        "Platinum",
-        850000.0,
-        "David Miller"
       ]
     ]
   },
@@ -3937,27 +2499,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Apex Corp",
-        "Apex Corp",
-        "apex@apex.com",
-        "Enterprise",
-        14500.0,
-        "2026-01-01"
-      ],
-      [
-        102,
-        102,
-        "Vanguard Tech",
-        "Vanguard Tech",
-        "vanguard@tech.com",
-        "Premium",
-        8900.0,
-        "2026-01-01"
-      ]
     ]
   },
   "customer_addresses": {
@@ -4028,44 +2569,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "postal_code",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "100 Silicon Way",
-        "San Jose",
-        "CA",
-        "USA",
-        "95112"
-      ],
-      [
-        2,
-        102,
-        "45 Leopoldstrasse",
-        "Munich",
-        "Bavaria",
-        "Germany",
-        "80802"
-      ],
-      [
-        3,
-        103,
-        "12 Roppongi Hills",
-        "Tokyo",
-        "Tokyo",
-        "Japan",
-        "106-6108"
-      ],
-      [
-        4,
-        104,
-        "221B Baker St",
-        "London",
-        "London",
-        "UK",
-        "NW1 6XE"
-      ]
     ]
   },
   "clients": {
@@ -4127,40 +2630,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "tier",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Apex Global",
-        "Apex Global",
-        "USA",
-        "Enterprise"
-      ],
-      [
-        102,
-        102,
-        "Vanguard Tech",
-        "Vanguard Tech",
-        "Germany",
-        "Premium"
-      ],
-      [
-        103,
-        103,
-        "Nippon Systems",
-        "Nippon Systems",
-        "Japan",
-        "Enterprise"
-      ],
-      [
-        104,
-        104,
-        "Quantum Logic",
-        "Quantum Logic",
-        "UK",
-        "Standard"
-      ]
     ]
   },
   "corporate_clients": {
@@ -4212,29 +2681,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Titan Health Systems",
-        "Healthcare",
-        450000.0,
-        "ACTIVE"
-      ],
-      [
-        102,
-        "Apex Robotics",
-        "Automation",
-        280000.0,
-        "ACTIVE"
-      ],
-      [
-        103,
-        "Nordic Clean Energy",
-        "Energy",
-        620000.0,
-        "ACTIVE"
       ]
     ]
   },
@@ -4314,48 +2760,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "lifetime_spend",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        201,
-        "Maya",
-        "Lin",
-        "Maya Lin",
-        "maya.lin@gmail.com",
-        "New York",
-        "Gold VIP",
-        4500.0
-      ],
-      [
-        202,
-        "Lucas",
-        "Silva",
-        "Lucas Silva",
-        "lucas.silva@gmail.com",
-        "Miami",
-        "Silver",
-        2100.0
-      ],
-      [
-        203,
-        "Amara",
-        "Okafor",
-        "Amara Okafor",
-        "amara.o@outlook.com",
-        "Chicago",
-        "Platinum VIP",
-        7800.0
-      ],
-      [
-        204,
-        "Ethan",
-        "Hunt",
-        "Ethan Hunt",
-        "ethan.hunt@yahoo.com",
-        "Los Angeles",
-        "Bronze",
-        850.0
       ]
     ]
   },
@@ -4445,52 +2849,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        301,
-        "MegaMart Distribution Inc",
-        "MegaMart Distribution Inc",
-        "procurement@megamart.com",
-        "TAX-9941-US",
-        "AAA",
-        1450000.0,
-        "Sarah Connor",
-        "Preferred"
-      ],
-      [
-        302,
-        "EuroLogistics Logistics SE",
-        "EuroLogistics Logistics SE",
-        "ops@eurologistics.eu",
-        "TAX-2281-EU",
-        "AA",
-        980000.0,
-        "David Miller",
-        "Active"
-      ],
-      [
-        303,
-        "Nippon Wholesale Supply Co",
-        "Nippon Wholesale Supply Co",
-        "sales@nippon-ws.jp",
-        "TAX-7714-JP",
-        "AAA",
-        2100000.0,
-        "Kenji Sato",
-        "Preferred"
-      ],
-      [
-        304,
-        "LatinAmer Trading Corp",
-        "LatinAmer Trading Corp",
-        "trading@latinamer.br",
-        "TAX-5520-BR",
-        "BBB+",
-        620000.0,
-        "Elena Rostova",
-        "Standard"
-      ]
     ]
   },
   "leads": {
@@ -4570,49 +2928,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "assigned_rep",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Apex Corp Solutions",
-        "Apex Corp",
-        "Technology",
-        "Apex Corp Solutions",
-        "procurement@apex.com",
-        "QUALIFIED",
-        "Alex Rivera"
-      ],
-      [
-        102,
-        "Beacon Media Global",
-        "Beacon Media",
-        "Media",
-        "Beacon Media Global",
-        "ads@beacon.com",
-        "CONTACTED",
-        "Sarah Chen"
-      ],
-      [
-        103,
-        "Cyberdyne Systems",
-        "Cyberdyne",
-        "Defense",
-        "Cyberdyne Systems",
-        "contracts@cyberdyne.com",
-        "NEW",
-        "Marcus Vance"
-      ],
-      [
-        104,
-        "Delta Air Logistics",
-        "Delta Air",
-        "Travel",
-        "Delta Air Logistics",
-        "ops@delta.com",
-        "NEW",
-        "Alex Rivera"
-      ]
     ]
   },
   "calls": {
@@ -4691,38 +3006,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "call_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Miller",
-        "Miller",
-        420,
-        "INTERESTED",
-        "DEMO_SCHEDULED",
-        "2026-03-01"
-      ],
-      [
-        2,
-        101,
-        "Miller",
-        "Miller",
-        180,
-        "DEMO_SET",
-        "FOLLOW_UP",
-        "2026-03-04"
-      ],
-      [
-        3,
-        102,
-        "Sarah",
-        "Sarah",
-        90,
-        "VOICEMAIL",
-        "NO_ANSWER",
-        "2026-03-05"
       ]
     ]
   },
@@ -4821,92 +3104,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "is_discontinued",
         "BOOLEAN"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Quantum Pro Laptop 16\"",
-        "TECH-LP-01",
-        1,
-        "Electronics",
-        1899.99,
-        1899.99,
-        45,
-        45,
-        false
-      ],
-      [
-        102,
-        "Apex 4K UltraWide Monitor",
-        "TECH-MN-02",
-        1,
-        "Electronics",
-        849.5,
-        849.5,
-        32,
-        32,
-        false
-      ],
-      [
-        103,
-        "ErgoMech Mechanical Keyboard",
-        "TECH-KB-03",
-        1,
-        "Electronics",
-        179.0,
-        179.0,
-        120,
-        120,
-        false
-      ],
-      [
-        104,
-        "Titanium Data Server Rack",
-        "TECH-SR-04",
-        2,
-        "Servers",
-        4200.0,
-        4200.0,
-        8,
-        8,
-        false
-      ],
-      [
-        105,
-        "CyberShield UTM Firewall",
-        "TECH-FW-05",
-        2,
-        "Security",
-        1250.0,
-        1250.0,
-        18,
-        18,
-        false
-      ],
-      [
-        106,
-        "AcousticPro Studio Headphones",
-        "TECH-HP-06",
-        1,
-        "Electronics",
-        299.99,
-        299.99,
-        64,
-        64,
-        false
-      ],
-      [
-        107,
-        "Legacy IDE Interface Adapter",
-        "TECH-ADP-07",
-        3,
-        "Accessories",
-        35.0,
-        35.0,
-        0,
-        0,
-        true
-      ]
     ]
   },
   "store_products": {
@@ -4985,78 +3182,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "clearance_sale",
         "BOOLEAN"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Quantum Pro Laptop 16\"",
-        1,
-        "Hardware",
-        1899.99,
-        1899.99,
-        45,
-        false
-      ],
-      [
-        102,
-        "Apex 4K UltraWide Monitor",
-        1,
-        "Displays",
-        849.5,
-        849.5,
-        32,
-        false
-      ],
-      [
-        103,
-        "ErgoMech Mechanical Keyboard",
-        1,
-        "Peripherals",
-        179.0,
-        179.0,
-        120,
-        true
-      ],
-      [
-        104,
-        "Titanium Data Server Rack",
-        2,
-        "Servers",
-        4200.0,
-        4200.0,
-        8,
-        false
-      ],
-      [
-        105,
-        "CyberShield UTM Firewall",
-        2,
-        "Security",
-        1250.0,
-        1250.0,
-        18,
-        false
-      ],
-      [
-        106,
-        "AcousticPro Studio Headphones",
-        1,
-        "Audio",
-        299.99,
-        299.99,
-        64,
-        false
-      ],
-      [
-        107,
-        "Legacy IDE Interface Adapter",
-        3,
-        "Accessories",
-        35.0,
-        35.0,
-        0,
-        true
       ]
     ]
   },
@@ -5146,63 +3271,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "clearance_sale",
         "BOOLEAN"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Precision Tooling Kit",
-        "Hardware",
-        149.99,
-        149.99,
-        850,
-        4.8,
-        450,
-        false
-      ],
-      [
-        102,
-        "High-Temp Thermal Paste",
-        "Hardware",
-        24.5,
-        24.5,
-        1420,
-        4.9,
-        1200,
-        false
-      ],
-      [
-        103,
-        "Cat6e Bulk Reel 1000ft",
-        "Networking",
-        189.0,
-        189.0,
-        310,
-        4.6,
-        85,
-        true
-      ],
-      [
-        104,
-        "4K Studio Webcam",
-        "Peripherals",
-        129.99,
-        129.99,
-        620,
-        4.7,
-        32,
-        false
-      ],
-      [
-        105,
-        "Studio Noise-Cancelling Mic",
-        "Audio",
-        199.99,
-        199.99,
-        410,
-        4.9,
-        50,
-        false
-      ]
     ]
   },
   "product_catalog": {
@@ -5263,32 +3331,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "promo_active",
         "BOOLEAN"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "HyperDrive Pro SSD 2TB",
-        "Storage",
-        199.99,
-        150,
-        true
-      ],
-      [
-        2,
-        "Titan V2 Gaming GPU",
-        "Hardware",
-        799.0,
-        35,
-        false
-      ],
-      [
-        3,
-        "ErgoLift Standing Desk",
-        "Furniture",
-        450.0,
-        20,
-        true
       ]
     ]
   },
@@ -5369,38 +3411,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "regular_price",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Quantum Mouse Pro",
-        79.99,
-        120,
-        20,
-        69.99,
-        64.99,
-        79.99
-      ],
-      [
-        2,
-        "UltraQuiet Cooling Pad",
-        39.99,
-        85,
-        15,
-        null,
-        34.99,
-        39.99
-      ],
-      [
-        3,
-        "4K Webcam Studio",
-        129.99,
-        45,
-        10,
-        109.99,
-        99.99,
-        129.99
-      ]
     ]
   },
   "warehouse_inventory": {
@@ -5461,32 +3471,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "aisle_loc",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Precision Tooling Kit",
-        "TOOL-101",
-        450,
-        149.99,
-        "A-01"
-      ],
-      [
-        102,
-        "High-Temp Thermal Paste",
-        "PASTE-102",
-        1200,
-        24.5,
-        "A-04"
-      ],
-      [
-        103,
-        "Cat6e Bulk Reel 1000ft",
-        "CABLE-103",
-        85,
-        189.0,
-        "B-02"
       ]
     ]
   },
@@ -5549,32 +3533,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "stock_quantity",
         "INT"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Quantum Pro Laptop 16\"",
-        1899.99,
-        1899.99,
-        45,
-        45
-      ],
-      [
-        102,
-        "Apex 4K UltraWide Monitor",
-        849.5,
-        849.5,
-        32,
-        32
-      ],
-      [
-        103,
-        "ErgoMech Mechanical Keyboard",
-        179.0,
-        179.0,
-        120,
-        120
-      ]
     ]
   },
   "categories": {
@@ -5617,32 +3575,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "tax_code",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Electronics & Computing",
-        null,
-        "TAX-COMP-01"
-      ],
-      [
-        2,
-        "Enterprise Infrastructure",
-        "Electronics & Computing",
-        "TAX-SRV-02"
-      ],
-      [
-        3,
-        "Accessories & Peripherals",
-        "Electronics & Computing",
-        "TAX-ACC-03"
-      ],
-      [
-        4,
-        "Cloud Telemetry Software",
-        null,
-        "TAX-SOFT-04"
       ]
     ]
   },
@@ -5722,48 +3654,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "last_cycle_count",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        1899.99,
-        "San Jose Hub WH-1",
-        "BIN-A-101",
-        45,
-        10,
-        "2026-03-01"
-      ],
-      [
-        2,
-        102,
-        849.5,
-        "San Jose Hub WH-1",
-        "BIN-A-102",
-        32,
-        8,
-        "2026-03-01"
-      ],
-      [
-        3,
-        103,
-        179.0,
-        "Frankfurt Logistics Ctr",
-        "BIN-E-205",
-        120,
-        25,
-        "2026-02-20"
-      ],
-      [
-        4,
-        104,
-        4200.0,
-        "Singapore Air Cargo Depot",
-        "BIN-S-012",
-        8,
-        2,
-        "2026-02-28"
       ]
     ]
   },
@@ -5862,68 +3752,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "unit_cost_usd",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "SKU-5501",
-        "Gigabit Ethernet Switch 48-Port",
-        "Networking",
-        "Aisle 03-B",
-        85,
-        20,
-        349.99,
-        320.0
-      ],
-      [
-        2,
-        102,
-        "SKU-5502",
-        "Cat6A Shielded Patch Cable 10ft",
-        "Cabling",
-        "Aisle 01-A",
-        450,
-        100,
-        6.99,
-        4.5
-      ],
-      [
-        3,
-        103,
-        "SKU-5503",
-        "Server Hot-Swap Fan Assembly",
-        "Components",
-        "Aisle 05-D",
-        34,
-        15,
-        39.99,
-        28.0
-      ],
-      [
-        4,
-        104,
-        "SKU-5504",
-        "Rack Mount PDU 30A 120/208V",
-        "Power",
-        "Aisle 04-C",
-        19,
-        5,
-        249.99,
-        215.0
-      ],
-      [
-        5,
-        105,
-        "SKU-5505",
-        "Fiber Optic Transceiver SFP+ 10G",
-        "Networking",
-        "Aisle 03-A",
-        140,
-        30,
-        59.99,
-        42.0
-      ]
     ]
   },
   "inventory_locations": {
@@ -5975,22 +3803,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "warehouse_name",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "A-01",
-        "S-01",
-        500,
-        "North Warehouse"
-      ],
-      [
-        2,
-        "A-02",
-        "S-04",
-        1200,
-        "East Distribution"
       ]
     ]
   },
@@ -6080,140 +3892,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "payment_method",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        5001,
-        101,
-        "2024-01-05",
-        4850.0,
-        4850.0,
-        4850.0,
-        "Delivered",
-        "D",
-        "Corporate ACH"
-      ],
-      [
-        5002,
-        102,
-        "2024-01-12",
-        1240.5,
-        1240.5,
-        1240.5,
-        "Delivered",
-        "D",
-        "Credit Card"
-      ],
-      [
-        5003,
-        103,
-        "2024-01-18",
-        350.0,
-        350.0,
-        350.0,
-        "Cancelled",
-        "C",
-        "Wire Transfer"
-      ],
-      [
-        5004,
-        104,
-        "2024-01-22",
-        7890.0,
-        7890.0,
-        7890.0,
-        "Delivered",
-        "D",
-        "Corporate ACH"
-      ],
-      [
-        5005,
-        101,
-        "2024-02-01",
-        940.0,
-        940.0,
-        940.0,
-        "Shipped",
-        "S",
-        "Credit Card"
-      ],
-      [
-        5006,
-        105,
-        "2024-02-05",
-        15200.0,
-        15200.0,
-        15200.0,
-        "Processing",
-        "P",
-        "Wire Transfer"
-      ],
-      [
-        5007,
-        102,
-        "2024-02-10",
-        2100.0,
-        2100.0,
-        2100.0,
-        "Shipped",
-        "S",
-        "Credit Card"
-      ],
-      [
-        5008,
-        106,
-        "2024-02-14",
-        620.0,
-        620.0,
-        620.0,
-        "Delivered",
-        "D",
-        "Credit Card"
-      ],
-      [
-        5009,
-        107,
-        "2024-02-18",
-        8450.0,
-        8450.0,
-        8450.0,
-        "Processing",
-        "P",
-        "Corporate ACH"
-      ],
-      [
-        5010,
-        104,
-        "2024-02-22",
-        1100.0,
-        1100.0,
-        1100.0,
-        "Delivered",
-        "D",
-        "Credit Card"
-      ],
-      [
-        5011,
-        108,
-        "2024-03-01",
-        3400.0,
-        3400.0,
-        3400.0,
-        "Shipped",
-        "S",
-        "Wire Transfer"
-      ],
-      [
-        5012,
-        101,
-        "2024-03-05",
-        5600.0,
-        5600.0,
-        5600.0,
-        "Processing",
-        "P",
-        "Corporate ACH"
-      ]
     ]
   },
   "order_items": {
@@ -6275,56 +3953,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "subtotal",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        5001,
-        104,
-        1,
-        4200.0,
-        4200.0
-      ],
-      [
-        2,
-        5001,
-        102,
-        1,
-        650.0,
-        650.0
-      ],
-      [
-        3,
-        5002,
-        103,
-        4,
-        179.0,
-        716.0
-      ],
-      [
-        4,
-        5002,
-        106,
-        1,
-        299.99,
-        299.99
-      ],
-      [
-        5,
-        5004,
-        101,
-        4,
-        1899.99,
-        7599.96
-      ],
-      [
-        6,
-        5005,
-        106,
-        3,
-        299.99,
-        899.97
-      ]
     ]
   },
   "order_lines": {
@@ -6385,32 +4013,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "discount_pct",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        1001,
-        1,
-        101,
-        149.99,
-        2,
-        0.05
-      ],
-      [
-        1001,
-        2,
-        103,
-        35.0,
-        4,
-        0.0
-      ],
-      [
-        1002,
-        1,
-        104,
-        4200.0,
-        1,
-        0.1
       ]
     ]
   },
@@ -6482,35 +4084,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "total_usd",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        36,
-        125.0,
-        4500.0,
-        360.0,
-        4860.0
-      ],
-      [
-        2,
-        1002,
-        12,
-        100.0,
-        1200.0,
-        96.0,
-        1296.0
-      ],
-      [
-        3,
-        1003,
-        24,
-        35.42,
-        850.0,
-        68.0,
-        918.0
-      ]
     ]
   },
   "order_batches": {
@@ -6562,29 +4135,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        4500.0,
-        12,
-        "COMPLETED"
-      ],
-      [
-        2,
-        101,
-        1200.0,
-        0,
-        "PENDING_ITEMS"
-      ],
-      [
-        3,
-        102,
-        8900.0,
-        25,
-        "COMPLETED"
       ]
     ]
   },
@@ -6674,63 +4224,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "payment_method",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1001,
-        101,
-        "2026-03-01",
-        4850.0,
-        4850.0,
-        4850.0,
-        "Delivered",
-        "Delivered",
-        "Credit Card"
-      ],
-      [
-        1002,
-        102,
-        "2026-03-01",
-        1240.5,
-        1240.5,
-        1240.5,
-        "Shipped",
-        "Shipped",
-        "PayPal"
-      ],
-      [
-        1003,
-        103,
-        "2026-03-02",
-        350.0,
-        350.0,
-        350.0,
-        "Processing",
-        "Processing",
-        "Corporate ACH"
-      ],
-      [
-        1004,
-        104,
-        "2026-03-02",
-        7890.0,
-        7890.0,
-        7890.0,
-        "Delivered",
-        "Delivered",
-        "Credit Card"
-      ],
-      [
-        1005,
-        101,
-        "2026-03-03",
-        940.0,
-        940.0,
-        940.0,
-        "Shipped",
-        "Shipped",
-        "Wire Transfer"
-      ]
     ]
   },
   "sales_transactions": {
@@ -6791,48 +4284,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "quarter",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Hardware & Servers",
-        "Direct Enterprise",
-        425000.0,
-        12000.0,
-        "Q1-2026"
-      ],
-      [
-        2,
-        "Displays & Monitors",
-        "Global Webstore",
-        185000.0,
-        8500.0,
-        "Q1-2026"
-      ],
-      [
-        3,
-        "CyberSecurity Licenses",
-        "Partner Network",
-        310000.0,
-        0.0,
-        "Q1-2026"
-      ],
-      [
-        4,
-        "Accessories & Cables",
-        "Global Webstore",
-        65000.0,
-        4200.0,
-        "Q1-2026"
-      ],
-      [
-        5,
-        "Cloud Support Contracts",
-        "Direct Enterprise",
-        540000.0,
-        15000.0,
-        "Q1-2026"
       ]
     ]
   },
@@ -6895,40 +4346,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "sess-982-ab",
-        101,
-        3,
-        2450.0,
-        "2026-03-12 14:20:00"
-      ],
-      [
-        2,
-        "sess-983-cd",
-        102,
-        1,
-        1899.99,
-        "2026-03-12 15:10:00"
-      ],
-      [
-        3,
-        "sess-984-ef",
-        103,
-        5,
-        620.0,
-        "2026-03-12 15:45:00"
-      ],
-      [
-        4,
-        "sess-985-gh",
-        null,
-        2,
-        85.0,
-        "2026-03-12 16:00:00"
-      ]
     ]
   },
   "archived_orders": {
@@ -6990,24 +4407,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        4001,
-        101,
-        "2023-05-12",
-        3400.0,
-        3400.0,
-        "Archived"
-      ],
-      [
-        4002,
-        102,
-        "2023-08-20",
-        1950.0,
-        1950.0,
-        "Archived"
-      ]
     ]
   },
   "archived_orders_2025": {
@@ -7060,22 +4459,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        3001,
-        101,
-        4500.0,
-        "2025-04-12",
-        "Archived"
-      ],
-      [
-        3002,
-        102,
-        1200.0,
-        "2025-08-19",
-        "Archived"
-      ]
     ]
   },
   "current_orders": {
@@ -7127,29 +4510,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        501,
-        101,
-        2450.0,
-        "2026-03-01",
-        "Processing"
-      ],
-      [
-        502,
-        102,
-        890.0,
-        "2026-03-02",
-        "Shipped"
-      ],
-      [
-        503,
-        103,
-        3100.0,
-        "2026-03-03",
-        "Delivered"
       ]
     ]
   },
@@ -7212,24 +4572,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        5001,
-        101,
-        "2024-01-05",
-        4850.0,
-        4850.0,
-        "COMPLETED"
-      ],
-      [
-        5002,
-        102,
-        "2024-01-12",
-        1240.5,
-        1240.5,
-        "COMPLETED"
-      ]
     ]
   },
   "active_orders": {
@@ -7291,24 +4633,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        5001,
-        101,
-        "2024-01-05",
-        4850.0,
-        4850.0,
-        "Delivered"
-      ],
-      [
-        5002,
-        102,
-        "2024-01-12",
-        1240.5,
-        1240.5,
-        "Delivered"
-      ]
     ]
   },
   "cancelled_orders": {
@@ -7351,20 +4675,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "cancelled_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        5003,
-        103,
-        "Customer Request",
-        "2024-01-18 14:30:00"
-      ],
-      [
-        5020,
-        105,
-        "Payment Failed",
-        "2024-02-05 09:12:00"
       ]
     ]
   },
@@ -7427,24 +4737,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "archived_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        2001,
-        101,
-        15400.0,
-        "2024-01-15",
-        "2024-01-15",
-        "2026-01-01"
-      ],
-      [
-        2002,
-        102,
-        8200.0,
-        "2024-02-20",
-        "2024-02-20",
-        "2026-01-01"
-      ]
     ]
   },
   "online_orders": {
@@ -7497,29 +4789,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "order_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        149.99,
-        "Web App",
-        "2026-03-01"
-      ],
-      [
-        2,
-        102,
-        349.5,
-        "Mobile iOS",
-        "2026-03-01"
-      ],
-      [
-        3,
-        101,
-        89.0,
-        "Mobile Android",
-        "2026-03-02"
-      ]
     ]
   },
   "domestic_catalog": {
@@ -7563,26 +4832,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "origin_country",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Precision Tooling Kit",
-        149.99,
-        "USA"
-      ],
-      [
-        102,
-        "High-Temp Thermal Paste",
-        24.5,
-        "USA"
-      ],
-      [
-        103,
-        "Cat6e Bulk Reel 1000ft",
-        189.0,
-        "USA"
-      ]
     ]
   },
   "import_catalog": {
@@ -7625,20 +4874,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "import_duty_pct",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        201,
-        "Optical Laser Splicer",
-        1250.0,
-        4.5
-      ],
-      [
-        202,
-        "Precision Ceramic Capacitors",
-        12.0,
-        2.0
       ]
     ]
   },
@@ -7692,22 +4927,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "unit_cost",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "INV-SKU-001",
-        "High-Speed Transceiver",
-        450,
-        48.0
-      ],
-      [
-        2,
-        "INV-SKU-002",
-        "Fiber Optic Cable 50m",
-        1200,
-        15.5
-      ]
     ]
   },
   "empty_staging_template": {
@@ -7751,8 +4970,7 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "quantity",
         "INT"
       ]
-    ],
-    "rows": []
+    ]
   },
   "vendor_fulfillments": {
     "category": "Products & E-Commerce",
@@ -7804,36 +5022,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "on_time_pct",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "FastCargo Logistics",
-        450,
-        2,
-        98.5
-      ],
-      [
-        2,
-        "Global Freight Direct",
-        320,
-        5,
-        91.2
-      ],
-      [
-        3,
-        "Express Airway Express",
-        680,
-        1,
-        99.4
-      ],
-      [
-        4,
-        "Pacific Maritime Express",
-        210,
-        8,
-        84.0
-      ]
     ]
   },
   "colors": {
@@ -7868,23 +5056,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "hex_code",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Electric Cyan",
-        "#00F2FE"
-      ],
-      [
-        2,
-        "Neon Rose",
-        "#F472B6"
-      ],
-      [
-        3,
-        "Emerald Mint",
-        "#34D399"
-      ]
     ]
   },
   "sizes": {
@@ -7918,23 +5089,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "code",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Small",
-        "S"
-      ],
-      [
-        2,
-        "Medium",
-        "M"
-      ],
-      [
-        3,
-        "Large",
-        "L"
       ]
     ]
   },
@@ -8060,83 +5214,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        1,
-        101,
-        "Global Tech Logistics",
-        "alex_admin",
-        "ACC-88201",
-        "Corporate Checking",
-        142500.5,
-        142500.5,
-        "USD",
-        "SUPERADMIN",
-        "Active"
-      ],
-      [
-        102,
-        102,
-        2,
-        102,
-        "Vanguard Cloud Systems",
-        "sophia_lead",
-        "ACC-99312",
-        "Enterprise Treasury",
-        350000.0,
-        350000.0,
-        "USD",
-        "ADMIN",
-        "Active"
-      ],
-      [
-        103,
-        103,
-        3,
-        103,
-        "Apex Financial Analytics",
-        "david_dev",
-        "ACC-44105",
-        "Corporate Escrow",
-        89000.75,
-        89000.75,
-        "USD",
-        "READ_ONLY",
-        "Active"
-      ],
-      [
-        104,
-        104,
-        4,
-        104,
-        "BlueSky Media Group",
-        "elena_r",
-        "ACC-22941",
-        "Commercial Savings",
-        42000.0,
-        42000.0,
-        "USD",
-        "OPERATOR",
-        "Active"
-      ],
-      [
-        105,
-        105,
-        5,
-        105,
-        "Helios Quantum Labs",
-        "kenji_s",
-        "ACC-77189",
-        "Institutional Reserve",
-        510000.25,
-        510000.25,
-        "USD",
-        "AUDITOR",
-        "Restricted"
-      ]
     ]
   },
   "user_accounts": {
@@ -8243,47 +5320,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "alex_m",
-        "alex@edmith.com",
-        "Alex",
-        "Morgan",
-        "ENTERPRISE",
-        49.99,
-        1200.0,
-        "2022-01-15",
-        "2022-01-15"
-      ],
-      [
-        2,
-        2,
-        "sophia_c",
-        "sophia@edmith.com",
-        "Sophia",
-        "Chen",
-        "BUSINESS",
-        89.99,
-        3400.0,
-        "2021-06-20",
-        "2021-06-20"
-      ],
-      [
-        3,
-        3,
-        "marcus_v",
-        "marcus@edmith.com",
-        "Marcus",
-        "Vance",
-        "ENTERPRISE",
-        19.99,
-        850.0,
-        "2023-04-10",
-        "2023-04-10"
-      ]
     ]
   },
   "corporate_accounts": {
@@ -8372,52 +5408,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "amount_cents",
         "INT"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Apex Corp Solutions",
-        "Apex Corp Solutions LLC",
-        "USA",
-        "Enterprise Escrow",
-        142500.5,
-        500000.0,
-        14250050
-      ],
-      [
-        102,
-        102,
-        "Vanguard Tech",
-        "Vanguard Technologies SE",
-        "DEU",
-        "Operating Treasury",
-        350000.0,
-        1000000.0,
-        35000000
-      ],
-      [
-        103,
-        103,
-        "Nippon Systems",
-        "Nippon Systems KK",
-        "JPN",
-        "Operating Treasury",
-        89000.75,
-        250000.0,
-        8900075
-      ],
-      [
-        104,
-        104,
-        "Helios Quantum",
-        "Helios Quantum PLC",
-        "GBR",
-        "Enterprise Escrow",
-        510000.25,
-        1500000.0,
-        51000025
-      ]
     ]
   },
   "domestic_accounts": {
@@ -8470,30 +5460,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "state_registered",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Apex Corp Solutions",
-        "Apex Corp Solutions",
-        142500.5,
-        "California"
-      ],
-      [
-        102,
-        "Cyberdyne Systems",
-        "Cyberdyne Systems",
-        89000.0,
-        "Texas"
-      ],
-      [
-        103,
-        "Wayne Enterprises US",
-        "Wayne Enterprises US",
-        450000.0,
-        "New York"
-      ]
     ]
   },
   "international_accounts": {
@@ -8545,29 +5511,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "country",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        201,
-        "Vanguard Tech DE",
-        "Vanguard Tech DE",
-        350000.0,
-        "Germany"
-      ],
-      [
-        202,
-        "Nippon Systems JP",
-        "Nippon Systems JP",
-        510000.0,
-        "Japan"
-      ],
-      [
-        203,
-        "Nordic Telecomm SE",
-        "Nordic Telecomm SE",
-        220000.0,
-        "Sweden"
       ]
     ]
   },
@@ -8675,86 +5618,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1001,
-        101,
-        101,
-        4850.0,
-        0.05,
-        "USD",
-        "ACH_TRANSFER",
-        "PAYMENT",
-        "SETTLED",
-        null,
-        "2026-03-01 09:15:00"
-      ],
-      [
-        1002,
-        102,
-        102,
-        1240.5,
-        0.12,
-        "USD",
-        "CREDIT_CARD",
-        "PAYMENT",
-        "SETTLED",
-        null,
-        "2026-03-01 10:20:00"
-      ],
-      [
-        1003,
-        103,
-        103,
-        350.0,
-        0.88,
-        "USD",
-        "WIRE",
-        "PAYMENT",
-        "FAILED",
-        "ERR_INSUFFICIENT_FUNDS",
-        "2026-03-02 11:05:00"
-      ],
-      [
-        1004,
-        104,
-        104,
-        7890.0,
-        0.02,
-        "USD",
-        "ACH_TRANSFER",
-        "PAYMENT",
-        "SETTLED",
-        null,
-        "2026-03-02 14:40:00"
-      ],
-      [
-        1005,
-        101,
-        101,
-        940.0,
-        0.15,
-        "USD",
-        "CREDIT_CARD",
-        "PAYMENT",
-        "SETTLED",
-        null,
-        "2026-03-03 16:10:00"
-      ],
-      [
-        1006,
-        105,
-        105,
-        15200.0,
-        0.35,
-        "USD",
-        "WIRE",
-        "PAYMENT",
-        "PENDING",
-        null,
-        "2026-03-03 18:30:00"
-      ]
     ]
   },
   "billing_transactions": {
@@ -8834,48 +5697,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "due_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "INV-2026-001",
-        "Monthly - March",
-        2499.0,
-        199.92,
-        "PAID",
-        "2026-03-15"
-      ],
-      [
-        2,
-        102,
-        "INV-2026-002",
-        "Monthly - March",
-        999.0,
-        79.92,
-        "PAID",
-        "2026-03-15"
-      ],
-      [
-        3,
-        103,
-        "INV-2026-003",
-        "Monthly - March",
-        2499.0,
-        199.92,
-        "UNPAID",
-        "2026-03-15"
-      ],
-      [
-        4,
-        104,
-        "INV-2026-004",
-        "Quarterly - Q1",
-        897.0,
-        71.76,
-        "OVERDUE",
-        "2026-02-28"
-      ]
     ]
   },
   "subscription_invoices": {
@@ -8946,53 +5767,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Enterprise Platinum",
-        450.0,
-        50,
-        22500.0,
-        "PAID"
-      ],
-      [
-        2,
-        102,
-        "Enterprise Gold",
-        350.0,
-        25,
-        8750.0,
-        "PAID"
-      ],
-      [
-        3,
-        103,
-        "Enterprise Platinum",
-        450.0,
-        80,
-        36000.0,
-        "PENDING"
-      ],
-      [
-        4,
-        104,
-        "Scale Up Pro",
-        150.0,
-        10,
-        1500.0,
-        "PAID"
-      ],
-      [
-        5,
-        105,
-        "Developer Essential",
-        49.0,
-        4,
-        196.0,
-        "PAID"
-      ]
     ]
   },
   "transfers_audit": {
@@ -9053,24 +5827,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "created_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        102,
-        5000.0,
-        "COMPLETED",
-        "2026-03-01 10:00:00"
-      ],
-      [
-        2,
-        102,
-        103,
-        12000.0,
-        "COMPLETED",
-        "2026-03-02 14:30:00"
       ]
     ]
   },
@@ -9141,35 +5897,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "posted_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        "1010-CASH",
-        150000.0,
-        150000.0,
-        0.0,
-        "2026-03-01 09:00:00"
-      ],
-      [
-        2,
-        1002,
-        "2010-AP",
-        350000.0,
-        0.0,
-        350000.0,
-        "2026-03-01 09:00:00"
-      ],
-      [
-        3,
-        1003,
-        "1020-WIRE",
-        85000.0,
-        85000.0,
-        0.0,
-        "2026-03-01 10:30:00"
       ]
     ]
   },
@@ -9250,28 +5977,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1001,
-        "20260301ABCD1234",
-        150000.0,
-        "JPMorgan Chase",
-        "Federal Reserve NY",
-        150000.0,
-        "SETTLED"
-      ],
-      [
-        2,
-        1004,
-        "20260301EFGH5678",
-        500000.0,
-        "Bank of America",
-        "Federal Reserve NY",
-        500000.0,
-        "SETTLED"
-      ]
     ]
   },
   "live_customer_balances": {
@@ -9324,29 +6029,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "credit_limit",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        "Vanguard Global Corp",
-        "Tier 1",
-        450000.0,
-        1000000.0
-      ],
-      [
-        102,
-        "Weylan Yutani Analytics",
-        "Tier 1",
-        890000.0,
-        2000000.0
-      ],
-      [
-        103,
-        "Tyrell Cybernetics",
-        "Tier 2",
-        75000.0,
-        250000.0
-      ]
     ]
   },
   "migration_backup_tier1_2026": {
@@ -9389,20 +6071,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "balance_usd",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "Vanguard Global Corp",
-        "Tier 1",
-        450000.0
-      ],
-      [
-        102,
-        "Weylan Yutani Analytics",
-        "Tier 1",
-        890000.0
       ]
     ]
   },
@@ -9447,8 +6115,7 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "balance_usd",
         "FLOAT"
       ]
-    ],
-    "rows": []
+    ]
   },
   "daily_revenue_summary": {
     "category": "Finance & Ledger",
@@ -9500,29 +6167,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "refund_amount",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        "2026-03-01",
-        145,
-        84500.0,
-        83200.0,
-        1300.0
-      ],
-      [
-        "2026-03-02",
-        189,
-        112000.0,
-        110500.0,
-        1500.0
-      ],
-      [
-        "2026-03-03",
-        162,
-        96000.0,
-        94800.0,
-        1200.0
-      ]
     ]
   },
   "monthly_revenue_ledger": {
@@ -9565,20 +6209,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "net_margin",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        "2026-01",
-        3420,
-        1450000.0,
-        420000.0
-      ],
-      [
-        "2026-02",
-        3890,
-        1680000.0,
-        490000.0
       ]
     ]
   },
@@ -9631,22 +6261,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        2025,
-        "Engineering R&D",
-        1450000.0,
-        "FINALIZED"
-      ],
-      [
-        2,
-        2025,
-        "Cloud Infrastructure",
-        890000.0,
-        "FINALIZED"
       ]
     ]
   },
@@ -9726,48 +6340,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "filing_status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        2024,
-        "US-FEDERAL",
-        "EDMITH Global LLC",
-        1850000.0,
-        342000.0,
-        "ACCEPTED"
-      ],
-      [
-        2,
-        101,
-        2025,
-        "US-FEDERAL",
-        "EDMITH Global LLC",
-        2150000.0,
-        415000.0,
-        "PENDING_REVIEW"
-      ],
-      [
-        3,
-        102,
-        2024,
-        "EU-DE",
-        "EDMITH Europe GmbH",
-        980000.0,
-        195000.0,
-        "ACCEPTED"
-      ],
-      [
-        4,
-        103,
-        2024,
-        "APAC-JP",
-        "EDMITH Asia KK",
-        1250000.0,
-        260000.0,
-        "ACCEPTED"
       ]
     ]
   },
@@ -9875,73 +6447,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "trade_time",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "NVDA",
-        "NVIDIA Corp",
-        142.5,
-        142.5,
-        45200000,
-        45200000,
-        145.2,
-        139.8,
-        "2026-03-12 15:59:00",
-        "2026-03-12 15:59:00"
-      ],
-      [
-        2,
-        "MSFT",
-        "Microsoft Corp",
-        428.1,
-        428.1,
-        18400000,
-        18400000,
-        431.5,
-        425.0,
-        "2026-03-12 15:59:00",
-        "2026-03-12 15:59:00"
-      ],
-      [
-        3,
-        "GOOGL",
-        "Alphabet Inc",
-        182.4,
-        182.4,
-        22100000,
-        22100000,
-        184.8,
-        180.2,
-        "2026-03-12 15:59:00",
-        "2026-03-12 15:59:00"
-      ],
-      [
-        4,
-        "AMZN",
-        "Amazon.com Inc",
-        195.8,
-        195.8,
-        28900000,
-        28900000,
-        197.4,
-        193.1,
-        "2026-03-12 15:59:00",
-        "2026-03-12 15:59:00"
-      ],
-      [
-        5,
-        "AAPL",
-        "Apple Inc",
-        234.2,
-        234.2,
-        34500000,
-        34500000,
-        236.0,
-        231.5,
-        "2026-03-12 15:59:00",
-        "2026-03-12 15:59:00"
-      ]
     ]
   },
   "sales_q1_2026": {
@@ -9993,29 +6498,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "quarter",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1001,
-        101,
-        4850.0,
-        "2026-01-15",
-        "Q1-2026"
-      ],
-      [
-        1002,
-        102,
-        1240.5,
-        "2026-02-10",
-        "Q1-2026"
-      ],
-      [
-        1003,
-        103,
-        3500.0,
-        "2026-03-01",
-        "Q1-2026"
       ]
     ]
   },
@@ -10069,29 +6551,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "quarter",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        2001,
-        104,
-        7890.0,
-        "2026-04-12",
-        "Q2-2026"
-      ],
-      [
-        2002,
-        101,
-        940.0,
-        "2026-05-20",
-        "Q2-2026"
-      ],
-      [
-        2003,
-        105,
-        15200.0,
-        "2026-06-15",
-        "Q2-2026"
-      ]
     ]
   },
   "sales_q3_2026": {
@@ -10143,22 +6602,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "quarter",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        3001,
-        102,
-        2100.0,
-        "2026-07-10",
-        "Q3-2026"
-      ],
-      [
-        3002,
-        106,
-        6200.0,
-        "2026-08-22",
-        "Q3-2026"
       ]
     ]
   },
@@ -10212,22 +6655,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "quarter",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        4001,
-        107,
-        8450.0,
-        "2026-10-15",
-        "Q4-2026"
-      ],
-      [
-        4002,
-        108,
-        3400.0,
-        "2026-11-28",
-        "Q4-2026"
-      ]
     ]
   },
   "terminal_1_sales": {
@@ -10280,29 +6707,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "timestamp",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        101,
-        1,
-        249.99,
-        249.99,
-        "2026-03-01 10:14:00"
-      ],
-      [
-        102,
-        2,
-        89.5,
-        89.5,
-        "2026-03-01 11:32:00"
-      ],
-      [
-        103,
-        3,
-        1200.0,
-        1200.0,
-        "2026-03-01 12:45:00"
-      ]
     ]
   },
   "terminal_2_sales": {
@@ -10354,22 +6758,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "timestamp",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        201,
-        4,
-        340.0,
-        340.0,
-        "2026-03-01 09:50:00"
-      ],
-      [
-        202,
-        5,
-        45.0,
-        45.0,
-        "2026-03-01 14:15:00"
       ]
     ]
   },
@@ -10441,53 +6829,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        101,
-        "Acme Corp",
-        15000.0,
-        15000.0,
-        "2026-03-01 10:00:00"
-      ],
-      [
-        2,
-        101,
-        101,
-        "Acme Corp",
-        12000.0,
-        12000.0,
-        "2026-03-01 14:00:00"
-      ],
-      [
-        3,
-        101,
-        101,
-        "Acme Corp",
-        8000.0,
-        8000.0,
-        "2026-03-02 09:30:00"
-      ],
-      [
-        4,
-        102,
-        102,
-        "Beta LLC",
-        22000.0,
-        22000.0,
-        "2026-03-01 11:15:00"
-      ],
-      [
-        5,
-        102,
-        102,
-        "Beta LLC",
-        18000.0,
-        18000.0,
-        "2026-03-02 16:45:00"
-      ]
     ]
   },
   "cloud_server_instances": {
@@ -10557,53 +6898,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        "i-0a81f9b3c4",
-        "app-prod-useast-01",
-        "us-east-1",
-        0.192,
-        138.24,
-        32,
-        "RUNNING"
-      ],
-      [
-        "i-0b92e8a4d5",
-        "app-prod-useast-02",
-        "us-east-1",
-        0.192,
-        138.24,
-        32,
-        "RUNNING"
-      ],
-      [
-        "i-0c73d7f5e6",
-        "db-primary-uswest",
-        "us-west-2",
-        0.768,
-        552.96,
-        128,
-        "RUNNING"
-      ],
-      [
-        "i-0d64c6e6f7",
-        "analytics-spark-eu",
-        "eu-central-1",
-        0.384,
-        276.48,
-        64,
-        "RUNNING"
-      ],
-      [
-        "i-0e55b5d7a8",
-        "cache-redis-apac",
-        "ap-northeast-1",
-        0.096,
-        69.12,
-        16,
-        "STOPPED"
       ]
     ]
   },
@@ -10693,52 +6987,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "is_healthy",
         "BOOLEAN"
       ]
-    ],
-    "rows": [
-      [
-        "node-alpha-01",
-        "Kubernetes Core Cluster",
-        "us-east-dc1",
-        64,
-        256,
-        3.84,
-        18,
-        0.01,
-        true
-      ],
-      [
-        "node-alpha-02",
-        "Kubernetes Core Cluster",
-        "us-east-dc1",
-        64,
-        256,
-        3.84,
-        24,
-        0.02,
-        true
-      ],
-      [
-        "node-alpha-03",
-        "Kubernetes Core Cluster",
-        "eu-west-dc2",
-        64,
-        256,
-        3.84,
-        38,
-        0.0,
-        true
-      ],
-      [
-        "node-beta-spark",
-        "Big Data Analytics Pod",
-        "ap-northeast-dc3",
-        128,
-        512,
-        7.68,
-        142,
-        2.85,
-        false
-      ]
     ]
   },
   "hardware_assets": {
@@ -10827,63 +7075,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "depreciation_year",
         "INT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        null,
-        "Rack Chassis Alpha",
-        "Rack Chassis Alpha",
-        "CHASSIS",
-        "SN-RACK-001",
-        12000.0,
-        "Infrastructure Hall",
-        2030
-      ],
-      [
-        2,
-        1,
-        "Blade Server Alpha-1",
-        "Blade Server Alpha-1",
-        "BLADE",
-        "SN-BLD-001",
-        4500.0,
-        "Infrastructure Hall",
-        2028
-      ],
-      [
-        3,
-        1,
-        "Blade Server Alpha-2",
-        "Blade Server Alpha-2",
-        "BLADE",
-        "SN-BLD-002",
-        4500.0,
-        "Infrastructure Hall",
-        2028
-      ],
-      [
-        4,
-        null,
-        "MacBook Pro M3 Max 64GB",
-        "MacBook Pro M3 Max 64GB",
-        "LAPTOP",
-        "SN-APPL-98214",
-        3899.0,
-        "Sarah Connor",
-        2027
-      ],
-      [
-        5,
-        null,
-        "Dell Precision 7875 AI Workstation",
-        "Dell Precision 7875 AI Workstation",
-        "DESKTOP",
-        "SN-DELL-44129",
-        6450.0,
-        "David Miller",
-        2028
-      ]
     ]
   },
   "servers": {
@@ -10935,29 +7126,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        "srv-core-01.infra.edmith.com",
-        1,
-        "10.0.1.10",
-        "ONLINE"
-      ],
-      [
-        102,
-        "srv-db-01.infra.edmith.com",
-        1,
-        "10.0.1.20",
-        "ONLINE"
-      ],
-      [
-        103,
-        "srv-cache-01.infra.edmith.com",
-        2,
-        "10.0.2.10",
-        "ONLINE"
       ]
     ]
   },
@@ -11019,40 +7187,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "max_kw_power",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Rack-Alpha-101",
-        "RACK-A1",
-        "Hall A - Silicon Valley",
-        15.0,
-        15.0
-      ],
-      [
-        2,
-        "Rack-Beta-202",
-        "RACK-B2",
-        "Hall A - Silicon Valley",
-        15.0,
-        15.0
-      ],
-      [
-        3,
-        "Rack-Gamma-303",
-        "RACK-G3",
-        "Hall B - Frankfurt",
-        20.0,
-        20.0
-      ],
-      [
-        4,
-        "Rack-Delta-404",
-        "RACK-D4",
-        "Hall C - Tokyo",
-        18.0,
-        18.0
       ]
     ]
   },
@@ -11160,60 +7294,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "timestamp",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "sarah.c",
-        "ADMIN",
-        "/api/v1/admin/users",
-        "192.168.1.10",
-        "US",
-        true,
-        true,
-        true,
-        "2026-03-12 10:14:22"
-      ],
-      [
-        2,
-        2,
-        "guest_unknown",
-        "GUEST",
-        "/api/v1/auth/token",
-        "45.33.32.156",
-        "UK",
-        false,
-        false,
-        false,
-        "2026-03-12 10:15:01"
-      ],
-      [
-        3,
-        3,
-        "david.m",
-        "ADMIN",
-        "/api/v1/database/schemas",
-        "192.168.1.15",
-        "US",
-        true,
-        true,
-        true,
-        "2026-03-12 10:16:45"
-      ],
-      [
-        4,
-        4,
-        "kevin.h",
-        "DEV",
-        "/api/v1/admin/billing",
-        "192.168.1.55",
-        "DE",
-        true,
-        false,
-        false,
-        "2026-03-12 10:18:10"
-      ]
     ]
   },
   "security_logs": {
@@ -11266,29 +7346,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "logged_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "INFO",
-        "TLS certificate auto-renewed successfully for *.edmith.com",
-        "CertManager",
-        "2026-03-01 00:05:00"
-      ],
-      [
-        2,
-        "WARNING",
-        "Rate limit triggered for IP block 45.33.32.0/24 on /login endpoint",
-        "WAF-Cloud",
-        "2026-03-05 14:22:15"
-      ],
-      [
-        3,
-        "CRITICAL",
-        "Repeated unauthorized SSH attempts on cluster bastion",
-        "Fail2Ban",
-        "2026-03-10 03:41:00"
-      ]
     ]
   },
   "application_logs": {
@@ -11340,29 +7397,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "logged_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "auth-service",
-        "INFO",
-        "User 1 login successful",
-        "2026-03-01 10:00:00"
-      ],
-      [
-        2,
-        "payment-gateway",
-        "WARNING",
-        "Latency spike on Stripe API",
-        "2026-03-01 10:05:00"
-      ],
-      [
-        3,
-        "api-gateway",
-        "ERROR",
-        "HTTP 504 gateway timeout",
-        "2026-03-01 10:12:00"
       ]
     ]
   },
@@ -11451,41 +7485,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "timestamp",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "auth-service",
-        "INFO",
-        101,
-        "MFA_SUCCESS",
-        "MFA authentication succeeded",
-        "192.168.1.1",
-        "2026-03-01 08:00:00",
-        "2026-03-01 08:00:00"
-      ],
-      [
-        2,
-        "auth-service",
-        "WARNING",
-        102,
-        "PASSWORD_RETRY",
-        "Invalid password attempt 2 of 5",
-        "192.168.1.4",
-        "2026-03-01 09:15:00",
-        "2026-03-01 09:15:00"
-      ],
-      [
-        3,
-        "auth-service",
-        "ERROR",
-        103,
-        "ACCOUNT_LOCKED",
-        "Exceeded maximum login retries",
-        "10.0.0.52",
-        "2026-03-01 10:30:00",
-        "2026-03-01 10:30:00"
       ]
     ]
   },
@@ -11584,32 +7583,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "timestamp",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "billing-service",
-        "INFO",
-        501,
-        "CHARGE_SUCCESS",
-        "Charge succeeded",
-        "CHARGED",
-        1200.0,
-        "2026-03-01 00:01:00",
-        "2026-03-01 00:01:00"
-      ],
-      [
-        2,
-        "billing-service",
-        "WARN",
-        502,
-        "CHARGE_FAILED",
-        "Card charge retry failed",
-        "FAILED_RETRY",
-        450.0,
-        "2026-03-01 00:02:00",
-        "2026-03-01 00:02:00"
-      ]
     ]
   },
   "web_access_logs": {
@@ -11707,56 +7680,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "user_agent",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "192.168.1.10",
-        "/api/v2/sql/execute",
-        "/api/v2/sql/execute",
-        "POST",
-        200,
-        200,
-        14.5,
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-      ],
-      [
-        2,
-        2,
-        "192.168.1.15",
-        "/sql/index.html",
-        "/sql/index.html",
-        "GET",
-        200,
-        200,
-        22.1,
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)"
-      ],
-      [
-        3,
-        3,
-        "10.0.0.88",
-        "/api/v2/auth/verify",
-        "/api/v2/auth/verify",
-        "POST",
-        401,
-        401,
-        8.2,
-        "curl/8.4.0"
-      ],
-      [
-        4,
-        4,
-        "172.16.0.4",
-        "/downloads/curriculum.pdf",
-        "/downloads/curriculum.pdf",
-        "GET",
-        200,
-        200,
-        145.8,
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4)"
-      ]
     ]
   },
   "page_views": {
@@ -11809,29 +7732,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "created_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "/sql/index.html",
-        "sess_01",
-        "2026-03-01 10:00:00"
-      ],
-      [
-        2,
-        102,
-        "/editor.html",
-        "sess_02",
-        "2026-03-01 10:05:00"
-      ],
-      [
-        3,
-        103,
-        "/sql/inner-join.html",
-        "sess_03",
-        "2026-03-01 10:12:00"
-      ]
     ]
   },
   "ui_clicks": {
@@ -11874,20 +7774,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "created_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "run-query-btn",
-        "2026-03-01 10:01:00"
-      ],
-      [
-        2,
-        102,
-        "schema-filter",
-        "2026-03-01 10:06:00"
       ]
     ]
   },
@@ -11950,32 +7836,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "recorded_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "auth-service",
-        24.5,
-        0.01,
-        35.2,
-        "2026-03-01 12:00:00"
-      ],
-      [
-        2,
-        "payment-gateway",
-        68.2,
-        0.0,
-        42.1,
-        "2026-03-01 12:00:00"
-      ],
-      [
-        3,
-        "sql-executor",
-        14.8,
-        0.02,
-        28.6,
-        "2026-03-01 12:00:00"
-      ]
     ]
   },
   "system_configuration": {
@@ -12018,32 +7878,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "last_modified",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        "APP_ENVIRONMENT",
-        "production",
-        "STRING",
-        "2026-01-01"
-      ],
-      [
-        "MAX_QUERY_LIMIT",
-        "1000",
-        "INT",
-        "2026-01-01"
-      ],
-      [
-        "ENABLE_QUERY_CACHE",
-        "true",
-        "BOOLEAN",
-        "2026-02-15"
-      ],
-      [
-        "SYSTEM_TIMEZONE",
-        "UTC",
-        "STRING",
-        "2026-01-01"
       ]
     ]
   },
@@ -12133,41 +7967,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "notes",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "UPDATE",
-        "employees",
-        "192.168.1.10",
-        "2026-03-01 11:20:00",
-        "SUCCESS",
-        901,
-        "Verified 100% completion in system audit"
-      ],
-      [
-        2,
-        2,
-        "SELECT",
-        "customers",
-        "192.168.1.15",
-        "2026-03-01 11:25:00",
-        "SUCCESS",
-        902,
-        "Verified 100% completion in system audit"
-      ],
-      [
-        3,
-        1,
-        "INSERT",
-        "sales_orders",
-        "192.168.1.10",
-        "2026-03-02 09:40:00",
-        "SUCCESS",
-        903,
-        "Verified 100% completion in system audit"
-      ]
     ]
   },
   "audit_log_history": {
@@ -12256,30 +8055,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "recorded_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        101,
-        "TABLE_CREATE",
-        "SYSTEM",
-        1,
-        "TABLE_CREATE",
-        "Created orders table",
-        "2025-01-01 00:00:00"
-      ],
-      [
-        2,
-        2,
-        102,
-        "TABLE_ALTER",
-        "SYSTEM",
-        2,
-        "TABLE_ALTER",
-        "Added column status to orders",
-        "2025-03-15 12:00:00"
-      ]
     ]
   },
   "temp_security_events": {
@@ -12350,26 +8125,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "timestamp",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        101,
-        "FAILED_LOGIN_SPIKE",
-        "192.168.1.99",
-        "Python-urllib/3.10",
-        "2026-03-01 04:12:00"
-      ],
-      [
-        2,
-        2,
-        102,
-        "PORT_SCAN_DETECTED",
-        "10.0.0.88",
-        "Nmap Script Engine",
-        "2026-03-01 04:15:00"
-      ]
     ]
   },
   "temporary_import_logs": {
@@ -12412,20 +8167,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "imported_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "batch_2025_01.csv",
-        1250,
-        "2025-01-10"
-      ],
-      [
-        2,
-        "batch_2025_02.csv",
-        890,
-        "2025-02-14"
       ]
     ]
   },
@@ -12478,29 +8219,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "created_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "annual_report_2025.pdf",
-        "pdf",
-        4200,
-        "2026-01-10"
-      ],
-      [
-        2,
-        "temp_invoice_batch.csv",
-        "csv",
-        150,
-        "2026-02-14"
-      ],
-      [
-        3,
-        "architecture_diagram.png",
-        "png",
-        890,
-        "2026-02-20"
       ]
     ]
   },
@@ -12571,44 +8289,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "created_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "agent_smith",
-        "RESOLVED",
-        45,
-        "HIGH",
-        "2026-03-01"
-      ],
-      [
-        2,
-        102,
-        "agent_jones",
-        "RESOLVED",
-        90,
-        "MEDIUM",
-        "2026-03-02"
-      ],
-      [
-        3,
-        101,
-        "agent_smith",
-        "OPEN",
-        0,
-        "HIGH",
-        "2026-03-05"
-      ],
-      [
-        4,
-        103,
-        "agent_jones",
-        "RESOLVED",
-        25,
-        "LOW",
-        "2026-03-08"
       ]
     ]
   },
@@ -12698,52 +8378,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "completed_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Implement Strict SQL Error Throwing in AlaSQL",
-        "David Miller",
-        "CRITICAL",
-        8,
-        "DONE",
-        "Sprint 42",
-        "2026-03-15",
-        "2026-03-15"
-      ],
-      [
-        2,
-        "Design High-Speed Color Tokenizer for Syntax Overlay",
-        "Sarah Connor",
-        "HIGH",
-        5,
-        "DONE",
-        "Sprint 42",
-        "2026-03-15",
-        "2026-03-15"
-      ],
-      [
-        3,
-        "Seed Complete 150+ Enterprise Database Tables",
-        "Jason Bourne",
-        "HIGH",
-        13,
-        "IN_PROGRESS",
-        "Sprint 42",
-        "2026-03-16",
-        null
-      ],
-      [
-        4,
-        "Deploy Dual-Layer Zero-Latency Editor Highlighting",
-        "Elena Rostova",
-        "MEDIUM",
-        3,
-        "DONE",
-        "Sprint 42",
-        "2026-03-14",
-        "2026-03-14"
-      ]
     ]
   },
   "surgeons": {
@@ -12831,41 +8465,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "hospital_affil",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        101,
-        101,
-        "Dr. Robert McCoy",
-        "Dr. Robert",
-        "McCoy",
-        "Cardiovascular Surgery",
-        true,
-        18,
-        "Metro General"
-      ],
-      [
-        102,
-        102,
-        "Dr. Meredith Grey",
-        "Dr. Meredith",
-        "Grey",
-        "General & Trauma Surgery",
-        true,
-        14,
-        "Grey Sloan Memorial"
-      ],
-      [
-        103,
-        103,
-        "Dr. Stephen Strange",
-        "Dr. Stephen",
-        "Strange",
-        "Neurosurgery",
-        true,
-        16,
-        "Metro General"
       ]
     ]
   },
@@ -12982,64 +8581,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "complications",
         "BOOLEAN"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        501,
-        "John Doe",
-        "CPT-33533",
-        "Coronary Artery Bypass Graft (CABG)",
-        "2026-03-02",
-        240,
-        "OR-1",
-        "OR-1",
-        "SUCCESS",
-        false
-      ],
-      [
-        2,
-        102,
-        502,
-        "Jane Smith",
-        "CPT-44970",
-        "Laparoscopic Appendectomy",
-        "2026-03-03",
-        45,
-        "OR-3",
-        "OR-3",
-        "SUCCESS",
-        false
-      ],
-      [
-        3,
-        103,
-        503,
-        "Robert Brown",
-        "CPT-61510",
-        "Craniectomy for Brain Tumor Excision",
-        "2026-03-04",
-        360,
-        "OR-2",
-        "OR-2",
-        "SUCCESS",
-        true
-      ],
-      [
-        4,
-        101,
-        504,
-        "Alice Green",
-        "CPT-33405",
-        "Aortic Valve Replacement",
-        "2026-03-05",
-        210,
-        "OR-1",
-        "OR-1",
-        "SUCCESS",
-        false
-      ]
     ]
   },
   "clinical_discharges": {
@@ -13128,52 +8669,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "discharge_disposition",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        501,
-        "John Doe",
-        "2026-02-28",
-        "2026-03-06",
-        "2026-03-20",
-        142.5,
-        "HOME_HEALTHCARE"
-      ],
-      [
-        2,
-        2,
-        502,
-        "Jane Smith",
-        "2026-03-02",
-        "2026-03-04",
-        "2026-03-18",
-        98.0,
-        "ROUTINE_HOME"
-      ],
-      [
-        3,
-        3,
-        503,
-        "Robert Brown",
-        "2026-03-01",
-        null,
-        null,
-        null,
-        "STILL_INPATIENT"
-      ],
-      [
-        4,
-        4,
-        504,
-        "Alice Green",
-        "2026-03-03",
-        "2026-03-08",
-        "2026-03-22",
-        115.2,
-        "REHAB_FACILITY"
-      ]
     ]
   },
   "emergency_triage": {
@@ -13261,52 +8756,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "chief_complaint",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "John Doe",
-        54,
-        1,
-        85,
-        135,
-        88,
-        true,
-        "Severe chest trauma"
-      ],
-      [
-        2,
-        "Jane Smith",
-        29,
-        3,
-        125,
-        78,
-        98,
-        false,
-        "Distal radius fracture"
-      ],
-      [
-        3,
-        "Robert Brown",
-        68,
-        2,
-        195,
-        115,
-        91,
-        false,
-        "Hypertensive emergency"
-      ],
-      [
-        4,
-        "Alice Green",
-        42,
-        1,
-        90,
-        140,
-        85,
-        true,
-        "Multi-vehicle collision trauma"
       ]
     ]
   },
@@ -13414,47 +8863,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "dispensed_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "RX-88401",
-        "DRUG-ATV-20",
-        "Atorvastatin",
-        501,
-        101,
-        101,
-        20,
-        30,
-        "2026-03-06 14:00:00"
-      ],
-      [
-        2,
-        2,
-        "RX-88402",
-        "DRUG-AMX-875",
-        "Amoxicillin-Clavulanate",
-        502,
-        102,
-        102,
-        875,
-        20,
-        "2026-03-04 11:30:00"
-      ],
-      [
-        3,
-        3,
-        "RX-88403",
-        "DRUG-LVX-100",
-        "Levothyroxine Sodium",
-        503,
-        103,
-        103,
-        100,
-        90,
-        "2026-03-05 09:15:00"
-      ]
     ]
   },
   "flight_inventory": {
@@ -13543,52 +8951,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "fare_usd",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "AA-104",
-        "JFK",
-        "LHR",
-        "2026-04-01 19:30:00",
-        42,
-        42,
-        850.0,
-        850.0
-      ],
-      [
-        2,
-        "UA-882",
-        "SFO",
-        "HND",
-        "2026-04-01 11:15:00",
-        18,
-        18,
-        1250.0,
-        1250.0
-      ],
-      [
-        3,
-        "DL-405",
-        "ATL",
-        "CDG",
-        "2026-04-02 18:00:00",
-        65,
-        65,
-        920.0,
-        920.0
-      ],
-      [
-        4,
-        "LH-441",
-        "FRA",
-        "ORD",
-        "2026-04-02 10:45:00",
-        5,
-        5,
-        1480.0,
-        1480.0
-      ]
     ]
   },
   "shipping_manifests": {
@@ -13668,58 +9030,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "dest_city",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "CONT-9941-US",
-        "Maersk Line",
-        "Maersk",
-        "Shanghai",
-        "Los Angeles",
-        "USA",
-        "Los Angeles"
-      ],
-      [
-        2,
-        "CONT-2281-EU",
-        "Hapag-Lloyd",
-        "DHL Express",
-        "Rotterdam",
-        "New York",
-        "USA",
-        "New York"
-      ],
-      [
-        3,
-        "CONT-7714-JP",
-        "ONE Ocean Express",
-        "FedEx Intl",
-        "Yokohama",
-        "Long Beach",
-        "USA",
-        "Long Beach"
-      ],
-      [
-        4,
-        "CONT-5520-BR",
-        "MSC Mediterranean",
-        "UPS Worldwide",
-        "Santos",
-        "Miami",
-        "USA",
-        "Miami"
-      ],
-      [
-        5,
-        "CONT-1102-SG",
-        "Evergreen Marine",
-        "DHL Express",
-        "Singapore",
-        "Oakland",
-        "USA",
-        "Oakland"
-      ]
     ]
   },
   "vehicles": {
@@ -13789,44 +9099,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "mileage",
         "INT"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "1HGCR2F83HA001234",
-        "7XYZ991",
-        "Honda",
-        "Accord Hybrid",
-        2024,
-        14200
-      ],
-      [
-        2,
-        "WAUZZZF28NA005678",
-        "8ABC123",
-        "Audi",
-        "A6 Quattro",
-        2023,
-        28500
-      ],
-      [
-        3,
-        "5YJ3E1EB8NF009012",
-        "9EVX440",
-        "Tesla",
-        "Model 3 Long Range",
-        2025,
-        8400
-      ],
-      [
-        4,
-        "1FTFW1ED4NFA33412",
-        "6TRK880",
-        "Ford",
-        "F-150 Lightning EV",
-        2024,
-        19800
       ]
     ]
   },
@@ -13934,60 +9206,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "region",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "ViperShadow",
-        "ViperShadow",
-        9850,
-        2845,
-        12,
-        412,
-        68.4,
-        "Grandmaster",
-        "NA-EAST"
-      ],
-      [
-        2,
-        102,
-        "FrostByte",
-        "FrostByte",
-        9420,
-        2790,
-        8,
-        389,
-        65.2,
-        "Grandmaster",
-        "EU-WEST"
-      ],
-      [
-        3,
-        103,
-        "SakuraSlash",
-        "SakuraSlash",
-        9150,
-        2765,
-        5,
-        401,
-        64.0,
-        "Master",
-        "APAC-KR"
-      ],
-      [
-        4,
-        104,
-        "IronPulse",
-        "IronPulse",
-        8890,
-        2710,
-        3,
-        345,
-        61.8,
-        "Master",
-        "NA-WEST"
-      ]
     ]
   },
   "users": {
@@ -14085,68 +9303,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "last_login",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Alex",
-        "Morgan",
-        "alex_admin",
-        "alex.morgan@edmith.com",
-        "SuperAdmin",
-        true,
-        0,
-        "2023-01-10",
-        "2026-03-15 08:30:00"
-      ],
-      [
-        2,
-        "Sophia",
-        "Chen",
-        "sophia_lead",
-        "sophia.chen@edmith.com",
-        "Admin",
-        true,
-        0,
-        "2023-03-15",
-        "2026-03-15 09:12:00"
-      ],
-      [
-        3,
-        "David",
-        "Miller",
-        "david_dev",
-        "david.miller@edmith.com",
-        "Developer",
-        true,
-        1,
-        "2023-06-20",
-        "2026-03-14 17:45:00"
-      ],
-      [
-        4,
-        "Elena",
-        "Rostova",
-        "elena_qa",
-        "elena.rostova@edmith.com",
-        "Analyst",
-        true,
-        0,
-        "2023-09-01",
-        "2026-03-15 07:50:00"
-      ],
-      [
-        5,
-        "Marcus",
-        "Vance",
-        "marcus_guest",
-        "marcus.vance@edmith.com",
-        "Viewer",
-        false,
-        4,
-        "2024-01-05",
-        "2026-02-10 11:20:00"
-      ]
     ]
   },
   "user_profiles": {
@@ -14217,44 +9373,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "account_status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "alex_m",
-        "alex@edmith.com",
-        "+1-555-0123",
-        "USA",
-        "Cloud Architect & Database Lead",
-        "Active"
-      ],
-      [
-        2,
-        "sophia_c",
-        "sophia@edmith.com",
-        "+49-89-987654",
-        "Germany",
-        "Senior Data Scientist",
-        "Active"
-      ],
-      [
-        3,
-        "kenji_s",
-        "kenji@edmith.com",
-        null,
-        "Japan",
-        "Full Stack Engineer",
-        "Active"
-      ],
-      [
-        4,
-        "elena_r",
-        "elena@edmith.com",
-        "+44-20-123456",
-        "UK",
-        "Security Researcher",
-        "Active"
-      ]
     ]
   },
   "user_roles": {
@@ -14297,26 +9415,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "granted_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        "Admin",
-        "2023-01-01"
-      ],
-      [
-        2,
-        2,
-        "Editor",
-        "2023-06-15"
-      ],
-      [
-        3,
-        3,
-        "Viewer",
-        "2023-11-20"
       ]
     ]
   },
@@ -14361,26 +9459,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "description",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Super Admin",
-        15,
-        "Read, Write, Execute, Administer"
-      ],
-      [
-        2,
-        "Data Analyst",
-        5,
-        "Read, Execute Reports"
-      ],
-      [
-        3,
-        "Auditor",
-        4,
-        "Read Only Access"
-      ]
     ]
   },
   "user_bans": {
@@ -14423,14 +9501,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "banned_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        999,
-        "Malicious SQL Injection Attempt",
-        "2026-01-15"
       ]
     ]
   },
@@ -14484,29 +9554,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "mfa_enabled",
         "BOOLEAN"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "alex_admin",
-        "$2a$12$e8x...h9K",
-        true,
-        true
-      ],
-      [
-        2,
-        "sophia_lead",
-        "$2a$12$k2L...p4Q",
-        true,
-        true
-      ],
-      [
-        3,
-        "david_dev",
-        "$2a$12$m9P...q1W",
-        true,
-        false
-      ]
     ]
   },
   "user_contacts": {
@@ -14559,36 +9606,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "billing_contact",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "alex.personal@gmail.com",
-        "alex@edmith.com",
-        "+1-555-0199",
-        "accounts@edmith.com"
-      ],
-      [
-        2,
-        null,
-        "sophia@edmith.com",
-        "+1-555-0142",
-        "finance@chen-holdings.com"
-      ],
-      [
-        3,
-        "david.k@outlook.com",
-        null,
-        null,
-        "billing@kim-tech.io"
-      ],
-      [
-        4,
-        null,
-        "elena@edmith.com",
-        "+1-555-0188",
-        null
-      ]
     ]
   },
   "user_memberships": {
@@ -14631,26 +9648,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "renewal_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Enterprise Lifetime",
-        true,
-        "2099-12-31"
-      ],
-      [
-        99,
-        "Expired Monthly",
-        false,
-        "2024-12-01"
-      ],
-      [
-        105,
-        "Trial Tier",
-        false,
-        "2025-01-10"
       ]
     ]
   },
@@ -14704,22 +9701,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "last_active",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        "sess_abc123",
-        1,
-        5003,
-        "192.168.1.10",
-        "2026-03-01 10:00:00"
-      ],
-      [
-        "sess_xyz789",
-        2,
-        5020,
-        "192.168.1.25",
-        "2026-03-01 11:30:00"
-      ]
     ]
   },
   "user_activity_logs": {
@@ -14772,29 +9753,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "timestamp",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "PAGE_RENDER",
-        4,
-        "2026-03-01 10:00:00"
-      ],
-      [
-        2,
-        102,
-        "QUERY_RUN",
-        1,
-        "2026-03-01 10:05:00"
-      ],
-      [
-        3,
-        103,
-        "DOWNLOAD_CSV",
-        8,
-        "2026-03-01 10:15:00"
-      ]
     ]
   },
   "account_snapshots": {
@@ -14837,32 +9795,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "balance_usd",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "2026-02-01",
-        135000.0
-      ],
-      [
-        2,
-        101,
-        "2026-03-01",
-        142500.5
-      ],
-      [
-        3,
-        102,
-        "2026-02-01",
-        340000.0
-      ],
-      [
-        4,
-        102,
-        "2026-03-01",
-        350000.0
       ]
     ]
   },
@@ -14925,32 +9857,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "alex@edmith.com",
-        "Alex",
-        "Enterprise Pro",
-        99.0,
-        "Active"
-      ],
-      [
-        2,
-        "sophia@edmith.com",
-        "Sophia",
-        "Business Plus",
-        49.0,
-        "Active"
-      ],
-      [
-        3,
-        "marcus@edmith.com",
-        "Marcus",
-        "Starter Plan",
-        19.0,
-        "Active"
-      ]
     ]
   },
   "active_subscriptions": {
@@ -15002,29 +9908,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "status",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        "Cloud Enterprise",
-        1200.0,
-        "Active"
-      ],
-      [
-        2,
-        102,
-        "Security Suite",
-        850.0,
-        "Active"
-      ],
-      [
-        3,
-        103,
-        "Developer Pro",
-        450.0,
-        "Active"
       ]
     ]
   },
@@ -15078,29 +9961,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "scope",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        1,
-        101,
-        1000,
-        "read_write"
-      ],
-      [
-        2,
-        2,
-        101,
-        500,
-        "read_only"
-      ],
-      [
-        3,
-        3,
-        102,
-        2500,
-        "admin"
-      ]
     ]
   },
   "community_members": {
@@ -15152,29 +10012,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "joined_date",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "dev_master",
-        false,
-        450,
-        "2024-01-10"
-      ],
-      [
-        2,
-        "spammer_99",
-        true,
-        -20,
-        "2025-06-12"
-      ],
-      [
-        3,
-        "code_ninja",
-        false,
-        890,
-        "2023-11-20"
       ]
     ]
   },
@@ -15228,29 +10065,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "status",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Sarah Connor",
-        "Diamond VIP",
-        14500,
-        "Active"
-      ],
-      [
-        2,
-        "David Miller",
-        "Platinum",
-        8200,
-        "Active"
-      ],
-      [
-        3,
-        "Elena Rostova",
-        "Gold",
-        4100,
-        "Active"
-      ]
     ]
   },
   "newsletter_signups": {
@@ -15302,29 +10116,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "signed_up_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "alex@edmith.com",
-        "Alex",
-        "Homepage Banner",
-        "2026-02-14"
-      ],
-      [
-        2,
-        "dev@acme.com",
-        "Devon",
-        "Blog Post #12",
-        "2026-02-18"
-      ],
-      [
-        3,
-        "cto@globalcorp.io",
-        "Catherine",
-        "Webinar Q1",
-        "2026-03-01"
       ]
     ]
   },
@@ -15387,32 +10178,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "seat_count",
         "INT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Stark Industries",
-        "ENTERPRISE",
-        "Enterprise Unlimited",
-        true,
-        450
-      ],
-      [
-        2,
-        "Wayne Enterprises",
-        "ENTERPRISE",
-        "Enterprise Unlimited",
-        true,
-        800
-      ],
-      [
-        3,
-        "Cyberdyne Systems",
-        "SUSPENDED",
-        "Suspended Tier",
-        false,
-        50
-      ]
     ]
   },
   "retail_outlets": {
@@ -15464,29 +10229,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "manager_name",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        "Paris Champs-Elysees Flagship",
-        "Paris",
-        "France",
-        "Jean Dupont"
-      ],
-      [
-        2,
-        "Nice Promenade Store",
-        "Nice",
-        "France",
-        "Claire Martin"
-      ],
-      [
-        3,
-        "London Oxford St",
-        "London",
-        "UK",
-        "James Wright"
       ]
     ]
   },
@@ -15540,29 +10282,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "recorded_at",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Enterprise Software",
-        "Sarah Connor",
-        45000.0,
-        "2026-02-15"
-      ],
-      [
-        2,
-        "Cloud Infrastructure",
-        "David Miller",
-        78000.0,
-        "2026-02-20"
-      ],
-      [
-        3,
-        "Security Systems",
-        "Jason Bourne",
-        62000.0,
-        "2026-02-25"
-      ]
     ]
   },
   "suspended_accounts": {
@@ -15605,20 +10324,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "suspended_at",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        901,
-        "Defunct Media LLC",
-        "Non-payment",
-        "2025-10-01"
-      ],
-      [
-        902,
-        "ScamShield Dummy Corp",
-        "Terms Violation",
-        "2025-11-15"
       ]
     ]
   },
@@ -15672,22 +10377,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "renewal_year",
         "INT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        101,
-        850000.0,
-        "2024-01-01",
-        2027
-      ],
-      [
-        2,
-        102,
-        1200000.0,
-        "2023-06-01",
-        2026
-      ]
     ]
   },
   "high_value_orders_snapshot": {
@@ -15740,22 +10429,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "snapshot_date",
         "STRING"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        5001,
-        101,
-        4850.0,
-        "2026-03-01"
-      ],
-      [
-        2,
-        5004,
-        104,
-        7890.0,
-        "2026-03-01"
-      ]
     ]
   },
   "inactive_sessions": {
@@ -15798,20 +10471,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "ip_address",
         "STRING"
-      ]
-    ],
-    "rows": [
-      [
-        1,
-        99,
-        "2024-11-10",
-        "192.168.1.144"
-      ],
-      [
-        2,
-        105,
-        "2025-01-05",
-        "10.0.0.52"
       ]
     ]
   },
@@ -15865,36 +10524,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
         "contract_value",
         "FLOAT"
       ]
-    ],
-    "rows": [
-      [
-        1,
-        "Nordic Telecomm",
-        "Sweden",
-        2400000.0,
-        450000.0
-      ],
-      [
-        2,
-        "Swiss Private Bank",
-        "Switzerland",
-        8500000.0,
-        1200000.0
-      ],
-      [
-        3,
-        "Tokyo Cloud Corp",
-        "Japan",
-        3900000.0,
-        680000.0
-      ],
-      [
-        4,
-        "Singapore FinTech Labs",
-        "Singapore",
-        1800000.0,
-        310000.0
-      ]
     ]
   },
   "table_name": {
@@ -15928,18 +10557,6 @@ EdmithSqlEngine.DATABASE_SCHEMA = {
       [
         "column3",
         "FLOAT"
-      ]
-    ],
-    "rows": [
-      [
-        "Example Value A",
-        101,
-        99.5
-      ],
-      [
-        "Example Value B",
-        102,
-        149.0
       ]
     ]
   }

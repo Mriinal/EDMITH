@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 3: ACID Properties in SQL &amp; Relational Databases - Master Atomicity, Consistency, Isolation, and Durability with intuitive real-world analogies, transaction grammar, isolation levels matrix, and interactive query terminals on EDMITH." name="description"/>
+<title>ACID Properties &amp; Transaction Architecture - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group collapsed" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li class="active"><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
+            </button>
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="keywords.html">Module 3: References</a> &gt; <span>ACID Properties</span>
+</div>
+<h1>ACID Properties &amp; Transaction Architecture</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 20 Min Read • <i class="fas fa-book"></i> Module 3: References</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-shield-alt"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Bank ATM &amp; Ledger Transfer Analogy</h4>
+<p>Imagine transferring $500 from your checking account to your savings account via a mobile banking app. Behind the scenes, the database must execute two separate updates: debit $500 from Checking, and credit $500 into Savings. The <strong>ACID</strong> guarantees ensure your money never vanishes:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>A - Atomicity ("All or Nothing"):</strong> Either both the deduction and the addition succeed together, or the entire operation rolls back to zero as if it never happened. If the server loses power after step 1, your $500 is never lost in limbo.</li>
+<li><strong>C - Consistency ("Rules &amp; Invariants Maintained"):</strong> The database guarantees that all integrity constraints (balances cannot go negative, total dollars across the bank remain identical) are preserved before and after the transfer.</li>
+<li><strong>I - Isolation ("Invisible Concurrency"):</strong> If your spouse tries to withdraw money from the same account at the exact millisecond your transfer is running, the database prevents dirty reads and race conditions by isolating the transactions.</li>
+<li><strong>D - Durability ("Surviving Disasters"):</strong> Once the app displays "Transfer Successful", that record is permanently flushed to non-volatile disk logs (WAL). Even if lightning strikes the datacenter 5 milliseconds later, your $500 is safely in Savings.</li>
+</ul>
+<p style="margin-top: 8px !important;">ACID properties form the cornerstone of Relational Database Management Systems (RDBMS), separating enterprise transactional engines from raw file stores.</p>
+</div>
+</div>
+<!-- Beginner Tutorial Link Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-graduation-cap" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Foundational Prerequisites:</strong> To see how transactions are controlled in SQL code using <code>COMMIT</code>, <code>ROLLBACK</code>, and <code>SAVEPOINT</code>, review <a href="languages.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The 5 SQL Languages (TCL Section)</a> and <a href="update.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The UPDATE Statement</a> in Module 1.
+                    </p>
+</div>
+<h2>Syntax &amp; Transaction Statement Grammar</h2>
+<p>The standard SQL transaction control grammar used to guarantee ACID execution:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>BEGIN TRANSACTION;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance <span class="code-op">=</span> balance <span class="code-op">-</span> <span class="code-num">750.00</span>
+<span class="code-keyword">WHERE</span> account_id <span class="code-op">=</span> <span class="code-num">101</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id = 101</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>SAVEPOINT sender_debited;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance <span class="code-op">=</span> balance <span class="code-op">+</span> <span class="code-num">750.00</span>
+<span class="code-keyword">WHERE</span> account_id <span class="code-op">=</span> <span class="code-num">102</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id = 102</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 5: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>rollback to savepoint if condition fails
+<span class="code-comment">-- ROLLBACK TO SAVEPOINT sender_debited;</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 6: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>(Conditional rollback);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 7: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>COMMIT;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The acronym <strong>ACID</strong> was coined in 1983 by computer scientist Andreas Reuter and Jim Gray. It establishes the four essential requirements that guarantee database transactions are processed reliably, even in the presence of power outages, hardware failures, concurrent users, and system crashes.</p>
+<!-- Detailed 4-Pillar Grid -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+<!-- Atomicity Card -->
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-top: 4px solid #8B5CF6; border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+<h3 style="color: #8B5CF6; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<i class="fas fa-atom"></i> A • Atomicity
+                        </h3>
+<p style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);"><strong>"All or Nothing Execution"</strong></p>
+<p style="font-size: 0.9rem; line-height: 1.6;">A transaction is treated as a single, indivisible unit of work. If any statement fails (due to syntax errors, constraint violations, or server crash), the database rolls back all preceding statements using the <strong>Undo Log</strong>.</p>
+<ul style="font-size: 0.85rem; padding-left: 18px; margin-bottom: 0; color: var(--text-secondary); line-height: 1.6;">
+<li>Undo Logs track reverse operations</li>
+<li>Prevents partial state writes</li>
+<li>Controlled via <code>COMMIT</code> &amp; <code>ROLLBACK</code></li>
+</ul>
+</div>
+<!-- Consistency Card -->
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-top: 4px solid #10B981; border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+<h3 style="color: #10B981; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<i class="fas fa-check-double"></i> C • Consistency
+                        </h3>
+<p style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);"><strong>"Preserving Schema Rules"</strong></p>
+<p style="font-size: 0.9rem; line-height: 1.6;">Transactions can only transition the database from one valid state to another valid state. All schema constraints (<code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>CHECK</code>, <code>UNIQUE</code>, <code>NOT NULL</code>) and triggers must be satisfied.</p>
+<ul style="font-size: 0.85rem; padding-left: 18px; margin-bottom: 0; color: var(--text-secondary); line-height: 1.6;">
+<li>Enforces database invariants</li>
+<li>Cascading integrity checks</li>
+<li>Guarantees zero corrupted references</li>
+</ul>
+</div>
+<!-- Isolation Card -->
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-top: 4px solid #F59E0B; border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+<h3 style="color: #F59E0B; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<i class="fas fa-user-shield"></i> I • Isolation
+                        </h3>
+<p style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);"><strong>"Concurrency Independence"</strong></p>
+<p style="font-size: 0.9rem; line-height: 1.6;">Multiple concurrent transactions execute without interfering with one another. Intermediate, uncommitted changes made by one transaction are invisible to other sessions depending on the <strong>Isolation Level</strong>.</p>
+<ul style="font-size: 0.85rem; padding-left: 18px; margin-bottom: 0; color: var(--text-secondary); line-height: 1.6;">
+<li>MVCC (Multi-Version Concurrency)</li>
+<li>Shared vs Exclusive Lock escalation</li>
+<li>Prevents dirty reads and race conditions</li>
+</ul>
+</div>
+<!-- Durability Card -->
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-top: 4px solid #3B82F6; border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-sm);">
+<h3 style="color: #3B82F6; margin-top: 0; font-size: 1.15rem; display: flex; align-items: center; gap: 8px;">
+<i class="fas fa-hdd"></i> D • Durability
+                        </h3>
+<p style="font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);"><strong>"Permanent Disaster Survival"</strong></p>
+<p style="font-size: 0.9rem; line-height: 1.6;">Once a transaction commits, its modifications are permanently recorded on non-volatile media. Even in the event of an abrupt power shutdown, kernel panic, or OS crash, committed updates are never lost.</p>
+<ul style="font-size: 0.85rem; padding-left: 18px; margin-bottom: 0; color: var(--text-secondary); line-height: 1.6;">
+<li>Write-Ahead Logging (WAL / Redo Log)</li>
+<li>Periodic disk checkpointing (fsync)</li>
+<li>Automated crash recovery on reboot</li>
+</ul>
+</div>
+</div>
+<h3>The 4 ANSI SQL Transaction Isolation Levels</h3>
+<p>Isolation involves an engineering trade-off: higher isolation guarantees absolute correctness but decreases concurrent throughput by holding locks or managing multi-version rows. ANSI SQL defines four distinct isolation levels:</p>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Isolation Level</th>
+<th>Dirty Reads</th>
+<th>Non-Repeatable Reads</th>
+<th>Phantom Reads</th>
+<th>Concurrency / Performance</th>
+<th>Common Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READ UNCOMMITTED</strong></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed</span></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed</span></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed</span></td>
+<td>Maximum Throughput (Zero Read Locks)</td>
+<td>Rough analytics, telemetry estimations</td>
+</tr>
+<tr>
+<td><strong>READ COMMITTED</strong></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed</span></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed</span></td>
+<td>High Throughput (Default in PG, Oracle, SQL Server)</td>
+<td>Standard web apps, CRUD APIs</td>
+</tr>
+<tr>
+<td><strong>REPEATABLE READ</strong></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td><span style="color: #EF4444; font-weight: 700;"><i class="fas fa-times-circle"></i> Allowed (PG MVCC prevents)</span></td>
+<td>Moderate (Default in MySQL InnoDB)</td>
+<td>Financial reporting, batch rollups</td>
+</tr>
+<tr>
+<td><strong>SERIALIZABLE</strong></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td><span style="color: #10B981; font-weight: 700;"><i class="fas fa-check-circle"></i> Prevented</span></td>
+<td>Lowest Throughput (Strict Ordering / SSI)</td>
+<td>Banking ledgers, cryptographic trades</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Understanding Concurrency Anomalies</h3>
+<ul>
+<li><strong>Dirty Read (Uncommitted Dependency):</strong> Transaction A updates a row but has not committed yet. Transaction B reads the modified row. Transaction A then encounters an error and rolls back. Transaction B now possesses data that never officially existed!</li>
+<li><strong>Non-Repeatable Read (Fuzzy Read):</strong> Transaction A reads a row. Transaction B updates or deletes that same row and commits. Transaction A re-reads the row and observes altered column values within the same session.</li>
+<li><strong>Phantom Read:</strong> Transaction A queries a range of rows (e.g., <code>WHERE salary &gt; 100000</code>). Transaction B inserts a brand-new employee with a $120,000 salary and commits. When Transaction A runs the identical range query again, a new "phantom" row appears in the result set.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>FinTech Automated Settlement &amp; Ledger Accrual:</strong> Execute an end-to-end atomic transfer between corporate customer balances, debit the primary account, credit the beneficiary, and update the internal audit ledger with zero risk of partial execution.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Pre-Existing Tables: accounts, internal_ledger
+   accounts: account_id | customer_id | balance_usd | status
+   internal_ledger: entry_id | from_acc | to_acc | amount | settled_at
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> account_id, balance_usd, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_id <span class="code-keyword">IN</span> (<span class="code-num">101</span>, <span class="code-num">102</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id IN (101, 102)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance_usd <span class="code-op">=</span> balance_usd <span class="code-op">-</span> <span class="code-num">2500.00</span>
+<span class="code-keyword">WHERE</span> account_id <span class="code-op">=</span> <span class="code-num">101</span> <span class="code-keyword">AND</span> balance_usd <span class="code-op">&gt;=</span> <span class="code-num">2500.00</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id = 101 AND balance_usd &gt;= 2500.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance_usd <span class="code-op">=</span> balance_usd <span class="code-op">+</span> <span class="code-num">2500.00</span>
+<span class="code-keyword">WHERE</span> account_id <span class="code-op">=</span> <span class="code-num">102</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id = 102</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Record Insertion</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> internal_ledger (from_acc, to_acc, amount, settled_at)
+<span class="code-keyword">VALUES</span> (<span class="code-num">101</span>, <span class="code-num">102</span>, <span class="code-num">2500.00</span>, <span class="code-string">'2026-03-15 10:30:00'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes data modification against <code>internal_ledger</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 5: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> account_id, balance_usd, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_id <span class="code-keyword">IN</span> (<span class="code-num">101</span>, <span class="code-num">102</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>account_id IN (101, 102)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<h2>Common Mistakes &amp; Anti-Patterns</h2>
+<div class="summary-box" style="background: rgba(239, 68, 68, 0.05); border-left: 4px solid #EF4444; margin: 2rem 0;">
+<ul class="summary-list">
+<li>
+<i class="fas fa-exclamation-triangle" style="color: #EF4444;"></i>
+<span><strong>Long-Running Transactions:</strong> Holding transactions open while performing external API network calls or waiting for user inputs holds locks indefinitely, causing connection pool starvation and database-wide deadlocks.</span>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle" style="color: #EF4444;"></i>
+<span><strong>Missing Transaction Boundaries in Batch Processing:</strong> Inserting 100,000 rows in individual single-row auto-commit transactions triggers 100,000 separate disk fsync calls. Always batch writes inside an explicit transaction block.</span>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle" style="color: #EF4444;"></i>
+<span><strong>Confusing ACID Consistency with CAP Theorem Consistency:</strong> "C" in ACID means preserving local schema rules and invariants (FK, PK, Check). "C" in the CAP theorem refers to Linearizability (every read in a distributed cluster returns the latest write).</span>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle" style="color: #EF4444;"></i>
+<span><strong>Overusing SERIALIZABLE:</strong> Blindly setting isolation to Serializable causes excessive transaction aborts and serialization failures under high concurrency. Rely on Read Committed with optimistic locking or row versioning where appropriate.</span>
+</li>
+</ul>
+</div>
+<h2>Senior Engineering Interview Questions &amp; Answers</h2>
+<div class="interview-qa" style="margin: 2rem 0; display: flex; flex-direction: column; gap: 1.25rem;">
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem;">
+<h4 style="color: var(--accent); margin: 0 0 8px 0; font-size: 1.05rem;">Q1: How does Multi-Version Concurrency Control (MVCC) achieve high concurrency?</h4>
+<p style="margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);">
+                            In traditional locking engines, readers block writers and writers block readers. MVCC solves this by maintaining multiple historical versions of each modified row (often tagged with transaction IDs: <code>xmin</code>/<code>xmax</code> in PostgreSQL or undo logs in MySQL). When a reader queries the database, it views a snapshot of data as it existed when the transaction started. Readers never block writers, and writers never block readers.
+                        </p>
+</div>
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem;">
+<h4 style="color: var(--accent); margin: 0 0 8px 0; font-size: 1.05rem;">Q2: What is Write-Ahead Logging (WAL) and why is it essential for Durability?</h4>
+<p style="margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);">
+                            Writing changes randomly across multiple data pages on disk is slow. Instead, Write-Ahead Logging dictates that before any table data page is modified on disk, a sequential description of the change must be safely appended to an append-only log file on non-volatile storage and flushed. If the server crashes, the database re-reads the WAL during reboot and replays committed changes (Redo phase), guaranteeing Durability with minimal disk I/O overhead.
+                        </p>
+</div>
+<div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem 1.5rem;">
+<h4 style="color: var(--accent); margin: 0 0 8px 0; font-size: 1.05rem;">Q3: What is a Write Skew anomaly and which isolation level prevents it?</h4>
+<p style="margin: 0; font-size: 0.92rem; line-height: 1.6; color: var(--text-secondary);">
+                            Write skew occurs when two concurrent transactions read overlapping data, verify a shared business rule, but then write to disjoint rows such that the overall invariant is violated. For example, a hospital rule requires at least one on-call doctor. Two doctors simultaneously check the roster (seeing two doctors on duty) and both request leave, resulting in zero doctors on duty. Because neither doctor updated the other's row, <strong>REPEATABLE READ</strong> permits it. Only <strong>SERIALIZABLE</strong> isolation detects write skew and aborts one transaction.
+                        </p>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>ACID properties guarantee that database transactions execute predictably and safely, safeguarding enterprise data integrity across concurrent user interactions and catastrophic hardware crashes.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Atomicity (Undo Logs):</strong> Guarantees all-or-nothing execution. Partial transaction failures are completely reversed.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Consistency (Constraints):</strong> Enforces that all schema invariants, foreign keys, and business rules remain strictly valid before and after transactions.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Isolation (MVCC &amp; Locks):</strong> Separates concurrent sessions across 4 ANSI isolation levels, balancing performance against dirty, fuzzy, and phantom reads.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Durability (WAL &amp; fsync):</strong> Guarantees that committed modifications survive power failure through append-only write-ahead logs.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Transaction Control:</strong> Explicitly demarcate critical updates using <code>BEGIN TRANSACTION</code>, <code>COMMIT</code>, <code>ROLLBACK</code>, and <code>SAVEPOINT</code>.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="keywords.html" title="Previous: SQL Keywords Dictionary">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Keywords Dictionary</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_acid_properties" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="index.html" title="Course Dashboard">
+<span class="btn-text">Course Dashboard</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
+</body>
+</html>

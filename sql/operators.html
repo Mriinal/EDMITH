@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 3: SQL Operators Reference - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>SQL Operators Reference - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 3: SQL Operators Reference - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>SQL Operators Reference - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,436 +17,560 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group collapsed" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li class="active"><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group collapsed" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li class="active"><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="keywords.html">Module 3: References</a> &gt; <span>SQL Operators Reference</span>
-                </div>
-                <h1>SQL Operators Reference</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-book"></i> Module 3: References</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-calculator"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Swiss Army Toolkit Operator Analogy</h4>
-                        <p>Picture a master engineer carrying a versatile multi-compartment Swiss Army toolkit into a maintenance hangar:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. Compartment 1: Arithmetic Tools::</strong> Calipers, rulers, and scales perform mathematical computations: Addition (+), Subtraction (-), Multiplication (*), Division (/), Modulo (%).</li>
-                            <li><strong>2. Compartment 2: Comparison Gauges::</strong> Thickness gauges verify whether a steel bolt fits the tolerance: Equal (=), Not Equal (<>), Greater Than (>).</li>
-                            <li><strong>3. Compartment 3: Logical Interlocks::</strong> Safety circuits determine if both emergency switches are on: AND, OR, NOT.</li>
-                            <li><strong>4. The Universal Mechanics::</strong> Every SQL query ever written is constructed by combining these fundamental tools to manipulate data.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">SQL operators provide the fundamental computational instruments for arithmetic calculations, equality comparisons, and boolean logic.</p>
-                    </div>
-                </div>
-                <!-- Beginner Tutorial Link Callout Box -->
-                <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
-                    <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
-                        <i class="fas fa-graduation-cap" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
-                        <strong>Beginner Tutorials:</strong> Practice using these operators in step-by-step tutorials: <a href="where.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The WHERE Clause</a>, <a href="and.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The AND Operator</a>, <a href="or.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The OR Operator</a>, and <a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The NOT Operator</a> in Module 1.
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="keywords.html">Module 3: References</a> &gt; <span>SQL Operators Reference</span>
+</div>
+<h1>SQL Operators Reference</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-book"></i> Module 3: References</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-calculator"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Swiss Army Toolkit Operator Analogy</h4>
+<p>Picture a master engineer carrying a versatile multi-compartment Swiss Army toolkit into a maintenance hangar:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. Compartment 1: Arithmetic Tools::</strong> Calipers, rulers, and scales perform mathematical computations: Addition (+), Subtraction (-), Multiplication (*), Division (/), Modulo (%).</li>
+<li><strong>2. Compartment 2: Comparison Gauges::</strong> Thickness gauges verify whether a steel bolt fits the tolerance: Equal (=), Not Equal (&lt;&gt;), Greater Than (&gt;).</li>
+<li><strong>3. Compartment 3: Logical Interlocks::</strong> Safety circuits determine if both emergency switches are on: AND, OR, NOT.</li>
+<li><strong>4. The Universal Mechanics::</strong> Every SQL query ever written is constructed by combining these fundamental tools to manipulate data.</li>
+</ul>
+<p style="margin-top: 8px !important;">SQL operators provide the fundamental computational instruments for arithmetic calculations, equality comparisons, and boolean logic.</p>
+</div>
+</div>
+<!-- Beginner Tutorial Link Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-graduation-cap" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Beginner Tutorials:</strong> Practice using these operators in step-by-step tutorials: <a href="where.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The WHERE Clause</a>, <a href="and.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The AND Operator</a>, <a href="or.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The OR Operator</a>, and <a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The NOT Operator</a> in Module 1.
                     </p>
-                </div>
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>SQL Operators Reference</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; operators.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Arithmetic Operators (+, -, *, /, %)</span>
-<span class="code-keyword">SELECT</span> 
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>SQL Operators Reference</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     item_id,
     unit_price,
     quantity,
-    (unit_price * quantity) <span class="code-keyword">AS</span> subtotal,
-    (unit_price * quantity * 0.08) <span class="code-keyword">AS</span> tax_amount,
-    quantity % 12 <span class="code-keyword">AS</span> remaining_loose_items <span class="code-comment">-- Modulo: remainder after division by 12</span>
-<span class="code-keyword">FROM</span> order_lines;
-
-<span class="code-comment">-- 2. Comparison Operators (=, !=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=)</span>
-<span class="code-keyword">SELECT</span> employee_id, salary
+    (unit_price <span class="code-op">*</span> quantity) <span class="code-keyword">AS</span> subtotal,
+    (unit_price <span class="code-op">*</span> quantity <span class="code-op">*</span> <span class="code-num">0.08</span>) <span class="code-keyword">AS</span> tax_amount,
+    quantity <span class="code-op">%</span> <span class="code-num">12</span> <span class="code-keyword">AS</span> remaining_loose_items <span class="code-comment">-- Modulo: remainder after division by 12</span>
+<span class="code-keyword">FROM</span> order_lines;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>order_lines</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> employee_id, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> salary &gt;= 75000 <span class="code-keyword">AND</span> department_id &lt;&gt; 10;
-
-<span class="code-comment">-- 3. String Concatenation Operator (|| in ANSI / + in SQL Server)</span>
-<span class="code-keyword">SELECT</span> 
-    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> full_name
-<span class="code-keyword">FROM</span> staff_directory;
-
-<span class="code-comment">-- 4. Compound Bitwise Operators (Supported in PostgreSQL / SQL Server)</span>
-<span class="code-keyword">SELECT</span> 
+<span class="code-keyword">WHERE</span> salary <span class="code-op">&gt;=</span> <span class="code-num">75000</span> <span class="code-keyword">AND</span> department_id <span class="code-op">&lt;&gt;</span> <span class="code-num">10</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>salary &gt;= 75000 AND department_id &lt;&gt; 10</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name <span class="code-keyword">AS</span> full_name
+<span class="code-keyword">FROM</span> staff_directory;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>staff_directory</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     permission_mask,
-    permission_mask &amp; 4 <span class="code-keyword">AS</span> read_permission_flag <span class="code-comment">-- Bitwise AND</span>
+    permission_mask &amp; <span class="code-num">4</span> <span class="code-keyword">AS</span> read_permission_flag <span class="code-comment">-- Bitwise AND</span>
 <span class="code-keyword">FROM</span> role_permissions;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>SQL operators are reserved words or characters used in SQL statements to perform mathematical calculations, string manipulations, comparison tests, and logical evaluations across table attributes.</p>
-                <ul>
-                    <li><strong>Four Primary Categories:</strong> SQL operators divide into: <strong>Arithmetic</strong> (+, -, *, /, %), <strong>Comparison</strong> (=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=), <strong>Logical</strong> (AND, OR, NOT, IN, BETWEEN, LIKE), and <strong>Bitwise</strong> (&amp;, |, ^).</li>
-                    <li><strong>Operator Precedence:</strong> Operators are evaluated based on strict hierarchy: Multiplication/Division/Modulo execute before Addition/Subtraction; Comparison operators execute before Logical operators; AND binds tighter than OR.</li>
-                    <li><strong>Modulo Arithmetic (%):</strong> The modulo operator (<code>%</code>) returns the integer remainder of a division (e.g. <code>10 % 3 = 1</code>), ideal for round-robin sharding and even/odd filtering.</li>
-                    <li><strong>Parentheses Dominance:</strong> Always use explicit parentheses to override operator precedence and guarantee predictable mathematical and logical evaluations.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Operator Symbols</th>
-                                <th>Operation Performed</th>
-                                <th>Example Expression</th>
-                                <th>Resulting Output</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Arithmetic</td>
-                                <td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></td>
-                                <td>Mathematical operations</td>
-                                <td><code>100 * 1.08</code></td>
-                                <td><code>108.00</code></td>
-                            </tr>
-                            <tr>
-                                <td>Modulo</td>
-                                <td><code>%</code></td>
-                                <td>Returns remainder of division</td>
-                                <td><code>17 % 5</code></td>
-                                <td><code>2</code></td>
-                            </tr>
-                            <tr>
-                                <td>Comparison</td>
-                                <td><code>=</code>, <code>&lt;&gt;</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code></td>
-                                <td>Tests relational equality/order</td>
-                                <td><code>price &gt; 50</code></td>
-                                <td><code>TRUE / FALSE</code></td>
-                            </tr>
-                            <tr>
-                                <td>Logical</td>
-                                <td><code>AND</code>, <code>OR</code>, <code>NOT</code></td>
-                                <td>Combines boolean truth values</td>
-                                <td><code>a=1 AND b=2</code></td>
-                                <td><code>TRUE / FALSE / UNKNOWN</code></td>
-                            </tr>
-                            <tr>
-                                <td>String Concat</td>
-                                <td><code>||</code> (ANSI / PG / SQLite)</td>
-                                <td>Concatenates string characters</td>
-                                <td><code>'A' || 'B'</code></td>
-                                <td><code>'AB'</code></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>SQL Operator Precedence Hierarchy Table</h3>
-                <p>When a query contains multiple operators, the database evaluates them in strict order of mathematical precedence:</p>
-                <ul>
-                    <li><strong>Level 1 (Highest):</strong> Parentheses <code>()</code> and Unary signs (<code>+</code>, <code>-</code>).</li>
-                    <li><strong>Level 2 (Multiplicative):</strong> Multiplication <code>*</code>, Division <code>/</code>, Modulo <code>%</code>.</li>
-                    <li><strong>Level 3 (Additive):</strong> Addition <code>+</code>, Subtraction <code>-</code>, String concatenation <code>||</code>.</li>
-                    <li><strong>Level 4 (Comparison):</strong> <code>=</code>, <code>!=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>LIKE</code>, <code>IN</code>, <code>BETWEEN</code>, <code>IS NULL</code>.</li>
-                    <li><strong>Level 5 (Logical NOT):</strong> <code>NOT</code> boolean inversion.</li>
-                    <li><strong>Level 6 (Logical AND):</strong> <code>AND</code> conjunction.</li>
-                    <li><strong>Level 7 (Lowest):</strong> <code>OR</code> disjunction.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Enterprise E-Commerce Warehouse Palletization & Invoice Calculation:</strong> Calculate shipment shipping weights, pallet boxing remainders, and discounted order invoices using the full suite of SQL operators.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Enterprise E-Commerce Warehouse Palletization & Invoice Calculation</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: order_invoices</span>
-<span class="code-comment">   order_id | item_qty | unit_price | discount_rate | shipping_rate</span>
-<span class="code-comment">   ---------+----------+------------+---------------+--------------</span>
-<span class="code-comment">   101      | 25       | 10.00      | 0.10          | 15.00</span>
-<span class="code-comment">   102      | 48       | 25.00      | 0.15          | 25.00</span>
-<span class="code-comment">   103      | 7        | 50.00      | 0.00          | 10.00</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Complete financial calculation using arithmetic operators (+, -, *)</span>
-<span class="code-keyword">SELECT</span> 
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>role_permissions</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>SQL operators are reserved words or characters used in SQL statements to perform mathematical calculations, string manipulations, comparison tests, and logical evaluations across table attributes.</p>
+<ul>
+<li><strong>Four Primary Categories:</strong> SQL operators divide into: <strong>Arithmetic</strong> (+, -, *, /, %), <strong>Comparison</strong> (=, &lt;&gt;, &lt;, &gt;, &lt;=, &gt;=), <strong>Logical</strong> (AND, OR, NOT, IN, BETWEEN, LIKE), and <strong>Bitwise</strong> (&amp;, |, ^).</li>
+<li><strong>Operator Precedence:</strong> Operators are evaluated based on strict hierarchy: Multiplication/Division/Modulo execute before Addition/Subtraction; Comparison operators execute before Logical operators; AND binds tighter than OR.</li>
+<li><strong>Modulo Arithmetic (%):</strong> The modulo operator (<code>%</code>) returns the integer remainder of a division (e.g. <code>10 % 3 = 1</code>), ideal for round-robin sharding and even/odd filtering.</li>
+<li><strong>Parentheses Dominance:</strong> Always use explicit parentheses to override operator precedence and guarantee predictable mathematical and logical evaluations.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Category</th>
+<th>Operator Symbols</th>
+<th>Operation Performed</th>
+<th>Example Expression</th>
+<th>Resulting Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arithmetic</td>
+<td><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></td>
+<td>Mathematical operations</td>
+<td><code>100 * 1.08</code></td>
+<td><code>108.00</code></td>
+</tr>
+<tr>
+<td>Modulo</td>
+<td><code>%</code></td>
+<td>Returns remainder of division</td>
+<td><code>17 % 5</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>Comparison</td>
+<td><code>=</code>, <code>&lt;&gt;</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code></td>
+<td>Tests relational equality/order</td>
+<td><code>price &gt; 50</code></td>
+<td><code>TRUE / FALSE</code></td>
+</tr>
+<tr>
+<td>Logical</td>
+<td><code>AND</code>, <code>OR</code>, <code>NOT</code></td>
+<td>Combines boolean truth values</td>
+<td><code>a=1 AND b=2</code></td>
+<td><code>TRUE / FALSE / UNKNOWN</code></td>
+</tr>
+<tr>
+<td>String Concat</td>
+<td><code>||</code> (ANSI / PG / SQLite)</td>
+<td>Concatenates string characters</td>
+<td><code>'A' || 'B'</code></td>
+<td><code>'AB'</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>SQL Operator Precedence Hierarchy Table</h3>
+<p>When a query contains multiple operators, the database evaluates them in strict order of mathematical precedence:</p>
+<ul>
+<li><strong>Level 1 (Highest):</strong> Parentheses <code>()</code> and Unary signs (<code>+</code>, <code>-</code>).</li>
+<li><strong>Level 2 (Multiplicative):</strong> Multiplication <code>*</code>, Division <code>/</code>, Modulo <code>%</code>.</li>
+<li><strong>Level 3 (Additive):</strong> Addition <code>+</code>, Subtraction <code>-</code>, String concatenation <code>||</code>.</li>
+<li><strong>Level 4 (Comparison):</strong> <code>=</code>, <code>!=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, <code>LIKE</code>, <code>IN</code>, <code>BETWEEN</code>, <code>IS NULL</code>.</li>
+<li><strong>Level 5 (Logical NOT):</strong> <code>NOT</code> boolean inversion.</li>
+<li><strong>Level 6 (Logical AND):</strong> <code>AND</code> conjunction.</li>
+<li><strong>Level 7 (Lowest):</strong> <code>OR</code> disjunction.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Enterprise E-Commerce Warehouse Palletization &amp; Invoice Calculation:</strong> Calculate shipment shipping weights, pallet boxing remainders, and discounted order invoices using the full suite of SQL operators.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: order_invoices
+   order_id | item_qty | unit_price | discount_rate | shipping_rate
+   ---------+----------+------------+---------------+--------------
+   101      | 25       | 10.00      | 0.10          | 15.00
+   102      | 48       | 25.00      | 0.15          | 25.00
+   103      | 7        | 50.00      | 0.00          | 10.00
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     order_id,
-    (item_qty * unit_price) <span class="code-keyword">AS</span> gross_subtotal,
-    (item_qty * unit_price * discount_rate) <span class="code-keyword">AS</span> discount_savings,
-    ((item_qty * unit_price) - (item_qty * unit_price * discount_rate) + shipping_rate) <span class="code-keyword">AS</span> final_invoice_total
-<span class="code-keyword">FROM</span> order_invoices;
-<span class="code-comment">-- Matches Order 101: Gross: $250, Savings: $25, Shipping: $15, Final Invoice: $240.00</span>
-
-<span class="code-comment">-- Requirement 2: Warehouse packaging logistics using integer division and modulo (%)</span>
-<span class="code-comment">-- Pallets hold exactly 12 items per case:</span>
-<span class="code-keyword">SELECT</span> 
+    (item_qty <span class="code-op">*</span> unit_price) <span class="code-keyword">AS</span> gross_subtotal,
+    (item_qty <span class="code-op">*</span> unit_price <span class="code-op">*</span> discount_rate) <span class="code-keyword">AS</span> discount_savings,
+    ((item_qty <span class="code-op">*</span> unit_price) <span class="code-op">-</span> (item_qty <span class="code-op">*</span> unit_price <span class="code-op">*</span> discount_rate) <span class="code-op">+</span> shipping_rate) <span class="code-keyword">AS</span> final_invoice_total
+<span class="code-keyword">FROM</span> order_invoices;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>order_invoices</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     order_id,
     item_qty,
-    item_qty / 12 <span class="code-keyword">AS</span> full_cases_packed,
-    item_qty % 12 <span class="code-keyword">AS</span> loose_items_remaining
-<span class="code-keyword">FROM</span> order_invoices;
-<span class="code-comment">-- Matches Order 101 (25 items): 2 full cases, 1 loose item remaining</span>
-<span class="code-comment">-- Matches Order 102 (48 items): 4 full cases, 0 loose items remaining</span>
-
-<span class="code-comment">-- Requirement 3: Multi-operator comparison and logical evaluation</span>
-<span class="code-keyword">SELECT</span> order_id, item_qty, unit_price
+    item_qty <span class="code-op">/</span> <span class="code-num">12</span> <span class="code-keyword">AS</span> full_cases_packed,
+    item_qty <span class="code-op">%</span> <span class="code-num">12</span> <span class="code-keyword">AS</span> loose_items_remaining
+<span class="code-keyword">FROM</span> order_invoices;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>order_invoices</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Matches Order 102 (48 items): 4 full cases, 0 loose items remaining;</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> order_id, item_qty, unit_price
 <span class="code-keyword">FROM</span> order_invoices
-<span class="code-keyword">WHERE</span> (item_qty &gt; 20 <span class="code-keyword">AND</span> unit_price &gt;= 10.00) <span class="code-keyword">OR</span> discount_rate = 0.00;
-<span class="code-comment">-- Matches: Order 101, 102, 103 (All qualify through compound boolean conditions)</span>
-
-<span class="code-comment">-- Requirement 4: Verify modulo operator in even/odd order routing</span>
-<span class="code-keyword">SELECT</span> order_id, 
-    <span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> order_id % 2 = 0 <span class="code-keyword">THEN</span> <span class="code-string">'PACKING_LINE_A'</span> <span class="code-keyword">ELSE</span> <span class="code-string">'PACKING_LINE_B'</span> <span class="code-keyword">END</span> <span class="code-keyword">AS</span> warehouse_lane
-<span class="code-keyword">FROM</span> order_invoices;
-<span class="code-comment">-- Matches: Order 101 &amp; 103 on Lane B, Order 102 on Lane A</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>SQL operators provide the fundamental computational tools for arithmetic calculations, equality comparisons, and boolean logic, powering every data transformation in relational databases.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Four Primary Families:</strong> Master Arithmetic (+, -, *, /, %), Comparison (=, <>, <, >), Logical (AND, OR, NOT), and String (||) operators.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Modulo Operator:</strong> Use modulo (%) to obtain the remainder of integer division, ideal for packaging and sharding logic.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Strict Operator Precedence:</strong> Remember that * and / precede + and -; AND precedes OR. Use parentheses to enforce explicit evaluation order.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>String Concatenation:</strong> Use || in ANSI standard, PostgreSQL, and SQLite; use + in SQL Server to concatenate strings.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Safe Division:</strong> Always safeguard division operations against divide-by-zero errors using NULLIF.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="wildcards.html" class="btn-outline" title="Previous: SQL Wildcards Reference">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Wildcards Reference</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_operators">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="keywords.html" class="btn-enroll" title="Next: SQL Keywords Dictionary">
-                        <span class="btn-text">Next: SQL Keywords Dictionary</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+<span class="code-keyword">WHERE</span> (item_qty <span class="code-op">&gt;</span> <span class="code-num">20</span> <span class="code-keyword">AND</span> unit_price <span class="code-op">&gt;=</span> <span class="code-num">10.00</span>) <span class="code-keyword">OR</span> discount_rate <span class="code-op">=</span> <span class="code-num">0.00</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>order_invoices</code> using the condition <code>(item_qty &gt; 20 AND unit_price &gt;= 10.00) OR discount_rate = 0.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 5: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> order_id, 
+    <span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> order_id <span class="code-op">%</span> <span class="code-num">2</span> <span class="code-op">=</span> <span class="code-num">0</span> <span class="code-keyword">THEN</span> <span class="code-string">'PACKING_LINE_A'</span> <span class="code-keyword">ELSE</span> <span class="code-string">'PACKING_LINE_B'</span> <span class="code-keyword">END</span> <span class="code-keyword">AS</span> warehouse_lane
+<span class="code-keyword">FROM</span> order_invoices;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>order_invoices</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
         </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>SQL operators provide the fundamental computational tools for arithmetic calculations, equality comparisons, and boolean logic, powering every data transformation in relational databases.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Four Primary Families:</strong> Master Arithmetic (+, -, *, /, %), Comparison (=, &lt;&gt;, &lt;, &gt;), Logical (AND, OR, NOT), and String (||) operators.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Modulo Operator:</strong> Use modulo (%) to obtain the remainder of integer division, ideal for packaging and sharding logic.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Strict Operator Precedence:</strong> Remember that * and / precede + and -; AND precedes OR. Use parentheses to enforce explicit evaluation order.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>String Concatenation:</strong> Use || in ANSI standard, PostgreSQL, and SQLite; use + in SQL Server to concatenate strings.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Safe Division:</strong> Always safeguard division operations against divide-by-zero errors using NULLIF.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="wildcards.html" title="Previous: SQL Wildcards Reference">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Wildcards Reference</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_operators" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="keywords.html" title="Next: SQL Keywords Dictionary">
+<span class="btn-text">Next: SQL Keywords Dictionary</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

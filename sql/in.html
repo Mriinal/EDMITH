@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The IN Operator - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The IN Operator - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The IN Operator - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The IN Operator - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,416 +17,520 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li class="active"><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li class="active"><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The IN Operator</span>
-                </div>
-                <h1>The IN Operator</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-clipboard-check"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Airport Baggage Claim Tag Analogy</h4>
-                        <p>Picture an airport baggage handler sorting luggage arriving off an international flight:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. The Cumbersome Alternative::</strong> Checking if a bag goes to 'JFK' OR 'LHR' OR 'CDG' OR 'DXB' OR 'HND' requires checking five separate rules every time.</li>
-                            <li><strong>2. The Destination Bucket List::</strong> Instead, the handler holds a single laminated list of approved destinations: IN ('JFK', 'LHR', 'CDG', 'DXB', 'HND').</li>
-                            <li><strong>3. Instant Set Membership::</strong> A bag's airport code is checked against the list in one swift motion; if it matches any code, it goes onto the plane.</li>
-                            <li><strong>4. Dynamic Lists::</strong> The list can be printed on the fly based on today's flight schedule (subqueries).</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing messy chains of OR statements.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The IN Operator</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; in.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Matching Against a Discrete List of Literal Values</span>
-<span class="code-keyword">SELECT</span> employee_id, first_name, department
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The IN Operator</span>
+</div>
+<h1>The IN Operator</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-clipboard-check"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Airport Baggage Claim Tag Analogy</h4>
+<p>Picture an airport baggage handler sorting luggage arriving off an international flight:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. The Cumbersome Alternative::</strong> Checking if a bag goes to 'JFK' OR 'LHR' OR 'CDG' OR 'DXB' OR 'HND' requires checking five separate rules every time.</li>
+<li><strong>2. The Destination Bucket List::</strong> Instead, the handler holds a single laminated list of approved destinations: IN ('JFK', 'LHR', 'CDG', 'DXB', 'HND').</li>
+<li><strong>3. Instant Set Membership::</strong> A bag's airport code is checked against the list in one swift motion; if it matches any code, it goes onto the plane.</li>
+<li><strong>4. Dynamic Lists::</strong> The list can be printed on the fly based on today's flight schedule (subqueries).</li>
+</ul>
+<p style="margin-top: 8px !important;">The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing messy chains of OR statements.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The IN Operator</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department <span class="code-keyword">IN</span> (<span class="code-string">'Engineering'</span>, <span class="code-string">'Security'</span>, <span class="code-string">'Architecture'</span>);
-
-<span class="code-comment">-- 2. Replacing Verbose Chained OR Clauses with Clean IN Syntax</span>
-<span class="code-comment">-- Instead of: WHERE status = 'SHIPPED' OR status = 'DELIVERED' OR status = 'COMPLETED'</span>
+<span class="code-keyword">WHERE</span> department <span class="code-keyword">IN</span> (<span class="code-string">'Engineering'</span>, <span class="code-string">'Security'</span>, <span class="code-string">'Architecture'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>department IN ('Engineering', 'Security', 'Architecture')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Instead of: WHERE status = 'SHIPPED' OR status = 'DELIVERED' OR status = 'COMPLETED'</span>
 <span class="code-keyword">SELECT</span> order_id, customer_id, status
 <span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> status <span class="code-keyword">IN</span> (<span class="code-string">'SHIPPED'</span>, <span class="code-string">'DELIVERED'</span>, <span class="code-string">'COMPLETED'</span>);
-
-<span class="code-comment">-- 3. The IN Operator with Dynamic Subquery</span>
-<span class="code-keyword">SELECT</span> customer_id, company_name
+<span class="code-keyword">WHERE</span> status <span class="code-keyword">IN</span> (<span class="code-string">'SHIPPED'</span>, <span class="code-string">'DELIVERED'</span>, <span class="code-string">'COMPLETED'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>sales_orders</code> using the condition <code>status = 'SHIPPED' OR status = 'DELIVERED' OR status = 'COMPLETED' SELECT order_id, customer_id, status FROM sales_orders WHERE status IN ('SHIPPED', 'DELIVERED', 'COMPLETED')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> customer_id, company_name
 <span class="code-keyword">FROM</span> corporate_clients
 <span class="code-keyword">WHERE</span> customer_id <span class="code-keyword">IN</span> (
-    <span class="code-keyword"><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span></span> customer_id 
+    <span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> customer_id 
     <span class="code-keyword">FROM</span> high_value_contracts 
-    <span class="code-keyword">WHERE</span> contract_value &gt;= 100000.00
-);
-
-<span class="code-comment">-- 4. The NOT IN Operator for Exclusion</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category
+    <span class="code-keyword">WHERE</span> contract_value <span class="code-op">&gt;=</span> <span class="code-num">100000.00</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>corporate_clients</code> using the condition <code>customer_id IN ( SELECT DISTINCT customer_id FROM high_value_contracts WHERE contract_value &gt;= 100000.00 )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category
 <span class="code-keyword">FROM</span> store_catalog
 <span class="code-keyword">WHERE</span> category <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'Discontinued'</span>, <span class="code-string">'Seasonal'</span>, <span class="code-string">'Archived'</span>);</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>IN</code> operator allows you to determine whether a specified value matches any value within a literal list or returned by a subquery. It functions as concise shorthand for multiple <code>OR</code> conditions.</p>
-                <ul>
-                    <li><strong>Shorthand for Chained OR:</strong> <code>col IN (A, B, C)</code> is semantically equivalent to <code>col = A OR col = B OR col = C</code>, but far more readable.</li>
-                    <li><strong>Subquery Integration:</strong> IN can evaluate against the result set of an independent or correlated subquery (e.g. <code>WHERE id IN (SELECT id FROM...)</code>).</li>
-                    <li><strong>Index Optimization:</strong> Relational query planners optimize IN lists by executing multiple rapid B-Tree index seek operations.</li>
-                    <li><strong>The Deadly NOT IN with NULL Trap:</strong> If an inner subquery evaluated by <code>NOT IN</code> returns a single NULL value, the outer query returns zero rows.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Operator Form</th>
-                                <th>Syntax Example</th>
-                                <th>Evaluation Semantics</th>
-                                <th>Equivalent Logic</th>
-                                <th>Performance Profile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Literal Set IN</td>
-                                <td><code>WHERE id IN (1, 2, 3)</code></td>
-                                <td>Checks if value exists in array</td>
-                                <td><code>id = 1 OR id = 2 OR id = 3</code></td>
-                                <td>High (Multiple index seeks)</td>
-                            </tr>
-                            <tr>
-                                <td>Subquery IN</td>
-                                <td><code>WHERE id IN (SELECT...)</code></td>
-                                <td>Executes subquery and checks set</td>
-                                <td>Semi-Join transformation</td>
-                                <td>Optimized to Hash or Merge Semi-Join</td>
-                            </tr>
-                            <tr>
-                                <td>Literal Set NOT IN</td>
-                                <td><code>WHERE code NOT IN ('A', 'B')</code></td>
-                                <td>Excludes all matching elements</td>
-                                <td><code>code != 'A' AND code != 'B'</code></td>
-                                <td>Table scan or index range scan</td>
-                            </tr>
-                            <tr>
-                                <td>Subquery NOT IN</td>
-                                <td><code>WHERE id NOT IN (SELECT...)</code></td>
-                                <td>Anti-Semi Join (Danger with NULLs)</td>
-                                <td>Anti-Join logic</td>
-                                <td>Dangerous if subquery contains NULL</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>The IN Operator vs Subquery EXISTS: When to Use Which</h3>
-                <p>Database developers frequently debate whether to use <code>IN</code> or <code>EXISTS</code> when filtering with subqueries:</p>
-                <ul>
-                    <li><strong>Small Static Subquery:</strong> If the subquery returns a small, fixed list of IDs, <code>IN</code> is concise, clear, and executes with high efficiency.</li>
-                    <li><strong>Large Dynamic Dataset:</strong> If the subquery spans a large table, <code>EXISTS</code> is often faster because it short-circuits execution as soon as the first matching row is found.</li>
-                    <li><strong>NULL Safety:</strong> <code>NOT EXISTS</code> handles NULL values gracefully, whereas <code>NOT IN</code> breaks if the subquery returns a single NULL.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Healthcare Pharmacy Prescription Drug Dispensation:</strong> Audit pharmacy medication dispensation logs to track controlled substances, authorized prescribers, and restricted categories.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Healthcare Pharmacy Prescription Drug Dispensation</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: pharmacy_dispensations</span>
-<span class="code-comment">   dispensation_id | patient_id | doctor_id | drug_code | quantity | status</span>
-<span class="code-comment">   ----------------+------------+-----------+-----------+----------+----------</span>
-<span class="code-comment">   5001            | 801        | DOC-12    | OXY-20    | 30       | DISPENSED</span>
-<span class="code-comment">   5002            | 802        | DOC-45    | AMX-500   | 20       | DISPENSED</span>
-<span class="code-comment">   5003            | 803        | DOC-12    | DIA-10    | 15       | DISPENSED</span>
-<span class="code-comment">   5004            | 804        | DOC-88    | IBU-800   | 60       | DISPENSED</span>
-<span class="code-comment">   5005            | 805        | DOC-45    | OXY-20    | 25       | FLAGGED</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Filter controlled substance schedules using literal IN set</span>
-<span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code, quantity
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>store_catalog</code> using the condition <code>category NOT IN ('Discontinued', 'Seasonal', 'Archived')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>IN</code> operator allows you to determine whether a specified value matches any value within a literal list or returned by a subquery. It functions as concise shorthand for multiple <code>OR</code> conditions.</p>
+<ul>
+<li><strong>Shorthand for Chained OR:</strong> <code>col IN (A, B, C)</code> is semantically equivalent to <code>col = A OR col = B OR col = C</code>, but far more readable.</li>
+<li><strong>Subquery Integration:</strong> IN can evaluate against the result set of an independent or correlated subquery (e.g. <code>WHERE id IN (SELECT id FROM...)</code>).</li>
+<li><strong>Index Optimization:</strong> Relational query planners optimize IN lists by executing multiple rapid B-Tree index seek operations.</li>
+<li><strong>The Deadly NOT IN with NULL Trap:</strong> If an inner subquery evaluated by <code>NOT IN</code> returns a single NULL value, the outer query returns zero rows.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Operator Form</th>
+<th>Syntax Example</th>
+<th>Evaluation Semantics</th>
+<th>Equivalent Logic</th>
+<th>Performance Profile</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Literal Set IN</td>
+<td><code>WHERE id IN (1, 2, 3)</code></td>
+<td>Checks if value exists in array</td>
+<td><code>id = 1 OR id = 2 OR id = 3</code></td>
+<td>High (Multiple index seeks)</td>
+</tr>
+<tr>
+<td>Subquery IN</td>
+<td><code>WHERE id IN (SELECT...)</code></td>
+<td>Executes subquery and checks set</td>
+<td>Semi-Join transformation</td>
+<td>Optimized to Hash or Merge Semi-Join</td>
+</tr>
+<tr>
+<td>Literal Set NOT IN</td>
+<td><code>WHERE code NOT IN ('A', 'B')</code></td>
+<td>Excludes all matching elements</td>
+<td><code>code != 'A' AND code != 'B'</code></td>
+<td>Table scan or index range scan</td>
+</tr>
+<tr>
+<td>Subquery NOT IN</td>
+<td><code>WHERE id NOT IN (SELECT...)</code></td>
+<td>Anti-Semi Join (Danger with NULLs)</td>
+<td>Anti-Join logic</td>
+<td>Dangerous if subquery contains NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>The IN Operator vs Subquery EXISTS: When to Use Which</h3>
+<p>Database developers frequently debate whether to use <code>IN</code> or <code>EXISTS</code> when filtering with subqueries:</p>
+<ul>
+<li><strong>Small Static Subquery:</strong> If the subquery returns a small, fixed list of IDs, <code>IN</code> is concise, clear, and executes with high efficiency.</li>
+<li><strong>Large Dynamic Dataset:</strong> If the subquery spans a large table, <code>EXISTS</code> is often faster because it short-circuits execution as soon as the first matching row is found.</li>
+<li><strong>NULL Safety:</strong> <code>NOT EXISTS</code> handles NULL values gracefully, whereas <code>NOT IN</code> breaks if the subquery returns a single NULL.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Healthcare Pharmacy Prescription Drug Dispensation:</strong> Audit pharmacy medication dispensation logs to track controlled substances, authorized prescribers, and restricted categories.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: pharmacy_dispensations
+   dispensation_id | patient_id | doctor_id | drug_code | quantity | status
+   ----------------+------------+-----------+-----------+----------+----------
+   5001            | 801        | DOC-12    | OXY-20    | 30       | DISPENSED
+   5002            | 802        | DOC-45    | AMX-500   | 20       | DISPENSED
+   5003            | 803        | DOC-12    | DIA-10    | 15       | DISPENSED
+   5004            | 804        | DOC-88    | IBU-800   | 60       | DISPENSED
+   5005            | 805        | DOC-45    | OXY-20    | 25       | FLAGGED
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code, quantity
 <span class="code-keyword">FROM</span> pharmacy_dispensations
-<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);
-<span class="code-comment">-- Matches: Dispensation 5001 (OXY-20), 5003 (DIA-10), 5005 (OXY-20)</span>
-
-<span class="code-comment">-- Requirement 2: Audit prescriptions written by authorized senior specialist physicians</span>
-<span class="code-keyword">SELECT</span> dispensation_id, drug_code, doctor_id
+<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>pharmacy_dispensations</code> using the condition <code>drug_code IN ('OXY-20', 'DIA-10')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> dispensation_id, drug_code, doctor_id
 <span class="code-keyword">FROM</span> pharmacy_dispensations
-<span class="code-keyword">WHERE</span> doctor_id <span class="code-keyword">IN</span> (<span class="code-string">'DOC-12'</span>, <span class="code-string">'DOC-88'</span>);
-<span class="code-comment">-- Matches: Dispensation 5001, 5003, 5004</span>
-
-<span class="code-comment">-- Requirement 3: Isolate non-narcotic standard medications using NOT IN</span>
-<span class="code-keyword">SELECT</span> dispensation_id, drug_code, quantity
+<span class="code-keyword">WHERE</span> doctor_id <span class="code-keyword">IN</span> (<span class="code-string">'DOC-12'</span>, <span class="code-string">'DOC-88'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>pharmacy_dispensations</code> using the condition <code>doctor_id IN ('DOC-12', 'DOC-88')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> dispensation_id, drug_code, quantity
 <span class="code-keyword">FROM</span> pharmacy_dispensations
-<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);
-<span class="code-comment">-- Matches: Dispensation 5002 (Amoxicillin) and 5004 (Ibuprofen)</span>
-
-<span class="code-comment">-- Requirement 4: Subquery: Identify patients who received medications from audited physicians</span>
-<span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code
+<span class="code-keyword">WHERE</span> drug_code <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'OXY-20'</span>, <span class="code-string">'DIA-10'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>pharmacy_dispensations</code> using the condition <code>drug_code NOT IN ('OXY-20', 'DIA-10')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> dispensation_id, patient_id, drug_code
 <span class="code-keyword">FROM</span> pharmacy_dispensations
 <span class="code-keyword">WHERE</span> doctor_id <span class="code-keyword">IN</span> (
     <span class="code-keyword">SELECT</span> doctor_id 
     <span class="code-keyword">FROM</span> pharmacy_dispensations 
-    <span class="code-keyword">WHERE</span> status = <span class="code-string">'FLAGGED'</span>
-);
-<span class="code-comment">-- Matches: Dispensation 5002 and 5005 (Prescribed by DOC-45)</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing verbose OR statements and seamlessly integrating subqueries.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Cleaner Syntax:</strong> Replaces repetitive chains of OR conditions (col = A OR col = B) with concise set syntax (col IN (A, B)).</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Subquery Integration:</strong> Supports dynamic subqueries, allowing filtering against sets computed at runtime.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Index Friendliness:</strong> Query optimizers treat IN lists as multiple high-speed B-Tree index seek operations.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>The NOT IN (NULL) Trap:</strong> Never use NOT IN if the evaluated column or subquery can contain NULL values; use NOT EXISTS instead.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Readability & Maintainability:</strong> Simplifies query maintenance when adding or removing categorical filter values.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="like.html" class="btn-outline" title="Previous: The LIKE Operator">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The LIKE Operator</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_in">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="between.html" class="btn-enroll" title="Next: The BETWEEN Operator">
-                        <span class="btn-text">Next: The BETWEEN Operator</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+    <span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'FLAGGED'</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>pharmacy_dispensations</code> using the condition <code>doctor_id IN ( SELECT doctor_id FROM pharmacy_dispensations WHERE status = 'FLAGGED' )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The IN operator simplifies multi-value membership testing into a clean, concise clause, replacing verbose OR statements and seamlessly integrating subqueries.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Cleaner Syntax:</strong> Replaces repetitive chains of OR conditions (col = A OR col = B) with concise set syntax (col IN (A, B)).</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Subquery Integration:</strong> Supports dynamic subqueries, allowing filtering against sets computed at runtime.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Index Friendliness:</strong> Query optimizers treat IN lists as multiple high-speed B-Tree index seek operations.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>The NOT IN (NULL) Trap:</strong> Never use NOT IN if the evaluated column or subquery can contain NULL values; use NOT EXISTS instead.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Readability &amp; Maintainability:</strong> Simplifies query maintenance when adding or removing categorical filter values.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="like.html" title="Previous: The LIKE Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The LIKE Operator</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_in" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="between.html" title="Next: The BETWEEN Operator">
+<span class="btn-text">Next: The BETWEEN Operator</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

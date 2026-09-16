@@ -785,3 +785,51 @@ if (document.readyState === 'loading') {
     initLessonCompletion();
     initCollapsibleModules();
 }
+
+/**
+ * Global helper to open or update the EDMITH SQL Editor with specified code.
+ * Works whether called with a code string or a button element (using `this`).
+ */
+window.openEdmithEditor = function(target) {
+    let sql = '';
+    if (typeof target === 'string') {
+        sql = target.trim();
+    } else if (target && target.closest) {
+        const terminal = target.closest('.code-terminal');
+        const codeEl = terminal ? terminal.querySelector('code') : null;
+        sql = codeEl ? codeEl.innerText.trim() : '';
+    }
+
+    if (!sql) return;
+
+    // 1. Save to localStorage for instant cross-tab catch
+    try {
+        localStorage.setItem('edmith_sql_editor_incoming', JSON.stringify({
+            query: sql,
+            ts: Date.now()
+        }));
+    } catch (e) {}
+
+    // 2. Broadcast to any already-open editor tabs
+    try {
+        if ('BroadcastChannel' in window) {
+            const bc = new BroadcastChannel('edmith_sql_channel');
+            bc.postMessage({ action: 'load_query', query: sql });
+            bc.close();
+        }
+    } catch (e) {}
+
+    // 3. Resolve target URL based on current page location
+    const isSqlSubdir = window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/');
+    const editorPath = isSqlSubdir ? 'editor.html' : 'sql/editor.html';
+    const targetUrl = editorPath + '?query=' + encodeURIComponent(sql);
+
+    // 4. Open or focus the named editor window
+    const editorWin = window.open(targetUrl, 'edmith_sql_editor');
+    if (editorWin) {
+        try {
+            editorWin.focus();
+            editorWin.postMessage({ action: 'load_query', query: sql }, '*');
+        } catch (e) {}
+    }
+};

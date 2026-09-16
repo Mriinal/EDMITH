@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The ANY Operator - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The ANY Operator - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The ANY Operator - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The ANY Operator - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,431 +17,535 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li class="active"><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li class="active"><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The ANY Operator</span>
-                </div>
-                <h1>The ANY Operator</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Radar Speed Gun Threshold Analogy</h4>
-                        <p>Picture a highway patrol officer checking speeding violations against a group of racing vehicles:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. The Speed Thresholds::</strong> A patrol car pulls over a driver whose vehicle speed exceeds ANY speed recorded in a racing group: speed > ANY (65, 80, 95).</li>
-                            <li><strong>2. Threshold Match::</strong> To be greater than ANY element, the driver only needs to be faster than the slowest car in the group (speed > 65mph)!</li>
-                            <li><strong>3. The Minimum Equivalent::</strong> <code>&gt; ANY (set)</code> is mathematically equivalent to <code>&gt; MIN(set)</code>.</li>
-                            <li><strong>4. Equality to Any::</strong> Similarly, <code>= ANY (set)</code> is completely identical to the <code>IN</code> operator.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">The ANY operator compares a scalar value against a collection of subquery results, returning TRUE if the comparison condition holds for at least one element.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The ANY Operator</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; any.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Greater Than ANY: Matches if value is greater than the smallest item in subquery</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, unit_price
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The ANY Operator</span>
+</div>
+<h1>The ANY Operator</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-tachometer-alt"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Radar Speed Gun Threshold Analogy</h4>
+<p>Picture a highway patrol officer checking speeding violations against a group of racing vehicles:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. The Speed Thresholds::</strong> A patrol car pulls over a driver whose vehicle speed exceeds ANY speed recorded in a racing group: speed &gt; ANY (65, 80, 95).</li>
+<li><strong>2. Threshold Match::</strong> To be greater than ANY element, the driver only needs to be faster than the slowest car in the group (speed &gt; 65mph)!</li>
+<li><strong>3. The Minimum Equivalent::</strong> <code>&gt; ANY (set)</code> is mathematically equivalent to <code>&gt; MIN(set)</code>.</li>
+<li><strong>4. Equality to Any::</strong> Similarly, <code>= ANY (set)</code> is completely identical to the <code>IN</code> operator.</li>
+</ul>
+<p style="margin-top: 8px !important;">The ANY operator compares a scalar value against a collection of subquery results, returning TRUE if the comparison condition holds for at least one element.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The ANY Operator</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, unit_price
 <span class="code-keyword">FROM</span> store_products
-<span class="code-keyword">WHERE</span> unit_price &gt; <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> unit_price <span class="code-op">&gt;</span> <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> unit_price 
     <span class="code-keyword">FROM</span> store_products 
-    <span class="code-keyword">WHERE</span> category = <span class="code-string">'Budget'</span>
-);
-
-<span class="code-comment">-- 2. Equal to ANY: Semantically identical to the IN operator</span>
-<span class="code-keyword">SELECT</span> employee_id, first_name, department_id
+    <span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Budget'</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>store_products</code> using the condition <code>unit_price &gt; ANY ( SELECT unit_price FROM store_products WHERE category = 'Budget' )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department_id
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department_id = <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> department_id <span class="code-op">=</span> <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> department_id 
     <span class="code-keyword">FROM</span> high_growth_departments
-);
-
-<span class="code-comment">-- 3. Less Than ANY: Matches if value is less than the peak item in subquery</span>
-<span class="code-keyword">SELECT</span> order_id, order_total
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>department_id = ANY ( SELECT department_id FROM high_growth_departments )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> order_id, order_total
 <span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> order_total &lt; <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> order_total <span class="code-op">&lt;</span> <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> order_total 
     <span class="code-keyword">FROM</span> sales_orders 
-    <span class="code-keyword">WHERE</span> customer_id = 99
-);
-
-<span class="code-comment">-- 4. ANY with Array Literal (Supported in PostgreSQL)</span>
-<span class="code-keyword">SELECT</span> user_id, username, permissions
+    <span class="code-keyword">WHERE</span> customer_id <span class="code-op">=</span> <span class="code-num">99</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>sales_orders</code> using the condition <code>order_total &lt; ANY ( SELECT order_total FROM sales_orders WHERE customer_id = 99 )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> user_id, username, permissions
 <span class="code-keyword">FROM</span> accounts
-<span class="code-keyword">WHERE</span> <span class="code-string">'SUPERADMIN'</span> = <span class="code-keyword">ANY</span> (permissions);</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>ANY</code> operator (and its ANSI synonym <code>SOME</code>) compares a scalar value to a single-column subquery set. It returns <code>TRUE</code> if the comparison condition evaluates to true for <strong>at least one</strong> value in the subquery.</p>
-                <ul>
-                    <li><strong>Mathematical Operator Pairing:</strong> ANY must always be preceded by a standard comparison operator: <code>= ANY</code>, <code>!= ANY</code>, <code>&gt; ANY</code>, <code>&gt;= ANY</code>, <code>&lt; ANY</code>, <code>&lt;= ANY</code>.</li>
-                    <li><strong>The IN Equivalence:</strong> The expression <code>x = ANY (subquery)</code> is mathematically identical to <code>x IN (subquery)</code>.</li>
-                    <li><strong>Extreme Value Equivalence:</strong> <code>&gt; ANY (set)</code> means greater than the minimum value in the set; <code>&lt; ANY (set)</code> means less than the maximum value in the set.</li>
-                    <li><strong>The SOME Synonym:</strong> In ANSI SQL, <code>SOME</code> is an exact synonym for <code>ANY</code>; both keywords produce identical Abstract Syntax Trees.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Comparison Syntax</th>
-                                <th>Mathematical Meaning</th>
-                                <th>Scalar Equivalent</th>
-                                <th>Returns TRUE If...</th>
-                                <th>Edge Case with Empty Set</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><code>= ANY (set)</code></td>
-                                <td>Equal to at least one element</td>
-                                <td>Identical to <code>IN (set)</code></td>
-                                <td>Value matches any element</td>
-                                <td>FALSE if set is empty</td>
-                            </tr>
-                            <tr>
-                                <td><code>&gt; ANY (set)</code></td>
-                                <td>Greater than at least one element</td>
-                                <td><code>&gt; MIN(set)</code></td>
-                                <td>Value exceeds smallest element</td>
-                                <td>FALSE if set is empty</td>
-                            </tr>
-                            <tr>
-                                <td><code>&lt; ANY (set)</code></td>
-                                <td>Less than at least one element</td>
-                                <td><code>&lt; MAX(set)</code></td>
-                                <td>Value is below peak element</td>
-                                <td>FALSE if set is empty</td>
-                            </tr>
-                            <tr>
-                                <td><code>&lt;&gt; ANY (set)</code></td>
-                                <td>Not equal to at least one element</td>
-                                <td>Not equal to everything</td>
-                                <td>Value differs from at least 1 item</td>
-                                <td>FALSE if set is empty</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>The Danger of != ANY: Why it Does NOT Mean 'Not In'</h3>
-                <p>A dangerous logical fallacy occurs when developers write <code>WHERE id != ANY (1, 2, 3)</code> assuming it means 'not in 1, 2, 3':</p>
-                <ul>
-                    <li><strong>The Fallacy:</strong> If <code>id = 1</code>, the test evaluates: <code>1 != 1 (FALSE) OR 1 != 2 (TRUE)</code>. The expression evaluates to TRUE!</li>
-                    <li><strong>The Mathematical Truth:</strong> Almost every number is <code>!= ANY</code> in a multi-element set, because no single number can equal every element simultaneously!</li>
-                    <li><strong>The Fix:</strong> To enforce exclusion from a set, use <code>NOT IN</code>, <code>!= ALL</code>, or <code>NOT EXISTS</code>.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Corporate Executive Compensation Benchmark Audit:</strong> Compare employee salaries across corporate organizational departments against executive benchmark compensation thresholds.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Corporate Executive Compensation Benchmark Audit</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: staff_payroll</span>
-<span class="code-comment">   emp_id | name        | department | salary</span>
-<span class="code-comment">   -------+-------------+------------+---------</span>
-<span class="code-comment">   101    | Sarah Connor| Executive  | 120000</span>
-<span class="code-comment">   102    | John Wick   | Security   | 95000</span>
-<span class="code-comment">   103    | Ellen Ripley| Logistics  | 82000</span>
-<span class="code-comment">   104    | Alex Murphy | Security   | 88000</span>
-<span class="code-comment">   105    | Jim Gordon  | Support    | 65000</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Identify non-executives earning more than ANY executive salary (i.e. &gt; MIN(Exec))</span>
-<span class="code-keyword">SELECT</span> emp_id, name, department, salary
+<span class="code-keyword">WHERE</span> <span class="code-string">'SUPERADMIN'</span> <span class="code-op">=</span> <span class="code-keyword">ANY</span> (permissions);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>'SUPERADMIN' = ANY (permissions)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>ANY</code> operator (and its ANSI synonym <code>SOME</code>) compares a scalar value to a single-column subquery set. It returns <code>TRUE</code> if the comparison condition evaluates to true for <strong>at least one</strong> value in the subquery.</p>
+<ul>
+<li><strong>Mathematical Operator Pairing:</strong> ANY must always be preceded by a standard comparison operator: <code>= ANY</code>, <code>!= ANY</code>, <code>&gt; ANY</code>, <code>&gt;= ANY</code>, <code>&lt; ANY</code>, <code>&lt;= ANY</code>.</li>
+<li><strong>The IN Equivalence:</strong> The expression <code>x = ANY (subquery)</code> is mathematically identical to <code>x IN (subquery)</code>.</li>
+<li><strong>Extreme Value Equivalence:</strong> <code>&gt; ANY (set)</code> means greater than the minimum value in the set; <code>&lt; ANY (set)</code> means less than the maximum value in the set.</li>
+<li><strong>The SOME Synonym:</strong> In ANSI SQL, <code>SOME</code> is an exact synonym for <code>ANY</code>; both keywords produce identical Abstract Syntax Trees.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Comparison Syntax</th>
+<th>Mathematical Meaning</th>
+<th>Scalar Equivalent</th>
+<th>Returns TRUE If...</th>
+<th>Edge Case with Empty Set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>= ANY (set)</code></td>
+<td>Equal to at least one element</td>
+<td>Identical to <code>IN (set)</code></td>
+<td>Value matches any element</td>
+<td>FALSE if set is empty</td>
+</tr>
+<tr>
+<td><code>&gt; ANY (set)</code></td>
+<td>Greater than at least one element</td>
+<td><code>&gt; MIN(set)</code></td>
+<td>Value exceeds smallest element</td>
+<td>FALSE if set is empty</td>
+</tr>
+<tr>
+<td><code>&lt; ANY (set)</code></td>
+<td>Less than at least one element</td>
+<td><code>&lt; MAX(set)</code></td>
+<td>Value is below peak element</td>
+<td>FALSE if set is empty</td>
+</tr>
+<tr>
+<td><code>&lt;&gt; ANY (set)</code></td>
+<td>Not equal to at least one element</td>
+<td>Not equal to everything</td>
+<td>Value differs from at least 1 item</td>
+<td>FALSE if set is empty</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>The Danger of != ANY: Why it Does NOT Mean 'Not In'</h3>
+<p>A dangerous logical fallacy occurs when developers write <code>WHERE id != ANY (1, 2, 3)</code> assuming it means 'not in 1, 2, 3':</p>
+<ul>
+<li><strong>The Fallacy:</strong> If <code>id = 1</code>, the test evaluates: <code>1 != 1 (FALSE) OR 1 != 2 (TRUE)</code>. The expression evaluates to TRUE!</li>
+<li><strong>The Mathematical Truth:</strong> Almost every number is <code>!= ANY</code> in a multi-element set, because no single number can equal every element simultaneously!</li>
+<li><strong>The Fix:</strong> To enforce exclusion from a set, use <code>NOT IN</code>, <code>!= ALL</code>, or <code>NOT EXISTS</code>.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Corporate Executive Compensation Benchmark Audit:</strong> Compare employee salaries across corporate organizational departments against executive benchmark compensation thresholds.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: staff_payroll
+   emp_id | name        | department | salary
+   -------+-------------+------------+---------
+   101    | Sarah Connor| Executive  | 120000
+   102    | John Wick   | Security   | 95000
+   103    | Ellen Ripley| Logistics  | 82000
+   104    | Alex Murphy | Security   | 88000
+   105    | Jim Gordon  | Support    | 65000
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> emp_id, name, department, salary
 <span class="code-keyword">FROM</span> staff_payroll
-<span class="code-keyword">WHERE</span> department &lt;&gt; <span class="code-string">'Executive'</span>
-  <span class="code-keyword">AND</span> salary &gt; <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> department <span class="code-op">&lt;&gt;</span> <span class="code-string">'Executive'</span>
+  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;</span> <span class="code-keyword">ANY</span> (
       <span class="code-keyword">SELECT</span> salary 
       <span class="code-keyword">FROM</span> staff_payroll 
-      <span class="code-keyword">WHERE</span> department = <span class="code-string">'Executive'</span>
-  );
-<span class="code-comment">-- Matches: Returns non-executives who earn more than the lowest executive salary</span>
-
-<span class="code-comment">-- Requirement 2: Demonstrate = ANY equivalence to IN operator</span>
-<span class="code-keyword">SELECT</span> emp_id, name, department
+      <span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Executive'</span>
+  );</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>staff_payroll</code> using the condition <code>department &lt;&gt; 'Executive' AND salary &gt; ANY ( SELECT salary FROM staff_payroll WHERE department = 'Executive' )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> emp_id, name, department
 <span class="code-keyword">FROM</span> staff_payroll
-<span class="code-keyword">WHERE</span> department = <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> department 
     <span class="code-keyword">FROM</span> staff_payroll 
-    <span class="code-keyword">WHERE</span> salary &gt; 90000
-);
-<span class="code-comment">-- Matches: Employees in Executive and Security departments (Identical to IN)</span>
-
-<span class="code-comment">-- Requirement 3: Identify staff earning less than ANY security department salary (&lt; MAX(Security))</span>
-<span class="code-keyword">SELECT</span> emp_id, name, salary
+    <span class="code-keyword">WHERE</span> salary <span class="code-op">&gt;</span> <span class="code-num">90000</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>staff_payroll</code> using the condition <code>department = ANY ( SELECT department FROM staff_payroll WHERE salary &gt; 90000 )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> emp_id, name, salary
 <span class="code-keyword">FROM</span> staff_payroll
-<span class="code-keyword">WHERE</span> salary &lt; <span class="code-keyword">ANY</span> (
+<span class="code-keyword">WHERE</span> salary <span class="code-op">&lt;</span> <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> salary 
     <span class="code-keyword">FROM</span> staff_payroll 
-    <span class="code-keyword">WHERE</span> department = <span class="code-string">'Security'</span>
-);
-<span class="code-comment">-- Matches: Staff earning less than $95,000 (Ellen Ripley, Alex Murphy, Jim Gordon)</span>
-
-<span class="code-comment">-- Requirement 4: Verification of ANY with empty subquery return</span>
-<span class="code-keyword">SELECT</span> emp_id, name
+    <span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Security'</span>
+);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>staff_payroll</code> using the condition <code>salary &lt; ANY ( SELECT salary FROM staff_payroll WHERE department = 'Security' )</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> emp_id, name
 <span class="code-keyword">FROM</span> staff_payroll
-<span class="code-keyword">WHERE</span> salary &gt; <span class="code-keyword">ANY</span> (<span class="code-keyword">SELECT</span> salary <span class="code-keyword">FROM</span> staff_payroll <span class="code-keyword">WHERE</span> department = <span class="code-string">'NonExistent'</span>);
-<span class="code-comment">-- Matches: Exactly 0 rows (Empty subquery with ANY always evaluates to FALSE)</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The ANY operator compares a scalar value against a collection of subquery results, returning TRUE if the condition matches at least one element, providing flexible threshold evaluation.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Quantified Comparison:</strong> ANY pairs with comparison operators (=, !=, <, >, <=, >=) to compare against a subquery collection.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>= ANY is IN:</strong> = ANY (subquery) is semantically identical to IN (subquery).</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>> ANY is > MIN:</strong> x > ANY (set) evaluates to TRUE if x is greater than the smallest value in the set.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>< ANY is < MAX:</strong> x < ANY (set) evaluates to TRUE if x is less than the largest value in the set.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Beware != ANY:</strong> Never use != ANY to enforce exclusion; use NOT IN or != ALL instead.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="exists.html" class="btn-outline" title="Previous: The EXISTS Operator">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The EXISTS Operator</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_any">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="all.html" class="btn-enroll" title="Next: The ALL Operator">
-                        <span class="btn-text">Next: The ALL Operator</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+<span class="code-keyword">WHERE</span> salary <span class="code-op">&gt;</span> <span class="code-keyword">ANY</span> (<span class="code-keyword">SELECT</span> salary <span class="code-keyword">FROM</span> staff_payroll <span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'NonExistent'</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>staff_payroll</code> using the condition <code>salary &gt; ANY (SELECT salary FROM staff_payroll WHERE department = 'NonExistent')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The ANY operator compares a scalar value against a collection of subquery results, returning TRUE if the condition matches at least one element, providing flexible threshold evaluation.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Quantified Comparison:</strong> ANY pairs with comparison operators (=, !=, &lt;, &gt;, &lt;=, &gt;=) to compare against a subquery collection.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>= ANY is IN:</strong> = ANY (subquery) is semantically identical to IN (subquery).</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>&gt; ANY is &gt; MIN:</strong> x &gt; ANY (set) evaluates to TRUE if x is greater than the smallest value in the set.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>&lt; ANY is &lt; MAX:</strong> x &lt; ANY (set) evaluates to TRUE if x is less than the largest value in the set.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Beware != ANY:</strong> Never use != ANY to enforce exclusion; use NOT IN or != ALL instead.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="exists.html" title="Previous: The EXISTS Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The EXISTS Operator</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_any" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="all.html" title="Next: The ALL Operator">
+<span class="btn-text">Next: The ALL Operator</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

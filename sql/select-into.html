@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The SELECT INTO Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The SELECT INTO Statement - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The SELECT INTO Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The SELECT INTO Statement - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,417 +17,521 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li class="active"><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li class="active"><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The SELECT INTO Statement</span>
-                </div>
-                <h1>The SELECT INTO Statement</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-clone"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Emergency Disaster Backup Clone Analogy</h4>
-                        <p>Picture a corporate IT administrator creating an instantaneous physical disk backup before running major system maintenance:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. The Live Production Drive::</strong> The live production drive contains critical customer records actively being queried.</li>
-                            <li><strong>2. The Brand New Backup Drive::</strong> The administrator does not format a blank disk by hand; they insert a brand new cloned drive and issue a single clone command.</li>
-                            <li><strong>3. Single-Step Creation & Population::</strong> The command creates the drive partition and copies every file into it simultaneously in one atomic step!</li>
-                            <li><strong>4. Instant Staging Table::</strong> If anything goes wrong during maintenance, the cloned backup drive is immediately available to restore the system.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic operation.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The SELECT INTO Statement</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; select-into.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. SQL Server / PostgreSQL / Sybase SELECT INTO Syntax</span>
-<span class="code-comment">-- Creates new table 'customers_backup_2026' and populates it in one step</span>
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The SELECT INTO Statement</span>
+</div>
+<h1>The SELECT INTO Statement</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-clone"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Emergency Disaster Backup Clone Analogy</h4>
+<p>Picture a corporate IT administrator creating an instantaneous physical disk backup before running major system maintenance:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. The Live Production Drive::</strong> The live production drive contains critical customer records actively being queried.</li>
+<li><strong>2. The Brand New Backup Drive::</strong> The administrator does not format a blank disk by hand; they insert a brand new cloned drive and issue a single clone command.</li>
+<li><strong>3. Single-Step Creation &amp; Population::</strong> The command creates the drive partition and copies every file into it simultaneously in one atomic step!</li>
+<li><strong>4. Instant Staging Table::</strong> If anything goes wrong during maintenance, the cloned backup drive is immediately available to restore the system.</li>
+</ul>
+<p style="margin-top: 8px !important;">The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic operation.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The SELECT INTO Statement</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Creates new table 'customers_backup_2026' and populates it in one step</span>
 <span class="code-keyword">SELECT</span> customer_id, customer_name, email, account_tier
 <span class="code-keyword">INTO</span> customers_backup_2026
 <span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> account_status = <span class="code-string">'ACTIVE'</span>;
-
-<span class="code-comment">-- 2. Cloning Table Structure with ZERO Rows (WHERE 1 = 0)</span>
-<span class="code-keyword">SELECT</span> *
+<span class="code-keyword">WHERE</span> account_status <span class="code-op">=</span> <span class="code-string">'ACTIVE'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>customers_backup_2026</code> using the condition <code>account_status = 'ACTIVE'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span>
 <span class="code-keyword">INTO</span> empty_staging_template
 <span class="code-keyword">FROM</span> master_inventory
-<span class="code-keyword">WHERE</span> 1 = 0; <span class="code-comment">-- Copies column definitions and types with 0 data rows</span>
-
-<span class="code-comment">-- 3. ANSI Standard &amp; MySQL / Oracle Alternative: CREATE TABLE AS SELECT (CTAS)</span>
-<span class="code-comment">-- CREATE TABLE archived_orders_2025 AS</span>
-<span class="code-comment">-- SELECT * FROM sales_orders WHERE order_date &lt; '2026-01-01';</span>
-
-<span class="code-comment">-- 4. SELECT INTO with Computed Columns and Joins</span>
-<span class="code-keyword">SELECT</span> 
+<span class="code-keyword">WHERE</span> <span class="code-num">1</span> <span class="code-op">=</span> <span class="code-num">0</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>empty_staging_template</code> using the condition <code>1 = 0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Threshold Comparison</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- CREATE TABLE archived_orders_2025 AS</span>
+<span class="code-comment">-- SELECT * FROM sales_orders WHERE order_date &lt; '2026-01-01';</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>archived_orders_2025</code> using the condition <code>order_date &lt; '2026-01-01'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     c.customer_name,
     o.order_id,
     o.order_total,
     CURRENT_TIMESTAMP <span class="code-keyword">AS</span> snapshot_taken_at
 <span class="code-keyword">INTO</span> high_value_orders_snapshot
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">INNER <span class="code-keyword">JOIN</span></span> orders o <span class="code-keyword">ON</span> c.customer_id = o.customer_id
-<span class="code-keyword">WHERE</span> o.order_total &gt;= 5000.00;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>SELECT INTO</code> statement creates a new table in the database and populates it with the result set returned by the query. Unlike <code>INSERT INTO</code> which requires the destination table to already exist, <code>SELECT INTO</code> automatically creates the destination table.</p>
-                <ul>
-                    <li><strong>Atomic Creation and Load:</strong> The table schema is inferred automatically from the projected columns and populated in a single atomic transaction.</li>
-                    <li><strong>Dialect Variations:</strong> <code>SELECT ... INTO new_table</code> is native to SQL Server, PostgreSQL, and SQLite. MySQL and Oracle utilize <code>CREATE TABLE new_table AS SELECT ...</code> (CTAS).</li>
-                    <li><strong>Constraints & Indexes Not Copied:</strong> While column names and data types are copied, Primary Keys, Foreign Keys, Indexes, and Default constraints are <strong>not</strong> copied to the new table!</li>
-                    <li><strong>Fast Table Cloning:</strong> Using <code>WHERE 1 = 0</code> creates a blank schema clone instantly without transferring any data rows.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Feature / Aspect</th>
-                                <th><code>SELECT INTO</code></th>
-                                <th><code>INSERT INTO SELECT</code></th>
-                                <th><code>CREATE TABLE AS (CTAS)</code></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Target Table Status</td>
-                                <td>Must NOT exist (Created automatically)</td>
-                                <td>Must ALREADY exist in schema</td>
-                                <td>Must NOT exist (Created automatically)</td>
-                            </tr>
-                            <tr>
-                                <td>Schema Inference</td>
-                                <td>Automatically inferred from query</td>
-                                <td>Strictly uses pre-existing schema</td>
-                                <td>Automatically inferred from query</td>
-                            </tr>
-                            <tr>
-                                <td>Supported Engines</td>
-                                <td>SQL Server, PostgreSQL, SQLite</td>
-                                <td>All ANSI SQL databases</td>
-                                <td>MySQL, Oracle, PostgreSQL</td>
-                            </tr>
-                            <tr>
-                                <td>Index / Constraint Copy</td>
-                                <td>No (Indexes must be rebuilt manually)</td>
-                                <td>Uses existing table indexes</td>
-                                <td>No (Indexes must be rebuilt manually)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>The Missing Index Hazard of SELECT INTO Staging Tables</h3>
-                <p>A frequent operational hazard in data engineering is relying on SELECT INTO for high-speed reporting without recreating indexes:</p>
-                <ul>
-                    <li><strong>What Gets Copied:</strong> Column names, data types, and nullability flags are copied perfectly.</li>
-                    <li><strong>What is LOST:</strong> Primary Keys, B-Tree Indexes, Auto-Increment (IDENTITY) attributes, and Foreign Keys are stripped completely!</li>
-                    <li><strong>The Production Impact:</strong> If you query the new backup table in production without adding indexes, queries will perform slow full-table scans.</li>
-                    <li><strong>The Remedy:</strong> Always script <code>CREATE INDEX</code> statements immediately after running SELECT INTO for staging tables.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Enterprise Cloud Migration & Data Warehouse Snapshot:</strong> Snapshot critical customer financial records into an isolated staging table prior to running destructive database schema migrations.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Enterprise Cloud Migration & Data Warehouse Snapshot</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Live Production Table: live_customer_balances</span>
-<span class="code-comment">   cust_id | legal_name        | balance_usd | currency | tier</span>
-<span class="code-comment">   --------+-------------------+-------------+----------+-----------</span>
-<span class="code-comment">   101     | Vanguard Corp     | 450000.00   | USD      | TIER_1</span>
-<span class="code-comment">   102     | Cyberdyne Systems | 120000.00   | USD      | TIER_2</span>
-<span class="code-comment">   103     | Weyland Yutani    | 890000.00   | USD      | TIER_1</span>
-<span class="code-comment">   104     | Initech LLC       | 15000.00    | USD      | TIER_3</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Create an emergency pre-migration backup table of Tier 1 enterprise accounts</span>
-<span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd, tier
+INNER <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id
+<span class="code-keyword">WHERE</span> o.order_total <span class="code-op">&gt;=</span> <span class="code-num">5000.00</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Performs a relational join on <code>high_value_orders_snapshot</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>SELECT INTO</code> statement creates a new table in the database and populates it with the result set returned by the query. Unlike <code>INSERT INTO</code> which requires the destination table to already exist, <code>SELECT INTO</code> automatically creates the destination table.</p>
+<ul>
+<li><strong>Atomic Creation and Load:</strong> The table schema is inferred automatically from the projected columns and populated in a single atomic transaction.</li>
+<li><strong>Dialect Variations:</strong> <code>SELECT ... INTO new_table</code> is native to SQL Server, PostgreSQL, and SQLite. MySQL and Oracle utilize <code>CREATE TABLE new_table AS SELECT ...</code> (CTAS).</li>
+<li><strong>Constraints &amp; Indexes Not Copied:</strong> While column names and data types are copied, Primary Keys, Foreign Keys, Indexes, and Default constraints are <strong>not</strong> copied to the new table!</li>
+<li><strong>Fast Table Cloning:</strong> Using <code>WHERE 1 = 0</code> creates a blank schema clone instantly without transferring any data rows.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Feature / Aspect</th>
+<th><code>SELECT INTO</code></th>
+<th><code>INSERT INTO SELECT</code></th>
+<th><code>CREATE TABLE AS (CTAS)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Target Table Status</td>
+<td>Must NOT exist (Created automatically)</td>
+<td>Must ALREADY exist in schema</td>
+<td>Must NOT exist (Created automatically)</td>
+</tr>
+<tr>
+<td>Schema Inference</td>
+<td>Automatically inferred from query</td>
+<td>Strictly uses pre-existing schema</td>
+<td>Automatically inferred from query</td>
+</tr>
+<tr>
+<td>Supported Engines</td>
+<td>SQL Server, PostgreSQL, SQLite</td>
+<td>All ANSI SQL databases</td>
+<td>MySQL, Oracle, PostgreSQL</td>
+</tr>
+<tr>
+<td>Index / Constraint Copy</td>
+<td>No (Indexes must be rebuilt manually)</td>
+<td>Uses existing table indexes</td>
+<td>No (Indexes must be rebuilt manually)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>The Missing Index Hazard of SELECT INTO Staging Tables</h3>
+<p>A frequent operational hazard in data engineering is relying on SELECT INTO for high-speed reporting without recreating indexes:</p>
+<ul>
+<li><strong>What Gets Copied:</strong> Column names, data types, and nullability flags are copied perfectly.</li>
+<li><strong>What is LOST:</strong> Primary Keys, B-Tree Indexes, Auto-Increment (IDENTITY) attributes, and Foreign Keys are stripped completely!</li>
+<li><strong>The Production Impact:</strong> If you query the new backup table in production without adding indexes, queries will perform slow full-table scans.</li>
+<li><strong>The Remedy:</strong> Always script <code>CREATE INDEX</code> statements immediately after running SELECT INTO for staging tables.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Enterprise Cloud Migration &amp; Data Warehouse Snapshot:</strong> Snapshot critical customer financial records into an isolated staging table prior to running destructive database schema migrations.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Live Production Table: live_customer_balances
+   cust_id | legal_name        | balance_usd | currency | tier
+   --------+-------------------+-------------+----------+-----------
+   101     | Vanguard Corp     | 450000.00   | USD      | TIER_1
+   102     | Cyberdyne Systems | 120000.00   | USD      | TIER_2
+   103     | Weyland Yutani    | 890000.00   | USD      | TIER_1
+   104     | Initech LLC       | 15000.00    | USD      | TIER_3
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd, tier
 <span class="code-keyword">INTO</span> migration_backup_tier1_2026
 <span class="code-keyword">FROM</span> live_customer_balances
-<span class="code-keyword">WHERE</span> tier = <span class="code-string">'TIER_1'</span>;
-<span class="code-comment">-- Matches: Creates table 'migration_backup_tier1_2026' with Vanguard and Weyland Yutani</span>
-
-<span class="code-comment">-- Requirement 2: Fast Schema Cloning: Create an empty staging template for ETL pipeline</span>
-<span class="code-keyword">SELECT</span> *
+<span class="code-keyword">WHERE</span> tier <span class="code-op">=</span> <span class="code-string">'TIER_1'</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>migration_backup_tier1_2026</code> using the condition <code>tier = 'TIER_1'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span>
 <span class="code-keyword">INTO</span> staging_balances_template
 <span class="code-keyword">FROM</span> live_customer_balances
-<span class="code-keyword">WHERE</span> 1 = 0;
-<span class="code-comment">-- Matches: Creates 'staging_balances_template' with identical column types and 0 rows</span>
-
-<span class="code-comment">-- Requirement 3: Create denormalized reporting table with calculated metrics</span>
-<span class="code-keyword">SELECT</span> 
+<span class="code-keyword">WHERE</span> <span class="code-num">1</span> <span class="code-op">=</span> <span class="code-num">0</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>staging_balances_template</code> using the condition <code>1 = 0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
     cust_id,
     legal_name,
     balance_usd,
-    <span class="code-func">ROUND</span>(balance_usd * 0.045, 2) <span class="code-keyword">AS</span> annual_interest_accrual,
+    <span class="code-func">ROUND</span>(balance_usd <span class="code-op">*</span> <span class="code-num">0.045</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> annual_interest_accrual,
     CURRENT_DATE <span class="code-keyword">AS</span> snapshot_date
 <span class="code-keyword">INTO</span> financial_annual_accruals
-<span class="code-keyword">FROM</span> live_customer_balances;
-<span class="code-comment">-- Matches: New table created with calculated annual interest and audit snapshot date</span>
-
-<span class="code-comment">-- Requirement 4: Verification query inspecting records in the newly created backup table</span>
-<span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd
+<span class="code-keyword">FROM</span> live_customer_balances;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>financial_annual_accruals</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> cust_id, legal_name, balance_usd
 <span class="code-keyword">FROM</span> migration_backup_tier1_2026
-<span class="code-keyword">ORDER BY</span> balance_usd <span class="code-keyword">DESC</span>;
-<span class="code-comment">-- Matches: 2 records verified safely in isolated backup table</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic step, making it ideal for backups and ETL staging.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Automatic Table Creation:</strong> Creates and populates the destination table in a single atomic step without pre-defining the schema.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Dialect Syntax:</strong> Used in SQL Server, PostgreSQL, and SQLite; MySQL and Oracle use CREATE TABLE AS SELECT (CTAS).</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Constraints Not Copied:</strong> Indexes, Primary Keys, and Foreign Keys are NOT copied; recreate them manually on the new table.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Empty Schema Cloning:</strong> Use WHERE 1 = 0 to rapidly clone a table's schema structure with zero data rows.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Temporary Tables:</strong> Combine with temp table prefixes (e.g. INTO #temp_table) for scratchpad data processing.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="all.html" class="btn-outline" title="Previous: The ALL Operator">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The ALL Operator</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_select_into">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="insert-into-select.html" class="btn-enroll" title="Next: The INSERT INTO SELECT Statement">
-                        <span class="btn-text">Next: The INSERT INTO SELECT Statement</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+ORDER BY balance_usd <span class="code-keyword">DESC</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Queries <code>migration_backup_tier1_2026</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The SELECT INTO statement creates a brand new physical table on the fly and populates it with projected query results in a single atomic step, making it ideal for backups and ETL staging.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Automatic Table Creation:</strong> Creates and populates the destination table in a single atomic step without pre-defining the schema.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Dialect Syntax:</strong> Used in SQL Server, PostgreSQL, and SQLite; MySQL and Oracle use CREATE TABLE AS SELECT (CTAS).</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Constraints Not Copied:</strong> Indexes, Primary Keys, and Foreign Keys are NOT copied; recreate them manually on the new table.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Empty Schema Cloning:</strong> Use WHERE 1 = 0 to rapidly clone a table's schema structure with zero data rows.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Temporary Tables:</strong> Combine with temp table prefixes (e.g. INTO #temp_table) for scratchpad data processing.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="all.html" title="Previous: The ALL Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The ALL Operator</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_select_into" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="insert-into-select.html" title="Next: The INSERT INTO SELECT Statement">
+<span class="btn-text">Next: The INSERT INTO SELECT Statement</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

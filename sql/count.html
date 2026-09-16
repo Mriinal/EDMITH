@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: The COUNT() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>The COUNT() Function - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: The COUNT() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>The COUNT() Function - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,407 +17,511 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li class="active"><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li class="active"><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The COUNT() Function</span>
-                </div>
-                <h1>The COUNT() Function</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-users"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Turnstile Stadium Headcount Analogy</h4>
-                        <p>Imagine an automated entry turnstile at a 60,000-seat football stadium on game day:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. Turnstile Rotations (COUNT(*))::</strong> Every time a physical human pushes through the turnstile, the counter increments by one, regardless of ticket type or clothing.</li>
-                            <li><strong>2. VIP Pass Inspection (COUNT(column))::</strong> A secondary scanner tallies only fans who scan an active VIP parking pass; attendees without a pass (NULL) do not increment this counter.</li>
-                            <li><strong>3. Unique Season Ticket Holders (COUNT(DISTINCT))::</strong> If a fan exits and re-enters three times, the unique season ticket counter counts them exactly once.</li>
-                            <li><strong>4. Instant Capacity Metrics::</strong> Officials know total attendance, VIP count, and unique individuals in real time.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">The COUNT() function tallies the number of rows or non-null values matching your query criteria.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>The COUNT() Function</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; count.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. COUNT(*): Tallies total physical rows (includes NULLs)</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_registered_users
-<span class="code-keyword">FROM</span> users;
-
-<span class="code-comment">-- 2. COUNT(column): Tallies non-null values in specified column</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(phone_number) <span class="code-keyword">AS</span> users_with_verified_phone
-<span class="code-keyword">FROM</span> user_profiles;
-
-<span class="code-comment">-- 3. COUNT(DISTINCT column): Tallies unique categorical values</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">AS</span> active_country_count
-<span class="code-keyword">FROM</span> customer_orders;
-
-<span class="code-comment">-- 4. Conditional Counting with CASE Expression</span>
-<span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_orders,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status = <span class="code-string">'COMPLETED'</span> <span class="code-keyword">THEN</span> 1 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> completed_orders,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status = <span class="code-string">'CANCELLED'</span> <span class="code-keyword">THEN</span> 1 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> cancelled_orders
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The COUNT() Function</span>
+</div>
+<h1>The COUNT() Function</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-users"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Turnstile Stadium Headcount Analogy</h4>
+<p>Imagine an automated entry turnstile at a 60,000-seat football stadium on game day:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. Turnstile Rotations (COUNT(*))::</strong> Every time a physical human pushes through the turnstile, the counter increments by one, regardless of ticket type or clothing.</li>
+<li><strong>2. VIP Pass Inspection (COUNT(column))::</strong> A secondary scanner tallies only fans who scan an active VIP parking pass; attendees without a pass (NULL) do not increment this counter.</li>
+<li><strong>3. Unique Season Ticket Holders (COUNT(DISTINCT))::</strong> If a fan exits and re-enters three times, the unique season ticket counter counts them exactly once.</li>
+<li><strong>4. Instant Capacity Metrics::</strong> Officials know total attendance, VIP count, and unique individuals in real time.</li>
+</ul>
+<p style="margin-top: 8px !important;">The COUNT() function tallies the number of rows or non-null values matching your query criteria.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>The COUNT() Function</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_registered_users
+<span class="code-keyword">FROM</span> users;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>users</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(phone_number) <span class="code-keyword">AS</span> users_with_verified_phone
+<span class="code-keyword">FROM</span> user_profiles;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>user_profiles</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">AS</span> active_country_count
+<span class="code-keyword">FROM</span> customer_orders;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>customer_orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_orders,
+    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> completed_orders,
+    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'CANCELLED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> cancelled_orders
 <span class="code-keyword">FROM</span> orders;</code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>The <code>COUNT()</code> aggregate function returns the integer number of rows that match specified query criteria. It has three distinct operational forms: <code>COUNT(*)</code>, <code>COUNT(column)</code>, and <code>COUNT(DISTINCT column)</code>.</p>
-                <ul>
-                    <li><strong>The COUNT(*) Difference:</strong> <code>COUNT(*)</code> counts all rows matching the filter, regardless of whether columns contain NULL. It is heavily optimized in relational query engines.</li>
-                    <li><strong>The COUNT(column) Rule:</strong> <code>COUNT(column_name)</code> strictly counts rows where the specified column is <code>NOT NULL</code>.</li>
-                    <li><strong>The COUNT(DISTINCT) Cost:</strong> <code>COUNT(DISTINCT column)</code> builds an in-memory hash set to deduplicate values before counting, requiring additional CPU and RAM.</li>
-                    <li><strong>Conditional Counting:</strong> Wrapping <code>CASE WHEN condition THEN 1 END</code> inside COUNT enables powerful multi-metric pivot tables in a single query scan.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>COUNT Variation</th>
-                                <th>Syntax Pattern</th>
-                                <th>Includes NULLs?</th>
-                                <th>Deduplicates?</th>
-                                <th>Performance Characteristics</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Row Count</td>
-                                <td><code>COUNT(*)</code></td>
-                                <td>Yes (Counts every row tuple)</td>
-                                <td>No</td>
-                                <td>Fastest (Can use smallest available index)</td>
-                            </tr>
-                            <tr>
-                                <td>Column Count</td>
-                                <td><code>COUNT(column)</code></td>
-                                <td>No (Skips rows where col IS NULL)</td>
-                                <td>No</td>
-                                <td>Requires inspecting specific column page</td>
-                            </tr>
-                            <tr>
-                                <td>Unique Count</td>
-                                <td><code>COUNT(DISTINCT col)</code></td>
-                                <td>No (Skips NULLs)</td>
-                                <td>Yes</td>
-                                <td>Higher CPU/RAM (Sorts or hashes keys)</td>
-                            </tr>
-                            <tr>
-                                <td>Conditional Count</td>
-                                <td><code>COUNT(CASE WHEN ... THEN 1 END)</code></td>
-                                <td>Ignores implicit ELSE NULL</td>
-                                <td>No</td>
-                                <td>Excellent for single-pass executive dashboards</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>COUNT(*) vs COUNT(1) vs COUNT(column): Busting the Myth</h3>
-                <p>A pervasive myth in SQL engineering claims that <code>COUNT(1)</code> is faster than <code>COUNT(*)</code>:</p>
-                <ul>
-                    <li><strong>The Myth Busted:</strong> In all modern relational engines (PostgreSQL, SQL Server, MySQL, Oracle), <code>COUNT(*)</code> and <code>COUNT(1)</code> produce identical Abstract Syntax Trees and identical execution plans.</li>
-                    <li><strong>Why COUNT(*) is Preferred:</strong> <code>COUNT(*)</code> is standard ANSI SQL. The query planner automatically picks the narrowest secondary index to satisfy the count with minimal I/O.</li>
-                    <li><strong>The Real Difference:</strong> <code>COUNT(column)</code> is fundamentally different: it checks for NULLs on every row, requiring the engine to inspect that specific column data.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>Customer Support Helpdesk SLA & Ticket Metrics:</strong> Measure customer service volume, resolution rates, first-contact resolutions, and agent assignments from support ticket logs.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; Customer Support Helpdesk SLA & Ticket Metrics</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Dataset: support_tickets</span>
-<span class="code-comment">   ticket_id | customer_id | assigned_agent | status    | resolution_min</span>
-<span class="code-comment">   ----------+-------------+----------------+-----------+---------------</span>
-<span class="code-comment">   1001      | 501         | Agent_Smith    | CLOSED    | 25</span>
-<span class="code-comment">   1002      | 502         | NULL           | OPEN      | NULL</span>
-<span class="code-comment">   1003      | 501         | Agent_Jones    | CLOSED    | 40</span>
-<span class="code-comment">   1004      | 503         | Agent_Smith    | ESCALATED | NULL</span>
-<span class="code-comment">   1005      | 504         | NULL           | OPEN      | NULL</span>
-<span class="code-comment">   1006      | 501         | Agent_Smith    | CLOSED    | 15</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Count total tickets received across the support platform</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_tickets
-<span class="code-keyword">FROM</span> support_tickets;
-<span class="code-comment">-- Matches: 6 total ticket rows logged</span>
-
-<span class="code-comment">-- Requirement 2: Count tickets currently assigned to a human agent (excludes unassigned NULLs)</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(assigned_agent) <span class="code-keyword">AS</span> assigned_tickets
-<span class="code-keyword">FROM</span> support_tickets;
-<span class="code-comment">-- Matches: 4 assigned tickets (Tickets 1001, 1003, 1004, 1006)</span>
-
-<span class="code-comment">-- Requirement 3: Count unique customers who submitted tickets (Deduplicated)</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> customer_id) <span class="code-keyword">AS</span> unique_customers_helped
-<span class="code-keyword">FROM</span> support_tickets;
-<span class="code-comment">-- Matches: 4 unique customers (501, 502, 503, 504)</span>
-
-<span class="code-comment">-- Requirement 4: Executive Single-Pass KPI: Tally Open vs Closed vs Escalated in one query</span>
-<span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(*) <span class="code-keyword">AS</span> total_volume,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status = <span class="code-string">'OPEN'</span> <span class="code-keyword">THEN</span> 1 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> open_tickets,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status = <span class="code-string">'CLOSED'</span> <span class="code-keyword">THEN</span> 1 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> closed_tickets,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status = <span class="code-string">'ESCALATED'</span> <span class="code-keyword">THEN</span> 1 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> escalated_tickets
-<span class="code-keyword">FROM</span> support_tickets;
-<span class="code-comment">-- Matches: Total: 6 | Open: 2 | Closed: 3 | Escalated: 1</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>The COUNT() function quantifies record volumes across tables and filtered partitions, serving as the core measurement tool for analytics, SLAs, and capacity planning.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>COUNT(*) vs COUNT(col):</strong> COUNT(*) tallies all rows including NULLs; COUNT(col) counts only rows where that specific column is NOT NULL.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>COUNT(1) Myth:</strong> COUNT(*) and COUNT(1) have identical performance in modern database query planners; prefer COUNT(*) for standard ANSI compliance.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Deduplicated Counting:</strong> Use COUNT(DISTINCT col) to compute unique user or categorical entities.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Single-Pass Conditional Aggregates:</strong> Combine COUNT(CASE WHEN...) to build multi-category breakdown reports in a single table scan.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Index Optimization:</strong> Database engines automatically satisfy COUNT(*) using the smallest available covering index.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="max.html" class="btn-outline" title="Previous: The MAX() Function">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The MAX() Function</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_count">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="sum.html" class="btn-enroll" title="Next: The SUM() Function">
-                        <span class="btn-text">Next: The SUM() Function</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>COUNT()</code> aggregate function returns the integer number of rows that match specified query criteria. It has three distinct operational forms: <code>COUNT(*)</code>, <code>COUNT(column)</code>, and <code>COUNT(DISTINCT column)</code>.</p>
+<ul>
+<li><strong>The COUNT(*) Difference:</strong> <code>COUNT(*)</code> counts all rows matching the filter, regardless of whether columns contain NULL. It is heavily optimized in relational query engines.</li>
+<li><strong>The COUNT(column) Rule:</strong> <code>COUNT(column_name)</code> strictly counts rows where the specified column is <code>NOT NULL</code>.</li>
+<li><strong>The COUNT(DISTINCT) Cost:</strong> <code>COUNT(DISTINCT column)</code> builds an in-memory hash set to deduplicate values before counting, requiring additional CPU and RAM.</li>
+<li><strong>Conditional Counting:</strong> Wrapping <code>CASE WHEN condition THEN 1 END</code> inside COUNT enables powerful multi-metric pivot tables in a single query scan.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>COUNT Variation</th>
+<th>Syntax Pattern</th>
+<th>Includes NULLs?</th>
+<th>Deduplicates?</th>
+<th>Performance Characteristics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Row Count</td>
+<td><code>COUNT(*)</code></td>
+<td>Yes (Counts every row tuple)</td>
+<td>No</td>
+<td>Fastest (Can use smallest available index)</td>
+</tr>
+<tr>
+<td>Column Count</td>
+<td><code>COUNT(column)</code></td>
+<td>No (Skips rows where col IS NULL)</td>
+<td>No</td>
+<td>Requires inspecting specific column page</td>
+</tr>
+<tr>
+<td>Unique Count</td>
+<td><code>COUNT(DISTINCT col)</code></td>
+<td>No (Skips NULLs)</td>
+<td>Yes</td>
+<td>Higher CPU/RAM (Sorts or hashes keys)</td>
+</tr>
+<tr>
+<td>Conditional Count</td>
+<td><code>COUNT(CASE WHEN ... THEN 1 END)</code></td>
+<td>Ignores implicit ELSE NULL</td>
+<td>No</td>
+<td>Excellent for single-pass executive dashboards</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>COUNT(*) vs COUNT(1) vs COUNT(column): Busting the Myth</h3>
+<p>A pervasive myth in SQL engineering claims that <code>COUNT(1)</code> is faster than <code>COUNT(*)</code>:</p>
+<ul>
+<li><strong>The Myth Busted:</strong> In all modern relational engines (PostgreSQL, SQL Server, MySQL, Oracle), <code>COUNT(*)</code> and <code>COUNT(1)</code> produce identical Abstract Syntax Trees and identical execution plans.</li>
+<li><strong>Why COUNT(*) is Preferred:</strong> <code>COUNT(*)</code> is standard ANSI SQL. The query planner automatically picks the narrowest secondary index to satisfy the count with minimal I/O.</li>
+<li><strong>The Real Difference:</strong> <code>COUNT(column)</code> is fundamentally different: it checks for NULLs on every row, requiring the engine to inspect that specific column data.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Customer Support Helpdesk SLA &amp; Ticket Metrics:</strong> Measure customer service volume, resolution rates, first-contact resolutions, and agent assignments from support ticket logs.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/* ========================================================
+   Sample Dataset: support_tickets
+   ticket_id | customer_id | assigned_agent | status    | resolution_min
+   ----------+-------------+----------------+-----------+---------------
+   1001      | 501         | Agent_Smith    | CLOSED    | 25
+   1002      | 502         | NULL           | OPEN      | NULL
+   1003      | 501         | Agent_Jones    | CLOSED    | 40
+   1004      | 503         | Agent_Smith    | ESCALATED | NULL
+   1005      | 504         | NULL           | OPEN      | NULL
+   1006      | 501         | Agent_Smith    | CLOSED    | 15
+   ======================================================== */</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_tickets
+<span class="code-keyword">FROM</span> support_tickets;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
         </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(assigned_agent) <span class="code-keyword">AS</span> assigned_tickets
+<span class="code-keyword">FROM</span> support_tickets;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> customer_id) <span class="code-keyword">AS</span> unique_customers_helped
+<span class="code-keyword">FROM</span> support_tickets;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Cardinality Aggregation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_volume,
+    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'OPEN'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> open_tickets,
+    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'CLOSED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> closed_tickets,
+    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'ESCALATED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> escalated_tickets
+<span class="code-keyword">FROM</span> support_tickets;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The COUNT() function quantifies record volumes across tables and filtered partitions, serving as the core measurement tool for analytics, SLAs, and capacity planning.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>COUNT(*) vs COUNT(col):</strong> COUNT(*) tallies all rows including NULLs; COUNT(col) counts only rows where that specific column is NOT NULL.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>COUNT(1) Myth:</strong> COUNT(*) and COUNT(1) have identical performance in modern database query planners; prefer COUNT(*) for standard ANSI compliance.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Deduplicated Counting:</strong> Use COUNT(DISTINCT col) to compute unique user or categorical entities.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Single-Pass Conditional Aggregates:</strong> Combine COUNT(CASE WHEN...) to build multi-category breakdown reports in a single table scan.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Index Optimization:</strong> Database engines automatically satisfy COUNT(*) using the smallest available covering index.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="max.html" title="Previous: The MAX() Function">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The MAX() Function</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_count" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="sum.html" title="Next: The SUM() Function">
+<span class="btn-text">Next: The SUM() Function</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>

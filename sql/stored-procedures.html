@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Module 1: Stored Procedures - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH.">
-    <title>Stored Procedures - EDMITH</title>
-    <!-- Prevent theme flicker before paint -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Module 1: Stored Procedures - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<title>Stored Procedures - EDMITH</title>
+<!-- Prevent theme flicker before paint -->
+<script>
         (function() {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -16,440 +17,670 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Reading Progress Bar -->
-    <div class="reading-progress-container" aria-hidden="true">
-        <div class="reading-progress-bar" id="progressBar"></div>
-    </div>
-
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Main Learning Layout with Left Sidebar -->
-    <div class="learning-layout">
-        
-        <!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
-        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Basics -->
-            <div class="sidebar-module-group" data-module="module-1">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Basics</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                <li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
-                <li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
-                <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
-                <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax & Statement Grammar</a></li>
-                <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
-                <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
-                <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-                <li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
-                <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
-                <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
-                <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-                <li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
-                <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values & Three-Valued Logic</a></li>
-                <li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-                <li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
-                <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT & Pagination</a></li>
-                <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-                <li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-                <li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
-                <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
-                <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
-                <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-                <li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-                <li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-                <li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-                <li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
-                <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
-                <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
-                <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
-                <li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
-                <li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
-                <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
-                <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
-                <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-                <li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-                <li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
-                <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
-                <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
-                <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
-                <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
-                <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-                <li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-                <li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE & IFNULL)</a></li>
-                <li class="active"><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
-                <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 2: Advance -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Advance</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
-                    <ul>
-                        <li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
-                        <li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Module 3: References -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: References</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod3-list">
-                    <ul>
-                        <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
-                        <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
-                        <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
-                    </ul>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Lesson Content Area -->
-        <main class="lesson-container">
-            
-            <!-- Mobile Table of Contents Toggle -->
-            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
-                <i class="fas fa-list"></i> Table of Contents
+<!-- Reading Progress Bar -->
+<div aria-hidden="true" class="reading-progress-container">
+<div class="reading-progress-bar" id="progressBar"></div>
+</div>
+<!-- Smart Header -->
+<header class="header detail-header" id="detailHeader">
+<nav class="navbar">
+<a class="logo" href="../index.html">EDMITH</a>
+<ul class="nav-links">
+<li><a href="../index.html#home">Home</a></li>
+<li><a href="../course.html">Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+</ul>
+<div class="header-actions">
+<button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle" title="Toggle Dark Mode">
+<i class="fas fa-moon"></i>
+</button>
+<button aria-label="Toggle Navigation Menu" class="mobile-menu-btn" title="Toggle Navigation Menu">
+<i class="fas fa-bars"></i>
+</button>
+</div>
+</nav>
+</header>
+<!-- Main Learning Layout with Left Sidebar -->
+<div class="learning-layout">
+<!-- Left Sidebar Course Outline (Collapsible on Mobile/Tablet) -->
+<aside aria-label="Course Syllabus" class="course-sidebar-nav">
+<!-- Module 1: Basics -->
+<div class="sidebar-module-group" data-module="module-1">
+<div aria-controls="mod1-list" aria-expanded="true" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 1 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 1: Basics</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod1-list">
+<ul>
+<li><a href="intro.html"><i class="fas fa-book-open"></i> SQL Introduction</a></li>
+<li><a href="languages.html"><i class="fas fa-laptop-code"></i> The 5 SQL Languages</a></li>
+<li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
+<li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
+<li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
+<li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
+<li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
+<li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
+<li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
+<li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
+<li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
+<li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
+<li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
+<li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
+<li><a href="right-join.html"><i class="fas fa-arrow-right"></i> RIGHT JOIN (Outer Join)</a></li>
+<li><a href="full-join.html"><i class="fas fa-arrows-alt-h"></i> FULL OUTER JOIN</a></li>
+<li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
+<li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
+<li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
+<li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
+<li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
+<li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
+<li class="active"><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
+<li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 2: Advance -->
+<div class="sidebar-module-group collapsed" data-module="module-2">
+<div aria-controls="mod2-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 2 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 2: Advance</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod2-list">
+<ul>
+<li><a href="#" onclick="alert('Module 2.1: Advanced Joins is coming soon!'); return false;"><i class="fas fa-link"></i> Advanced Joins</a></li>
+<li><a href="#" onclick="alert('Module 2.2: Window Functions is coming soon!'); return false;"><i class="fas fa-chart-bar"></i> Window Functions</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 3: References -->
+<div class="sidebar-module-group collapsed" data-module="module-3">
+<div aria-controls="mod3-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 3: References</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod3-list">
+<ul>
+<li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
+<li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+<li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
+<li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+</aside>
+<!-- Lesson Content Area -->
+<main class="lesson-container">
+<!-- Mobile Table of Contents Toggle -->
+<button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
+<i class="fas fa-list"></i> Table of Contents
             </button>
-
-            <div class="lesson-header">
-                <div class="lesson-breadcrumbs">
-                    <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>Stored Procedures</span>
-                </div>
-                <h1>Stored Procedures</h1>
-                <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read &bull; <i class="fas fa-signal"></i> Module 1: Basics</p>
-            </div>
-
-            <div class="lesson-content">
-                
-                <!-- Visual Concept Card: Real-World Analogy -->
-                <div class="visual-concept-card" style="align-items: flex-start;">
-                    <div class="concept-icon"><i class="fas fa-microchip"></i></div>
-                    <div class="concept-text">
-                        <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Commercial Airplane Autopilot Macro Analogy</h4>
-                        <p>Picture a commercial airline pilot executing a complex emergency descent procedure:</p>
-                        <ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-                            <li><strong>1. The Manual Burden::</strong> Manually adjusting throttles, fuel pumps, cabin pressurization, flaps, and radio frequencies requires 40 individual switch flips.</li>
-                            <li><strong>2. The Automated Macro (Stored Procedure)::</strong> Instead of flipping 40 manual switches, the flight computer has a pre-compiled autopilot routine: EXEC EmergencyDescent(target_altitude=10000).</li>
-                            <li><strong>3. Single Command Execution::</strong> The pilot presses one button; the flight computer executes all 40 commands atomically on the plane's internal hardware.</li>
-                            <li><strong>4. Reduced Transmission::</strong> Zero radio chatter is wasted sending 40 individual commands across the airwaves; the logic lives directly on the engine.</li>
-                        </ul>
-                        <p style="margin-top: 8px !important;">Stored procedures encapsulate multi-statement database logic directly on the database server, reducing network roundtrips and enforcing transaction security.</p>
-                    </div>
-                </div>
-
-
-                <h2>Syntax &amp; Statement Grammar</h2>
-                <p>The standard SQL syntax and pattern rules for <strong>Stored Procedures</strong>:</p>
-
-                <!-- Code Terminal (Obsidian Purple Theme) -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">SQL Syntax Grammar &bull; stored-procedures.sql</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">-- 1. Standard Procedure Creation (SQL Server / T-SQL Syntax)</span>
-<span class="code-comment">-- CREATE PROCEDURE ProcessCustomerRefund</span>
-<span class="code-comment">--     @OrderID INT,</span>
+<div class="lesson-header">
+<div class="lesson-breadcrumbs">
+<a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>Stored Procedures</span>
+</div>
+<h1>Stored Procedures</h1>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+</div>
+<div class="lesson-content">
+<!-- Visual Concept Card: Real-World Analogy -->
+<div class="visual-concept-card" style="align-items: flex-start;">
+<div class="concept-icon"><i class="fas fa-microchip"></i></div>
+<div class="concept-text">
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Commercial Airplane Autopilot Macro Analogy</h4>
+<p>Picture a commercial airline pilot executing a complex emergency descent procedure:</p>
+<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
+<li><strong>1. The Manual Burden::</strong> Manually adjusting throttles, fuel pumps, cabin pressurization, flaps, and radio frequencies requires 40 individual switch flips.</li>
+<li><strong>2. The Automated Macro (Stored Procedure)::</strong> Instead of flipping 40 manual switches, the flight computer has a pre-compiled autopilot routine: EXEC EmergencyDescent(target_altitude=10000).</li>
+<li><strong>3. Single Command Execution::</strong> The pilot presses one button; the flight computer executes all 40 commands atomically on the plane's internal hardware.</li>
+<li><strong>4. Reduced Transmission::</strong> Zero radio chatter is wasted sending 40 individual commands across the airwaves; the logic lives directly on the engine.</li>
+</ul>
+<p style="margin-top: 8px !important;">Stored procedures encapsulate multi-statement database logic directly on the database server, reducing network roundtrips and enforcing transaction security.</p>
+</div>
+</div>
+<h2>Syntax &amp; Statement Grammar</h2>
+<p>The standard SQL syntax and pattern rules for <strong>Stored Procedures</strong>:</p>
+<!-- Code Terminal (Obsidian Purple Theme) -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">--     @OrderID INT,</span>
 <span class="code-comment">--     @RefundAmount DECIMAL(10,2)</span>
 <span class="code-comment">-- AS</span>
 <span class="code-comment">-- BEGIN</span>
-<span class="code-comment">--     SET NOCOUNT ON;</span>
-<span class="code-comment">--     BEGIN TRANSACTION;</span>
-<span class="code-comment">--         UPDATE sales_orders SET status = 'REFUNDED' WHERE order_id = @OrderID;</span>
-<span class="code-comment">--         INSERT INTO audit_logs (order_id, amount, logged_at) VALUES (@OrderID, @RefundAmount, CURRENT_TIMESTAMP);</span>
-<span class="code-comment">--     COMMIT TRANSACTION;</span>
-<span class="code-comment">-- END;</span>
-
-<span class="code-comment">-- 2. Executing a Stored Procedure</span>
-<span class="code-comment">-- EXEC ProcessCustomerRefund @OrderID = 5001, @RefundAmount = 149.50;</span>
-
-<span class="code-comment">-- 3. PostgreSQL 11+ CREATE PROCEDURE Syntax</span>
-<span class="code-comment">-- CREATE OR REPLACE PROCEDURE transfer_funds(</span>
-<span class="code-comment">--     sender_id INT,</span>
+<span class="code-comment">--     SET NOCOUNT ON;</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Exact Match Predicate</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- EXEC ProcessCustomerRefund @OrderID = 5001, @RefundAmount = 149.50;</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">--     sender_id INT,</span>
 <span class="code-comment">--     receiver_id INT,</span>
 <span class="code-comment">--     amount NUMERIC</span>
 <span class="code-comment">-- )</span>
 <span class="code-comment">-- LANGUAGE plpgsql</span>
 <span class="code-comment">-- AS $$</span>
 <span class="code-comment">-- BEGIN</span>
-<span class="code-comment">--     UPDATE accounts SET balance = balance - amount WHERE id = sender_id;</span>
-<span class="code-comment">--     UPDATE accounts SET balance = balance + amount WHERE id = receiver_id;</span>
-<span class="code-comment">--     COMMIT;</span>
-<span class="code-comment">-- END;</span>
-<span class="code-comment">-- $$;</span>
-
-<span class="code-comment">-- 4. Calling a Procedure in PostgreSQL / MySQL</span>
-<span class="code-comment">-- CALL transfer_funds(101, 202, 500.00);</span></code></pre>
-                </div>
-
-                <h2>Core Concepts &amp; Engine Mechanics</h2>
-                <p>A <code>Stored Procedure</code> is a prepared collection of SQL statements and procedural logic (control-of-flow, loops, variables, exception handling) stored directly on the database server. Procedures can accept input parameters and return output parameters or full result sets.</p>
-                <ul>
-                    <li><strong>Precompiled Execution Plans:</strong> Database engines parse, optimize, and compile stored procedures on first run, caching the execution plan for high-speed subsequent invocations.</li>
-                    <li><strong>Drastic Network Latency Reduction:</strong> Instead of sending 20 separate SQL queries back and forth across the network, an application issues a single <code>CALL procedure_name()</code> command.</li>
-                    <li><strong>Enterprise Security Shield:</strong> Users and microservices can be granted <code>EXECUTE</code> permissions on a procedure without granting direct read/write permissions to underlying sensitive tables.</li>
-                    <li><strong>Procedures vs Functions:</strong> Stored Procedures can perform transaction control (<code>COMMIT</code> / <code>ROLLBACK</code>) and modify data; User-Defined Functions (UDFs) are read-only and return a scalar or table.</li>
-                </ul>
-
-                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-
-                <div class="table-responsive">
-                    <table class="compare-table">
-                        <thead>
-                            <tr>
-                                <th>Feature / Metric</th>
-                                <th>Stored Procedures</th>
-                                <th>User-Defined Functions (UDFs)</th>
-                                <th>Ad-Hoc SQL Queries</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Transaction Control</td>
-                                <td>Supports <code>COMMIT</code> and <code>ROLLBACK</code></td>
-                                <td>Cannot control transactions</td>
-                                <td>Client manages transactions</td>
-                            </tr>
-                            <tr>
-                                <td>Return Values</td>
-                                <td>Output parameters or result sets</td>
-                                <td>Must return single scalar or table</td>
-                                <td>Returns result set</td>
-                            </tr>
-                            <tr>
-                                <td>Invoked Via</td>
-                                <td><code>CALL</code> or <code>EXEC</code></td>
-                                <td>Directly inside <code>SELECT</code></td>
-                                <td>Client network payload</td>
-                            </tr>
-                            <tr>
-                                <td>Network Roundtrips</td>
-                                <td>1 network packet for multi-step workflow</td>
-                                <td>Dependent on query scope</td>
-                                <td>Multiple network roundtrips</td>
-                            </tr>
-                            <tr>
-                                <td>Security Model</td>
-                                <td>Grant EXECUTE without table access</td>
-                                <td>Grant EXECUTE</td>
-                                <td>Requires direct table permissions</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h3>Stored Procedures as an Enterprise Security Perimeter</h3>
-                <p>Stored procedures are a primary architectural defense against SQL Injection and unauthorized data exfiltration:</p>
-                <ul>
-                    <li><strong>Immunity to SQL Injection:</strong> Because procedure parameters are treated strictly as data literals and never concatenated into the execution string, parameterized procedures eliminate SQL injection vulnerabilities.</li>
-                    <li><strong>Least-Privilege Authorization:</strong> A junior developer's microservice can be granted permission to <code>EXEC CompleteOrder</code> while having ZERO access to run <code>SELECT * FROM credit_cards</code>.</li>
-                    <li><strong>Audit Centralization:</strong> Modifications to corporate accounting rules occur in one place on the database server rather than being duplicated across 15 different backend applications.</li>
-                </ul>
-
-                <h2>Real-World Practical Scenario</h2>
-                <p><strong>FinTech Peer-to-Peer Fund Transfer & Transaction Ledger:</strong> Encapsulate transactional balance transfers between two banking customer accounts with debit, credit, and audit logging.</p>
-
-                <!-- Scenario Code Terminal -->
-                <div class="code-terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="terminal-title">Production Queries &bull; FinTech Peer-to-Peer Fund Transfer & Transaction Ledger</span>
-                        <button class="try-editor-btn" onclick="const code = this.closest('.code-terminal').querySelector('code').innerText; window.open('editor.html?query=' + encodeURIComponent(code.trim()), '_blank');" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-                        <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-                    </div>
-                    <pre><code><span class="code-comment">/* ========================================================</span>
-<span class="code-comment">   Sample Schema:</span>
-<span class="code-comment">   accounts: (acc_id, owner_name, balance_usd)</span>
-<span class="code-comment">   transfers_audit: (transfer_id, from_acc, to_acc, amount, created_at)</span>
-<span class="code-comment">   ======================================================== */</span>
-
-<span class="code-comment">-- Requirement 1: Architectural structure of fund transfer stored procedure</span>
-<span class="code-comment">-- Demonstrating the multi-statement atomic transaction encapsulated inside procedure:</span>
-<span class="code-comment">/*</span>
-<span class="code-comment">CREATE OR REPLACE PROCEDURE execute_wire_transfer(</span>
-<span class="code-comment">    sender_account_id INT,</span>
-<span class="code-comment">    recipient_account_id INT,</span>
-<span class="code-comment">    transfer_amount NUMERIC</span>
-<span class="code-comment">)</span>
-<span class="code-comment">LANGUAGE plpgsql</span>
-<span class="code-comment">AS $$</span>
-<span class="code-comment">BEGIN</span>
-<span class="code-comment">    -- Step 1: Debit funds from sender</span>
-<span class="code-comment">    UPDATE accounts </span>
-<span class="code-comment">    SET balance_usd = balance_usd - transfer_amount </span>
-<span class="code-comment">    WHERE acc_id = sender_account_id AND balance_usd &gt;= transfer_amount;</span>
-<span class="code-comment">    </span>
-<span class="code-comment">    -- Step 2: Credit funds to recipient</span>
-<span class="code-comment">    UPDATE accounts </span>
-<span class="code-comment">    SET balance_usd = balance_usd + transfer_amount </span>
-<span class="code-comment">    WHERE acc_id = recipient_account_id;</span>
-<span class="code-comment">    </span>
-<span class="code-comment">    -- Step 3: Insert immutable audit trail log</span>
-<span class="code-comment">    INSERT INTO transfers_audit (from_acc, to_acc, amount, created_at)</span>
-<span class="code-comment">    VALUES (sender_account_id, recipient_account_id, transfer_amount, CURRENT_TIMESTAMP);</span>
-<span class="code-comment">    </span>
-<span class="code-comment">    COMMIT;</span>
-<span class="code-comment">END;</span>
-<span class="code-comment">$$;</span>
-<span class="code-comment">*/</span>
-
-<span class="code-comment">-- Requirement 2: Application execution call to initiate transfer</span>
-<span class="code-comment">-- CALL execute_wire_transfer(101, 202, 250.00);</span>
-<span class="code-comment">-- Matches: Atomically transfers $250.00 from Account 101 to Account 202 in 1 network roundtrip</span>
-
-<span class="code-comment">-- Requirement 3: Verifying account balances post-procedure execution</span>
-<span class="code-keyword">SELECT</span> acc_id, owner_name, balance_usd
+<span class="code-comment">--     UPDATE accounts SET balance = balance - amount WHERE id = sender_id;</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>id = sender_id</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- CALL transfer_funds(101, 202, 500.00);</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>A <code>Stored Procedure</code> is a prepared collection of SQL statements and procedural logic (control-of-flow, loops, variables, exception handling) stored directly on the database server. Procedures can accept input parameters and return output parameters or full result sets.</p>
+<ul>
+<li><strong>Precompiled Execution Plans:</strong> Database engines parse, optimize, and compile stored procedures on first run, caching the execution plan for high-speed subsequent invocations.</li>
+<li><strong>Drastic Network Latency Reduction:</strong> Instead of sending 20 separate SQL queries back and forth across the network, an application issues a single <code>CALL procedure_name()</code> command.</li>
+<li><strong>Enterprise Security Shield:</strong> Users and microservices can be granted <code>EXECUTE</code> permissions on a procedure without granting direct read/write permissions to underlying sensitive tables.</li>
+<li><strong>Procedures vs Functions:</strong> Stored Procedures can perform transaction control (<code>COMMIT</code> / <code>ROLLBACK</code>) and modify data; User-Defined Functions (UDFs) are read-only and return a scalar or table.</li>
+</ul>
+<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Feature / Metric</th>
+<th>Stored Procedures</th>
+<th>User-Defined Functions (UDFs)</th>
+<th>Ad-Hoc SQL Queries</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transaction Control</td>
+<td>Supports <code>COMMIT</code> and <code>ROLLBACK</code></td>
+<td>Cannot control transactions</td>
+<td>Client manages transactions</td>
+</tr>
+<tr>
+<td>Return Values</td>
+<td>Output parameters or result sets</td>
+<td>Must return single scalar or table</td>
+<td>Returns result set</td>
+</tr>
+<tr>
+<td>Invoked Via</td>
+<td><code>CALL</code> or <code>EXEC</code></td>
+<td>Directly inside <code>SELECT</code></td>
+<td>Client network payload</td>
+</tr>
+<tr>
+<td>Network Roundtrips</td>
+<td>1 network packet for multi-step workflow</td>
+<td>Dependent on query scope</td>
+<td>Multiple network roundtrips</td>
+</tr>
+<tr>
+<td>Security Model</td>
+<td>Grant EXECUTE without table access</td>
+<td>Grant EXECUTE</td>
+<td>Requires direct table permissions</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3>Stored Procedures as an Enterprise Security Perimeter</h3>
+<p>Stored procedures are a primary architectural defense against SQL Injection and unauthorized data exfiltration:</p>
+<ul>
+<li><strong>Immunity to SQL Injection:</strong> Because procedure parameters are treated strictly as data literals and never concatenated into the execution string, parameterized procedures eliminate SQL injection vulnerabilities.</li>
+<li><strong>Least-Privilege Authorization:</strong> A junior developer's microservice can be granted permission to <code>EXEC CompleteOrder</code> while having ZERO access to run <code>SELECT * FROM credit_cards</code>.</li>
+<li><strong>Audit Centralization:</strong> Modifications to corporate accounting rules occur in one place on the database server rather than being duplicated across 15 different backend applications.</li>
+</ul>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>FinTech Peer-to-Peer Fund Transfer &amp; Transaction Ledger:</strong> Encapsulate transactional balance transfers between two banking customer accounts with debit, credit, and audit logging.</p>
+<!-- Scenario Code Terminal -->
+<div class="code-terminal" style="margin-bottom: 1.25rem;">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">/*
+CREATE OR REPLACE PROCEDURE execute_wire_transfer(
+    sender_account_id INT,
+    recipient_account_id INT,
+    transfer_amount NUMERIC
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    -- Step 1: Debit funds from sender
+    UPDATE accounts 
+    SET balance_usd = balance_usd - transfer_amount 
+    WHERE acc_id = sender_account_id AND balance_usd &gt;= transfer_amount;
+    
+    -- Step 2: Credit funds to recipient
+    UPDATE accounts 
+    SET balance_usd = balance_usd + transfer_amount 
+    WHERE acc_id = recipient_account_id;
+    
+    -- Step 3: Insert immutable audit trail log
+    INSERT INTO transfers_audit (from_acc, to_acc, amount, created_at)
+    VALUES (sender_account_id, recipient_account_id, transfer_amount, CURRENT_TIMESTAMP);
+    
+    COMMIT;
+END;
+$$;
+*/</span></code></pre>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 1: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-op">/</span><span class="code-op">*</span>
+<span class="code-keyword">CREATE</span> <span class="code-keyword">OR</span> REPLACE PROCEDURE execute_wire_transfer(
+    sender_account_id INT,
+    recipient_account_id INT,
+    transfer_amount NUMERIC
+)
+LANGUAGE plpgsql
+<span class="code-keyword">AS</span> $$
+BEGIN
+    <span class="code-comment">-- Step 1: Debit funds from sender</span>
+    <span class="code-keyword">UPDATE</span> accounts 
+    <span class="code-keyword">SET</span> balance_usd <span class="code-op">=</span> balance_usd <span class="code-op">-</span> transfer_amount 
+    <span class="code-keyword">WHERE</span> acc_id <span class="code-op">=</span> sender_account_id <span class="code-keyword">AND</span> balance_usd <span class="code-op">&gt;=</span> transfer_amount;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>sender</code> using the condition <code>acc_id = sender_account_id AND balance_usd &gt;= transfer_amount</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 2: Record Modification</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">UPDATE</span> accounts 
+    <span class="code-keyword">SET</span> balance_usd <span class="code-op">=</span> balance_usd <span class="code-op">+</span> transfer_amount 
+    <span class="code-keyword">WHERE</span> acc_id <span class="code-op">=</span> recipient_account_id;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>acc_id = recipient_account_id</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 3: Record Insertion</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> transfers_audit (from_acc, to_acc, amount, created_at)
+    <span class="code-keyword">VALUES</span> (sender_account_id, recipient_account_id, transfer_amount, CURRENT_TIMESTAMP);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes data modification against <code>transfers_audit</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 4: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>COMMIT;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 5: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">END</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 6: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code>$$;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 7: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-op">*</span><span class="code-op">/</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 8: Data Projection &amp; Extraction</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Demonstrating the multi-statement atomic transaction encapsulated inside procedure:</span></code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 9: Discrete Value Set Matching</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> acc_id, owner_name, balance_usd
 <span class="code-keyword">FROM</span> accounts
-<span class="code-keyword">WHERE</span> acc_id <span class="code-keyword">IN</span> (101, 202);
-<span class="code-comment">-- Matches: Account 101 debited by $250, Account 202 credited by $250</span>
-
-<span class="code-comment">-- Requirement 4: Verification of audit ledger generated by procedure</span>
-<span class="code-keyword">SELECT</span> transfer_id, from_acc, to_acc, amount, created_at
+<span class="code-keyword">WHERE</span> acc_id <span class="code-keyword">IN</span> (<span class="code-num">101</span>, <span class="code-num">202</span>);</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Filters rows in <code>accounts</code> using the condition <code>acc_id IN (101, 202)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
+        </div>
+</div>
+</div>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query 10: Sorted Sequence Retrieval</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> transfer_id, from_acc, to_acc, amount, created_at
 <span class="code-keyword">FROM</span> transfers_audit
-<span class="code-keyword">ORDER BY</span> transfer_id <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> 1;
-<span class="code-comment">-- Matches: Verified immutable transaction log entry committed by procedure</span></code></pre>
-                </div>
-
-                <!-- Chapter Summary -->
-                <h2>Chapter Summary</h2>
-                <p>Stored procedures encapsulate multi-statement database operations on the server, enhancing enterprise security, reducing network roundtrips, and precompiling execution plans.</p>
-                <div class="summary-box">
-                    <ul class="summary-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Server-Side Execution:</strong> Logic executes directly on the database engine, eliminating client-server network roundtrip latency.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Transaction Management:</strong> Procedures natively manage transactions with COMMIT and ROLLBACK boundaries.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Security Least-Privilege:</strong> Grant users EXECUTE permissions without exposing direct read/write access to underlying tables.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>SQL Injection Defense:</strong> Parameterized procedure inputs prevent SQL injection attacks.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Precompiled Optimization:</strong> Query planners optimize and cache execution plans for fast repeated execution.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <!-- Professional 3-Column Navigation Footer -->
-            <div class="lesson-footer">
-                <div class="lesson-nav-prev">
-                    <a href="null-functions.html" class="btn-outline" title="Previous: SQL NULL Functions (COALESCE & IFNULL)">
-                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL NULL Functions (COALESCE & IFNULL)</span>
-                    </a>
-                </div>
-                <div class="lesson-nav-center">
-                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="sql_stored_procedures">
-                        <i class="fas fa-check"></i> <span>Mark Complete</span>
-                    </button>
-                </div>
-                <div class="lesson-nav-next">
-                    <a href="comments.html" class="btn-enroll" title="Next: SQL Comments">
-                        <span class="btn-text">Next: SQL Comments</span> <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-        </main>
-
-    </div>
-
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug <span class="badge-coming-soon">Coming Soon</span></a></li>
-                </ul>
-            </div>
+ORDER BY transfer_id <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">1</span>;</code></pre>
+<div class="code-explanation-note">
+<i class="fas fa-info-circle"></i>
+<div class="note-text">
+<strong>How this query works:</strong> Queries <code>transfers_audit</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="../javascript/script.js"></script>
+</div>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>Stored procedures encapsulate multi-statement database operations on the server, enhancing enterprise security, reducing network roundtrips, and precompiling execution plans.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Server-Side Execution:</strong> Logic executes directly on the database engine, eliminating client-server network roundtrip latency.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Transaction Management:</strong> Procedures natively manage transactions with COMMIT and ROLLBACK boundaries.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Security Least-Privilege:</strong> Grant users EXECUTE permissions without exposing direct read/write access to underlying tables.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>SQL Injection Defense:</strong> Parameterized procedure inputs prevent SQL injection attacks.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Precompiled Optimization:</strong> Query planners optimize and cache execution plans for fast repeated execution.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Professional 3-Column Navigation Footer -->
+<div class="lesson-footer">
+<div class="lesson-nav-prev">
+<a class="btn-outline" href="null-functions.html" title="Previous: SQL NULL Functions (COALESCE &amp; IFNULL)">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL NULL Functions (COALESCE &amp; IFNULL)</span>
+</a>
+</div>
+<div class="lesson-nav-center">
+<button class="btn-outline mark-complete-btn" data-lesson-id="sql_stored_procedures" id="markCompleteBtn">
+<i class="fas fa-check"></i> <span>Mark Complete</span>
+</button>
+</div>
+<div class="lesson-nav-next">
+<a class="btn-enroll" href="comments.html" title="Next: SQL Comments">
+<span class="btn-text">Next: SQL Comments</span> <i class="fas fa-arrow-right"></i>
+</a>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer Section -->
+<footer class="footer" id="contact">
+<div class="footer-container">
+<div class="footer-brand">
+<div class="brand-title">EDMITH</div>
+<p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+</div>
+<div class="footer-links">
+<h3>Quick Links</h3>
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="../course.html">All Courses</a></li>
+<li><a href="index.html">SQL Mastery</a></li>
+<li><a href="editor.html">SQL Editor</a></li>
+</ul>
+</div>
+<div class="footer-links">
+<h3>Support</h3>
+<ul>
+<li><a href="../index.html#contact">Help Center</a></li>
+<li><a href="../index.html#contact">Contact Us</a></li>
+<li><a class="report-bug-link" href="report-bug.html">Report a Bug</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+</div>
+</footer>
+<script src="../javascript/script.js"></script>
 </body>
 </html>
