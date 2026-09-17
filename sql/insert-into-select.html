@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The INSERT INTO SELECT Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The INSERT INTO SELECT Statement - Master high-throughput batch data migration, staging table seeding, and ETL pipelines on EDMITH." name="description"/>
 <title>The INSERT INTO SELECT Statement - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li class="active"><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -162,20 +162,18 @@
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-truck-loading"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Bulk Freight Transfer Conveyor Analogy</h4>
-<p>Picture a warehouse operations team transferring merchandise from an intake dock to a permanent warehouse bin:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Pre-Existing Destination Rack::</strong> A heavy-duty industrial storage rack is already built, bolted to the floor, and labeled with inventory barcodes.</li>
-<li><strong>2. The Source Pallet::</strong> A forklift brings in a pallet of newly manufactured electronics from the factory.</li>
-<li><strong>3. The Automated Conveyor (INSERT INTO SELECT)::</strong> The conveyor scans items matching specific criteria (SELECT ... WHERE category = 'Gadgets') and transfers them directly into the pre-existing storage rack.</li>
-<li><strong>4. Schema Alignment::</strong> The items fit perfectly because the destination rack was built specifically to accommodate those exact product dimensions.</li>
-</ul>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Bulk Freight Conveyor Transfer Analogy</h4>
+<p>Picture a warehouse operations team transferring merchandise from an intake dock to permanent inventory racks:</p>
+<p style="margin-top: 8px !important;"><strong>1. The Pre-Constructed Destination Rack:</strong> A permanent industrial warehouse rack is already built, bolted down, and mapped with specific shelf dimensions and inventory barcodes.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Inbound Receiving Pallet:</strong> A shipping container arrives with newly manufactured products of varying categories on a receiving dock.</p>
+<p style="margin-top: 8px !important;"><strong>3. The High-Speed Conveyor Belt:</strong> Rather than moving boxes one by one, an automated conveyor scans items matching specific criteria (<code>SELECT ... WHERE category = 'Gadgets'</code>) and channels them in bulk into the permanent storage rack.</p>
+<p style="margin-top: 8px !important;"><strong>4. Schema and Type Precision:</strong> The transfer executes flawlessly because the destination rack was built specifically with columns and datatypes matching the incoming data stream.</p>
 <p style="margin-top: 8px !important;">The INSERT INTO SELECT command extracts rows from source tables and inserts them into an existing destination table, providing a high-throughput pipeline for data migration.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>The INSERT INTO SELECT Statement</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,23 +181,51 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Record Insertion</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> archived_orders (order_id, customer_id, order_total, order_date)
-<span class="code-keyword">SELECT</span> order_id, customer_id, order_total, order_date
-<span class="code-keyword">FROM</span> active_orders
-<span class="code-keyword">WHERE</span> order_date <span class="code-op">&lt;</span> <span class="code-string">'2025-01-01'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>archived_orders</code> using the condition <code>order_date &lt; '2025-01-01'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- 1. All-Column Batch Insertion into Pre-Existing Table</span>
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> destination_table
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> source_table
+<span class="code-keyword">WHERE</span> filter_condition;
+
+<span class="code-comment">-- 2. Explicit Column-Mapped Batch Insertion</span>
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> destination_table (col1, col2, col3)
+<span class="code-keyword">SELECT</span> source_col1, source_col2, computed_expr
+<span class="code-keyword">FROM</span> source_table
+<span class="code-keyword">WHERE</span> filter_condition;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>INSERT INTO SELECT Blueprint Breakdown</h4>
 </div>
+<p>Core rules and architectural mechanics governing batch row migration and ETL pipelines in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Pre-Existing Target Table:</strong> Unlike <code>SELECT INTO</code> which automatically creates tables, <code>INSERT INTO SELECT</code> requires the target table to exist beforehand with its schema, constraints, and indexes pre-defined.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Positional Type Compatibility:</strong> Column names in the <code>SELECT</code> clause do not need to match the destination table; however, the number of columns and their data types must align sequentially.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Atomic Batch Commits:</strong> If any single row fails a constraint (such as a duplicate primary key or check violation), the entire batch operation is rolled back by the relational engine.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>ETL Standard Pattern:</strong> Universally supported across all SQL dialects (PostgreSQL, MySQL, Oracle, SQL Server, SQLite) as the primary tool for database ETL and aggregation tables.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of <code>INSERT INTO SELECT</code> running against active relational tables (<code>customers</code>, <code>product_list</code>, <code>sells_list</code>, and <code>employees</code>):</p>
+<!-- Query 1: VIP Loyalty Club Directory Seeding -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -207,26 +233,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Record Insertion</span>
+<span class="terminal-title">Query 1: VIP Loyalty Club Directory Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> daily_revenue_summary (report_date, total_transactions, gross_revenue)
-<span class="code-keyword">SELECT</span> 
-    CURRENT_DATE,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>),
-    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(total_amount), <span class="code-num">0.00</span>)
-<span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> CAST(created_at <span class="code-keyword">AS</span> DATE) <span class="code-op">=</span> CURRENT_DATE;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>daily_revenue_summary</code> using the condition <code>CAST(created_at AS DATE) = CURRENT_DATE</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> vip_loyalty_club (customer_id <span class="code-keyword">INT</span>, first_name <span class="code-keyword">STRING</span>, last_name <span class="code-keyword">STRING</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> vip_loyalty_club (customer_id, first_name, last_name)
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> customer_id &lt;= <span class="code-num">10</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-stream"></i>
+<h4>Loyalty Club Seeding Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div>Establishes an explicit destination table <code>vip_loyalty_club</code> tailored for customer loyalty programs.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div>Streams the foundational top 10 accounts from the 612-row <code>customers</code> directory directly into the new club roster.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Appends 10 verified records simultaneously without manual <code>VALUES</code> loops.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Clearance Price Markdown Migration -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -234,26 +279,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Record Insertion</span>
+<span class="terminal-title">Query 2: Promotional Clearance Catalog Migration</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> audit_log_history (event_id, user_id, action_name, logged_by)
-<span class="code-keyword">SELECT</span> 
-    log_id,
-    account_id,
-    <span class="code-string">'SECURITY_SCAN_PASSED'</span>,
-    <span class="code-string">'CRON_SYSTEM_DAEMON'</span>
-<span class="code-keyword">FROM</span> temp_security_events;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>audit_log_history</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> discounted_catalog (product_id <span class="code-keyword">INT</span>, product_name <span class="code-keyword">STRING</span>, category <span class="code-keyword">STRING</span>, price <span class="code-keyword">DECIMAL</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> discounted_catalog (product_id, product_name, category, price)
+<span class="code-keyword">SELECT</span> product_id, product_name, category, <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.85</span>, <span class="code-num">2</span>)
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> price &lt; <span class="code-num">50.00</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tags"></i>
+<h4>Clearance Catalog Migration Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Applies Inline:</strong> Applies inline arithmetic transformation (15% markdown) directly within the projected <code>SELECT</code> clause.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div>Inserts 10 qualifying budget products (&lt; $50.00) into <code>discounted_catalog</code>.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Demonstrates Etl:</strong> Demonstrates ETL data transformation during transit without altering source pricing records.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 3: Settled Revenue Ledger Archival -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -261,102 +325,156 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
+<span class="terminal-title">Query 3: Settled Revenue Ledger Archival</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customer_vip_roster (customer_id, full_name, total_annual_spend)
-<span class="code-keyword">SELECT</span> 
-    c.customer_id,
-    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name,
-    <span class="code-func">SUM</span>(o.order_total)
-<span class="code-keyword">FROM</span> customers c
-INNER <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> o.customer_id
-GROUP BY c.customer_id, c.first_name, c.last_name
-<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(o.order_total) <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>customer_vip_roster</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> settled_revenue_summary (sale_id <span class="code-keyword">INT</span>, customer_id <span class="code-keyword">INT</span>, total_price <span class="code-keyword">DECIMAL</span>, payment_status <span class="code-keyword">STRING</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> settled_revenue_summary (sale_id, customer_id, total_price, payment_status)
+<span class="code-keyword">SELECT</span> sale_id, customer_id, total_price, payment_status
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-chart-line"></i>
+<h4>Revenue Ledger Archival Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Migrates 37 verified paid orders from <code>sells_list</code> into a permanent financial audit table.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Filters Out:</strong> Filters out pending and disputed transactions to preserve audit purity.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div>Maintains high throughput across ledger tables during fiscal quarter-end reporting runs.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 4: Senior Staff Compensation Roster -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Senior Leadership Roster Pipeline</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> senior_staff_roster (emp_id <span class="code-keyword">INT</span>, staff_name <span class="code-keyword">STRING</span>, dept <span class="code-keyword">STRING</span>, comp <span class="code-keyword">DECIMAL</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> senior_staff_roster (emp_id, staff_name, dept, comp)
+<span class="code-keyword">SELECT</span> employee_id, first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> salary &gt;= <span class="code-num">80000.00</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-stream"></i>
+<h4>Leadership Roster Pipeline Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Performs column aliasing and string concatenation:</strong> concatenates first and last name into <code>staff_name</code>.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div>Populates 9 senior managers and executives earning $80,000+ into <code>senior_staff_roster</code>.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Demonstrates How:</strong> Demonstrates how schema definitions between source and target do not have to match column names.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>INSERT INTO SELECT</code> statement copies data from one or more tables and inserts it into an existing target table. The destination table must already exist in the database catalog with compatible data types.</p>
-<ul>
-<li><strong>Destination Table Pre-Requisite:</strong> Unlike SELECT INTO, the destination table must already be defined with its schema, primary keys, and indexes in place.</li>
-<li><strong>Column Matching by Position:</strong> Values are mapped into target columns based on position in the SELECT list, not by name; column counts and data types must match.</li>
-<li><strong>High-Throughput ETL Pipeline:</strong> Because operations occur internally within the database storage engine without sending rows to the client, performance is extraordinarily fast.</li>
-<li><strong>Constraint Enforcement:</strong> The target table enforces all PRIMARY KEY, FOREIGN KEY, and NOT NULL constraints on inserted rows during execution.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>Understanding when to use <code>INSERT INTO SELECT</code> versus <code>SELECT INTO</code> is fundamental for building reliable database pipelines.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Feature</th>
+<th>Feature / Operation</th>
 <th><code>INSERT INTO SELECT</code></th>
 <th><code>SELECT INTO</code></th>
-<th>Performance Impact</th>
+<th><code>INSERT INTO VALUES</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Destination Table</td>
-<td>Must ALREADY exist</td>
-<td>Must NOT exist (Created on fly)</td>
-<td>INSERT INTO allows pre-tuned indexes</td>
+<td>Target Table Existence</td>
+<td><strong>Must exist beforehand</strong></td>
+<td>Auto-created on the fly</td>
+<td>Must exist beforehand</td>
 </tr>
 <tr>
-<td>Existing Data</td>
-<td>Appends to existing records</td>
-<td>Wipes/creates new table</td>
-<td>Preserves target historical records</td>
+<td>Data Source</td>
+<td>Existing relational query</td>
+<td>Existing relational query</td>
+<td>Hardcoded literals</td>
 </tr>
 <tr>
-<td>Constraint Enforcement</td>
-<td>Enforces target PK, FK, CHECK</td>
-<td>Only retains nullability</td>
-<td>Protects relational integrity</td>
+<td>Schema Constraints</td>
+<td>Preserves target constraints/PKs</td>
+<td>Drops target constraints/PKs</td>
+<td>Preserves target constraints</td>
 </tr>
 <tr>
-<td>ETL Batching</td>
-<td>Supports incremental batch loads</td>
-<td>One-shot table replacement</td>
-<td>Standard pattern for nightly ETL jobs</td>
+<td>Append vs Overwrite</td>
+<td><strong>Appends</strong> to existing records</td>
+<td>Creates new table (fails if exists)</td>
+<td>Appends single/batch rows</td>
+</tr>
+<tr>
+<td>ETL &amp; Batch Capability</td>
+<td>Optimal for recurring ETL jobs</td>
+<td>Optimal for ad-hoc snapshots</td>
+<td>Manual / programmatic ingestion</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Column Positional Mapping: The Silent Data Swap Trap</h3>
-<p>When using INSERT INTO SELECT, the query engine maps values based on column order, not column names:</p>
-<ul>
-<li><strong>The Hazard:</strong> If you write <code>INSERT INTO users (email, phone) SELECT phone, email FROM temp;</code>, phone numbers land in the email column!</li>
-<li><strong>No Error Thrown:</strong> If both columns are <code>VARCHAR</code>, the database cannot detect the swap and commits corrupted data silently.</li>
-<li><strong>The Best Practice:</strong> Always explicitly list the target columns in parentheses and double-check that the SELECT projection order matches the target list 1-to-1.</li>
+<h3>High-Performance Bulk Loading Patterns</h3>
+<p>When executing mass batch migrations inserting millions of records into production tables, follow these optimization guidelines:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Temporary Index Disabling:</strong> Drop non-clustered indexes on the target table before bulk insertion, then rebuild them afterward. This reduces index balance overhead from O(N log N) per row to a single sequential build.</span>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<span><strong>Chunking Long Transactions:</strong> Break multi-million-row transfers into chunks of 10,000 to 50,000 rows to avoid transaction log exhaustion and long-running table locks.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Identity Insert Handling:</strong> In SQL Server, use <code>SET IDENTITY_INSERT target_table ON</code> when explicitly inserting primary key identifiers into identity columns.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Enterprise E-Commerce Cold Storage Order Archival:</strong> Migrate completed orders older than one year from high-speed transactional tables into cost-effective historical cold storage tables.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Pre-Existing Target Table: order_cold_storage
-   order_id (PK) | customer_id | order_total | closed_date | archived_at
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Multi-Table Order Fulfillment Aggregation:</strong> Join customer profiles, active orders, and catalog items to seed an analytical fulfillment table, then inspect the consolidated results.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -364,48 +482,44 @@ GROUP BY c.customer_id, c.first_name, c.last_name
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Record Insertion</span>
+<span class="terminal-title">Production Query 1: Multi-Table Aggregation Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> order_cold_storage (order_id, customer_id, order_total, closed_date, archived_at)
-<span class="code-keyword">SELECT</span> 
-    order_id,
-    customer_id,
-    order_total,
-    order_date,
-    CURRENT_TIMESTAMP
-<span class="code-keyword">FROM</span> live_orders
-<span class="code-keyword">WHERE</span> order_date <span class="code-op">&lt;</span> <span class="code-string">'2025-01-01'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>order_cold_storage</code> using the condition <code>order_date &lt; '2025-01-01' AND status = 'COMPLETED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> high_value_orders (sale_id <span class="code-keyword">INT</span>, customer_name <span class="code-keyword">STRING</span>, product_name <span class="code-keyword">STRING</span>, revenue <span class="code-keyword">DECIMAL</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> high_value_orders (sale_id, customer_name, product_name, revenue)
+<span class="code-keyword">SELECT</span> s.sale_id, c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name, p.product_name, s.total_price
+<span class="code-keyword">FROM</span> sells_list s
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
+<span class="code-keyword">WHERE</span> s.total_price &gt;= <span class="code-num">250.00</span>;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-chart-line"></i>
+<h4>Multi-Table Aggregation Seeding Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Discrete Value Set Matching</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> live_orders
-<span class="code-keyword">WHERE</span> order_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> order_id <span class="code-keyword">FROM</span> order_cold_storage);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>live_orders</code> using the condition <code>order_id IN (SELECT order_id FROM order_cold_storage)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-columns"></i>
+<div>Creates the dedicated reporting table <code>high_value_orders</code> with clean schema definitions.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Performs A:</strong> Performs a 3-table relational inner join combining <code>sells_list</code>, <code>customers</code>, and <code>product_list</code>.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Appends 22 orders exceeding $250.00 into the pre-configured analytical reporting table in a single atomic transaction.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <div class="code-terminal">
@@ -415,72 +529,75 @@ GROUP BY c.customer_id, c.first_name, c.last_name
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 3: Boundary Range Filtering</span>
+<span class="terminal-title">Production Query 2: Inspect Consolidated High-Value Orders</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> monthly_revenue_ledger (ledger_year, ledger_month, total_revenue)
-<span class="code-keyword">SELECT</span> 
-    <span class="code-num">2026</span>,
-    <span class="code-num">3</span>,
-    <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(order_total), <span class="code-num">0</span>)
-<span class="code-keyword">FROM</span> live_orders
-<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-03-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-03-31'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>monthly_revenue_ledger</code> using the condition <code>order_date BETWEEN '2026-03-01' AND '2026-03-31'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">SELECT</span> sale_id, customer_name, product_name, revenue
+<span class="code-keyword">FROM</span> high_value_orders
+<span class="code-keyword">ORDER BY</span> revenue <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-shield-alt"></i>
+<h4>Consolidated Orders Verification Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-database"></i>
+<div>Queries the newly populated table to inspect high-ticket client transactions.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div>Validates that customer names, catalog product titles, and accurate transaction totals transferred cleanly.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div>Confirms 100% relational integrity across joined source records.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> archived_order_count
-<span class="code-keyword">FROM</span> order_cold_storage;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>order_cold_storage</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The INSERT INTO SELECT command extracts rows from source tables and appends them into an existing destination table, providing a high-throughput pipeline for data archiving and warehouse transforms.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Pre-Existing Table Required:</strong> The destination table must already exist in the database before running INSERT INTO SELECT.</span>
+<span><strong>Always Name Target Columns:</strong> Never rely on positional mapping alone; always specify explicit destination columns <code>INSERT INTO target (c1, c2)</code> to prevent errors if table schemas change.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Explicit Column Mapping:</strong> Always declare destination column names in parentheses to avoid positional data swap errors.</span>
+<span><strong>Filter with Precision:</strong> Always execute the underlying <code>SELECT</code> statement by itself first to verify row counts and data transformations before inserting.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Schema Integrity:</strong> Target table constraints (Primary Keys, Foreign Keys, NOT NULL) are strictly enforced during insertion.</span>
+<span><strong>Next Step:</strong> Learn code documentation and commenting standards in <a href="comments.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Comments</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The INSERT INTO SELECT statement transfers query result sets in bulk into pre-existing destination tables, serving as the cornerstone for database ETL, data warehousing, and archival pipelines.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Pre-Existing Schema:</strong> Appends data directly into established tables without losing indexes or constraints.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>ETL Workhorse:</strong> The premier SQL command for data warehousing pipelines, table partitioning, and data migration.</span>
+<span><strong>Transform In-Transit:</strong> Apply mathematical functions, string concatenation, and relational joins during the transfer.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Batch Transaction Safety:</strong> Wrap in explicit transactions when performing migration followed by source table deletion.</span>
+<span><strong>Next Chapter:</strong> Master query documentation techniques with <a href="comments.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Comments →</a></span>
 </li>
 </ul>
 </div>
@@ -498,8 +615,8 @@ GROUP BY c.customer_id, c.first_name, c.last_name
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="case.html" title="Next: The CASE Expression">
-<span class="btn-text">Next: The CASE Expression</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="comments.html" title="Next: SQL Comments">
+<span class="btn-text">Next: SQL Comments</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

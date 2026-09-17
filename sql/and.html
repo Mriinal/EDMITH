@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li class="active"><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -155,335 +155,364 @@
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The AND Operator</span>
 </div>
 <h1>The AND Operator</h1>
-<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 12 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
 </div>
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-key"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Two-Factor Bank Vault Analogy</h4>
-<p>Think of the AND operator like a high-security bank vault equipped with two independent safety mechanisms:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Key 1 (The Customer)::</strong> The customer inserts their personal safety deposit box key into lock A.</li>
-<li><strong>2. Key 2 (The Vault Manager)::</strong> The bank branch manager inserts the master security key into lock B.</li>
-<li><strong>3. Both Required Simultaneously::</strong> The vault door opens IF AND ONLY IF both Key 1 is turned AND Key 2 is turned simultaneously.</li>
-<li><strong>4. Rejection If Either Fails::</strong> If the customer is absent or the manager is unauthorized, the vault remains tightly sealed.</li>
-</ul>
-<p style="margin-top: 8px !important;">The AND boolean operator requires every single chained condition to evaluate strictly to TRUE for a row to be admitted.</p>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Dual-Key Bank Vault Analogy</h4>
+<p>Think of the SQL AND operator like a high-security bank safety deposit vault with two independent physical locks:</p>
+<p style="margin-top: 8px !important;"><strong>1. Key 1 (Customer Key):</strong> The customer inserts their security key into Lock A.</p>
+<p style="margin-top: 8px !important;"><strong>2. Key 2 (Branch Manager Key):</strong> The vault manager inserts the institutional master key into Lock B.</p>
+<p style="margin-top: 8px !important;"><strong>3. Simultaneous Conjunction Required:</strong> The vault door unlocks IF AND ONLY IF Key 1 is turned AND Key 2 is turned simultaneously.</p>
+<p style="margin-top: 8px !important;"><strong>4. Instant Rejection If Either Fails:</strong> If either party is missing, invalid, or unverified, the vault remains securely locked.</p>
+<p style="margin-top: 8px !important;">The AND boolean operator requires every single chained condition in the WHERE clause to evaluate strictly to TRUE for a row to be admitted into query results.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The AND Operator</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical AND Operator Syntax</h2>
+<p>In standard SQL, conditions connected by <code>AND</code> are evaluated left-to-right (subject to operator precedence) and must all be satisfied:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Threshold Comparison</span>
+<span class="terminal-title">Grammar Blueprint: Logical Conjunction with AND</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative AND Conjunction Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> condition1 <span class="code-keyword">AND</span> condition2 <span class="code-keyword">AND</span> condition3;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>AND Blueprint Breakdown</h4>
+</div>
+<p>How the relational engine evaluates multi-predicate conjunctions:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Cumulative Filtering:</strong> Each additional <code>AND</code> condition narrows the search space, acting as an increasingly strict filter funnel.</div>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<div><strong>Short-Circuit Optimization:</strong> If the database evaluates <code>condition1</code> and finds it to be <code>FALSE</code>, it immediately drops the row without wasting CPU cycles evaluating <code>condition2</code> or <code>condition3</code>.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Operator Precedence:</strong> In SQL, <code>AND</code> has higher evaluation precedence than <code>OR</code>. When combining both, always use parentheses <code>( )</code> to make grouping unambiguous.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-info-circle"></i>
+<span><strong>Precedence Reference:</strong> To review operator precedence order in full detail, explore our <a href="operators.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">SQL Operators Reference (Module 3) →</a></span>
+</div>
+</div>
+
+<!-- Section 2: Filtering on product_list -->
+<h2>2. Multi-Attribute Filtering: Product Inventory &amp; Pricing</h2>
+<p>Filter products by matching category, maximum price, and minimum warehouse stock levels simultaneously:</p>
+
+<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Finding Budget In-Stock Electronics</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department, salary
+<pre><code><span class="code-comment">-- Find electronics priced under $200 with at least 25 units in stock</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> 
+  <span class="code-keyword">AND</span> price <span class="code-op">&lt;</span> <span class="code-num">200.00</span> 
+  <span class="code-keyword">AND</span> stock_quantity <span class="code-op">&gt;=</span> <span class="code-num">25</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Product Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-boxes"></i>
+<h4>Catalog Predicate Breakdown</h4>
+</div>
+<p>How the 3-part conjunction refines the inventory selection:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-tag"></i>
+<div><strong>Categorical Filter (<code>category = 'Electronics'</code>):</strong> Narrows the 25 catalog items to the 6 electronics hardware products.</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Price Ceiling (<code>price &lt; 200.00</code>):</strong> Eliminates luxury items (e.g., $1299 Pro Laptop and $349 4K Monitor).</div>
+</li>
+<li>
+<i class="fas fa-warehouse"></i>
+<div><strong>Stock Availability (<code>stock_quantity &gt;= 25</code>):</strong> Guarantees that only products with immediate warehouse fulfillment capacity (such as Ergonomic Mice and Wireless Earbuds) survive.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
+</div>
+</div>
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Comparing with Alternative Filters?</strong> Learn how alternative conditions work in our next chapter: 
+<a href="or.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The OR Operator →</a> or explore all comparison and logical symbols in the 
+<a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Operators Reference (Module 3) →</a>
+</p>
+</div>
+
+<!-- Section 3: Fulfillment Filtering on sells_list -->
+<h2>3. Transactional Auditing: High-Value Paid Sales Orders</h2>
+<p>Auditing transactional tables requires compound filtering across payment settlement status, transaction revenue, and item quantities:</p>
+
+<!-- Sales Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Auditing Settled High-Value Bulk Sales</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Identify fulfilled transactions exceeding $200 with 2 or more units purchased</span>
+<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
+  <span class="code-keyword">AND</span> total_price <span class="code-op">&gt;=</span> <span class="code-num">200.00</span> 
+  <span class="code-keyword">AND</span> quantity <span class="code-op">&gt;=</span> <span class="code-num">2</span>
+<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Sales Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-receipt"></i>
+<h4>Sales Conjunction Breakdown</h4>
+</div>
+<p>Filtering transactional orders across multiple operational dimensions:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Settlement Guarantee (<code>payment_status = 'PAID'</code>):</strong> Drops pending, refunded, and cancelled orders.</div>
+</li>
+<li>
+<i class="fas fa-coins"></i>
+<div><strong>Revenue Floor (<code>total_price &gt;= 200.00</code>):</strong> Filters out lower-value consumer transactions.</div>
+</li>
+<li>
+<i class="fas fa-cart-plus"></i>
+<div><strong>Bulk Volume (<code>quantity &gt;= 2</code>):</strong> Isolates multiple-unit bulk purchases from single-unit retail checkouts.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Staff Salary Filtering on employees -->
+<h2>4. Human Resources Analytics: Engineering Department Salaries</h2>
+<p>Combine categorical departmental filters with compensation thresholds on the <code>employees</code> registry:</p>
+
+<!-- Employee Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Screening Senior Engineering Personnel</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Retrieve senior engineers earning $90,000 or higher</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span> <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">90000</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>department = 'Engineering' AND salary &gt;= 90000</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span> 
+  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">90000.00</span>
+<span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Employee Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-user-tie"></i>
+<h4>HR Conjunction Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, customer_id, order_total, status
-<span class="code-keyword">FROM</span> orders
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'SHIPPED'</span>
-  <span class="code-keyword">AND</span> order_total <span class="code-op">&gt;</span> <span class="code-num">250.00</span>
-  <span class="code-keyword">AND</span> order_date <span class="code-op">&gt;=</span> <span class="code-string">'2026-01-01'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>orders</code> using the condition <code>status = 'SHIPPED' AND order_total &gt; 250.00 AND order_date &gt;= '2026-01-01'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Boundary Range Filtering</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, units_in_stock, unit_price
-<span class="code-keyword">FROM</span> warehouse_inventory
-<span class="code-keyword">WHERE</span> discontinued <span class="code-op">=</span> <span class="code-num">0</span>
-  <span class="code-keyword">AND</span> units_in_stock <span class="code-op">&gt;</span> <span class="code-num">0</span>
-  <span class="code-keyword">AND</span> unit_price <span class="code-keyword">BETWEEN</span> <span class="code-num">20.00</span> <span class="code-keyword">AND</span> <span class="code-num">50.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>warehouse_inventory</code> using the condition <code>discontinued = 0 AND units_in_stock &gt; 0 AND unit_price BETWEEN 20.00 AND 50.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: NULL State Verification</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> account_id, username, email_verified
-<span class="code-keyword">FROM</span> user_credentials
-<span class="code-keyword">WHERE</span> email_verified <span class="code-op">=</span> TRUE <span class="code-keyword">AND</span> deactivated_at <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>user_credentials</code> using the condition <code>email_verified = TRUE AND deactivated_at IS NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>AND</code> operator performs logical conjunction between two or more boolean conditions. In SQL's Three-Valued Logic, <code>condition1 AND condition2</code> returns <code>TRUE</code> only if both predicates evaluate to <code>TRUE</code>.</p>
-<ul>
-<li><strong>Strict Intersecting Logic:</strong> AND narrows query results by finding the strict intersection of records matching all declared conditions.</li>
-<li><strong>Truth Table Mechanics:</strong> TRUE AND TRUE = TRUE; TRUE AND FALSE = FALSE; TRUE AND UNKNOWN = UNKNOWN; FALSE AND UNKNOWN = FALSE.</li>
-<li><strong>Short-Circuit Optimization:</strong> Database query planners often evaluate the most selective (most restrictive) condition first to short-circuit processing.</li>
-<li><strong>Composite Index Matching:</strong> Chaining columns linked by AND matches multi-column composite B-Tree indexes with optimal seek performance.</li>
+<p>How the conjunction screens organizational talent:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-laptop-code"></i>
+<div><strong>Department Isolation:</strong> Eliminates Sales, Marketing, HR, and Operations staff members.</div>
+</li>
+<li>
+<i class="fas fa-award"></i>
+<div><strong>Senior Compensation Threshold:</strong> Identifies technical leadership (VP Engineering Ripunjay Kumar and Senior Engineer Amritesh Nath) while bypassing junior engineering roles.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+</div>
+
+<!-- Section 5: Relational Filtering Across Joined Tables -->
+<h2>5. Relational Filtering: Paid Orders with Complete Customer Names</h2>
+<p>Chain boolean conditions across multi-table joins, incorporating NULL checks alongside status validations:</p>
+
+<!-- Relational Join Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Auditing Paid Orders with Verified Middle Names</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Pull fulfilled sales for customers whose official middle name is on file</span>
+<span class="code-keyword">SELECT</span> 
+    s.sale_id,
+    c.first_name,
+    c.middle_name,
+    c.last_name,
+    s.total_price
+<span class="code-keyword">FROM</span> sells_list <span class="code-keyword">AS</span> s
+<span class="code-keyword">JOIN</span> customers <span class="code-keyword">AS</span> c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
+  <span class="code-keyword">AND</span> c.middle_name <span class="code-keyword">IS NOT NULL</span>
+<span class="code-keyword">ORDER BY</span> s.total_price <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Relational Conjunction -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-id-card"></i>
+<h4>Relational AND Conjunction Breakdown</h4>
+</div>
+<p>Filtering across joined tables with three-valued logic checks:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-link"></i>
+<div><strong>Relational Binding:</strong> Joins <code>sells_list</code> to <code>customers</code> on the foreign key <code>s.customer_id = c.customer_id</code>.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>IS NOT NULL Predicate:</strong> Tests whether <code>c.middle_name</code> contains a valid character value, dropping records where middle name is absent.</div>
+</li>
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>Complete Conjunction:</strong> Both the transaction payment status AND the customer identity completeness criteria must be met.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>AND</code> operator operates under SQL's ANSI Three-Valued Logic (3VL: TRUE, FALSE, UNKNOWN). A row is admitted to the query output if and only if the final result evaluates strictly to <code>TRUE</code>.</p>
+
+<h3>Three-Valued Logic (3VL) AND Truth Table</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Left Operand</th>
+<th>Left Condition</th>
 <th>Operator</th>
-<th>Right Operand</th>
-<th>Resulting Truth Value</th>
-<th>Row Inclusion</th>
+<th>Right Condition</th>
+<th>Resulting Boolean Value</th>
+<th>Filter Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TRUE</td>
-<td>AND</td>
-<td>TRUE</td>
-<td>TRUE</td>
-<td>Row Accepted into Result Set</td>
+<td><code>TRUE</code></td>
+<td><strong>AND</strong></td>
+<td><code>TRUE</code></td>
+<td><strong>TRUE</strong></td>
+<td>Included in output</td>
 </tr>
 <tr>
-<td>TRUE</td>
-<td>AND</td>
-<td>FALSE</td>
-<td>FALSE</td>
-<td>Row Rejected immediately</td>
+<td><code>TRUE</code></td>
+<td><strong>AND</strong></td>
+<td><code>FALSE</code></td>
+<td><strong>FALSE</strong></td>
+<td>Excluded (Dropped)</td>
 </tr>
 <tr>
-<td>FALSE</td>
-<td>AND</td>
-<td>TRUE</td>
-<td>FALSE</td>
-<td>Row Rejected (Short-circuited)</td>
+<td><code>FALSE</code></td>
+<td><strong>AND</strong></td>
+<td><code>TRUE</code></td>
+<td><strong>FALSE</strong></td>
+<td>Excluded (Short-circuited)</td>
 </tr>
 <tr>
-<td>TRUE</td>
-<td>AND</td>
-<td>UNKNOWN (NULL)</td>
-<td>UNKNOWN</td>
-<td>Row Rejected (Not strictly TRUE)</td>
+<td><code>TRUE</code></td>
+<td><strong>AND</strong></td>
+<td><code>UNKNOWN (NULL)</code></td>
+<td><strong>UNKNOWN</strong></td>
+<td>Excluded (Not strictly TRUE)</td>
 </tr>
 <tr>
-<td>FALSE</td>
-<td>AND</td>
-<td>UNKNOWN (NULL)</td>
-<td>FALSE</td>
-<td>Row Rejected (False dominates AND)</td>
+<td><code>FALSE</code></td>
+<td><strong>AND</strong></td>
+<td><code>UNKNOWN (NULL)</code></td>
+<td><strong>FALSE</strong></td>
+<td>Excluded (FALSE dominates)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Short-Circuiting &amp; Composite Index Exploitation</h3>
-<p>Modern database optimizers evaluate AND conjunctions using cost-based statistics to maximize I/O efficiency:</p>
-<ul>
-<li><strong>Index Seek Matching:</strong> If a composite index exists on <code>(tenant_id, user_status)</code>, an AND clause on both columns pinpoint exact index pages in O(log N) time.</li>
-<li><strong>Selectivity Ordering:</strong> The query engine automatically rearranges AND conditions to test the lowest-cardinality, highest-selectivity predicate first.</li>
-<li><strong>Three-Valued Trap:</strong> If column A is NULL and evaluated with <code>A = 5 AND B = 10</code>, the expression yields UNKNOWN and the row is dropped.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Enterprise Cloud Access Security Audit:</strong> Scan employee IAM permission logs to detect sensitive system access privileges granted to unverified or contractor accounts.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: security_access_logs
-   log_id | username    | role_tier   | mfa_enabled | vpn_connected | country
-   -------+-------------+-------------+-------------+---------------+---------
-   401    | admin_sarah | SUPERADMIN  | TRUE        | TRUE          | US
-   402    | dev_jake    | DEVELOPER   | FALSE       | TRUE          | CA
-   403    | sec_mark    | AUDITOR     | TRUE        | FALSE         | US
-   404    | dev_elena   | DEVELOPER   | TRUE        | TRUE          | UK
-   405    | contractor1 | CONTRACTOR  | FALSE       | FALSE         | IN
-   406    | admin_bob   | SUPERADMIN  | TRUE        | TRUE          | US
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, username, role_tier
-<span class="code-keyword">FROM</span> security_access_logs
-<span class="code-keyword">WHERE</span> role_tier <span class="code-op">=</span> <span class="code-string">'SUPERADMIN'</span> 
-  <span class="code-keyword">AND</span> mfa_enabled <span class="code-op">=</span> TRUE 
-  <span class="code-keyword">AND</span> vpn_connected <span class="code-op">=</span> TRUE 
-  <span class="code-keyword">AND</span> country <span class="code-op">=</span> <span class="code-string">'US'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>security_access_logs</code> using the condition <code>role_tier = 'SUPERADMIN' AND mfa_enabled = TRUE AND vpn_connected = TRUE AND country = 'US'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, username, role_tier, vpn_connected
-<span class="code-keyword">FROM</span> security_access_logs
-<span class="code-keyword">WHERE</span> role_tier <span class="code-op">=</span> <span class="code-string">'DEVELOPER'</span> <span class="code-keyword">AND</span> mfa_enabled <span class="code-op">=</span> FALSE;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>security_access_logs</code> using the condition <code>role_tier = 'DEVELOPER' AND mfa_enabled = FALSE</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, username, country
-<span class="code-keyword">FROM</span> security_access_logs
-<span class="code-keyword">WHERE</span> country <span class="code-op">=</span> <span class="code-string">'UK'</span> <span class="code-keyword">AND</span> mfa_enabled <span class="code-op">=</span> TRUE <span class="code-keyword">AND</span> vpn_connected <span class="code-op">=</span> TRUE;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>security_access_logs</code> using the condition <code>country = 'UK' AND mfa_enabled = TRUE AND vpn_connected = TRUE</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, username, role_tier
-<span class="code-keyword">FROM</span> security_access_logs
-<span class="code-keyword">WHERE</span> mfa_enabled <span class="code-op">=</span> FALSE <span class="code-keyword">AND</span> vpn_connected <span class="code-op">=</span> FALSE;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>security_access_logs</code> using the condition <code>mfa_enabled = FALSE AND vpn_connected = FALSE</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The AND logical operator enforces rigorous conjunction, guaranteeing that every row returned strictly satisfies all specified filtering conditions.</p>
+<p>The AND operator enforces strict conjunctive logic, requiring all chained conditions to be true simultaneously before records pass the database storage filter.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Strict Conjunction:</strong> Every condition joined by AND must evaluate to TRUE; a single FALSE or UNKNOWN drops the row.</span>
+<span><strong>Strict Conjunction:</strong> Every condition chained by AND must evaluate to TRUE for a row to be admitted.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Dataset Narrowing:</strong> Each additional AND predicate progressively narrows the size of the returned result set.</span>
+<span><strong>Short-Circuit Evaluation:</strong> Database engines abort condition evaluation as soon as any condition resolves to FALSE.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Short-Circuiting:</strong> Engines evaluate restrictive predicates first to rapidly eliminate non-qualifying tuples.</span>
+<span><strong>NULL Trap:</strong> In 3VL, TRUE AND UNKNOWN results in UNKNOWN, dropping the row from results. Use IS NULL or IS NOT NULL for explicit null testing.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Composite Indexes:</strong> AND conditions on multiple columns allow database query engines to leverage multi-column composite indexes.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Three-Valued Trap:</strong> Remember that TRUE AND UNKNOWN yields UNKNOWN, meaning rows containing NULL comparisons are safely excluded.</span>
+<span><strong>Precedence Rules:</strong> AND takes precedence over OR. Always use parentheses when mixing both to enforce intentional business logic.</span>
 </li>
 </ul>
 </div>
@@ -491,8 +520,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="order-by.html" title="Previous: The ORDER BY Clause">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The ORDER BY Clause</span>
+<a class="btn-outline" href="where.html" title="Previous: The WHERE Clause">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The WHERE Clause</span>
 </a>
 </div>
 <div class="lesson-nav-center">

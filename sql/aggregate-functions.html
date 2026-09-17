@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: SQL Aggregate Functions Overview - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: SQL Aggregate Functions Overview - Master COUNT, SUM, AVG, MIN, and MAX with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>SQL Aggregate Functions Overview - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li class="active"><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>SQL Aggregate Functions Overview</span>
@@ -162,333 +162,359 @@
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-chart-pie"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Census Bureau Demographics Analogy</h4>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The National Demographics Census Analogy</h4>
 <p>Picture the national census bureau processing survey responses from 300 million citizens:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Raw Detail vs Summary::</strong> Government officials cannot read through 300 million individual sheets of paper to understand the economy.</li>
-<li><strong>2. The Aggregation Process::</strong> They summarize the raw data into decisive metrics: Total Population (COUNT), Average Income (AVG), Total Tax Collected (SUM), and Youngest/Oldest Citizens (MIN/MAX).</li>
-<li><strong>3. Collapsing Millions to One::</strong> Aggregate functions collapse thousands of individual records into a single authoritative scalar metric.</li>
-<li><strong>4. Grouping by State::</strong> Adding GROUP BY partitions these calculations state-by-state, comparing metrics across regions.</li>
-</ul>
-<p style="margin-top: 8px !important;">Aggregate functions synthesize massive tables into decisive summary metrics, forming the foundation of business intelligence dashboards.</p>
+<p style="margin-top: 8px !important;"><strong>1. Raw Detail vs Executive Summary:</strong> Government policymakers cannot read through 300 million individual sheets of paper to understand national trends.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Big 5 Aggregation Functions:</strong> They distill massive datasets into decisive scalar indicators: Total Citizens (<code>COUNT</code>), Average Household Income (<code>AVG</code>), Total Tax Revenues (<code>SUM</code>), and Youngest/Oldest Demographics (<code>MIN</code>/<code>MAX</code>).</p>
+<p style="margin-top: 8px !important;"><strong>3. Collapsing Millions into One:</strong> Aggregate functions process multiple row inputs and collapse them into a single, high-level summary value.</p>
+<p style="margin-top: 8px !important;"><strong>4. Partitioned Grouping:</strong> Pairing aggregates with <code>GROUP BY</code> calculates these identical metrics state-by-state, powering executive business intelligence dashboards.</p>
+<p style="margin-top: 8px !important;">SQL aggregate functions transform raw transactional noise into strategic, actionable business metrics.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>SQL Aggregate Functions Overview</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical Aggregate Functions Syntax</h2>
+<p>In standard ANSI SQL, aggregate functions are applied to column expressions in the <code>SELECT</code> list to generate summary metrics:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Discrete Value Set Matching</span>
+<span class="terminal-title">Grammar Blueprint: The Big 5 SQL Aggregate Functions</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative Aggregate Blueprint</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(column_or_wildcard) <span class="code-keyword">AS</span> total_records,
+    <span class="code-func">SUM</span>(numeric_column)       <span class="code-keyword">AS</span> total_sum,
+    <span class="code-func">AVG</span>(numeric_column)       <span class="code-keyword">AS</span> average_value,
+    <span class="code-func">MIN</span>(comparable_column)    <span class="code-keyword">AS</span> minimum_bound,
+    <span class="code-func">MAX</span>(comparable_column)    <span class="code-keyword">AS</span> maximum_bound
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> pre_aggregation_filter;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>Aggregate Blueprint Breakdown</h4>
+</div>
+<p>Understanding how relational engines compute scalar aggregates:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-compress-arrows-alt"></i>
+<div><strong>Scalar Output:</strong> Without a <code>GROUP BY</code> clause, an aggregate query collapses the entire scanned table into exactly one single output row.</div>
+</li>
+<li>
+<i class="fas fa-eye-slash"></i>
+<div><strong>Automatic NULL Ignorance:</strong> Except for <code>COUNT(*)</code>, all aggregate functions (<code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>, and <code>COUNT(col)</code>) completely disregard NULL values during computation.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>WHERE Execution Sequence:</strong> The <code>WHERE</code> clause runs in Step 2 <em>before</em> aggregation, filtering which rows enter the calculation.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 2: The Core 5 on employees -->
+<h2>2. Human Resources Analytics: The Big 5 Payroll Rollup</h2>
+<p>Execute all five foundational aggregate functions simultaneously across the corporate <code>employees</code> directory to produce a complete executive compensation summary:</p>
+
+<!-- Employee Aggregates Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Complete Company-Wide Payroll &amp; Headcount Rollup</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_employees,
-    <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> minimum_salary,
-    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> maximum_salary,
+<pre><code><span class="code-comment">-- Compute headcount, minimum, maximum, total payroll, and average salary</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_staff,
+    <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> min_salary,
+    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> max_salary,
     <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> total_payroll,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> average_salary
-<span class="code-keyword">FROM</span> company_payroll;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>company_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_salary
+<span class="code-keyword">FROM</span> employees;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Employee Payroll Rollup -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-coins"></i>
+<h4>Executive Compensation Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> engineering_count,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> engineering_avg_salary
-<span class="code-keyword">FROM</span> company_payroll
-<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>company_payroll</code> using the condition <code>department = 'Engineering'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">AS</span> unique_operating_countries,
-    <span class="code-func">SUM</span>(<span class="code-keyword">DISTINCT</span> customer_credit) <span class="code-keyword">AS</span> unique_credit_sum
-<span class="code-keyword">FROM</span> international_clients;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>international_clients</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Discrete Value Set Matching</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">MAX</span>(salary) <span class="code-op">-</span> <span class="code-func">MIN</span>(salary) <span class="code-keyword">AS</span> salary_spread
-<span class="code-keyword">FROM</span> company_payroll;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>company_payroll</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>SQL aggregate functions calculate a single scalar value from a collection of row values across a column. The five ANSI standard aggregate functions are <code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>, <code>MIN()</code>, and <code>MAX()</code>.</p>
-<ul>
-<li><strong>NULL Discard Rule:</strong> With the sole exception of <code>COUNT(*)</code>, all aggregate functions automatically ignore NULL values during computation.</li>
-<li><strong>WHERE vs HAVING:</strong> WHERE filters individual rows before aggregation occurs; HAVING filters the aggregated results after GROUP BY.</li>
-<li><strong>Scalar vs Vector Aggregation:</strong> Without GROUP BY, aggregates produce a single scalar row. With GROUP BY, aggregates produce one summary row per group.</li>
-<li><strong>Mathematical Type Safety:</strong> SUM and AVG on integers can cause integer overflow or truncated decimals; cast to NUMERIC/DECIMAL for financial precision.</li>
+<p>Examining the computed company-wide financial metrics:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-users"></i>
+<div><strong>Headcount (<code>total_staff = 15</code>):</strong> <code>COUNT(*)</code> tallies all 15 employee records registered across all corporate departments.</div>
+</li>
+<li>
+<i class="fas fa-arrow-down"></i>
+<div><strong>Compensation Floor (<code>min_salary = $58,000</code>):</strong> <code>MIN(salary)</code> identifies baseline entry-level compensation.</div>
+</li>
+<li>
+<i class="fas fa-arrow-up"></i>
+<div><strong>Compensation Ceiling (<code>max_salary = $150,000</code>):</strong> <code>MAX(salary)</code> isolates top executive salary.</div>
+</li>
+<li>
+<i class="fas fa-wallet"></i>
+<div><strong>Annual Budget (<code>total_payroll = $1,324,000</code>):</strong> <code>SUM(salary)</code> aggregates the total annual compensation obligations.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Mean Salary (<code>avg_salary = $88,266.67</code>):</strong> <code>ROUND(AVG(salary), 2)</code> computes the statistical company mean, rounded to standard financial currency decimals.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the seeded <code>employees</code> table!</span>
+</div>
+</div>
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Looking for deep dives into individual functions?</strong> Explore our dedicated guides for: 
+<a href="count.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The COUNT() Function →</a>, 
+<a href="sum.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The SUM() Function →</a>, 
+<a href="avg.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The AVG() Function →</a>, or learn how to partition groups in 
+<a href="group-by.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The GROUP BY Statement →</a>
+</p>
+</div>
+
+<!-- Section 3: Filtered Aggregation on employees -->
+<h2>3. Pre-Filtered Aggregations: Targeting Department Subsets</h2>
+<p>Combine row-level <code>WHERE</code> filtering with aggregate functions to analyze a targeted business division:</p>
+
+<!-- Engineering Filtered Aggregates Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Engineering Department Budget &amp; Staffing Metrics</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Calculate headcount, mean salary, and total payroll strictly for Engineering</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> engineer_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> engineer_avg_salary,
+    <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> engineer_payroll
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Engineering Filtered Aggregates -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-laptop-code"></i>
+<h4>Engineering Department Analysis Breakdown</h4>
+</div>
+<p>How the WHERE filter reshapes aggregate inputs:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Pre-Aggregation Scoping:</strong> Discards 11 non-engineering staff members before passing the 4 engineering rows to the mathematical accumulators.</div>
+</li>
+<li>
+<i class="fas fa-chart-line"></i>
+<div><strong>Focused Output:</strong> Reveals 4 engineers with an average compensation of $94,500.00 and total departmental allocation of $378,000.00.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Revenue Aggregates on sells_list -->
+<h2>4. Financial Auditing: Revenue &amp; Units Sold on sells_list</h2>
+<p>Summarize transactional revenue across settled orders on the 60-row <code>sells_list</code> ledger:</p>
+
+<!-- Sales Aggregates Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Auditing Settled Commercial Revenue &amp; Units</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Tally paid orders, units fulfilled, gross revenue, and average basket value</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(sale_id) <span class="code-keyword">AS</span> settled_orders,
+    <span class="code-func">SUM</span>(quantity) <span class="code-keyword">AS</span> units_sold,
+    <span class="code-func">SUM</span>(total_price) <span class="code-keyword">AS</span> gross_revenue,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_order_value
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Sales Aggregates -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-receipt"></i>
+<h4>Commerce Transaction Metrics Breakdown</h4>
+</div>
+<p>Auditing commercial revenue and sales performance:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-shopping-basket"></i>
+<div><strong>37 Settled Transactions:</strong> Confirms 37 completed purchases accounting for 83 individual merchandise items sold.</div>
+</li>
+<li>
+<i class="fas fa-funnel-dollar"></i>
+<div><strong>Key Performance Indicators (KPIs):</strong> Yields $15,615.17 in gross settled revenue at an average checkout order value of $422.03.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: COUNT(*) vs COUNT(column) on customers -->
+<h2>5. Critical Nuance: COUNT(*) vs COUNT(column) &amp; NULL Handling</h2>
+<p>Understand the critical behavioral difference between counting rows versus counting column values across the <code>customers</code> directory:</p>
+
+<!-- Customer NULL Count Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Demonstrating NULL Exclusion in COUNT(column)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- COUNT(*) tallies every row; COUNT(column) counts non-NULL entries only</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_customers,
+    <span class="code-func">COUNT</span>(middle_name) <span class="code-keyword">AS</span> customers_with_middle_name,
+    (<span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-op">-</span> <span class="code-func">COUNT</span>(middle_name)) <span class="code-keyword">AS</span> customers_missing_middle_name
+<span class="code-keyword">FROM</span> customers;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for COUNT Nuance -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-exclamation-circle"></i>
+<h4>COUNT(*) vs COUNT(column) Breakdown</h4>
+</div>
+<p>How NULL values alter count calculations:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-asterisk"></i>
+<div><strong><code>COUNT(*)</code> (612 Rows):</strong> Counts the absolute number of rows present in the table, regardless of whether any columns contain NULLs.</div>
+</li>
+<li>
+<i class="fas fa-id-card"></i>
+<div><strong><code>COUNT(middle_name)</code> (486 Non-Nulls):</strong> Counts non-NULL entries only, ignoring 126 customer profiles where middle name is absent.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Auditing Missing Data:</strong> Subtracting <code>COUNT(col)</code> from <code>COUNT(*)</code> is an industry-standard idiom to audit missing or unpopulated data.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>Aggregate functions distill multi-row datasets into scalar summaries, operating under strict mathematical and SQL engine rules.</p>
+
+<h3>The Big 5 Aggregate Functions Reference</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Aggregate Function</th>
-<th>Description</th>
+<th>Function</th>
+<th>Mathematical Purpose</th>
 <th>Supported Data Types</th>
-<th>NULL Value Handling</th>
-<th>Common Use Case</th>
+<th>NULL Handling</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>COUNT()</code></td>
-<td>Counts number of rows or non-null values</td>
-<td>Any data type (*, numbers, strings)</td>
-<td>COUNT(*) includes NULLs; COUNT(col) ignores</td>
-<td>User volume, transaction frequency</td>
+<td><strong>COUNT(*)</strong></td>
+<td>Counts total qualifying rows</td>
+<td>Any (All rows in table)</td>
+<td>Includes rows containing NULLs</td>
 </tr>
 <tr>
-<td><code>SUM()</code></td>
-<td>Calculates cumulative mathematical total</td>
-<td>Numeric data types only</td>
-<td>Ignores NULLs completely</td>
-<td>Total revenue, gross payroll</td>
-</tr>
-<tr>
-<td><code>AVG()</code></td>
-<td>Computes arithmetic mean of column</td>
-<td>Numeric data types only</td>
-<td>Ignores NULLs; does not divide by them</td>
-<td>Average order value (AOV), mean latency</td>
-</tr>
-<tr>
-<td><code>MIN()</code></td>
-<td>Extracts lowest or earliest value</td>
-<td>Numeric, Date/Time, String</td>
+<td><strong>COUNT(col)</strong></td>
+<td>Counts non-NULL values</td>
+<td>Any valid SQL column</td>
 <td>Ignores NULLs</td>
-<td>Oldest order date, lowest bid price</td>
 </tr>
 <tr>
-<td><code>MAX()</code></td>
-<td>Extracts highest or latest value</td>
-<td>Numeric, Date/Time, String</td>
+<td><strong>SUM(col)</strong></td>
+<td>Calculates mathematical total</td>
+<td>Numeric (INT, FLOAT, DECIMAL)</td>
 <td>Ignores NULLs</td>
-<td>Peak daily traffic, highest score</td>
+</tr>
+<tr>
+<td><strong>AVG(col)</strong></td>
+<td>Calculates arithmetic mean</td>
+<td>Numeric (INT, FLOAT, DECIMAL)</td>
+<td>Ignores NULLs (Denominator is non-NULL count!)</td>
+</tr>
+<tr>
+<td><strong>MIN(col)</strong></td>
+<td>Finds minimum value / earliest date</td>
+<td>Numeric, Dates, Strings</td>
+<td>Ignores NULLs</td>
+</tr>
+<tr>
+<td><strong>MAX(col)</strong></td>
+<td>Finds maximum value / latest date</td>
+<td>Numeric, Dates, Strings</td>
+<td>Ignores NULLs</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Why Aggregates Cannot Be Used in WHERE Clauses</h3>
-<p>A frequent error among SQL learners is attempting to write <code>WHERE salary &gt; AVG(salary)</code>:</p>
-<ul>
-<li><strong>Lifecycle Conflict:</strong> WHERE executes in Step 2 of query processing, before the engine has grouped or aggregated the dataset. The AVG() does not exist yet!</li>
-<li><strong>The Subquery Solution:</strong> To filter against an aggregate scalar, use a subquery: <code>WHERE salary &gt; (SELECT AVG(salary) FROM employees);</code>.</li>
-<li><strong>The Grouping Solution:</strong> To filter aggregated groups, use the <code>HAVING</code> clause post-grouping: <code>GROUP BY dept HAVING AVG(salary) &gt; 80000;</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Enterprise Cloud Infrastructure Cost Dashboard:</strong> Synthesize cloud compute server operational metrics across data centers to generate executive executive cost and performance dashboards.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: cloud_server_instances
-   instance_id | datacenter | hourly_cost | cpu_usage_pct | uptime_days
-   ------------+------------+-------------+---------------+------------
-   vm-101      | us-east    | 0.45        | 78.5          | 120
-   vm-102      | us-west    | 0.85        | 42.0          | 45
-   vm-103      | us-east    | 1.20        | 91.2          | 310
-   vm-104      | eu-central | 0.60        | 64.0          | 80
-   vm-105      | us-east    | 0.45        | 55.0          | 15
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Discrete Value Set Matching</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_vms,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(hourly_cost), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_hourly_burn,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(cpu_usage_pct), <span class="code-num">1</span>) <span class="code-keyword">AS</span> fleet_avg_cpu,
-    <span class="code-func">MIN</span>(uptime_days) <span class="code-keyword">AS</span> newest_vm_days,
-    <span class="code-func">MAX</span>(uptime_days) <span class="code-keyword">AS</span> oldest_vm_days
-<span class="code-keyword">FROM</span> cloud_server_instances;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>cloud_server_instances</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(hourly_cost) <span class="code-op">*</span> <span class="code-num">24</span> <span class="code-op">*</span> <span class="code-num">365</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> projected_annual_cost
-<span class="code-keyword">FROM</span> cloud_server_instances;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>cloud_server_instances</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> east_vm_count,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(cpu_usage_pct), <span class="code-num">1</span>) <span class="code-keyword">AS</span> east_avg_cpu,
-    <span class="code-func">MAX</span>(hourly_cost) <span class="code-keyword">AS</span> east_max_hourly_rate
-<span class="code-keyword">FROM</span> cloud_server_instances
-<span class="code-keyword">WHERE</span> datacenter <span class="code-op">=</span> <span class="code-string">'us-east'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>cloud_server_instances</code> using the condition <code>datacenter = 'us-east'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> high_load_servers
-<span class="code-keyword">FROM</span> cloud_server_instances
-<span class="code-keyword">WHERE</span> cpu_usage_pct <span class="code-op">&gt;</span> <span class="code-num">70.0</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>cloud_server_instances</code> using the condition <code>cpu_usage_pct &gt; 70.0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
+
+<h3>The AVG() NULL Trap</h3>
+<p>Notice that <code>AVG(salary)</code> computes <code>SUM(salary) / COUNT(salary)</code>, <strong>not</strong> <code>SUM(salary) / COUNT(*)</code>. Rows with NULL values are dropped from both the numerator and the denominator, preventing artificial deflation of computed averages.</p>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>SQL aggregate functions condense thousands of rows into decisive scalar summary metrics, serving as the foundational engine of business reporting and executive dashboards.</p>
+<p>SQL aggregate functions provide the fundamental analytical tools required to summarize, audit, and evaluate relational business data.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Five Core Functions:</strong> Master COUNT, SUM, AVG, MIN, and MAX to perform complete statistical summaries on relational tables.</span>
+<span><strong>Scalar Aggregation:</strong> Without GROUP BY, aggregate functions reduce multi-row sets to exactly one output record.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>NULL Values Ignored:</strong> All aggregate functions ignore NULL values except COUNT(*); AVG divides only by rows with non-null values.</span>
+<span><strong>NULL Exclusion:</strong> Standard aggregates ignore NULLs. Use <code>COUNT(*)</code> to count every row and <code>COUNT(column)</code> to count populated attributes.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>WHERE Clause Exclusion:</strong> Never place aggregate functions in WHERE; use subqueries or the HAVING clause instead.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Data Type Awareness:</strong> SUM and AVG require numeric fields; MIN and MAX operate on numbers, dates, and alphabetical strings.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Scalar vs Grouped:</strong> Aggregates without GROUP BY output a single row; combining aggregates with GROUP BY partitions data into summary categories.</span>
+<span><strong>Next Chapter:</strong> Explore cardinality counting in detail in <a href="count.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The COUNT() Function →</a></span>
 </li>
 </ul>
 </div>
@@ -497,7 +523,7 @@
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
 <a class="btn-outline" href="select-top.html" title="Previous: SELECT TOP, LIMIT &amp; Pagination">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SELECT TOP, LIMIT &amp; Pagination</span>
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SELECT TOP &amp; LIMIT</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -506,8 +532,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="min.html" title="Next: The MIN() Function">
-<span class="btn-text">Next: The MIN() Function</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="count.html" title="Next: The COUNT() Function">
+<span class="btn-text">Next: The COUNT() Function</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

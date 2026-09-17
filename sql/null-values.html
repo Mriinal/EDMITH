@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: NULL Values &amp; Three-Valued Logic - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: NULL Values &amp; Three-Valued Logic - Master SQL IS NULL, IS NOT NULL, and Three-Valued Logic (3VL) with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>NULL Values &amp; Three-Valued Logic - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li class="active"><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>NULL Values &amp; Three-Valued Logic</span>
@@ -162,321 +162,364 @@
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-box-open"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Unopened Amazon Mystery Package Analogy</h4>
-<p>Imagine receiving a sealed, unlabeled cardboard box on your front porch with no return address:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. It is NOT Empty::</strong> The box is not empty (which would be an empty string <code>''</code>).</li>
-<li><strong>2. It is NOT Zero::</strong> The box does not contain the number zero (<code>0</code> is a concrete mathematical integer).</li>
-<li><strong>3. It is UNKNOWN::</strong> The contents are completely unknown until someone opens and populates it.</li>
-<li><strong>4. Equality Fails::</strong> If your neighbor also receives an unopened mystery box, you cannot say both boxes contain the same item; <code>NULL = NULL</code> is UNKNOWN!</li>
-</ul>
-<p style="margin-top: 8px !important;">In SQL, NULL represents the total absence of a value. It is governed by Three-Valued Logic (TRUE, FALSE, UNKNOWN).</p>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Unopened Sealed Delivery Box Analogy</h4>
+<p>Imagine receiving a sealed, unlabeled delivery parcel on your doorstep with no packing slip:</p>
+<p style="margin-top: 8px !important;"><strong>1. It is NOT Empty:</strong> The box is not empty (an empty space would be an empty string <code>''</code>).</p>
+<p style="margin-top: 8px !important;"><strong>2. It is NOT Zero:</strong> The box does not contain zero (<code>0</code> is a concrete, tangible mathematical number).</p>
+<p style="margin-top: 8px !important;"><strong>3. It is UNKNOWN:</strong> The state of the interior is completely unknown until verified and populated.</p>
+<p style="margin-top: 8px !important;"><strong>4. Equality Comparisons Fail:</strong> If your next-door neighbor also receives an unopened mystery box, you cannot say both boxes contain the same item; in SQL, <code>NULL = NULL</code> evaluates to UNKNOWN!</p>
+<p style="margin-top: 8px !important;">In relational databases, NULL denotes the complete absence of a value, governed strictly by ANSI Three-Valued Logic (TRUE, FALSE, UNKNOWN).</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>NULL Values &amp; Three-Valued Logic</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical NULL Testing Syntax: IS NULL &amp; IS NOT NULL</h2>
+<p>Because NULL signifies unknown data rather than a literal value, standard mathematical comparison operators (<code>=</code>, <code>!=</code>, <code>&lt;&gt;</code>) cannot be used. SQL provides dedicated unary predicates:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: NULL State Verification</span>
+<span class="terminal-title">Grammar Blueprint: Testing Nullability with IS NULL</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. Testing for Missing / Absent Values</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> target_column <span class="code-keyword">IS NULL</span>;
+
+<span class="code-comment">-- 2. Testing for Populated / Verified Values</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> target_column <span class="code-keyword">IS NOT NULL</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>NULL Testing Blueprint Breakdown</h4>
+</div>
+<p>Core rules for evaluating absent data:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-ban"></i>
+<div><strong>Never Use Equal-to-NULL (<code>col = NULL</code>):</strong> Any arithmetic or equality comparison with NULL yields <code>UNKNOWN</code>. Because WHERE clauses require <code>TRUE</code> to pass rows, <code>col = NULL</code> always returns zero records!</div>
+</li>
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>The IS Operator:</strong> <code>IS NULL</code> and <code>IS NOT NULL</code> are dedicated boolean predicates that evaluate deterministically to <code>TRUE</code> or <code>FALSE</code>.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>Storage Footprint:</strong> Modern relational storage engines represent NULL as a compact bitmask in the row header, avoiding wasted storage space for unpopulated attributes.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 2: Organizational Top Hierarchy on employees -->
+<h2>2. Organizational Hierarchy: Identifying Root Leadership</h2>
+<p>In relational employee hierarchies, the Chief Executive Officer or Managing Director reports to nobody. Query the <code>employees</code> table to locate staff whose <code>manager_id</code> is absent:</p>
+
+<!-- Employee NULL Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Finding Root Executive Leadership (No Supervisor)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, manager_id
+<pre><code><span class="code-comment">-- Locate corporate executives who have no assigned reporting manager</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> manager_id <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>manager_id IS NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<span class="code-keyword">WHERE</span> manager_id <span class="code-keyword">IS NULL</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Root Executive Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-crown"></i>
+<h4>Executive Predicate Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, email, phone_number
-<span class="code-keyword">FROM</span> customer_profiles
-<span class="code-keyword">WHERE</span> phone_number <span class="code-keyword">IS</span> <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_profiles</code> using the condition <code>phone_number IS NOT NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> orders <span class="code-keyword">WHERE</span> delivery_date <span class="code-op">=</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>orders</code> using the condition <code>delivery_date = NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    product_name,
-    <span class="code-func">COALESCE</span>(discount_price, regular_price) <span class="code-keyword">AS</span> current_price
-<span class="code-keyword">FROM</span> store_products;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>store_products</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>In relational database theory, <code>NULL</code> is a special marker indicating that a data value does not exist in the database. NULL is not a value itself; it represents missing, unrecorded, or inapplicable data.</p>
-<ul>
-<li><strong>Three-Valued Logic (3VL):</strong> Boolean expressions in SQL evaluate to <code>TRUE</code>, <code>FALSE</code>, or <code>UNKNOWN</code>.</li>
-<li><strong>Equality Failure:</strong> Comparing anything to NULL with standard comparison operators (<code>=</code>, <code>!=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>) always results in <code>UNKNOWN</code>.</li>
-<li><strong>The IS NULL Operator:</strong> Because equality operators fail, ANSI SQL provides the dedicated <code>IS NULL</code> and <code>IS NOT NULL</code> predicates.</li>
-<li><strong>Aggregate Function Behavior:</strong> Standard aggregate functions (SUM, AVG, MIN, MAX, COUNT(col)) automatically ignore NULL values; only COUNT(*) counts rows with NULLs.</li>
+<p>How the IS NULL filter surfaces top-level organization leaders:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-shield"></i>
+<div><strong>Hierarchical Root:</strong> Accurately isolates <strong>Mrinal Prashar</strong> (Executive Department, $150,000 salary), whose <code>manager_id</code> is recorded as NULL.</div>
+</li>
+<li>
+<i class="fas fa-sitemap"></i>
+<div><strong>Self-Referencing Foreign Keys:</strong> In organizational schemas, <code>manager_id</code> references another <code>employee_id</code>. A NULL value terminates the recursive reporting tree at the pinnacle.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the active executive record returned from the seeded <code>employees</code> table!</span>
+</div>
+</div>
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Looking for functions to handle or replace NULLs?</strong> Discover how <code>COALESCE()</code> and <code>IFNULL()</code> substitute fallback default values in our dedicated guide: 
+<a href="null-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL NULL Functions (Module 1) →</a> or review all relational comparison symbols in the 
+<a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Operators Reference (Module 3) →</a>
+</p>
+</div>
+
+<!-- Section 3: Supervised Personnel with IS NOT NULL -->
+<h2>3. Managed Personnel: Filtering Records with IS NOT NULL</h2>
+<p>Retrieve all staff members who report into an established supervisory chain on <code>employees</code>, sorted by department and compensation:</p>
+
+<!-- Employee IS NOT NULL Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Finding All Supervised Staff</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Retrieve all staff who report to an assigned manager</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary, manager_id
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> manager_id <span class="code-keyword">IS NOT NULL</span>
+<span class="code-keyword">ORDER BY</span> department <span class="code-keyword">ASC</span>, salary <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Managed Staff Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-network-wired"></i>
+<h4>Managed Staff Breakdown</h4>
+</div>
+<p>How <code>IS NOT NULL</code> filters out top leadership:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-users-cog"></i>
+<div><strong>14 Managed Professionals:</strong> Returns VP Engineering Ripunjay Kumar, VP Sales David Miller, Director of Ops Michael Chang, and all line staff.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Departmental Organization:</strong> Renders Engineering, HR, Marketing, Operations, and Sales personnel in structured salary hierarchy.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Customer Directory Completeness on customers -->
+<h2>4. Directory Quality Auditing: Incomplete Customer Profiles</h2>
+<p>Auditing the 612-record <code>customers</code> database for incomplete profiles lacking a documented middle name:</p>
+
+<!-- Customer Middle Name NULL Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Auditing Customer Accounts Missing Middle Names</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Surface customer accounts where middle name was not submitted</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> middle_name <span class="code-keyword">IS NULL</span>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Customer Profile Audit -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-id-card-alt"></i>
+<h4>Customer Data Hygiene Breakdown</h4>
+</div>
+<p>Identifying optional profile attributes in CRM databases:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-clipboard-list"></i>
+<div><strong>Optional Fields:</strong> During customer checkout, fields like middle name or apartment number are often optional; rows without input store NULL.</div>
+</li>
+<li>
+<i class="fas fa-user-times"></i>
+<div><strong>Accurate Identification:</strong> Confirms accounts such as <em>Ripunjay Kumar</em> (Customer #2) where middle name is absent, distinguishing them from accounts with complete three-part names.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: The = NULL Trap -->
+<h2>5. The Fatal Pitfall: Why You Must Never Write = NULL</h2>
+<p>Every SQL developer eventually encounters the classic <strong>NULL Equality Trap</strong>. Observe what happens when testing <code>manager_id = NULL</code> in standard SQL:</p>
+
+<!-- The Trap Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Trap Demonstration: Testing manager_id = NULL (Returns 0 Rows!)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- WARNING: This query returns ZERO rows because NULL = NULL evaluates to UNKNOWN!</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> manager_id <span class="code-op">=</span> <span class="code-keyword">NULL</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for The Trap -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-exclamation-triangle"></i>
+<h4>Why = NULL Always Fails</h4>
+</div>
+<p>The mathematical reality of Three-Valued Logic (3VL):</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-times-circle"></i>
+<div><strong>Unknown Cannot Equal Unknown:</strong> In SQL, <code>NULL = NULL</code> does not evaluate to <code>TRUE</code>. It evaluates to <code>UNKNOWN</code>.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>WHERE Clause Filter Condition:</strong> A WHERE clause admits rows into the output stream <em>only</em> when the predicate evaluates strictly to <code>TRUE</code>. Because <code>UNKNOWN</code> is not <code>TRUE</code>, every single row is rejected!</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>The Universal Solution:</strong> Always write <code>WHERE column IS NULL</code> or <code>WHERE column IS NOT NULL</code>.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>Relational databases implement E.F. Codd's Three-Valued Logic (3VL), introducing the third logical state: <code>UNKNOWN</code> alongside <code>TRUE</code> and <code>FALSE</code>.</p>
+
+<h3>Three-Valued Logic (3VL) Truth Table</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Expression</th>
-<th>Evaluates To</th>
-<th>Logical Meaning</th>
-<th>Common Developer Assumption</th>
-<th>Correct Handling</th>
+<th>Boolean State</th>
+<th>Filter Action in WHERE Clause</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>NULL = NULL</code></td>
-<td>UNKNOWN</td>
-<td>Two unknowns cannot be proven equal</td>
-<td>Assumed TRUE</td>
-<td>Use <code>IS NULL</code></td>
+<td><code>TRUE AND UNKNOWN</code></td>
+<td><code>UNKNOWN</code></td>
+<td>Row Rejected (Dropped)</td>
 </tr>
 <tr>
-<td><code>NULL != NULL</code></td>
-<td>UNKNOWN</td>
-<td>Two unknowns cannot be proven unequal</td>
-<td>Assumed FALSE</td>
-<td>Use <code>IS NOT NULL</code></td>
+<td><code>FALSE AND UNKNOWN</code></td>
+<td><code>FALSE</code></td>
+<td>Row Rejected (Dropped)</td>
 </tr>
 <tr>
-<td><code>10 + NULL</code></td>
-<td>NULL</td>
-<td>Adding to unknown yields unknown</td>
-<td>Assumed 10</td>
-<td>Use <code>COALESCE(val, 0)</code></td>
+<td><code>TRUE OR UNKNOWN</code></td>
+<td><code>TRUE</code></td>
+<td>Row Accepted (Included)</td>
 </tr>
 <tr>
-<td><code>'Hi ' || NULL</code></td>
-<td>NULL (Standard)</td>
-<td>Concatenating unknown yields unknown</td>
-<td>Assumed 'Hi '</td>
-<td>Use <code>COALESCE(str, '')</code></td>
+<td><code>FALSE OR UNKNOWN</code></td>
+<td><code>UNKNOWN</code></td>
+<td>Row Rejected (Dropped)</td>
 </tr>
 <tr>
-<td><code>WHERE col = NULL</code></td>
-<td>UNKNOWN (Dropped)</td>
-<td>Condition never evaluates to TRUE</td>
-<td>Assumed matches NULLs</td>
-<td>Rewrite as <code>col IS NULL</code></td>
+<td><code>NOT UNKNOWN</code></td>
+<td><code>UNKNOWN</code></td>
+<td>Row Rejected (Dropped)</td>
+</tr>
+<tr>
+<td><code>col IS NULL</code> (when col has no value)</td>
+<td><code>TRUE</code></td>
+<td>Row Accepted (Included)</td>
+</tr>
+<tr>
+<td><code>col = NULL</code> (any comparison)</td>
+<td><code>UNKNOWN</code></td>
+<td>Row Rejected (Always Dropped)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Why col = NULL Silently Breaks Database Applications</h3>
-<p>The single most common bug in novice SQL queries is filtering with <code>WHERE col = NULL</code>:</p>
-<ul>
-<li><strong>The Silent Failure:</strong> A WHERE clause only retains rows where the predicate evaluates strictly to TRUE. Since <code>col = NULL</code> evaluates to UNKNOWN, every single row is rejected!</li>
-<li><strong>No Error Thrown:</strong> The database engine throws no syntax error; it simply returns an empty result set, deceiving developers into thinking no data exists.</li>
-<li><strong>The Fix:</strong> Always use the designated keyword operators: <code>WHERE col IS NULL</code> or <code>WHERE col IS NOT NULL</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Healthcare Clinical Patient Follow-up System:</strong> Identify discharged hospital patients whose post-op follow-up consultations or lab test results remain unrecorded.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
+
+<h3>NULL vs Empty String ('') vs Zero (0)</h3>
+<div class="table-responsive">
+<table class="compare-table">
+<thead>
+<tr>
+<th>Attribute State</th>
+<th>Concept</th>
+<th>Data Type / Memory</th>
+<th>Example Evaluation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NULL</strong></td>
+<td>Value is unknown or missing</td>
+<td>Bitmask flag in row header</td>
+<td><code>NULL IS NULL → TRUE</code></td>
+</tr>
+<tr>
+<td><strong>Empty String (<code>''</code>)</strong></td>
+<td>Known string with 0 length</td>
+<td>Varchar containing 0 characters</td>
+<td><code>'' IS NULL → FALSE</code></td>
+</tr>
+<tr>
+<td><strong>Zero (<code>0</code>)</strong></td>
+<td>Known numeric value</td>
+<td>Integer / Decimal number</td>
+<td><code>0 IS NULL → FALSE</code></td>
+</tr>
+</tbody>
+</table>
 </div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: clinical_discharges
-   record_id | patient_name   | discharge_date | follow_up_date | lab_result_mg
-   ----------+----------------+----------------+----------------+--------------
-   501       | Walter White   | 2026-03-01     | 2026-03-08     | 14.5
-   502       | Jesse Pinkman  | 2026-03-02     | NULL           | NULL
-   503       | Gustavo Fring  | 2026-03-02     | 2026-03-09     | 12.0
-   504       | Saul Goodman   | 2026-03-03     | NULL           | 18.2
-   505       | Hank Schrader  | 2026-03-04     | 2026-03-11     | NULL
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: NULL State Verification</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> record_id, patient_name, discharge_date
-<span class="code-keyword">FROM</span> clinical_discharges
-<span class="code-keyword">WHERE</span> follow_up_date <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>clinical_discharges</code> using the condition <code>follow_up_date IS NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: NULL State Verification</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> record_id, patient_name, discharge_date
-<span class="code-keyword">FROM</span> clinical_discharges
-<span class="code-keyword">WHERE</span> lab_result_mg <span class="code-keyword">IS</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>clinical_discharges</code> using the condition <code>lab_result_mg IS NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> record_id, patient_name, follow_up_date, lab_result_mg
-<span class="code-keyword">FROM</span> clinical_discharges
-<span class="code-keyword">WHERE</span> follow_up_date <span class="code-keyword">IS</span> <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span> <span class="code-keyword">AND</span> lab_result_mg <span class="code-keyword">IS</span> <span class="code-keyword">NOT</span> <span class="code-keyword">NULL</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>clinical_discharges</code> using the condition <code>follow_up_date IS NOT NULL AND lab_result_mg IS NOT NULL</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    patient_name,
-    <span class="code-func">COALESCE</span>(CAST(follow_up_date <span class="code-keyword">AS</span> VARCHAR), <span class="code-string">'PENDING_SCHEDULING'</span>) <span class="code-keyword">AS</span> follow_up_status,
-    <span class="code-func">COALESCE</span>(CAST(lab_result_mg <span class="code-keyword">AS</span> VARCHAR), <span class="code-string">'PENDING_LAB'</span>) <span class="code-keyword">AS</span> lab_status
-<span class="code-keyword">FROM</span> clinical_discharges;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>clinical_discharges</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>NULL in SQL denotes missing or unassigned information governed by Three-Valued Logic, requiring explicit IS NULL and COALESCE handling to prevent critical query bugs.</p>
+<p>Mastering NULL handling ensures accurate business reporting, preventing silent data drops caused by three-valued logic subtleties.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Absence of Data:</strong> NULL indicates missing data; it is completely distinct from numeric zero or empty string ''.</span>
+<span><strong>Strict Syntax:</strong> Always use <code>IS NULL</code> and <code>IS NOT NULL</code>. Never write <code>= NULL</code> or <code>!= NULL</code>.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Never Use = NULL:</strong> Always use IS NULL and IS NOT NULL; standard equality comparisons (=, !=) with NULL evaluate to UNKNOWN.</span>
+<span><strong>3VL Behavior:</strong> Comparisons against NULL produce UNKNOWN, which WHERE clauses reject automatically.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Arithmetic Contamination:</strong> Any arithmetic operation with NULL (5 + NULL) results in NULL; use COALESCE to supply fallbacks.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Aggregate Exclusion:</strong> Aggregate functions (SUM, AVG, MIN, MAX) automatically ignore NULL rows during calculation.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Three-Valued Truth Logic:</strong> Remember that WHERE clauses reject rows evaluating to UNKNOWN just as they reject FALSE.</span>
+<span><strong>Next Chapter:</strong> Now that filtering is mastered, learn how to sort and organize query streams in <a href="order-by.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The ORDER BY Clause →</a></span>
 </li>
 </ul>
 </div>
@@ -484,8 +527,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="insert-into.html" title="Previous: The INSERT INTO Statement">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The INSERT INTO Statement</span>
+<a class="btn-outline" href="like.html" title="Previous: The LIKE Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The LIKE Operator</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -494,8 +537,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="update.html" title="Next: The UPDATE Statement">
-<span class="btn-text">Next: The UPDATE Statement</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="order-by.html" title="Next: The ORDER BY Clause">
+<span class="btn-text">Next: The ORDER BY Clause</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

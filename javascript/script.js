@@ -20,7 +20,13 @@ const themeToggleBtn = document.getElementById('themeToggle');
 
 function applyTheme(theme) {
     const isDark = theme === 'dark';
-    document.body.classList.toggle('dark-mode', isDark);
+    if (document.body) {
+        document.body.classList.toggle('dark-mode', isDark);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.body) document.body.classList.toggle('dark-mode', isDark);
+        });
+    }
     if (themeToggleBtn) {
         const icon = themeToggleBtn.querySelector('i');
         if (icon) {
@@ -797,7 +803,7 @@ window.openEdmithEditor = function(target) {
     } else if (target && target.closest) {
         const terminal = target.closest('.code-terminal');
         const codeEl = terminal ? terminal.querySelector('code') : null;
-        sql = codeEl ? codeEl.innerText.trim() : '';
+        sql = codeEl ? (codeEl.innerText || codeEl.textContent || '').trim() : '';
     }
 
     if (!sql) return;

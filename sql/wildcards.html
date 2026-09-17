@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 3: SQL Wildcards Reference - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 3: SQL Wildcards Reference - Master pattern matching, % and _ wildcards, bracket ranges [ ], and escape characters on EDMITH." name="description"/>
 <title>SQL Wildcards Reference - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -152,7 +152,7 @@
             </button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
-<a href="index.html">SQL Mastery</a> &gt; <a href="keywords.html">Module 3: References</a> &gt; <span>SQL Wildcards Reference</span>
+<a href="index.html">SQL Mastery</a> &gt; <a href="wildcards.html">Module 3: References</a> &gt; <span>SQL Wildcards Reference</span>
 </div>
 <h1>SQL Wildcards Reference</h1>
 <p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-book"></i> Module 3: References</p>
@@ -163,26 +163,24 @@
 <div class="concept-icon"><i class="fas fa-asterisk"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Card Game Wildcard Joker Analogy</h4>
-<p>Picture playing a card game with a deck containing standard numbered cards and special wild Jokers:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Standard Cards::</strong> A regular card like the 7 of Spades represents strictly that exact card and nothing else.</li>
-<li><strong>2. The Percent (%) Joker::</strong> The % wildcard is like a magic chameleon card that can morph into an entire straight flush of any length, or vanish completely (zero characters).</li>
-<li><strong>3. The Underscore (_) Single Joker::</strong> The _ wildcard is a single wild card that must represent exactly one specific card position.</li>
-<li><strong>4. Exact Replacement::</strong> Combining fixed letters with Jokers lets you build flexible winning hands (patterns) without knowing every card in advance.</li>
-</ul>
+<p>Picture playing a card game with a standard deck containing fixed numbered cards and flexible Jokers:</p>
+<p style="margin-top: 8px !important;"><strong>1. Standard Exact Cards:</strong> A regular card like the 7 of Spades represents strictly that exact card and nothing else in a standard deal.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Percent (%) Wildcard:</strong> The % symbol operates like a chameleon Joker that can represent zero, one, or dozens of characters of any kind.</p>
+<p style="margin-top: 8px !important;"><strong>3. The Underscore (_) Positional Wildcard:</strong> The _ symbol represents exactly one single character slot at that precise position.</p>
+<p style="margin-top: 8px !important;"><strong>4. Combining Patterns:</strong> Mixing fixed literal characters with wildcards creates versatile, high-precision search filters across large text columns.</p>
 <p style="margin-top: 8px !important;">SQL wildcards substitute for arbitrary characters in text searches, allowing developers to craft prefix, suffix, and positional matching queries.</p>
 </div>
 </div>
-<!-- Beginner Tutorial Link Callout Box -->
+<!-- Companion Lesson Link Callout -->
 <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
 <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
 <i class="fas fa-graduation-cap" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
-<strong>Beginner Tutorials:</strong> Learn how to apply these wildcard patterns in hands-on production queries with step-by-step examples in <a href="like.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The LIKE Operator</a> and <a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The NOT Operator</a> in Module 1.
-                    </p>
+<strong>Companion Tutorials:</strong> Review fundamental pattern-matching mechanics and negative filtering in <a href="like.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The LIKE Operator</a> and <a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The NOT Operator</a>.
+</p>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>SQL Wildcards Reference</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -190,22 +188,53 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Wildcard Pattern Search</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name
-<span class="code-keyword">FROM</span> products
-<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'Micro%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>products</code> using the condition <code>product_name LIKE 'Micro%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- 1. Universal ANSI SQL Wildcards (% and _)</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'prefix%'</span>;  <span class="code-comment">-- Starts with prefix</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'%suffix'</span>;  <span class="code-comment">-- Ends with suffix</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'%text%'</span>;    <span class="code-comment">-- Contains text anywhere</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'_at'</span>;      <span class="code-comment">-- Exactly 3 letters ending in 'at'</span>
+
+<span class="code-comment">-- 2. Character Sets and Ranges (SQL Server / T-SQL)</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'[a-c]%'</span>;   <span class="code-comment">-- Starts with a, b, or c</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'[^a-c]%'</span>;  <span class="code-comment">-- Does NOT start with a, b, or c</span>
+
+<span class="code-comment">-- 3. Escaping Literal Wildcard Characters</span>
+<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> table_name <span class="code-keyword">WHERE</span> notes <span class="code-keyword">LIKE</span> <span class="code-string">'%100!%%'</span> <span class="code-keyword">ESCAPE</span> <span class="code-string">'!'</span>; <span class="code-comment">-- Literal '100%'</span></code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>SQL Wildcards Blueprint Breakdown</h4>
 </div>
+<p>Core rules and architectural mechanics governing pattern matching and string filtration in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Universal Symbols:</strong> <code>%</code> (matches zero or more characters) and <code>_</code> (matches exactly one character) are supported across all ANSI SQL relational engines.</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Leading Wildcard Performance Cost:</strong> Patterns starting with a wildcard (e.g. <code>LIKE '%term'</code>) prevent B-tree indexes from performing range scans, forcing an expensive full table scan.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>The ESCAPE Clause:</strong> To match literal <code>%</code> or <code>_</code> symbols in text columns, designate an escape character (such as <code>!</code> or <code>\</code>) using <code>ESCAPE '!'</code>.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Engine Variations:</strong> Square brackets <code>[a-z]</code> and <code>[^a-z]</code> are native to Microsoft SQL Server; PostgreSQL uses POSIX regular expressions (<code>~</code>, <code>!~</code>, or <code>SIMILAR TO</code>).</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of SQL wildcards running against active relational tables (<code>product_list</code>, <code>employees</code>, <code>customers</code>, and <code>sells_list</code>):</p>
+<!-- Query 1: Prefix Wildcard Search -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -213,22 +242,134 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Wildcard Pattern Search</span>
+<span class="terminal-title">Query 1: Prefix Pattern Search (Wireless%)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department
+<pre><code><span class="code-comment">-- Prefix wildcard: Find all audio and accessory items starting with 'Wireless'</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'Wireless%'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-search"></i>
+<h4>Prefix Pattern Search Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Applies The:</strong> Applies the prefix pattern <code>'Wireless%'</code> to find products whose titles begin with 'Wireless'.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Leverages Index:</strong> Leverages index seek capability because the prefix is fixed and known at parse time.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Matches Wireless:</strong> Matches Wireless Noise-Canceling Headphones ($199.99).</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 2: Infix Wildcard Search -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 2: Infix Substring Matching (%Leather%)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Infix wildcard: Find all products mentioning 'Leather' anywhere in title</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Leather%'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Infix Substring Matching Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Encloses 'Leather':</strong> Encloses 'Leather' between two <code>%</code> wildcards, matching the term at the start, middle, or end of titles.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Filters The:</strong> Filters the 25-product catalog for leather merchandise.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Returns Classic:</strong> Returns Classic Leather Loafers ($89.99) and Genuine Leather Wallet ($39.99).</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 3: Positional Single-Character Pattern -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Single-Character Positional Pattern (___ah)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Single-character positional wildcard: Find employees with 5-letter first names ending in 'ah'</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'J_ne'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>first_name LIKE 'J_ne'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'___ah'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-search"></i>
+<h4>Positional Pattern Matching Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Uses Exactly:</strong> Uses exactly three underscores (<code>___</code>) followed by <code>ah</code>, strictly enforcing a 5-character string length.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Prevents longer names (e.g. Abdullah or Deborah) from matching while requiring the exact suffix.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Pinpoints Sarah:</strong> Pinpoints Sarah Jenkins ($88,000.00) in the Engineering department.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 4: Suffix Cohort Search -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -236,305 +377,200 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Wildcard Pattern Search</span>
+<span class="terminal-title">Query 4: Suffix Pattern Search (%ar)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Search for actual '100%' literal string without treating % as wildcard</span>
-<span class="code-keyword">SELECT</span> report_id, notes
-<span class="code-keyword">FROM</span> audit_logs
-<span class="code-keyword">WHERE</span> notes <span class="code-keyword">LIKE</span> <span class="code-string">'%100!%%'</span> ESCAPE <span class="code-string">'!'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>audit_logs</code> using the condition <code>notes LIKE '%100!%%' ESCAPE '!'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Suffix wildcard: Find customers with surnames ending in 'ar' (e.g., Kumar, Prashar)</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> last_name <span class="code-keyword">LIKE</span> <span class="code-string">'%ar'</span> <span class="code-keyword">AND</span> customer_id &lt;= <span class="code-num">30</span>;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-search"></i>
+<h4>Suffix Pattern Search Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> license_plate
-<span class="code-keyword">FROM</span> vehicles
-<span class="code-keyword">WHERE</span> license_plate <span class="code-keyword">LIKE</span> <span class="code-string">'AB-___-CD'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>vehicles</code> using the condition <code>license_plate LIKE 'AB-___-CD'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Employs The:</strong> Employs the suffix pattern <code>'%ar'</code> to locate client accounts whose surname concludes with 'ar'.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Combines Wildcard:</strong> Combines wildcard filtering with primary key bounds (<code>customer_id &lt;= 30</code>) for efficient sampling.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Matches 8:</strong> Matches 8 accounts, led by Mrinal Prashar and Ripunjay Kumar.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>SQL wildcards are specialized pattern-matching symbols used in conjunction with the <code>LIKE</code> and <code>NOT LIKE</code> operators. ANSI SQL defines two universal wildcard characters: the percent sign (<code>%</code>) and the underscore (<code>_</code>).</p>
-<ul>
-<li><strong>The Percent (%) Token:</strong> Represents zero, one, or any arbitrary sequence of multiple characters.</li>
-<li><strong>The Underscore (_) Token:</strong> Represents exactly one single character at that precise character position.</li>
-<li><strong>Escaping Special Characters:</strong> When querying strings that contain literal <code>%</code> or <code>_</code> characters, declare an explicit <code>ESCAPE</code> character.</li>
-<li><strong>Database Variations:</strong> Some database engines (SQL Server, Access) provide bracketed sets like <code>[a-z]</code> or <code>[^abc]</code>, while others (PostgreSQL) provide POSIX regular expressions (<code>~</code>).</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>Understanding the full catalog of wildcards across relational database engines ensures correct query design.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Wildcard Symbol</th>
-<th>Pattern Example</th>
-<th>Match Mechanics</th>
-<th>Matching Values</th>
-<th>Index SARGable?</th>
+<th>Name</th>
+<th>Engine Support</th>
+<th>Pattern Meaning</th>
+<th>Example Match</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>%</code> (Suffix)</td>
-<td><code>LIKE 'Dev%'</code></td>
-<td>Starts with 'Dev', followed by any length</td>
-<td>Dev, Developer, DevOps</td>
-<td>Yes (B-Tree Index Seek)</td>
+<td><code>%</code></td>
+<td>Percent</td>
+<td>Universal (All RDBMS)</td>
+<td>Zero, one, or multiple characters</td>
+<td><code>'Sm%'</code> matches 'Smith', 'Small'</td>
 </tr>
 <tr>
-<td><code>%</code> (Prefix)</td>
-<td><code>LIKE '%tion'</code></td>
-<td>Any characters ending with 'tion'</td>
-<td>Action, Solution, Nation</td>
-<td>No (Full Table Scan)</td>
+<td><code>_</code></td>
+<td>Underscore</td>
+<td>Universal (All RDBMS)</td>
+<td>Exactly one single character</td>
+<td><code>'h_t'</code> matches 'hat', 'hot', 'hit'</td>
 </tr>
 <tr>
-<td><code>%</code> (Infix)</td>
-<td><code>LIKE '%log%'</code></td>
-<td>Contains 'log' anywhere in the string</td>
-<td>Catalog, Blogger, Logic</td>
-<td>No (Full Table Scan)</td>
+<td><code>[char_list]</code></td>
+<td>Character Set</td>
+<td>SQL Server / Sybase</td>
+<td>Any single character in set / range</td>
+<td><code>'[b-d]at'</code> matches 'bat', 'cat'</td>
 </tr>
 <tr>
-<td><code>_</code> (Single Pos)</td>
-<td><code>LIKE '_at'</code></td>
-<td>Exactly 3 letters ending in 'at'</td>
-<td>Cat, Hat, Bat, Rat</td>
-<td>No (Leading wildcard)</td>
+<td><code>[^char_list]</code></td>
+<td>Negated Set</td>
+<td>SQL Server / Sybase</td>
+<td>Any single character NOT in set</td>
+<td><code>'[^a]at'</code> matches 'bat', not 'aat'</td>
 </tr>
 <tr>
-<td><code>_</code> (Fixed Prefix)</td>
-<td><code>LIKE 'C_t'</code></td>
-<td>Starts with C, 1 arbitrary char, ends in t</td>
-<td>Cat, Cot, Cut</td>
-<td>Yes (Bounded prefix seek)</td>
+<td><code>ESCAPE 'x'</code></td>
+<td>Escape Operator</td>
+<td>Universal ANSI Standard</td>
+<td>Treats following wildcard as literal</td>
+<td><code>'%50!%%' ESCAPE '!'</code> matches '50%'</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Escaping Literal % and _ Characters in SQL Queries</h3>
-<p>When searching for financial discounts, percentages, or database identifiers with underscores, wildcards must be escaped:</p>
-<ul>
-<li><strong>The Problem:</strong> <code>WHERE discount LIKE '%50%%'</code> fails because the database treats the middle percent sign as a wildcard instead of a literal percentage!</li>
-<li><strong>The Solution:</strong> Use the <code>ESCAPE</code> clause to designate an escape character: <code>WHERE discount LIKE '%50!%%' ESCAPE '!';</code>.</li>
-<li><strong>Underscore File Search:</strong> To find file names like <code>invoice_2026.pdf</code>: <code>WHERE filename LIKE '%invoice!_%.pdf' ESCAPE '!';</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Security Log Forensics &amp; User Agent Classification:</strong> Analyze web server HTTP access logs to detect automated bot scrapers, mobile client requests, and security exploit attempts.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: web_access_logs
-   log_id | ip_address     | user_agent                        | http_code | request_path
-   -------+----------------+-----------------------------------+-----------+----------------------
-   701    | 192.168.1.50   | Mozilla/5.0 (iPhone; CPU OS 17)   | 200       | /api/v1/checkout
-   702    | 10.0.0.88      | Googlebot/2.1 (+http://google)    | 200       | /products/page_1
-   703    | 172.16.0.4     | curl/7.88.1                       | 401       | /admin/login
-   704    | 192.168.1.95   | Mozilla/5.0 (Windows NT 10.0)     | 200       | /api/v1/account
-   705    | 45.33.32.156   | Python-urllib/3.10                | 403       | /admin/.env
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 1: Execution Step 1</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-op">/</span><span class="code-op">*</span> <span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span>
-   Sample Dataset: web_access_logs
-   log_id | ip_address     | user_agent                        | http_code | request_path
-   <span class="code-comment">-------+----------------+-----------------------------------+-----------+----------------------</span>
-   <span class="code-num">701</span>    | <span class="code-num">192.168</span>.<span class="code-num">1.50</span>   | Mozilla<span class="code-op">/</span><span class="code-num">5.0</span> (iPhone;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code>CPU OS <span class="code-num">17</span>)   | <span class="code-num">200</span>       | <span class="code-op">/</span>api<span class="code-op">/</span>v1<span class="code-op">/</span>checkout
-   <span class="code-num">702</span>    | <span class="code-num">10.0</span>.<span class="code-num">0.88</span>      | Googlebot<span class="code-op">/</span><span class="code-num">2.1</span> (<span class="code-op">+</span>http:<span class="code-op">/</span><span class="code-op">/</span>google)    | <span class="code-num">200</span>       | <span class="code-op">/</span>products<span class="code-op">/</span>page_1
-   <span class="code-num">703</span>    | <span class="code-num">172.16</span>.<span class="code-num">0.4</span>     | curl<span class="code-op">/</span><span class="code-num">7.88</span>.<span class="code-num">1</span>                       | <span class="code-num">401</span>       | <span class="code-op">/</span>admin<span class="code-op">/</span>login
-   <span class="code-num">704</span>    | <span class="code-num">192.168</span>.<span class="code-num">1.95</span>   | Mozilla<span class="code-op">/</span><span class="code-num">5.0</span> (Windows NT <span class="code-num">10.0</span>)     | <span class="code-num">200</span>       | <span class="code-op">/</span>api<span class="code-op">/</span>v1<span class="code-op">/</span>account
-   <span class="code-num">705</span>    | <span class="code-num">45.33</span>.<span class="code-num">32.156</span>   | Python<span class="code-op">-</span>urllib<span class="code-op">/</span><span class="code-num">3.10</span>                | <span class="code-num">403</span>       | <span class="code-op">/</span>admin<span class="code-op">/</span>.env
-   <span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span><span class="code-op">=</span> <span class="code-op">*</span><span class="code-op">/</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, ip_address, user_agent
-<span class="code-keyword">FROM</span> web_access_logs
-<span class="code-keyword">WHERE</span> user_agent <span class="code-keyword">LIKE</span> <span class="code-string">'%bot%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>web_access_logs</code> using the condition <code>user_agent LIKE '%bot%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, request_path, http_code
-<span class="code-keyword">FROM</span> web_access_logs
-<span class="code-keyword">WHERE</span> request_path <span class="code-keyword">LIKE</span> <span class="code-string">'/api/v1/%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>web_access_logs</code> using the condition <code>request_path LIKE '/api/v1/%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, ip_address, request_path
-<span class="code-keyword">FROM</span> web_access_logs
-<span class="code-keyword">WHERE</span> request_path <span class="code-keyword">LIKE</span> <span class="code-string">'/admin/.%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>web_access_logs</code> using the condition <code>request_path LIKE '/admin/.%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 5: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> log_id, ip_address, user_agent
-<span class="code-keyword">FROM</span> web_access_logs
-<span class="code-keyword">WHERE</span> ip_address <span class="code-keyword">LIKE</span> <span class="code-string">'192.168.1.___'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>web_access_logs</code> using the condition <code>ip_address LIKE '192.168.1.___'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>SQL wildcards (% and _) provide dynamic pattern matching capabilities in text filters, allowing engineers to query substrings, prefixes, and fixed-position characters across database records.</p>
+<h3>Index SARGability (Search Argument Ability)</h3>
+<p>Database query optimizers treat wildcard queries very differently depending on where the wildcard character appears:</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Percent Wildcard (%):</strong> % matches zero, one, or multiple arbitrary characters anywhere in the string.</span>
+<span><strong>SARGable (Fast Index Seek):</strong> <code>WHERE name LIKE 'Tech%'</code>. The database uses B-Tree index ordering to jump directly to entries starting with 'Tech' and reads sequentially.</span>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<span><strong>Non-SARGable (Slow Full Table Scan):</strong> <code>WHERE name LIKE '%Tech'</code> or <code>WHERE name LIKE '%Tech%'</code>. The database cannot determine starting characters and must read every row sequentially.</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Full-Text Search Alternative:</strong> For heavy infix searching on large tables, implement Full-Text Search (FTS) indexes (e.g. <code>CONTAINS</code> in SQL Server or <code>to_tsvector</code> in PostgreSQL) instead of wildcards.</span>
+</li>
+</ul>
+</div>
+<h2>Real-World Practical Scenario</h2>
+<p><strong>Cross-Table Hardware Pro-Tier Pattern Search:</strong> Find all settled sales transactions associated with premium professional equipment across the catalog and client base.</p>
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Production Query: Multi-Table Professional Equipment Search</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Combined wildcard search across joined tables</span>
+<span class="code-keyword">SELECT</span> 
+    s.sale_id,
+    c.first_name,
+    c.last_name,
+    p.product_name,
+    s.total_price
+<span class="code-keyword">FROM</span> sells_list s
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
+<span class="code-keyword">WHERE</span> p.product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Pro%'</span> <span class="code-keyword">AND</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">ORDER BY</span> s.total_price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-search"></i>
+<h4>Professional Equipment Search Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Joins Customer:</strong> Joins customer profiles and transactions against products matching the infix keyword <code>%Pro%</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Underscore Wildcard (_):</strong> _ matches strictly one character at that exact positional slot.</span>
+<div><strong>Matches High-Performance:</strong> Matches high-performance hardware lines such as Pro Laptop 15" and Running Shoes Pro.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>B-Tree SARGability:</strong> Prefix patterns (LIKE 'Prefix%') leverage B-Tree indexes; leading wildcards (LIKE '%Suffix') force full table scans.</span>
+<div>Isolates 6 completed sales led by Priya Patel ($3,899.97) and Mia Robinson ($2,599.98).</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<h2>Best Practices &amp; Production Guidelines</h2>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Anchor Prefixes Whenever Possible:</strong> Favor prefix matching (<code>'ABC%'</code>) over infix matching (<code>'%ABC%'</code>) to maintain sub-second index seek speeds on massive million-row datasets.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Literal Escaping:</strong> Use the ESCAPE keyword (e.g. ESCAPE '!') when searching for literal '%' or '_' characters.</span>
+<span><strong>Be Careful with Underscore Counts:</strong> Every underscore represents exactly one character; verify character length requirements before applying multi-underscore filters.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Case Sensitivity:</strong> Standard LIKE is case-sensitive in PostgreSQL and case-insensitive in MySQL; use ILIKE or UPPER() for case-insensitive matching.</span>
+<span><strong>Next Step:</strong> Explore relational arithmetic and logical operators in the <a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Operators Reference</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>SQL wildcards provide flexible character substitution capabilities for searching unstructured text fields, with distinct performance trade-offs based on index usage.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>The <code>%</code> Symbol:</strong> Matches any sequence of zero, one, or multiple characters.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>The <code>_</code> Symbol:</strong> Matches exactly one character at a precise string position.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Next Chapter:</strong> Review logical, mathematical, and bitwise operators in the <a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Operators Reference →</a></span>
 </li>
 </ul>
 </div>
@@ -542,8 +578,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="comments.html" title="Previous: SQL Comments">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Comments</span>
+<a class="btn-outline" href="stored-procedures.html" title="Previous: Stored Procedures">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Stored Procedures</span>
 </a>
 </div>
 <div class="lesson-nav-center">

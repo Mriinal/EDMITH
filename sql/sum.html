@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The SUM() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The SUM() Function - Master SQL numeric summation, financial rollups, and expression totals with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>The SUM() Function - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li class="active"><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -132,9 +132,7 @@
 <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
 <span class="module-title">Module 3: References</span>
 </div>
-<i class="fas fa-chevron-down module-chevron"></i>
-</div>
-<div class="sidebar-module-list" id="mod3-list">
+<i class="sidebar-module-list" id="mod3-list">
 <ul>
 <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
 <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
@@ -149,7 +147,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The SUM() Function</span>
@@ -164,313 +162,331 @@
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Supermarket Cash Register Tape Analogy</h4>
 <p>Picture a supermarket checkout cash register calculating the final receipt total for a shopper:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Itemized Prices::</strong> The cashier scans items: Cereal $4.50, Coffee $12.00, Milk $3.50, Apples $6.00.</li>
-<li><strong>2. The SUM() Accumulator::</strong> The register tape maintains a running mathematical accumulator adding every price into a cumulative total.</li>
-<li><strong>3. Free Items (Zero &amp; NULL)::</strong> If a promotional coupon is scanned ($0) or an item has no price tag (NULL), the accumulator skips it without breaking.</li>
-<li><strong>4. The Final Grand Total::</strong> At the bottom of the receipt, the machine prints the grand total: $26.00.</li>
+<p style="margin-top: 8px !important;"><strong>1. Itemized Scans:</strong> The cashier scans items one by one: Cereal $4.50, Coffee $12.00, Milk $3.50, Apples $6.00.</p>
+<p style="margin-top: 8px !important;"><strong>2. The SUM() Accumulator:</strong> The register's processing unit maintains a running mathematical accumulator, continuously adding each value into a cumulative total.</p>
+<p style="margin-top: 8px !important;"><strong>3. Missing &amp; Zero Price Items:</strong> If a promotional bonus coupon ($0) or an item without a price tag (NULL) is encountered, the accumulator ignores it without throwing an error.</p>
+<p style="margin-top: 8px !important;"><strong>4. Authoritative Grand Total:</strong> When the checkout concludes, the register tape prints the grand total: $26.00.</p>
+<p style="margin-top: 8px !important;">The SQL SUM() aggregate function calculates the cumulative mathematical total of all non-null numeric values across matching records.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical SUM() Syntax Grammar</h2>
+<p>The <code>SUM()</code> function operates strictly on numeric data types (INTEGER, DECIMAL, FLOAT), adding values into a single scalar result:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Numeric Summation with SUM()</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. Simple Column Summation</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(numeric_column) <span class="code-keyword">AS</span> total_sum
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> filter_condition;
+
+<span class="code-comment">-- 2. Arithmetic Expression Summation</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(price <span class="code-op">*</span> quantity) <span class="code-keyword">AS</span> total_extended_value
+<span class="code-keyword">FROM</span> table_name;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>SUM() Blueprint Breakdown</h4>
+</div>
+<p>Understanding numeric accumulation in SQL:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Data Type Requirement:</strong> <code>SUM()</code> requires numeric arguments. Passing non-numeric text columns (e.g., <code>SUM(first_name)</code>) causes a fatal syntax error.</div>
+</li>
+<li>
+<i class="fas fa-times"></i>
+<div><strong>Arithmetic Inside the Function:</strong> You can embed arithmetic formulas inside <code>SUM()</code> (e.g. <code>SUM(unit_price * units_sold)</code>); the engine evaluates the product row-by-row before adding it into the accumulator.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Zero vs NULL Output:</strong> If the table has zero rows passing the WHERE filter, <code>SUM()</code> returns <code>NULL</code> rather than <code>0</code>. Use <code>COALESCE(SUM(col), 0)</code> when a guaranteed zero is required.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The SUM() function adds all non-null numeric values in a column to compute an authoritative grand total.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The SUM() Function</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Settled Revenue on sells_list -->
+<h2>2. Financial Auditing: Total Gross Settled Revenue</h2>
+<p>Compute the total settled cash revenue collected across all completed purchases on the <code>sells_list</code> table:</p>
+
+<!-- Sales Revenue Sum Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Metric Computation</span>
+<span class="terminal-title">Query: Total Settled Commercial Revenue</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(order_total) <span class="code-keyword">AS</span> total_gross_revenue
-<span class="code-keyword">FROM</span> sales_orders;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>sales_orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Calculate total revenue from verified, completed customer transactions</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_paid_revenue
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Revenue Sum -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-file-invoice-dollar"></i>
+<h4>Revenue Accumulation Breakdown</h4>
+</div>
+<p>Analyzing company-wide commerce cash flow:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Settled Receipts ($15,615.17):</strong> Sums the 37 completed transactions, excluding pending, cancelled, or refunded orders.</div>
+</li>
+<li>
+<i class="fas fa-coins"></i>
+<div><strong>Precision Rounding:</strong> <code>ROUND(SUM(...), 2)</code> prevents floating-point inaccuracies, guaranteeing standard two-decimal financial precision.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the $15,615.17 total calculated live from <code>sells_list</code>!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Need to calculate mathematical averages or means?</strong> Explore our next chapter: 
+<a href="avg.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The AVG() Function →</a> or learn how to aggregate values by group in 
+<a href="group-by.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The GROUP BY Statement →</a>
+</p>
+</div>
+
+<!-- Section 3: Payroll Expenditure on employees -->
+<h2>3. Corporate Budgeting: Company-Wide Annual Payroll</h2>
+<p>Tally the total annual salary expenditure across all 15 personnel on the corporate <code>employees</code> registry:</p>
+
+<!-- Employee Payroll Sum Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Metric Computation</span>
+<span class="terminal-title">Query: Company-Wide Annual Payroll Commitment</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> engineering_payroll_expenditure
+<pre><code><span class="code-comment">-- Sum total annual compensation across all employees</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> total_annual_payroll
+<span class="code-keyword">FROM</span> employees;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Payroll Sum -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-wallet"></i>
+<h4>Annual Payroll Breakdown</h4>
+</div>
+<p>Measuring total human capital investment:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-money-check-alt"></i>
+<div><strong>Grand Total ($1,324,000):</strong> Evaluates salary values across all 15 staff members, spanning Executive, Engineering, HR, Marketing, Operations, and Sales.</div>
+</li>
+<li>
+<i class="fas fa-building"></i>
+<div><strong>Budget Planning:</strong> Essential for executive finance teams calculating annual burn rate and compensation forecasting.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Filtered Summation on employees -->
+<h2>4. Departmental Budgeting: Engineering Payroll Allocation</h2>
+<p>Combine conditional filtering with <code>SUM()</code> to compute the specific salary allocation dedicated to technical staff:</p>
+
+<!-- Engineering Payroll Sum Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Engineering Department Payroll Total</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Calculate annual payroll allocated strictly to the Engineering division</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(salary) <span class="code-keyword">AS</span> engineering_payroll
 <span class="code-keyword">FROM</span> employees
 <span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>department = 'Engineering'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
 </div>
+
+<!-- Dedicated Explanation Area for Engineering Payroll Sum -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-laptop-code"></i>
+<h4>Departmental Payroll Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Targeted department compensation totals:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Department Isolation:</strong> Eliminates the 11 non-engineering staff members before passing salaries to the accumulator.</div>
+</li>
+<li>
+<i class="fas fa-code-branch"></i>
+<div><strong>$378,000 Total:</strong> Accurately aggregates the salaries of Ripunjay Kumar ($120,000), Amritesh Nath ($95,000), Sarah Jenkins ($85,000), and Alex Rivera ($78,000).</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Arithmetic Expression Sum on product_list -->
+<h2>5. Inventory Valuation: Arithmetic Multiplication Inside SUM()</h2>
+<p>Compute total physical warehouse units and total catalog inventory asset value using an in-line expression inside <code>SUM()</code>:</p>
+
+<!-- Inventory Valuation Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Metric Computation</span>
+<span class="terminal-title">Query: Physical Units &amp; Warehouse Inventory Asset Value</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(<span class="code-keyword">DISTINCT</span> unit_price) <span class="code-keyword">AS</span> sum_of_unique_prices
-<span class="code-keyword">FROM</span> store_catalog;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>store_catalog</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Calculate total stock units and total inventory value (price * stock_quantity)</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">SUM</span>(stock_quantity)                           <span class="code-keyword">AS</span> total_units_in_stock,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(price <span class="code-op">*</span> stock_quantity), <span class="code-num">2</span>)          <span class="code-keyword">AS</span> total_inventory_valuation
+<span class="code-keyword">FROM</span> product_list;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Inventory Valuation -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-warehouse"></i>
+<h4>Warehouse Asset Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Evaluating enterprise physical merchandise:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-boxes"></i>
+<div><strong>2,555 Total Units:</strong> <code>SUM(stock_quantity)</code> adds all warehouse unit stock counts across the 25 catalog products.</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>$197,579.45 Inventory Valuation:</strong> For each item, computes <code>price * stock_quantity</code>, then sums all 25 extended values to determine total liquid merchandise worth.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 6: Categorical Inventory on product_list -->
+<h2>6. Sector Analysis: Electronics Inventory Units</h2>
+<p>Measure physical warehouse capacity allocated specifically to consumer electronics on <code>product_list</code>:</p>
+
+<!-- Electronics Units Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Metric Computation</span>
+<span class="terminal-title">Query: Tallying Electronics Warehouse Stock Units</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> payment_method <span class="code-op">=</span> <span class="code-string">'CREDIT_CARD'</span> <span class="code-keyword">THEN</span> amount <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> credit_card_revenue,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> payment_method <span class="code-op">=</span> <span class="code-string">'PAYPAL'</span> <span class="code-keyword">THEN</span> amount <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> paypal_revenue,
-    <span class="code-func">SUM</span>(amount) <span class="code-keyword">AS</span> total_revenue
-<span class="code-keyword">FROM</span> payment_transactions;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>payment_transactions</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Total physical stock units reserved for Electronics merchandise</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(stock_quantity) <span class="code-keyword">AS</span> electronics_inventory_units
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Electronics Units -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-microchip"></i>
+<h4>Electronics Stock Breakdown</h4>
 </div>
+<p>Departmental physical asset sizing:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-tag"></i>
+<div><strong>Category Filter:</strong> Isolates the 6 electronics hardware items.</div>
+</li>
+<li>
+<i class="fas fa-cubes"></i>
+<div><strong>480 Warehouse Units:</strong> Sums Laptops (45), Headphones (80), Keyboards (120), Smartwatches (60), Mice (150), and Monitors (25) into an authoritative 480-unit figure.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>SUM()</code> aggregate function computes the cumulative arithmetic sum of all non-null values in a numeric column or expression. If the table is empty or all column entries are NULL, <code>SUM()</code> returns <code>NULL</code>.</p>
-<ul>
-<li><strong>Numeric-Only Requirement:</strong> SUM() operates strictly on numeric data types (INTEGER, DECIMAL, FLOAT, NUMERIC); applying SUM to strings or dates triggers a data type error.</li>
-<li><strong>The Empty Table NULL Trap:</strong> If a query sums zero rows (e.g. <code>WHERE id = -1</code>), SUM() returns <code>NULL</code> rather than <code>0</code>; use <code>COALESCE(SUM(col), 0)</code> to ensure numeric output.</li>
-<li><strong>Automatic NULL Skipping:</strong> Like other mathematical aggregates, SUM() skips NULL rows entirely without treating them as errors.</li>
-<li><strong>Decimal Overflow Protection:</strong> Summing large integers can exceed integer limits; cast columns to <code>BIGINT</code> or <code>DECIMAL</code> for high-volume billing systems.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
-<thead>
-<tr>
-<th>Aggregation Form</th>
-<th>SQL Syntax Pattern</th>
-<th>Empty Table Result</th>
-<th>NULL Value Handling</th>
-<th>Target Scenario</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Standard Sum</td>
-<td><code>SUM(amount)</code></td>
-<td>Returns NULL</td>
-<td>Ignored automatically</td>
-<td>Revenue totals, inventory counts</td>
-</tr>
-<tr>
-<td>Coalesced Sum</td>
-<td><code>COALESCE(SUM(amount), 0)</code></td>
-<td>Returns 0.00</td>
-<td>Converts empty/null to 0</td>
-<td>Production financial APIs &amp; dashboards</td>
-</tr>
-<tr>
-<td>Distinct Sum</td>
-<td><code>SUM(DISTINCT price)</code></td>
-<td>Returns NULL</td>
-<td>Deduplicates numbers before sum</td>
-<td>Calculating unique tier totals</td>
-</tr>
-<tr>
-<td>Conditional Sum</td>
-<td><code>SUM(CASE WHEN ... THEN val ELSE 0 END)</code></td>
-<td>Returns 0 if no match</td>
-<td>Explicit ELSE 0 prevents NULL</td>
-<td>Multi-column financial accounting pivots</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3>Why SUM() Returns NULL on Empty Sets (and How to Fix It)</h3>
-<p>One of the most frequent frontend UI bugs occurs when an API reports <code>null</code> instead of <code>$0.00</code> for empty stores:</p>
-<ul>
-<li><strong>The ANSI Standard Behavior:</strong> ANSI SQL specifies that aggregating an empty set with SUM() returns NULL, representing undefined data.</li>
-<li><strong>The Frontend Crash:</strong> If JavaScript or Python tries to format <code>null.toFixed(2)</code>, your frontend dashboard crashes.</li>
-<li><strong>The Production Fix:</strong> Always wrap financial sums in COALESCE: <code>SELECT COALESCE(SUM(order_total), 0) AS safe_total FROM orders WHERE user_id = 999;</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>SaaS Enterprise Billing &amp; Revenue Accounting:</strong> Calculate monthly recurring revenue (MRR), annual contract values, and refunds across enterprise subscription tiers.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: subscription_invoices
-   invoice_id | account_id | plan_type   | amount_usd | status    | billing_cycle
-   -----------+------------+-------------+------------+-----------+--------------
-   8001       | 201        | ENTERPRISE  | 5000.00    | PAID      | MONTHLY
-   8002       | 202        | PRO         | 500.00     | PAID      | MONTHLY
-   8003       | 203        | ENTERPRISE  | 12000.00   | PAID      | ANNUAL
-   8004       | 204        | PRO         | 500.00     | REFUNDED  | MONTHLY
-   8005       | 205        | ENTERPRISE  | 5000.00    | PENDING   | MONTHLY
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(amount_usd), <span class="code-num">0</span>) <span class="code-keyword">AS</span> total_settled_cash
-<span class="code-keyword">FROM</span> subscription_invoices
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>subscription_invoices</code> using the condition <code>status = 'PAID'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Discrete Value Set Matching</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(amount_usd) <span class="code-keyword">AS</span> monthly_mrr_runrate
-<span class="code-keyword">FROM</span> subscription_invoices
-<span class="code-keyword">WHERE</span> billing_cycle <span class="code-op">=</span> <span class="code-string">'MONTHLY'</span> <span class="code-keyword">AND</span> status <span class="code-keyword">IN</span> (<span class="code-string">'PAID'</span>, <span class="code-string">'PENDING'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>subscription_invoices</code> using the condition <code>billing_cycle = 'MONTHLY' AND status IN ('PAID', 'PENDING')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(amount_usd), <span class="code-num">0</span>) <span class="code-keyword">AS</span> total_refunds
-<span class="code-keyword">FROM</span> subscription_invoices
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'REFUNDED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>subscription_invoices</code> using the condition <code>status = 'REFUNDED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> plan_type <span class="code-op">=</span> <span class="code-string">'ENTERPRISE'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">THEN</span> amount_usd <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> enterprise_paid,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> plan_type <span class="code-op">=</span> <span class="code-string">'PRO'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">THEN</span> amount_usd <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> pro_paid,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">THEN</span> amount_usd <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> grand_total_paid
-<span class="code-keyword">FROM</span> subscription_invoices;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>subscription_invoices</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The SUM() mathematical aggregate calculates cumulative totals across numeric datasets, providing the core computational engine for accounting, revenue reporting, and business analytics.</p>
+<p>The SUM() function adds numeric values in memory, following ANSI standard accumulation rules.</p>
+
+<h3>NULL Handling in SUM()</h3>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Numeric Columns Only:</strong> SUM() operates exclusively on numeric attributes; strings and dates trigger syntax/type errors.</span>
+<span><strong>NULL Values are Skipped:</strong> If a column contains <code>[10, NULL, 20]</code>, <code>SUM()</code> computes <code>10 + 20 = 30</code>.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Always Use COALESCE:</strong> Wrap SUM() in COALESCE(SUM(col), 0) to ensure empty query matches return 0 rather than NULL.</span>
+<span><strong>Empty Table Result:</strong> If every row evaluated is NULL or zero rows match the WHERE filter, <code>SUM()</code> yields <code>NULL</code> (not 0).</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Automatic NULL Skipping:</strong> NULL values in rows are safely ignored without contaminating the cumulative total.</span>
+<span><strong>Default Substitution:</strong> Write <code>COALESCE(SUM(total_price), 0)</code> to guarantee a numerical 0 is returned when sales are absent.</span>
+</li>
+</ul>
+</div>
+
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The SUM() function is the workhorse of financial auditing, inventory valuation, and resource management across enterprise database systems.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Numeric Types:</strong> Operates exclusively on numeric data types (INTEGER, DECIMAL, FLOAT).</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Conditional Aggregation:</strong> Combine SUM(CASE WHEN condition THEN val ELSE 0 END) to compute multi-column financial dashboards.</span>
+<span><strong>Expressions:</strong> Embed formulas inside <code>SUM(price * quantity)</code> for multi-column arithmetic totals.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Prevent Integer Overflow:</strong> Cast large integer columns to BIGINT or DECIMAL before summing to avoid numerical overflow exceptions.</span>
+<span><strong>Next Chapter:</strong> Discover how to compute statistical means and handle division in <a href="avg.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The AVG() Function →</a></span>
 </li>
 </ul>
 </div>

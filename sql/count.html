@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The COUNT() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The COUNT() Function - Master SQL row counting, non-null tallying, and COUNT(DISTINCT) with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>The COUNT() Function - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li class="active"><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The COUNT() Function</span>
@@ -163,312 +163,358 @@
 <div class="concept-icon"><i class="fas fa-users"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Turnstile Stadium Headcount Analogy</h4>
-<p>Imagine an automated entry turnstile at a 60,000-seat football stadium on game day:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Turnstile Rotations (COUNT(*))::</strong> Every time a physical human pushes through the turnstile, the counter increments by one, regardless of ticket type or clothing.</li>
-<li><strong>2. VIP Pass Inspection (COUNT(column))::</strong> A secondary scanner tallies only fans who scan an active VIP parking pass; attendees without a pass (NULL) do not increment this counter.</li>
-<li><strong>3. Unique Season Ticket Holders (COUNT(DISTINCT))::</strong> If a fan exits and re-enters three times, the unique season ticket counter counts them exactly once.</li>
-<li><strong>4. Instant Capacity Metrics::</strong> Officials know total attendance, VIP count, and unique individuals in real time.</li>
+<p>Imagine an automated entry turnstile at a 60,000-seat football stadium on championship game day:</p>
+<p style="margin-top: 8px !important;"><strong>1. Physical Turnstile Rotations (COUNT(*)):</strong> Every time a spectator pushes through the turnstile, the mechanical counter increments by one, regardless of ticket tier, badge, or VIP status.</p>
+<p style="margin-top: 8px !important;"><strong>2. VIP Pass Scanning (COUNT(column)):</strong> A secondary scanner tallies only fans who scan an active VIP parking pass; attendees without this pass (NULL) do not increment this counter.</p>
+<p style="margin-top: 8px !important;"><strong>3. Deduplicated Spectators (COUNT(DISTINCT)):</strong> If a stadium staff member exits and re-enters three times using their ID badge, the unique badge counter counts them exactly once.</p>
+<p style="margin-top: 8px !important;"><strong>4. Instant Operational Transparency:</strong> Stadium managers know total attendance, verified VIPs, and unique individuals in real time.</p>
+<p style="margin-top: 8px !important;">The SQL COUNT() aggregate function tallies total rows, populated attribute values, or unique discrete occurrences matching your criteria.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical COUNT() Syntax Grammar</h2>
+<p>The <code>COUNT()</code> function offers three distinct syntactic forms to address different analytical requirements:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: The Three Variations of COUNT()</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. Total Row Cardinality (Includes NULLs)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_rows
+<span class="code-keyword">FROM</span> table_name;
+
+<span class="code-comment">-- 2. Populated Column Values (Ignores NULLs)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(column_name) <span class="code-keyword">AS</span> populated_rows
+<span class="code-keyword">FROM</span> table_name;
+
+<span class="code-comment">-- 3. Unique Discrete Values (Ignores Duplicates &amp; NULLs)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> column_name) <span class="code-keyword">AS</span> unique_values
+<span class="code-keyword">FROM</span> table_name;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>COUNT() Blueprint Breakdown</h4>
+</div>
+<p>Understanding how the three forms differ in practice:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-asterisk"></i>
+<div><strong><code>COUNT(*)</code>:</strong> Counts every single qualifying row emitted by the table scan or index scan, regardless of whether individual columns contain NULL values.</div>
+</li>
+<li>
+<i class="fas fa-id-badge"></i>
+<div><strong><code>COUNT(col)</code>:</strong> Evaluates the specific column and increments the counter <em>only</em> when the value is not NULL.</div>
+</li>
+<li>
+<i class="fas fa-fingerprint"></i>
+<div><strong><code>COUNT(DISTINCT col)</code>:</strong> Deduplicates values in memory before counting, tallying each distinct entry exactly once.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The COUNT() function tallies the number of rows or non-null values matching your query criteria.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The COUNT() Function</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Total Population Counting on customers -->
+<h2>2. Total Population Cardinality: Auditing the Customer Directory</h2>
+<p>Determine the total registered customer volume across the <code>customers</code> directory using <code>COUNT(*)</code>:</p>
+
+<!-- Customer Total Count Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Cardinality Aggregation</span>
+<span class="terminal-title">Query: Total Customer Directory Census</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_registered_users
-<span class="code-keyword">FROM</span> users;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>users</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Tally every customer account registered in the system</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_customers
+<span class="code-keyword">FROM</span> customers;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Customer Total Count -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Customer Census Breakdown</h4>
+</div>
+<p>High-level table cardinality auditing:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>612 Total Accounts:</strong> Returns exactly 612, matching the authoritative population size of our customer base.</div>
+</li>
+<li>
+<i class="fas fa-tachometer-alt"></i>
+<div><strong>Engine Speed:</strong> Query planners can fulfill <code>COUNT(*)</code> via fast index-only scans on the primary key column (<code>customer_id</code>).</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to verify the 612-record customer total live in the SQL Editor!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Looking for numeric summation and financial totals?</strong> Explore our next chapter: 
+<a href="sum.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The SUM() Function →</a> or learn how to count rows by subgroup in 
+<a href="group-by.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The GROUP BY Statement →</a>
+</p>
+</div>
+
+<!-- Section 3: Non-Null Attribute Counting on customers -->
+<h2>3. Attribute Completeness: Tallying Non-NULL Values</h2>
+<p>Discover how many customers submitted an official middle name by running <code>COUNT(middle_name)</code>:</p>
+
+<!-- Customer Middle Name Count Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Cardinality Aggregation</span>
+<span class="terminal-title">Query: Counting Populated Middle Names</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(phone_number) <span class="code-keyword">AS</span> users_with_verified_phone
-<span class="code-keyword">FROM</span> user_profiles;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>user_profiles</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Tally accounts where middle name is populated (non-NULL)</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(middle_name) <span class="code-keyword">AS</span> customers_with_middle_name
+<span class="code-keyword">FROM</span> customers;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Middle Name Count -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-id-card"></i>
+<h4>Attribute Completeness Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Auditing optional fields in enterprise profiles:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>486 Populated Entries:</strong> Out of 612 customers, exactly 486 have recorded middle names.</div>
+</li>
+<li>
+<i class="fas fa-user-times"></i>
+<div><strong>126 Omitted Values:</strong> The remaining 126 records contain NULL, which <code>COUNT(middle_name)</code> automatically drops from the total.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: COUNT(DISTINCT) on product_list -->
+<h2>4. Deduplicated Cardinality: Counting Unique Product Categories</h2>
+<p>Compare total catalog inventory against the number of unique product categories on <code>product_list</code> using <code>COUNT(DISTINCT)</code>:</p>
+
+<!-- Distinct Category Count Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Cardinality Aggregation</span>
+<span class="terminal-title">Query: Counting Unique Categories vs Total Catalog SKUs</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> country) <span class="code-keyword">AS</span> active_country_count
-<span class="code-keyword">FROM</span> customer_orders;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>customer_orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Tally distinct merchandise categories alongside total catalog items</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> category) <span class="code-keyword">AS</span> distinct_categories,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                  <span class="code-keyword">AS</span> total_products
+<span class="code-keyword">FROM</span> product_list;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Distinct Category Count -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-boxes"></i>
+<h4>Distinct Category Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>How the DISTINCT modifier collapses repeated categorical entries:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-tags"></i>
+<div><strong>5 Unique Categories:</strong> Returns 5 unique retail sectors (Apparel, Books, Electronics, Footwear, Home &amp; Kitchen).</div>
+</li>
+<li>
+<i class="fas fa-cube"></i>
+<div><strong>25 Total SKUs:</strong> The total inventory contains 25 items distributed across these 5 core sectors.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Filtered Counting on sells_list -->
+<h2>5. Filtered Cardinality: High-Value Settled Transactions</h2>
+<p>Combine row-level conditions with <code>COUNT(*)</code> on <code>sells_list</code> to measure how many customer purchases meet high-value criteria:</p>
+
+<!-- Sales Filtered Count Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Cardinality Aggregation</span>
+<span class="terminal-title">Query: Tallying Paid Transactions of $200.00 or Higher</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_orders,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> completed_orders,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'CANCELLED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> cancelled_orders
-<span class="code-keyword">FROM</span> orders;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Count settled sales exceeding the $200 revenue threshold</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> paid_orders_over_200
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
+  <span class="code-keyword">AND</span> total_price <span class="code-op">&gt;=</span> <span class="code-num">200.00</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Filtered Count -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-receipt"></i>
+<h4>Filtered Count Breakdown</h4>
+</div>
+<p>Filtering transactional streams before computing cardinality:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Execution Sequence:</strong> The WHERE clause filters out pending/refunded orders and purchases below $200 before the accumulator tallies rows.</div>
+</li>
+<li>
+<i class="fas fa-award"></i>
+<div><strong>15 High-Value Orders:</strong> Accurately surfaces 15 transactions driving top-tier commercial volume.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 6: Auditing Organization Structure on employees -->
+<h2>6. Data Quality Auditing: Supervised Personnel on employees</h2>
+<p>Use <code>COUNT(manager_id)</code> vs <code>COUNT(*)</code> to verify how many employees report into the organizational hierarchy:</p>
+
+<!-- Employee Audit Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Auditing Supervised Personnel vs Total Headcount</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
+<pre><code><span class="code-comment">-- Tally supervised employees and total staff to identify root executives</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">COUNT</span>(manager_id) <span class="code-keyword">AS</span> supervised_staff,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)          <span class="code-keyword">AS</span> total_staff
+<span class="code-keyword">FROM</span> employees;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Employee Audit -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-sitemap"></i>
+<h4>Hierarchy Audit Breakdown</h4>
+</div>
+<p>Uncovering organizational architecture via count comparisons:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-friends"></i>
+<div><strong>14 Supervised Employees:</strong> Confirms that 14 team members report to a designated team lead or vice president.</div>
+</li>
+<li>
+<i class="fas fa-crown"></i>
+<div><strong>Exactly 1 Root Executive:</strong> The discrepancy (15 total minus 14 supervised = 1) proves the corporate tree terminates with a single Chief Executive (Mrinal Prashar).</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>COUNT()</code> aggregate function returns the integer number of rows that match specified query criteria. It has three distinct operational forms: <code>COUNT(*)</code>, <code>COUNT(column)</code>, and <code>COUNT(DISTINCT column)</code>.</p>
-<ul>
-<li><strong>The COUNT(*) Difference:</strong> <code>COUNT(*)</code> counts all rows matching the filter, regardless of whether columns contain NULL. It is heavily optimized in relational query engines.</li>
-<li><strong>The COUNT(column) Rule:</strong> <code>COUNT(column_name)</code> strictly counts rows where the specified column is <code>NOT NULL</code>.</li>
-<li><strong>The COUNT(DISTINCT) Cost:</strong> <code>COUNT(DISTINCT column)</code> builds an in-memory hash set to deduplicate values before counting, requiring additional CPU and RAM.</li>
-<li><strong>Conditional Counting:</strong> Wrapping <code>CASE WHEN condition THEN 1 END</code> inside COUNT enables powerful multi-metric pivot tables in a single query scan.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>The COUNT() function evaluates set cardinality, functioning as an essential building block for data verification and business intelligence reporting.</p>
+
+<h3>Comparison: COUNT(*) vs COUNT(1) vs COUNT(col) vs COUNT(DISTINCT col)</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>COUNT Variation</th>
 <th>Syntax Pattern</th>
+<th>Count Criteria</th>
 <th>Includes NULLs?</th>
-<th>Deduplicates?</th>
-<th>Performance Characteristics</th>
+<th>Performance Profile</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Row Count</td>
 <td><code>COUNT(*)</code></td>
-<td>Yes (Counts every row tuple)</td>
-<td>No</td>
-<td>Fastest (Can use smallest available index)</td>
-</tr>
-<tr>
-<td>Column Count</td>
-<td><code>COUNT(column)</code></td>
-<td>No (Skips rows where col IS NULL)</td>
-<td>No</td>
-<td>Requires inspecting specific column page</td>
-</tr>
-<tr>
-<td>Unique Count</td>
-<td><code>COUNT(DISTINCT col)</code></td>
-<td>No (Skips NULLs)</td>
+<td>Total physical rows passing WHERE filter</td>
 <td>Yes</td>
-<td>Higher CPU/RAM (Sorts or hashes keys)</td>
+<td>Fastest (Optimizer uses smallest index)</td>
 </tr>
 <tr>
-<td>Conditional Count</td>
-<td><code>COUNT(CASE WHEN ... THEN 1 END)</code></td>
-<td>Ignores implicit ELSE NULL</td>
+<td><code>COUNT(1)</code></td>
+<td>Counts static literal constant for each row</td>
+<td>Yes</td>
+<td>Identical to <code>COUNT(*)</code> in modern engines</td>
+</tr>
+<tr>
+<td><code>COUNT(column)</code></td>
+<td>Non-NULL values in specified column</td>
 <td>No</td>
-<td>Excellent for single-pass executive dashboards</td>
+<td>Must evaluate column nullability flag</td>
+</tr>
+<tr>
+<td><code>COUNT(DISTINCT col)</code></td>
+<td>Unique, non-NULL distinct values</td>
+<td>No</td>
+<td>Requires in-memory hash set or sort table</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>COUNT(*) vs COUNT(1) vs COUNT(column): Busting the Myth</h3>
-<p>A pervasive myth in SQL engineering claims that <code>COUNT(1)</code> is faster than <code>COUNT(*)</code>:</p>
-<ul>
-<li><strong>The Myth Busted:</strong> In all modern relational engines (PostgreSQL, SQL Server, MySQL, Oracle), <code>COUNT(*)</code> and <code>COUNT(1)</code> produce identical Abstract Syntax Trees and identical execution plans.</li>
-<li><strong>Why COUNT(*) is Preferred:</strong> <code>COUNT(*)</code> is standard ANSI SQL. The query planner automatically picks the narrowest secondary index to satisfy the count with minimal I/O.</li>
-<li><strong>The Real Difference:</strong> <code>COUNT(column)</code> is fundamentally different: it checks for NULLs on every row, requiring the engine to inspect that specific column data.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Customer Support Helpdesk SLA &amp; Ticket Metrics:</strong> Measure customer service volume, resolution rates, first-contact resolutions, and agent assignments from support ticket logs.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: support_tickets
-   ticket_id | customer_id | assigned_agent | status    | resolution_min
-   ----------+-------------+----------------+-----------+---------------
-   1001      | 501         | Agent_Smith    | CLOSED    | 25
-   1002      | 502         | NULL           | OPEN      | NULL
-   1003      | 501         | Agent_Jones    | CLOSED    | 40
-   1004      | 503         | Agent_Smith    | ESCALATED | NULL
-   1005      | 504         | NULL           | OPEN      | NULL
-   1006      | 501         | Agent_Smith    | CLOSED    | 15
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_tickets
-<span class="code-keyword">FROM</span> support_tickets;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(assigned_agent) <span class="code-keyword">AS</span> assigned_tickets
-<span class="code-keyword">FROM</span> support_tickets;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> customer_id) <span class="code-keyword">AS</span> unique_customers_helped
-<span class="code-keyword">FROM</span> support_tickets;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_volume,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'OPEN'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> open_tickets,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'CLOSED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> closed_tickets,
-    <span class="code-func">COUNT</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> status <span class="code-op">=</span> <span class="code-string">'ESCALATED'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> escalated_tickets
-<span class="code-keyword">FROM</span> support_tickets;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>support_tickets</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The COUNT() function quantifies record volumes across tables and filtered partitions, serving as the core measurement tool for analytics, SLAs, and capacity planning.</p>
+<p>Mastering COUNT() enables developers and analysts to audit dataset completeness, measure business volume, and extract high-level key performance metrics.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>COUNT(*) vs COUNT(col):</strong> COUNT(*) tallies all rows including NULLs; COUNT(col) counts only rows where that specific column is NOT NULL.</span>
+<span><strong>Total vs Non-Null:</strong> Use <code>COUNT(*)</code> for total rows; use <code>COUNT(col)</code> to evaluate data completeness.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>COUNT(1) Myth:</strong> COUNT(*) and COUNT(1) have identical performance in modern database query planners; prefer COUNT(*) for standard ANSI compliance.</span>
+<span><strong>Uniqueness:</strong> Use <code>COUNT(DISTINCT col)</code> to find unique discrete values in categorical dimensions.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Deduplicated Counting:</strong> Use COUNT(DISTINCT col) to compute unique user or categorical entities.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Single-Pass Conditional Aggregates:</strong> Combine COUNT(CASE WHEN...) to build multi-category breakdown reports in a single table scan.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Index Optimization:</strong> Database engines automatically satisfy COUNT(*) using the smallest available covering index.</span>
+<span><strong>Next Chapter:</strong> Advance to numeric aggregation and revenue totals in <a href="sum.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The SUM() Function →</a></span>
 </li>
 </ul>
 </div>
@@ -476,8 +522,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="max.html" title="Previous: The MAX() Function">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The MAX() Function</span>
+<a class="btn-outline" href="aggregate-functions.html" title="Previous: SQL Aggregate Functions Overview">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Aggregate Functions</span>
 </a>
 </div>
 <div class="lesson-nav-center">

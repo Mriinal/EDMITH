@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The UPDATE Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The UPDATE Statement - Master modifying existing records, targeted vs bulk conditional alterations, and safe transaction protocols on EDMITH." name="description"/>
 <title>The UPDATE Statement - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li class="active"><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li class="active"><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -163,19 +163,17 @@
 <div class="concept-icon"><i class="fas fa-pencil-alt"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Hotel Room Keycard Reprogramming Analogy</h4>
-<p>Picture a luxury 400-room hotel where guests extend their stays or change rooms:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Existing Record::</strong> Room 304 is already assigned to an existing guest with their checkout date logged.</li>
-<li><strong>2. The Targeted Update::</strong> The receptionist locates Room 304 specifically (WHERE room_number = 304) and updates the checkout date.</li>
-<li><strong>3. Preserving Other Data::</strong> The guest's name, luggage count, and payment method remain untouched.</li>
-<li><strong>4. The Catastrophe of No WHERE::</strong> If the receptionist accidentally runs an update without specifying the room number, EVERY room in the hotel is overwritten!</li>
-</ul>
+<p>Picture a luxury hotel where guests extend their reservations or adjust room configurations:</p>
+<p style="margin-top: 8px !important;"><strong>1. The Existing Booking:</strong> Room 304 is assigned to an existing guest with their checkout date recorded in the front desk database.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Targeted Modification:</strong> When the guest extends their stay, the receptionist identifies Room 304 specifically (<code>WHERE room_number = 304</code>) and adjusts the departure date.</p>
+<p style="margin-top: 8px !important;"><strong>3. Preserving Other Data:</strong> The guest's profile, baggage count, and payment method remain completely untouched.</p>
+<p style="margin-top: 8px !important;"><strong>4. The Catastrophe of No WHERE:</strong> If the receptionist updates the departure date without specifying the room number, every single room in the entire hotel is overwritten!</p>
 <p style="margin-top: 8px !important;">The UPDATE statement modifies specific columns in existing rows; always double-check your WHERE clause to prevent catastrophic mass alterations.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>The UPDATE Statement</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,22 +181,96 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Record Modification</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. Single-Column Targeted Update</span>
+<span class="code-keyword">UPDATE</span> table_name
+<span class="code-keyword">SET</span> column_name <span class="code-op">=</span> new_value
+<span class="code-keyword">WHERE</span> filter_condition;
+
+<span class="code-comment">-- 2. Multi-Column &amp; Arithmetic Update</span>
+<span class="code-keyword">UPDATE</span> table_name
+<span class="code-keyword">SET</span> column1 <span class="code-op">=</span> new_value1,
+    column2 <span class="code-op">=</span> column2 <span class="code-op">*</span> <span class="code-num">1.10</span>,
+    column3 <span class="code-op">=</span> <span class="code-string">'UPDATED'</span>
+<span class="code-keyword">WHERE</span> filter_condition;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>UPDATE Blueprint Breakdown</h4>
+</div>
+<p>Core rules and architectural mechanics governing targeted row updates and data modification in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>The SET Clause:</strong> Defines one or more comma-separated column assignments; can assign literal constants or evaluate mathematical expressions based on existing values.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>The Mandatory WHERE Clause:</strong> Omitting the <code>WHERE</code> clause updates every single record in the entire table. In production systems, always test your predicate with <code>SELECT</code> first.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Row-Level Locking:</strong> Relational engines acquire exclusive row-level locks on targeted tuples during transaction execution to guarantee write isolation.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Constraint Checking:</strong> All modified data must pass schema validation rules, including NOT NULL, CHECK constraints, and foreign key references.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of <code>UPDATE</code> running against active relational tables (<code>employees</code>, <code>product_list</code>, <code>sells_list</code>, and <code>customers</code>):</p>
+<!-- Query 1: Single-Row Targeted Salary Update -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Targeted Primary Key Merit Pay Adjustment</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">UPDATE</span> employees
-<span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-num">95000.00</span>
-<span class="code-keyword">WHERE</span> employee_id <span class="code-op">=</span> <span class="code-num">104</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>employee_id = 104</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-num">82000.00</span>
+<span class="code-keyword">WHERE</span> employee_id <span class="code-op">=</span> <span class="code-num">5</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Targeted Merit Pay Adjustment Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div>Locates employee ID 5 (Abhishek Prasad) in the <code>employees</code> table using primary key precision.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Updates base compensation from $75,000 to $82,000 while preserving department and managerial links.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Returns An:</strong> Returns an affected row count of <code>1</code>, confirming a surgical single-row mutation.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Batch Category Price Adjustment & Restocking -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -206,24 +278,44 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Record Modification</span>
+<span class="terminal-title">Query 2: Category-Wide Promotional Markdown &amp; Restock</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> customer_accounts
-<span class="code-keyword">SET</span> account_tier <span class="code-op">=</span> <span class="code-string">'PLATINUM'</span>, 
-    discount_pct <span class="code-op">=</span> <span class="code-num">0.15</span>,
-    updated_at <span class="code-op">=</span> CURRENT_TIMESTAMP
-<span class="code-keyword">WHERE</span> total_spend <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_accounts</code> using the condition <code>total_spend &gt;= 50000.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">UPDATE</span> product_list
+<span class="code-keyword">SET</span> price <span class="code-op">=</span> <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.90</span>, <span class="code-num">2</span>),
+    stock_quantity <span class="code-op">=</span> stock_quantity <span class="code-op">+</span> <span class="code-num">20</span>
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Home &amp; Kitchen'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Promotional Markdown Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Applies A:</strong> Applies a 10% promotional price discount while simultaneously adding 20 inventory units to stock.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Filters By:</strong> Filters by <code>category = 'Home &amp; Kitchen'</code>, modifying all 5 category products in a single operation.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Employs dynamic column math:</strong> <code>stock_quantity = stock_quantity + 20</code> increments current stock atomically without race conditions.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 3: POS Order Settlement State Transition -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -231,22 +323,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Record Modification</span>
+<span class="terminal-title">Query 3: Point-of-Sale Transaction Status Transition</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> store_inventory
-<span class="code-keyword">SET</span> units_in_stock <span class="code-op">=</span> units_in_stock <span class="code-op">+</span> <span class="code-num">50</span>
-<span class="code-keyword">WHERE</span> product_sku <span class="code-op">=</span> <span class="code-string">'TECH-992'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>store_inventory</code> using the condition <code>product_sku = 'TECH-992'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">UPDATE</span> sells_list
+<span class="code-keyword">SET</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">WHERE</span> sale_id <span class="code-op">=</span> <span class="code-num">6</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Transaction Status Transition Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Transitions order transaction 6 from <code>PENDING</code> to <code>PAID</code> following successful gateway webhook verification.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Guarantees Immediate:</strong> Guarantees immediate consistency across financial ledger balance calculations.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Demonstrates Real-Time:</strong> Demonstrates real-time state machine lifecycle management in e-commerce backend pipelines.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 4: Customer Profile Data Sanitization -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -254,106 +367,107 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Discrete Value Set Matching</span>
+<span class="terminal-title">Query 4: Customer Identity Attribute Enrichment</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> user_memberships
-<span class="code-keyword">SET</span> is_active <span class="code-op">=</span> FALSE
-<span class="code-keyword">WHERE</span> user_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> user_id <span class="code-keyword">FROM</span> inactive_sessions <span class="code-keyword">WHERE</span> last_login <span class="code-op">&lt;</span> <span class="code-string">'2025-01-01'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>user_memberships</code> using the condition <code>user_id IN (SELECT user_id FROM inactive_sessions WHERE last_login &lt; '2025-01-01')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">UPDATE</span> customers
+<span class="code-keyword">SET</span> middle_name <span class="code-op">=</span> <span class="code-string">'Devi'</span>
+<span class="code-keyword">WHERE</span> customer_id <span class="code-op">=</span> <span class="code-num">9</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Identity Attribute Enrichment Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div>Populates a previously missing middle name field for customer ID 9 (Priya Sharma).</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div>Replaces <code>NULL</code> with <code>'Devi'</code> without disturbing existing first or last name values.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div>Illustrates customer support profile editing workflows in CRM management systems.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>UPDATE</code> statement modifies the data values of existing rows in a table. It allows engineers to alter single columns, multiple columns simultaneously, or evaluate dynamic mathematical expressions.</p>
-<ul>
-<li><strong>Crucial WHERE Clause:</strong> An UPDATE without a WHERE clause modifies every single record in the table. In production, always test your WHERE clause with a SELECT first.</li>
-<li><strong>Atomicity &amp; Locking:</strong> The database engine locks affected rows (Row-Level Locking) during the update to prevent conflicting concurrent writes.</li>
-<li><strong>Constraint Verification:</strong> Every updated value must satisfy table CHECK constraints, Foreign Key relationships, and Data Type declarations.</li>
-<li><strong>Trigger Execution:</strong> Updates automatically fire any associated AFTER UPDATE or BEFORE UPDATE triggers defined on the table.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>The <code>UPDATE</code> statement alters data values in-place within relational tables, modifying single columns, multiple attributes, or evaluating arithmetic increments.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Update Pattern</th>
-<th>SQL Syntax Example</th>
+<th>SQL Syntax Pattern</th>
 <th>Operational Scope</th>
-<th>Risk Level</th>
-<th>Best Practice</th>
+<th>Production Risk</th>
+<th>Safety Protocol</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Single Row Update</td>
-<td><code>UPDATE t SET col = 1 WHERE id = 10</code></td>
-<td>Modifies exact row by Primary Key</td>
+<td>Targeted PK Update</td>
+<td><code>UPDATE t SET c = 1 WHERE id = 10</code></td>
+<td>Exact single row</td>
 <td>Very Low</td>
-<td>Target unique PK for precision</td>
+<td>Target unique primary key index</td>
 </tr>
 <tr>
-<td>Batch Conditional</td>
-<td><code>UPDATE t SET col = 2 WHERE status = 'X'</code></td>
-<td>Modifies all matching category rows</td>
+<td>Conditional Batch</td>
+<td><code>UPDATE t SET c = 2 WHERE dept = 'Eng'</code></td>
+<td>All matching rows</td>
 <td>Moderate</td>
-<td>Run SELECT first to verify row count</td>
+<td>Run SELECT COUNT(*) first</td>
 </tr>
 <tr>
-<td>Arithmetic Increment</td>
-<td><code>UPDATE t SET qty = qty + 10 WHERE ...</code></td>
-<td>Increments current value atomically</td>
+<td>Atomic Increment</td>
+<td><code>UPDATE t SET qty = qty + 1 WHERE ...</code></td>
+<td>Dynamic value shift</td>
 <td>Low</td>
-<td>Prevents race conditions in counters</td>
+<td>Eliminates read-modify-write race conditions</td>
 </tr>
 <tr>
 <td>Unqualified Update</td>
-<td><code>UPDATE t SET col = 1</code></td>
-<td>Wipes and modifies every row in entire table</td>
-<td>CRITICAL</td>
-<td>Disallow in production connection pools</td>
+<td><code>UPDATE t SET c = 1</code></td>
+<td><strong>Entire table</strong></td>
+<td>CRITICAL DISASTER</td>
+<td>Require WHERE clause enforcement in production</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>The Golden Rule of Safe Production Updates</h3>
-<p>Accidental unqualified UPDATE statements have brought down entire corporations. Follow this battle-tested protocol before executing any production UPDATE:</p>
-<ul>
-<li><strong>Step 1: Write as a SELECT:</strong> Before typing UPDATE, run: <code>SELECT COUNT(*) FROM table WHERE your_conditions</code> to verify the exact number of rows that will change.</li>
-<li><strong>Step 2: Wrap in an Explicit Transaction:</strong> Always wrap in a transaction: <code>BEGIN TRANSACTION; UPDATE ...; SELECT ...; ROLLBACK; (or COMMIT)</code>.</li>
-<li><strong>Step 3: Leverage Safe-Update Mode:</strong> Enable MySQL's <code>sql_safe_updates</code> flag, which rejects any UPDATE statement that lacks a key-based WHERE clause.</li>
+<h3>The Golden Protocol for Safe Production Updates</h3>
+<p>Accidental unqualified UPDATE statements without WHERE clauses have caused major production outages. Always follow this defensive protocol:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-shield-alt"></i>
+<span><strong>Step 1: Verify with SELECT:</strong> Before executing any UPDATE, convert it to <code>SELECT COUNT(*), ... FROM table WHERE your_conditions</code> to review affected records.</span>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<span><strong>Step 2: Wrap in a Transaction:</strong> In mission-critical environments, always execute inside an explicit transaction block (<code>BEGIN TRANSACTION ... COMMIT / ROLLBACK</code>).</span>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<span><strong>Step 3: Enable Safe-Update Mode:</strong> Configure your database client with safe-update mode enabled, which rejects any UPDATE statement that lacks a key-based WHERE clause.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce Black Friday Price Modification &amp; Inventory Replenishment:</strong> Apply seasonal discounts, update promotional banners, and restock warehouse inventories across enterprise product lines.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: product_catalog
-   product_id | product_name   | category    | retail_price | stock_qty | promo_active
-   -----------+----------------+-------------+--------------+-----------+-------------
-   101        | 4K Gaming Mon  | Electronics | 499.99       | 15        | FALSE
-   102        | Wireless Mouse | Accessories | 49.99        | 120       | FALSE
-   103        | Mech Keyboard  | Accessories | 129.99       | 45        | FALSE
-   104        | Noise-Canc Head| Electronics | 299.99       | 8         | FALSE
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Departmental Performance Merit Adjustment:</strong> Execute an 8% compensation merit increase across the Engineering team and immediately inspect the updated salary roster.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -361,44 +475,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Record Modification</span>
+<span class="terminal-title">Production Query 1: Departmental Merit Pay Increase</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> product_catalog
-<span class="code-keyword">SET</span> retail_price <span class="code-op">=</span> <span class="code-func">ROUND</span>(retail_price <span class="code-op">*</span> <span class="code-num">0.80</span>, <span class="code-num">2</span>),
-    promo_active <span class="code-op">=</span> TRUE
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>product_catalog</code> using the condition <code>category = 'Electronics'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">UPDATE</span> employees
+<span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-func">ROUND</span>(salary <span class="code-op">*</span> <span class="code-num">1.08</span>, <span class="code-num">2</span>)
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Departmental Merit Increase Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Record Modification</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">UPDATE</span> product_catalog
-<span class="code-keyword">SET</span> stock_qty <span class="code-op">=</span> stock_qty <span class="code-op">+</span> <span class="code-num">100</span>
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Accessories'</span> <span class="code-keyword">AND</span> stock_qty <span class="code-op">&lt;</span> <span class="code-num">50</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>product_catalog</code> using the condition <code>category = 'Accessories' AND stock_qty &lt; 50</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Applies A:</strong> Applies a uniform 8% compensation adjustment to all 4 engineers simultaneously.</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Uses <code>Round(Salary:</code></strong> Uses <code>ROUND(salary * 1.08, 2)</code> to maintain standard two-decimal monetary precision.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Demonstrates Atomic:</strong> Demonstrates atomic multi-row arithmetic update without requiring manual calculation loops.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <div class="code-terminal">
@@ -408,69 +518,76 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 3: Record Modification</span>
+<span class="terminal-title">Production Query 2: Verify Post-Update Compensation Roster</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> product_catalog
-<span class="code-keyword">SET</span> retail_price <span class="code-op">=</span> <span class="code-num">39.99</span>, promo_active <span class="code-op">=</span> TRUE
-<span class="code-keyword">WHERE</span> product_id <span class="code-op">=</span> <span class="code-num">102</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>product_catalog</code> using the condition <code>product_id = 102</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>
+<span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-shield-alt"></i>
+<h4>Post-Update Verification Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div>Queries the updated department to verify that each team member's salary scaled upward accurately.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>VP of Engineering Ripunjay Kumar scales to $129,600, followed by Amritesh Nath at $102,600.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Confirms that rows outside the Engineering department remained completely unchanged.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, retail_price, stock_qty, promo_active
-<span class="code-keyword">FROM</span> product_catalog
-ORDER BY product_id <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>product_catalog</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The UPDATE statement modifies existing database rows in place, requiring strict WHERE clause precision and transactional safeguards to prevent unintended mass data overwrites.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Mandatory WHERE Clause:</strong> Always specify a precise WHERE clause; an unqualified UPDATE overwrites every single row in the table.</span>
+<span><strong>Never Omit the WHERE Clause:</strong> An UPDATE without a WHERE clause modifies every single record in the entire table.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Verify with SELECT First:</strong> Run a SELECT query with the identical WHERE clause first to confirm the exact rows slated for modification.</span>
+<span><strong>Atomic Incrementing:</strong> When updating counters or balances, use <code>SET col = col + value</code> instead of reading the value into your application and writing it back.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Wrap in Transactions:</strong> Use BEGIN TRANSACTION and test updates before issuing COMMIT in production environments.</span>
+<span><strong>Next Step:</strong> Learn how to remove records safely in <a href="delete.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The DELETE Statement</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The UPDATE statement provides precise in-place data modification across relational tables, supporting single-row targeted edits, category bulk shifts, and atomic arithmetic increments.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>In-Place Modification:</strong> Alters values while preserving table structure and unchanged columns.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Atomic Increments:</strong> Use SET col = col + 1 for counters to ensure thread-safe atomic updates without lost update anomalies.</span>
+<span><strong>Precision Targeting:</strong> Always rely on a tested WHERE clause to guarantee intentional scope.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Row-Level Locking:</strong> Be aware that updates acquire row-level exclusive locks; keep update transactions brief to prevent deadlocks.</span>
+<span><strong>Next Chapter:</strong> Cleanly remove records with <a href="delete.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The DELETE Statement →</a></span>
 </li>
 </ul>
 </div>
@@ -478,8 +595,8 @@ ORDER BY product_id <span class="code-keyword">ASC</span>;</code></pre>
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="null-values.html" title="Previous: NULL Values &amp; Three-Valued Logic">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: NULL Values &amp; Three-Valued Logic</span>
+<a class="btn-outline" href="insert-into.html" title="Previous: The INSERT INTO Statement">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The INSERT INTO Statement</span>
 </a>
 </div>
 <div class="lesson-nav-center">

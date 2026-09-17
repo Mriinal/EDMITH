@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The CASE Expression - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The CASE Expression - Master conditional branching, searched vs simple syntax, inline IF-THEN transformations, and conditional aggregation on EDMITH." name="description"/>
 <title>The CASE Expression - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li class="active"><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li class="active"><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -163,19 +163,17 @@
 <div class="concept-icon"><i class="fas fa-traffic-light"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Railway Switching Track Signal Analogy</h4>
-<p>Picture a high-speed train approaching a multi-track railway junction controlled by automated track signals:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Track Conditions::</strong> A train approaches the switch tower: IF express passenger → switch to Track 1; ELSE IF heavy freight → switch to Track 2; ELSE → divert to Default Siding.</li>
-<li><strong>2. Top-to-Bottom Evaluation::</strong> The switch evaluates conditions in strict priority order; the very first condition that evaluates to TRUE sets the switch.</li>
-<li><strong>3. The Crucial ELSE Siding::</strong> If none of the specific signals match and no default siding (ELSE) exists, the train halts unexpectedly (returns NULL)!</li>
-<li><strong>4. The CASE Expression::</strong> The CASE expression functions as that exact railway switch, introducing conditional branching directly into query results.</li>
-</ul>
+<p>Picture a high-speed locomotive approaching a multi-track railway junction controlled by automated track signals:</p>
+<p style="margin-top: 8px !important;"><strong>1. Approaching the Junction:</strong> As the train rolls toward the junction, electronic track sensors inspect its train type and schedule.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Switching Conditions:</strong> The control tower evaluates each train: IF express passenger → switch to Track 1; ELSE IF heavy freight → switch to Track 2; ELSE → divert to the Default Siding.</p>
+<p style="margin-top: 8px !important;"><strong>3. Top-to-Bottom Evaluation:</strong> Signals are checked in strict sequential priority. The very first condition that evaluates to TRUE sets the switch, completely ignoring all subsequent tracks.</p>
+<p style="margin-top: 8px !important;"><strong>4. The Crucial ELSE Siding:</strong> If none of the conditions match and no default siding (ELSE) exists, the train halts unexpectedly (returns NULL)!</p>
 <p style="margin-top: 8px !important;">The CASE expression introduces conditional IF-THEN-ELSE business logic directly into SQL queries, enabling dynamic categorizations and inline transformations.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>The CASE Expression</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,7 +181,64 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Threshold Comparison</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. Searched CASE Syntax (Evaluates arbitrary boolean expressions)</span>
+<span class="code-keyword">CASE</span>
+    <span class="code-keyword">WHEN</span> boolean_condition_1 <span class="code-keyword">THEN</span> result_expression_1
+    <span class="code-keyword">WHEN</span> boolean_condition_2 <span class="code-keyword">THEN</span> result_expression_2
+    ...
+    [<span class="code-keyword">ELSE</span> default_result_expression]
+<span class="code-keyword">END</span>
+
+<span class="code-comment">-- 2. Simple CASE Syntax (Compares test expression against exact values)</span>
+<span class="code-keyword">CASE</span> test_expression
+    <span class="code-keyword">WHEN</span> comparison_value_1 <span class="code-keyword">THEN</span> result_expression_1
+    <span class="code-keyword">WHEN</span> comparison_value_2 <span class="code-keyword">THEN</span> result_expression_2
+    ...
+    [<span class="code-keyword">ELSE</span> default_result_expression]
+<span class="code-keyword">END</span></code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>CASE Expression Blueprint Breakdown</h4>
+</div>
+<p>Core rules and architectural mechanics governing conditional branching expressions in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Searched vs Simple Syntax:</strong> Searched CASE evaluates independent boolean conditions (e.g. <code>WHEN price &gt;= 150 THEN ...</code>); Simple CASE tests a single expression for exact equality against literal values.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>First-Match Short-Circuiting:</strong> Conditions are evaluated sequentially from top to bottom; once a condition evaluates to TRUE, execution branches immediately and skips all remaining branches.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Mandatory Default Safety (ELSE):</strong> If no <code>WHEN</code> condition evaluates to TRUE and no <code>ELSE</code> clause is provided, SQL returns <code>NULL</code>. Always supply an explicit <code>ELSE</code> fallback to prevent unintended NULL propagation.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Expression, Not a Statement:</strong> In ANSI SQL, <code>CASE</code> is a scalar value expression. It can be embedded wherever expressions are valid, including <code>SELECT</code>, <code>WHERE</code>, <code>ORDER BY</code>, <code>GROUP BY</code>, and inside aggregate functions.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of <code>CASE</code> running against active relational tables (<code>product_list</code>, <code>sells_list</code>, <code>employees</code>, and <code>customers</code>):</p>
+<!-- Query 1: Searched CASE Catalog Categorization -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 1: Dynamic Catalog Pricing Tier Classification</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -191,20 +246,43 @@
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
     product_name,
-    unit_price,
+    category,
+    price,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> unit_price <span class="code-op">&gt;=</span> <span class="code-num">500.00</span> <span class="code-keyword">THEN</span> <span class="code-string">'PREMIUM_LUXURY'</span>
-        <span class="code-keyword">WHEN</span> unit_price <span class="code-op">&gt;=</span> <span class="code-num">100.00</span> <span class="code-keyword">THEN</span> <span class="code-string">'MID_RANGE'</span>
+        <span class="code-keyword">WHEN</span> price &gt;= 150.00 <span class="code-keyword">THEN</span> <span class="code-string">'PREMIUM_LUXURY'</span>
+        <span class="code-keyword">WHEN</span> price &gt;= 60.00 <span class="code-keyword">THEN</span> <span class="code-string">'MID_RANGE'</span>
         <span class="code-keyword">ELSE</span> <span class="code-string">'BUDGET_TIER'</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> price_category
-<span class="code-keyword">FROM</span> store_products;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>store_products</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> price_tier
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tags"></i>
+<h4>Dynamic Catalog Pricing Tier Classification Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Applies A:</strong> Applies a Searched <code>CASE</code> expression to classify all 25 items in <code>product_list</code> into discrete merchandising tiers based on numerical price ranges.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Orders resulting rows by price in descending sequence, allowing marketing and sales teams to easily inspect product distribution.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Items below $60 automatically fall through to the <code>ELSE 'BUDGET_TIER'</code> branch.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Simple CASE Payment Status Badging -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -212,30 +290,55 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Query 2: Order Lifecycle Status Badging</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    order_id,
-    status_code,
-    <span class="code-keyword">CASE</span> status_code
-        <span class="code-keyword">WHEN</span> <span class="code-string">'P'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Pending Payment'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'S'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Shipped'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'D'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Delivered'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'C'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Cancelled'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'Unknown Status'</span>
+    sale_id,
+    customer_id,
+    total_price,
+    payment_status,
+    <span class="code-keyword">CASE</span> payment_status
+        <span class="code-keyword">WHEN</span> <span class="code-string">'PAID'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Settled &amp; Verified'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-string">'PENDING'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Awaiting Confirmation'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-string">'REFUNDED'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Customer Reversal'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-string">'CANCELLED'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Voided Order'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Unrecognized State'</span>
     <span class="code-keyword">END</span> <span class="code-keyword">AS</span> readable_status
-<span class="code-keyword">FROM</span> orders;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> sale_id &lt;= 15
+<span class="code-keyword">ORDER BY</span> sale_id <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Order Lifecycle Status Badging Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-database"></i>
+<div><strong>Employs A:</strong> Employs a Simple <code>CASE</code> construct to map machine-readable database enum codes (<code>PAID</code>, <code>PENDING</code>, etc.) into human-friendly UI dashboard labels.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>The <code>CASE payment_status</code> syntax tests the column directly for equality, keeping code concise and readable.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Limits inspection to the first 15 sales records in <code>sells_list</code> for quick operational verification.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 3: Conditional Pivot Aggregation -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -243,7 +346,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Grouped Aggregate Summary</span>
+<span class="terminal-title">Query 3: Single-Pass Departmental Compensation Pivot</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -251,18 +354,41 @@
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
     department,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> gender <span class="code-op">=</span> <span class="code-string">'F'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> female_count,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> gender <span class="code-op">=</span> <span class="code-string">'M'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> male_count,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_staff
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_staff,
+    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> salary &gt;= 100000.00 <span class="code-keyword">THEN</span> 1 <span class="code-keyword">ELSE</span> 0 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> high_earners,
+    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> salary &lt; 100000.00 <span class="code-keyword">THEN</span> 1 <span class="code-keyword">ELSE</span> 0 <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> standard_earners,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), 2) <span class="code-keyword">AS</span> avg_salary
 <span class="code-keyword">FROM</span> employees
-GROUP BY department;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>employees</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
+<span class="code-keyword">GROUP BY</span> department
+<span class="code-keyword">ORDER BY</span> total_staff <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Single-Pass Departmental Compensation Pivot Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Combines <code>Sum()</code>:</strong> Combines <code>SUM()</code> with inline <code>CASE</code> expressions to perform conditional counting (pivoting rows into columns).</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Calculates High:</strong> Calculates high earners ($100k+) and standard earners side-by-side in a single scan over the 15-employee table without complex self-joins.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Demonstrates The:</strong> Demonstrates the foundational building block of SQL business intelligence and reporting matrices.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 4: Custom Priority Sorting -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -270,45 +396,66 @@ GROUP BY department;</code></pre>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Query 4: Custom Organizational Hierarchy Sorting</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> task_id, title, priority
-<span class="code-keyword">FROM</span> project_tasks
-ORDER BY 
-    <span class="code-keyword">CASE</span> priority
-        <span class="code-keyword">WHEN</span> <span class="code-string">'CRITICAL'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'HIGH'</span> <span class="code-keyword">THEN</span> <span class="code-num">2</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'MEDIUM'</span> <span class="code-keyword">THEN</span> <span class="code-num">3</span>
-        <span class="code-keyword">ELSE</span> <span class="code-num">4</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>project_tasks</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    employee_id,
+    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> employee_name,
+    department,
+    salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">ORDER BY</span> 
+    <span class="code-keyword">CASE</span> department
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Executive'</span> <span class="code-keyword">THEN</span> 1
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Engineering'</span> <span class="code-keyword">THEN</span> 2
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Sales'</span> <span class="code-keyword">THEN</span> 3
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Marketing'</span> <span class="code-keyword">THEN</span> 4
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Operations'</span> <span class="code-keyword">THEN</span> 5
+        <span class="code-keyword">WHEN</span> <span class="code-string">'HR'</span> <span class="code-keyword">THEN</span> 6
+        <span class="code-keyword">ELSE</span> 7
+    <span class="code-keyword">END</span> <span class="code-keyword">ASC</span>,
+    salary <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Custom Hierarchy Sorting Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Places A:</strong> Places a <code>CASE</code> expression directly inside the <code>ORDER BY</code> clause to establish a custom, non-alphabetical sort order.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Guarantees That:</strong> Guarantees that Executive staff appear first, followed by Engineering, Sales, Marketing, Operations, and HR.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Applies A:</strong> Applies a secondary tie-breaker (<code>salary DESC</code>) within each departmental tier.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>CASE</code> expression is SQL's conditional construct, functioning as an inline IF-THEN-ELSE statement. It evaluates a series of conditions and returns a value when the first condition is met.</p>
-<ul>
-<li><strong>Searched vs Simple Syntax:</strong> Searched CASE evaluates arbitrary boolean expressions (<code>WHEN age &gt;= 18 THEN...</code>); Simple CASE compares a single expression against equality (<code>CASE status WHEN 'A' THEN...</code>).</li>
-<li><strong>First-Match Short-Circuiting:</strong> Conditions are evaluated sequentially from top to bottom; once a condition evaluates to TRUE, remaining WHEN branches are skipped.</li>
-<li><strong>The Default ELSE Rule:</strong> If no WHEN condition matches and no <code>ELSE</code> clause is provided, the CASE expression returns <code>NULL</code>.</li>
-<li><strong>Expression, Not a Statement:</strong> In ANSI SQL, CASE is a scalar expression that returns a value; it can be placed inside SELECT, WHERE, HAVING, GROUP BY, and ORDER BY.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>The <code>CASE</code> expression functions as SQL's primary branching operator, returning a calculated scalar value based on deterministic rule evaluation.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>CASE Variant</th>
-<th>Syntax Form</th>
-<th>Flexibility</th>
-<th>Use Case</th>
+<th>Syntax Pattern</th>
+<th>Expression Flexibility</th>
+<th>Primary Use Case</th>
 <th>Missing ELSE Behavior</th>
 </tr>
 </thead>
@@ -316,67 +463,54 @@ ORDER BY
 <tr>
 <td>Searched CASE</td>
 <td><code>CASE WHEN cond THEN val END</code></td>
-<td>Highest (Supports complex predicates)</td>
-<td>Tier classification, range tagging</td>
-<td>Returns NULL if no condition met</td>
+<td>Highest (Arbitrary boolean conditions)</td>
+<td>Tier classification, numeric range tagging</td>
+<td>Returns NULL if no condition matches</td>
 </tr>
 <tr>
 <td>Simple CASE</td>
 <td><code>CASE col WHEN val THEN res END</code></td>
-<td>Moderate (Strict equality only)</td>
-<td>Status code translation</td>
-<td>Returns NULL if no condition met</td>
+<td>Moderate (Exact equality comparison only)</td>
+<td>Status code translation, enum formatting</td>
+<td>Returns NULL if no condition matches</td>
 </tr>
 <tr>
-<td>Pivot Aggregation</td>
-<td><code>SUM(CASE WHEN... THEN 1 ELSE 0 END)</code></td>
+<td>Conditional Pivot</td>
+<td><code>SUM(CASE WHEN cond THEN 1 ELSE 0 END)</code></td>
 <td>High</td>
-<td>Transposing categories into columns</td>
-<td>Always provide ELSE 0</td>
+<td>Transposing categorical rows into summary columns</td>
+<td>Always specify ELSE 0</td>
 </tr>
 <tr>
 <td>Custom Sort CASE</td>
 <td><code>ORDER BY CASE col WHEN... THEN 1 END</code></td>
 <td>High</td>
-<td>Non-alphabetical priority ordering</td>
-<td>Default placement in sort</td>
+<td>Enforcing business-priority non-alphabetical sorting</td>
+<td>Default unlisted values placed last</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Conditional Aggregation: How CASE Powers Business Intelligence Pivots</h3>
-<p>One of the most powerful architectural techniques in SQL is pairing <code>SUM()</code> or <code>COUNT()</code> with <code>CASE</code>:</p>
-<ul>
-<li><strong>The Problem:</strong> A database stores transactions in individual rows, but the CFO demands an executive report with columns: Q1_Revenue, Q2_Revenue, Q3_Revenue, Q4_Revenue.</li>
-<li><strong>The Inline Filter:</strong> <code>SUM(CASE WHEN quarter = 'Q1' THEN revenue ELSE 0 END) AS q1_rev</code> evaluates only rows matching Q1.</li>
-<li><strong>The Single-Pass Triumph:</strong> The database scans the table exactly once, computing 10 different business metrics simultaneously without expensive multi-table self joins.</li>
+<h3>Conditional Aggregation: The Single-Pass Pivot Triumph</h3>
+<p>One of the most powerful architectural techniques in database analytics is embedding <code>CASE</code> expressions inside aggregate functions like <code>SUM()</code>, <code>COUNT()</code>, and <code>AVG()</code>:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>The Single-Scan Advantage:</strong> Instead of writing multiple separate queries and joining them together, a single query computes diverse business metrics simultaneously in one sequential table pass.</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Boolean to Numeric Conversion:</strong> <code>CASE WHEN cond THEN 1 ELSE 0 END</code> converts a true/false condition into a numeric flag that can be summed to calculate instant category counts.</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Zero Division Safety:</strong> <code>CASE</code> can inspect denominators in calculations (e.g. <code>CASE WHEN count = 0 THEN 0 ELSE total / count END</code>) to protect against runtime zero-division crashes.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Enterprise CRM Customer Lifetime Value Segmentation:</strong> Categorize customer accounts into VIP loyalty tiers, compute customized rebate rates, and prioritize support tickets.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: customer_metrics
-   customer_id | company_name     | total_annual_spend | support_plan
-   ------------+------------------+--------------------+-------------
-   101         | Global Logistics | 150000.00          | PLATINUM
-   102         | Local Cafe       | 4500.00            | STANDARD
-   103         | Apex Tech        | 85000.00           | GOLD
-   104         | Stellar Media    | 22000.00           | SILVER
-   105         | New Venture      | 800.00             | STANDARD
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Customer Loyalty Segmentation &amp; Coupon Engine:</strong> Calculate customer cumulative purchases across <code>sells_list</code> and award dynamic VIP loyalty tiers with personalized reward discounts.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -384,141 +518,97 @@ ORDER BY
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Production Query: Customer Loyalty Tiering Engine</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    company_name,
-    total_annual_spend,
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    <span class="code-func">SUM</span>(s.total_price) <span class="code-keyword">AS</span> total_spend,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">100000.00</span> <span class="code-keyword">THEN</span> <span class="code-string">'TIER_1_DIAMOND'</span>
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>  <span class="code-keyword">THEN</span> <span class="code-string">'TIER_2_GOLD'</span>
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">10000.00</span>  <span class="code-keyword">THEN</span> <span class="code-string">'TIER_3_SILVER'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'TIER_4_BRONZE'</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> customer_tier
-<span class="code-keyword">FROM</span> customer_metrics
-ORDER BY total_annual_spend <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_metrics</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    company_name,
-    total_annual_spend,
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 1500.00 <span class="code-keyword">THEN</span> <span class="code-string">'VIP_DIAMOND'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 800.00 <span class="code-keyword">THEN</span> <span class="code-string">'GOLD_PREFERRED'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 300.00 <span class="code-keyword">THEN</span> <span class="code-string">'SILVER_MEMBER'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'STANDARD_BRONZE'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> tier_rank,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">100000.00</span> <span class="code-keyword">THEN</span> <span class="code-num">0.10</span>
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>  <span class="code-keyword">THEN</span> <span class="code-num">0.05</span>
-        <span class="code-keyword">ELSE</span> <span class="code-num">0.02</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> rebate_pct,
-    <span class="code-func">ROUND</span>(total_annual_spend <span class="code-op">*</span> <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">100000.00</span> <span class="code-keyword">THEN</span> <span class="code-num">0.10</span>
-        <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>  <span class="code-keyword">THEN</span> <span class="code-num">0.05</span>
-        <span class="code-keyword">ELSE</span> <span class="code-num">0.02</span>
-    <span class="code-keyword">END</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> cash_rebate_amount
-<span class="code-keyword">FROM</span> customer_metrics;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>customer_metrics</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 1500.00 <span class="code-keyword">THEN</span> <span class="code-string">'15% Reward Coupon'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 800.00 <span class="code-keyword">THEN</span> <span class="code-string">'10% Reward Coupon'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 300.00 <span class="code-keyword">THEN</span> <span class="code-string">'5% Reward Coupon'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Standard Newsletter'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> loyalty_reward
+<span class="code-keyword">FROM</span> customers c
+<span class="code-keyword">JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id = s.customer_id
+<span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
+<span class="code-keyword">ORDER BY</span> total_spend <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tags"></i>
+<h4>Loyalty Tiering Engine Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Joins The:</strong> Joins the 612-row <code>customers</code> directory with the 60-row <code>sells_list</code> to compute aggregated lifetime purchasing volume per buyer.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Applies Dual:</strong> Applies dual parallel <code>CASE</code> expressions to derive both a symbolic tier rating (<code>tier_rank</code>) and an actionable promotion campaign perk (<code>loyalty_reward</code>).</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Illustrates how enterprise CRM workflows dynamically calculate incentive rewards entirely within SQL query execution.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&gt;=</span> <span class="code-num">50000</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> high_value_clients,
-    <span class="code-func">SUM</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> total_annual_spend <span class="code-op">&lt;</span> <span class="code-num">50000</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span> <span class="code-keyword">ELSE</span> <span class="code-num">0</span> <span class="code-keyword">END</span>) <span class="code-keyword">AS</span> standard_clients
-<span class="code-keyword">FROM</span> customer_metrics;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>customer_metrics</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> company_name, support_plan
-<span class="code-keyword">FROM</span> customer_metrics
-ORDER BY 
-    <span class="code-keyword">CASE</span> support_plan
-        <span class="code-keyword">WHEN</span> <span class="code-string">'PLATINUM'</span> <span class="code-keyword">THEN</span> <span class="code-num">1</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'GOLD'</span> <span class="code-keyword">THEN</span> <span class="code-num">2</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'SILVER'</span> <span class="code-keyword">THEN</span> <span class="code-num">3</span>
-        <span class="code-keyword">ELSE</span> <span class="code-num">4</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_metrics</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The CASE expression introduces conditional branching directly into SQL queries, functioning as an inline IF-THEN-ELSE statement to power dynamic categorizations and analytical pivots.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Scalar Expression:</strong> CASE is an expression that returns a scalar value; it can be used in SELECT, WHERE, ORDER BY, and HAVING.</span>
+<span><strong>Always Include an ELSE Clause:</strong> Omission of <code>ELSE</code> causes SQL to default to <code>NULL</code>, which can distort downstream mathematical aggregations and client application rendering.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Sequential Evaluation:</strong> Conditions are tested top-to-bottom; execution halts on the first condition evaluating to TRUE.</span>
+<span><strong>Order WHEN Conditions Judiciously:</strong> Put the most frequent or most restrictive conditions first to take advantage of short-circuit evaluation.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Always Include ELSE:</strong> Always provide an explicit ELSE clause to prevent unexpected NULL values when no conditions match.</span>
+<span><strong>Consistent Return Data Types:</strong> Ensure all <code>THEN</code> and <code>ELSE</code> branches return compatible data types to avoid unexpected implicit type casting errors.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Conditional Aggregates:</strong> Combine SUM(CASE WHEN... THEN 1 ELSE 0 END) to pivot and transpose rows into summary columns.</span>
+<span><strong>Companion Reading:</strong> For handling NULL edge cases specifically, see <a href="null-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL NULL Functions (COALESCE &amp; IFNULL)</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The CASE expression provides clean, standardized conditional branching directly within SQL statements, enabling dynamic classification, sorting overrides, and high-performance conditional aggregations.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Dynamic Transformations:</strong> Evaluates boolean rules inline without procedural scripting.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Searched vs Simple:</strong> Use Searched CASE for range and multi-variable conditions; use Simple CASE for direct column equality matching.</span>
+<span><strong>Short-Circuit Logic:</strong> Executes sequentially and terminates evaluation on the first true condition.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Next Chapter:</strong> Gracefully handle missing data and replace NULLs in <a href="null-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL NULL Functions (COALESCE &amp; IFNULL) →</a></span>
 </li>
 </ul>
 </div>
@@ -526,8 +616,8 @@ ORDER BY
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="insert-into-select.html" title="Previous: The INSERT INTO SELECT Statement">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The INSERT INTO SELECT Statement</span>
+<a class="btn-outline" href="union-all.html" title="Previous: The UNION ALL Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The UNION ALL Operator</span>
 </a>
 </div>
 <div class="lesson-nav-center">

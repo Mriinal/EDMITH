@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: SQL NULL Functions (COALESCE &amp; IFNULL) - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: SQL NULL Functions (COALESCE &amp; IFNULL) - Master replacing missing values, arithmetic shielding with NULLIF, and multi-tier fallbacks on EDMITH." name="description"/>
 <title>SQL NULL Functions (COALESCE &amp; IFNULL) - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li class="active"><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li class="active"><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -164,18 +164,16 @@
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Emergency Power Generator Fallback Analogy</h4>
 <p>Picture a mission-critical surgical hospital equipped with an uninterrupted power supply grid:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Primary Source (Grid Power)::</strong> Under standard operations, the hospital runs on municipal city grid power.</li>
-<li><strong>2. Secondary Fallback (Diesel Generator)::</strong> If city grid power fails (is NULL), automated transfer switches instantly flip to the on-site diesel backup generator.</li>
-<li><strong>3. Tertiary Fallback (Battery Bank)::</strong> If the diesel generator fails to start (is NULL), emergency battery banks keep life support online.</li>
-<li><strong>4. The COALESCE Cascade::</strong> COALESCE operates like that exact fallback cascade: it inspects options in order, returning the very first non-null power source!</li>
-</ul>
+<p style="margin-top: 8px !important;"><strong>1. Primary Source (Grid Power):</strong> Under normal operations, the hospital runs continuously on municipal city electrical power.</p>
+<p style="margin-top: 8px !important;"><strong>2. Secondary Fallback (Diesel Generator):</strong> If city grid power fails (is NULL), automated transfer switches immediately flip to the on-site diesel backup generator.</p>
+<p style="margin-top: 8px !important;"><strong>3. Tertiary Fallback (Battery Bank):</strong> If the generator encounters a delay (is NULL), emergency battery banks keep life-saving equipment online.</p>
+<p style="margin-top: 8px !important;"><strong>4. The COALESCE Cascade:</strong> The COALESCE function operates as that exact fallback cascade: it evaluates inputs in order and returns the very first non-null value!</p>
 <p style="margin-top: 8px !important;">NULL handling functions like COALESCE and IFNULL replace missing values with reliable fallback defaults, safeguarding calculations and frontend displays.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>SQL NULL Functions (COALESCE &amp; IFNULL)</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,23 +181,49 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    product_name,
-    <span class="code-func">COALESCE</span>(discount_price, member_price, regular_price, <span class="code-num">0.00</span>) <span class="code-keyword">AS</span> final_price
-<span class="code-keyword">FROM</span> store_inventory;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>store_inventory</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- 1. ANSI Universal Standard: COALESCE (Multi-Argument Fallback)</span>
+<span class="code-func">COALESCE</span>(expression_1, expression_2, ... expression_n, fallback_literal)
+
+<span class="code-comment">-- 2. Dialect Specific Two-Value Fallback (MySQL / SQLite)</span>
+<span class="code-func">IFNULL</span>(expression, fallback_literal)
+
+<span class="code-comment">-- 3. Arithmetic Division Guard: NULLIF (Prevents Divide-by-Zero)</span>
+numerator <span class="code-op">/</span> <span class="code-func">NULLIF</span>(denominator, <span class="code-num">0</span>)</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>NULL Handling Functions Blueprint Breakdown</h4>
 </div>
+<p>Core rules and architectural mechanics governing NULL-safe fallback functions in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Universal Portability:</strong> <code>COALESCE</code> is part of ANSI SQL-92 and is supported across PostgreSQL, MySQL, SQL Server, Oracle, and SQLite.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Left-to-Right Short-Circuiting:</strong> Arguments are evaluated sequentially from left to right; evaluation stops as soon as the first non-null expression is encountered.</div>
+</li>
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>Type Concordance:</strong> All expressions within <code>COALESCE</code> must resolve to compatible data types to avoid implicit conversion penalties.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Divide-by-Zero Protection:</strong> <code>NULLIF(val, 0)</code> turns zero denominators into <code>NULL</code>, safely avoiding query aborts and pipeline crashes.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of NULL functions running against active relational tables (<code>customers</code>, <code>employees</code>, and <code>sells_list</code>):</p>
+<!-- Query 1: Sanitizing Customer Names with COALESCE -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -207,7 +231,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Query 1: Graceful Middle Name Fallback Sanitization</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -215,15 +239,41 @@
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
     customer_id,
-    <span class="code-func">COALESCE</span>(mobile_phone, work_phone, home_phone, <span class="code-string">'NO_PHONE_ON_RECORD'</span>) <span class="code-keyword">AS</span> contact_phone
-<span class="code-keyword">FROM</span> customer_profiles;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>customer_profiles</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+    first_name,
+    middle_name,
+    last_name,
+    first_name || <span class="code-string">' '</span> || <span class="code-func">COALESCE</span>(middle_name || <span class="code-string">' '</span>, <span class="code-string">''</span>) || <span class="code-func">COALESCE</span>(last_name, <span class="code-string">''</span>) <span class="code-keyword">AS</span> formatted_full_name,
+    <span class="code-func">COALESCE</span>(middle_name, <span class="code-string">'N/A'</span>) <span class="code-keyword">AS</span> display_middle_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> customer_id &lt;= 12;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Name Fallback Sanitization Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>In The:</strong> In the active 612-row <code>customers</code> table, customers without middle names possess <code>NULL</code> in the <code>middle_name</code> column.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><code>COALESCE(middle_name, 'N/A')</code> intercepts missing values and supplies a clean fallback placeholder for customer support dashboards.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Shields string concatenation so that a missing middle name does not create double spaces or truncate output.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Defensive Fallback with IFNULL -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -231,139 +281,226 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">-- SELECT username, IFNULL(display_name, username) AS public_profile FROM accounts;</span></code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>accounts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Query 2: Defensive Hierarchy Fallback with IFNULL</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    order_id,
-    revenue,
-    item_count,
-    revenue <span class="code-op">/</span> NULLIF(item_count, <span class="code-num">0</span>) <span class="code-keyword">AS</span> safe_unit_price
-<span class="code-keyword">FROM</span> order_batches;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>order_batches</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+    employee_id,
+    first_name || <span class="code-string">' '</span> || last_name <span class="code-keyword">AS</span> employee_name,
+    department,
+    manager_id,
+    <span class="code-func">IFNULL</span>(manager_id, <span class="code-num">0</span>) <span class="code-keyword">AS</span> safe_manager_id,
+    <span class="code-keyword">CASE</span> 
+        <span class="code-keyword">WHEN</span> manager_id <span class="code-keyword">IS NULL</span> <span class="code-keyword">THEN</span> <span class="code-string">'Chief Executive Officer'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Direct Report'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> reporting_role
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">ORDER BY</span> employee_id <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Hierarchy Fallback Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>In The:</strong> In the active <code>employees</code> table, the top executive (employee ID 1) has <code>manager_id = NULL</code> because they report to no internal manager.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><code>IFNULL(manager_id, 0)</code> safely replaces <code>NULL</code> with a numerical dummy value <code>0</code> for downstream numeric parsing.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Paired with <code>CASE</code> to assign descriptive title badges based on root organizational hierarchy.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 3: Mathematical Division Safeguard with NULLIF -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Arithmetic Division Protection with NULLIF</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    sale_id,
+    customer_id,
+    product_id,
+    quantity,
+    total_price,
+    <span class="code-func">ROUND</span>(total_price <span class="code-op">/</span> <span class="code-func">NULLIF</span>(quantity, <span class="code-num">0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> calculated_unit_price
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> sale_id &lt;= 15
+<span class="code-keyword">ORDER BY</span> sale_id <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Division Protection Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div>Computes unit prices by dividing <code>total_price</code> by <code>quantity</code> across transactions in <code>sells_list</code>.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong><code>NULLIF(quantity, 0)</code> inspects the denominator:</strong> if quantity is 0, it transforms to <code>NULL</code>, preventing catastrophic divide-by-zero crashes.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div>Any calculation divided by <code>NULL</code> cleanly produces <code>NULL</code> rather than interrupting database execution.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 4: Multi-Tier Escalation Contact Cascade -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Executive Escalation Resolution via Left Join</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">SELECT</span> 
+    e.employee_id,
+    e.first_name || <span class="code-string">' '</span> || e.last_name <span class="code-keyword">AS</span> employee_name,
+    e.department,
+    <span class="code-keyword">CASE</span> 
+        <span class="code-keyword">WHEN</span> m.employee_id <span class="code-keyword">IS NULL</span> <span class="code-keyword">THEN</span> <span class="code-string">'BOARD_OF_DIRECTORS'</span>
+        <span class="code-keyword">ELSE</span> m.first_name || <span class="code-string">' '</span> || m.last_name
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> escalation_contact
+<span class="code-keyword">FROM</span> employees e
+<span class="code-keyword">LEFT JOIN</span> employees m <span class="code-keyword">ON</span> e.manager_id = m.employee_id
+<span class="code-keyword">ORDER BY</span> e.employee_id <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Executive Escalation Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Performs A:</strong> Performs a self-referencing left join between employees and their supervising managers.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>When The:</strong> When the employee has no manager (such as the CEO), the manager join yields <code>NULL</code>, which triggers the fallback to <code>'BOARD_OF_DIRECTORS'</code>.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Guarantees That:</strong> Guarantees that every employee in the directory has an unambiguous, actionable managerial escalation path.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>SQL NULL functions provide defensive programming tools to inspect, replace, and sanitize missing data values. The ANSI standard function is <code>COALESCE()</code>, while dialect-specific equivalents include <code>IFNULL()</code> (MySQL/SQLite), <code>ISNULL()</code> (SQL Server), and <code>NVL()</code> (Oracle).</p>
-<ul>
-<li><strong>The Power of COALESCE:</strong> <code>COALESCE(val1, val2, val3, ...)</code> accepts an arbitrary number of arguments and returns the <strong>first non-null</strong> expression in the sequence.</li>
-<li><strong>Dialect Portability:</strong> <code>COALESCE</code> is part of the official ANSI SQL-92 standard and is natively supported across PostgreSQL, SQL Server, MySQL, Oracle, and SQLite.</li>
-<li><strong>The NULLIF Divide-by-Zero Savior:</strong> <code>NULLIF(a, b)</code> returns <code>NULL</code> if <code>a = b</code>. Writing <code>x / NULLIF(y, 0)</code> elegantly prevents catastrophic divide-by-zero crashes!</li>
-<li><strong>Arithmetic Shielding:</strong> Adding numbers containing NULL results in NULL (e.g. <code>100 + NULL = NULL</code>); wrapping columns in <code>COALESCE(col, 0)</code> ensures mathematical safety.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>In relational database theory, NULL indicates the absence of a value rather than zero or an empty string. Standard SQL operators propagate NULL: <code>100 + NULL = NULL</code>. Defensive NULL functions prevent silent data loss.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Function</th>
-<th>Dialect Portability</th>
-<th>Argument Count</th>
-<th>Operational Behavior</th>
-<th>Primary Use Case</th>
+<th>Standardization</th>
+<th>Argument Limit</th>
+<th>Execution Mechanism</th>
+<th>Primary Enterprise Use Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>COALESCE(...)</code></td>
-<td>ANSI Standard (Universal)</td>
+<td>ANSI SQL-92 (Universal)</td>
 <td>Unlimited (2+)</td>
 <td>Returns first non-null argument</td>
-<td>Production fallbacks &amp; defaults</td>
+<td>Multi-tier fallback cascades across contact channels</td>
 </tr>
 <tr>
 <td><code>IFNULL(a, b)</code></td>
 <td>MySQL, SQLite</td>
 <td>Strictly 2</td>
 <td>Returns b if a is NULL; else a</td>
-<td>Simple two-tier fallback</td>
+<td>Simple binary default replacement</td>
 </tr>
 <tr>
 <td><code>ISNULL(a, b)</code></td>
 <td>SQL Server (T-SQL)</td>
 <td>Strictly 2</td>
 <td>Returns b if a is NULL; else a</td>
-<td>SQL Server legacy queries</td>
+<td>Legacy Microsoft SQL Server stored procedures</td>
 </tr>
 <tr>
 <td><code>NVL(a, b)</code></td>
 <td>Oracle PL/SQL</td>
 <td>Strictly 2</td>
 <td>Returns b if a is NULL; else a</td>
-<td>Oracle legacy migrations</td>
+<td>Oracle enterprise migrations</td>
 </tr>
 <tr>
 <td><code>NULLIF(a, b)</code></td>
-<td>ANSI Standard (Universal)</td>
+<td>ANSI SQL-92 (Universal)</td>
 <td>Strictly 2</td>
 <td>Returns NULL if a = b; else a</td>
-<td>Preventing Divide-by-Zero</td>
+<td>Preventing zero-division errors in calculations</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>How NULLIF(col, 0) Prevents Production Divide-by-Zero Crashes</h3>
-<p>In relational database engines, executing <code>SELECT 100 / 0;</code> causes an immediate transaction-aborting exception:</p>
-<ul>
-<li><strong>The Vulnerability:</strong> A financial analytics query calculates average price: <code>total_revenue / total_units_sold</code>. On days with zero sales, the whole pipeline crashes.</li>
-<li><strong>The Elegant Solution:</strong> Rewrite as: <code>total_revenue / NULLIF(total_units_sold, 0)</code>.</li>
-<li><strong>How it Works:</strong> If <code>total_units_sold</code> is 0, NULLIF converts it to NULL. Dividing by NULL safely yields <code>NULL</code> instead of an application crash!</li>
-<li><strong>The Final Polish:</strong> Combine with COALESCE: <code>COALESCE(total_revenue / NULLIF(total_units_sold, 0), 0.00)</code>.</li>
+<h3>Arithmetic Shielding: Why COALESCE is Critical in Math</h3>
+<p>In SQL arithmetic, any mathematical operation involving NULL evaluates to NULL:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>The NULL Contamination Hazard:</strong> <code>salary + bonus</code> evaluates to <code>NULL</code> for any employee whose bonus is NULL, wiping out their base pay in reports!</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Defensive Replacement:</strong> Writing <code>salary + COALESCE(bonus, 0.00)</code> guarantees that total compensation evaluates accurately.</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Aggregate Immunity:</strong> While <code>SUM()</code> and <code>AVG()</code> ignore NULL rows automatically, scalar expressions inside <code>SELECT</code> do not; always shield column math with <code>COALESCE</code>.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Global Communications Multi-Channel Notification Dispatch:</strong> Determine routing dispatch destinations across customer notification channels with multi-tier emergency contact fallbacks.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: user_contacts
-   user_id | direct_email       | work_email        | sms_number   | billing_contact
-   --------+--------------------+-------------------+--------------+----------------
-   101     | sarah@personal.com | sarah@work.com    | +15550192    | NULL
-   102     | NULL               | john@company.com  | +15554820    | NULL
-   103     | NULL               | NULL              | +15559911    | NULL
-   104     | NULL               | NULL              | NULL         | billing@firm.org
-   105     | NULL               | NULL              | NULL         | NULL
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Customer Identity Normalization &amp; Salutation Engine:</strong> Generate a pristine customer roster from <code>customers</code> with standardized salutations and explicit badges for missing name fields.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -371,119 +508,85 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Production Query: Customer Directory Sanitization</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    user_id,
-    <span class="code-func">COALESCE</span>(direct_email, work_email, <span class="code-string">'NO_EMAIL_REGISTERED'</span>) <span class="code-keyword">AS</span> resolved_email_destination
-<span class="code-keyword">FROM</span> user_contacts;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>user_contacts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+    customer_id,
+    first_name,
+    <span class="code-func">COALESCE</span>(middle_name, <span class="code-string">'[None]'</span>) <span class="code-keyword">AS</span> middle_name_badge,
+    <span class="code-func">COALESCE</span>(last_name, <span class="code-string">'[Unspecified]'</span>) <span class="code-keyword">AS</span> surname_badge,
+    first_name || <span class="code-string">' '</span> || <span class="code-func">COALESCE</span>(last_name, <span class="code-string">'Valued Client'</span>) <span class="code-keyword">AS</span> greeting_salutation
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> customer_id <span class="code-keyword">BETWEEN</span> 1 <span class="code-keyword">AND</span> 20
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Customer Directory Sanitization Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Sanitizes The:</strong> Sanitizes the customer roster by translating raw database NULLs into clear visual badges for frontend UI rendering.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Generates robust email salutations:</strong> if a customer lacks a recorded surname, they are greeted warmly as <code>"FirstName Valued Client"</code>.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Eliminates Frontend:</strong> Eliminates frontend rendering crashes and broken placeholder displays on client applications.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    user_id,
-    <span class="code-func">COALESCE</span>(direct_email, work_email, sms_number, billing_contact, <span class="code-string">'UNREACHABLE'</span>) <span class="code-keyword">AS</span> dispatch_target
-<span class="code-keyword">FROM</span> user_contacts;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>user_contacts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    user_id,
-    <span class="code-func">COALESCE</span>(billing_contact, <span class="code-string">'ACCOUNTS_RECEIVABLE_DEFAULT'</span>) <span class="code-keyword">AS</span> billing_target
-<span class="code-keyword">FROM</span> user_contacts;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>user_contacts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    user_id,
-    <span class="code-func">COALESCE</span>(<span class="code-func">ROUND</span>(<span class="code-num">100.0</span> <span class="code-op">/</span> NULLIF(user_id <span class="code-op">-</span> <span class="code-num">101</span>, <span class="code-num">0</span>), <span class="code-num">2</span>), <span class="code-num">0.00</span>) <span class="code-keyword">AS</span> safe_quota_metric
-<span class="code-keyword">FROM</span> user_contacts;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>user_contacts</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>NULL handling functions such as COALESCE and NULLIF replace missing values with dependable fallbacks and shield database calculations against unexpected NULL propagation and divide-by-zero crashes.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Prefer ANSI COALESCE:</strong> Use COALESCE for all fallback logic to ensure universal portability across all database engines.</span>
+<span><strong>Prefer ANSI Standard COALESCE:</strong> Unless working exclusively in a single vendor engine with strict legacy code, use <code>COALESCE</code> over vendor-specific functions (<code>IFNULL</code>, <code>NVL</code>, <code>ISNULL</code>).</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>First Non-Null Value:</strong> COALESCE evaluates arguments sequentially and returns the first non-null value.</span>
+<span><strong>Always Shield Division:</strong> Never execute raw column division in production queries; always wrap denominators in <code>NULLIF(col, 0)</code>.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Prevent Divide-by-Zero:</strong> Always wrap denominators in NULLIF(denominator, 0) to avoid fatal division crashes.</span>
+<span><strong>Index Considerations:</strong> Applying functions like <code>COALESCE(col, 'default')</code> in <code>WHERE</code> clauses can disable standard B-tree index scans; use functional indexes if needed.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Arithmetic Protection:</strong> Wrap nullable numeric columns in COALESCE(col, 0) before addition or multiplication to avoid NULL contagion.</span>
+<span><strong>Foundational Context:</strong> Review <a href="null-values.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">NULL Values &amp; Three-Valued Logic</a> to master how SQL's ternary logic operates.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>SQL NULL functions provide essential defensive programming constructs, safeguarding arithmetic calculations, string formatting, and analytical reports from NULL propagation.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Multi-Tier Fallbacks:</strong> <code>COALESCE</code> returns the first non-null value across any number of inputs.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Dialect Equivalents:</strong> Be aware of dialect-specific equivalents: IFNULL in MySQL/SQLite, ISNULL in SQL Server, and NVL in Oracle.</span>
+<span><strong>Divide-by-Zero Safety:</strong> <code>NULLIF</code> cleanly converts dangerous zeros into safe NULLs.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Next Chapter:</strong> Test for existence and correlated subqueries in <a href="exists.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The EXISTS Operator →</a></span>
 </li>
 </ul>
 </div>
@@ -501,8 +604,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="stored-procedures.html" title="Next: Stored Procedures">
-<span class="btn-text">Next: Stored Procedures</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="exists.html" title="Next: The EXISTS Operator">
+<span class="btn-text">Next: The EXISTS Operator</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

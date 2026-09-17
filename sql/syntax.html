@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li class="active"><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -164,310 +164,262 @@
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Formal Legal Contract Analogy</h4>
 <p>Think of writing SQL like drafting a binding legal contract between your application and the database storage engine:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Designated Clause Order:</strong> Every clause has an immutable assigned place; you cannot put WHERE before FROM any more than you can sign a contract before writing the clauses.</li>
-<li><strong>2. Clear Unambiguous Language:</strong> Keywords (SELECT, FROM, WHERE) establish exact legal intent without ambiguity.</li>
-<li><strong>3. Case-Insensitive Freedom:</strong> The law recognizes the contract whether typed in uppercase or lowercase, though UPPERCASE is industry standard for clarity.</li>
-<li><strong>4. The Semicolon Seal:</strong> The terminating semicolon (;) acts as the legal seal and signature that marks the boundary of each enforceable transaction.</li>
-</ul>
+<p style="margin-top: 8px !important;"><strong>1. Designated Clause Order:</strong> Every clause has an immutable assigned place; you cannot put WHERE before FROM any more than you can sign a contract before writing the clauses.</p>
+<p style="margin-top: 8px !important;"><strong>2. Clear Unambiguous Language:</strong> Keywords (SELECT, FROM, WHERE) establish exact legal intent without ambiguity.</p>
+<p style="margin-top: 8px !important;"><strong>3. Case-Insensitive Freedom:</strong> The law recognizes the contract whether typed in uppercase or lowercase, though UPPERCASE is industry standard for clarity.</p>
+<p style="margin-top: 8px !important;"><strong>4. The Semicolon Seal:</strong> The terminating semicolon (;) acts as the legal seal and signature that marks the boundary of each enforceable transaction.</p>
 <p style="margin-top: 8px !important;">If you violate the grammar or omit a required clause, the query parser instantly rejects the entire contract with a syntax compilation error.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>SQL Syntax &amp; Statement Grammar</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 1: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> column1, column2, column3
+                <!-- Section 1: Canonical SQL Statement Grammar -->
+                <h2>1. Canonical SQL Statement Grammar</h2>
+                <p>Before executing queries against live datasets, we must understand the foundational structural blueprint that dictates how all declarative SQL statements are formed:</p>
+
+                <!-- Syntax Template Terminal (Copy Button Only - No Try in Editor) -->
+                <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Grammar Specification: Canonical SQL Template</span>
+                        <div class="terminal-header-actions">
+                            <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre><code><span class="code-comment">-- Standard Declarative SQL Statement Grammar Template</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
 <span class="code-keyword">FROM</span> table_name
 <span class="code-keyword">WHERE</span> condition_predicate
-ORDER BY column1 <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>table_name</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, (order_total <span class="code-op">*</span> <span class="code-num">0.90</span>) <span class="code-keyword">AS</span> discounted_price
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_orders</code> using the condition <code>status = 'COMPLETED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">select</span> employee_id, first_name
-<span class="code-keyword">from</span> employees
-<span class="code-keyword">where</span> department_id <span class="code-op">=</span> <span class="code-num">10</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>department_id = 10</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">FROM</span> active_subscriptions;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>active_subscriptions</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 5: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">AVG</span>(latency_ms) <span class="code-keyword">FROM</span> service_health_metrics;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>service_health_metrics</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>SQL (Structured Query Language) is a declarative language governed by ANSI and ISO standards. Unlike procedural code where you describe step-by-step algorithms, in SQL you describe <em>what</em> data you require, and the relational query optimizer determines <em>how</em> to retrieve it.</p>
-<ul>
-<li><strong>Case Insensitivity:</strong> Keywords are case-insensitive by standard, but writing them in UPPERCASE distinguishes language constructs from schema identifiers.</li>
-<li><strong>Whitespace Agnostic:</strong> Freeform line breaks, tabs, and indentations are ignored by query parsers, allowing developers to format queries for team legibility.</li>
-<li><strong>Clause Hierarchy:</strong> Clauses must strictly follow grammar rules: SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT.</li>
-<li><strong>Statement Delimiters:</strong> The semicolon (;) tells the query engine where an execution block finishes, preventing syntax collisions during batch executions.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
-<thead>
-<tr>
-<th>Grammar Component</th>
-<th>SQL Construct</th>
-<th>Parser Rule &amp; Semantics</th>
-<th>Practical Example</th>
-<th>Engine Impact</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Clauses</td>
-<td>SELECT, FROM, WHERE</td>
-<td>Mandatory blocks that declare data sources and projections</td>
-<td><code>FROM customers WHERE active = 1</code></td>
-<td>Determines logical query plan tree</td>
-</tr>
-<tr>
-<td>Predicates</td>
-<td>=, &lt;&gt;, LIKE, IN</td>
-<td>Boolean evaluation returning TRUE, FALSE, or UNKNOWN</td>
-<td><code>WHERE balance &gt; 1000</code></td>
-<td>Drives index seek vs full table scan</td>
-</tr>
-<tr>
-<td>Expressions</td>
-<td>col1 + col2, UPPER(col)</td>
-<td>Scalar transformations and mathematical formulas</td>
-<td><code>UPPER(first_name) AS clean_name</code></td>
-<td>Evaluated during projection phase</td>
-</tr>
-<tr>
-<td>Delimiters</td>
-<td>Semicolon (;)</td>
-<td>Explicit boundary separating consecutive query statements</td>
-<td><code>SELECT 1; SELECT 2;</code></td>
-<td>Critical for batch execution buffers</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3>Why Grammatical Clause Order Differs from Execution Order</h3>
-<p>The grammatical order in which you write a query is designed for human readability, whereas the query planner evaluates clauses logically based on relational algebra:</p>
-<ul>
-<li><strong>Written Order (Grammar):</strong> <code>SELECT</code> → <code>FROM</code> → <code>WHERE</code> → <code>GROUP BY</code> → <code>HAVING</code> → <code>ORDER BY</code> → <code>LIMIT</code>.</li>
-<li><strong>Execution Order (Engine):</strong> <code>FROM</code> (load tables) → <code>WHERE</code> (filter rows) → <code>GROUP BY</code> (aggregate) → <code>HAVING</code> (filter groups) → <code>SELECT</code> (project) → <code>ORDER BY</code> (sort) → <code>LIMIT</code> (slice).</li>
-<li><strong>The Parser Phase:</strong> Before executing, the database lexer tokenizes your SQL string, builds an Abstract Syntax Tree (AST), and validates all column references against the catalog cache.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce Core Order Audit:</strong> Demonstrating grammatical clause structure across verified customer transactions with filtering, projection, and sorting.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: customer_orders
-   order_id | customer_name | order_status | order_total | created_at
-   ---------+---------------+--------------+-------------+-------------------
-   5001     | Alice Smith   | COMPLETED    | 249.99      | 2026-03-01 10:15
-   5002     | Bob Vance     | PENDING      | 89.50       | 2026-03-01 11:30
-   5003     | Charlie Day   | COMPLETED    | 499.00      | 2026-03-02 09:45
-   5004     | David Miller  | CANCELLED    | 120.00      | 2026-03-02 14:20
-   5005     | Eva Green     | COMPLETED    | 75.25       | 2026-03-03 16:00
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, customer_name, order_total
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> order_status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_orders</code> using the condition <code>order_status = 'COMPLETED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Exact Match Predicate</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, order_total, (order_total <span class="code-op">*</span> <span class="code-num">0.08</span>) <span class="code-keyword">AS</span> tax_amount
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> order_status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_orders</code> using the condition <code>order_status = 'COMPLETED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, customer_name, order_total
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> order_status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>
-ORDER BY order_total <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_orders</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, customer_name, order_total
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> order_status <span class="code-op">=</span> <span class="code-string">'COMPLETED'</span>
-ORDER BY order_total <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">2</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_orders</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
+<span class="code-keyword">ORDER BY</span> column1 [<span class="code-keyword">ASC</span> | <span class="code-keyword">DESC</span>]
+<span class="code-keyword">LIMIT</span> number;</code></pre>
+                </div>
+
+                <!-- Dedicated Explanation Area for Syntax Template -->
+                <div class="code-explanation-area">
+                    <div class="explanation-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h4>Grammar Blueprint Breakdown</h4>
+                    </div>
+                    <p>This canonical template defines the standard ANSI sequence of declarative query clauses:</p>
+                    <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-columns"></i>
+                            <div><strong><code>SELECT column1, column2, ...</code>:</strong> The mandatory projection list identifying which columns or scalar calculations to extract.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-database"></i>
+                            <div><strong><code>FROM table_name</code>:</strong> The mandatory data source specification defining which table or dataset to read from.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-filter"></i>
+                            <div><strong><code>WHERE condition_predicate</code>:</strong> An optional boolean filter that evaluates individual rows before any grouping or sorting occurs.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-sort-amount-down"></i>
+                            <div><strong><code>ORDER BY column1 [ASC | DESC]</code>:</strong> An optional sorting directive ordering records ascending (default) or descending.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-cut"></i>
+                            <div><strong><code>LIMIT number</code>:</strong> An optional pagination boundary capping the maximum number of rows returned to the client.</div>
+                        </li>
+                    </ul>
+                    <div class="explanation-tip">
+                        <i class="fas fa-info-circle"></i>
+                        <span><strong>Syntax Template Note:</strong> Identifiers like <code>table_name</code>, <code>column1</code>, and <code>condition_predicate</code> represent abstract grammatical placeholders. In production queries, these are replaced with concrete physical tables and column names from your database catalog.</span>
+                    </div>
+                </div>
+
+                <!-- Section 2: Live Query in Action -->
+                <h2>2. The Grammar in Action: Live Query Execution</h2>
+                <p>Here is how the abstract grammar template above translates into a concrete, executable SQL query against our live 612-record <code>customers</code> table:</p>
+
+                <!-- Live Production Query Terminal (Try in Editor + Copy) -->
+                <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Live Query: Selecting, Filtering &amp; Sorting Customers</span>
+                        <div class="terminal-header-actions">
+                            <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+                            <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre><code><span class="code-comment">-- Live Execution: Selecting specific columns with filtering, sorting, and pagination</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id, 
+    first_name, 
+    last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> last_name = <span class="code-string">'Kumar'</span>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">5</span>;</code></pre>
+                </div>
+
+                <!-- Dedicated Explanation Area for Live Query -->
+                <div class="code-explanation-area">
+                    <div class="explanation-header">
+                        <i class="fas fa-play-circle"></i>
+                        <h4>Execution &amp; Clause Mapping Breakdown</h4>
+                    </div>
+                    <p>This query adheres to the canonical grammar while querying concrete relations from our local database engine:</p>
+                    <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-table"></i>
+                            <div><strong><code>FROM customers</code>:</strong> Directs the query planner to access the 612-record customer directory.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-filter"></i>
+                            <div><strong><code>WHERE last_name = 'Kumar'</code>:</strong> Evaluates each record, keeping only customers whose surname is exactly 'Kumar' (such as Ripunjay Kumar, Amritesh Kumar, Abhishek Kumar, etc.).</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-columns"></i>
+                            <div><strong><code>SELECT customer_id, first_name, last_name</code>:</strong> Projects only the three requested fields, avoiding unnecessary column reads.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-sort-numeric-down"></i>
+                            <div><strong><code>ORDER BY customer_id ASC</code>:</strong> Neatly sorts the filtered records by their primary key in ascending sequence.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-stream"></i>
+                            <div><strong><code>LIMIT 5</code>:</strong> Restricts the result set to the first 5 matching customer records.</div>
+                        </li>
+                    </ul>
+                    <div class="explanation-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <span><strong>Upcoming Deep Dives:</strong> Click <strong>Try in Editor</strong> above to see this query run live! We will explore each of these clauses—including projection tricks, advanced filtering, and compound sorting—in our upcoming dedicated chapters: <strong>The SELECT Statement</strong>, <strong>The WHERE Clause</strong>, and <strong>The ORDER BY Clause</strong>.</span>
+                    </div>
+                </div>
+
+                <!-- Section 3: Casing & Whitespace Rules -->
+                <h2>3. Keyword Casing &amp; Whitespace Formatting</h2>
+                <p>While SQL keywords are technically case-insensitive, engineering best practices emphasize clean casing and multi-line clause indentation to maintain production code readability:</p>
+
+                <!-- Casing & Formatting Terminal (Try in Editor + Copy) -->
+                <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Formatting Standard: Uppercase Keywords &amp; Clean Indentation</span>
+                        <div class="terminal-header-actions">
+                            <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+                            <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre><code><span class="code-comment">-- ✅ Industry Standard: UPPERCASE keywords, lowercase identifiers, indented clauses</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id, 
+    first_name, 
+    last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> middle_name <span class="code-keyword">IS NOT NULL</span>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">5</span>;</code></pre>
+                </div>
+
+                <!-- Dedicated Explanation Area for Casing -->
+                <div class="code-explanation-area">
+                    <div class="explanation-header">
+                        <i class="fas fa-font"></i>
+                        <h4>Casing &amp; Layout Best Practices</h4>
+                    </div>
+                    <p>Adopt these industry standards to write maintainable SQL:</p>
+                    <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-heading"></i>
+                            <div><strong>UPPERCASE Keywords:</strong> Writing <code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, and <code>ORDER BY</code> in uppercase instantly distinguishes language commands from table and column names.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-tag"></i>
+                            <div><strong>lowercase Identifiers:</strong> Keeping database table and column names (<code>customers</code>, <code>first_name</code>, <code>middle_name</code>) in lowercase aligns with standard database schema design conventions.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-indent"></i>
+                            <div><strong>Whitespace &amp; Line Breaks:</strong> SQL parsers treat extra spaces, tabs, and line breaks as neutral whitespace. Aligning clauses vertically makes complex queries easy to read and debug during code reviews.</div>
+                        </li>
+                    </ul>
+                    <div class="explanation-tip">
+                        <i class="fas fa-info-circle"></i>
+                        <span><strong>Upcoming Chapter Note:</strong> We will master handling missing values and special conditions like <code>IS NOT NULL</code> in our dedicated <strong>NULL Values &amp; Three-Valued Logic</strong> chapter!</span>
+                    </div>
+                </div>
+
+
+                <!-- Core Concepts & Technical Breakdown -->
+                <h2>Core Concepts &amp; Engine Mechanics</h2>
+                <p>SQL (Structured Query Language) is a declarative language governed by ANSI and ISO standards. Unlike procedural code where you describe step-by-step algorithms, in SQL you describe <em>what</em> data you require, and the relational query optimizer determines <em>how</em> to retrieve it.</p>
+                <ul class="summary-list" style="margin-bottom: 1.5rem;">
+                    <li><i class="fas fa-check"></i> <span><strong>Case Insensitivity:</strong> Keywords are case-insensitive by standard, but writing them in UPPERCASE distinguishes language constructs from schema identifiers.</span></li>
+                    <li><i class="fas fa-check"></i> <span><strong>Whitespace Agnostic:</strong> Freeform line breaks, tabs, and indentations are ignored by query parsers, allowing developers to format queries for team legibility.</span></li>
+                    <li><i class="fas fa-check"></i> <span><strong>Clause Hierarchy:</strong> Clauses must strictly follow grammar rules: SELECT &rarr; FROM &rarr; WHERE &rarr; GROUP BY &rarr; HAVING &rarr; ORDER BY &rarr; LIMIT.</span></li>
+                    <li><i class="fas fa-check"></i> <span><strong>Statement Delimiters:</strong> The semicolon (;) tells the query engine where an execution block finishes, preventing syntax collisions during batch executions.</span></li>
+                </ul>
+
+                <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+                <div class="table-responsive">
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>Grammar Component</th>
+                                <th>SQL Construct</th>
+                                <th>Parser Rule &amp; Semantics</th>
+                                <th>Practical Example</th>
+                                <th>Engine Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Clauses</strong></td>
+                                <td><code>SELECT</code>, <code>FROM</code>, <code>WHERE</code></td>
+                                <td>Mandatory blocks that declare data sources and projections</td>
+                                <td><code>FROM customers WHERE customer_id &lt;= 500</code></td>
+                                <td>Determines logical query plan tree</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Predicates</strong></td>
+                                <td><code>=</code>, <code>&lt;&gt;</code>, <code>LIKE</code>, <code>IN</code>, <code>IS NOT NULL</code></td>
+                                <td>Boolean evaluation returning TRUE, FALSE, or UNKNOWN</td>
+                                <td><code>WHERE last_name = 'Kumar'</code></td>
+                                <td>Drives row filtering and index scans</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Expressions</strong></td>
+                                <td><code>col1 + col2</code>, <code>COUNT(*)</code></td>
+                                <td>Scalar transformations and mathematical formulas</td>
+                                <td><code>COUNT(*) AS name_count</code></td>
+                                <td>Evaluated during projection and aggregation phase</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Delimiters</strong></td>
+                                <td>Semicolon (<code>;</code>)</td>
+                                <td>Explicit boundary separating consecutive query statements</td>
+                                <td><code>SELECT 1; SELECT 2;</code></td>
+                                <td>Critical for batch execution buffers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Identifiers</strong></td>
+                                <td>Table and column names</td>
+                                <td>Physical schema objects resolved in the database catalog</td>
+                                <td><code>customers</code>, <code>first_name</code></td>
+                                <td>Verified against table schemas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Literals</strong></td>
+                                <td>Strings, numbers, booleans</td>
+                                <td>Constant values enclosed in single quotes or written raw</td>
+                                <td><code>'Mrinal'</code>, <code>5</code>, <code>NULL</code></td>
+                                <td>Used directly in comparison operations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
 <p>Mastering standard SQL syntax and clause architecture provides the structural blueprint for writing clean, performant, and error-free database queries across enterprise systems.</p>

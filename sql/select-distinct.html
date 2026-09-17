@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li class="active"><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -163,117 +163,275 @@
 <div class="concept-icon"><i class="fas fa-id-badge"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The VIP Conference Bouncer Analogy</h4>
-<p>Imagine 500 attendees registering for an international developer summit, with some people accidentally clicking submit three times:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Duplicate Submissions::</strong> The attendee roster contains multiple duplicate registrations with identical names and corporate titles.</li>
-<li><strong>2. The Security Bouncer::</strong> The conference bouncer checks badges at the entrance, admitting each unique guest once and turning away duplicate passes.</li>
-<li><strong>3. Multi-Attribute Verification::</strong> If checking both Name and Company, two attendees named 'Alex' from different companies are both admitted.</li>
-<li><strong>4. The Memory Ledger::</strong> The bouncer maintains a mental tally of everyone admitted, which requires memory and sorting effort.</li>
-</ul>
+<p>Imagine 500 attendees registering for an international developer summit, with some attendees accidentally clicking submit multiple times:</p>
+<p style="margin-top: 8px !important;"><strong>1. Duplicate Registrations:</strong> The attendee roster contains multiple duplicate entries with identical names and corporate titles.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Security Bouncer:</strong> The conference bouncer checks badges at the entrance, admitting each unique guest once and turning away duplicate passes.</p>
+<p style="margin-top: 8px !important;"><strong>3. Multi-Attribute Verification:</strong> If checking both Name and Company, two attendees named 'Alex' from different companies are both admitted.</p>
+<p style="margin-top: 8px !important;"><strong>4. The Memory Ledger:</strong> The bouncer maintains a mental tally of everyone admitted, which requires memory and sorting effort.</p>
 <p style="margin-top: 8px !important;">SELECT DISTINCT evaluates the entire projected column combination and strips away duplicate identical rows from the final result set.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>SELECT DISTINCT (Deduplication)</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical SELECT DISTINCT Statement Syntax -->
+<h2>1. Canonical SELECT DISTINCT Syntax</h2>
+<p>The <code>SELECT DISTINCT</code> clause instructs the relational database engine to eliminate redundant duplicate rows from the projected result set:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only - No Try in Editor) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Grammar Blueprint: The SELECT DISTINCT Syntax</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> department
-<span class="code-keyword">FROM</span> employees;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-comment">-- Standard Declarative SELECT DISTINCT Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>SELECT DISTINCT Syntax Blueprint Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> country, city
-<span class="code-keyword">FROM</span> customer_addresses
-ORDER BY country, city;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_addresses</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> customer_id) <span class="code-keyword">AS</span> unique_purchasers
-<span class="code-keyword">FROM</span> online_orders;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>online_orders</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> p.category_name
-<span class="code-keyword">FROM</span> products p
-INNER <span class="code-keyword">JOIN</span> order_items oi <span class="code-keyword">ON</span> p.product_id <span class="code-op">=</span> oi.product_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>products</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p><code>SELECT DISTINCT</code> eliminates duplicate rows from the final projected output. Deduplication operates across the <strong>entire combination</strong> of projected columns rather than evaluating individual columns separately.</p>
-<ul>
-<li><strong>Tuple-Level Uniqueness:</strong> A row is only dropped if every single column value in the projection list matches an already processed output row.</li>
-<li><strong>Memory Hash Cost:</strong> The query engine builds an in-memory hash set or performs a sort operation to detect duplicates, incurring measurable CPU and memory cost.</li>
-<li><strong>NULL Value Uniqueness:</strong> Under ANSI SQL rules, all NULL values in a column are considered duplicates of each other for DISTINCT operations.</li>
-<li><strong>Aggregation Synergy:</strong> Pairing <code>COUNT(DISTINCT column)</code> computes high-cardinality metrics such as Unique Monthly Active Users (MAU).</li>
+<p>The deduplication statement consists of three essential grammatical components:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong><code>SELECT DISTINCT</code>:</strong> Tells the database engine to inspect output rows and suppress any identical duplicate tuples.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong><code>column1, column2, ...</code>:</strong> Defines the uniqueness boundary; the engine evaluates the combined composite values across all listed columns.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong><code>FROM table_name</code>:</strong> Declares the source table or relation providing the records.</div>
+</li>
 </ul>
+<div class="explanation-tip">
+<i class="fas fa-info-circle"></i>
+<span><strong>Syntax Placeholder Note:</strong> Identifiers like <code>table_name</code> and <code>column1</code> serve as abstract grammatical placeholders. In production queries, these are substituted with real tables and attributes from your active schema.</span>
+</div>
+</div>
+
+<!-- Section 2: Single-Column Deduplication -->
+<h2>2. Single-Column Deduplication: Unique Values</h2>
+<p>When specified with a single column, <code>SELECT DISTINCT</code> consolidates duplicate values into one representative entry:</p>
+
+<!-- Single-Column Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Deduplication Query: Unique First Names</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Extract unique customer first names in alphabetical order</span>
+<span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> first_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> first_name <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Single-Column Deduplication -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-user-check"></i>
+<h4>Single-Column Deduplication Breakdown</h4>
+</div>
+<p>Why deduplicating a single column is vital for cataloging unique categories:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-compress-alt"></i>
+<div><strong>Duplicate Elimination:</strong> Across the 612 registered accounts in <code>customers</code>, popular first names appear repeatedly. <code>SELECT DISTINCT</code> reduces each repeating name to a single output row.</div>
+</li>
+<li>
+<i class="fas fa-sort-alpha-down"></i>
+<div><strong>Deterministic Ordering:</strong> Appending <code>ORDER BY first_name ASC</code> sorts the deduplicated names alphabetically from A to Z.</div>
+</li>
+<li>
+<i class="fas fa-list-ol"></i>
+<div><strong>Paging Boundary:</strong> <code>LIMIT 10</code> restricts the output to the top 10 unique names for convenient visual inspection.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the 612-row <code>customers</code> dataset in the interactive workbench!</span>
+</div>
+</div>
+
+<!-- Section 3: Multi-Column Composite Deduplication -->
+<h2>3. Composite Tuple Deduplication: Multi-Column Uniqueness</h2>
+<p>In SQL grammar, <code>DISTINCT</code> applies to the <strong>entire combination</strong> of projected columns, not just the first one:</p>
+
+<!-- Multi-Column Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Composite Query: Multi-Column Uniqueness</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Evaluates uniqueness across composite first and last name pairs</span>
+<span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> first_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> first_name <span class="code-keyword">ASC</span>, last_name <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Multi-Column Deduplication -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Composite Tuple Deduplication Breakdown</h4>
+</div>
+<p>Understanding how SQL evaluates uniqueness across multiple attributes:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-key"></i>
+<div><strong>Tuple-Level Evaluation:</strong> The database engine builds a composite tuple <code>(first_name, last_name)</code>. A row is dropped only when another row matches BOTH the first name AND last name simultaneously.</div>
+</li>
+<li>
+<i class="fas fa-id-card"></i>
+<div><strong>Retaining Name Variations:</strong> If two customers share the same first name (such as 'Aarav Agarwal' and 'Aarav Bhatia'), both rows are retained because their combined composite pairs are distinct.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-exclamation-circle"></i>
+<span><strong>Grammar Rule:</strong> SQL does not allow placing <code>DISTINCT</code> in the middle of a column list (e.g., <code>SELECT first_name, DISTINCT last_name</code> is invalid). <code>DISTINCT</code> must immediately follow <code>SELECT</code> and unconditionally governs the entire projected row.</span>
+</div>
+</div>
+
+<!-- Section 4: Cardinality Counting with COUNT(DISTINCT) -->
+<h2>4. Cardinality Counting: Computing Unique Values</h2>
+<p>To measure the number of unique entities without returning all individual rows, pair <code>COUNT()</code> with <code>DISTINCT</code>:</p>
+
+<!-- Cardinality Counting Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Metric Aggregation: Counting Unique First Names</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Calculate the exact scalar count of unique first names in the customer registry</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> first_name) <span class="code-keyword">AS</span> unique_first_names
+<span class="code-keyword">FROM</span> customers;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Cardinality Counting -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-calculator"></i>
+<h4>Unique Cardinality Aggregation Breakdown</h4>
+</div>
+<p>How aggregate deduplication computes authoritative metrics:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-chart-pie"></i>
+<div><strong>Authoritative Cardinality:</strong> <code>COUNT(DISTINCT first_name)</code> computes the scalar number of distinct individual first names (returning 28 unique names across all 612 customer records).</div>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<div><strong>Network Bandwidth Efficiency:</strong> Rather than streaming hundreds of deduplicated rows to the frontend, the database performs the counting in RAM and transmits a single scalar integer.</div>
+</li>
+<li>
+<i class="fas fa-tag"></i>
+<div><strong>Self-Documenting Alias:</strong> <code>AS unique_first_names</code> assigns a clean, intuitive name to the calculated scalar field.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-balance-scale"></i>
+<span><strong>COUNT(*) vs COUNT(DISTINCT):</strong> <code>COUNT(*)</code> returns 612 (the total volume of customer rows), whereas <code>COUNT(DISTINCT first_name)</code> returns 28 (the unique name pool).</span>
+</div>
+</div>
+
+<!-- Section 5: NULL Value Handling in Deduplication -->
+<h2>5. NULL Handling: How DISTINCT Treats NULLs</h2>
+<p>Relational databases follow precise ANSI SQL standards when encountering missing or unknown data in deduplication operations:</p>
+
+<!-- NULL Handling Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">NULL Consolidation: Deduplicating Middle Names</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Demonstrates how DISTINCT consolidates multiple NULL values into one</span>
+<span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> middle_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> middle_name <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for NULL Handling -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-question-circle"></i>
+<h4>NULL Value Deduplication Mechanics</h4>
+</div>
+<p>Understanding the standard ANSI SQL rules for NULL consolidation:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-equals"></i>
+<div><strong>ANSI SQL NULL Consolidation:</strong> While <code>NULL = NULL</code> returns <code>UNKNOWN</code> in boolean comparisons, <code>SELECT DISTINCT</code> treats all NULL entries as duplicates of one another.</div>
+</li>
+<li>
+<i class="fas fa-layer-group"></i>
+<div><strong>Single Representative NULL:</strong> Even though over 500 customer records contain no middle name, the query outputs exactly one consolidated <code>NULL</code> row alongside the unique text values.</div>
+</li>
+<li>
+<i class="fas fa-chart-bar"></i>
+<div><strong>Aggregation Distinction:</strong> While <code>SELECT DISTINCT middle_name</code> includes the single NULL row, <code>COUNT(DISTINCT middle_name)</code> automatically disregards NULLs and counts only non-null values.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-book-reader"></i>
+<span><strong>Upcoming Chapter Note:</strong> We will explore three-valued logic and NULL handling rules in depth in our upcoming <strong>NULL Values &amp; Three-Valued Logic</strong> chapter!</span>
+</div>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p><code>SELECT DISTINCT</code> eliminates duplicate records from the final projected output. Deduplication operates across the <strong>entire combination</strong> of projected columns rather than evaluating individual columns separately.</p>
+<ul class="summary-list" style="margin-bottom: 1.5rem;">
+<li><i class="fas fa-check"></i> <span><strong>Tuple-Level Uniqueness:</strong> A row is dropped only if every single column in the projection list matches an already processed output row.</span></li>
+<li><i class="fas fa-check"></i> <span><strong>Memory Hash &amp; Sort Cost:</strong> The database engine builds an in-memory hash set or performs a sort operation to detect duplicates, incurring CPU and memory cost.</span></li>
+<li><i class="fas fa-check"></i> <span><strong>NULL Consolidation:</strong> Under ANSI SQL rules, all NULL values in a column are considered duplicates of each other for DISTINCT operations.</span></li>
+<li><i class="fas fa-check"></i> <span><strong>Aggregation Synergy:</strong> Pairing <code>COUNT(DISTINCT column)</code> computes high-cardinality metrics such as unique accounts or active sessions directly on the database.</span></li>
+</ul>
+
 <h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
 <div class="table-responsive">
 <table class="compare-table">
@@ -282,166 +440,51 @@ INNER <span class="code-keyword">JOIN</span> order_items oi <span class="code-ke
 <th>Deduplication Pattern</th>
 <th>SQL Syntax</th>
 <th>Uniqueness Scope</th>
-<th>Sample Output</th>
+<th>Behavior in customers Table</th>
 <th>Engine Execution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Single Column</td>
-<td><code>SELECT DISTINCT country</code></td>
-<td>Evaluates uniqueness of a single attribute</td>
-<td>US, UK, Germany, Japan</td>
+<td><strong>Single Column</strong></td>
+<td><code>SELECT DISTINCT first_name</code></td>
+<td>Evaluates single attribute uniqueness</td>
+<td>Collapses 612 rows into 28 unique names</td>
 <td>HashAggregate or StreamAggregate</td>
 </tr>
 <tr>
-<td>Multi-Column</td>
-<td><code>SELECT DISTINCT state, city</code></td>
-<td>Evaluates composite tuple (state + city)</td>
-<td>CA-San Francisco, CA-Oakland</td>
-<td>Sorts or hashes composite keys</td>
+<td><strong>Multi-Column Composite</strong></td>
+<td><code>SELECT DISTINCT first_name, last_name</code></td>
+<td>Evaluates composite tuple <code>(col1, col2)</code></td>
+<td>Retains rows with identical first names but different last names</td>
+<td>Sorts or hashes composite keys in memory</td>
 </tr>
 <tr>
-<td>Count Unique</td>
-<td><code>SELECT COUNT(DISTINCT id)</code></td>
+<td><strong>Unique Cardinality Count</strong></td>
+<td><code>SELECT COUNT(DISTINCT first_name)</code></td>
 <td>Returns scalar integer of distinct elements</td>
-<td>14,820 unique accounts</td>
-<td>Maintains bitmap / hyperloglog counter</td>
+<td>Computes scalar count: 28 unique customer names</td>
+<td>Maintains in-memory bitmap / hash counter</td>
 </tr>
 <tr>
-<td>Distinct with Joins</td>
-<td><code>SELECT DISTINCT u.role FROM...</code></td>
-<td>Flattens 1-to-Many row duplications</td>
-<td>Admin, Editor, Reviewer</td>
-<td>Deduplicates post-join projection stream</td>
+<td><strong>NULL Value Handling</strong></td>
+<td><code>SELECT DISTINCT middle_name</code></td>
+<td>Consolidates unknown or missing attributes</td>
+<td>Groups all 500+ empty middle names into a single <code>NULL</code> entry</td>
+<td>Standard ANSI SQL NULL grouping</td>
 </tr>
 </tbody>
 </table>
 </div>
+
 <h3>Understanding Multi-Column Tuple Deduplication</h3>
-<p>A common point of confusion is assuming <code>DISTINCT</code> applies only to the first column. In SQL grammar, <code>DISTINCT</code> applies to the entire projected row tuple:</p>
-<ul>
-<li><strong>The Tuple Rule:</strong> In <code>SELECT DISTINCT department, role FROM employees</code>, rows are only merged if BOTH department and role are identical.</li>
-<li><strong>Example:</strong> Row 1: (Engineering, Lead) and Row 2: (Engineering, Junior) are both retained because their composite tuples are distinct.</li>
-<li><strong>Performance Warning:</strong> Never place <code>DISTINCT</code> blindly on queries just to hide duplicate rows caused by incorrect JOIN conditions; fix the join criteria instead.</li>
+<p>A frequent beginner misconception is assuming <code>DISTINCT</code> applies only to the first column. In SQL grammar, <code>DISTINCT</code> applies to the entire projected row tuple:</p>
+<ul class="summary-list" style="margin-bottom: 1.5rem;">
+<li><i class="fas fa-check"></i> <span><strong>The Composite Tuple Rule:</strong> In <code>SELECT DISTINCT first_name, last_name FROM customers</code>, rows are only merged if BOTH first name AND last name match an existing row.</span></li>
+<li><i class="fas fa-check"></i> <span><strong>Real-World Example:</strong> Row 1: ('Aarav', 'Agarwal') and Row 2: ('Aarav', 'Bhatia') are both preserved because their composite tuples are distinct.</span></li>
+<li><i class="fas fa-exclamation-triangle" style="color: var(--accent);"></i> <span><strong>Query Hygiene:</strong> Never place <code>DISTINCT</code> blindly on queries just to mask duplicate rows caused by improper JOIN conditions; always diagnose and correct the join keys.</span></li>
 </ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>International E-Commerce Logistics Analysis:</strong> Identify unique delivery territories, shipping providers, and customer distribution channels from parcel logs.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: shipping_manifests
-   package_id | dest_country | dest_city     | courier   | status
-   -----------+--------------+---------------+-----------+-----------
-   901        | Canada       | Toronto       | FedEx     | DELIVERED
-   902        | USA          | New York      | UPS       | DELIVERED
-   903        | Canada       | Toronto       | FedEx     | DELIVERED
-   904        | USA          | San Francisco | FedEx     | DELIVERED
-   905        | Canada       | Vancouver     | DHL       | DELIVERED
-   906        | USA          | New York      | UPS       | IN_TRANSIT
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> dest_country
-<span class="code-keyword">FROM</span> shipping_manifests;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>shipping_manifests</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> dest_country, dest_city
-<span class="code-keyword">FROM</span> shipping_manifests
-ORDER BY dest_country, dest_city;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>shipping_manifests</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-keyword">DISTINCT</span> dest_city, courier
-<span class="code-keyword">FROM</span> shipping_manifests
-ORDER BY dest_city;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>shipping_manifests</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> dest_city) <span class="code-keyword">AS</span> total_serviced_cities
-<span class="code-keyword">FROM</span> shipping_manifests;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>shipping_manifests</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
 <p>SELECT DISTINCT enforces output deduplication across projected columns, transforming duplicate-heavy transaction logs into clean categorical summaries.</p>
@@ -473,8 +516,8 @@ ORDER BY dest_city;</code></pre>
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="select.html" title="Previous: The SELECT Statement">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The SELECT Statement</span>
+<a class="btn-outline" href="aliases.html" title="Previous: SQL Aliases (The AS Keyword)">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: SQL Aliases (The AS Keyword)</span>
 </a>
 </div>
 <div class="lesson-nav-center">

@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The ORDER BY Clause - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The ORDER BY Clause - Master SQL sorting mechanics (ASC, DESC, multi-column tie breaking, and alias ordering) with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>The ORDER BY Clause - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li class="active"><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li class="active"><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The ORDER BY Clause</span>
@@ -162,129 +162,270 @@
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-sort-numeric-down"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The High School Graduation Roll Call Analogy</h4>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Graduation Ceremony Roll Call Analogy</h4>
 <p>Imagine 600 graduating students gathering backstage in the gymnasium before commencement ceremonies:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Chaotic Natural State::</strong> Backstage, students mill around randomly without any pre-ordained seating arrangement.</li>
-<li><strong>2. The Graduation Marshal::</strong> The marshal lines everyone up strictly by Last Name (A to Z), and ties are broken by First Name.</li>
-<li><strong>3. The ORDER BY Clause::</strong> Without an explicit ORDER BY clause, relational databases return rows in arbitrary order, just like students backstage.</li>
-<li><strong>4. Ascending vs Descending::</strong> Graduates can walk in alphabetical order (ASC) or reverse order by GPA honors (DESC).</li>
+<p style="margin-top: 8px !important;"><strong>1. Chaotic Backstage State:</strong> Backstage, students mill around in arbitrary clusters without any guaranteed order (just like records in an unindexed database table).</p>
+<p style="margin-top: 8px !important;"><strong>2. The Graduation Marshal:</strong> The commencement marshal steps in, organizing students strictly by Department (Engineering, Arts, Science) in alphabetical sequence.</p>
+<p style="margin-top: 8px !important;"><strong>3. Multi-Column Tie Breaking:</strong> Within each department, students with the same degree are ordered by Academic Honors Rank (highest GPA descending).</p>
+<p style="margin-top: 8px !important;"><strong>4. Deterministic Sequence:</strong> When they walk onto the stage, the audience experiences a pristine, deterministic procession.</p>
+<p style="margin-top: 8px !important;">In SQL, relational tables are unordered mathematical sets. Without an explicit ORDER BY clause, the database engine makes zero guarantees regarding the physical sequence of rows returned.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical ORDER BY Clause Syntax</h2>
+<p>The <code>ORDER BY</code> keyword sorts the final projected result set in ascending (<code>ASC</code>, default) or descending (<code>DESC</code>) order across one or more expressions:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Result Set Sorting with ORDER BY</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative ORDER BY Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, expression <span class="code-keyword">AS</span> alias_name
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> filter_condition
+<span class="code-keyword">ORDER BY</span> column1 <span class="code-keyword">ASC</span>, alias_name <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>ORDER BY Blueprint Breakdown</h4>
+</div>
+<p>Understanding the sorting lifecycle in the SQL execution engine:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down-alt"></i>
+<div><strong>ASC vs DESC:</strong> <code>ASC</code> sorts from lowest to highest (numbers: 0→9; text: A→Z; dates: oldest→newest). <code>DESC</code> reverses this sequence. Omitting the direction keyword defaults to <code>ASC</code>.</div>
+</li>
+<li>
+<i class="fas fa-tag"></i>
+<div><strong>Alias Visibility:</strong> Because <code>ORDER BY</code> executes in <strong>Step 7</strong> of the query execution pipeline (after <code>SELECT</code>), it can reference column aliases created with the <code>AS</code> keyword!</div>
+</li>
+<li>
+<i class="fas fa-layer-group"></i>
+<div><strong>Compound Sorting:</strong> Multiple sort keys are evaluated left-to-right. The second column is evaluated only when identical duplicate values create ties in the first column.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">Unless an explicit ORDER BY clause is specified, the database engine makes zero guarantees about row ordering in query results.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The ORDER BY Clause</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Product Price Sorting on product_list -->
+<h2>2. Single-Column Sorting: Price-Sorted Catalog Merchandise</h2>
+<p>Sort active hardware inventory on <code>product_list</code> from least expensive to most expensive:</p>
+
+<!-- Product Price Sort Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Query: Ascending Price Sort on Electronics</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, price
-<span class="code-keyword">FROM</span> products
-ORDER BY price <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>products</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
+<pre><code><span class="code-comment">-- Retrieve Electronics merchandise sorted from lowest to highest price</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Product Price Sort -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-dollar-sign"></i>
+<h4>Catalog Price Ordering Breakdown</h4>
+</div>
+<p>How the sort organizes commercial merchandise:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-mouse"></i>
+<div><strong>Lowest Price First:</strong> Surfaces budget accessories like <em>Ergonomic Wireless Mouse</em> ($49.99) and <em>Mechanical Gaming Keyboard</em> ($89.99) at the top of the output.</div>
+</li>
+<li>
+<i class="fas fa-laptop"></i>
+<div><strong>Highest Price at the End:</strong> Places top-tier enterprise hardware like the <em>Pro Laptop 15"</em> ($1299.99) in the final position.</div>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<div><strong>Index Acceleration:</strong> In production RDBMS (PostgreSQL, MySQL, Oracle), a B-Tree index on <code>price</code> allows the engine to stream records directly without performing an in-memory Quicksort.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the ascending price ladder returned from the active <code>product_list</code> table!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Need to limit top records or paginate output?</strong> Combine sorting with row limits in our next chapter: 
+<a href="select-top.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SELECT TOP, LIMIT &amp; Pagination →</a> or review query execution order mechanics in 
+<a href="priority-rule.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The Priority Rule →</a>
+</p>
+</div>
+
+<!-- Section 3: Multi-Column Tie Breaking on employees -->
+<h2>3. Multi-Column Tie Breaking: Department &amp; Compensation Hierarchy</h2>
+<p>In enterprise reporting, single-column sorting often produces clusters of identical values (such as everyone in the same department). Supply a secondary sort column to resolve ties deterministically:</p>
+
+<!-- Employee Multi-Column Sort Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Query: Department Ascending with Compensation Descending</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> department, last_name, hire_date, salary
+<pre><code><span class="code-comment">-- Sort staff alphabetically by department, then highest earner first</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-ORDER BY department <span class="code-keyword">ASC</span>, salary <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>employees</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
+<span class="code-keyword">ORDER BY</span> department <span class="code-keyword">ASC</span>, salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Employee Multi-Column Sort -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-sitemap"></i>
+<h4>Multi-Column Tie-Break Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_name, (unit_price <span class="code-op">*</span> units_in_stock) <span class="code-keyword">AS</span> inventory_value
-<span class="code-keyword">FROM</span> warehouse_products
-ORDER BY inventory_value <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>warehouse_products</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> task_id, title, priority, due_date
-<span class="code-keyword">FROM</span> project_tasks
-ORDER BY due_date <span class="code-keyword">ASC</span> NULLS LAST;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>project_tasks</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>ORDER BY</code> clause sorts the final projected result set according to one or more column expressions, positional indices, or aliases. Sorting can be in ascending (<code>ASC</code>, default) or descending (<code>DESC</code>) sequence.</p>
-<ul>
-<li><strong>Late Lifecycle Phase:</strong> Executing in Step 7 of the query pipeline, ORDER BY runs after SELECT, which is why column aliases are fully visible to it.</li>
-<li><strong>Relational Set Theory:</strong> Relational tables are unordered mathematical sets. Without ORDER BY, row ordering is non-deterministic and can vary between runs.</li>
-<li><strong>Multi-Level Tie Breaking:</strong> When sorting by multiple columns, subsequent columns resolve ties from preceding sort criteria.</li>
-<li><strong>Sorting In-Memory vs Disk:</strong> Large sorts exceeding the database's <code>work_mem</code> or sort buffer spill to temporary disk files, degrading performance.</li>
+<p>How the two-level sort organizes corporate personnel:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-building"></i>
+<div><strong>Primary Sort (<code>department ASC</code>):</strong> Groups staff into clean alphabetical department clusters: Engineering → Executive → HR → Marketing → Operations → Sales.</div>
+</li>
+<li>
+<i class="fas fa-award"></i>
+<div><strong>Secondary Sort (<code>salary DESC</code>):</strong> Inside Engineering, breaks the tie by ranking VP Ripunjay Kumar ($120,000) first, Senior Engineer Amritesh Nath ($95,000) second, and Engineer Sarah Jenkins ($85,000) third.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+</div>
+
+<!-- Section 4: Revenue Sorting on sells_list -->
+<h2>4. Financial Auditing: Ranking Highest-Value Transactions</h2>
+<p>Audit fulfilled sales orders on <code>sells_list</code> by sorting settled revenue in descending order:</p>
+
+<!-- Sales Revenue Sort Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Ranking Top Settled Sales Transactions</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Rank settled customer purchases by descending transaction value</span>
+<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Sales Revenue Sort -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-file-invoice-dollar"></i>
+<h4>Financial Order Breakdown</h4>
+</div>
+<p>Surfacing peak revenue events for business stakeholders:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-coins"></i>
+<div><strong>Descending Revenue Rank:</strong> Instantly highlights multi-unit purchases exceeding $3,800.00 at the top of the ledger.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Status Pre-Filtering:</strong> Combines WHERE clause filtering with ORDER BY to focus purely on settled cash flow.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Directory Alphabetization on customers -->
+<h2>5. Directory Alphabetization: Compound Surname &amp; First Name Sorting</h2>
+<p>Generate a clean telephone and customer directory roster sorted alphabetically by surname, then forename:</p>
+
+<!-- Customer Alphabetical Sort Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Alphabetical Customer Roll Call (Last Name, First Name)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Roster 15 customer accounts in standard alphabetical telephone-book order</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> last_name <span class="code-keyword">ASC</span>, first_name <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">15</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Customer Alphabetical Sort -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-address-book"></i>
+<h4>Customer Roster Breakdown</h4>
+</div>
+<p>Producing intuitive human-readable customer lists:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-alpha-down"></i>
+<div><strong>Telephone Directory Ordering:</strong> Replicates standard phone directory sequence where families sharing common surnames (e.g., Anderson, Davis, Smith) are resolved by first name.</div>
+</li>
+<li>
+<i class="fas fa-stopwatch"></i>
+<div><strong>Pagination Readiness:</strong> When paired with <code>LIMIT</code> and <code>OFFSET</code>, ORDER BY forms the backbone of web application pagination.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>ORDER BY</code> clause sorts the projected result stream according to specified columns, calculated expressions, or positional column ordinals.</p>
+
+<h3>Detailed Technical Breakdown &amp; Engine Mechanics</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Sorting Strategy</th>
-<th>SQL Example</th>
-<th>Ordering Rule</th>
-<th>Tie-Breaking</th>
+<th>Sorting Pattern</th>
+<th>Example Syntax</th>
+<th>Evaluation Mechanism</th>
+<th>Tie-Breaking Rule</th>
 <th>Engine Overhead</th>
 </tr>
 </thead>
@@ -292,193 +433,81 @@ ORDER BY due_date <span class="code-keyword">ASC</span> NULLS LAST;</code></pre>
 <tr>
 <td>Single Column ASC</td>
 <td><code>ORDER BY price ASC</code></td>
-<td>Lowest numeric or earliest alphabetical first</td>
-<td>Arbitrary row tie-break</td>
-<td>Fast (Can leverage index ordering)</td>
+<td>Lowest value / earliest date first</td>
+<td>Arbitrary database order</td>
+<td>Low (Index seek/scan)</td>
 </tr>
 <tr>
 <td>Single Column DESC</td>
 <td><code>ORDER BY salary DESC</code></td>
-<td>Highest value or latest date first</td>
-<td>Arbitrary row tie-break</td>
-<td>Fast (Reads index backwards)</td>
+<td>Highest value / latest date first</td>
+<td>Arbitrary database order</td>
+<td>Low (Reverse index scan)</td>
 </tr>
 <tr>
 <td>Multi-Column Sort</td>
-<td><code>ORDER BY dept ASC, name ASC</code></td>
-<td>Sorts by department, then breaks ties by name</td>
-<td>Resolved by secondary column</td>
-<td>Moderate CPU sorting cost</td>
+<td><code>ORDER BY dept ASC, salary DESC</code></td>
+<td>Sorts by column 1, then breaks ties with column 2</td>
+<td>Secondary column resolved</td>
+<td>Moderate CPU sorting</td>
 </tr>
 <tr>
 <td>Sort by Alias</td>
-<td><code>ORDER BY total_rev DESC</code></td>
-<td>Sorts calculated column expressions</td>
-<td>Resolved by engine</td>
-<td>Valid (ORDER BY runs after SELECT)</td>
+<td><code>ORDER BY extended_val DESC</code></td>
+<td>Sorts expression computed in SELECT list</td>
+<td>Valid (Runs in Step 7 after SELECT)</td>
+<td>Negligible memory overhead</td>
 </tr>
 <tr>
-<td>Explicit NULL Ordering</td>
-<td><code>ORDER BY date NULLS LAST</code></td>
-<td>Guarantees unassigned rows placed at end</td>
-<td>Follows direction rules</td>
-<td>Engine-specific default handling</td>
+<td>Positional Ordinal</td>
+<td><code>ORDER BY 1 ASC, 2 DESC</code></td>
+<td>Sorts by 1st and 2nd columns in SELECT list</td>
+<td>Resolved by ordinal</td>
+<td>Valid (Avoid in production)</td>
 </tr>
 </tbody>
 </table>
 </div>
+
 <h3>Why Column Aliases Work in ORDER BY but Fail in WHERE</h3>
-<p>Engineers frequently ask why column aliases created in SELECT can be used in ORDER BY, but trigger errors in WHERE clauses:</p>
-<ul>
-<li><strong>WHERE Runs in Step 2:</strong> When the engine evaluates the WHERE clause, the SELECT list has not been projected yet, meaning aliases do not yet exist.</li>
-<li><strong>ORDER BY Runs in Step 7:</strong> ORDER BY executes long after SELECT (Step 5) has calculated and assigned all aliases.</li>
-<li><strong>Example:</strong> <code>SELECT (salary * 12) AS annual_pay FROM emp ORDER BY annual_pay DESC;</code> is 100% valid and standard SQL.</li>
+<p>A classic SQL interview question asks: <em>"Why can I write <code>ORDER BY total_rev</code>, but <code>WHERE total_rev &gt; 100</code> causes a syntax error?"</em></p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-filter"></i>
+<span><strong>WHERE Executes in Step 2:</strong> When the query planner evaluates the WHERE filter, the SELECT list has not yet been computed; column aliases do not exist.</span>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<span><strong>ORDER BY Executes in Step 7:</strong> ORDER BY executes at the very end of query processing—long after SELECT has calculated and labeled all column aliases.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Syntax Verification:</strong> Review the complete 6-stage lifecycle in our foundational chapter on <a href="priority-rule.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The Priority Rule (Order of Execution) →</a></span>
+</li>
 </ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Leaderboard Rankings &amp; Performance Scoring:</strong> Generate real-time gaming leaderboard standings sorted by division level, high score, and account creation seniority.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
 </div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: gamer_leaderboards
-   player_id | gamertag      | tier_division | match_score | win_streak | registered_date
-   ----------+---------------+---------------+-------------+------------+----------------
-   101       | ShadowNinja   | DIAMOND       | 9450        | 8          | 2024-05-10
-   102       | PixelQueen    | PLATINUM      | 8800        | 4          | 2024-06-15
-   103       | CyberValkyrie | DIAMOND       | 9450        | 12         | 2024-01-20
-   104       | TurboBlaster  | GOLD          | 7200        | 2          | 2025-02-01
-   105       | ApexPredator  | DIAMOND       | 9900        | 15         | 2024-03-12
-   106       | IronFist      | PLATINUM      | 8800        | 9          | 2024-08-01
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> player_id, gamertag, match_score
-<span class="code-keyword">FROM</span> gamer_leaderboards
-ORDER BY match_score <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>gamer_leaderboards</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> player_id, gamertag, match_score, win_streak
-<span class="code-keyword">FROM</span> gamer_leaderboards
-ORDER BY match_score <span class="code-keyword">DESC</span>, win_streak <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>gamer_leaderboards</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> gamertag, tier_division, match_score
-<span class="code-keyword">FROM</span> gamer_leaderboards
-ORDER BY tier_division <span class="code-keyword">ASC</span>, match_score <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>gamer_leaderboards</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> gamertag, match_score, win_streak
-<span class="code-keyword">FROM</span> gamer_leaderboards
-<span class="code-keyword">WHERE</span> tier_division <span class="code-op">=</span> <span class="code-string">'DIAMOND'</span>
-ORDER BY match_score <span class="code-keyword">DESC</span>, win_streak <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">3</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>gamer_leaderboards</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The ORDER BY clause establishes deterministic output sorting, turning chaotic database records into structured, predictable sequences for human users and API consumers.</p>
+<p>The ORDER BY clause transforms arbitrary relational sets into structured, deterministic data sequences essential for reporting, analytics, and consumer user interfaces.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Non-Deterministic Default:</strong> Without an ORDER BY clause, relational query results have no guaranteed order; never rely on implicit table storage order.</span>
+<span><strong>Deterministic Sequencing:</strong> Never assume row order without an explicit ORDER BY clause.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>ASC vs DESC:</strong> ASC sorts lowest to highest (default); DESC sorts highest to lowest (reverse chronological or highest numerical first).</span>
+<span><strong>Multi-Key Tie Breaking:</strong> Chain multiple columns with independent directions (e.g., <code>ORDER BY dept ASC, salary DESC</code>) for granular hierarchy.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Alias Availability:</strong> Because ORDER BY runs after SELECT, calculated expressions and column aliases can be referenced directly in sort criteria.</span>
+<span><strong>Alias Support:</strong> Use readable column aliases directly in ORDER BY to sort complex calculated metrics with clean, elegant syntax.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Multi-Column Hierarchy:</strong> Chain multiple columns in ORDER BY to define authoritative, multi-tier tie-breaking rules.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Index Scan Optimization:</strong> Sorting along an existing B-Tree index avoids costly in-memory sort runs and temporary disk spills.</span>
+<span><strong>Next Chapter:</strong> Now that sorting is mastered, discover how to extract top percentiles and implement paginated data grids in <a href="select-top.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SELECT TOP, LIMIT &amp; Pagination →</a></span>
 </li>
 </ul>
 </div>
@@ -486,8 +515,8 @@ ORDER BY match_score <span class="code-keyword">DESC</span>, win_streak <span cl
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="where.html" title="Previous: The WHERE Clause">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The WHERE Clause</span>
+<a class="btn-outline" href="null-values.html" title="Previous: NULL Values &amp; Three-Valued Logic">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: NULL Values</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -496,8 +525,8 @@ ORDER BY match_score <span class="code-keyword">DESC</span>, win_streak <span cl
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="and.html" title="Next: The AND Operator">
-<span class="btn-text">Next: The AND Operator</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="select-top.html" title="Next: SELECT TOP, LIMIT &amp; Pagination">
+<span class="btn-text">Next: SELECT TOP &amp; LIMIT</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

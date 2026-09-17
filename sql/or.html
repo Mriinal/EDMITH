@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li class="active"><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -155,328 +155,357 @@
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The OR Operator</span>
 </div>
 <h1>The OR Operator</h1>
-<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 12 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
 </div>
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-ticket-alt"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Concert Gate VIP Pass or Ticket Analogy</h4>
-<p>Imagine entering an arena for a major rock concert with thousands of fans queued up outside:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Regular Ticket Holder::</strong> A fan presents a general admission ticket at the gate; security admits them immediately.</li>
-<li><strong>2. The VIP Backstage Pass Holder::</strong> A celebrity has no standard ticket, but wears an official VIP wristband; security admits them too.</li>
-<li><strong>3. The Guest List Invitee::</strong> A journalist has neither, but their name is verified on the guest list; they are also admitted.</li>
-<li><strong>4. Inclusive Admission::</strong> Possessing Ticket OR VIP Wristband OR Guest List status is enough to enter; having more than one is fine.</li>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Arena Entry Gate Pass Analogy</h4>
+<p>Imagine entering an entertainment arena hosting a world-championship event with multiple admission avenues:</p>
+<p style="margin-top: 8px !important;"><strong>1. General Ticket Holder:</strong> A fan presents a standard general admission electronic ticket; gate turnstiles let them in immediately.</p>
+<p style="margin-top: 8px !important;"><strong>2. VIP Wristband Holder:</strong> A sponsor holds no standard ticket, but wears an official VIP wristband; gate security admits them too.</p>
+<p style="margin-top: 8px !important;"><strong>3. Media Guest List:</strong> A journalist has neither, but their name is verified on the authorized media press list; they enter without hindrance.</p>
+<p style="margin-top: 8px !important;"><strong>4. Inclusive Disjunction:</strong> Satisfying Ticket OR VIP Wristband OR Press List grants access; satisfying more than one is completely acceptable.</p>
+<p style="margin-top: 8px !important;">The SQL OR operator broadens query results: if any single connected condition evaluates to TRUE, the candidate row is admitted into the result pipeline.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical OR Operator Syntax</h2>
+<p>The <code>OR</code> operator links multiple search conditions in a disjunctive chain, accepting candidate rows when at least one condition evaluates to <code>TRUE</code>:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Logical Disjunction with OR</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative OR Disjunction Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> condition1 <span class="code-keyword">OR</span> condition2 <span class="code-keyword">OR</span> condition3;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>OR Blueprint Breakdown</h4>
+</div>
+<p>Understanding disjunctive boolean logic in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-expand-arrows-alt"></i>
+<div><strong>Widening the Result Set:</strong> Unlike <code>AND</code> which narrows results, each additional <code>OR</code> condition expands the candidate pool by capturing alternative matches.</div>
+</li>
+<li>
+<i class="fas fa-forward"></i>
+<div><strong>Short-Circuit True:</strong> If <code>condition1</code> evaluates to <code>TRUE</code>, the query processor immediately accepts the row without evaluating subsequent conditions.</div>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<div><strong>Parentheses Priority Rule:</strong> Because <code>AND</code> has higher evaluation precedence than <code>OR</code>, always wrap grouped disjunctions in parentheses: <code>(A OR B) AND C</code>.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The OR operator evaluates conditions disjunctively: if any single condition evaluates to TRUE, the record is immediately admitted.</p>
+<div class="explanation-tip">
+<i class="fas fa-info-circle"></i>
+<span><strong>Syntax Alternative:</strong> When testing the same column against multiple discrete values (e.g., <code>category = 'A' OR category = 'B'</code>), the <a href="in.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">IN Operator</a> offers a cleaner, concise shorthand!</span>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The OR Operator</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Filtering on product_list -->
+<h2>2. Categorical Filtering: Retrieving Multiple Departments</h2>
+<p>Retrieve catalog items belonging to either of two popular product categories on <code>product_list</code>:</p>
+
+<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Exact Match Predicate</span>
+<span class="terminal-title">Query: Filtering Electronics or Home &amp; Kitchen Products</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, name, membership_tier
-<span class="code-keyword">FROM</span> members
-<span class="code-keyword">WHERE</span> membership_tier <span class="code-op">=</span> <span class="code-string">'GOLD'</span> <span class="code-keyword">OR</span> membership_tier <span class="code-op">=</span> <span class="code-string">'PLATINUM'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>members</code> using the condition <code>membership_tier = 'GOLD' OR membership_tier = 'PLATINUM'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Select items from either the Electronics or Home & Kitchen catalog</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">OR</span> category <span class="code-op">=</span> <span class="code-string">'Home &amp; Kitchen'</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Product Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-shopping-cart"></i>
+<h4>Category Disjunction Breakdown</h4>
+</div>
+<p>How the OR predicate combines distinct catalog departments:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-laptop"></i>
+<div><strong>Electronics Records:</strong> Admits all 6 electronic devices (Laptops, Keyboards, Mice, Headphones, Watches, Monitors).</div>
+</li>
+<li>
+<i class="fas fa-blender"></i>
+<div><strong>Home &amp; Kitchen Records:</strong> Admits all 5 kitchen appliances (Coffee Makers, Air Fryers, Blenders, Toasters, Kettles).</div>
+</li>
+<li>
+<i class="fas fa-layer-group"></i>
+<div><strong>Combined Result:</strong> Successfully combines 11 items into an ascending price-ordered merchandise roster.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the combined 11 records returned from <code>product_list</code>!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Need to invert your filters?</strong> Discover how boolean negation works in our next chapter: 
+<a href="not.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The NOT Operator →</a> or explore all comparison and logical symbols in the 
+<a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Operators Reference (Module 3) →</a>
+</p>
+</div>
+
+<!-- Section 3: Status Filtering on sells_list -->
+<h2>3. Transactional Exceptions: Flagging Non-Standard Sales</h2>
+<p>Auditing transaction ledgers frequently requires retrieving orders matching any non-standard payment status:</p>
+
+<!-- Sales Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Threshold Comparison</span>
+<span class="terminal-title">Query: Isolating Pending or Refunded Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, clearance_sale, units_in_stock
-<span class="code-keyword">FROM</span> store_catalog
-<span class="code-keyword">WHERE</span> clearance_sale <span class="code-op">=</span> TRUE <span class="code-keyword">OR</span> units_in_stock <span class="code-op">&lt;</span> <span class="code-num">5</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>store_catalog</code> using the condition <code>clearance_sale = TRUE OR units_in_stock &lt; 5</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Flag transactions that are either awaiting payment or have been refunded</span>
+<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span> <span class="code-keyword">OR</span> payment_status <span class="code-op">=</span> <span class="code-string">'REFUNDED'</span>
+<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Sales Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-file-invoice-dollar"></i>
+<h4>Status Disjunction Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>How the OR condition targets exceptional ledger states:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-clock"></i>
+<div><strong>PENDING Status:</strong> Identifies orders awaiting financial clearing or customer authorization.</div>
+</li>
+<li>
+<i class="fas fa-undo"></i>
+<div><strong>REFUNDED Status:</strong> Identifies returns requiring reconciliation with accounting ledgers.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Excluding Standard PAID:</strong> Skips routine, settled purchases to surface exactly the 16 attention-worthy orders.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Combining AND with OR -->
+<h2>4. Compound Logic: Grouping AND with OR Using Parentheses</h2>
+<p>When mixing <code>AND</code> and <code>OR</code>, parentheses are mandatory to override default operator precedence:</p>
+
+<!-- Combined AND/OR Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Threshold Comparison</span>
+<span class="terminal-title">Query: Premium Electronics or Footwear Items</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, order_status, total_amount, payment_method
-<span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> (order_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span> <span class="code-keyword">OR</span> order_status <span class="code-op">=</span> <span class="code-string">'PROCESSING'</span>)
-  <span class="code-keyword">AND</span> total_amount <span class="code-op">&gt;</span> <span class="code-num">500.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>sales_orders</code> using the condition <code>(order_status = 'PENDING' OR order_status = 'PROCESSING') AND total_amount &gt; 500.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Retrieve Electronics or Footwear products priced at $100.00 or more</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> (category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">OR</span> category <span class="code-op">=</span> <span class="code-string">'Footwear'</span>)
+  <span class="code-keyword">AND</span> price <span class="code-op">&gt;=</span> <span class="code-num">100.00</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Combined Logic -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code-branch"></i>
+<h4>Parentheses Precedence Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Why parentheses change query execution fundamentally:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-project-diagram"></i>
+<div><strong>The Parenthesized Group:</strong> Evaluates <code>(category = 'Electronics' OR category = 'Footwear')</code> first, establishing the acceptable department domain.</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>The Universal Threshold:</strong> Enforces <code>price &gt;= 100.00</code> on both qualifying departments, returning top hardware and premium leather footwear.</div>
+</li>
+<li>
+<i class="fas fa-exclamation-circle"></i>
+<div><strong>Without Parentheses:</strong> The expression <code>WHERE category = 'Electronics' OR category = 'Footwear' AND price &gt;= 100</code> would return <em>every</em> electronic item regardless of price!</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Staff Query on employees -->
+<h2>5. Organizational Analytics: Multi-Department Senior Personnel</h2>
+<p>Query leadership and senior staff across either the Sales or Operations divisions on <code>employees</code>:</p>
+
+<!-- Employee Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Exact Match Predicate</span>
+<span class="terminal-title">Query: High-Earning Sales or Operations Personnel</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> store_id, city, country
-<span class="code-keyword">FROM</span> retail_outlets
-<span class="code-keyword">WHERE</span> country <span class="code-op">=</span> <span class="code-string">'France'</span> <span class="code-keyword">OR</span> country <span class="code-op">=</span> <span class="code-string">'Germany'</span> <span class="code-keyword">OR</span> country <span class="code-op">=</span> <span class="code-string">'Italy'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>retail_outlets</code> using the condition <code>country = 'France' OR country = 'Germany' OR country = 'Italy'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Find staff in Sales or Operations earning $80,000 or higher</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> (department <span class="code-op">=</span> <span class="code-string">'Sales'</span> <span class="code-keyword">OR</span> department <span class="code-op">=</span> <span class="code-string">'Operations'</span>)
+  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">80000.00</span>
+<span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Employee Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-user-friends"></i>
+<h4>HR Disjunction Breakdown</h4>
 </div>
+<p>Isolating departmental leadership across business units:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-chart-line"></i>
+<div><strong>Sales Leadership:</strong> Surfaces VP Sales David Miller ($110,000) and Sales Manager Elena Rostova ($82,000).</div>
+</li>
+<li>
+<i class="fas fa-cogs"></i>
+<div><strong>Operations Leadership:</strong> Surfaces Director of Operations Michael Chang ($105,000).</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Clean Salary Floor:</strong> Bypasses lower-salary associates and recuses other departments.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>OR</code> operator performs logical disjunction between boolean expressions. A compound condition returns <code>TRUE</code> if <strong>at least one</strong> of the evaluated predicates evaluates to <code>TRUE</code>.</p>
-<ul>
-<li><strong>Dataset Expansion:</strong> Unlike AND which narrows result sets, OR expands result sets by accumulating records that satisfy disparate criteria.</li>
-<li><strong>Operator Precedence Danger:</strong> In SQL operator precedence, <code>AND</code> binds tighter than <code>OR</code>; failing to group OR conditions in parentheses causes critical logic bugs.</li>
-<li><strong>Index Merge Limitations:</strong> Queries combining conditions on separate columns with OR often require Index Merge scans or fall back to full table scans.</li>
-<li><strong>Alternative to IN:</strong> Multiple OR conditions checking the same column (e.g. <code>c = 1 OR c = 2 OR c = 3</code>) should be rewritten using <code>c IN (1, 2, 3)</code>.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>In SQL's Three-Valued Logic (3VL), <code>condition1 OR condition2</code> returns <code>TRUE</code> if either operand is true, even if the other is <code>FALSE</code> or <code>UNKNOWN</code> (NULL).</p>
+
+<h3>Three-Valued Logic (3VL) OR Truth Table</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Left Operand</th>
+<th>Left Condition</th>
 <th>Operator</th>
-<th>Right Operand</th>
-<th>Resulting Truth Value</th>
-<th>Row Inclusion</th>
+<th>Right Condition</th>
+<th>Resulting Boolean Value</th>
+<th>Filter Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TRUE</td>
-<td>OR</td>
-<td>FALSE</td>
-<td>TRUE</td>
-<td>Row Accepted into Result Set</td>
+<td><code>TRUE</code></td>
+<td><strong>OR</strong></td>
+<td><code>TRUE</code></td>
+<td><strong>TRUE</strong></td>
+<td>Included in output</td>
 </tr>
 <tr>
-<td>FALSE</td>
-<td>OR</td>
-<td>TRUE</td>
-<td>TRUE</td>
-<td>Row Accepted into Result Set</td>
+<td><code>TRUE</code></td>
+<td><strong>OR</strong></td>
+<td><code>FALSE</code></td>
+<td><strong>TRUE</strong></td>
+<td>Included in output (TRUE satisfies OR)</td>
 </tr>
 <tr>
-<td>FALSE</td>
-<td>OR</td>
-<td>FALSE</td>
-<td>FALSE</td>
-<td>Row Rejected immediately</td>
+<td><code>FALSE</code></td>
+<td><strong>OR</strong></td>
+<td><code>FALSE</code></td>
+<td><strong>FALSE</strong></td>
+<td>Excluded (Dropped)</td>
 </tr>
 <tr>
-<td>TRUE</td>
-<td>OR</td>
-<td>UNKNOWN (NULL)</td>
-<td>TRUE</td>
-<td>Row Accepted (TRUE dominates OR)</td>
+<td><code>TRUE</code></td>
+<td><strong>OR</strong></td>
+<td><code>UNKNOWN (NULL)</code></td>
+<td><strong>TRUE</strong></td>
+<td>Included in output</td>
 </tr>
 <tr>
-<td>FALSE</td>
-<td>OR</td>
-<td>UNKNOWN (NULL)</td>
-<td>UNKNOWN</td>
-<td>Row Rejected (Not strictly TRUE)</td>
+<td><code>FALSE</code></td>
+<td><strong>OR</strong></td>
+<td><code>UNKNOWN (NULL)</code></td>
+<td><strong>UNKNOWN</strong></td>
+<td>Excluded (Not strictly TRUE)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>The Parentheses Trap: Why AND Binds Tighter Than OR</h3>
-<p>The most common bug in SQL condition authoring is forgetting operator precedence rules between AND and OR:</p>
-<ul>
-<li><strong>The Buggy Query:</strong> <code>WHERE status = 'ACTIVE' OR status = 'TRIAL' AND score &gt; 90</code> is parsed as: <code>WHERE status = 'ACTIVE' OR (status = 'TRIAL' AND score &gt; 90)</code>!</li>
-<li><strong>The Devastating Result:</strong> Every single ACTIVE user is returned regardless of score, because the OR branch evaluates to TRUE independently.</li>
-<li><strong>The Fix:</strong> Always wrap OR statements in parentheses: <code>WHERE (status = 'ACTIVE' OR status = 'TRIAL') AND score &gt; 90</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Hospital Emergency Triage Alert System:</strong> Filter emergency room incoming patient telemetry to trigger physician alerts for critical vitals or trauma categories.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: emergency_triage
-   patient_id | patient_name | heart_rate | oxygen_sat | trauma_flag | age
-   -----------+--------------+------------+------------+-------------+-----
-   301        | Marcus Vance | 135        | 98         | FALSE       | 42
-   302        | Lucy Chen    | 72         | 86         | FALSE       | 68
-   303        | David King   | 80         | 97         | TRUE        | 29
-   304        | Sarah Lee    | 75         | 99         | FALSE       | 35
-   305        | Robert Fox   | 140        | 84         | TRUE        | 77
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> patient_id, patient_name, heart_rate, oxygen_sat
-<span class="code-keyword">FROM</span> emergency_triage
-<span class="code-keyword">WHERE</span> heart_rate <span class="code-op">&gt;</span> <span class="code-num">120</span> <span class="code-keyword">OR</span> oxygen_sat <span class="code-op">&lt;</span> <span class="code-num">90</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>emergency_triage</code> using the condition <code>heart_rate &gt; 120 OR oxygen_sat &lt; 90</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> patient_id, patient_name, trauma_flag, oxygen_sat
-<span class="code-keyword">FROM</span> emergency_triage
-<span class="code-keyword">WHERE</span> trauma_flag <span class="code-op">=</span> TRUE <span class="code-keyword">OR</span> oxygen_sat <span class="code-op">&lt;</span> <span class="code-num">88</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>emergency_triage</code> using the condition <code>trauma_flag = TRUE OR oxygen_sat &lt; 88</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> patient_id, patient_name, age, heart_rate, oxygen_sat
-<span class="code-keyword">FROM</span> emergency_triage
-<span class="code-keyword">WHERE</span> age <span class="code-op">&gt;=</span> <span class="code-num">65</span> <span class="code-keyword">AND</span> (heart_rate <span class="code-op">&gt;</span> <span class="code-num">100</span> <span class="code-keyword">OR</span> oxygen_sat <span class="code-op">&lt;</span> <span class="code-num">90</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>emergency_triage</code> using the condition <code>age &gt;= 65 AND (heart_rate &gt; 100 OR oxygen_sat &lt; 90)</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Threshold Comparison</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> patient_id, patient_name
-<span class="code-keyword">FROM</span> emergency_triage
-<span class="code-keyword">WHERE</span> heart_rate <span class="code-op">&lt;=</span> <span class="code-num">120</span> <span class="code-keyword">AND</span> oxygen_sat <span class="code-op">&gt;=</span> <span class="code-num">90</span> <span class="code-keyword">AND</span> trauma_flag <span class="code-op">=</span> FALSE;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>emergency_triage</code> using the condition <code>heart_rate &lt;= 120 AND oxygen_sat &gt;= 90 AND trauma_flag = FALSE</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The OR operator broadens query scope by including records that satisfy at least one filtering predicate, serving as a flexible tool for inclusive categorical filtering.</p>
+<p>The OR operator broadens query results by admitting rows that satisfy at least one declared search condition.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Inclusive Disjunction:</strong> Records evaluating to TRUE on any single OR branch are admitted into the query output.</span>
+<span><strong>Inclusive Matching:</strong> A row passes the filter if ANY condition chained by OR evaluates to TRUE.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Mandatory Parentheses:</strong> Always wrap OR statements in explicit parentheses when combining with AND to prevent precedence bugs.</span>
+<span><strong>Short-Circuit Efficiency:</strong> Once a true condition is encountered, the engine can skip evaluating remaining OR clauses.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Prefer IN for Equality:</strong> Replace repeated OR equality checks on the same column (col = 1 OR col = 2) with the cleaner IN operator.</span>
+<span><strong>Parentheses Obligation:</strong> AND binds tighter than OR. Enclose OR conditions in parentheses when combining with AND.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Index Merge Considerations:</strong> OR conditions spanning different columns may require full table scans unless union indexes exist.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Three-Valued Truth Dominance:</strong> TRUE OR UNKNOWN evaluates to TRUE, allowing matching records to survive even if other attributes contain NULL.</span>
+<span><strong>Shorthand With IN:</strong> When checking multiple possible values for a single column, prefer <code>IN ('A', 'B')</code> over repetitive <code>col = 'A' OR col = 'B'</code>.</span>
 </li>
 </ul>
 </div>

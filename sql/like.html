@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The LIKE Operator - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The LIKE Operator - Master SQL wildcard pattern matching (% and _) with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>The LIKE Operator - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li class="active"><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li class="active"><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The LIKE Operator</span>
@@ -163,316 +163,411 @@
 <div class="concept-icon"><i class="fas fa-search-plus"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Directory Search &amp; Position Matching Analogy</h4>
-<p>Imagine searching an enterprise directory of 50,000 employees for the name <strong>Mrinal</strong>:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Starts with 'M':</strong> You search with <code>'M%'</code> (the letter <em>M</em> followed by any number of characters).</li>
-<li><strong>2. Ends with 'L':</strong> You search with <code>'%l'</code> (any sequence of characters that concludes with the letter <em>l</em>).</li>
-<li><strong>3. Fixed 2nd &amp; 3rd Characters ('RI'):</strong> You search with <code>'_ri%'</code> (the underscore <code>_</code> matches exactly one character at position 1, followed strictly by <code>ri</code> at positions 2 and 3).</li>
-<li><strong>4. Precision Combination:</strong> Combining all three rules (starts with <em>M</em>, 2nd &amp; 3rd are <em>ri</em>, and ends with <em>l</em>) gives <code>'Mri%l'</code>, pinpointing <strong>Mrinal</strong> instantly!</li>
+<p>Imagine searching an enterprise directory of employees for the name <strong>Mrinal</strong>:</p>
+<p style="margin-top: 8px !important;"><strong>1. Starts with 'M':</strong> Searching with <code>'M%'</code> matches the letter <em>M</em> followed by any sequence of characters.</p>
+<p style="margin-top: 8px !important;"><strong>2. Ends with 'l':</strong> Searching with <code>'%l'</code> matches any sequence of characters concluding strictly with the letter <em>l</em>.</p>
+<p style="margin-top: 8px !important;"><strong>3. Fixed 2nd &amp; 3rd Characters ('ri'):</strong> Searching with <code>'_ri%'</code> uses the underscore <code>_</code> to match exactly one arbitrary character at position 1, followed strictly by <code>ri</code> at positions 2 and 3.</p>
+<p style="margin-top: 8px !important;"><strong>4. Precision Combination:</strong> Combining all three rules (starts with <em>M</em>, 2nd &amp; 3rd are <em>ri</em>, and ends with <em>l</em>) produces <code>'Mri%l'</code>, pinpointing <strong>Mrinal</strong> with surgical accuracy.</p>
+<p style="margin-top: 8px !important;">The SQL LIKE operator pairs the multi-character <code>%</code> wildcard and single-character <code>_</code> placeholder for flexible textual pattern matching.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical LIKE Operator Syntax</h2>
+<p>The <code>LIKE</code> operator tests whether a string column matches a specified wildcard pattern expression:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Wildcard Pattern Matching with LIKE</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative LIKE Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">LIKE</span> <span class="code-string">'pattern'</span>;
+
+<span class="code-comment">-- Negated Pattern Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> column_name <span class="code-keyword">NOT LIKE</span> <span class="code-string">'pattern'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>LIKE Blueprint Breakdown</h4>
+</div>
+<p>How the database engine processes text patterns:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-percent"></i>
+<div><strong>The Percent Sign (<code>%</code>):</strong> Matches zero, one, or any number of arbitrary characters. Useful for prefixes, suffixes, and contains searches.</div>
+</li>
+<li>
+<i class="fas fa-underline"></i>
+<div><strong>The Underscore (<code>_</code>):</strong> Matches strictly one single character at an exact positional slot. Two underscores <code>'__'</code> match exactly two characters.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Safe Pattern Enclosure:</strong> Patterns must always be enclosed in single quotes <code>' '</code>. SQL string literals containing double quotes or backslashes require standard string escaping.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The <code>LIKE</code> operator combines the power of the <code>%</code> wildcard (multiple characters) and the <code>_</code> wildcard (exact single position) for surgical pattern matching.</p>
+</div>
+
+<!-- Section 2: Prefix Matching on employees -->
+<h2>2. Prefix Matching: Searching Personnel by Initial Letter</h2>
+<p>Retrieve employee records whose first name begins with the letter <code>M</code> on the active <code>employees</code> corporate directory:</p>
+
+<!-- Employee Prefix Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Finding Staff with First Names Starting with 'M'</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
+<pre><code><span class="code-comment">-- Find employees whose first name starts with 'M'</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'M%'</span>
+<span class="code-keyword">ORDER BY</span> first_name <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Prefix Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-user-check"></i>
+<h4>Prefix Pattern Breakdown</h4>
+</div>
+<p>How the prefix filter surfaces qualifying personnel:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-search"></i>
+<div><strong>Exact Lead Character:</strong> <code>'M%'</code> requires the first character to strictly be <code>M</code>.</div>
+</li>
+<li>
+<i class="fas fa-users"></i>
+<div><strong>Matching Roster:</strong> Instantly returns <strong>Michael Chang</strong> (Operations, $105,000) and <strong>Mrinal Prashar</strong> (Executive, $150,000).</div>
+</li>
+<li>
+<i class="fas fa-tachometer-alt"></i>
+<div><strong>High Performance (SARGable):</strong> Because the prefix is constant, production database engines can execute high-speed B-Tree index seeks rather than scanning every record.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to test this query live against the seeded <code>employees</code> table!</span>
+</div>
+</div>
+
 <!-- Reference Guide Callout Box -->
 <div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
 <p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
 <i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
 <strong>Looking for more pattern-matching symbols?</strong> Explore our comprehensive reference guide covering character sets <code>[a-z]</code>, bracket negations <code>[^abc]</code>, wildcards comparison, and escaping techniques: 
-                        <a href="wildcards.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">Check out the SQL Wildcards Reference (Module 3) →</a>
+<a href="wildcards.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">Check out the SQL Wildcards Reference (Module 3) →</a> or review all comparison and logical symbols in the 
+<a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Operators Reference (Module 3) →</a>
 </p>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The LIKE Operator</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 3: Positional Underscore Matching -->
+<h2>3. Positional Offset Matching: The Single-Character Underscore (_)</h2>
+<p>Match names having any arbitrary lead character followed strictly by the sequence <code>ri</code> at characters 2 and 3:</p>
+
+<!-- Underscore Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Wildcard Pattern Search</span>
+<span class="terminal-title">Query: Exact Second-and-Third Character Sequence</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'M%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>first_name LIKE 'M%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Matches any 1 character at slot 1, followed by 'ri', followed by any text</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'_ri%'</span>
+<span class="code-keyword">ORDER BY</span> first_name <span class="code-keyword">ASC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Underscore Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-crosshairs"></i>
+<h4>Positional Underscore Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'%l'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>first_name LIKE '%l'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">-- (_ matches exactly 1 character at pos 1, followed by 'ri', followed by %)</span>
-<span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'_ri%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>first_name LIKE '_ri%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-op">*</span> <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'Mri%l'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>first_name LIKE 'Mri%l'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>LIKE</code> operator evaluates strings against pattern definitions using two fundamental ANSI SQL wildcard tokens: <code>%</code> (zero or more arbitrary characters) and <code>_</code> (strictly one single character at an exact position).</p>
-<ul>
-<li><strong>The Percent (%) Wildcard:</strong> Represents zero, one, or multiple arbitrary characters.</li>
-<li><strong>The Underscore (_) Wildcard:</strong> Represents strictly one single character at an exact positional slot.</li>
-<li><strong>Index Friendliness (SARGability):</strong> Patterns with fixed prefixes (e.g. <code>'M%'</code>) can utilize B-Tree index seeks; patterns with leading wildcards (e.g. <code>'%l'</code> or <code>'_ri%'</code>) force full table scans.</li>
-<li><strong>Case Sensitivity:</strong> Standard SQL LIKE is case-sensitive in PostgreSQL and case-insensitive in MySQL; use ILIKE or UPPER() for case-insensitive portability.</li>
+<p>How the positional underscore isolates specific character slots:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-map-pin"></i>
+<div><strong>Slot 1 (<code>_</code>):</strong> Matches any single arbitrary character (e.g., <code>M</code> or <code>B</code>).</div>
+</li>
+<li>
+<i class="fas fa-lock"></i>
+<div><strong>Slots 2 &amp; 3 (<code>ri</code>):</strong> Strictly locks the 2nd and 3rd letters to the characters <code>r</code> and <code>i</code>.</div>
+</li>
+<li>
+<i class="fas fa-infinity"></i>
+<div><strong>Remaining Slots (<code>%</code>):</strong> Allows the name to continue with any trailing characters.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Resulting Rows:</strong> Accurately matches <strong>Mrinal</strong> (M + ri + nal) and <strong>Brian</strong> (B + ri + an).</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+</div>
+
+<!-- Section 4: Substring Contains Matching on product_list -->
+<h2>4. Substring Search: Finding Products Containing Specific Keywords</h2>
+<p>Locate all audio and peripheral gear containing the keyword <code>Wireless</code> anywhere in the product name on <code>product_list</code>:</p>
+
+<!-- Substring Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Substring Search for 'Wireless' Hardware</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Retrieve products with 'Wireless' anywhere in the title</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Wireless%'</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Substring Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-wifi"></i>
+<h4>Substring Contains Breakdown</h4>
+</div>
+<p>How the enclosing percent signs capture internal keywords:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-arrows-alt-h"></i>
+<div><strong>Flanking Wildcards:</strong> Wrapping a token in <code>'%...%'</code> matches the search term regardless of whether it appears at the beginning, middle, or end of the string.</div>
+</li>
+<li>
+<i class="fas fa-headphones"></i>
+<div><strong>Identified Inventory:</strong> Captures <em>Wireless Noise-Canceling Headphones</em> ($199.99), <em>True Wireless Earbuds</em> ($79.99), and <em>Ergonomic Wireless Mouse</em> ($49.99).</div>
+</li>
+<li>
+<i class="fas fa-info-circle"></i>
+<div><strong>Case Sensitivity Note:</strong> AlaSQL and SQL Server evaluate string comparisons case-insensitively by default, whereas PostgreSQL requires <code>ILIKE</code>.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Suffix Matching on customers -->
+<h2>5. Suffix Matching: Finding Patronymic Family Names</h2>
+<p>Query the 612-record <code>customers</code> directory for customers whose last names end with the traditional patronymic suffix <code>son</code> (such as Jackson, Johnson, or Anderson):</p>
+
+<!-- Customer Suffix Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Suffix Search for Surnames Ending in 'son'</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Find customers whose surname ends with 'son'</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> last_name <span class="code-keyword">LIKE</span> <span class="code-string">'%son'</span>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Customer Suffix Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-id-badge"></i>
+<h4>Suffix Matching Breakdown</h4>
+</div>
+<p>How the terminal suffix filter extracts targeted customer clusters:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-arrow-right"></i>
+<div><strong>Terminal Character Requirement:</strong> <code>'%son'</code> accepts any preceding letters, but mandates that the final three characters must strictly be <code>s</code>, <code>o</code>, and <code>n</code>.</div>
+</li>
+<li>
+<i class="fas fa-user-friends"></i>
+<div><strong>Targeted Population:</strong> Successfully retrieves customer profiles like <em>Zoe Alexander Jackson</em> and related lineages.</div>
+</li>
+<li>
+<i class="fas fa-sort-numeric-up"></i>
+<div><strong>LIMIT Clause:</strong> Caps the result set to the first 10 qualifying accounts for rapid auditing and responsive page rendering.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 6: Compound Negation with NOT LIKE on product_list -->
+<h2>6. Negative Pattern Inversion: The NOT LIKE Operator</h2>
+<p>Combine category filtering with pattern exclusions to filter out peripheral accessories like cables and mice:</p>
+
+<!-- NOT LIKE Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Excluding Cables and Mice from Electronics Catalog</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Filter Electronics while excluding accessory cables and mouse peripherals</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> 
+  <span class="code-keyword">AND</span> product_name <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%Cable%'</span> 
+  <span class="code-keyword">AND</span> product_name <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%Mouse%'</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for NOT LIKE Query -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-filter"></i>
+<h4>NOT LIKE Inversion Breakdown</h4>
+</div>
+<p>Filtering out accessory noise from core computing inventory:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-ban"></i>
+<div><strong>Pattern Inversion:</strong> <code>NOT LIKE '%Cable%'</code> rejects any product containing the word "Cable" in its name.</div>
+</li>
+<li>
+<i class="fas fa-laptop"></i>
+<div><strong>Core Hardware Isolation:</strong> Preserves flagship items like <em>Pro Laptop 15"</em>, <em>Ultra-Wide 4K Monitor</em>, and <em>Mechanical Keyboard</em>.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>LIKE</code> operator evaluates strings against pattern definitions using ANSI SQL's wildcard tokens: <code>%</code> (arbitrary sequence) and <code>_</code> (single positional slot).</p>
+
+<h3>Detailed Technical Breakdown &amp; Performance Profile</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Search Objective</th>
-<th>Pattern</th>
+<th>Pattern Syntax</th>
 <th>Wildcard Breakdown</th>
 <th>Matching Examples</th>
-<th>Index Friendly?</th>
+<th>Index Seek (SARGable)?</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1. Starts with 'M'</td>
 <td><code>LIKE 'M%'</code></td>
-<td>Position 1 must be <code>M</code>. <code>%</code> matches any remaining characters.</td>
-<td><em>Mrinal, Michael, Maria, Maya, Mark</em></td>
+<td>Slot 1 must be <code>M</code>. <code>%</code> matches any subsequent characters.</td>
+<td><em>Mrinal, Michael, Maria, Maya</em></td>
 <td><strong>Yes</strong> (B-Tree Index Seek)</td>
 </tr>
 <tr>
 <td>2. Ends with 'l'</td>
 <td><code>LIKE '%l'</code></td>
-<td><code>%</code> accepts any prefix. The final character must strictly be <code>l</code>.</td>
-<td><em>Mrinal, Daniel, Michael, Paul, Gabriel</em></td>
+<td><code>%</code> accepts any prefix. The final character must be <code>l</code>.</td>
+<td><em>Mrinal, Daniel, Michael, Paul</em></td>
 <td><strong>No</strong> (Full Table Scan)</td>
 </tr>
 <tr>
-<td>3. Fixed 2nd &amp; 3rd 'RI'</td>
+<td>3. Fixed 2nd &amp; 3rd 'ri'</td>
 <td><code>LIKE '_ri%'</code></td>
-<td><code>_</code> (1 arbitrary letter) + <code>ri</code> (fixed slots 2 &amp; 3) + <code>%</code> (rest).</td>
-<td><em>Mrinal, Brian, Eric, Kristin, Aria</em></td>
-<td><strong>No</strong> (Leading wildcard)</td>
+<td><code>_</code> (1 slot) + <code>ri</code> (slots 2 &amp; 3) + <code>%</code> (arbitrary remainder).</td>
+<td><em>Mrinal, Brian, Eric</em></td>
+<td><strong>No</strong> (Leading wildcard scan)</td>
 </tr>
 <tr>
 <td>4. Precision Combo</td>
 <td><code>LIKE 'Mri%l'</code></td>
 <td>Starts with <code>M</code>, fixed <code>ri</code> at slots 2 &amp; 3, and ends with <code>l</code>.</td>
 <td><em>Mrinal</em></td>
-<td><strong>Yes</strong> (Starts with fixed prefix)</td>
+<td><strong>Yes</strong> (Fixed lead prefix)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Why the Underscore (_) is Critical for Positional Searches</h3>
-<p>While the percent sign (<code>%</code>) is greedy and matches an arbitrary length of characters, the underscore (<code>_</code>) acts as a single-character placeholder. Each underscore accounts for precisely <strong>one byte / character position</strong>:</p>
-<ul>
-<li><strong>Positional Offset:</strong> <code>'_ri%'</code> → Character 1 is anything, Characters 2 and 3 are strictly <code>ri</code>, followed by any text. Matches: <em>Mrinal</em>, <em>Brian</em>, <em>Eric</em>.</li>
-<li><strong>Multiple Offset Underscores:</strong> <code>'__ri%'</code> → Characters 1 and 2 are anything, Characters 3 and 4 are strictly <code>ri</code>. Matches: <em>Chris</em>, <em>Adrian</em>.</li>
-<li><strong>Exact Length Locking:</strong> <code>'Mri___'</code> → Starts with <code>Mri</code> and has <strong>exactly 6 characters in total</strong> (3 letters + 3 underscores). Matches: <em>Mrinal</em> (6 letters), but rejects longer names like <em>Mrinalini</em> (9 letters).</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Employee Directory Lookup (Finding 'Mrinal' and Pattern Filtering):</strong> Execute queries against a production employee dataset to demonstrate all three wildcard search requirements.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Employee Roster:
-   101 | Mrinal  | Sharma    | Data Platform   | mrinal@edmith.com
-   102 | Michael | Vance     | Cloud DevOps    | michael@edmith.com
-   103 | Daniel  | Craig     | QA Security     | daniel@edmith.com
-   104 | Brian   | Kernighan | Systems Kernel  | brian@edmith.com
-   105 | Maria   | Garcia    | Data Science    | maria@edmith.com
-   106 | Eric    | Raymond   | Architecture    | eric@edmith.com
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department, email
-<span class="code-keyword">FROM</span> company_employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'M%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>company_employees</code> using the condition <code>first_name LIKE 'M%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department, email
-<span class="code-keyword">FROM</span> company_employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'%l'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>company_employees</code> using the condition <code>first_name LIKE '%l'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department, email
-<span class="code-keyword">FROM</span> company_employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'_ri%'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>company_employees</code> using the condition <code>first_name LIKE '_ri%'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Wildcard Pattern Search</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, department, email
-<span class="code-keyword">FROM</span> company_employees
-<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'Mri%l'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>company_employees</code> using the condition <code>first_name LIKE 'Mri%l'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The LIKE pattern-matching operator searches text fields for flexible string patterns using wildcard expressions. By pairing the percent wildcard (%) for arbitrary sequences with the underscore wildcard (_) for strict positional indexing, engineers can search prefixes, suffixes, and fixed-character patterns like 'M%', '%l', and '_ri%'.</p>
+
+<h3>Positional Offset &amp; Length-Locking Rules</h3>
+<p>While <code>%</code> is greedy and consumes arbitrary lengths, the underscore <code>_</code> enforces exact positional counting:</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Starts With ('M%'):</strong> The character 'M' followed by % matches any string beginning with M (e.g. Mrinal, Michael) and efficiently uses B-Tree indexes.</span>
+<span><strong>Single Slot (<code>'_ri%'</code>):</strong> Character 1 is arbitrary; characters 2 &amp; 3 are strictly <code>ri</code>.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Ends With ('%l'):</strong> A leading % followed by 'l' matches any string concluding with the letter l (e.g. Mrinal, Daniel).</span>
+<span><strong>Double Slot Offset (<code>'__ri%'</code>):</strong> Characters 1 &amp; 2 are arbitrary; characters 3 &amp; 4 are strictly <code>ri</code> (e.g., <em>Adrian</em>).</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Fixed Position ('_ri%'):</strong> The single underscore _ skips exactly 1 character, fixing 'ri' strictly at character slots 2 and 3 (e.g. Mrinal, Brian, Eric).</span>
+<span><strong>Exact Length Locking (<code>'Mri___'</code>):</strong> Starts with <code>Mri</code> and contains <strong>exactly 6 characters in total</strong> (3 letters + 3 underscores), matching <em>Mrinal</em> but rejecting <em>Mrinalini</em>.</span>
+</li>
+</ul>
+</div>
+
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The LIKE operator provides foundational pattern searching across relational text columns, balancing powerful character-matching capabilities with index seek considerations.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Wildcard Primitives:</strong> Use <code>%</code> for multi-character flexibility and <code>_</code> for exact character slot position checks.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Targeted Combination ('Mri%l'):</strong> Combining fixed prefixes, positional characters, and suffixes isolates exact target records like Mrinal.</span>
+<span><strong>SARGability Best Practice:</strong> Prefix patterns (<code>'ABC%'</code>) utilize B-Tree index seeks; leading wildcards (<code>'%ABC'</code>) force engine table scans.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Leading Wildcard Warning:</strong> Patterns beginning with a wildcard (e.g. LIKE '%l' or LIKE '_ri%') cannot use standard B-Tree index prefixes and trigger full table scans.</span>
+<span><strong>Negation with NOT LIKE:</strong> Swiftly filter out noise or unwanted subcategories by combining standard boolean conjunctions with <code>NOT LIKE</code>.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Next Chapter:</strong> Explore three-valued logic and how missing information behaves in <a href="null-values.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">NULL Values &amp; Three-Valued Logic →</a></span>
 </li>
 </ul>
 </div>
@@ -480,8 +575,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="avg.html" title="Previous: The AVG() Function">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The AVG() Function</span>
+<a class="btn-outline" href="in.html" title="Previous: The IN Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The IN Operator</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -490,8 +585,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="in.html" title="Next: The IN Operator">
-<span class="btn-text">Next: The IN Operator</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="null-values.html" title="Next: NULL Values &amp; Three-Valued Logic">
+<span class="btn-text">Next: NULL Values</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li class="active"><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li class="active"><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,13 +149,13 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The GROUP BY Statement</span>
 </div>
 <h1>The GROUP BY Statement</h1>
-<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 16 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
 </div>
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
@@ -163,343 +163,356 @@
 <div class="concept-icon"><i class="fas fa-boxes"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Postal Mail Sorter Cubbyhole Analogy</h4>
-<p>Picture a central postal office processing 10,000 letters stamped for delivery across a metropolitan area:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Unsorted Pile::</strong> Letters arrive in one chaotic mountain on the warehouse floor.</li>
-<li><strong>2. The Sorter Cubbyholes (GROUP BY)::</strong> A mail clerk sorts letters into labeled pigeonhole cubbies based on ZIP code: 90210, 90211, 90212.</li>
-<li><strong>3. Aggregating Each Cubby::</strong> Once sorted, the clerk counts the letters in each cubby (COUNT) or weighs each batch (SUM/AVG).</li>
-<li><strong>4. One Summary per Bucket::</strong> Instead of 10,000 individual letters, the output is a clean summary report: 50 cubbies with their respective statistics.</li>
-</ul>
-<p style="margin-top: 8px !important;">The GROUP BY clause collapses detailed rows into aggregated summary buckets based on common categorical values.</p>
+<p>Picture a central postal distribution center sorting thousands of parcels for metropolitan delivery:</p>
+<p style="margin-top: 8px !important;"><strong>1. The Unsorted Mountain:</strong> Thousands of packages arrive in a massive mixed pile on the logistics floor.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Sorter Cubbyholes (GROUP BY):</strong> A sorting technician places packages into dedicated cubby compartments categorized by destination postal code: 90210, 90211, 90212.</p>
+<p style="margin-top: 8px !important;"><strong>3. Aggregating Each Compartment:</strong> Once sorted, the system computes statistics per cubby: counting parcel volume (COUNT), summing total weight (SUM), or finding average parcel size (AVG).</p>
+<p style="margin-top: 8px !important;"><strong>4. One Summary per Bucket:</strong> Instead of scrolling through thousands of individual parcels, management receives a concise summary: one row per postal code.</p>
+<p style="margin-top: 8px !important;">The SQL GROUP BY clause collapses rows sharing identical categorical values into summary rows, enabling high-level business intelligence reporting.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The GROUP BY Statement</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical GROUP BY Syntax Grammar</h2>
+<p>The <code>GROUP BY</code> clause partitions table rows into distinct categorical subsets for aggregate calculation:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Grouped Aggregate Summary</span>
+<span class="terminal-title">Grammar Blueprint: Categorical Aggregation with GROUP BY</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative GROUP BY Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> 
+    grouping_column,
+    <span class="code-func">AGGREGATE_FUNCTION</span>(metric_column) <span class="code-keyword">AS</span> summary_alias
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> row_filter_condition
+<span class="code-keyword">GROUP BY</span> grouping_column
+<span class="code-keyword">ORDER BY</span> summary_alias <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>GROUP BY Blueprint Breakdown</h4>
+</div>
+<p>Rules and mechanics of grouping in relational database engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<div><strong>The Non-Aggregate Column Rule:</strong> Any column present in the <code>SELECT</code> projection list that is NOT enclosed within an aggregate function (such as COUNT, SUM, AVG, MIN, or MAX) <strong>must</strong> be listed in the <code>GROUP BY</code> clause.</div>
+</li>
+<li>
+<i class="fas fa-tasks"></i>
+<div><strong>Execution Sequence:</strong> <code>GROUP BY</code> executes in Step 3 of the relational lifecycle: after <code>FROM</code> and <code>WHERE</code>, but strictly before <code>HAVING</code>, <code>SELECT</code>, and <code>ORDER BY</code>.</div>
+</li>
+<li>
+<i class="fas fa-cubes"></i>
+<div><strong>Multi-Column Granularity:</strong> Grouping by multiple dimensions (e.g. <code>GROUP BY department, status</code>) generates composite sub-buckets.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 2: Departmental HR Analytics on employees -->
+<h2>2. Departmental HR Analytics: Headcount, Average Salary &amp; Pay Range</h2>
+<p>Calculate headcount, average salary, wage floor, and salary ceiling for each corporate department in <code>employees</code>:</p>
+
+<!-- Department HR Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Departmental HR Analytics &amp; Compensation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
+<pre><code><span class="code-comment">-- Summarize headcount, average compensation, minimum and maximum salaries by department</span>
+<span class="code-keyword">SELECT</span> 
     department,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> employee_count,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> average_salary,
-    <span class="code-func">MAX</span>(salary) <span class="code-keyword">AS</span> peak_salary
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)               <span class="code-keyword">AS</span> employee_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_department_salary,
+    <span class="code-func">MIN</span>(salary)            <span class="code-keyword">AS</span> min_salary,
+    <span class="code-func">MAX</span>(salary)            <span class="code-keyword">AS</span> max_salary
 <span class="code-keyword">FROM</span> employees
-GROUP BY department;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>employees</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
+<span class="code-keyword">GROUP BY</span> department
+<span class="code-keyword">ORDER BY</span> employee_count <span class="code-keyword">DESC</span>, department <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Department HR -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-sitemap"></i>
+<h4>Departmental Analytics Breakdown</h4>
+</div>
+<p>Auditing corporate organizational departments:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-users"></i>
+<div><strong>Engineering Division (4 Staff):</strong> Leads corporate headcount with an average salary of $94,500.00, spanning from $75,000 (Entry Engineer) to $120,000 (Tech Lead).</div>
+</li>
+<li>
+<i class="fas fa-chart-pie"></i>
+<div><strong>Operations &amp; Sales (3 Staff each):</strong> Operations averages $80,333.33 while Sales averages $84,666.67, revealing consistent divisional pay bands.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active <code>employees</code> table!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Need to filter these grouped results (e.g., only departments with more than 2 employees)?</strong> Learn post-aggregation filtering in our next chapter: 
+<a href="having.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The HAVING Clause →</a> or review statistical functions in 
+<a href="aggregate-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Aggregate Functions Overview →</a>
+</p>
+</div>
+
+<!-- Section 3: Catalog Category Valuation on product_list -->
+<h2>3. Catalog Economics: Category Inventory &amp; Unit Pricing</h2>
+<p>Group items in <code>product_list</code> by category to evaluate stock volume and average price per sector:</p>
+
+<!-- Category Valuation Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Grouped Aggregate Summary</span>
+<span class="terminal-title">Query: Category Inventory &amp; Pricing Valuation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    country,
-    city,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_customers,
-    <span class="code-func">SUM</span>(account_balance) <span class="code-keyword">AS</span> total_regional_deposits
-<span class="code-keyword">FROM</span> customer_accounts
-GROUP BY country, city;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>customer_accounts</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
+<pre><code><span class="code-comment">-- Aggregate product volume, total warehouse inventory, and average price per category</span>
+<span class="code-keyword">SELECT</span> 
+    category,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> total_products,
+    <span class="code-func">SUM</span>(stock_quantity)   <span class="code-keyword">AS</span> total_inventory_units,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_product_price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">GROUP BY</span> category
+<span class="code-keyword">ORDER BY</span> total_inventory_units <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Category Valuation -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tags"></i>
+<h4>Category Inventory Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Analyzing warehouse distribution across commercial sectors:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-tshirt"></i>
+<div><strong>Apparel Dominance (745 Units):</strong> Holds the highest warehouse volume across 5 catalog products with an accessible average price of $73.99.</div>
+</li>
+<li>
+<i class="fas fa-laptop"></i>
+<div><strong>Electronics Premium ($356.66 Avg):</strong> Represents the highest capital density in the catalog with 480 inventory units across 6 specialized tech products.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Transaction Status Settlement on sells_list -->
+<h2>4. Financial Settlement: Revenue &amp; Volume by Payment Status</h2>
+<p>Measure fulfillment performance by aggregating the 60 records in <code>sells_list</code> across payment statuses:</p>
+
+<!-- Payment Status Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Grouped Aggregate Summary</span>
+<span class="terminal-title">Query: Settlement Breakdown by Payment Status</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    category_id,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> in_stock_product_count,
-    <span class="code-func">AVG</span>(unit_price) <span class="code-keyword">AS</span> avg_active_price
-<span class="code-keyword">FROM</span> store_products
-<span class="code-keyword">WHERE</span> discontinued <span class="code-op">=</span> <span class="code-num">0</span>
-GROUP BY category_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>store_products</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
+<pre><code><span class="code-comment">-- Determine transaction volume, units fulfilled, and gross revenue by settlement status</span>
+<span class="code-keyword">SELECT</span> 
+    payment_status,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> transaction_count,
+    <span class="code-func">SUM</span>(quantity)              <span class="code-keyword">AS</span> total_units_sold,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> gross_settled_value
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">GROUP BY</span> payment_status
+<span class="code-keyword">ORDER BY</span> gross_settled_value <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Payment Status -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-money-check-alt"></i>
+<h4>Payment Settlement Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Auditing transaction fulfillment integrity:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>PAID Transactions (37 Orders):</strong> Represents $15,615.17 in realized revenue and 83 physical units delivered, establishing healthy cash flow.</div>
+</li>
+<li>
+<i class="fas fa-clock"></i>
+<div><strong>PENDING Pipeline (9 Orders):</strong> Accounts for $2,634.78 in pending clearing value awaiting payment gateway confirmation.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Multi-Column Grouping: Customer Spend by Status -->
+<h2>5. Multi-Column Grouping: Customer Spend by Settlement Tier</h2>
+<p>Combine multiple categorical dimensions in <code>GROUP BY</code> to partition customer order activity by payment status:</p>
+
+<!-- Multi-Column Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Grouped Aggregate Summary</span>
+<span class="terminal-title">Query: Customer Order Tiers Across Payment Statuses</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    EXTRACT(YEAR <span class="code-keyword">FROM</span> order_date) <span class="code-keyword">AS</span> order_year,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> annual_order_volume,
-    <span class="code-func">SUM</span>(total_amount) <span class="code-keyword">AS</span> annual_revenue
-<span class="code-keyword">FROM</span> sales_orders
-GROUP BY EXTRACT(YEAR <span class="code-keyword">FROM</span> order_date);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>order_date</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
+<pre><code><span class="code-comment">-- Group by customer_id and payment_status to track granular customer accounts</span>
+<span class="code-keyword">SELECT</span> 
+    customer_id,
+    payment_status,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> order_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_spent
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">GROUP BY</span> customer_id, payment_status
+<span class="code-keyword">ORDER BY</span> total_spent <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Multi-Column -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-th-large"></i>
+<h4>Multi-Column Granularity Breakdown</h4>
+</div>
+<p>Understanding composite bucket evaluation:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-layer-group"></i>
+<div><strong>Composite Key Creation:</strong> The engine creates a compound grouping key for each unique <code>(customer_id, payment_status)</code> pair.</div>
+</li>
+<li>
+<i class="fas fa-user-shield"></i>
+<div><strong>Account Audit:</strong> Enables risk officers to immediately spot customers with high totals in <code>REFUNDED</code> or <code>PENDING</code> statuses compared to completed <code>PAID</code> orders.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 6: Group By with WHERE Predicate Filter -->
+<h2>6. Pre-Aggregation Filtering: In-Stock Category Economics</h2>
+<p>Apply a <code>WHERE</code> clause before <code>GROUP BY</code> to eliminate low-stock items from category-level calculations:</p>
+
+<!-- Pre-Filtering Group By Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: High-Stock Product Category Valuation</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
+<pre><code><span class="code-comment">-- Filter rows where stock_quantity >= 50 BEFORE aggregating into categories</span>
+<span class="code-keyword">SELECT</span> 
+    category,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> high_stock_products,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_price,
+    <span class="code-func">MAX</span>(price)            <span class="code-keyword">AS</span> highest_category_price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> stock_quantity <span class="code-op">&gt;=</span> <span class="code-num">50</span>
+<span class="code-keyword">GROUP BY</span> category
+<span class="code-keyword">ORDER BY</span> avg_price <span class="code-keyword">DESC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Pre-Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-filter"></i>
+<h4>Pre-Filter Execution Breakdown</h4>
+</div>
+<p>Evaluating the lifecycle order of WHERE vs GROUP BY:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-step-forward"></i>
+<div><strong>Step 2 (WHERE Filter):</strong> Rows with <code>stock_quantity &lt; 50</code> are discarded immediately from the pipeline.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Step 3 (GROUP BY Aggregation):</strong> Only well-stocked products are grouped into categories, ensuring low-inventory anomalies do not skew categorical averages.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>GROUP BY</code> clause collapses multiple table records sharing identical values in specified columns into summary rows. It is almost always paired with aggregate functions (<code>COUNT</code>, <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>) to compute statistics for each group.</p>
-<ul>
-<li><strong>The Non-Aggregated Column Rule:</strong> Every column in the SELECT projection list that is not wrapped in an aggregate function <strong>must</strong> be listed in the GROUP BY clause.</li>
-<li><strong>Lifecycle Execution Order:</strong> GROUP BY executes in Step 3 of query processing: after FROM and WHERE, but before HAVING, SELECT, and ORDER BY.</li>
-<li><strong>Multi-Column Hierarchies:</strong> Listing multiple columns (e.g. <code>GROUP BY department, role</code>) partitions data into granular sub-buckets for detailed analytics.</li>
-<li><strong>NULL Grouping Semantics:</strong> Under ANSI SQL rules, all NULL values in the grouping column are gathered together into a single distinct group.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
-<thead>
-<tr>
-<th>Grouping Architecture</th>
-<th>Syntax Pattern</th>
-<th>Result Granularity</th>
-<th>Valid SELECT Projection</th>
-<th>Execution Stage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Single Column</td>
-<td><code>GROUP BY dept</code></td>
-<td>1 row per distinct department</td>
-<td>dept + any aggregates</td>
-<td>Step 3 (After WHERE)</td>
-</tr>
-<tr>
-<td>Multi-Column</td>
-<td><code>GROUP BY state, city</code></td>
-<td>1 row per state/city combination</td>
-<td>state, city + aggregates</td>
-<td>Step 3 (Composite hash)</td>
-</tr>
-<tr>
-<td>Group by Expression</td>
-<td><code>GROUP BY YEAR(date)</code></td>
-<td>1 row per evaluated expression</td>
-<td>YEAR(date) + aggregates</td>
-<td>Evaluates formula per row</td>
-</tr>
-<tr>
-<td>Group by Rollup / Cube</td>
-<td><code>GROUP BY ROLLUP(a, b)</code></td>
-<td>Hierarchical subtotals + grand total</td>
-<td>Includes automatic subtotal rows</td>
-<td>Advanced OLAP aggregation</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3>The Famous 'Non-Aggregate Column' SQL Syntax Error</h3>
-<p>The most notorious syntax error in database development is: <em>'Column X is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause'</em>:</p>
-<ul>
-<li><strong>Why the Error Occurs:</strong> If you write <code>SELECT department, first_name, COUNT(*) FROM emp GROUP BY department;</code>, the engine cannot pick which <code>first_name</code> to display when 50 employees exist in Engineering!</li>
-<li><strong>The Resolution:</strong> Either add <code>first_name</code> to the GROUP BY clause, or wrap it in an aggregate function like <code>MIN(first_name)</code> or <code>STRING_AGG(first_name, ', ')</code>.</li>
-<li><strong>The Deterministic Rule:</strong> A query must never ask the database to guess which row value to display for a summary bucket.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce Departmental Sales Performance Dashboard:</strong> Group order transactions by product categories and fulfillment regions to power executive business intelligence revenue dashboards.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: sales_transactions
-   txn_id | product_category | sales_rep   | sale_amount | region
-   -------+------------------+-------------+-------------+-------
-   501    | Hardware         | Alex        | 1200.00     | East
-   502    | Software         | Jordan      | 450.00      | West
-   503    | Hardware         | Taylor      | 800.00      | East
-   504    | Services         | Alex        | 2500.00     | East
-   505    | Software         | Jordan      | 950.00      | East
-   506    | Hardware         | Taylor      | 300.00      | West
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Grouped Aggregate Summary</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    product_category,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> deals_closed,
-    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> category_revenue,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(sale_amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_deal_size
-<span class="code-keyword">FROM</span> sales_transactions
-GROUP BY product_category;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>sales_transactions</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Grouped Aggregate Summary</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    product_category,
-    region,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> deals,
-    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> regional_revenue
-<span class="code-keyword">FROM</span> sales_transactions
-GROUP BY product_category, region
-ORDER BY product_category, region;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>sales_transactions</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Grouped Aggregate Summary</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    sales_rep,
-    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> total_east_sales
-<span class="code-keyword">FROM</span> sales_transactions
-<span class="code-keyword">WHERE</span> region <span class="code-op">=</span> <span class="code-string">'East'</span>
-GROUP BY sales_rep;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>sales_transactions</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Grouped Aggregate Summary</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    product_category,
-    <span class="code-func">SUM</span>(sale_amount) <span class="code-keyword">AS</span> total_revenue
-<span class="code-keyword">FROM</span> sales_transactions
-GROUP BY product_category
-ORDER BY total_revenue <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Aggregates data from <code>sales_transactions</code>, computing grouped summary metrics. Click <strong>Try in Editor</strong> to test this aggregation live on the full 612-record table.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The GROUP BY clause collapses detailed rows into aggregated summary buckets, powering analytical rollups and categorical business reports across database systems.</p>
+<p>The <code>GROUP BY</code> clause collapses multiple raw records sharing identical values into grouped analytical rows.</p>
+
+<h3>Engine Lifecycle &amp; Hash Aggregation</h3>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>The Non-Aggregate Rule:</strong> Every non-aggregated column in the SELECT list must be explicitly declared in the GROUP BY clause.</span>
+<span><strong>Hash Aggregation Execution:</strong> Modern SQL engines build an in-memory hash table using the grouping columns as keys to accumulate aggregates in a single linear pass over the dataset.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Execution Sequence:</strong> GROUP BY executes in Step 3, right after WHERE, but before HAVING, SELECT, and ORDER BY.</span>
+<span><strong>NULL Grouping:</strong> Under ANSI SQL standards, all NULL entries in a grouping column are treated as matching and consolidated into a single summary row.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Multi-Column Grouping:</strong> Chain multiple columns in GROUP BY to create multi-level hierarchical sub-buckets.</span>
+<span><strong>Deterministic Projection:</strong> Never query non-aggregated attributes without grouping; the engine refuses to guess which row's value to return.</span>
+</li>
+</ul>
+</div>
+
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The GROUP BY clause transforms raw relational data into aggregated business intelligence reports across departments, categories, and payment tiers.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Categorical Rollups:</strong> Collapses hundreds or millions of rows into distinct analytical buckets.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>NULL Grouping:</strong> All NULL values in a grouping column are gathered together into a single summary group.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Synergy with HAVING:</strong> Filter raw records with WHERE before grouping, and filter aggregated groups with HAVING after grouping.</span>
+<span><strong>Next Chapter:</strong> Filter your aggregated groups based on summary thresholds in <a href="having.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The HAVING Clause →</a></span>
 </li>
 </ul>
 </div>
@@ -507,8 +520,8 @@ ORDER BY total_revenue <span class="code-keyword">DESC</span>;</code></pre>
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="union-all.html" title="Previous: The UNION ALL Operator">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The UNION ALL Operator</span>
+<a class="btn-outline" href="max.html" title="Previous: The MAX() Function">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The MAX() Function</span>
 </a>
 </div>
 <div class="lesson-nav-center">

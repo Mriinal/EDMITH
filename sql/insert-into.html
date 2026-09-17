@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The INSERT INTO Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The INSERT INTO Statement - Master data insertion, single vs multi-row bulk batching, and schema constraint enforcement on EDMITH." name="description"/>
 <title>The INSERT INTO Statement - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li class="active"><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li class="active"><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -163,19 +163,17 @@
 <div class="concept-icon"><i class="fas fa-archive"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Freight Receiving Dock Analogy</h4>
-<p>Picture a central logistics distribution center receiving newly manufactured merchandise:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Blank Storage Bay::</strong> An empty shelf in the warehouse is designed with labeled slots for Item ID, Description, Quantity, and Weight.</li>
-<li><strong>2. The Manifest Declaration::</strong> The dock worker fills out a manifest declaring which slot receives which item: (id, name, qty).</li>
-<li><strong>3. Single Pallet Delivery::</strong> A worker slides a single box onto the conveyor with exact measurements.</li>
-<li><strong>4. Bulk Freight Delivery::</strong> A forklift unloads 50 boxes at once in a single high-efficiency batch maneuver.</li>
-</ul>
-<p style="margin-top: 8px !important;">The INSERT INTO command persists brand new rows into tables, either one row at a time or through high-speed multi-row bulk batches.</p>
+<p>Picture an enterprise logistics fulfillment center receiving brand new pallets of merchandise from freight carriers:</p>
+<p style="margin-top: 8px !important;"><strong>1. The Receiving Bay:</strong> An empty slot in the warehouse is designed with labeled compartments for Item ID, Description, Category, Price, and Stock.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Manifest Declaration:</strong> Before unloading, the dock supervisor checks the receiving manifest specifying slot locations: <code>(product_id, product_name, category, price, stock_quantity)</code>.</p>
+<p style="margin-top: 8px !important;"><strong>3. Single Pallet Ingestion:</strong> A technician registers a single arriving item onto the conveyor belt with exact field measurements.</p>
+<p style="margin-top: 8px !important;"><strong>4. Bulk Freight Batching:</strong> An automated forklift unloads 50 standardized boxes at once in a single high-efficiency maneuver.</p>
+<p style="margin-top: 8px !important;">The INSERT INTO command persists brand new rows into tables, either one record at a time or through high-speed multi-row bulk batches.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>The INSERT INTO Statement</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,46 +181,51 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Record Insertion</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customers (first_name, last_name, email, created_at)
-<span class="code-keyword">VALUES</span> (<span class="code-string">'Michael'</span>, <span class="code-string">'Scott'</span>, <span class="code-string">'m.scott@dundermifflin.com'</span>, CURRENT_TIMESTAMP);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>customers</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 2: Record Insertion</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> inventory_locations (aisle_number, shelf_code, capacity)
+<pre><code><span class="code-comment">-- 1. Single Row Explicit Insert Syntax</span>
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> table_name (column1, column2, ... column_n)
+<span class="code-keyword">VALUES</span> (value1, value2, ... value_n);
+
+<span class="code-comment">-- 2. Multi-Row Bulk Batch Insert Syntax</span>
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> table_name (column1, column2, ... column_n)
 <span class="code-keyword">VALUES</span> 
-    (<span class="code-num">10</span>, <span class="code-string">'A-01'</span>, <span class="code-num">500</span>),
-    (<span class="code-num">10</span>, <span class="code-string">'A-02'</span>, <span class="code-num">450</span>),
-    (<span class="code-num">11</span>, <span class="code-string">'B-01'</span>, <span class="code-num">600</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>inventory_locations</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
+    (row1_val1, row1_val2, ... row1_val_n),
+    (row2_val1, row2_val2, ... row2_val_n),
+    (row3_val1, row3_val2, ... row3_val_n);</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>INSERT INTO Blueprint Breakdown</h4>
 </div>
+<p>Core rules and architectural mechanics governing row insertion and data ingestion in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Explicit Column Declaration:</strong> Always specify target column names in parentheses; omitting them makes statements vulnerable to runtime failures when schemas evolve.</div>
+</li>
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>Value Type Alignment:</strong> Each supplied value in the <code>VALUES</code> tuple must match the datatype and position of its corresponding declared column.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>Atomic Multi-Row Insertion:</strong> Inserting multiple tuples in a single statement dramatically reduces network overhead and database write-ahead log contention.</div>
+</li>
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>Constraint Verification:</strong> The engine automatically checks PRIMARY KEY uniqueness, NOT NULL constraints, and data type bounds before committing the new row.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of <code>INSERT INTO</code> running against active relational tables (<code>customers</code>, <code>product_list</code>, <code>employees</code>, and <code>sells_list</code>):</p>
+<!-- Query 1: Single Row Insert into customers -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,21 +233,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Record Insertion</span>
+<span class="terminal-title">Query 1: Explicit Single-Row Customer Account Creation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> user_profiles (username, country, account_status)
-<span class="code-keyword">VALUES</span> (<span class="code-string">'claire_dev'</span>, <span class="code-string">'Canada'</span>, <span class="code-keyword">DEFAULT</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>user_profiles</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customers (customer_id, first_name, middle_name, last_name)
+<span class="code-keyword">VALUES</span> (613, <span class="code-string">'Eleanor'</span>, <span class="code-string">'Marie'</span>, <span class="code-string">'Vance'</span>);</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Single-Row Account Creation Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Appends a brand-new customer account (ID:</strong> 613) into the active <code>customers</code> directory.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div>Explicitly names all target columns to ensure complete schema compliance and data integrity.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Returns An:</strong> Returns an affected row count of <code>1</code>, confirming immediate transactional persistence.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Multi-Row Batch Insert into product_list -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -252,103 +276,195 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Record Insertion</span>
+<span class="terminal-title">Query 2: High-Performance Bulk Inventory Batch Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> orders (customer_id, order_total)
-<span class="code-keyword">VALUES</span> (<span class="code-num">402</span>, <span class="code-num">129.50</span>)
-RETURNING order_id, created_at;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>orders</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> product_list (product_id, product_name, category, price, stock_quantity)
+<span class="code-keyword">VALUES</span> 
+    (26, <span class="code-string">'Noise-Cancelling Earbuds Pro'</span>, <span class="code-string">'Electronics'</span>, 149.99, 45),
+    (27, <span class="code-string">'Ergonomic Desk Mat XL'</span>, <span class="code-string">'Home &amp; Kitchen'</span>, 29.99, 120),
+    (28, <span class="code-string">'Thermal Travel Mug 16oz'</span>, <span class="code-string">'Home &amp; Kitchen'</span>, 24.99, 85);</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-stream"></i>
+<h4>Bulk Inventory Seeding Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Inserts three distinct products into <code>product_list</code> in a single SQL operation.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Bypasses Multi-Statement:</strong> Bypasses multi-statement transaction overhead, reducing disk I/O and locking times.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Successfully expands the catalog from 25 to 28 active SKUs.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 3: Staff Hierarchy Onboarding -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 3: Relational Staff Onboarding with Manager Linkage</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> employees (employee_id, first_name, last_name, department, salary, manager_id)
+<span class="code-keyword">VALUES</span> (16, <span class="code-string">'Clara'</span>, <span class="code-string">'Oswald'</span>, <span class="code-string">'Engineering'</span>, 92000.00, 2);</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Staff Onboarding Linkage Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div>Adds a new senior engineer (employee ID 16) to the Engineering department.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Establishes organizational hierarchy by referencing <code>manager_id = 2</code> (Ripunjay Kumar).</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Maintains complete relational integrity across foreign key dependencies.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
+</div>
+</div>
+<!-- Query 4: Point-of-Sale Order Ingestion -->
+<div class="code-terminal">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query 4: Real-Time Point-of-Sale Transaction Ingestion</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> sells_list (sale_id, customer_id, product_id, quantity, total_price, sale_date, payment_status)
+<span class="code-keyword">VALUES</span> (61, 613, 26, 2, 299.98, <span class="code-string">'2026-03-15'</span>, <span class="code-string">'PAID'</span>);</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-stream"></i>
+<h4>Transaction Ingestion Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Records an order (sale ID 61) linking our newly registered customer (613) with newly added catalog inventory (26).</div>
+</li>
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Calculates Total:</strong> Calculates total pricing based on item price ($149.99 * 2 = $299.98) and sets status to <code>'PAID'</code>.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>Demonstrates Cross-Table:</strong> Demonstrates cross-table referential integrity during continuous transactional ingest.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>INSERT INTO</code> statement is the foundational Data Manipulation Language (DML) command used to add new rows to existing tables. It populates table attributes either through explicit value declarations or computed expressions.</p>
-<ul>
-<li><strong>Explicit Column Best Practice:</strong> Always specify target column names in parentheses; omitting them makes your code fragile against future column additions or reordering.</li>
-<li><strong>Bulk Transaction Speed:</strong> Inserting multiple rows in a single batch statement (<code>VALUES (...), (...)</code>) reduces network roundtrips and transaction commit overhead by over 80%.</li>
-<li><strong>Constraint Enforcement:</strong> The database engine enforces PRIMARY KEY, UNIQUE, FOREIGN KEY, NOT NULL, and CHECK constraints before committing the new record.</li>
-<li><strong>Identity &amp; Serial Keys:</strong> Auto-incrementing columns (SERIAL, IDENTITY) automatically generate primary key numbers without explicit user input.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>The <code>INSERT INTO</code> statement is SQL's primary Data Manipulation Language (DML) mechanism for persisting new data records into relational tables.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Insert Technique</th>
-<th>SQL Pattern</th>
-<th>Operational Behavior</th>
-<th>Use Case</th>
-<th>Performance Metric</th>
+<th>Insertion Strategy</th>
+<th>Syntax Signature</th>
+<th>Network Roundtrips</th>
+<th>Lock Duration</th>
+<th>Optimal Use Case</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Explicit Column Insert</td>
-<td><code>INSERT INTO t (col1, col2) VALUES (...)</code></td>
-<td>Declares exact column mapping</td>
-<td>Production API inserts</td>
-<td>Safest, schema-resilient</td>
+<td>Explicit Single-Row</td>
+<td><code>INSERT INTO t (c1, c2) VALUES (v1, v2)</code></td>
+<td>1 per row</td>
+<td>Minimal per transaction</td>
+<td>User registration, individual form submissions</td>
+</tr>
+<tr>
+<td>Bulk Multi-Row</td>
+<td><code>VALUES (r1), (r2), (r3)...</code></td>
+<td>1 per batch</td>
+<td>Short batch lock</td>
+<td>Data migrations, ETL pipelines, test data seeding</td>
 </tr>
 <tr>
 <td>Positional Insert</td>
 <td><code>INSERT INTO t VALUES (...)</code></td>
-<td>Relies on physical column sequence in schema</td>
-<td>Quick ad-hoc testing</td>
-<td>Dangerous; breaks on ALTER TABLE</td>
+<td>1 per row</td>
+<td>Minimal</td>
+<td><strong>Avoid in production</strong>; fragile against schema changes</td>
 </tr>
 <tr>
-<td>Bulk Multi-Row Insert</td>
-<td><code>VALUES (r1), (r2), (r3)</code></td>
-<td>Inserts multiple rows in one atomic transaction</td>
-<td>Data seeding, ETL ingestion</td>
-<td>Very High (1 network roundtrip)</td>
-</tr>
-<tr>
-<td>Insert with Defaults</td>
-<td><code>VALUES ('val', DEFAULT)</code></td>
-<td>Utilizes schema default column definitions</td>
-<td>Auto-timestamps, default active flags</td>
-<td>Enforces schema constraints</td>
+<td>INSERT INTO SELECT</td>
+<td><code>INSERT INTO t SELECT ...</code></td>
+<td>1 statement</td>
+<td>Moderate</td>
+<td>Table archival, data aggregation tables</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>Why Omitting Column Names in INSERT INTO is an Anti-Pattern</h3>
-<p>Writing <code>INSERT INTO table_name VALUES ('John', 'Doe')</code> without declaring column names is an architectural disaster waiting to happen:</p>
-<ul>
-<li><strong>Schema Evolution Failure:</strong> If a DBA runs <code>ALTER TABLE table_name ADD COLUMN middle_name VARCHAR(50)</code>, positional INSERT statements crash immediately.</li>
-<li><strong>Silent Data Corruption:</strong> If two compatible columns (e.g. <code>billing_zip</code> and <code>shipping_zip</code>) are reordered, data silently lands in the wrong attributes.</li>
-<li><strong>Golden Rule:</strong> Always explicitly write out: <code>INSERT INTO table_name (first_name, last_name) VALUES ('John', 'Doe')</code>.</li>
+<h3>Why Positional INSERT is an Anti-Pattern</h3>
+<p>Writing <code>INSERT INTO customers VALUES (614, 'Alex', 'Smith')</code> without declaring column names is an architectural disaster:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<span><strong>Schema Evolution Failure:</strong> If a DBA executes <code>ALTER TABLE customers ADD COLUMN middle_name</code>, every positional INSERT statement in your application immediately crashes.</span>
+</li>
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<span><strong>Silent Column Swapping:</strong> If columns with compatible types are reordered, values will silently land in the wrong attributes without raising an error.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>The Production Mandate:</strong> Always declare target column names explicitly in every <code>INSERT</code> statement.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce User Onboarding Pipeline:</strong> Onboard new customer accounts, populate profile preferences, and log welcome voucher credits into database tables.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Target Schema: customer_accounts
-   customer_id (PK Auto) | full_name   | email            | loyalty_points | status
-   ----------------------+-------------+------------------+----------------+--------
-   (Auto Generated)      | VARCHAR(50) | VARCHAR(100)     | INT DEFAULT 0  | ACTIVE
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Immediate Record Verification:</strong> Confirm that the newly registered customer (ID 613) is immediately accessible and queryable within the active customer directory.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -356,116 +472,75 @@ RETURNING order_id, created_at;</code></pre>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Record Insertion</span>
+<span class="terminal-title">Verification Query: Inspect Newly Inserted Customer Record</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customer_accounts (full_name, email, loyalty_points, status)
-<span class="code-keyword">VALUES</span> (<span class="code-string">'Eleanor Vance'</span>, <span class="code-string">'eleanor@vancecorp.com'</span>, <span class="code-num">100</span>, <span class="code-string">'ACTIVE'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>customer_accounts</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
+<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> customer_id = 613;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-shield-alt"></i>
+<h4>Record Ingestion Verification Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div><strong>Executes A:</strong> Executes a point lookup on primary key <code>customer_id = 613</code> to verify that the earlier INSERT completed successfully.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div>Validates that all declared attributes (<code>Eleanor</code>, <code>Marie</code>, <code>Vance</code>) were faithfully recorded into the table storage engine.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>Demonstrates The:</strong> Demonstrates the immediate read-after-write consistency guaranteed by relational ACID database transactions.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Record Insertion</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customer_accounts (full_name, email)
-<span class="code-keyword">VALUES</span> (<span class="code-string">'Arthur Pendelton'</span>, <span class="code-string">'arthur@camelot.co.uk'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>customer_accounts</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Record Insertion</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customer_accounts (full_name, email, loyalty_points, status)
-<span class="code-keyword">VALUES</span> 
-    (<span class="code-string">'Marcus Brody'</span>, <span class="code-string">'brody@museum.edu'</span>, <span class="code-num">250</span>, <span class="code-string">'ACTIVE'</span>),
-    (<span class="code-string">'Marion Ravenwood'</span>, <span class="code-string">'marion@nepalbar.com'</span>, <span class="code-num">500</span>, <span class="code-string">'ACTIVE'</span>),
-    (<span class="code-string">'Henry Jones'</span>, <span class="code-string">'jones_sr@grail.org'</span>, <span class="code-num">150</span>, <span class="code-string">'PENDING'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes data modification against <code>customer_accounts</code>. Click <strong>Try in Editor</strong> to run this statement and view the affected row status.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, full_name, email, loyalty_points, status
-<span class="code-keyword">FROM</span> customer_accounts
-ORDER BY customer_id <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">5</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_accounts</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The INSERT INTO command represents the primary DML mechanism for persisting new data records into relational tables while maintaining schema constraints and transaction boundaries.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Explicit Column Mapping:</strong> Always list target column names in parentheses to guarantee resilience against schema changes.</span>
+<span><strong>Batch Whenever Possible:</strong> In high-throughput systems, bundle multiple row insertions into a single batch statement (e.g. 500-1000 rows per batch) to maximize throughput.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Multi-Row Efficiency:</strong> Batch multiple row inserts into a single INSERT statement to dramatically minimize network latency and transaction log locks.</span>
+<span><strong>Handle Primary Keys Deliberately:</strong> In production systems with auto-incrementing serial keys, omit the primary key column to let the database generate monotonic sequences.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Respect Schema Defaults:</strong> Omit nullable or defaulted columns to let the database automatically populate timestamps and default flags.</span>
+<span><strong>Next DML Operator:</strong> Learn how to modify existing records in <a href="update.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The UPDATE Statement</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The INSERT INTO statement is the primary DML mechanism for adding new records to database tables, supporting both fine-grained single-row insertion and high-throughput multi-row bulk batching.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Explicit Column Names:</strong> Always declare column targets to shield against future schema alterations.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Constraint Validation:</strong> Ensure all inserted records satisfy Primary Key, Foreign Key, and NOT NULL integrity rules.</span>
+<span><strong>Batch Efficiency:</strong> Multi-row inserts minimize network roundtrips and transaction logging overhead.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Atomic Rollback:</strong> If a single row in a multi-row insert violates a constraint, the entire transaction is rolled back safely.</span>
+<span><strong>Next Chapter:</strong> Modify existing records safely with <a href="update.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The UPDATE Statement →</a></span>
 </li>
 </ul>
 </div>
@@ -473,8 +548,8 @@ ORDER BY customer_id <span class="code-keyword">DESC</span>
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="not.html" title="Previous: The NOT Operator">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The NOT Operator</span>
+<a class="btn-outline" href="all.html" title="Previous: The ALL Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The ALL Operator</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -483,8 +558,8 @@ ORDER BY customer_id <span class="code-keyword">DESC</span>
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="null-values.html" title="Next: NULL Values &amp; Three-Valued Logic">
-<span class="btn-text">Next: NULL Values &amp; Three-Valued Logic</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="update.html" title="Next: The UPDATE Statement">
+<span class="btn-text">Next: The UPDATE Statement</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

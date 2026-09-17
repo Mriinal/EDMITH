@@ -2663,6 +2663,114 @@ body.dark-mode .scenario-block {
     font-size: 0.82rem;
 }
 
+/* Dedicated Code Example Explanation Area */
+.code-explanation-area {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    margin: 1.25rem 0 2.5rem 0;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.code-explanation-area:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.code-explanation-area .explanation-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.9rem;
+}
+
+.code-explanation-area .explanation-header i {
+    font-size: 1.15rem;
+    color: var(--accent);
+}
+
+.code-explanation-area .explanation-header h4 {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.code-explanation-area p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+}
+
+.code-explanation-area ul.explanation-points {
+    list-style: none;
+    padding: 0;
+    margin: 0.85rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.code-explanation-area ul.explanation-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.code-explanation-area ul.explanation-points li i {
+    color: var(--accent);
+    font-size: 0.88rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.code-explanation-area ul.explanation-points li strong {
+    color: var(--text-primary);
+}
+
+.code-explanation-area code {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.code-explanation-area .explanation-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 1.15rem;
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(121, 63, 224, 0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.code-explanation-area .explanation-tip i {
+    color: #F59E0B;
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.code-explanation-area .explanation-tip strong {
+    color: var(--text-primary);
+}
+
 /* Pre and Code Block inside Terminal & Content */
 pre {
     margin: 0;

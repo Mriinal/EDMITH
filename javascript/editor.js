@@ -76,7 +76,7 @@ function initEdmithEditor() {
         // Update badge
         const badge = document.querySelector('.schema-badge');
         if (badge) {
-            badge.textContent = `${filteredTables.length} Tables`;
+            badge.textContent = `${filteredTables.length} ${filteredTables.length === 1 ? 'Table' : 'Tables'}`;
         }
 
         if (filteredTables.length === 0) {
@@ -404,86 +404,32 @@ function initEdmithEditor() {
 
     // 7. Template Queries
     const queryTemplates = {
-        'select_basic': `-- 1. Basic Projection & Filtering
-SELECT student_id, first_name, last_name, gpa, status
-FROM students
-WHERE gpa >= 3.8
-ORDER BY gpa DESC;`,
+        'select_basic': `-- 1. Select All Customers (612 Records)
+SELECT * FROM customers;`,
 
-        'inner_join': `-- 2. Multi-Table Relational Join
-SELECT s.first_name, s.last_name, d.department_name, s.gpa
-FROM students s
-INNER JOIN departments d ON s.department_id = d.department_id
-WHERE s.status = 'Active'
-ORDER BY s.gpa DESC;`,
+        'filter_names': `-- 2. Filter by Name (Mrinal / Ripunjay / Abhishek)
+SELECT customer_id, first_name, middle_name, last_name
+FROM customers
+WHERE first_name IN ('Mrinal', 'Ripunjay', 'Abhishek', 'Amritesh')
+ORDER BY customer_id ASC;`,
 
-        'aggregate_groupby': `-- 3. Aggregates & Group By
-SELECT 
-    d.department_name,
-    COUNT(s.student_id) AS total_students,
-    ROUND(AVG(s.gpa), 2) AS avg_gpa,
-    MAX(s.gpa) AS highest_gpa
-FROM departments d
-LEFT JOIN students s ON d.department_id = s.department_id
-GROUP BY d.department_name
-ORDER BY total_students DESC;`,
+        'null_check': `-- 3. Find Customers with Middle Name (IS NOT NULL)
+SELECT customer_id, first_name, middle_name, last_name
+FROM customers
+WHERE middle_name IS NOT NULL
+ORDER BY customer_id ASC;`,
 
-        'complex_enrollments': `-- 4. Three-Way Relational Join
-SELECT 
-    s.first_name,
-    s.last_name,
-    c.course_code,
-    c.course_title,
-    e.semester,
-    e.grade,
-    e.attendance_pct
-FROM enrollments e
-INNER JOIN students s ON e.student_id = s.student_id
-INNER JOIN courses c ON e.course_id = c.course_id
-WHERE e.grade IN ('A+', 'A')
-ORDER BY e.attendance_pct DESC;`,
+        'duplicate_first_names': `-- 4. Find Duplicate First Names & Counts
+SELECT first_name, COUNT(*) AS customer_count
+FROM customers
+GROUP BY first_name
+HAVING COUNT(*) > 1
+ORDER BY customer_count DESC;`,
 
-        'self_join': `-- 5. Organizational Self-Join
-SELECT 
-    e.full_name AS employee_name,
-    e.job_title,
-    e.salary,
-    COALESCE(m.full_name, 'None (Executive Lead)') AS reporting_manager
-FROM employees e
-LEFT JOIN employees m ON e.manager_id = m.employee_id
-ORDER BY e.salary DESC;`,
-
-        'analytics_orders': `-- 6. Financial Analytics & HAVING
-SELECT 
-    shipping_city,
-    COUNT(order_id) AS total_orders,
-    ROUND(SUM(total_amount), 2) AS total_revenue,
-    ROUND(AVG(total_amount), 2) AS avg_order_value
-FROM orders
-WHERE status = 'Delivered'
-GROUP BY shipping_city
-HAVING total_revenue > 2000
-ORDER BY total_revenue DESC;`,
-
-        'subquery': `-- 7. Subquery Filtering
-SELECT first_name, last_name, gpa, department_id
-FROM students
-WHERE gpa > 3.6
-ORDER BY gpa DESC;`,
-
-        'case_expression': `-- 8. CASE Conditional Transformation
-SELECT 
-    first_name, 
-    last_name, 
-    gpa,
-    CASE 
-        WHEN gpa >= 3.9 THEN 'Summa Cum Laude'
-        WHEN gpa >= 3.7 THEN 'Magna Cum Laude'
-        WHEN gpa >= 3.5 THEN 'Cum Laude'
-        ELSE 'Standard Standing'
-    END AS academic_honor
-FROM students
-ORDER BY gpa DESC;`
+        'order_by_name': `-- 5. Ordered Customer Roster
+SELECT customer_id, first_name, middle_name, last_name
+FROM customers
+ORDER BY first_name ASC, last_name ASC;`
     };
 
     if (templateSelect) {
@@ -705,7 +651,7 @@ window.openEdmithEditor = function(target) {
     } else if (target && target.closest) {
         const terminal = target.closest('.code-terminal');
         const codeEl = terminal ? terminal.querySelector('code') : null;
-        sql = codeEl ? codeEl.innerText.trim() : '';
+        sql = codeEl ? (codeEl.innerText || codeEl.textContent || '').trim() : '';
     }
 
     if (!sql) return;

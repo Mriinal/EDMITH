@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The AVG() Function - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The AVG() Function - Master SQL arithmetic mean calculations, rounding precision, and NULL exclusion with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
 <title>The AVG() Function - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li class="active"><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -132,9 +132,7 @@
 <span class="module-hamburger" title="Toggle Module 3 Menu"><i class="fas fa-bars"></i></span>
 <span class="module-title">Module 3: References</span>
 </div>
-<i class="fas fa-chevron-down module-chevron"></i>
-</div>
-<div class="sidebar-module-list" id="mod3-list">
+<i class="sidebar-module-list" id="mod3-list">
 <ul>
 <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
 <li><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
@@ -149,7 +147,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The AVG() Function</span>
@@ -163,316 +161,325 @@
 <div class="concept-icon"><i class="fas fa-balance-scale"></i></div>
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The University Exam Grading Curve Analogy</h4>
-<p>Imagine a university physics professor calculating final exam performance for a lecture hall of 200 students:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Diverse Test Scores::</strong> Students score 95%, 82%, 76%, 58%, and 100%.</li>
-<li><strong>2. Absent Students (NULL)::</strong> A student who was hospitalized and missed the exam receives no grade (NULL), rather than a zero (0%).</li>
-<li><strong>3. The Fair Average::</strong> The professor sums the scores of everyone who took the test and divides strictly by the number of students who showed up: SUM / COUNT(scores).</li>
-<li><strong>4. Preserving the Curve::</strong> If the professor mistakenly counted absent students as zeros, the class average would plunge unfairly!</li>
+<p>Imagine a university physics professor calculating final exam performance across a lecture hall of 200 students:</p>
+<p style="margin-top: 8px !important;"><strong>1. Diverse Student Scores:</strong> Scores vary widely: 95%, 82%, 76%, 58%, and 100%.</p>
+<p style="margin-top: 8px !important;"><strong>2. Absent Students (NULL):</strong> A student who was sick and missed the examination receives no grade (NULL) rather than a zero (0%).</p>
+<p style="margin-top: 8px !important;"><strong>3. The Fair Arithmetic Mean:</strong> The professor sums the test scores and divides strictly by the count of students who took the test: <code>SUM(score) / COUNT(score)</code>.</p>
+<p style="margin-top: 8px !important;"><strong>4. Protecting the Curve:</strong> If absent students were erroneously counted as zeroes, the class average would plunge unfairly!</p>
+<p style="margin-top: 8px !important;">The SQL AVG() function computes the arithmetic mean across numeric rows, automatically excluding NULLs from both the numerator and the denominator.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical AVG() Syntax Grammar</h2>
+<p>The <code>AVG()</code> function computes the average of a numeric column expression, typically paired with <code>ROUND()</code> for clear presentation:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Mean Calculation with AVG()</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative AVG Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">AVG</span>(numeric_column)            <span class="code-keyword">AS</span> raw_mean,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(numeric_column), <span class="code-num">2</span>)   <span class="code-keyword">AS</span> rounded_mean
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> filter_condition;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>AVG() Blueprint Breakdown</h4>
+</div>
+<p>Understanding the arithmetic mean computation in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-divide"></i>
+<div><strong>Underlying Formula:</strong> Evaluates internally as <code>SUM(column) / COUNT(column)</code>.</div>
+</li>
+<li>
+<i class="fas fa-slash"></i>
+<div><strong>NULL Denominator Exclusion:</strong> NULL records are dropped from both the sum and the row count, ensuring unpopulated rows never distort the statistical mean.</div>
+</li>
+<li>
+<i class="fas fa-coins"></i>
+<div><strong>Floating-Point Formatting:</strong> Unformatted <code>AVG()</code> produces floating-point decimals with trailing fractions (e.g. <code>88266.66666666667</code>). Wrap with <code>ROUND(..., 2)</code> for business presentation.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The AVG() function computes the arithmetic mean across numeric records, automatically dividing by the count of non-null rows.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The AVG() Function</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Mean Salary on employees -->
+<h2>2. Executive Compensation: Company-Wide Average Salary</h2>
+<p>Calculate the average compensation across all personnel on the corporate <code>employees</code> registry:</p>
+
+<!-- Employee Average Salary Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Metric Computation</span>
+<span class="terminal-title">Query: Company-Wide Mean Staff Salary</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">AVG</span>(salary) <span class="code-keyword">AS</span> raw_average_salary
+<pre><code><span class="code-comment">-- Calculate the average salary across all 15 corporate employees</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> average_salary
 <span class="code-keyword">FROM</span> employees;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+</div>
+
+<!-- Dedicated Explanation Area for Mean Salary -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-chart-line"></i>
+<h4>Average Salary Breakdown</h4>
+</div>
+<p>Measuring compensation benchmarks:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Company Benchmark ($88,266.67):</strong> Divides the $1,324,000 total payroll across the 15 staff members to compute the corporate average.</div>
+</li>
+<li>
+<i class="fas fa-arrows-alt-v"></i>
+<div><strong>Outlier Impact:</strong> As with any arithmetic mean, top executive salaries (e.g. $150,000) pull the average higher than the median salary.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the seeded <code>employees</code> table!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Looking to discover lower and upper boundaries?</strong> Explore our next chapters: 
+<a href="min.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The MIN() Function →</a> and 
+<a href="max.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The MAX() Function →</a> or group averages by department in 
+<a href="group-by.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The GROUP BY Statement →</a>
+</p>
+</div>
+
+<!-- Section 3: Filtered Department Average on employees -->
+<h2>3. Division Analytics: Engineering Department Average Salary</h2>
+<p>Measure the technical team's compensation benchmark by filtering with a <code>WHERE</code> clause before calculating <code>AVG()</code>:</p>
+
+<!-- Engineering Average Salary Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Metric Computation</span>
+<span class="terminal-title">Query: Technical Staff Average Compensation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> clean_average_salary
+<pre><code><span class="code-comment">-- Calculate average salary exclusively for Engineering personnel</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>) <span class="code-keyword">AS</span> engineering_avg_salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Engineering Average -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-laptop-code"></i>
+<h4>Engineering Benchmark Breakdown</h4>
+</div>
+<p>Department-scoped mean calculations:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-code"></i>
+<div><strong>$94,500.00 Engineering Mean:</strong> Evaluates $378,000 across the 4 engineering staff members, revealing a higher average than the overall company baseline ($88,266.67).</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Early Reduction:</strong> Non-engineering rows are eliminated in Step 2, minimizing CPU accumulator cycles.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Retail Pricing on product_list -->
+<h2>4. Merchandise Analytics: Average Category Price</h2>
+<p>Determine the typical price point for consumer electronics on the <code>product_list</code> table:</p>
+
+<!-- Electronics Average Price Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Average Electronics Price Point</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Find the average retail price across electronics merchandise</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> electronics_avg_price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Electronics Average -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tag"></i>
+<h4>Retail Pricing Breakdown</h4>
+</div>
+<p>Computing sector-level price points:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-microchip"></i>
+<div><strong>$356.66 Electronics Average:</strong> Averages items ranging from $49.99 (mouse) to $1299.99 (laptop), providing a clear midpoint for catalog positioning.</div>
+</li>
+<li>
+<i class="fas fa-chart-pie"></i>
+<div><strong>Comparative Metrics:</strong> Comparing this against other categories (e.g. Books or Footwear) helps merchants structure bundle discounts.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Average Basket Size on sells_list -->
+<h2>5. Commerce KPIs: Average Order Value &amp; Basket Quantity</h2>
+<p>Measure commercial shopping habits by calculating average revenue per order and average units purchased on <code>sells_list</code>:</p>
+
+<!-- Sales Average Order Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Average Paid Order Value (AOV) &amp; Item Basket Size</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Calculate Average Order Value (AOV) and average units per customer order</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_paid_ticket,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(quantity), <span class="code-num">1</span>)    <span class="code-keyword">AS</span> avg_units_per_order
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Sales Average -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-shopping-cart"></i>
+<h4>Commerce Key Metrics Breakdown</h4>
+</div>
+<p>Auditing transactional behavior:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-receipt"></i>
+<div><strong>Average Order Value ($422.03):</strong> Highlights strong commercial basket size driven by high-ticket electronics purchases.</div>
+</li>
+<li>
+<i class="fas fa-cubes"></i>
+<div><strong>Basket Size (2.2 Units):</strong> Shoppers typically purchase between 2 and 3 units per checkout session.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 6: Proof of NULL Handling on employees -->
+<h2>6. Mathematical Verification: Proving the NULL Exclusion Rule</h2>
+<p>Prove that SQL's <code>AVG()</code> internally divides strictly by <code>COUNT(column)</code> rather than <code>COUNT(*)</code>:</p>
+
+<!-- Proof Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Formulaic Equivalence Check (AVG vs SUM/COUNT)</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Compare AVG(col) directly against SUM(col) / COUNT(col)</span>
+<span class="code-keyword">SELECT</span> 
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(salary), <span class="code-num">2</span>)                        <span class="code-keyword">AS</span> avg_salary,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(salary) <span class="code-op">/</span> <span class="code-func">COUNT</span>(salary), <span class="code-num">2</span>)         <span class="code-keyword">AS</span> formula_check
 <span class="code-keyword">FROM</span> employees;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
 </div>
+
+<!-- Dedicated Explanation Area for Proof -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-check-double"></i>
+<h4>Mathematical Identity Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
+<p>Verifying exact engine behavior:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-equals"></i>
+<div><strong>Exact Match ($88,266.67 = $88,266.67):</strong> Both expressions produce identical results, confirming the ANSI standard rule that the denominator in <code>AVG()</code> is the tally of non-null records.</div>
+</li>
+</ul>
 </div>
-<span class="terminal-title">Query 3: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(order_total), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_enterprise_order_value
-<span class="code-keyword">FROM</span> customer_orders
-<span class="code-keyword">WHERE</span> account_tier <span class="code-op">=</span> <span class="code-string">'ENTERPRISE'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_orders</code> using the condition <code>account_tier = 'ENTERPRISE'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span> <span class="code-keyword">THEN</span> salary <span class="code-keyword">END</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_eng_salary,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(<span class="code-keyword">CASE</span> <span class="code-keyword">WHEN</span> department <span class="code-op">=</span> <span class="code-string">'Sales'</span> <span class="code-keyword">THEN</span> salary <span class="code-keyword">END</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_sales_salary
-<span class="code-keyword">FROM</span> employees;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>employees</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>AVG()</code> aggregate function calculates the arithmetic mean (sum divided by count) of all non-null values in a numeric column or expression. Like SUM(), it returns <code>NULL</code> if the dataset contains zero matching rows.</p>
-<ul>
-<li><strong>The Critical NULL Division Rule:</strong> AVG() computes: <code>SUM(col) / COUNT(col)</code>. It does NOT divide by <code>COUNT(*)</code>. Rows containing NULL are completely excluded from both numerator and denominator.</li>
-<li><strong>Integer Truncation Trap:</strong> In engines like SQL Server and SQLite, averaging integer columns performs integer division (e.g. 5 / 2 = 2); cast to <code>FLOAT</code> or <code>DECIMAL</code> for precision.</li>
-<li><strong>Pairing with ROUND():</strong> Unrounded averages produce numbers with 14 decimal digits (e.g. 42.85714285714286); always pair with <code>ROUND(AVG(col), 2)</code> for clean display.</li>
-<li><strong>Outlier Sensitivity:</strong> The arithmetic mean is highly sensitive to extreme outliers; compare AVG() with median metrics in skewed distributions.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
-<thead>
-<tr>
-<th>Calculation Method</th>
-<th>SQL Formula</th>
-<th>Divisor Scope</th>
-<th>Handling of NULL Rows</th>
-<th>Result Accuracy</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Standard AVG()</td>
-<td><code>AVG(col)</code></td>
-<td>Non-null rows only</td>
-<td>Skipped in numerator and divisor</td>
-<td>Accurate mean of populated data</td>
-</tr>
-<tr>
-<td>Zero-Filled Average</td>
-<td><code>AVG(COALESCE(col, 0))</code></td>
-<td>All rows in table</td>
-<td>Converts NULL to 0, increasing divisor</td>
-<td>Includes unpopulated rows as zeros</td>
-</tr>
-<tr>
-<td>Rounded Average</td>
-<td><code>ROUND(AVG(col), 2)</code></td>
-<td>Non-null rows only</td>
-<td>Skipped</td>
-<td>Production UI currency standard</td>
-</tr>
-<tr>
-<td>Integer Cast Average</td>
-<td><code>AVG(CAST(int_col AS NUMERIC))</code></td>
-<td>Non-null rows only</td>
-<td>Skipped</td>
-<td>Prevents integer truncation errors</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3>The Null Divisor Trap: AVG(col) vs AVG(COALESCE(col, 0))</h3>
-<p>Understanding how NULL affects the divisor in an average calculation is a classic senior database engineering interview question:</p>
-<ul>
-<li><strong>Scenario:</strong> Consider a table with 4 rows: 100, 200, 300, and NULL.</li>
-<li><strong>Case A (Standard AVG):</strong> <code>AVG(val)</code> evaluates: (100 + 200 + 300) / 3 = <strong>200.00</strong>. The NULL row is ignored completely.</li>
-<li><strong>Case B (Coalesced AVG):</strong> <code>AVG(COALESCE(val, 0))</code> evaluates: (100 + 200 + 300 + 0) / 4 = <strong>150.00</strong>.</li>
-<li><strong>Business Decision:</strong> Always confirm with stakeholders whether missing data represents 'not evaluated' (Case A) or 'zero activity' (Case B).</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce Customer Satisfaction &amp; Delivery Speed:</strong> Analyze fulfillment times and customer review star ratings to audit vendor delivery performance SLAs.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: vendor_fulfillments
-   delivery_id | vendor_code | delivery_hours | rating_stars | status
-   ------------+-------------+----------------+--------------+-----------
-   9001        | FAST_SHIP   | 24.5           | 5            | DELIVERED
-   9002        | FAST_SHIP   | 36.0           | 4            | DELIVERED
-   9003        | SPEEDY_LOG  | 72.0           | 2            | DELIVERED
-   9004        | FAST_SHIP   | 18.5           | 5            | DELIVERED
-   9005        | SPEEDY_LOG  | 48.0           | NULL         | DELIVERED
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(delivery_hours), <span class="code-num">1</span>) <span class="code-keyword">AS</span> avg_turnaround_hours
-<span class="code-keyword">FROM</span> vendor_fulfillments;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>vendor_fulfillments</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_shipments,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(rating_stars), <span class="code-num">2</span>) <span class="code-keyword">AS</span> fast_ship_avg_rating
-<span class="code-keyword">FROM</span> vendor_fulfillments
-<span class="code-keyword">WHERE</span> vendor_code <span class="code-op">=</span> <span class="code-string">'FAST_SHIP'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>vendor_fulfillments</code> using the condition <code>vendor_code = 'FAST_SHIP'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Cardinality Aggregation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_deliveries,
-    <span class="code-func">COUNT</span>(rating_stars) <span class="code-keyword">AS</span> rated_deliveries,
-    <span class="code-func">AVG</span>(rating_stars) <span class="code-keyword">AS</span> speedy_avg_rating
-<span class="code-keyword">FROM</span> vendor_fulfillments
-<span class="code-keyword">WHERE</span> vendor_code <span class="code-op">=</span> <span class="code-string">'SPEEDY_LOG'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>vendor_fulfillments</code> using the condition <code>vendor_code = 'SPEEDY_LOG'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Metric Computation</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(rating_stars), <span class="code-num">2</span>) <span class="code-keyword">AS</span> rapid_delivery_avg_rating
-<span class="code-keyword">FROM</span> vendor_fulfillments
-<span class="code-keyword">WHERE</span> delivery_hours <span class="code-op">&lt;</span> <span class="code-num">30.0</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>vendor_fulfillments</code> using the condition <code>delivery_hours &lt; 30.0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The AVG() function computes the arithmetic mean across numeric records, automatically filtering out NULL values and providing essential statistical insights for analytics dashboards.</p>
+<p>The <code>AVG()</code> function processes numeric streams, adhering to standard statistical rules.</p>
+
+<h3>Handling NULLs: The Average Trap</h3>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Non-Null Divisor:</strong> AVG() automatically divides by COUNT(col), skipping NULL values from both the sum and the divisor.</span>
+<span><strong>Unpopulated Values:</strong> In a table with values <code>[100, NULL, 200]</code>, <code>AVG()</code> computes <code>(100 + 200) / 2 = 150</code>, <em>not</em> <code>300 / 3 = 100</code>.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Cast Integer Columns:</strong> Cast integer columns to FLOAT or NUMERIC before averaging to prevent truncation in engines that perform integer division.</span>
+<span><strong>Zero Treatment:</strong> If you intend for missing entries to count as zero, write <code>AVG(COALESCE(score, 0))</code>.</span>
+</li>
+</ul>
+</div>
+
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The AVG() function provides essential baseline benchmarking across operational metrics, customer baskets, and financial performance.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Precision:</strong> Always wrap <code>AVG()</code> in <code>ROUND(..., 2)</code> to avoid messy floating-point outputs.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Always Pair with ROUND():</strong> Format outputs using ROUND(AVG(col), 2) to eliminate messy 14-decimal float outputs.</span>
+<span><strong>Automatic Exclusion:</strong> NULL values are skipped from both the sum and the row count automatically.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Outlier Awareness:</strong> Keep in mind that extreme values distort arithmetic averages; compare with median calculations where appropriate.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Zero vs NULL Semantics:</strong> Use AVG(COALESCE(col, 0)) only if missing entries should actively count as zero in the divisor.</span>
+<span><strong>Next Chapter:</strong> Discover lower and upper statistical limits in <a href="min.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The MIN() Function →</a></span>
 </li>
 </ul>
 </div>
@@ -490,8 +497,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="like.html" title="Next: The LIKE Operator">
-<span class="btn-text">Next: The LIKE Operator</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="min.html" title="Next: The MIN() Function">
+<span class="btn-text">Next: The MIN() Function</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

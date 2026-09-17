@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: SELECT TOP, LIMIT &amp; Pagination - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: SELECT TOP, LIMIT &amp; Pagination - Master SQL row limiting and offset pagination across SQL Server, PostgreSQL, MySQL, and AlaSQL on EDMITH." name="description"/>
 <title>SELECT TOP, LIMIT &amp; Pagination - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li class="active"><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,7 +149,7 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>SELECT TOP, LIMIT &amp; Pagination</span>
@@ -164,320 +164,347 @@
 <div class="concept-text">
 <h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Book Chapter Pagination Analogy</h4>
 <p>Imagine reading a 1,000-page historical encyclopedia:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Impossible Scroll::</strong> You would never print all 1,000 pages on a continuous 500-foot paper scroll to read at once.</li>
-<li><strong>2. Bounded Pages::</strong> The publisher slices the content into bite-sized pages containing 25 lines each (LIMIT 25).</li>
-<li><strong>3. Page Turning (Offset)::</strong> To read Page 2, you skip the first 25 lines (OFFSET 25) and inspect the next 25 lines.</li>
-<li><strong>4. Deterministic Sequence::</strong> Pagination only makes sense because the book has an authoritative table of contents and page numbers (ORDER BY).</li>
+<p style="margin-top: 8px !important;"><strong>1. The Impossible Scroll:</strong> You would never print all 1,000 pages on a continuous 500-foot paper scroll to read at once; your brain and desk would be overwhelmed.</p>
+<p style="margin-top: 8px !important;"><strong>2. Bounded Pages (LIMIT):</strong> The publisher slices the book into manageable pages of 25 lines each (<code>LIMIT 25</code>).</p>
+<p style="margin-top: 8px !important;"><strong>3. Page Turning (OFFSET):</strong> To read Page 2, you skip the first 25 lines (<code>OFFSET 25</code>) and read the subsequent 25 lines.</p>
+<p style="margin-top: 8px !important;"><strong>4. Deterministic Sequence (ORDER BY):</strong> Pagination only makes sense because the book has an authoritative chronological sequence with page numbers.</p>
+<p style="margin-top: 8px !important;">In SQL, limiting and paginating queries prevents bandwidth waste, delivers snappy web response times, and protects server memory buffers.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical Syntax Grammar: Cross-Database Pagination</h2>
+<p>Different relational database management systems implement result limiting using vendor-specific syntax dialects:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Dialect Syntax for Result Limiting</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- 1. PostgreSQL, MySQL, SQLite, AlaSQL (LIMIT / OFFSET)</span>
+<span class="code-keyword">SELECT</span> column1, column2
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">ORDER BY</span> sort_column <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> page_size <span class="code-keyword">OFFSET</span> rows_to_skip;
+
+<span class="code-comment">-- 2. Microsoft SQL Server / MS Access (TOP)</span>
+<span class="code-keyword">SELECT TOP</span> (10) column1, column2
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">ORDER BY</span> sort_column <span class="code-keyword">ASC</span>;
+
+<span class="code-comment">-- 3. ANSI Standard &amp; Oracle 12c+ (FETCH FIRST)</span>
+<span class="code-keyword">SELECT</span> column1, column2
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">ORDER BY</span> sort_column <span class="code-keyword">ASC</span>
+<span class="code-keyword">OFFSET</span> 10 <span class="code-keyword">ROWS FETCH NEXT</span> 10 <span class="code-keyword">ROWS ONLY</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>Pagination Blueprint Breakdown</h4>
+</div>
+<p>Key mechanics of bounded result sets:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Mandatory ORDER BY:</strong> Without an explicit <code>ORDER BY</code> clause, limiting returns an arbitrary, non-deterministic subset of rows that may fluctuate between runs.</div>
+</li>
+<li>
+<i class="fas fa-forward"></i>
+<div><strong>The Pagination Formula:</strong> To display Page <code>P</code> with <code>N</code> items per page: <code>LIMIT N OFFSET (P - 1) * N</code>. For Page 3 with 10 rows: <code>LIMIT 10 OFFSET 20</code>.</div>
+</li>
+<li>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Resource Protection:</strong> Unbounded queries (<code>SELECT * FROM huge_table</code>) risk out-of-memory crashes on client applications and web servers.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">Limiting and paginating queries controls data transfer size, delivers responsive web page loads, and protects database memory buffers.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>SELECT TOP, LIMIT &amp; Pagination</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Top N Products on product_list -->
+<h2>2. Top-N Analysis: Isolating Flagship Catalog Merchandise</h2>
+<p>Extract the 5 most expensive merchandise products on <code>product_list</code> by sorting price descending and limiting results:</p>
+
+<!-- Top Products Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Query: Top 5 Highest-Priced Catalog Products</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, price
-<span class="code-keyword">FROM</span> products
-ORDER BY price <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>products</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
+<pre><code><span class="code-comment">-- Retrieve the 5 most premium products in the catalog</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">5</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Top Products -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-medal"></i>
+<h4>Top-N Product Breakdown</h4>
+</div>
+<p>How the query isolates premium inventory:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-trophy"></i>
+<div><strong>Descending Sort:</strong> Places the <em>Pro Laptop 15"</em> ($1299.99), <em>Ultra-Wide 4K Monitor</em> ($349.99), and <em>Air Fryer Pro</em> ($149.99) at the head of the stream.</div>
+</li>
+<li>
+<i class="fas fa-cut"></i>
+<div><strong>Stream Truncation:</strong> <code>LIMIT 5</code> halts result transmission after row 5, dropping the remaining 20 products from processing.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to test this query live against the 25-item <code>product_list</code> table!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Transitioning to data aggregations and summary metrics?</strong> Dive into statistical rollups in our next module: 
+<a href="aggregate-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Aggregate Functions Overview →</a> or explore query execution sequence in 
+<a href="priority-rule.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The Priority Rule →</a>
+</p>
+</div>
+
+<!-- Section 3: Data Grid Pagination on customers -->
+<h2>3. Web Data Grid Pagination: Inspecting Page 2 of Customers</h2>
+<p>Simulate web application pagination across the 612-record <code>customers</code> directory by inspecting Page 2 (10 accounts per page, skipping the first 10):</p>
+
+<!-- Customer Pagination Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Sorted Sequence Retrieval</span>
+<span class="terminal-title">Query: Page 2 of Customer Directory (Rows 11 to 20)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, full_name, signup_date
+<pre><code><span class="code-comment">-- Page 2: Fetch 10 customer records, skipping the first 10</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
 <span class="code-keyword">FROM</span> customers
-ORDER BY customer_id <span class="code-keyword">ASC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">20</span> <span class="code-keyword">OFFSET</span> <span class="code-num">40</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customers</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span> <span class="code-keyword">OFFSET</span> <span class="code-num">10</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Customer Pagination -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-table"></i>
+<h4>Data Grid Pagination Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">-- SELECT TOP 5 employee_id, first_name, salary</span>
-<span class="code-comment">-- FROM employees</span>
-<span class="code-comment">-- ORDER BY salary DESC;</span></code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>employees</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, order_total
-<span class="code-keyword">FROM</span> sales_orders
-ORDER BY order_total <span class="code-keyword">DESC</span>
-<span class="code-keyword">OFFSET</span> <span class="code-num">0</span> ROWS FETCH NEXT <span class="code-num">10</span> ROWS ONLY;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>sales_orders</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>Restricting query result sets allows applications to fetch only the top-ranked records or implement responsive multi-page web interfaces. While SQL Server uses <code>SELECT TOP (n)</code>, modern relational engines (PostgreSQL, MySQL, SQLite) utilize <code>LIMIT n OFFSET m</code>.</p>
-<ul>
-<li><strong>Strict ORDER BY Dependency:</strong> A LIMIT or TOP clause without an ORDER BY clause is non-deterministic; the database can return any arbitrary rows.</li>
-<li><strong>Pipeline Execution Order:</strong> LIMIT / TOP executes in Step 8 (the very final stage of the query lifecycle), slicing the already projected and sorted rows.</li>
-<li><strong>The Deep Pagination Trap:</strong> <code>OFFSET 1000000 LIMIT 10</code> forces the database to read and discard 1,000,000 rows before returning 10, degrading latency.</li>
-<li><strong>Keyset Pagination Alternative:</strong> For massive datasets, keyset (cursor) pagination (<code>WHERE id &gt; last_seen_id ORDER BY id LIMIT 10</code>) achieves O(1) seek performance.</li>
+<p>How the offset pointer delivers precise data chunks:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-step-forward"></i>
+<div><strong>OFFSET 10:</strong> Bypasses Customer IDs 1 through 10 (the contents of Page 1).</div>
+</li>
+<li>
+<i class="fas fa-list-ol"></i>
+<div><strong>LIMIT 10:</strong> Captures exactly 10 rows (Customer IDs 11 through 20) for rendering in the web user interface table.</div>
+</li>
+<li>
+<i class="fas fa-key"></i>
+<div><strong>Primary Key Stability:</strong> Ordering on the primary key (<code>customer_id ASC</code>) ensures deterministic, flicker-free pagination without duplicate or missing records across page switches.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+</div>
+
+<!-- Section 4: Departmental Top Earners on employees -->
+<h2>4. Departmental Leaderboards: Top Earners in Engineering</h2>
+<p>Combine conditional WHERE filtering with <code>LIMIT</code> on <code>employees</code> to identify top technical compensation:</p>
+
+<!-- Engineering Top Earners Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Top 3 Highest Earners in Engineering</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Retrieve the top 3 highest-earning engineering professionals</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
+<span class="code-keyword">FROM</span> employees
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>
+<span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">3</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Engineering Top Earners -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-laptop-code"></i>
+<h4>Departmental Leaderboard Breakdown</h4>
+</div>
+<p>Filtering and ranking within a specific corporate business unit:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Department Isolation:</strong> Evaluates <code>department = 'Engineering'</code> first in Step 2.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Rank Ordering:</strong> Orders by <code>salary DESC</code> in Step 7.</div>
+</li>
+<li>
+<i class="fas fa-award"></i>
+<div><strong>Top 3 Podium:</strong> Surfaces Ripunjay Kumar ($120,000), Amritesh Nath ($95,000), and Sarah Jenkins ($85,000).</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Top Settled Orders on sells_list -->
+<h2>5. Financial Reporting: Top 5 Highest-Grossing Sales Orders</h2>
+<p>Rank and retrieve the top 5 largest fulfilled customer orders on <code>sells_list</code>:</p>
+
+<!-- Sales Top Orders Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Top 5 Highest-Grossing Settled Purchases</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Surface the 5 largest settled customer transactions</span>
+<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">5</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Top Sales -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-receipt"></i>
+<h4>Top Sales Orders Breakdown</h4>
+</div>
+<p>Analyzing high-value revenue drivers:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Payment Verification:</strong> Pre-screens for completed payments, excluding cancelled or pending orders.</div>
+</li>
+<li>
+<i class="fas fa-chart-line"></i>
+<div><strong>Peak Orders:</strong> Highlights multi-unit hardware orders totaling $3,899.97, $2,599.98, and $1,299.99 for management review.</div>
+</li>
+</ul>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>Limiting clauses operate at the final stage of query execution (Step 8), truncating the projected row stream before returning data packets to the client application.</p>
+
+<h3>Dialect Comparison: How Different RDBMS Implement Limiting</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
 <th>Database Engine</th>
-<th>Top / Limit Syntax</th>
-<th>Pagination Syntax (Page 2)</th>
-<th>Deterministic Requirement</th>
-<th>Performance Traps</th>
+<th>Keyword Syntax</th>
+<th>Offset Support</th>
+<th>Placement in Query</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>PostgreSQL / MySQL / SQLite</td>
-<td><code>LIMIT 10</code></td>
-<td><code>LIMIT 10 OFFSET 10</code></td>
-<td>Must include <code>ORDER BY</code></td>
-<td>Large offsets force full index scans</td>
+<td><strong>PostgreSQL / MySQL / SQLite / AlaSQL</strong></td>
+<td><code>LIMIT n OFFSET m</code></td>
+<td>Yes (<code>OFFSET m</code>)</td>
+<td>At very end of query</td>
 </tr>
 <tr>
-<td>SQL Server (T-SQL)</td>
-<td><code>SELECT TOP (10) ...</code></td>
-<td><code>OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY</code></td>
-<td>Must include <code>ORDER BY</code></td>
-<td>TOP without ORDER BY returns random rows</td>
+<td><strong>Microsoft SQL Server</strong></td>
+<td><code>SELECT TOP (n)</code></td>
+<td>Via <code>OFFSET m ROWS FETCH NEXT n ROWS</code></td>
+<td>Directly after <code>SELECT</code></td>
 </tr>
 <tr>
-<td>Oracle / DB2 (ANSI)</td>
-<td><code>FETCH FIRST 10 ROWS ONLY</code></td>
-<td><code>OFFSET 10 ROWS FETCH NEXT 10 ROWS ONLY</code></td>
-<td>Mandatory ORDER BY in standard</td>
-<td>High CPU cost on deep table scans</td>
+<td><strong>Oracle Database (12c+)</strong></td>
+<td><code>FETCH FIRST n ROWS ONLY</code></td>
+<td>Yes (<code>OFFSET m ROWS</code>)</td>
+<td>At very end of query</td>
 </tr>
 <tr>
-<td>Cursor / Keyset Seek</td>
-<td><code>WHERE id &gt; 500 LIMIT 10</code></td>
-<td><code>WHERE id &gt; 510 LIMIT 10</code></td>
-<td>Requires indexed sequential key</td>
-<td>Optimal: Constant O(1) seek speed</td>
+<td><strong>IBM DB2</strong></td>
+<td><code>FETCH FIRST n ROWS ONLY</code></td>
+<td>Yes</td>
+<td>At very end of query</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>The Danger of Offset Pagination vs Keyset Seeking</h3>
-<p>Understanding the computational difference between Offset-based pagination and Keyset (Cursor-based) pagination is vital for web engineers:</p>
-<ul>
-<li><strong>The Offset Penalty:</strong> When executing <code>OFFSET 50000 LIMIT 10</code>, the database must retrieve 50,010 records from the B-Tree index and discard the first 50,000 in memory.</li>
-<li><strong>The Keyset Alternative:</strong> Instead of skipping rows, track the last seen primary key: <code>WHERE id &gt; 14920 ORDER BY id ASC LIMIT 10;</code>.</li>
-<li><strong>The Performance Leap:</strong> Keyset pagination jumps directly to the target key in O(log N) time, maintaining instantaneous response times whether on page 1 or page 10,000.</li>
+
+<h3>The Deep Paging Offset Trap</h3>
+<p>In high-scale enterprise databases, navigating to deep pages using high offsets (e.g., <code>OFFSET 1000000</code>) causes performance degradation:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-exclamation-triangle"></i>
+<span><strong>Full Row Scanning:</strong> <code>OFFSET 1,000,000</code> forces the database engine to locate, read, and discard 1,000,000 rows in memory before returning the requested 10 rows.</span>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<span><strong>Keyset (Cursor) Pagination:</strong> For high-volume tables, use cursor pagination: <code>WHERE customer_id &gt; last_seen_id ORDER BY customer_id ASC LIMIT 10</code>. This uses an instant B-Tree index seek without any row discarding!</span>
+</li>
 </ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>E-Commerce Product Catalog Web Pagination:</strong> Power an online storefront catalog with responsive 3-item page navigation and top-selling product spotlights.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
 </div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: store_catalog
-   product_id | product_name   | category    | sales_count | rating
-   -----------+----------------+-------------+-------------+-------
-   101        | Ultra Drone    | Gadgets     | 1450        | 4.8
-   102        | Smart Watch    | Wearables   | 920         | 4.6
-   103        | Solar Charger  | Outdoor     | 850         | 4.7
-   104        | Bluetooth Spkr | Audio       | 620         | 4.3
-   105        | Noise-Canc Ear | Audio       | 1890        | 4.9
-   106        | Fitness Tracker| Wearables   | 410         | 4.1
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, sales_count, rating
-<span class="code-keyword">FROM</span> store_catalog
-ORDER BY sales_count <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">3</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>store_catalog</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category
-<span class="code-keyword">FROM</span> store_catalog
-ORDER BY product_name <span class="code-keyword">ASC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">3</span> <span class="code-keyword">OFFSET</span> <span class="code-num">0</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>store_catalog</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category
-<span class="code-keyword">FROM</span> store_catalog
-ORDER BY product_name <span class="code-keyword">ASC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">3</span> <span class="code-keyword">OFFSET</span> <span class="code-num">3</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>store_catalog</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, rating
-<span class="code-keyword">FROM</span> store_catalog
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Audio'</span>
-ORDER BY rating <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-num">1</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>store_catalog</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The SELECT TOP and LIMIT clauses restrict result set volume, enabling efficient web pagination, top-N reporting, and predictable API payload sizes.</p>
+<p>Limiting and offset pagination control data flow, conserve computing resources, and provide the infrastructure for scalable user interfaces.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Always Pair with ORDER BY:</strong> Never use LIMIT or TOP without an explicit ORDER BY clause; without sorting, returned records are arbitrary.</span>
+<span><strong>Always Pair with ORDER BY:</strong> Without an explicit ORDER BY, row limiting returns unstable, arbitrary record sets.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Pagination Formula:</strong> To fetch page P with page size S: OFFSET = (P - 1) * S and LIMIT = S.</span>
+<span><strong>Standard Syntax:</strong> Use <code>LIMIT n OFFSET m</code> in modern web stacks, SQLite, MySQL, and AlaSQL.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Final Stage Execution:</strong> LIMIT executes in the very last step of query evaluation after all sorting and projection completes.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Beware Deep Offsets:</strong> Large OFFSET values force database engines to read and discard millions of rows; switch to keyset pagination for deep tables.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Conserve Network Bandwidth:</strong> Limiting result sets prevents accidental multi-gigabyte queries from overloading application web servers.</span>
+<span><strong>Next Module:</strong> Advance to relational statistics, aggregations, and grouped totals in <a href="aggregate-functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Aggregate Functions Overview →</a></span>
 </li>
 </ul>
 </div>
@@ -485,8 +512,8 @@ ORDER BY rating <span class="code-keyword">DESC</span>
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="delete.html" title="Previous: The DELETE Statement">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The DELETE Statement</span>
+<a class="btn-outline" href="order-by.html" title="Previous: The ORDER BY Clause">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The ORDER BY Clause</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -496,7 +523,7 @@ ORDER BY rating <span class="code-keyword">DESC</span>
 </div>
 <div class="lesson-nav-next">
 <a class="btn-enroll" href="aggregate-functions.html" title="Next: SQL Aggregate Functions Overview">
-<span class="btn-text">Next: SQL Aggregate Functions Overview</span> <i class="fas fa-arrow-right"></i>
+<span class="btn-text">Next: Aggregate Functions</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

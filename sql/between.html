@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li class="active"><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li class="active"><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -155,320 +155,332 @@
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>The BETWEEN Operator</span>
 </div>
 <h1>The BETWEEN Operator</h1>
-<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 12 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
 </div>
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-ruler-horizontal"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Highway Vehicle Weigh Station Analogy</h4>
-<p>Picture a highway commercial vehicle inspection weigh station monitoring freight trucks:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. The Lower Boundary (Inclusive)::</strong> Trucks weighing 10,000 lbs or more must enter the inspection lane (weight &gt;= 10000).</li>
-<li><strong>2. The Upper Boundary (Inclusive)::</strong> Trucks weighing up to 26,000 lbs qualify for standard commercial class (weight &lt;= 26000).</li>
-<li><strong>3. The Inclusive BETWEEN Window::</strong> The rule: BETWEEN 10000 AND 26000. Exactly 10,000 lbs and exactly 26,000 lbs are BOTH included inside the boundary!</li>
-<li><strong>4. Boundary Inversion::</strong> Trucks NOT BETWEEN 10,000 and 26,000 are diverted to special light-duty or heavy-overweight lanes.</li>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Highway Commercial Vehicle Weigh Station Analogy</h4>
+<p>Picture a state highway commercial weigh station monitoring freight transport along an interstate corridor:</p>
+<p style="margin-top: 8px !important;"><strong>1. Lower Weight Boundary (Inclusive):</strong> Commercial trucks weighing at least 10,000 lbs must steer into the inspection lane (<code>weight &gt;= 10000</code>).</p>
+<p style="margin-top: 8px !important;"><strong>2. Upper Weight Boundary (Inclusive):</strong> Standard commercial freight classifications apply to vehicles weighing up to 26,000 lbs (<code>weight &lt;= 26000</code>).</p>
+<p style="margin-top: 8px !important;"><strong>3. The Inclusive BETWEEN Window:</strong> The regulatory rule is expressed cleanly: <code>BETWEEN 10000 AND 26000</code>. Crucially, a truck weighing <em>exactly</em> 10,000 lbs and a truck weighing <em>exactly</em> 26,000 lbs are both admitted!</p>
+<p style="margin-top: 8px !important;"><strong>4. Negated Outliers:</strong> Trucks weighing <code>NOT BETWEEN 10000 AND 26000</code> are routed to secondary lanes for light consumer vehicles or heavy oversized-load permits.</p>
+<p style="margin-top: 8px !important;">The SQL BETWEEN operator filters rows within an inclusive range, providing a clean, readable alternative to compound <code>&gt;= AND &lt;=</code> comparisons.</p>
+</div>
+</div>
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical BETWEEN Operator Syntax</h2>
+<p>The <code>BETWEEN</code> operator tests whether an expression falls inclusively within a lower and upper bound:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Grammar Blueprint: Range Filtering with BETWEEN</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative BETWEEN Range Blueprint</span>
+<span class="code-keyword">SELECT</span> column1, column2, ...
+<span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> column_expression <span class="code-keyword">BETWEEN</span> lower_bound <span class="code-keyword">AND</span> upper_bound;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>BETWEEN Blueprint Breakdown</h4>
+</div>
+<p>How the database optimizer interprets range expressions:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-double"></i>
+<div><strong>Inclusive Range Equivalence:</strong> <code>col BETWEEN A AND B</code> translates directly into <code>col &gt;= A AND col &lt;= B</code>. The boundary values themselves are always matched.</div>
+</li>
+<li>
+<i class="fas fa-sort-numeric-down"></i>
+<div><strong>Order of Operands:</strong> The lower bound must always be specified first. Writing <code>BETWEEN 150 AND 50</code> will always evaluate to <code>FALSE</code> and return zero rows!</div>
+</li>
+<li>
+<i class="fas fa-calendar-alt"></i>
+<div><strong>Universal Data Type Support:</strong> Works across numbers (integers, decimals), chronological dates/timestamps, and alphabetical strings.</div>
+</li>
 </ul>
-<p style="margin-top: 8px !important;">The BETWEEN operator filters metrics within an inclusive lower and upper boundary, streamlining numerical ranges and date intervals.</p>
 </div>
-</div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>The BETWEEN Operator</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 2: Numeric Price Range on product_list -->
+<h2>2. Numerical Range Filtering: Mid-Tier Inventory Pricing</h2>
+<p>Isolate popular mid-tier catalog merchandise priced between $50.00 and $150.00 on <code>product_list</code>:</p>
+
+<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Boundary Range Filtering</span>
+<span class="terminal-title">Query: Filtering Products in the $50 to $150 Range</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, unit_price
-<span class="code-keyword">FROM</span> store_products
-<span class="code-keyword">WHERE</span> unit_price <span class="code-keyword">BETWEEN</span> <span class="code-num">50.00</span> <span class="code-keyword">AND</span> <span class="code-num">150.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>store_products</code> using the condition <code>unit_price BETWEEN 50.00 AND 150.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Filter catalog items priced between $50.00 and $150.00 inclusive</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> price <span class="code-keyword">BETWEEN</span> <span class="code-num">50.00</span> <span class="code-keyword">AND</span> <span class="code-num">150.00</span>
+<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Product Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-tags"></i>
+<h4>Numerical Price Range Breakdown</h4>
+</div>
+<p>How the range filter isolates consumer sweet-spot merchandise:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-dollar-sign"></i>
+<div><strong>Inclusive Boundaries:</strong> Items priced at exactly $50.00 (e.g. Leather Belts) and $150.00 (Smart Fitness Watches) are fully included.</div>
+</li>
+<li>
+<i class="fas fa-shopping-basket"></i>
+<div><strong>Target Market Tier:</strong> Isolates 10 high-velocity products across Electronics, Footwear, Apparel, and Kitchen items.</div>
+</li>
+<li>
+<i class="fas fa-bolt"></i>
+<div><strong>Index Range Scan:</strong> If a B-Tree index exists on <code>price</code>, the database performs a high-speed clustered range seek rather than scanning the full table.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
 </div>
 </div>
-<div class="code-terminal">
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Looking for discrete value matching?</strong> When checking specific non-contiguous values rather than continuous ranges, explore: 
+<a href="in.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">The IN Operator →</a> or explore all comparison and logical symbols in the 
+<a href="operators.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Operators Reference (Module 3) →</a>
+</p>
+</div>
+
+<!-- Section 3: Date Boundary Filtering on sells_list -->
+<h2>3. Date Boundaries: Auditing Monthly Transaction Windows</h2>
+<p>Filter chronological sales records within a specific calendar date window on <code>sells_list</code>:</p>
+
+<!-- Sales Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Boundary Range Filtering</span>
+<span class="terminal-title">Query: Filtering Orders Between Jan 15 and Feb 15, 2026</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> order_id, customer_id, order_date, total_amount
-<span class="code-keyword">FROM</span> sales_orders
-<span class="code-keyword">WHERE</span> order_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-03-31'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>sales_orders</code> using the condition <code>order_date BETWEEN '2026-01-01' AND '2026-03-31'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Audit transactions completed during the mid-winter promotional period</span>
+<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, sale_date
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> sale_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-01-15'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-02-15'</span>
+<span class="code-keyword">ORDER BY</span> sale_date <span class="code-keyword">ASC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Sales Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-calendar-check"></i>
+<h4>Date Range Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>How chronological boundary filtering operates:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-calendar-day"></i>
+<div><strong>ISO-8601 Compliance:</strong> Using standardized <code>YYYY-MM-DD</code> string formats guarantees deterministic chronological comparisons across all SQL database engines.</div>
+</li>
+<li>
+<i class="fas fa-receipt"></i>
+<div><strong>Winter Sales Cohort:</strong> Retrieves 26 transactions finalized precisely within the 31-day seasonal marketing campaign.</div>
+</li>
+<li>
+<i class="fas fa-clock"></i>
+<div><strong>Timestamp Gotcha:</strong> When columns contain timestamps (e.g. <code>2026-02-15 14:30:00</code>), <code>BETWEEN '2026-01-15' AND '2026-02-15'</code> defaults to midnight (<code>00:00:00</code>) on the upper bound, omitting events that occurred later that day!</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: Alphabetical Text Range on employees -->
+<h2>4. Alphabetical String Boundaries: Roster Partitioning</h2>
+<p>Partition corporate directory personnel whose surnames fall alphabetically between 'Chang' and 'Nath' on <code>employees</code>:</p>
+
+<!-- Employee Filtering Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Boundary Range Filtering</span>
+<span class="terminal-title">Query: Alphabetical Employee Partitioning</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, last_name
+<pre><code><span class="code-comment">-- Filter staff with surnames alphabetically between 'Chang' and 'Nath'</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> last_name <span class="code-keyword">BETWEEN</span> <span class="code-string">'Adams'</span> <span class="code-keyword">AND</span> <span class="code-string">'Miller'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employees</code> using the condition <code>last_name BETWEEN 'Adams' AND 'Miller'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<span class="code-keyword">WHERE</span> last_name <span class="code-keyword">BETWEEN</span> <span class="code-string">'Chang'</span> <span class="code-keyword">AND</span> <span class="code-string">'Nath'</span>
+<span class="code-keyword">ORDER BY</span> last_name <span class="code-keyword">ASC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Employee Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-font"></i>
+<h4>Alphabetical Collation Breakdown</h4>
 </div>
-<div class="code-terminal">
+<p>Understanding string collation ordering with BETWEEN:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-alpha-down"></i>
+<div><strong>Collation Ordering:</strong> SQL compares text strings character-by-character according to ASCII/Unicode alphabetical collation rules.</div>
+</li>
+<li>
+<i class="fas fa-id-card-alt"></i>
+<div><strong>Captured Surnames:</strong> Returns 8 employees including Chang, Clark, Gupta, Iyer, Jenkins, Kumar, Miller, and Nath.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Compound Multi-Range on product_list -->
+<h2>5. Compound Multi-Range Filtering: Dual Dimension Optimization</h2>
+<p>Combine multiple <code>BETWEEN</code> predicates with <code>AND</code> to evaluate dual numeric boundaries on price and inventory:</p>
+
+<!-- Compound Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Boundary Range Filtering</span>
+<span class="terminal-title">Query: Dual-Range Price and Stock Filtering</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> student_id, exam_score
-<span class="code-keyword">FROM</span> examination_results
-<span class="code-keyword">WHERE</span> exam_score <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> <span class="code-num">60</span> <span class="code-keyword">AND</span> <span class="code-num">80</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>examination_results</code> using the condition <code>exam_score NOT BETWEEN 60 AND 80</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- Select affordable products ($20-$80) with healthy inventory (30-100 units)</span>
+<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
+<span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> price <span class="code-keyword">BETWEEN</span> <span class="code-num">20.00</span> <span class="code-keyword">AND</span> <span class="code-num">80.00</span>
+  <span class="code-keyword">AND</span> stock_quantity <span class="code-keyword">BETWEEN</span> <span class="code-num">30</span> <span class="code-keyword">AND</span> <span class="code-num">100</span>
+<span class="code-keyword">ORDER BY</span> stock_quantity <span class="code-keyword">DESC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Compound Filtering -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>Dual-Range Optimization Breakdown</h4>
 </div>
-<h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>BETWEEN</code> operator tests whether an expression falls within an inclusive specified range. The syntax <code>expression BETWEEN low AND high</code> is semantically identical to <code>expression &gt;= low AND expression &lt;= high</code>.</p>
-<ul>
-<li><strong>Inclusive Boundaries Rule:</strong> BETWEEN is strictly inclusive on both ends; values that exactly match either boundary are included in the result set.</li>
-<li><strong>Order of Operands:</strong> The lower boundary must be declared first; writing <code>BETWEEN 100 AND 50</code> returns zero rows because no value can be &gt;= 100 and &lt;= 50 simultaneously.</li>
-<li><strong>Timestamp Truncation Trap:</strong> Filtering timestamps with <code>BETWEEN '2026-01-01' AND '2026-01-31'</code> cuts off at midnight <code>2026-01-31 00:00:00</code>, missing transactions later that day!</li>
-<li><strong>Index Range Scans:</strong> BETWEEN operations on indexed columns leverage efficient B-Tree Index Range Scans.</li>
+<p>Simultaneous price and inventory boundary enforcement:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-coins"></i>
+<div><strong>Affordable Price Window:</strong> Restricts prices to accessible $20–$80 consumer items.</div>
+</li>
+<li>
+<i class="fas fa-dolly"></i>
+<div><strong>High-Volume Fulfillment:</strong> Ensures warehouse inventory is robust (30 to 100 units), ideal for featured holiday catalog promotions.</div>
+</li>
 </ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+</div>
+
+<!-- Core Concepts & Engine Mechanics -->
+<h2>Core Concepts &amp; Engine Mechanics</h2>
+<p>The <code>BETWEEN</code> operator simplifies continuous range comparisons into concise, readable queries while maximizing database optimizer efficiency.</p>
+
+<h3>Comparison: BETWEEN vs Relational Compound Predicates</h3>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Data Type</th>
-<th>Syntax Pattern</th>
-<th>Equivalent SQL Expression</th>
-<th>Boundary Inclusivity</th>
-<th>Common Gotcha</th>
+<th>Comparison Dimension</th>
+<th>BETWEEN Syntax</th>
+<th>Relational Compound (&gt;= AND &lt;=)</th>
+<th>Operational Difference</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Numeric (INT / DECIMAL)</td>
-<td><code>WHERE price BETWEEN 10 AND 50</code></td>
-<td><code>price &gt;= 10 AND price &lt;= 50</code></td>
-<td>Includes 10 and 50</td>
-<td>Inverting low/high returns 0 rows</td>
+<td><strong>Syntactic Brevity</strong></td>
+<td><code>price BETWEEN 30 AND 80</code></td>
+<td><code>price &gt;= 30 AND price &lt;= 80</code></td>
+<td>BETWEEN avoids repeating column name</td>
 </tr>
 <tr>
-<td>Date (DATE)</td>
-<td><code>WHERE d BETWEEN '2026-01-01' AND '2026-01-31'</code></td>
-<td><code>d &gt;= '2026-01-01' AND d &lt;= '2026-01-31'</code></td>
-<td>Includes both end dates</td>
-<td>Safe for pure DATE types</td>
+<td><strong>Boundary Inclusivity</strong></td>
+<td>Strictly inclusive</td>
+<td>Strictly inclusive</td>
+<td>Identical truth evaluations</td>
 </tr>
 <tr>
-<td>Timestamp (DATETIME)</td>
-<td><code>WHERE ts BETWEEN '2026-01-01' AND '2026-01-31'</code></td>
-<td><code>ts &gt;= '2026-01-01' AND ts &lt;= '2026-01-31 00:00:00'</code></td>
-<td>Cuts off at midnight!</td>
-<td>Misses hours on final day</td>
+<td><strong>Query Plan Execution</strong></td>
+<td>Index Range Scan</td>
+<td>Index Range Scan</td>
+<td>Identical B-Tree execution path</td>
 </tr>
 <tr>
-<td>Text (VARCHAR)</td>
-<td><code>WHERE name BETWEEN 'A' AND 'M'</code></td>
-<td><code>name &gt;= 'A' AND name &lt;= 'M'</code></td>
-<td>Includes 'A' up to 'M'</td>
-<td>Excludes 'Miller' (comes after 'M')</td>
+<td><strong>Boundary Reversal</strong></td>
+<td><code>BETWEEN 80 AND 30</code> (Yields 0 rows!)</td>
+<td><code>price &gt;= 80 AND price &lt;= 30</code> (Yields 0 rows!)</td>
+<td>Both require lower bound first</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>The Timestamp Midnight Trap with BETWEEN</h3>
-<p>The most pervasive reporting error in SQL occurs when querying DATETIME or TIMESTAMP columns using BETWEEN:</p>
-<ul>
-<li><strong>The Flawed Query:</strong> <code>WHERE order_timestamp BETWEEN '2026-01-01' AND '2026-01-31'</code> expands to <code>order_timestamp &lt;= '2026-01-31 00:00:00'</code>.</li>
-<li><strong>The Missed Revenue:</strong> An order placed at <code>2026-01-31 14:30:00</code> is completely excluded from the month-end report!</li>
-<li><strong>The Best Practice Fix:</strong> Always use explicit half-open intervals: <code>WHERE order_timestamp &gt;= '2026-01-01' AND order_timestamp &lt; '2026-02-01';</code>.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Corporate Performance Bonus &amp; Compensation Review:</strong> Audit enterprise compensation brackets and performance review scoring tiers for quarterly merit increases.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: employee_compensation
-   emp_id | full_name       | department    | base_salary | rating_score | hire_date
-   -------+-----------------+---------------+-------------+--------------+------------
-   101    | Marcus Cole     | Engineering   | 85000.00    | 4.2          | 2024-03-15
-   102    | Susan Ivanova   | Operations    | 72000.00    | 3.8          | 2025-06-01
-   103    | John Sheridan   | Executive     | 130000.00   | 4.9          | 2023-01-10
-   104    | Stephen Franklin| Medical       | 95000.00    | 4.5          | 2024-08-20
-   105    | Michael Garibaldi| Security     | 68000.00    | 3.4          | 2025-11-05
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Boundary Range Filtering</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> emp_id, full_name, base_salary
-<span class="code-keyword">FROM</span> employee_compensation
-<span class="code-keyword">WHERE</span> base_salary <span class="code-keyword">BETWEEN</span> <span class="code-num">70000.00</span> <span class="code-keyword">AND</span> <span class="code-num">95000.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employee_compensation</code> using the condition <code>base_salary BETWEEN 70000.00 AND 95000.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Boundary Range Filtering</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> emp_id, full_name, rating_score, department
-<span class="code-keyword">FROM</span> employee_compensation
-<span class="code-keyword">WHERE</span> rating_score <span class="code-keyword">BETWEEN</span> <span class="code-num">4.0</span> <span class="code-keyword">AND</span> <span class="code-num">5.0</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employee_compensation</code> using the condition <code>rating_score BETWEEN 4.0 AND 5.0</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Boundary Range Filtering</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> emp_id, full_name, hire_date
-<span class="code-keyword">FROM</span> employee_compensation
-<span class="code-keyword">WHERE</span> hire_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2024-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2024-12-31'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employee_compensation</code> using the condition <code>hire_date BETWEEN '2024-01-01' AND '2024-12-31'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Boundary Range Filtering</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> emp_id, full_name, base_salary
-<span class="code-keyword">FROM</span> employee_compensation
-<span class="code-keyword">WHERE</span> base_salary <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> <span class="code-num">70000.00</span> <span class="code-keyword">AND</span> <span class="code-num">100000.00</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>employee_compensation</code> using the condition <code>base_salary NOT BETWEEN 70000.00 AND 100000.00</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
+
 <!-- Chapter Summary -->
 <h2>Chapter Summary</h2>
-<p>The BETWEEN operator filters metrics within an inclusive lower and upper boundary, providing concise and readable interval checking across numbers, dates, and text.</p>
+<p>The BETWEEN operator provides an intuitive, inclusive range filter for numbers, dates, and text strings across relational databases.</p>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Inclusive on Both Ends:</strong> BETWEEN includes both the lower and upper threshold values in the evaluated range.</span>
+<span><strong>Strict Inclusivity:</strong> Both the lower and upper bounds are included in the results.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Operand Ordering:</strong> Always specify the lower boundary first; low AND high (e.g. BETWEEN 10 AND 50).</span>
+<span><strong>Operand Ordering:</strong> Always place the lower boundary before the upper boundary.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>The Timestamp Midnight Trap:</strong> For DATETIME or TIMESTAMP attributes, prefer half-open intervals (&gt;= start AND &lt; end) over BETWEEN to avoid missing end-day records.</span>
+<span><strong>Date Best Practices:</strong> Always use standard ISO-8601 (YYYY-MM-DD) date formats for deterministic evaluations.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Index Range Scans:</strong> B-Tree indexes can satisfy BETWEEN queries efficiently using index range scans.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Negative Ranges:</strong> Use NOT BETWEEN to identify outlier records falling outside approved operational thresholds.</span>
+<span><strong>Negation with NOT:</strong> Use NOT BETWEEN to isolate anomalies, outliers, and boundary extremes.</span>
 </li>
 </ul>
 </div>
@@ -476,8 +488,8 @@
 <!-- Professional 3-Column Navigation Footer -->
 <div class="lesson-footer">
 <div class="lesson-nav-prev">
-<a class="btn-outline" href="in.html" title="Previous: The IN Operator">
-<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The IN Operator</span>
+<a class="btn-outline" href="not.html" title="Previous: The NOT Operator">
+<i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The NOT Operator</span>
 </a>
 </div>
 <div class="lesson-nav-center">
@@ -486,8 +498,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="aliases.html" title="Next: SQL Aliases (The AS Keyword)">
-<span class="btn-text">Next: SQL Aliases (The AS Keyword)</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="in.html" title="Next: The IN Operator">
+<span class="btn-text">Next: The IN Operator</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

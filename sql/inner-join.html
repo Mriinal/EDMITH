@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: INNER JOIN - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: INNER JOIN - Master relational intersection matching, foreign key linking, and multi-table joins on EDMITH." name="description"/>
 <title>INNER JOIN - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li class="active"><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -149,358 +149,331 @@
 <!-- Mobile Table of Contents Toggle -->
 <button aria-label="Toggle Syllabus Table of Contents" class="mobile-toc-toggle" id="mobileTocBtn">
 <i class="fas fa-list"></i> Table of Contents
-            </button>
+</button>
 <div class="lesson-header">
 <div class="lesson-breadcrumbs">
 <a href="index.html">SQL Mastery</a> &gt; <a href="intro.html">Module 1: Basics</a> &gt; <span>INNER JOIN</span>
 </div>
 <h1>INNER JOIN</h1>
-<p class="lesson-meta"><i class="fas fa-clock"></i> 15 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
+<p class="lesson-meta"><i class="fas fa-clock"></i> 16 Min Read • <i class="fas fa-signal"></i> Module 1: Basics</p>
 </div>
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-handshake"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Mutual Passport Border Control Analogy</h4>
-<p>Picture a bilateral international trade agreement between Country A and Country B:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Mutual Agreement Required::</strong> A traveler is granted passage across the border IF AND ONLY IF their credentials match both Country A's registry AND Country B's visa database.</li>
-<li><strong>2. Citizens Without Visas::</strong> A Country A citizen with no entry visa in Country B is turned away (discarded).</li>
-<li><strong>3. Orphaned Visas::</strong> An approved visa record in Country B with no corresponding traveler at the gate is discarded.</li>
-<li><strong>4. The Perfect Match::</strong> Only active pairs where keys match on both sides pass through the checkpoint.</li>
-</ul>
-<p style="margin-top: 8px !important;">INNER JOIN returns strictly matching records where common relationship keys intersect across two tables, discarding non-matching rows from both sides.</p>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Mutual Passport &amp; Visa Border Control Analogy</h4>
+<p>Picture an international border checkpoint operating between two sovereign countries:</p>
+<p style="margin-top: 8px !important;"><strong>1. Mutual Verification:</strong> A traveler is cleared through the gate IF AND ONLY IF their passport record in Country A matches an approved entry visa in Country B.</p>
+<p style="margin-top: 8px !important;"><strong>2. Unmatched Passports Discarded:</strong> A traveler who has a passport in Country A but never obtained a visa for Country B is turned away.</p>
+<p style="margin-top: 8px !important;"><strong>3. Orphaned Visas Discarded:</strong> A visa registered in Country B's system that has no real traveler presenting a matching passport is excluded.</p>
+<p style="margin-top: 8px !important;"><strong>4. Pure Intersection:</strong> Only rows where keys match simultaneously on both sides of the relationship pass through into the final output.</p>
+<p style="margin-top: 8px !important;">The SQL INNER JOIN returns strictly matching records where keys intersect across both tables, discarding unmatched rows from both sides.</p>
 </div>
 </div>
-<h2>Syntax &amp; Statement Grammar</h2>
-<p>The standard SQL syntax and pattern rules for <strong>INNER JOIN</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
-<div class="code-terminal">
+
+<!-- Section 1: Canonical Syntax Grammar -->
+<h2>1. Canonical INNER JOIN Syntax Grammar</h2>
+<p>The <code>INNER JOIN</code> keyword selects all rows from both tables as long as there is a match between the specified columns:</p>
+
+<!-- Syntax Blueprint Terminal (Copy Button Only) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
 <span class="dot red"></span>
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Multi-Table Relational Join</span>
+<span class="terminal-title">Grammar Blueprint: Relational Intersection with INNER JOIN</span>
+<div class="terminal-header-actions">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Template"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Standard Declarative INNER JOIN Syntax Blueprint</span>
+<span class="code-keyword">SELECT</span> 
+    t1.column_one,
+    t2.column_two
+<span class="code-keyword">FROM</span> table_one t1
+<span class="code-keyword">INNER JOIN</span> table_two t2 <span class="code-keyword">ON</span> t1.common_key <span class="code-op">=</span> t2.common_key
+<span class="code-keyword">WHERE</span> filter_condition;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Syntax Blueprint -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>INNER JOIN Blueprint Breakdown</h4>
+</div>
+<p>Understanding mathematical intersection in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-bullseye"></i>
+<div><strong>Strict Set Intersection (A ∩ B):</strong> Only records satisfying the <code>ON</code> equality condition are preserved in the query output.</div>
+</li>
+<li>
+<i class="fas fa-exchange-alt"></i>
+<div><strong>Symmetric Invariance:</strong> <code>table_a INNER JOIN table_b</code> produces the identical dataset as <code>table_b INNER JOIN table_a</code>; the relational optimizer picks the driving table dynamically.</div>
+</li>
+<li>
+<i class="fas fa-tachometer-alt"></i>
+<div><strong>Index Acceleration:</strong> Indexing the join columns allows the engine to perform O(log N) index lookups rather than full table scans.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 2: 2-Table INNER JOIN on sells_list and customers -->
+<h2>2. Commercial Joins: Customer Order History</h2>
+<p>Join transaction records in <code>sells_list</code> with customer profiles in <code>customers</code> using <code>customer_id</code>:</p>
+
+<!-- 2-Table Join Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Order Records with Verified Customer Profiles</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> 
+<pre><code><span class="code-comment">-- Fetch transactions joined with matching customer names</span>
+<span class="code-keyword">SELECT</span> 
+    s.sale_id,
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    s.total_price,
+    s.payment_status
+<span class="code-keyword">FROM</span> sells_list s
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for 2-Table Join -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-receipt"></i>
+<h4>Customer Transaction Match Breakdown</h4>
+</div>
+<p>Auditing transaction-to-customer linkages:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Referential Integrity:</strong> Each transaction in <code>sells_list</code> resolves directly to a verified customer account (such as Customer #1, Mrinal Prashar).</div>
+</li>
+<li>
+<i class="fas fa-user-times"></i>
+<div><strong>Exclusion of Non-Buyers:</strong> Customers who have never placed an order are excluded automatically by INNER JOIN.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this join live against the database!</span>
+</div>
+</div>
+
+<!-- Reference Guide Callout Box -->
+<div class="info-box" style="margin: 2rem 0; border-left: 4px solid var(--accent); background: var(--accent-subtle); padding: 1.25rem 1.5rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0;">
+<p style="margin: 0; font-size: 0.98rem; line-height: 1.7; color: var(--text-primary);">
+<i class="fas fa-bookmark" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
+<strong>Need to keep all customers even if they have zero transactions?</strong> Advance to our outer join chapter: 
+<a href="left-join.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">LEFT JOIN (Outer Join) →</a> or review the full join taxonomy in 
+<a href="joins.html" style="color: var(--accent); font-weight: 700; text-decoration: underline; margin-left: 4px;">SQL Joins Overview →</a>
+</p>
+</div>
+
+<!-- Section 3: Catalog Product Integration -->
+<h2>3. Catalog Integration: Order Details with Item Names &amp; Categories</h2>
+<p>Join <code>sells_list</code> with <code>product_list</code> using <code>product_id</code> to evaluate commercial sales performance by product:</p>
+
+<!-- Product Detail Join Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Transaction Items with Product Metadata</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Correlate transaction logs with merchandise names and categories</span>
+<span class="code-keyword">SELECT</span> 
+    s.sale_id,
+    p.product_name,
+    p.category,
+    p.price               <span class="code-keyword">AS</span> unit_price,
+    s.quantity,
+    s.total_price
+<span class="code-keyword">FROM</span> sells_list s
+<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
+<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for Product Detail Join -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-box-open"></i>
+<h4>Catalog Correlation Breakdown</h4>
+</div>
+<p>Resolving normalized product entities:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-tag"></i>
+<div><strong>Dynamic Pricing Audit:</strong> Verifies that <code>s.total_price</code> matches <code>s.quantity * p.price</code> for each purchase.</div>
+</li>
+<li>
+<i class="fas fa-folder-open"></i>
+<div><strong>Category Context:</strong> Equips transaction analysis with sector groupings (Electronics, Apparel, Accessories) without modifying the transactional schema.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 4: 3-Way INNER JOIN -->
+<h2>4. Multi-Table Chaining: Customers, Transactions &amp; Products</h2>
+<p>Chain three tables together into a unified analytical view: who bought what, and when:</p>
+
+<!-- 3-Way Join Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: 3-Table Unified Sales Pipeline</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Connect customers, sells_list, and product_list for settled purchases</span>
+<span class="code-keyword">SELECT</span> 
+    s.sale_id,
+    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> customer_name,
+    p.product_name,
+    p.category,
+    s.quantity,
+    s.total_price,
+    s.sale_date
+<span class="code-keyword">FROM</span> sells_list s
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
+<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
+</div>
+
+<!-- Dedicated Explanation Area for 3-Way Join -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-project-diagram"></i>
+<h4>Chained Pipeline Breakdown</h4>
+</div>
+<p>Executing consecutive relational joins:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-stream"></i>
+<div><strong>Triple Junction Execution:</strong> The database engine performs an index scan on <code>sells_list</code>, probes <code>customers</code> via <code>customer_id</code>, and probes <code>product_list</code> via <code>product_id</code>.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Combined Filtering:</strong> The <code>WHERE s.payment_status = 'PAID'</code> filter guarantees that only completed commercial revenue is returned.</div>
+</li>
+</ul>
+</div>
+
+<!-- Section 5: Hierarchical Direct Reports on employees -->
+<h2>5. Organizational Hierarchy: Staff with Assigned Direct Managers</h2>
+<p>Perform an <code>INNER JOIN</code> on the <code>employees</code> table to match employees with their direct superiors:</p>
+
+<!-- Hierarchy Join Terminal (Try in Editor + Copy) -->
+<div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
+<div class="terminal-header">
+<div class="terminal-dots">
+<span class="dot red"></span>
+<span class="dot yellow"></span>
+<span class="dot green"></span>
+</div>
+<span class="terminal-title">Query: Organizational Reporting via INNER JOIN</span>
+<div class="terminal-header-actions">
+<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+</div>
+</div>
+<pre><code><span class="code-comment">-- Match employees with their direct manager; executive with NULL manager is omitted</span>
+<span class="code-keyword">SELECT</span> 
     e.employee_id,
-    e.first_name,
-    d.department_name
+    e.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> e.last_name <span class="code-keyword">AS</span> employee_name,
+    e.department,
+    e.salary,
+    m.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> m.last_name <span class="code-keyword">AS</span> direct_manager
 <span class="code-keyword">FROM</span> employees e
-INNER <span class="code-keyword">JOIN</span> departments d <span class="code-keyword">ON</span> e.department_id <span class="code-op">=</span> d.department_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>employees</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
+<span class="code-keyword">INNER JOIN</span> employees m <span class="code-keyword">ON</span> e.manager_id <span class="code-op">=</span> m.employee_id
+<span class="code-keyword">ORDER BY</span> e.employee_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
+
+<!-- Dedicated Explanation Area for Hierarchy Join -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-sitemap"></i>
+<h4>Hierarchy Intersection Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
+<p>Auditing manager-to-report linkages:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-tie"></i>
+<div><strong>14 Direct Reports:</strong> Returns all 14 employees who report to a designated superior.</div>
+</li>
+<li>
+<i class="fas fa-crown"></i>
+<div><strong>Executive Root Exclusion:</strong> The top executive (Mrinal Prashar) has <code>manager_id = NULL</code>, so the inner join condition fails and this row is excluded.</div>
+</li>
+</ul>
 </div>
-<span class="terminal-title">Query 2: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    oi.order_id,
-    p.product_name,
-    oi.quantity,
-    oi.unit_price
-<span class="code-keyword">FROM</span> order_items oi
-INNER <span class="code-keyword">JOIN</span> products p 
-    <span class="code-keyword">ON</span> oi.product_id <span class="code-op">=</span> p.product_id 
-   <span class="code-keyword">AND</span> oi.warehouse_id <span class="code-op">=</span> p.warehouse_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>order_items</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 3: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    u.username,
-    o.order_id,
-    p.product_name,
-    c.category_name
-<span class="code-keyword">FROM</span> users u
-INNER <span class="code-keyword">JOIN</span> orders o <span class="code-keyword">ON</span> u.user_id <span class="code-op">=</span> o.user_id
-INNER <span class="code-keyword">JOIN</span> order_items oi <span class="code-keyword">ON</span> o.order_id <span class="code-op">=</span> oi.order_id
-INNER <span class="code-keyword">JOIN</span> products p <span class="code-keyword">ON</span> oi.product_id <span class="code-op">=</span> p.product_id
-INNER <span class="code-keyword">JOIN</span> categories c <span class="code-keyword">ON</span> p.category_id <span class="code-op">=</span> c.category_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>users</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 4: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> e.first_name, d.department_name, e.salary
-<span class="code-keyword">FROM</span> employees e
-INNER <span class="code-keyword">JOIN</span> departments d <span class="code-keyword">ON</span> e.department_id <span class="code-op">=</span> d.department_id
-<span class="code-keyword">WHERE</span> e.salary <span class="code-op">&gt;=</span> <span class="code-num">80000.00</span>
-ORDER BY e.salary <span class="code-keyword">DESC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>employees</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
+
+<!-- Core Concepts & Engine Mechanics -->
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p><code>INNER JOIN</code> is the default and most widely utilized join type in SQL. It evaluates the join predicate declared in the <code>ON</code> clause and returns only the rows where matching values exist in <strong>both</strong> the left and right tables.</p>
-<ul>
-<li><strong>Strict Intersection:</strong> Non-matching rows from either the left or right table are completely excluded from the result set.</li>
-<li><strong>Symmetric Invariance:</strong> <code>A INNER JOIN B</code> is semantically identical to <code>B INNER JOIN A</code>; the optimizer chooses the driving table based on statistics.</li>
-<li><strong>Index Seek Performance:</strong> When the join column in the right table has a primary or foreign key index, the database performs index seeks in O(log N) time.</li>
-<li><strong>Implicit Syntax Deprecation:</strong> Avoid legacy comma-separated joins (<code>FROM A, B WHERE A.id = B.id</code>); explicit <code>INNER JOIN ... ON</code> is ANSI standard and less error-prone.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
-<thead>
-<tr>
-<th>Join Condition</th>
-<th>Syntax Pattern</th>
-<th>Left Match Requirement</th>
-<th>Right Match Requirement</th>
-<th>Index Behavior</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Single Key Equality</td>
-<td><code>ON a.id = b.id</code></td>
-<td>Must match b.id</td>
-<td>Must match a.id</td>
-<td>Indexed: Fast Nested Loop / Hash Join</td>
-</tr>
-<tr>
-<td>Composite Key Equality</td>
-<td><code>ON a.k1 = b.k1 AND a.k2 = b.k2</code></td>
-<td>Both keys must match</td>
-<td>Both keys must match</td>
-<td>Utilizes composite multi-column index</td>
-</tr>
-<tr>
-<td>Range / Inequality Join</td>
-<td><code>ON a.val BETWEEN b.low AND b.high</code></td>
-<td>Must fall in range</td>
-<td>Range must bracket value</td>
-<td>Index range scan or nested loops</td>
-</tr>
-<tr>
-<td>Implicit Comma Join</td>
-<td><code>FROM a, b WHERE a.id = b.id</code></td>
-<td>Identical to INNER JOIN</td>
-<td>Identical to INNER JOIN</td>
-<td>Deprecated; prone to accidental cross joins</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3>Why Explicit INNER JOIN ... ON Replaced the Comma Syntax</h3>
-<p>Decades ago, developers wrote joins using commas: <code>SELECT * FROM customers c, orders o WHERE c.id = o.cust_id</code>:</p>
-<ul>
-<li><strong>The Accidental Cartesian Threat:</strong> If a developer forgets the WHERE clause in comma syntax, the query silently becomes a massive CROSS JOIN, freezing the database.</li>
-<li><strong>Logical Separation:</strong> Explicit ANSI syntax separates the relational connection rules (in the <code>ON</code> clause) from the row filtering rules (in the <code>WHERE</code> clause).</li>
-<li><strong>Optimizer Portability:</strong> Explicit joins adhere strictly to SQL-92 standards and ensure optimal execution plan choices across PostgreSQL, MySQL, and SQL Server.</li>
-</ul>
-<h2>Real-World Practical Scenario</h2>
-<p><strong>Hospital Surgical Department &amp; Physician Procedure Scheduling:</strong> Correlate hospital patient surgical bookings with assigned board-certified surgeons and surgical theater suites.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset:
-   surgeons: (doc_id, doctor_name, specialty)
-   surgeries: (surgery_id, patient_name, doc_id, theater_room)
-   Surgeon 10: Dr. House (Diagnostic), Surgeon 20: Dr. Grey (General), Surgeon 30: Dr. Strange (Neuro)
-   Surgeries: 
-   #1: Alice with Doc 20
-   #2: Bob with Doc 30
-   #3: Charlie with Doc 20
-   #4: David with Doc 99 (Unassigned / visiting physician)
-   ======================================================== */</span></code></pre>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 1: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    s.surgery_id,
-    s.patient_name,
-    doc.doctor_name,
-    doc.specialty,
-    s.theater_room
-<span class="code-keyword">FROM</span> surgeries s
-INNER <span class="code-keyword">JOIN</span> surgeons doc <span class="code-keyword">ON</span> s.doc_id <span class="code-op">=</span> doc.doc_id;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>surgeries</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    s.patient_name,
-    doc.doctor_name,
-    s.theater_room
-<span class="code-keyword">FROM</span> surgeries s
-INNER <span class="code-keyword">JOIN</span> surgeons doc <span class="code-keyword">ON</span> s.doc_id <span class="code-op">=</span> doc.doc_id
-<span class="code-keyword">WHERE</span> doc.specialty <span class="code-op">=</span> <span class="code-string">'General'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>surgeries</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 3: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> 
-    doc.doctor_name,
-    <span class="code-func">COUNT</span>(s.surgery_id) <span class="code-keyword">AS</span> procedures_scheduled
-<span class="code-keyword">FROM</span> surgeons doc
-INNER <span class="code-keyword">JOIN</span> surgeries s <span class="code-keyword">ON</span> doc.doc_id <span class="code-op">=</span> s.doc_id
-GROUP BY doc.doctor_name;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>surgeons</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Multi-Table Relational Join</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> s.surgery_id, s.patient_name, doc.doctor_name
-<span class="code-keyword">FROM</span> surgeries s
-INNER <span class="code-keyword">JOIN</span> surgeons doc <span class="code-keyword">ON</span> s.doc_id <span class="code-op">=</span> doc.doc_id
-<span class="code-keyword">WHERE</span> s.theater_room <span class="code-op">=</span> <span class="code-string">'Suite-1'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Performs a relational join on <code>surgeries</code> to combine matching rows across primary and foreign keys. Click <strong>Try in Editor</strong> to run and inspect the combined result set.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>INNER JOIN extracts strictly matching records where common relationship keys intersect across two tables, guaranteeing referential correlation across production queries.</p>
+<p>The <code>INNER JOIN</code> represents the foundational intersection operator of relational algebra.</p>
+
+<h3>Execution Optimization &amp; Best Practices</h3>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Strict Intersection:</strong> Returns rows only when the join condition evaluates to TRUE for both tables; non-matching rows are omitted.</span>
+<span><strong>Explicit ANSI Syntax:</strong> Always write explicit <code>INNER JOIN ... ON</code> rather than legacy comma-separated WHERE joins to prevent accidental Cartesian cross-products.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Always Use Explicit ON:</strong> Use explicit INNER JOIN ... ON syntax rather than legacy comma-separated WHERE joins.</span>
+<span><strong>Primary &amp; Foreign Key Indexing:</strong> Ensure foreign keys (such as <code>customer_id</code> and <code>product_id</code>) are indexed so the database engine performs high-speed index seeks.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Symmetric Property:</strong> A INNER JOIN B is semantically equivalent to B INNER JOIN A; table ordering does not change the result set.</span>
+<span><strong>Predicate Separation:</strong> Put relational linkage conditions in the <code>ON</code> clause and data filtering conditions in the <code>WHERE</code> clause.</span>
+</li>
+</ul>
+</div>
+
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>INNER JOIN returns strictly matching records where keys intersect across both tables, guaranteeing clean relational correlation across transactional data.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Intersection Semantics:</strong> Discards unmatched rows from both tables, ensuring only valid relational pairs are returned.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Index Matching:</strong> Index foreign keys to enable database optimizers to execute high-speed Nested Loop or Hash joins.</span>
-</li>
-<li>
-<i class="fas fa-check-circle"></i>
-<span><strong>Chaining Joins:</strong> Multiple tables can be joined consecutively to build complex relational views across normalized schemas.</span>
+<span><strong>Next Chapter:</strong> Learn how to retain unmatched left-table records in <a href="left-join.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">LEFT JOIN (Outer Join) →</a></span>
 </li>
 </ul>
 </div>

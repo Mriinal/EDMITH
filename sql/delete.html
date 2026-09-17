@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Module 1: The DELETE Statement - Master SQL with intuitive real-world analogies, syntax grammar, and interactive query terminals on EDMITH." name="description"/>
+<meta content="Module 1: The DELETE Statement - Master targeted record removal, conditional purge operations, and DELETE vs TRUNCATE vs DROP comparisons on EDMITH." name="description"/>
 <title>The DELETE Statement - EDMITH</title>
 <!-- Prevent theme flicker before paint -->
 <script>
@@ -66,27 +66,26 @@
 <li><a href="priority-rule.html"><i class="fas fa-list-ol"></i> The Priority Rule</a></li>
 <li><a href="syntax.html"><i class="fas fa-terminal"></i> SQL Syntax &amp; Statement Grammar</a></li>
 <li><a href="select.html"><i class="fas fa-search"></i> The SELECT Statement</a></li>
+<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
 <li><a href="select-distinct.html"><i class="fas fa-filter"></i> SELECT DISTINCT (Deduplication)</a></li>
 <li><a href="where.html"><i class="fas fa-sliders-h"></i> The WHERE Clause</a></li>
-<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="and.html"><i class="fas fa-plus"></i> The AND Operator</a></li>
 <li><a href="or.html"><i class="fas fa-random"></i> The OR Operator</a></li>
 <li><a href="not.html"><i class="fas fa-ban"></i> The NOT Operator</a></li>
-<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
+<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
+<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
 <li><a href="null-values.html"><i class="fas fa-question-circle"></i> NULL Values &amp; Three-Valued Logic</a></li>
-<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
-<li class="active"><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
+<li><a href="order-by.html"><i class="fas fa-sort-amount-down"></i> The ORDER BY Clause</a></li>
 <li><a href="select-top.html"><i class="fas fa-stream"></i> SELECT TOP, LIMIT &amp; Pagination</a></li>
 <li><a href="aggregate-functions.html"><i class="fas fa-calculator"></i> SQL Aggregate Functions Overview</a></li>
-<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
-<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
 <li><a href="count.html"><i class="fas fa-hashtag"></i> The COUNT() Function</a></li>
 <li><a href="sum.html"><i class="fas fa-coins"></i> The SUM() Function</a></li>
 <li><a href="avg.html"><i class="fas fa-divide"></i> The AVG() Function</a></li>
-<li><a href="like.html"><i class="fas fa-asterisk"></i> The LIKE Operator</a></li>
-<li><a href="in.html"><i class="fas fa-sign-in-alt"></i> The IN Operator</a></li>
-<li><a href="between.html"><i class="fas fa-arrows-alt-h"></i> The BETWEEN Operator</a></li>
-<li><a href="aliases.html"><i class="fas fa-tag"></i> SQL Aliases (The AS Keyword)</a></li>
+<li><a href="min.html"><i class="fas fa-arrow-down"></i> The MIN() Function</a></li>
+<li><a href="max.html"><i class="fas fa-arrow-up"></i> The MAX() Function</a></li>
+<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
+<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
 <li><a href="joins.html"><i class="fas fa-object-group"></i> SQL Joins Overview</a></li>
 <li><a href="inner-join.html"><i class="fas fa-link"></i> INNER JOIN</a></li>
 <li><a href="left-join.html"><i class="fas fa-arrow-left"></i> LEFT JOIN (Outer Join)</a></li>
@@ -95,17 +94,18 @@
 <li><a href="self-join.html"><i class="fas fa-sync"></i> SELF JOIN</a></li>
 <li><a href="union.html"><i class="fas fa-layer-group"></i> The UNION Operator</a></li>
 <li><a href="union-all.html"><i class="fas fa-clone"></i> The UNION ALL Operator</a></li>
-<li><a href="group-by.html"><i class="fas fa-boxes"></i> The GROUP BY Statement</a></li>
-<li><a href="having.html"><i class="fas fa-filter"></i> The HAVING Clause</a></li>
+<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
+<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
 <li><a href="exists.html"><i class="fas fa-eye"></i> The EXISTS Operator</a></li>
 <li><a href="any.html"><i class="fas fa-check-double"></i> The ANY Operator</a></li>
 <li><a href="all.html"><i class="fas fa-check-circle"></i> The ALL Operator</a></li>
+<li><a href="insert-into.html"><i class="fas fa-plus-circle"></i> The INSERT INTO Statement</a></li>
+<li><a href="update.html"><i class="fas fa-edit"></i> The UPDATE Statement</a></li>
+<li class="active"><a href="delete.html"><i class="fas fa-trash-alt"></i> The DELETE Statement</a></li>
 <li><a href="select-into.html"><i class="fas fa-copy"></i> The SELECT INTO Statement</a></li>
 <li><a href="insert-into-select.html"><i class="fas fa-file-import"></i> The INSERT INTO SELECT Statement</a></li>
-<li><a href="case.html"><i class="fas fa-code-branch"></i> The CASE Expression</a></li>
-<li><a href="null-functions.html"><i class="fas fa-shield-alt"></i> SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 <li><a href="comments.html"><i class="fas fa-comment-dots"></i> SQL Comments</a></li>
+<li><a href="stored-procedures.html"><i class="fas fa-cogs"></i> Stored Procedures</a></li>
 </ul>
 </div>
 </div>
@@ -162,20 +162,18 @@
 <div class="visual-concept-card" style="align-items: flex-start;">
 <div class="concept-icon"><i class="fas fa-file-excel"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Archival Paper Shredder Analogy</h4>
-<p>Picture a corporate compliance department purging expired audit documents from physical filing cabinets:</p>
-<ul style="margin-top: 8px; margin-bottom: 8px; padding-left: 20px; line-height: 1.7;">
-<li><strong>1. Selective Document Purge::</strong> The archivist pulls files specifically stamped 'Expired Prior to 2020' (WHERE expiration_year &lt; 2020) and feeds them into the shredder.</li>
-<li><strong>2. Cabinet Structure Remains::</strong> The filing cabinet, drawer dividers, and folder labels remain completely intact; only the paper contents inside are removed.</li>
-<li><strong>3. Reversible Trash Bin (Transactions)::</strong> If the archivist makes a mistake, items in the shredding staging bin can be pulled back out before the final dumpster collection (ROLLBACK).</li>
-<li><strong>4. The Catastrophe of No Filter::</strong> Feeding the entire drawer into the shredder without checking tags permanently destroys every document in the company!</li>
-</ul>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Archival Document Purge Analogy</h4>
+<p>Picture an enterprise compliance department purging obsolete audit files from physical filing cabinets:</p>
+<p style="margin-top: 8px !important;"><strong>1. Selective Document Purge:</strong> The archivist pulls records specifically stamped with obsolete markers (<code>WHERE expiration_year &lt; 2020</code>) and routes them to the secure shredder.</p>
+<p style="margin-top: 8px !important;"><strong>2. Cabinet Structure Remains:</strong> The filing cabinet, drawer dividers, folder schemas, and security locks remain completely intact; only the specific paper records inside are removed.</p>
+<p style="margin-top: 8px !important;"><strong>3. Reversible Trash Bin (Transactions):</strong> If the archivist makes a mistake, items in the shredding staging bin can be pulled back out before final disposal (ROLLBACK).</p>
+<p style="margin-top: 8px !important;"><strong>4. The Catastrophe of No Filter:</strong> Feeding the entire drawer into the shredder without inspecting labels permanently destroys every critical record in the company!</p>
 <p style="margin-top: 8px !important;">The DELETE statement removes specific records from a table while preserving table structure, constraints, and indexes; always use a precise WHERE clause.</p>
 </div>
 </div>
 <h2>Syntax &amp; Statement Grammar</h2>
 <p>The standard SQL syntax and pattern rules for <strong>The DELETE Statement</strong>:</p>
-<!-- Code Terminal (Obsidian Purple Theme) -->
+<!-- Pure Grammar Terminal: Copy Button Only -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -183,21 +181,48 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Record Deletion</span>
+<span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> user_sessions
-<span class="code-keyword">WHERE</span> session_id <span class="code-op">=</span> <span class="code-string">'sess_9921_x'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>user_sessions</code> using the condition <code>session_id = 'sess_9921_x'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-comment">-- 1. Targeted Single-Record Deletion</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> primary_key_column <span class="code-op">=</span> target_id;
+
+<span class="code-comment">-- 2. Multi-Record Conditional Purge</span>
+<span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> table_name
+<span class="code-keyword">WHERE</span> filter_condition;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-layer-group"></i>
+<h4>DELETE Blueprint Breakdown</h4>
 </div>
+<p>Core rules and architectural mechanics governing record purging and table cleanup in relational engines:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-database"></i>
+<div><strong>The FROM Clause:</strong> Specifies the target table from which records will be permanently removed.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div><strong>The Mandatory WHERE Clause:</strong> Omitting the <code>WHERE</code> clause wipes every single record in the entire table. In production systems, always test your predicate with <code>SELECT</code> first.</div>
+</li>
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Structure Preservation:</strong> Unlike <code>DROP TABLE</code> which deletes table definitions and indexes from disk, <code>DELETE</code> only purges row contents, leaving schemas completely intact.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Foreign Key Cascades:</strong> Deleting parent rows can trigger cascading deletes or foreign key constraint violations if child records exist in referencing tables.</div>
+</li>
+</ul>
+</div>
+<h2>Interactive Query Terminals</h2>
+<p>Explore production-grade implementations of <code>DELETE</code> running against active relational tables (<code>sells_list</code>, <code>customers</code>, and <code>product_list</code>):</p>
+<!-- Query 1: Single-Row Targeted Deletion by Primary Key -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -205,21 +230,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Record Modification</span>
+<span class="terminal-title">Query 1: Targeted Primary Key Transaction Voiding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> shopping_carts
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'ABANDONED'</span> <span class="code-keyword">AND</span> last_updated <span class="code-op">&lt;</span> <span class="code-string">'2025-01-01'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>shopping_carts</code> using the condition <code>status = 'ABANDONED' AND last_updated &lt; '2025-01-01'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> sale_id <span class="code-op">=</span> <span class="code-num">60</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Targeted Transaction Voiding Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Purges a specific test transaction record (sale ID 60) from <code>sells_list</code> using unique primary key matching.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Guarantees Surgical:</strong> Guarantees surgical precision by targeting only one row without risking adjacent sales records.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Returns An:</strong> Returns an affected row count of <code>1</code>, confirming clean removal.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 2: Conditional Range Deletion -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -227,21 +273,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Discrete Value Set Matching</span>
+<span class="terminal-title">Query 2: Sandbox Testing Account Cleanup Range</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> order_items
-<span class="code-keyword">WHERE</span> order_id <span class="code-keyword">IN</span> (<span class="code-keyword">SELECT</span> order_id <span class="code-keyword">FROM</span> cancelled_orders <span class="code-keyword">WHERE</span> cancel_reason <span class="code-op">=</span> <span class="code-string">'FRAUD'</span>);</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>order_items</code> using the condition <code>order_id IN (SELECT order_id FROM cancelled_orders WHERE cancel_reason = 'FRAUD')</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> customer_id &gt; <span class="code-num">600</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Sandbox Account Cleanup Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-user-check"></i>
+<div>Purges staging test accounts whose IDs exceed 600 from the <code>customers</code> directory.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Removes 12 transient records simultaneously in a single atomic transaction.</div>
+</li>
+<li>
+<i class="fas fa-user-check"></i>
+<div>Preserves all genuine customer accounts below ID 601.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 3: Subquery-Driven Deletion -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -249,20 +316,47 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Query 3: Subquery-Driven Order Invalidation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code>BEGIN TRANSACTION;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>
+  <span class="code-keyword">AND</span> product_id <span class="code-keyword">IN</span> (
+      <span class="code-keyword">SELECT</span> product_id 
+      <span class="code-keyword">FROM</span> product_list 
+      <span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Accessories'</span>
+  );</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Subquery-Driven Invalidation Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Identifies And:</strong> Identifies and purges pending orders associated specifically with accessory items.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Uses A:</strong> Uses a subquery to look up relevant product IDs dynamically from <code>product_list</code>.</div>
+</li>
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div>Cleans up 2 outstanding pending orders without touching settled paid transactions.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
+<!-- Query 4: Defunct Inventory Catalog Cleanup -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -270,147 +364,100 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 5: Record Deletion</span>
+<span class="terminal-title">Query 4: Deprecated Inventory Purge</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> temporary_import_logs <span class="code-keyword">WHERE</span> imported_at <span class="code-op">&lt;</span> CURRENT_DATE <span class="code-op">-</span> <span class="code-num">30</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>temporary_import_logs</code> using the condition <code>imported_at &lt; CURRENT_DATE - 30</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> product_list
+<span class="code-keyword">WHERE</span> price &gt; <span class="code-num">1000.00</span>
+  <span class="code-keyword">AND</span> stock_quantity &lt; <span class="code-num">20</span>;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Deprecated Inventory Purge Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 6: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code>COMMIT;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Query 7: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code>if <span class="code-func">count</span> <span class="code-keyword">is</span> unexpected;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-columns"></i>
+<div><strong>Applies Compound:</strong> Applies compound filtering criteria (<code>AND</code>) across pricing and inventory columns.</div>
+</li>
+<li>
+<i class="fas fa-filter"></i>
+<div><strong>Demonstrates Defensive:</strong> Demonstrates defensive conditional filtering against catalog data before applying bulk removals.</div>
+</li>
+<li>
+<i class="fas fa-calculator"></i>
+<div><strong>Returns Affected:</strong> Returns affected row count reflecting exact inventory units removed.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <h2>Core Concepts &amp; Engine Mechanics</h2>
-<p>The <code>DELETE</code> statement is a Data Manipulation Language (DML) command that removes one or more existing rows from a table based on a filtering predicate. If no <code>WHERE</code> clause is supplied, all rows in the table are deleted.</p>
-<ul>
-<li><strong>Transactional Logging:</strong> DELETE logs every deleted row in the database Write-Ahead Log (WAL) or transaction log, allowing full rollback via <code>ROLLBACK</code>.</li>
-<li><strong>DELETE vs TRUNCATE:</strong> While DELETE removes rows transactionally and fires DELETE triggers, <code>TRUNCATE TABLE</code> is a DDL operation that drops storage pages instantly without row-level logging.</li>
-<li><strong>Foreign Key Cascades:</strong> If foreign key constraints have <code>ON DELETE CASCADE</code> configured, deleting a parent row automatically purges all child records.</li>
-<li><strong>Space Reclamation:</strong> Deleted table rows leave empty space in storage pages; databases like PostgreSQL require <code>VACUUM</code> to reclaim disk space.</li>
-</ul>
-<h3>Detailed Technical Breakdown &amp; Syntax Comparison</h3>
+<p>Understanding the architectural distinction between <code>DELETE</code>, <code>TRUNCATE</code>, and <code>DROP</code> is one of the most critical skills for production database engineers.</p>
 <div class="table-responsive">
 <table class="compare-table">
 <thead>
 <tr>
-<th>Command / Clause</th>
-<th>Syntax Pattern</th>
+<th>Operation</th>
+<th>SQL Language Category</th>
+<th>Supports WHERE Clause</th>
 <th>Transaction Logging</th>
-<th>Fires Triggers?</th>
-<th>Storage Reclamation</th>
+<th>Impact on Schema Structure</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DELETE with WHERE</td>
-<td><code>DELETE FROM t WHERE id = 1</code></td>
-<td>Row-by-row WAL logging</td>
-<td>Yes (BEFORE/AFTER DELETE)</td>
-<td>Marks row dead; reclaimed later</td>
+<td><code>DELETE</code></td>
+<td>DML (Data Manipulation)</td>
+<td>Yes (Selective)</td>
+<td>Full row-by-row logging</td>
+<td>Preserved completely</td>
 </tr>
 <tr>
-<td>DELETE without WHERE</td>
-<td><code>DELETE FROM t</code></td>
-<td>Logs every individual row deletion</td>
-<td>Yes (Fires for every row)</td>
-<td>Slow for large tables; full WAL bloat</td>
+<td><code>TRUNCATE</code></td>
+<td>DDL (Data Definition)</td>
+<td>No (Entire table)</td>
+<td>Minimal page-level deallocation</td>
+<td>Preserved (resets identity seed)</td>
 </tr>
 <tr>
-<td>TRUNCATE TABLE</td>
-<td><code>TRUNCATE TABLE t</code></td>
-<td>Deallocates entire data pages</td>
-<td>No (Bypasses row triggers)</td>
-<td>Immediate storage deallocation</td>
-</tr>
-<tr>
-<td>DROP TABLE</td>
-<td><code>DROP TABLE t</code></td>
-<td>Removes table schema and catalog</td>
+<td><code>DROP TABLE</code></td>
+<td>DDL (Data Definition)</td>
 <td>No</td>
-<td>Complete physical disk release</td>
+<td>Schema metadata drop</td>
+<td><strong>Completely destroyed</strong></td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3>DELETE vs TRUNCATE: The Engineering Architectural Difference</h3>
-<p>When clearing large tables, choosing between DELETE and TRUNCATE is a critical database architectural decision:</p>
-<ul>
-<li><strong>Row-by-Row Cost:</strong> Deleting 10 million rows with <code>DELETE FROM logs;</code> writes 10 million individual delete records to disk logs, often causing disk exhaustion.</li>
-<li><strong>Deallocation Speed:</strong> <code>TRUNCATE TABLE logs;</code> instantly deallocates the table's underlying storage extent pointers, executing in milliseconds.</li>
-<li><strong>Safety Rule:</strong> Never use TRUNCATE if you need to rollback, if child tables have foreign keys pointing to this table, or if business auditing triggers must run.</li>
+<h3>Soft Deletes vs Hard Deletes in Enterprise Systems</h3>
+<p>In modern enterprise application development, permanent physical deletion (Hard Delete) is frequently replaced with Soft Deletion:</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-trash"></i>
+<span><strong>Hard Delete (Physical Removal):</strong> Running <code>DELETE FROM customers WHERE id = 5</code> removes the physical row from disk pages. Recovery requires backup restoration.</span>
+</li>
+<li>
+<i class="fas fa-archive"></i>
+<span><strong>Soft Delete (Logical Flagging):</strong> Running <code>UPDATE customers SET deleted_at = CURRENT_TIMESTAMP, is_active = FALSE WHERE id = 5</code> retains the audit history while filtering the record from active queries.</span>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Regulatory Compliance:</strong> Financial, healthcare, and audit-sensitive databases almost always enforce soft deletes to comply with legal record retention mandates.</span>
+</li>
 </ul>
+</div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>GDPR Compliance &amp; Account Deletion Pipeline:</strong> Safely purge customer personal identification data, expired guest sessions, and unverified accounts in accordance with data privacy regulations.</p>
-<!-- Scenario Code Terminal -->
-<div class="code-terminal" style="margin-bottom: 1.25rem;">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Sample Schema Reference • Visual Dataset</span>
-<div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy Schema Reference"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-comment">/* ========================================================
-   Sample Dataset: customer_registrations
-   user_id | email               | verified | last_active | status
-   --------+---------------------+----------+-------------+---------
-   601     | privacy_req@eu.com  | TRUE     | 2025-10-12  | PENDING_DELETE
-   602     | spammer_99@temp.org | FALSE    | 2024-01-01  | UNVERIFIED
-   603     | regular_user@web.com| TRUE     | 2026-03-01  | ACTIVE
-   604     | old_guest@test.net  | FALSE    | 2023-05-15  | UNVERIFIED
-   605     | vip_client@acme.com | TRUE     | 2026-03-04  | ACTIVE
-   ======================================================== */</span></code></pre>
-</div>
+<p><strong>Stale Unpaid Order Purge Pipeline:</strong> Identify and purge stale unfulfilled orders from <code>sells_list</code> older than 30 days and inspect remaining pending transactions.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -418,41 +465,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Record Deletion</span>
+<span class="terminal-title">Production Query 1: Stale Order Invalidation Purge</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
-<span class="code-keyword">WHERE</span> user_id <span class="code-op">=</span> <span class="code-num">601</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'PENDING_DELETE'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_registrations</code> using the condition <code>user_id = 601 AND status = 'PENDING_DELETE'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>
+  <span class="code-keyword">AND</span> sale_date &lt; <span class="code-string">'2026-02-01'</span>;</code></pre>
 </div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-code"></i>
+<h4>Stale Order Invalidation Breakdown</h4>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 2: Record Deletion</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
-<span class="code-keyword">WHERE</span> verified <span class="code-op">=</span> FALSE <span class="code-keyword">AND</span> last_active <span class="code-op">&lt;</span> <span class="code-string">'2025-01-01'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_registrations</code> using the condition <code>verified = FALSE AND last_active &lt; '2025-01-01'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Purges stale abandoned checkout sessions recorded before February 1, 2026.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Leaves all recent pending transactions intact for standard payment gateway retries.</div>
+</li>
+<li>
+<i class="fas fa-database"></i>
+<div>Removes 3 expired records, reducing database table bloat and optimizing query cache efficiency.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
 <div class="code-terminal">
@@ -462,110 +508,75 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 3: Data Projection &amp; Extraction</span>
+<span class="terminal-title">Production Query 2: Verify Remaining Pending Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code>BEGIN TRANSACTION;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
+<pre><code><span class="code-keyword">SELECT</span> COUNT(*) <span class="code-keyword">AS</span> remaining_pending_transactions
+<span class="code-keyword">FROM</span> sells_list
+<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>;</code></pre>
+</div>
+<!-- Separated Code Explanation Area -->
+<div class="code-explanation-area">
+<div class="explanation-header">
+<i class="fas fa-users"></i>
+<h4>Pending Accounts Verification Breakdown</h4>
+</div>
+<p>Auditing the execution logic and relational mechanics of this query:</p>
+<ul class="explanation-points">
+<li>
+<i class="fas fa-sort-amount-down"></i>
+<div><strong>Verifies That:</strong> Verifies that exactly 4 pending orders remain in the active order fulfillment pipeline.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div>Confirms that the expiration date cutoff operated accurately without collateral damage.</div>
+</li>
+<li>
+<i class="fas fa-check-circle"></i>
+<div><strong>Demonstrates Verification:</strong> Demonstrates verification hygiene after executing state-altering DML statements.</div>
+</li>
+</ul>
+<div class="explanation-tip">
+<i class="fas fa-lightbulb"></i>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 4: Record Deletion</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customer_registrations
-<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'UNVERIFIED'</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Filters rows in <code>customer_registrations</code> using the condition <code>status = 'UNVERIFIED'</code>. Only records satisfying this predicate are retrieved. Click <strong>Try in Editor</strong> to test this query.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 5: Data Projection &amp; Extraction</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code>COMMIT;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Executes a projection query against <code>the enterprise database</code>. Click <strong>Try in Editor</strong> to run this query and explore the live 612-row dataset.
-        </div>
-</div>
-</div>
-<div class="code-terminal">
-<div class="terminal-header">
-<div class="terminal-dots">
-<span class="dot red"></span>
-<span class="dot yellow"></span>
-<span class="dot green"></span>
-</div>
-<span class="terminal-title">Production Query 6: Sorted Sequence Retrieval</span>
-<div class="terminal-header-actions">
-<button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
-</div>
-</div>
-<pre><code><span class="code-keyword">SELECT</span> user_id, email, status
-<span class="code-keyword">FROM</span> customer_registrations
-ORDER BY user_id <span class="code-keyword">ASC</span>;</code></pre>
-<div class="code-explanation-note">
-<i class="fas fa-info-circle"></i>
-<div class="note-text">
-<strong>How this query works:</strong> Queries <code>customer_registrations</code> and sorts the resulting records in the specified order. Click <strong>Try in Editor</strong> to inspect the ordered output in the SQL Workbench.
-        </div>
-</div>
-</div>
-<!-- Chapter Summary -->
-<h2>Chapter Summary</h2>
-<p>The DELETE statement removes specific records from persistent storage while maintaining table schema definitions and referential integrity constraints.</p>
+<h2>Best Practices &amp; Production Guidelines</h2>
 <div class="summary-box">
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Mandatory WHERE Filter:</strong> Always verify your WHERE clause before executing DELETE; an unqualified DELETE wipes all table rows.</span>
+<span><strong>Test with SELECT First:</strong> Always verify candidate rows with <code>SELECT * FROM table WHERE conditions</code> before executing DELETE.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Transactional Rollback:</strong> DELETE is fully transactional; you can rollback accidental deletions if wrapped inside an active transaction block.</span>
+<span><strong>Chunk Large Deletions:</strong> In high-volume production tables, delete in small batches (e.g. <code>LIMIT 5000</code> in a loop) to prevent table locking and transaction log exhaustion.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>DELETE vs TRUNCATE:</strong> Use DELETE for filtered, trigger-safe deletions; use TRUNCATE for fast, unlogged wipes of entire tables.</span>
+<span><strong>Next DML Operator:</strong> Learn how to clone tables and create backup snapshots with <a href="select-into.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The SELECT INTO Statement</a>.</span>
+</li>
+</ul>
+</div>
+<!-- Chapter Summary -->
+<h2>Chapter Summary</h2>
+<p>The DELETE statement removes specific records from relational tables based on filtering predicates while preserving schemas, indexes, and table constraints.</p>
+<div class="summary-box">
+<ul class="summary-list">
+<li>
+<i class="fas fa-check-circle"></i>
+<span><strong>Targeted Purging:</strong> Always pair with a verified WHERE clause to avoid wiping entire tables.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Foreign Key Cascades:</strong> Be mindful of ON DELETE CASCADE rules that may delete associated child records in foreign tables.</span>
+<span><strong>Schema Preserved:</strong> Removes row data while keeping table definitions and constraints intact.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Dead Tuple Maintenance:</strong> High-volume DELETE operations require database maintenance (VACUUM / OPTIMIZE) to reclaim physical disk space.</span>
+<span><strong>Next Chapter:</strong> Clone tables and capture data snapshots with <a href="select-into.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">The SELECT INTO Statement →</a></span>
 </li>
 </ul>
 </div>
@@ -583,8 +594,8 @@ ORDER BY user_id <span class="code-keyword">ASC</span>;</code></pre>
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="select-top.html" title="Next: SELECT TOP, LIMIT &amp; Pagination">
-<span class="btn-text">Next: SELECT TOP, LIMIT &amp; Pagination</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="select-into.html" title="Next: The SELECT INTO Statement">
+<span class="btn-text">Next: The SELECT INTO Statement</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>
