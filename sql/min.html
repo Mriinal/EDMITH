@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -218,11 +217,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Entry-Level Pricing on product_list -->
-<h2>2. Catalog Economics: Lowest Price &amp; Minimum Warehouse Stock</h2>
-<p>Identify the lowest entry price and minimum inventory volume on the <code>product_list</code> table:</p>
+<!-- Section 2: Account Balances on accounts -->
+<h2>2. Liquidity Thresholds: Minimum Account Balance</h2>
+<p>Identify the lowest liquid reserve balance across active portfolios on the <code>accounts</code> ledger:</p>
 
-<!-- Product MIN Terminal (Try in Editor + Copy) -->
+<!-- Account MIN Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,39 +229,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Catalog Minimum Price &amp; Stock Levels</span>
+<span class="terminal-title">Query: Minimum Active Account Balance</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Discover the most affordable catalog item and lowest warehouse inventory count</span>
+<pre><code><span class="code-comment">-- Discover the lowest liquidity balance held in active deposit accounts</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MIN</span>(price)          <span class="code-keyword">AS</span> lowest_price,
-    <span class="code-func">MIN</span>(stock_quantity) <span class="code-keyword">AS</span> lowest_stock
-<span class="code-keyword">FROM</span> product_list;</code></pre>
+    <span class="code-func">MIN</span>(balance) <span class="code-keyword">AS</span> lowest_account_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product MIN -->
+<!-- Dedicated Explanation Area for Account MIN -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-tags"></i>
-<h4>Catalog Minimums Breakdown</h4>
+<i class="fas fa-wallet"></i>
+<h4>Liquidity Floor Breakdown</h4>
 </div>
-<p>Evaluating commercial entry thresholds:</p>
+<p>Evaluating minimum account reserves:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-dollar-sign"></i>
-<div><strong>Lowest Price Point ($14.99):</strong> Pinpoints the lowest price across all 25 merchandise items (Classic Cotton T-Shirt).</div>
+<i class="fas fa-coins"></i>
+<div><strong>Lowest Balance ($3,023.00):</strong> Pinpoints the lowest positive balance maintained across active bank accounts.</div>
 </li>
 <li>
-<i class="fas fa-warehouse"></i>
-<div><strong>Lowest Stock (25 Units):</strong> Identifies the tightest stock holding in the warehouse (Ultra-Wide 4K Monitor).</div>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Cushion Surveillance:</strong> Helps treasury operations track accounts nearing minimum liquidity thresholds.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -357,11 +356,11 @@
 </ul>
 </div>
 
-<!-- Section 5: Smallest Paid Order on sells_list -->
-<h2>5. Transactional Minimums: Smallest Paid Checkout Order</h2>
-<p>Find the smallest settled purchase value on the <code>sells_list</code> table:</p>
+<!-- Section 5: Smallest Paid Transaction on transactions -->
+<h2>5. Transactional Minimums: Smallest Cleared Transaction</h2>
+<p>Find the smallest settled transaction volume on the <code>transactions</code> ledger:</p>
 
-<!-- Sales Minimum Order Terminal (Try in Editor + Copy) -->
+<!-- Transaction Minimum Order Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -369,44 +368,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Smallest Settled Customer Purchase</span>
+<span class="terminal-title">Query: Smallest Settled Transaction Amount</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find the smallest transaction value among settled customer orders</span>
+<pre><code><span class="code-comment">-- Find the smallest transaction value among completed ledger events</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MIN</span>(total_price) <span class="code-keyword">AS</span> smallest_sale_value,
-    <span class="code-func">MIN</span>(quantity)    <span class="code-keyword">AS</span> min_units_sold
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+    <span class="code-func">MIN</span>(amount) <span class="code-keyword">AS</span> smallest_transaction_amount
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales Minimum -->
+<!-- Dedicated Explanation Area for Transaction Minimum -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
 <h4>Transaction Floor Breakdown</h4>
 </div>
-<p>Auditing minimum checkout volume:</p>
+<p>Auditing minimum settlement volume:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-shopping-bag"></i>
-<div><strong>Smallest Transaction ($34.99):</strong> Identifies minimum ticket revenue among settled customer purchases.</div>
+<i class="fas fa-money-bill-wave"></i>
+<div><strong>Smallest Transaction ($15.00):</strong> Identifies minimum ticket settlement among verified debits and credits.</div>
 </li>
 <li>
-<i class="fas fa-box"></i>
-<div><strong>Unit Floor (1 Unit):</strong> Confirms single-unit purchase fulfillment.</div>
+<i class="fas fa-check-circle"></i>
+<div><strong>Status Verification:</strong> Restricts the scan to <code>Completed</code> records, ignoring pending or voided entries.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 6: Electronics Category Minimum on product_list -->
-<h2>6. Sector Minimums: Electronics Price Floor</h2>
-<p>Isolate the entry price and stock floor strictly within the Electronics department on <code>product_list</code>:</p>
+<!-- Section 6: Loan Portfolio Minimums on loans -->
+<h2>6. Credit Portfolio: Minimum Loan Amount &amp; Interest Floor</h2>
+<p>Isolate the entry loan principal and the lowest interest rate offered on active facilities in <code>loans</code>:</p>
 
-<!-- Electronics Minimum Terminal (Try in Editor + Copy) -->
+<!-- Loan Minimum Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -414,31 +412,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Electronics Sector Entry Price Point</span>
+<span class="terminal-title">Query: Minimum Loan Principal and Interest Rate</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find the entry price and minimum stock for Electronics hardware</span>
+<pre><code><span class="code-comment">-- Find the entry loan principal and lowest interest rate on active facilities</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MIN</span>(price)          <span class="code-keyword">AS</span> min_electronics_price,
-    <span class="code-func">MIN</span>(stock_quantity) <span class="code-keyword">AS</span> min_electronics_stock
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
+    <span class="code-func">MIN</span>(amount)        <span class="code-keyword">AS</span> min_loan_principal,
+    <span class="code-func">MIN</span>(interest_rate) <span class="code-keyword">AS</span> lowest_interest_rate
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Electronics Minimum -->
+<!-- Dedicated Explanation Area for Loan Minimum -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-mouse"></i>
-<h4>Electronics Entry Floor Breakdown</h4>
+<i class="fas fa-hand-holding-usd"></i>
+<h4>Loan Floor Breakdown</h4>
 </div>
-<p>Evaluating hardware entry thresholds:</p>
+<p>Evaluating credit facility minimums:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tag"></i>
-<div><strong>$49.99 Hardware Entry:</strong> Identifies the Ergonomic Wireless Mouse as the most accessible item in the computing hardware lineup.</div>
+<i class="fas fa-percentage"></i>
+<div><strong>3.75% Interest Rate Floor:</strong> Identifies the most competitive prime rate provided across active bank facilities.</div>
+</li>
+<li>
+<i class="fas fa-file-invoice-dollar"></i>
+<div><strong>$21,617.00 Entry Principal:</strong> Marks the smallest funded loan under active portfolio administration.</div>
 </li>
 </ul>
 </div>
@@ -510,8 +512,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

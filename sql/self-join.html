@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -383,11 +382,11 @@
 </ul>
 </div>
 
-<!-- Section 5: Cross-Item Comparison on product_list -->
-<h2>5. Intra-Table Comparisons: Price Spreads on product_list</h2>
-<p>Self join <code>product_list</code> to discover items within the same category where one product costs over $50 more than another:</p>
+<!-- Section 5: Cross-Item Comparison on employees -->
+<h2>5. Intra-Departmental Comparisons: Salary Spreads on employees</h2>
+<p>Self join <code>employees</code> to discover staff within the same department where one employee earns over $30,000 more than another colleague:</p>
 
-<!-- Price Spread Terminal (Try in Editor + Copy) -->
+<!-- Salary Spread Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -395,38 +394,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Intra-Category Price Spread Comparison</span>
+<span class="terminal-title">Query: Intra-Departmental Salary Spread Comparison</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Compare pricing between products sharing the exact same category</span>
+<pre><code><span class="code-comment">-- Compare compensation spreads between staff sharing the same banking division</span>
 <span class="code-keyword">SELECT</span> 
-    p1.product_name <span class="code-keyword">AS</span> premium_item,
-    p1.price        <span class="code-keyword">AS</span> premium_price,
-    p2.product_name <span class="code-keyword">AS</span> affordable_item,
-    p2.price        <span class="code-keyword">AS</span> affordable_price,
-    p1.category
-<span class="code-keyword">FROM</span> product_list p1
-<span class="code-keyword">INNER JOIN</span> product_list p2 
-    <span class="code-keyword">ON</span> p1.category <span class="code-op">=</span> p2.category 
-   <span class="code-keyword">AND</span> p1.price <span class="code-op">&gt;</span> p2.price <span class="code-op">+</span> <span class="code-num">50.00</span>
-<span class="code-keyword">WHERE</span> p1.category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
-<span class="code-keyword">ORDER BY</span> p1.price <span class="code-keyword">DESC</span>;</code></pre>
+    e1.first_name || ' ' || e1.last_name <span class="code-keyword">AS</span> senior_staff,
+    e1.salary                            <span class="code-keyword">AS</span> senior_salary,
+    e2.first_name || ' ' || e2.last_name <span class="code-keyword">AS</span> junior_staff,
+    e2.salary                            <span class="code-keyword">AS</span> junior_salary,
+    (e1.salary - e2.salary)              <span class="code-keyword">AS</span> salary_spread,
+    e1.department
+<span class="code-keyword">FROM</span> employees e1
+<span class="code-keyword">INNER JOIN</span> employees e2 
+    <span class="code-keyword">ON</span> e1.department <span class="code-op">=</span> e2.department 
+   <span class="code-keyword">AND</span> e1.salary <span class="code-op">&gt;</span> e2.salary <span class="code-op">+</span> <span class="code-num">30000.00</span>
+<span class="code-keyword">WHERE</span> e1.department <span class="code-op">=</span> <span class="code-string">'Retail Banking Operations'</span>
+<span class="code-keyword">ORDER BY</span> salary_spread <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Price Spread -->
+<!-- Dedicated Explanation Area for Salary Spread -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Price Spread Analytics Breakdown</h4>
+<h4>Salary Spread Analytics Breakdown</h4>
 </div>
-<p>Auditing product catalog pricing tiers:</p>
+<p>Auditing departmental compensation hierarchies:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Flagship vs Accessory Spreads:</strong> Highlights significant price tiers (e.g. Pro Laptop at $1,299.99 vs Wireless Headphones at $199.99 within Electronics).</div>
+<i class="fas fa-user-tie"></i>
+<div><strong>Department Head vs Staff Spreads:</strong> Identifies wide compensation spans (e.g. Head of Retail Banking Sarah Jenkins at $240,000 vs Sanjay Patel at $98,000 within Retail Banking Operations).</div>
 </li>
 </ul>
 </div>
@@ -502,8 +502,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

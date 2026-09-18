@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -224,7 +223,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>INSERT INTO SELECT</code> running against active relational tables (<code>customers</code>, <code>product_list</code>, <code>sells_list</code>, and <code>employees</code>):</p>
+<p>Explore production-grade implementations of <code>INSERT INTO SELECT</code> running against active relational tables (<code>customers</code>, <code>accounts</code>, <code>transactions</code>, and <code>employees</code>):</p>
 <!-- Query 1: VIP Loyalty Club Directory Seeding -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -233,7 +232,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: VIP Loyalty Club Directory Seeding</span>
+<span class="terminal-title">Query 1: VIP Private Banking Club Directory Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -243,27 +242,27 @@
 <span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> vip_loyalty_club (customer_id, first_name, last_name)
 <span class="code-keyword">SELECT</span> customer_id, first_name, last_name
 <span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> customer_id &lt;= <span class="code-num">10</span>;</code></pre>
+<span class="code-keyword">WHERE</span> credit_score &gt;= <span class="code-num">800</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-stream"></i>
-<h4>Loyalty Club Seeding Breakdown</h4>
+<h4>VIP Club Directory Seeding Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Establishes an explicit destination table <code>vip_loyalty_club</code> tailored for customer loyalty programs.</div>
+<div>Establishes an explicit destination table <code>vip_loyalty_club</code> tailored for private wealth client management.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Streams the foundational top 10 accounts from the 612-row <code>customers</code> directory directly into the new club roster.</div>
+<div>Streams all qualifying tier-1 credit profiles (score 800+) from the active <code>customers</code> directory directly into the new club roster.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Appends 10 verified records simultaneously without manual <code>VALUES</code> loops.</div>
+<div>Appends 19 verified patrons simultaneously without manual iterative insertion loops.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -279,37 +278,37 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Promotional Clearance Catalog Migration</span>
+<span class="terminal-title">Query 2: Prime Savings Yield Calculation &amp; Migration</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> discounted_catalog (product_id <span class="code-keyword">INT</span>, product_name <span class="code-keyword">STRING</span>, category <span class="code-keyword">STRING</span>, price <span class="code-keyword">DECIMAL</span>);
-<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> discounted_catalog (product_id, product_name, category, price)
-<span class="code-keyword">SELECT</span> product_id, product_name, category, <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.85</span>, <span class="code-num">2</span>)
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &lt; <span class="code-num">50.00</span>;</code></pre>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> prime_savings_accounts (account_id <span class="code-keyword">INT</span>, account_number <span class="code-keyword">STRING</span>, balance <span class="code-keyword">DECIMAL</span>, bonus_yield <span class="code-keyword">DECIMAL</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> prime_savings_accounts (account_id, account_number, balance, bonus_yield)
+<span class="code-keyword">SELECT</span> account_id, account_number, balance, <span class="code-func">ROUND</span>(balance <span class="code-op">*</span> <span class="code-num">0.05</span>, <span class="code-num">2</span>)
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> <span class="code-keyword">AND</span> balance &gt;= <span class="code-num">30000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Clearance Catalog Migration Breakdown</h4>
+<h4>Prime Savings Yield Migration Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Applies Inline:</strong> Applies inline arithmetic transformation (15% markdown) directly within the projected <code>SELECT</code> clause.</div>
+<div><strong>Applies Inline Yield Math:</strong> Applies inline arithmetic calculation (5% bonus compounding) directly within the projected <code>SELECT</code> clause.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
-<div>Inserts 10 qualifying budget products (&lt; $50.00) into <code>discounted_catalog</code>.</div>
+<div>Inserts 24 qualifying high-balance savings accounts (&gt;= $30,000) into <code>prime_savings_accounts</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Demonstrates Etl:</strong> Demonstrates ETL data transformation during transit without altering source pricing records.</div>
+<div><strong>Demonstrates ETL:</strong> Demonstrates ETL data transformation during transit without mutating live transactional source balances.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -325,37 +324,37 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Settled Revenue Ledger Archival</span>
+<span class="terminal-title">Query 3: Settled Transaction Ledger Historical Archival</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> settled_revenue_summary (sale_id <span class="code-keyword">INT</span>, customer_id <span class="code-keyword">INT</span>, total_price <span class="code-keyword">DECIMAL</span>, payment_status <span class="code-keyword">STRING</span>);
-<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> settled_revenue_summary (sale_id, customer_id, total_price, payment_status)
-<span class="code-keyword">SELECT</span> sale_id, customer_id, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> settled_transactions_archive (transaction_id <span class="code-keyword">INT</span>, account_id <span class="code-keyword">INT</span>, amount <span class="code-keyword">DECIMAL</span>, transaction_date <span class="code-keyword">STRING</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> settled_transactions_archive (transaction_id, account_id, amount, transaction_date)
+<span class="code-keyword">SELECT</span> transaction_id, account_id, amount, transaction_date
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-chart-line"></i>
-<h4>Revenue Ledger Archival Breakdown</h4>
+<h4>Ledger Archival Snapshot Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Migrates 37 verified paid orders from <code>sells_list</code> into a permanent financial audit table.</div>
+<div>Migrates 167 verified completed settlements from <code>transactions</code> into a dedicated historical archive table.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Filters Out:</strong> Filters out pending and disputed transactions to preserve audit purity.</div>
+<div><strong>Filters By Status:</strong> Filters out pending and failed transactions to guarantee historical audit purity.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Maintains high throughput across ledger tables during fiscal quarter-end reporting runs.</div>
+<div>Preserves high operational throughput across the main ledger table while satisfying compliance retention requirements.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -371,7 +370,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Senior Leadership Roster Pipeline</span>
+<span class="terminal-title">Query 4: Senior Leadership Compensation Roster Pipeline</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -381,7 +380,7 @@
 <span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> senior_staff_roster (emp_id, staff_name, dept, comp)
 <span class="code-keyword">SELECT</span> employee_id, first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> salary &gt;= <span class="code-num">80000.00</span>;</code></pre>
+<span class="code-keyword">WHERE</span> salary &gt;= <span class="code-num">180000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -393,15 +392,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Performs column aliasing and string concatenation:</strong> concatenates first and last name into <code>staff_name</code>.</div>
+<div><strong>Performs column aliasing and string concatenation:</strong> Concatenates first and last name into <code>staff_name</code> during projection.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Populates 9 senior managers and executives earning $80,000+ into <code>senior_staff_roster</code>.</div>
+<div>Populates 8 senior executives earning $180,000+ into the <code>senior_staff_roster</code> administrative audit table.</div>
 </li>
 <li>
 <i class="fas fa-columns"></i>
-<div><strong>Demonstrates How:</strong> Demonstrates how schema definitions between source and target do not have to match column names.</div>
+<div><strong>Demonstrates Schema Flexibility:</strong> Demonstrates how schema definitions between source and target do not have to share identical column names.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -474,7 +473,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Multi-Table Order Fulfillment Aggregation:</strong> Join customer profiles, active orders, and catalog items to seed an analytical fulfillment table, then inspect the consolidated results.</p>
+<p><strong>Multi-Table Institutional Underwriting Aggregation:</strong> Join customer profiles, underwriting loans, and regional branch records to seed an analytical underwriting pipeline table, then inspect the consolidated results.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -482,39 +481,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Multi-Table Aggregation Seeding</span>
+<span class="terminal-title">Production Query 1: Multi-Table Underwriting Risk Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> high_value_orders (sale_id <span class="code-keyword">INT</span>, customer_name <span class="code-keyword">STRING</span>, product_name <span class="code-keyword">STRING</span>, revenue <span class="code-keyword">DECIMAL</span>);
-<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> high_value_orders (sale_id, customer_name, product_name, revenue)
-<span class="code-keyword">SELECT</span> s.sale_id, c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name, p.product_name, s.total_price
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.total_price &gt;= <span class="code-num">250.00</span>;</code></pre>
+<pre><code><span class="code-keyword">CREATE</span> <span class="code-keyword">TABLE</span> executive_underwriting_summary (loan_id <span class="code-keyword">INT</span>, client_name <span class="code-keyword">STRING</span>, branch_name <span class="code-keyword">STRING</span>, loan_type <span class="code-keyword">STRING</span>, amount <span class="code-keyword">DECIMAL</span>);
+<span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> executive_underwriting_summary (loan_id, client_name, branch_name, loan_type, amount)
+<span class="code-keyword">SELECT</span> l.loan_id, (c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name) <span class="code-keyword">AS</span> client_name, b.branch_name, l.loan_type, l.amount
+<span class="code-keyword">FROM</span> loans l
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> l.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">INNER JOIN</span> branches b <span class="code-keyword">ON</span> l.branch_id <span class="code-op">=</span> b.branch_id
+<span class="code-keyword">WHERE</span> l.amount &gt;= <span class="code-num">150000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-chart-line"></i>
-<h4>Multi-Table Aggregation Seeding Breakdown</h4>
+<h4>Multi-Table Underwriting Seeding Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-columns"></i>
-<div>Creates the dedicated reporting table <code>high_value_orders</code> with clean schema definitions.</div>
+<div>Creates the dedicated reporting table <code>executive_underwriting_summary</code> with clean schema definitions.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Performs A:</strong> Performs a 3-table relational inner join combining <code>sells_list</code>, <code>customers</code>, and <code>product_list</code>.</div>
+<div><strong>Performs A 3-Way Join:</strong> Performs a 3-table relational inner join combining <code>loans</code>, <code>customers</code>, and <code>branches</code>.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Appends 22 orders exceeding $250.00 into the pre-configured analytical reporting table in a single atomic transaction.</div>
+<div>Appends 25 premier debt facilities exceeding $150,000 into the pre-configured risk audit table in a single atomic transaction.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -529,35 +528,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 2: Inspect Consolidated High-Value Orders</span>
+<span class="terminal-title">Production Query 2: Inspect Consolidated Underwriting Pipeline</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> sale_id, customer_name, product_name, revenue
-<span class="code-keyword">FROM</span> high_value_orders
-<span class="code-keyword">ORDER BY</span> revenue <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-keyword">SELECT</span> loan_id, client_name, branch_name, loan_type, amount
+<span class="code-keyword">FROM</span> executive_underwriting_summary
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-shield-alt"></i>
-<h4>Consolidated Orders Verification Breakdown</h4>
+<h4>Consolidated Underwriting Verification Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-database"></i>
-<div>Queries the newly populated table to inspect high-ticket client transactions.</div>
+<div>Queries the newly populated table to inspect high-exposure institutional underwriting commitments.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Validates that customer names, catalog product titles, and accurate transaction totals transferred cleanly.</div>
+<div>Displays premier facilities led by Elena Rostova ($459,276 Auto Loan) and Utpal Kumar ($446,935 Mortgage).</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Confirms 100% relational integrity across joined source records.</div>
+<div>Confirms 100% relational integrity across joined customer, loan, and branch source records.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -635,8 +634,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

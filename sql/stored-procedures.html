@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -202,14 +201,14 @@
 <span class="code-keyword">EXEC</span> sp_ProcessPayroll @DeptName <span class="code-op">=</span> <span class="code-string">'Engineering'</span>, @MaxSalary <span class="code-op">=</span> <span class="code-num">100000.00</span>;
 
 <span class="code-comment">-- 2. PostgreSQL / MySQL Procedural Grammar</span>
-<span class="code-keyword">CREATE</span> <span class="code-keyword">PROCEDURE</span> sp_SettleOrder(<span class="code-keyword">IN</span> p_sale_id <span class="code-keyword">INT</span>)
+<span class="code-keyword">CREATE</span> <span class="code-keyword">PROCEDURE</span> sp_SettleAccountTransfer(<span class="code-keyword">IN</span> p_transfer_id <span class="code-keyword">INT</span>)
 <span class="code-keyword">LANGUAGE</span> SQL
 <span class="code-keyword">AS</span> $$
-    <span class="code-keyword">UPDATE</span> sells_list <span class="code-keyword">SET</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">WHERE</span> sale_id <span class="code-op">=</span> p_sale_id;
+    <span class="code-keyword">UPDATE</span> transfers <span class="code-keyword">SET</span> transfer_status <span class="code-op">=</span> <span class="code-string">'Success'</span> <span class="code-keyword">WHERE</span> transfer_id <span class="code-op">=</span> p_transfer_id;
 $$;
 
 <span class="code-comment">-- Call Procedure (PostgreSQL / MySQL)</span>
-<span class="code-keyword">CALL</span> sp_SettleOrder(<span class="code-num">15</span>);</code></pre>
+<span class="code-keyword">CALL</span> sp_SettleAccountTransfer(<span class="code-num">15</span>);</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -238,7 +237,7 @@ $$;
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of procedural workflows running against active relational tables (<code>employees</code>, <code>sells_list</code>, <code>product_list</code>, and <code>customers</code>):</p>
+<p>Explore production-grade implementations of procedural workflows running against active relational tables (<code>employees</code>, <code>accounts</code>, <code>transfers</code>, and <code>customers</code>):</p>
 <!-- Query 1: Department Payroll Review & Merit Adjustment -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -299,45 +298,46 @@ $$;
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Transaction Settlement &amp; Inventory Depletion</span>
+<span class="terminal-title">Query 2: Transfer Settlement &amp; Balance Verification</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Routine 2: Transaction Settlement &amp; Inventory Depletion</span>
+<pre><code><span class="code-comment">-- Routine 2: Wire Transfer Settlement &amp; Available Balance Deduction</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
-    c.first_name,
-    c.last_name,
-    p.product_name,
-    s.quantity,
-    s.total_price,
-    p.stock_quantity <span class="code-op">-</span> s.quantity <span class="code-keyword">AS</span> remaining_inventory
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">AND</span> s.sale_id &lt;= <span class="code-num">10</span>;</code></pre>
+    t.transfer_id,
+    t.sender_account_id,
+    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> sender_name,
+    t.amount,
+    t.fee,
+    t.amount <span class="code-op">+</span> t.fee <span class="code-keyword">AS</span> total_debit,
+    a.balance <span class="code-keyword">AS</span> current_balance,
+    a.balance <span class="code-op">-</span> (t.amount <span class="code-op">+</span> t.fee) <span class="code-keyword">AS</span> projected_remaining_balance
+<span class="code-keyword">FROM</span> transfers t
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> t.sender_account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> t.transfer_status <span class="code-op">=</span> <span class="code-string">'Success'</span> <span class="code-keyword">AND</span> t.transfer_id &lt;= <span class="code-num">10</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-cogs"></i>
-<h4>Settlement &amp; Depletion Routine Breakdown</h4>
+<h4>Settlement &amp; Balance Deduction Routine Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Simulates An:</strong> Simulates an order fulfillment routine combining payment validation, order lookup, and inventory deduction.</div>
+<div><strong>Simulates A:</strong> Simulates a funds transfer routine combining fee assessment, sender authorization, and ledger deduction.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Calculates <code>Remaining_Inventory</code>:</strong> Calculates <code>remaining_inventory</code> in real-time by subtracting order quantity from warehouse stock.</div>
+<div><strong>Calculates <code>projected_remaining_balance</code>:</strong> Calculates <code>projected_remaining_balance</code> in real-time by subtracting transfer amount and fee from balance.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Verifies 8:</strong> Verifies 8 settled sales across customer accounts and catalog products.</div>
+<div><strong>Verifies 10:</strong> Verifies 10 settled transfer transactions across customer accounts.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -353,49 +353,49 @@ $$;
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Customer VIP Tier Categorization Routine</span>
+<span class="terminal-title">Query 3: Customer Wealth Tier Categorization Routine</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Routine 3: High-Value Customer VIP Tier Categorization</span>
+<pre><code><span class="code-comment">-- Routine 3: High-Value Customer Wealth Tier Categorization</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    <span class="code-func">COUNT</span>(s.sale_id) <span class="code-keyword">AS</span> total_orders,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_spent,
+    <span class="code-func">COUNT</span>(a.account_id) <span class="code-keyword">AS</span> total_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(a.balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_portfolio_balance,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= <span class="code-num">1000</span> <span class="code-keyword">THEN</span> <span class="code-string">'Platinum Executive'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= <span class="code-num">400</span> <span class="code-keyword">THEN</span> <span class="code-string">'Gold Preferred'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'Silver Standard'</span>
-    <span class="code-keyword">END AS</span> loyalty_tier
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= <span class="code-num">100000</span> <span class="code-keyword">THEN</span> <span class="code-string">'Private Wealth Tier 1'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= <span class="code-num">50000</span> <span class="code-keyword">THEN</span> <span class="code-string">'Premier Client'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Select Retail'</span>
+    <span class="code-keyword">END AS</span> relationship_tier
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">INNER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> a.customer_id
 <span class="code-keyword">WHERE</span> c.customer_id &lt;= <span class="code-num">30</span>
 <span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
-<span class="code-keyword">ORDER BY</span> total_spent <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> total_portfolio_balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>VIP Tiering Routine Breakdown</h4>
+<h4>Wealth Tiering Routine Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Simulates a scheduled nightly tier re-evaluation stored procedure:</strong> <code>sp_RefreshLoyaltyTiers()</code>.</div>
+<div><strong>Simulates a scheduled nightly tier re-evaluation stored procedure:</strong> <code>sp_RefreshWealthTiers()</code>.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Aggregates Total:</strong> Aggregates total customer spend and applies conditional branching logic (<code>CASE</code>) to assign loyalty badges.</div>
+<div><strong>Aggregates Balance:</strong> Aggregates total customer deposits and applies conditional branching logic (<code>CASE</code>) to assign banking tiers.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Awards Mrinal:</strong> Awards Mrinal Prashar ($1,389.98) Platinum Executive status.</div>
+<div><strong>Awards High-Net-Worth:</strong> Classifies qualifying accounts into Private Wealth and Premier status tiers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -411,47 +411,47 @@ $$;
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Inventory Restock Warning Diagnostic</span>
+<span class="terminal-title">Query 4: Liquidity Reserve Diagnostic Routine</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Routine 4: Critical Inventory Replenishment Threshold Audit</span>
+<pre><code><span class="code-comment">-- Routine 4: Account Liquidity &amp; Minimum Reserve Threshold Audit</span>
 <span class="code-keyword">SELECT</span> 
-    product_id,
-    product_name,
-    category,
-    price,
-    stock_quantity,
+    account_id,
+    account_number,
+    account_type,
+    balance,
+    currency,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> stock_quantity &lt;= <span class="code-num">40</span> <span class="code-keyword">THEN</span> <span class="code-string">'CRITICAL: RESTOCK IMMEDIATELY'</span>
-        <span class="code-keyword">WHEN</span> stock_quantity &lt;= <span class="code-num">70</span> <span class="code-keyword">THEN</span> <span class="code-string">'WARNING: LOW STOCK'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'OPTIMAL STOCK'</span>
-    <span class="code-keyword">END AS</span> replenishment_status
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> stock_quantity &lt;= <span class="code-num">70</span>
-<span class="code-keyword">ORDER BY</span> stock_quantity <span class="code-keyword">ASC</span>;</code></pre>
+        <span class="code-keyword">WHEN</span> balance &lt; <span class="code-num">10000.00</span> <span class="code-keyword">THEN</span> <span class="code-string">'CRITICAL: LOW LIQUIDITY'</span>
+        <span class="code-keyword">WHEN</span> balance &lt; <span class="code-num">30000.00</span> <span class="code-keyword">THEN</span> <span class="code-string">'WARNING: MINIMUM RESERVE'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'OPTIMAL CAPITAL'</span>
+    <span class="code-keyword">END AS</span> reserve_status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &lt;= <span class="code-num">30000.00</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Restock Warning Diagnostic Breakdown</h4>
+<h4>Reserve Diagnostic Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Simulates an automated warehouse supply-chain alert procedure:</strong> <code>sp_AuditInventoryDepletion()</code>.</div>
+<div><strong>Simulates an automated liquidity reserve monitoring procedure:</strong> <code>sp_AuditAccountReserves()</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Flags 10:</strong> Flags 10 low-stock items requiring warehouse replenishment, highlighted by Pro Laptop 15" (25 units remaining).</div>
+<div><strong>Flags Low Reserves:</strong> Identifies accounts dipping below mandatory reserve thresholds to prevent overdrafts.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Allows Operations:</strong> Allows operations managers to trigger automated supplier purchase orders with zero manual review.</div>
+<div><strong>Enables Automated Alerts:</strong> Allows core banking daemons to trigger customer alerts and sweep transfers automatically.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -524,7 +524,7 @@ $$;
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Regional Category Revenue Reconciliation Routine:</strong> Inspect how an enterprise accounting routine calculates sales metrics across all active merchandise categories.</p>
+<p><strong>Enterprise Deposit Portfolio Reconciliation Routine:</strong> Inspect how an automated core banking accounting routine calculates aggregate balance metrics across all active deposit portfolios.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -532,43 +532,42 @@ $$;
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Routine: Category Revenue Audit</span>
+<span class="terminal-title">Production Routine: Deposit Portfolio Reconciliation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Simulated Procedure: sp_ReconcileCategoryRevenue</span>
+<pre><code><span class="code-comment">-- Simulated Procedure: sp_ReconcileDepositPortfolios</span>
 <span class="code-keyword">SELECT</span> 
-    p.category,
-    <span class="code-func">COUNT</span>(s.sale_id) <span class="code-keyword">AS</span> items_sold,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_ticket_size,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_gross_sales
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">GROUP BY</span> p.category
-<span class="code-keyword">ORDER BY</span> total_gross_sales <span class="code-keyword">DESC</span>;</code></pre>
+    account_type,
+    <span class="code-func">COUNT</span>(account_id) <span class="code-keyword">AS</span> total_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_deposit,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> aggregate_holdings
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>
+<span class="code-keyword">GROUP BY</span> account_type
+<span class="code-keyword">ORDER BY</span> aggregate_holdings <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-shield-alt"></i>
-<h4>Category Revenue Audit Breakdown</h4>
+<h4>Deposit Portfolio Audit Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Simulates A:</strong> Simulates a financial reconciliation stored routine executed by automated accounting daemons.</div>
+<div><strong>Simulates A:</strong> Simulates a financial reconciliation stored routine executed by core banking settlement engines.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Aggregates Paid:</strong> Aggregates paid sales ($15,615.17 total) across 5 distinct commercial product departments.</div>
+<div><strong>Aggregates Holdings:</strong> Aggregates over $5,100,000 across Checking, Savings, Business, and Money Market accounts.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Provides verified numbers without exposing raw transaction records to client reporting dashboards.</div>
+<div>Provides verified portfolio figures without exposing raw transaction or customer PII to general reporting systems.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -646,8 +645,13 @@ $$;
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

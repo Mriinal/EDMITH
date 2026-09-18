@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -225,11 +224,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Multi-Category Filtering on product_list -->
-<h2>2. Multi-Department Filtering: Product Catalog Ingestion</h2>
-<p>Filter products across three key merchandise categories on <code>product_list</code>:</p>
+<!-- Section 2: Multi-Category Filtering on accounts -->
+<h2>2. Multi-Portfolio Filtering: Account Type Set Membership</h2>
+<p>Filter bank accounts across three core retail deposit categories on <code>accounts</code>:</p>
 
-<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<!-- Account Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -237,39 +236,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Filtering Products in Electronics, Footwear, or Kitchen</span>
+<span class="terminal-title">Query: Filtering Accounts in Savings, Checking, or Money Market</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve catalog items belonging to any of the 3 specified retail sectors</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-keyword">IN</span> (<span class="code-string">'Electronics'</span>, <span class="code-string">'Footwear'</span>, <span class="code-string">'Home &amp; Kitchen'</span>)
-<span class="code-keyword">ORDER BY</span> category <span class="code-keyword">ASC</span>, price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve deposit portfolios belonging to any of the 3 specified account types</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-keyword">IN</span> (<span class="code-string">'Savings'</span>, <span class="code-string">'Checking'</span>, <span class="code-string">'Money Market'</span>)
+<span class="code-keyword">ORDER BY</span> account_type <span class="code-keyword">ASC</span>, balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Filtering -->
+<!-- Dedicated Explanation Area for Account Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-boxes"></i>
-<h4>Catalog Set Membership Breakdown</h4>
+<i class="fas fa-piggy-bank"></i>
+<h4>Portfolio Set Membership Breakdown</h4>
 </div>
-<p>How the discrete list simplifies catalog management:</p>
+<p>How the discrete list simplifies portfolio management:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-list-ul"></i>
-<div><strong>3-Sector Manifest:</strong> Captures 6 electronics, 4 footwear options, and 5 home appliances (15 items total), while cleanly omitting Apparel and Accessories.</div>
+<div><strong>3-Portfolio Manifest:</strong> Captures Savings, Checking, and Money Market accounts while cleanly omitting Certificates of Deposit (CDs).</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Hierarchical Ordering:</strong> Orders by <code>category ASC</code> first to cluster departments together, then by <code>price ASC</code> within each department.</div>
+<div><strong>Hierarchical Ordering:</strong> Orders by <code>account_type ASC</code> first to cluster account classifications, then by <code>balance DESC</code> within each classification.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -327,9 +326,9 @@
 </ul>
 </div>
 
-<!-- Section 4: Transaction Status Ingestion on sells_list -->
-<h2>4. Transactional Audits: Exceptional Payment Statuses</h2>
-<p>Target transactions requiring operational investigation on <code>sells_list</code>:</p>
+<!-- Section 4: Transaction Status Ingestion on transactions -->
+<h2>4. Transactional Audits: Exceptional Ledger Statuses</h2>
+<p>Target transactions requiring operational investigation on <code>transactions</code>:</p>
 
 <!-- Sales Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -339,17 +338,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Isolating Pending, Cancelled, and Refunded Orders</span>
+<span class="terminal-title">Query: Isolating Pending and Failed Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter sales requiring follow-up action across 3 distinct status states</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-keyword">IN</span> (<span class="code-string">'PENDING'</span>, <span class="code-string">'CANCELLED'</span>, <span class="code-string">'REFUNDED'</span>)
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Filter ledger entries requiring investigation across non-settled statuses</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-keyword">IN</span> (<span class="code-string">'Pending'</span>, <span class="code-string">'Failed'</span>)
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Sales Filtering -->
@@ -358,22 +357,22 @@
 <i class="fas fa-receipt"></i>
 <h4>Status Manifest Breakdown</h4>
 </div>
-<p>Auditing payment lifecycle exceptions:</p>
+<p>Auditing payment settlement exceptions:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-clipboard-list"></i>
-<div><strong>Clean Exception Bucket:</strong> Captures all 23 non-settled sales without requiring repetitive <code>status = ... OR status = ...</code> clauses.</div>
+<div><strong>Clean Exception Bucket:</strong> Captures non-cleared ledger items without requiring repetitive <code>status = ... OR status = ...</code> clauses.</div>
 </li>
 <li>
 <i class="fas fa-chart-bar"></i>
-<div><strong>Revenue Impact:</strong> Sorts anomalous transactions by total price descending to focus attention on high-value orders first.</div>
+<div><strong>Liquidity Risk:</strong> Sorts anomalous transactions by amount descending to focus compliance review on high-value settlements first.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 5: Dynamic Subquery Set Membership -->
-<h2>5. Dynamic Subquery Membership: High-Value Purchasing Clients</h2>
-<p>Retrieve customer accounts from <code>customers</code> whose ID exists in the set of high-value purchasers from <code>sells_list</code>:</p>
+<h2>5. Dynamic Subquery Membership: High-Value Borrowing Clients</h2>
+<p>Retrieve customer accounts from <code>customers</code> whose ID exists in the set of major loan recipients from <code>loans</code>:</p>
 
 <!-- Subquery Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -383,19 +382,19 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Subquery-Driven High-Value Customer Filtering</span>
+<span class="terminal-title">Query: Subquery-Driven High-Value Borrower Filtering</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Identify customers who placed orders valued at $500.00 or higher</span>
-<span class="code-keyword">SELECT</span> customer_id, first_name, last_name
+<pre><code><span class="code-comment">-- Identify customers holding active or approved loans valued at $50,000 or higher</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name, credit_score
 <span class="code-keyword">FROM</span> customers
 <span class="code-keyword">WHERE</span> customer_id <span class="code-keyword">IN</span> (
     <span class="code-keyword">SELECT</span> customer_id
-    <span class="code-keyword">FROM</span> sells_list
-    <span class="code-keyword">WHERE</span> total_price <span class="code-op">&gt;=</span> <span class="code-num">500.00</span>
+    <span class="code-keyword">FROM</span> loans
+    <span class="code-keyword">WHERE</span> amount <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>
 )
 <span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
@@ -410,15 +409,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-inner-circle"></i>
-<div><strong>Inner Query Evaluation:</strong> The subquery scans <code>sells_list</code> for <code>total_price &gt;= 500.00</code>, returning a set of qualifying customer IDs.</div>
+<div><strong>Inner Query Evaluation:</strong> The subquery scans <code>loans</code> for <code>amount &gt;= 50000.00</code>, returning a set of qualifying customer IDs.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Outer Query Filtering:</strong> The outer query checks each of the 612 records in <code>customers</code> against that ID set, returning the 9 high-value VIP accounts.</div>
+<div><strong>Outer Query Filtering:</strong> The outer query checks customer records against that ID set, returning premier borrowers along with credit score ratings.</div>
 </li>
 <li>
 <i class="fas fa-feather"></i>
-<div><strong>No Explicit JOIN Required:</strong> Provides an elegant way to filter based on related table data when you do not need columns from the second table in the SELECT list.</div>
+<div><strong>No Explicit JOIN Required:</strong> Provides an elegant way to filter based on related lending data when you do not need columns from the second table in the SELECT list.</div>
 </li>
 </ul>
 </div>
@@ -519,8 +518,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -227,7 +226,7 @@
 </div>
 
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>UNION</code> running against active relational tables (<code>customers</code>, <code>employees</code>, <code>product_list</code>, and <code>sells_list</code>):</p>
+<p>Explore production-grade implementations of <code>UNION</code> running against active relational tables (<code>customers</code>, <code>employees</code>, <code>accounts</code>, and <code>transactions</code>):</p>
 
 <!-- Query 1: Data Projection & Extraction -->
 <div class="code-terminal">
@@ -279,7 +278,7 @@
 </div>
 </div>
 
-<!-- Query 2: Segmented Catalog Cataloging -->
+<!-- Query 2: Segmented Deposit Account Tiers -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -287,40 +286,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Segmented Product Catalog Tiers</span>
+<span class="terminal-title">Query 2: Segmented Deposit Account Tiers</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price, <span class="code-string">'PREMIUM'</span> <span class="code-keyword">AS</span> tier
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &gt;= 150.00
+<pre><code><span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, <span class="code-string">'HIGH_NET_WORTH'</span> <span class="code-keyword">AS</span> tier
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &gt;= 75000.00
 <span class="code-keyword">UNION</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, <span class="code-string">'BUDGET'</span> <span class="code-keyword">AS</span> tier
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &lt; 50.00
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, <span class="code-string">'STARTER'</span> <span class="code-keyword">AS</span> tier
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &lt; 15000.00
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Dedicated Explanation Area for Query 2 -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Catalog Tier Segmentation Breakdown</h4>
+<h4>Account Tier Segmentation Breakdown</h4>
 </div>
-<p>Auditing disjoint price segment aggregation:</p>
+<p>Auditing disjoint liquidity segment aggregation:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-cubes"></i>
-<div><strong>Disjoint Catalog Slicing:</strong> Extracts discrete business segments from <code>product_list</code> based on disparate pricing predicates (<code>price &gt;= 150.00</code> vs <code>price &lt; 50.00</code>).</div>
+<div><strong>Disjoint Balance Slicing:</strong> Extracts discrete portfolio tiers from <code>accounts</code> based on disparate balance predicates (<code>balance &gt;= 75000.00</code> vs <code>balance &lt; 15000.00</code>).</div>
 </li>
 <li>
 <i class="fas fa-tag"></i>
-<div><strong>Segment Labeling:</strong> Appends matching inventory into a single categorized showcase, eliminating mid-tier items ($50 to $150).</div>
+<div><strong>Segment Labeling:</strong> Appends matching accounts into a single categorized portfolio view, excluding mid-tier balances ($15,000 to $75,000).</div>
 </li>
 <li>
 <i class="fas fa-sort-numeric-down"></i>
-<div><strong>Descending Valuation:</strong> The final unified dataset is sequenced from highest to lowest price via <code>ORDER BY price DESC</code>.</div>
+<div><strong>Descending Valuation:</strong> The final unified dataset is sequenced from highest to lowest balance via <code>ORDER BY balance DESC</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -329,7 +328,7 @@
 </div>
 </div>
 
-<!-- Query 3: Multi-Criteria Customer Segmentation -->
+<!-- Query 3: Multi-Criteria VIP Account Qualification -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -343,15 +342,15 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, <span class="code-string">'HIGH_SINGLE_PURCHASE'</span> <span class="code-keyword">AS</span> qualification_reason
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> total_price &gt;= 1000.00
+<pre><code><span class="code-keyword">SELECT</span> account_id, <span class="code-string">'LARGE_TRANSACTION'</span> <span class="code-keyword">AS</span> qualification_reason
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> amount &gt;= 3500.00
 <span class="code-keyword">UNION</span>
-<span class="code-keyword">SELECT</span> customer_id, <span class="code-string">'MULTIPLE_ORDERS'</span> <span class="code-keyword">AS</span> qualification_reason
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">GROUP BY</span> customer_id
+<span class="code-keyword">SELECT</span> account_id, <span class="code-string">'MULTIPLE_TRANSACTIONS'</span> <span class="code-keyword">AS</span> qualification_reason
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">GROUP BY</span> account_id
 <span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) &gt;= 2
-<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> account_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Dedicated Explanation Area for Query 3 -->
 <div class="code-explanation-area">
@@ -363,15 +362,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Disparate Query Unioning:</strong> Demonstrates unioning a row-filtered query (<code>total_price &gt;= 1000.00</code>) with an aggregated grouped query (<code>HAVING COUNT(*) &gt;= 2</code>).</div>
+<div><strong>Disparate Query Unioning:</strong> Demonstrates unioning a row-filtered query (<code>amount &gt;= 3500.00</code>) with an aggregated grouped query (<code>HAVING COUNT(*) &gt;= 2</code>).</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Dual-Reason Inclusion:</strong> Allows a customer qualifying under both distinct criteria to appear with each corresponding qualification tag.</div>
+<div><strong>Dual-Reason Inclusion:</strong> Allows an account qualifying under both distinct criteria to appear with each corresponding qualification tag.</div>
 </li>
 <li>
 <i class="fas fa-bullseye"></i>
-<div><strong>Segment Assembly:</strong> Demonstrates the power of set operators in assembling complex marketing audience segments without convoluted joins.</div>
+<div><strong>Segment Assembly:</strong> Demonstrates the power of set operators in assembling complex operational audit cohorts without convoluted joins.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -620,8 +619,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

@@ -13,6 +13,7 @@ function initEdmithEditor() {
     const formatBtn = document.getElementById('formatQueryBtn');
     const resetDbBtn = document.getElementById('resetDbBtn');
     const exportCsvBtn = document.getElementById('exportCsvBtn');
+    const exportJsonBtn = document.getElementById('exportJsonBtn');
     const copyResultBtn = document.getElementById('copyResultBtn');
     const templateSelect = document.getElementById('queryTemplateSelect');
     const schemaContainer = document.getElementById('schemaListContainer');
@@ -101,13 +102,15 @@ function initEdmithEditor() {
             html += `
                 <div class="schema-table-card" data-table="${escapeHtml(t.name)}">
                     <div class="schema-table-header">
-                        <div class="table-info" onclick="toggleTableDetails('${escapeHtml(t.name)}')">
-                            <i class="fas fa-chevron-right table-chevron"></i>
+                        <div class="table-info" onclick="insertTableQuery('${escapeHtml(t.name)}')" title="Click to SELECT * FROM ${escapeHtml(t.name)}">
+                            <span class="table-toggle-btn" onclick="event.stopPropagation(); toggleTableDetails('${escapeHtml(t.name)}')" title="Toggle column list">
+                                <i class="fas fa-chevron-right table-chevron"></i>
+                            </span>
                             <i class="fas fa-table table-icon"></i>
-                            <span class="table-name" title="${escapeHtml(t.name)}">${escapeHtml(t.name)}</span>
+                            <span class="table-name">${escapeHtml(t.name)}</span>
                         </div>
                         <div class="table-actions">
-                            <span class="row-count-pill">${t.rowCount} rows</span>
+                            <span class="row-count-pill" onclick="insertTableQuery('${escapeHtml(t.name)}')" title="Total records in table">${t.rowCount}</span>
                             <button class="table-quick-query" onclick="insertTableQuery('${escapeHtml(t.name)}')" title="Query table ${escapeHtml(t.name)}">
                                 <i class="fas fa-play"></i>
                             </button>
@@ -142,10 +145,10 @@ function initEdmithEditor() {
         }
     };
 
-    // Quick query insertion
+    // Quick query insertion (W3Schools style)
     window.insertTableQuery = function(tableName) {
         if (!editorTextarea) return;
-        editorTextarea.value = `SELECT * FROM ${tableName} LIMIT 10;`;
+        editorTextarea.value = `SELECT * FROM ${tableName} LIMIT 20;`;
         updateLineNumbers();
         updateSyntaxHighlight();
         executeEditorQuery();
@@ -167,7 +170,7 @@ function initEdmithEditor() {
 
         const knownTables = window.edmithSql && window.edmithSql.tableNames 
             ? window.edmithSql.tableNames 
-            : ['departments', 'students', 'courses', 'enrollments', 'certifications', 'employees', 'orders'];
+            : ['customers', 'branches', 'accounts', 'transactions', 'transfers', 'cards', 'loans', 'loan_payments', 'beneficiaries', 'merchants', 'merchant_payments', 'departments', 'employees', 'audit_logs', 'exchange_rates'];
 
         const keywords = [
             'SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'NOT', 'ORDER BY', 'GROUP BY', 'HAVING',
@@ -224,14 +227,8 @@ function initEdmithEditor() {
         });
     }
 
-    function updateSyntaxHighlight() {
-        if (!editorTextarea || !highlightedCode) return;
-        let val = editorTextarea.value;
-        if (val.endsWith('\n')) {
-            val += ' ';
-        }
-        highlightedCode.innerHTML = highlightSQL(val);
-    }
+    // Syntax highlighting removed — plain textarea approach used instead
+    function updateSyntaxHighlight() { /* no-op */ }
 
     // 4. Synchronize Line Numbers & Scrolling
     function updateLineNumbers() {
@@ -251,10 +248,7 @@ function initEdmithEditor() {
         });
 
         editorTextarea.addEventListener('scroll', () => {
-            if (highlightBackdrop) {
-                highlightBackdrop.scrollTop = editorTextarea.scrollTop;
-                highlightBackdrop.scrollLeft = editorTextarea.scrollLeft;
-            }
+            // Sync line number gutter with textarea scroll position
             if (lineNumbers) {
                 lineNumbers.scrollTop = editorTextarea.scrollTop;
             }
@@ -303,12 +297,23 @@ function initEdmithEditor() {
             try {
                 const results = window.edmithSql.runQuery(sql);
                 currentResults = results;
-                renderResultsGrid(results);
-                if (executionStatusDot) executionStatusDot.className = 'status-indicator success';
+
+                if (!results.success) {
+                    showError(results.error || 'SQL syntax error or unknown database object.');
+                    if (executionStatusDot) executionStatusDot.className = 'status-indicator error';
+                    if (resultMetaBadge) {
+                        resultMetaBadge.innerHTML = `<span class="meta-error"><i class="fas fa-times-circle"></i> Error</span> &bull; <span class="meta-time">${results.executionTimeMs}ms</span>`;
+                    }
+                } else {
+                    renderResultsGrid(results);
+                    if (executionStatusDot) executionStatusDot.className = 'status-indicator success';
+                }
+
+                // Refresh schema tree in case DDL (CREATE/DROP/ALTER TABLE) was run
                 renderSchema(schemaSearch ? schemaSearch.value.trim() : '');
                 updateHistoryUI();
             } catch (err) {
-                showError(err.message);
+                showError(err.message || String(err));
                 if (executionStatusDot) executionStatusDot.className = 'status-indicator error';
             } finally {
                 if (runBtn) {
@@ -324,6 +329,34 @@ function initEdmithEditor() {
     // 6. Render Results Grid
     function renderResultsGrid(results) {
         if (!resultsContainer) return;
+
+        // Check if query was DDL or DML (CREATE, DROP, ALTER, TRUNCATE, INSERT, UPDATE, DELETE)
+        if (results.isDdl || results.isDml) {
+            const actionIcon = results.isDdl ? 'fa-layer-group' : 'fa-check-double';
+            const actionTitle = results.isDdl ? 'Database Schema Updated' : 'Data Manipulation Completed';
+            const actionMsg = results.message || (results.isDdl ? 'Schema command completed successfully.' : `${results.rowCount} row(s) affected.`);
+
+            resultsContainer.innerHTML = `
+                <div class="sql-success-callout">
+                    <div class="success-header">
+                        <i class="fas ${actionIcon}"></i>
+                        <h4>${actionTitle}</h4>
+                    </div>
+                    <div class="success-body">
+                        <code>${escapeHtml(actionMsg)}</code>
+                    </div>
+                    <p class="success-hint">Tip: Check the <strong>Schema Explorer</strong> on the left to see updated tables and columns, or run <code>SELECT * FROM [table]</code> to inspect data.</p>
+                </div>
+            `;
+            if (resultMetaBadge) {
+                resultMetaBadge.innerHTML = `
+                    <span class="meta-highlight"><i class="fas fa-check"></i> ${results.isDdl ? 'DDL' : 'DML'} OK</span>
+                    &bull;
+                    <span class="meta-time">${results.executionTimeMs}ms</span>
+                `;
+            }
+            return;
+        }
 
         if (!results || !results.columns || results.columns.length === 0) {
             resultsContainer.innerHTML = `
@@ -394,42 +427,82 @@ function initEdmithEditor() {
                 <div class="error-body">
                     <code>${escapeHtml(errorMessage)}</code>
                 </div>
-                <p class="error-hint">Tip: Check table/column names, verify syntax grammar, or select a sample query from the templates above.</p>
+                <p class="error-hint">Tip: Verify that the table or column exists in the <strong>Schema Explorer</strong> on the left, check syntax grammar, or execute a <code>CREATE TABLE</code> statement to define a temporary table.</p>
             </div>
         `;
-        if (resultMetaBadge) resultMetaBadge.innerHTML = `<span class="meta-error">Execution Error</span>`;
+        if (resultMetaBadge) resultMetaBadge.innerHTML = `<span class="meta-error"><i class="fas fa-times-circle"></i> Execution Error</span>`;
     }
 
 
 
-    // 7. Template Queries
+    // 7. Template Queries (Covering Banking Relational Tables)
     const queryTemplates = {
-        'select_basic': `-- 1. Select All Customers (612 Records)
-SELECT * FROM customers;`,
+        'banking_accounts': `-- 1. Query Active High-Balance Accounts
+SELECT account_number, account_type, balance, currency, status 
+FROM accounts 
+WHERE status = 'Active' AND balance >= 25000.00 
+ORDER BY balance DESC;`,
 
-        'filter_names': `-- 2. Filter by Name (Mrinal / Ripunjay / Abhishek)
-SELECT customer_id, first_name, middle_name, last_name
-FROM customers
-WHERE first_name IN ('Mrinal', 'Ripunjay', 'Abhishek', 'Amritesh')
-ORDER BY customer_id ASC;`,
+        'customer_accounts_join': `-- 2. Relational JOIN: Customers, Accounts & Branches
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.city,
+    a.account_number,
+    a.account_type,
+    a.balance,
+    b.branch_name
+FROM customers c
+INNER JOIN accounts a ON c.customer_id = a.customer_id
+INNER JOIN branches b ON a.branch_id = b.branch_id
+ORDER BY a.balance DESC
+LIMIT 15;`,
 
-        'null_check': `-- 3. Find Customers with Middle Name (IS NOT NULL)
-SELECT customer_id, first_name, middle_name, last_name
-FROM customers
-WHERE middle_name IS NOT NULL
-ORDER BY customer_id ASC;`,
+        'branch_deposits_group': `-- 3. Aggregations & Grouping: Branch Liquidity Metrics
+SELECT 
+    b.branch_name,
+    b.city,
+    COUNT(a.account_id) AS total_accounts,
+    ROUND(SUM(a.balance), 2) AS total_deposits,
+    ROUND(AVG(a.balance), 2) AS average_balance
+FROM branches b
+INNER JOIN accounts a ON b.branch_id = a.branch_id
+GROUP BY b.branch_name, b.city
+ORDER BY total_deposits DESC;`,
 
-        'duplicate_first_names': `-- 4. Find Duplicate First Names & Counts
-SELECT first_name, COUNT(*) AS customer_count
-FROM customers
-GROUP BY first_name
-HAVING COUNT(*) > 1
-ORDER BY customer_count DESC;`,
+        'management_hierarchy': `-- 4. Hierarchical SELF JOIN: Bank Staff & Managers
+SELECT 
+    e.employee_id,
+    e.first_name || ' ' || e.last_name AS employee_name,
+    e.role,
+    e.department,
+    e.salary,
+    COALESCE(m.first_name || ' ' || m.last_name, 'BOARD OF DIRECTORS') AS reports_to
+FROM employees e
+LEFT JOIN employees m ON e.manager_id = m.employee_id
+ORDER BY e.salary DESC;`,
 
-        'order_by_name': `-- 5. Ordered Customer Roster
-SELECT customer_id, first_name, middle_name, last_name
+        'credit_score_case': `-- 5. Conditional CASE Logic: Customer Credit Risk Evaluation
+SELECT 
+    customer_id,
+    first_name || ' ' || last_name AS customer_name,
+    credit_score,
+    kyc_status,
+    CASE 
+        WHEN credit_score >= 800 THEN 'Tier 1 - Exceptional'
+        WHEN credit_score >= 740 THEN 'Tier 2 - Prime'
+        WHEN credit_score >= 670 THEN 'Tier 3 - Good'
+        WHEN credit_score >= 600 THEN 'Tier 4 - Fair'
+        ELSE 'Tier 5 - High Risk'
+    END AS credit_risk_tier,
+    CASE 
+        WHEN credit_score >= 700 AND kyc_status = 'Verified' THEN 'PRE-APPROVED'
+        WHEN kyc_status = 'Pending' THEN 'KYC REVIEW REQUIRED'
+        ELSE 'ADDITIONAL COLLATERAL REQUIRED'
+    END AS lending_status
 FROM customers
-ORDER BY first_name ASC, last_name ASC;`
+ORDER BY credit_score DESC
+LIMIT 20;`
     };
 
     if (templateSelect) {
@@ -481,11 +554,21 @@ ORDER BY first_name ASC, last_name ASC;`
         });
     }
 
-    // 9. Export to CSV & Copy Result
+    // 9. Export to CSV / JSON & Copy Result
     if (exportCsvBtn) {
         exportCsvBtn.addEventListener('click', () => {
             if (currentResults && currentResults.columns && currentResults.values) {
                 EdmithSqlEngine.exportToCSV(currentResults.columns, currentResults.values);
+            } else {
+                alert('No results available to export. Run a query first.');
+            }
+        });
+    }
+
+    if (exportJsonBtn) {
+        exportJsonBtn.addEventListener('click', () => {
+            if (currentResults && currentResults.data && currentResults.data.length > 0) {
+                EdmithSqlEngine.exportToJSON(currentResults.data);
             } else {
                 alert('No results available to export. Run a query first.');
             }
@@ -519,7 +602,7 @@ ORDER BY first_name ASC, last_name ASC;`
             <div class="history-item ${item.success ? 'success' : 'failed'}" onclick="loadHistoryItem(${idx})">
                 <div class="history-item-top">
                     <span class="history-status ${item.success ? 'ok' : 'err'}">${item.success ? 'SUCCESS' : 'ERROR'}</span>
-                    <span class="history-time">${item.timestamp} (${item.timeMs}ms)</span>
+                    <span class="history-time">${item.timestamp} (${item.executionTimeMs !== undefined ? item.executionTimeMs : (item.timeMs || 0)}ms)</span>
                 </div>
                 <pre class="history-sql"><code>${escapeHtml(item.sql)}</code></pre>
             </div>
@@ -550,10 +633,23 @@ ORDER BY first_name ASC, last_name ASC;`
 
     if (clearHistoryBtn) {
         clearHistoryBtn.addEventListener('click', () => {
-            if (window.edmithSql) window.edmithSql.queryHistory = [];
+            if (window.edmithSql) {
+                if (typeof window.edmithSql.clearQueryHistory === 'function') {
+                    window.edmithSql.clearQueryHistory();
+                } else {
+                    window.edmithSql.queryHistory = [];
+                }
+            }
             updateHistoryUI();
         });
     }
+
+    // Close History Drawer with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && historyDrawer && historyDrawer.classList.contains('open')) {
+            historyDrawer.classList.remove('open');
+        }
+    });
 
     // Helper function to load query into editor, highlight, and execute
     window.loadQueryIntoEditor = function(sql, autoRun = true) {
@@ -674,8 +770,12 @@ window.openEdmithEditor = function(target) {
     } catch (e) {}
 
     // 3. Resolve target URL based on current page location
-    const isSqlSubdir = window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/');
-    const editorPath = isSqlSubdir ? 'editor.html' : 'sql/editor.html';
+    let editorPath = 'editors/editor.html';
+    if (window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/')) {
+        editorPath = '../editors/editor.html';
+    } else if (window.location.pathname.includes('/editors/') || window.location.href.includes('/editors/')) {
+        editorPath = 'editor.html';
+    }
     const targetUrl = editorPath + '?query=' + encodeURIComponent(sql);
 
     // 4. Open or focus the named editor window

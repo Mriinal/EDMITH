@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -212,7 +211,7 @@
 </li>
 <li>
 <i class="fas fa-tags"></i>
-<div><strong>Table Aliasing:</strong> Assigning short aliases (e.g. <code>FROM sells_list s</code>) prevents column naming collisions and ensures clear code readability.</div>
+<div><strong>Table Aliasing:</strong> Assigning short aliases (e.g. <code>FROM accounts a</code>) prevents column naming collisions and ensures clear code readability.</div>
 </li>
 <li>
 <i class="fas fa-exclamation-circle"></i>
@@ -221,9 +220,9 @@
 </ul>
 </div>
 
-<!-- Section 2: 2-Table INNER JOIN on sells_list and customers -->
-<h2>2. Commercial Joins: Customer Order History</h2>
-<p>Join the transaction logs in <code>sells_list</code> with the customer directory in <code>customers</code> using <code>customer_id</code>:</p>
+<!-- Section 2: 2-Table INNER JOIN on accounts and customers -->
+<h2>2. Commercial Joins: Customer Account Profiles</h2>
+<p>Join the account records in <code>accounts</code> with the customer directory in <code>customers</code> using <code>customer_id</code>:</p>
 
 <!-- 2-Table Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -233,23 +232,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: 2-Table INNER JOIN (Transactions &amp; Customer Names)</span>
+<span class="terminal-title">Query: 2-Table INNER JOIN (Accounts &amp; Customer Names)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Correlate transactions with customer profiles using the customer_id foreign key</span>
+<pre><code><span class="code-comment">-- Correlate deposit accounts with customer profiles using the customer_id foreign key</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    a.account_number,
     c.first_name,
     c.last_name,
-    s.quantity,
-    s.total_price,
-    s.payment_status
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+    a.account_type,
+    a.balance,
+    a.status
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">ORDER BY</span> a.account_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -257,17 +256,17 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-user-check"></i>
-<h4>Customer Transaction Join Breakdown</h4>
+<h4>Customer Account Join Breakdown</h4>
 </div>
 <p>Examining primary-to-foreign key relational matching:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-key"></i>
-<div><strong>Relational Key Match:</strong> <code>s.customer_id = c.customer_id</code> pairs every numeric customer reference in <code>sells_list</code> with the exact customer record in <code>customers</code>.</div>
+<div><strong>Relational Key Match:</strong> <code>a.customer_id = c.customer_id</code> pairs every account in <code>accounts</code> with the exact owner profile in <code>customers</code>.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Normalized Efficiency:</strong> Customer names are stored once in the customer table, yet easily rendered alongside high-velocity transactional orders.</div>
+<div><strong>Normalized Efficiency:</strong> Personal customer attributes are stored once in the customer master table, yet seamlessly rendered beside balances and deposit types.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -287,8 +286,8 @@
 </div>
 
 <!-- Section 3: 3-Table Relational JOIN -->
-<h2>3. Enterprise Multi-Table Joins: Customers, Sales &amp; Catalog Products</h2>
-<p>Chain multiple <code>INNER JOIN</code> clauses to correlate customer identity, transaction records, and product details in a single query:</p>
+<h2>3. Enterprise Multi-Table Joins: Transactions, Accounts &amp; Customers</h2>
+<p>Chain multiple <code>INNER JOIN</code> clauses to correlate customer identity, account credentials, and ledger events in a single query:</p>
 
 <!-- 3-Table Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -304,18 +303,18 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Connect customers, sells_list, and product_list in a single unified pipeline</span>
+<pre><code><span class="code-comment">-- Connect transactions, accounts, and customers in a single unified pipeline</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    t.transaction_id,
     c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    p.category,
-    s.quantity,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+    a.account_number,
+    t.transaction_type,
+    t.amount,
+    t.status
+<span class="code-keyword">FROM</span> transactions t
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">ORDER BY</span> t.transaction_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -329,18 +328,18 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-link"></i>
-<div><strong>Chain Link 1:</strong> <code>sells_list</code> connects to <code>customers</code> via <code>customer_id</code>.</div>
+<div><strong>Chain Link 1:</strong> <code>transactions</code> connects to <code>accounts</code> via <code>account_id</code>.</div>
 </li>
 <li>
 <i class="fas fa-link"></i>
-<div><strong>Chain Link 2:</strong> <code>sells_list</code> connects to <code>product_list</code> via <code>product_id</code>, resolving the purchased item's name and category without duplicate storage.</div>
+<div><strong>Chain Link 2:</strong> <code>accounts</code> connects to <code>customers</code> via <code>customer_id</code>, resolving customer names and account numbers on the fly without duplicating records.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 4: Outer Join for Unmatched Rows -->
-<h2>4. Outer Joins: Detecting Inactive Customers with Zero Orders</h2>
-<p>Use a <code>LEFT JOIN</code> combined with <code>WHERE s.sale_id IS NULL</code> to find customers who haven't placed an order yet:</p>
+<h2>4. Outer Joins: Detecting Customers Without Active Loans</h2>
+<p>Use a <code>LEFT JOIN</code> combined with <code>WHERE l.loan_id IS NULL</code> to find customers who do not currently carry an active credit facility:</p>
 
 <!-- LEFT JOIN Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -350,22 +349,22 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: LEFT JOIN Anti-Pattern (Zero-Order Accounts)</span>
+<span class="terminal-title">Query: LEFT JOIN Anti-Pattern (Customers Without Loans)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Preserve all customers; filter for NULL sale_id to isolate accounts with zero purchases</span>
+<pre><code><span class="code-comment">-- Preserve all customers; filter for NULL loan_id to isolate accounts without loan products</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price
+    c.city,
+    l.loan_id
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
-<span class="code-keyword">WHERE</span> s.sale_id <span class="code-keyword">IS NULL</span>
+<span class="code-keyword">LEFT JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
+<span class="code-keyword">WHERE</span> l.loan_id <span class="code-keyword">IS NULL</span>
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -380,18 +379,18 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-shield-alt"></i>
-<div><strong>100% Left Retention:</strong> Unlike INNER JOIN which deletes customers without orders, LEFT JOIN keeps every customer row and pads right-table columns with <code>NULL</code>.</div>
+<div><strong>100% Left Retention:</strong> Unlike INNER JOIN which drops customers without loans, LEFT JOIN keeps every customer row and pads right-table columns with <code>NULL</code>.</div>
 </li>
 <li>
 <i class="fas fa-bullseye"></i>
-<div><strong>Marketing Re-Engagement:</strong> Filtering <code>WHERE s.sale_id IS NULL</code> creates the classic customer re-engagement target list.</div>
+<div><strong>Target Marketing:</strong> Filtering <code>WHERE l.loan_id IS NULL</code> creates the ideal customer prospect list for cross-selling home mortgages or auto financing.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: Aggregated Joins on product_list and sells_list -->
-<h2>5. Aggregated Joins: Catalog Revenue by Product Name</h2>
-<p>Combine <code>INNER JOIN</code> with <code>GROUP BY</code> to compute sales volume and gross revenue per product:</p>
+<!-- Section 5: Aggregated Joins on branches and accounts -->
+<h2>5. Aggregated Joins: Branch Deposit Volume by Location</h2>
+<p>Combine <code>INNER JOIN</code> with <code>GROUP BY</code> to compute account counts and gross deposit volume per branch:</p>
 
 <!-- Aggregated Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -401,23 +400,22 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Product-Level Revenue Aggregation via JOIN</span>
+<span class="terminal-title">Query: Branch-Level Deposit Aggregation via JOIN</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Aggregate units sold and gross revenue for each catalog item</span>
+<pre><code><span class="code-comment">-- Aggregate accounts and gross deposit value for each branch location</span>
 <span class="code-keyword">SELECT</span> 
-    p.product_name,
-    p.category,
-    <span class="code-func">COUNT</span>(s.sale_id)           <span class="code-keyword">AS</span> total_orders,
-    <span class="code-func">SUM</span>(s.quantity)            <span class="code-keyword">AS</span> total_units_sold,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> gross_revenue
-<span class="code-keyword">FROM</span> product_list p
-<span class="code-keyword">INNER JOIN</span> sells_list s <span class="code-keyword">ON</span> p.product_id <span class="code-op">=</span> s.product_id
-<span class="code-keyword">GROUP BY</span> p.product_name, p.category
-<span class="code-keyword">ORDER BY</span> gross_revenue <span class="code-keyword">DESC</span>
+    b.branch_name,
+    b.city,
+    <span class="code-func">COUNT</span>(a.account_id)        <span class="code-keyword">AS</span> total_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(a.balance), <span class="code-num">2</span>)   <span class="code-keyword">AS</span> total_deposits
+<span class="code-keyword">FROM</span> branches b
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> b.branch_id <span class="code-op">=</span> a.branch_id
+<span class="code-keyword">GROUP BY</span> b.branch_name, b.city
+<span class="code-keyword">ORDER BY</span> total_deposits <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -425,17 +423,17 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-chart-line"></i>
-<h4>Revenue Aggregation Breakdown</h4>
+<h4>Deposit Aggregation Breakdown</h4>
 </div>
-<p>Auditing commercial product revenue:</p>
+<p>Auditing branch capitalization:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-trophy"></i>
-<div><strong>Pro Laptop 15" Dominance:</strong> Leads top-line revenue with $7,799.94 across 3 orders and 6 units fulfilled.</div>
+<div><strong>Manhattan Financial District:</strong> Leads aggregate capitalization with $822,718.00 held across 14 high-value accounts.</div>
 </li>
 <li>
-<i class="fas fa-tv"></i>
-<div><strong>4K Ultra HD Monitor:</strong> Generated $3,149.91 across 4 transactions, reflecting strong multi-unit accessory demand.</div>
+<i class="fas fa-city"></i>
+<div><strong>Global Coverage:</strong> Seamlessly groups branches across Tokyo, Toronto, and Singapore to provide high-level balance sheet visibility.</div>
 </li>
 </ul>
 </div>
@@ -576,8 +574,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

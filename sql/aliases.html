@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -225,8 +224,8 @@
 </div>
 </div>
 
-<!-- Section 2: Computed Column Aliases on product_list -->
-<h2>2. Column Aliases: Formatting Calculations &amp; Pricing Tiers</h2>
+<!-- Section 2: Computed Column Aliases on accounts -->
+<h2>2. Column Aliases: Formatting Calculations &amp; Interest Yield Projections</h2>
 <p>Calculated expressions in a <code>SELECT</code> clause have no inherent table column name. Use <code>AS</code> to provide meaningful, self-describing financial headers:</p>
 
 <!-- Computed Column Terminal (Try in Editor + Copy) -->
@@ -237,21 +236,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Computing 10% Promotional Discounts on Products</span>
+<span class="terminal-title">Query: Computing 4.5% Annual Compounding Yield on Savings Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Calculate promotional prices and savings for electronics catalog items</span>
+<pre><code><span class="code-comment">-- Calculate annual interest yield and year-end balance projections</span>
 <span class="code-keyword">SELECT</span> 
-    product_name,
-    price <span class="code-keyword">AS</span> original_price,
-    <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.90</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> discounted_price,
-    <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.10</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> savings
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
-<span class="code-keyword">ORDER BY</span> discounted_price <span class="code-keyword">DESC</span>;</code></pre>
+    account_number,
+    account_type,
+    balance <span class="code-keyword">AS</span> current_balance,
+    <span class="code-func">ROUND</span>(balance <span class="code-op">*</span> <span class="code-num">0.045</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> annual_interest_yield,
+    <span class="code-func">ROUND</span>(balance <span class="code-op">*</span> <span class="code-num">1.045</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> projected_year_end_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span> <span class="code-keyword">AND</span> account_type <span class="code-keyword">IN</span> (<span class="code-string">'Savings'</span>, <span class="code-string">'Money Market'</span>)
+<span class="code-keyword">ORDER BY</span> projected_year_end_balance <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Computed Columns -->
@@ -260,19 +261,19 @@
 <i class="fas fa-calculator"></i>
 <h4>Calculated Expression Aliasing Breakdown</h4>
 </div>
-<p>Why computed column aliases are essential for API consumers and reporting dashboards:</p>
+<p>Why computed column aliases are essential for financial reporting dashboards and ledger APIs:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-tag"></i>
-<div><strong>Eliminating Cryptic Headers:</strong> Without <code>AS discounted_price</code>, the database engine outputs ugly, raw expressions like <code>ROUND(price * 0.90, 2)</code> or <code>_col1</code> as the table header.</div>
+<div><strong>Eliminating Cryptic Headers:</strong> Without <code>AS annual_interest_yield</code>, the database engine outputs raw expressions like <code>ROUND(balance * 0.045, 2)</code> or <code>_col1</code> as the table header.</div>
 </li>
 <li>
 <i class="fas fa-sort-numeric-down"></i>
-<div><strong>ORDER BY Availability:</strong> Because <code>ORDER BY</code> executes in Phase 6 (after <code>SELECT</code> in Phase 5), you can sort directly by <code>discounted_price DESC</code> without re-typing the arithmetic expression.</div>
+<div><strong>ORDER BY Availability:</strong> Because <code>ORDER BY</code> executes in Phase 6 (after <code>SELECT</code> in Phase 5), you can sort directly by <code>projected_year_end_balance DESC</code> without re-evaluating the mathematical formula.</div>
 </li>
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Target Category:</strong> Filters catalog items where <code>category = 'Electronics'</code>, ranking top-tier hardware (Laptops, 4K Monitors) by their new discounted cost.</div>
+<i class="fas fa-university"></i>
+<div><strong>Target Portfolios:</strong> Filters active interest-bearing accounts (Savings &amp; Money Market), projecting yields led by account <code>AC-100132</code> ($4,384.22 yield).</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -352,24 +353,26 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Joining Sells, Customers, and Products with Aliases</span>
+<span class="terminal-title">Query: Joining Transactions, Accounts, and Customers with Aliases</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Combine sales orders, customers, and product details using clean table prefixes</span>
+<pre><code><span class="code-comment">-- Combine transaction ledgers, accounts, and client details using clean table prefixes</span>
 <span class="code-keyword">SELECT</span> 
-    c.first_name <span class="code-op">+</span> <span class="code-string">' '</span> <span class="code-op">+</span> c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    s.quantity <span class="code-keyword">AS</span> units_sold,
-    s.total_price <span class="code-keyword">AS</span> revenue
-<span class="code-keyword">FROM</span> sells_list <span class="code-keyword">AS</span> s
-<span class="code-keyword">JOIN</span> customers <span class="code-keyword">AS</span> c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">JOIN</span> product_list <span class="code-keyword">AS</span> p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">ORDER BY</span> revenue <span class="code-keyword">DESC</span>
-<span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
+    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> account_holder,
+    a.account_number,
+    a.account_type,
+    t.transaction_type,
+    t.amount <span class="code-keyword">AS</span> transfer_volume,
+    t.status <span class="code-keyword">AS</span> settlement_status
+<span class="code-keyword">FROM</span> transactions <span class="code-keyword">AS</span> t
+<span class="code-keyword">JOIN</span> accounts <span class="code-keyword">AS</span> a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">JOIN</span> customers <span class="code-keyword">AS</span> c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> t.status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> transfer_volume <span class="code-keyword">DESC</span>
+<span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Table Aliases -->
@@ -382,15 +385,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-compress-alt"></i>
-<div><strong>Syntactic Compactness:</strong> Instead of repeatedly typing <code>sells_list.customer_id = customers.customer_id</code>, table aliases allow concise notation: <code>s.customer_id = c.customer_id</code>.</div>
+<div><strong>Syntactic Compactness:</strong> Instead of repeatedly typing <code>transactions.account_id = accounts.account_id</code>, table aliases allow concise notation: <code>t.account_id = a.account_id</code>.</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div><strong>Ambiguity Prevention:</strong> If both tables contain a column named <code>customer_id</code>, unqualified references trigger database syntax errors. The alias prefix (<code>c.customer_id</code>) guarantees deterministic resolution.</div>
+<div><strong>Ambiguity Prevention:</strong> Both tables contain columns like <code>status</code> and foreign key keys. The alias prefix (<code>t.status</code> vs <code>a.status</code>) guarantees deterministic column resolution.</div>
 </li>
 <li>
 <i class="fas fa-chart-line"></i>
-<div><strong>High-Yield Revenue Audit:</strong> Ranks the top 10 settled transactions, clearly presenting customer names alongside product details.</div>
+<div><strong>Settlement Volume Audit:</strong> Ranks the top 10 settled transactions, clearly presenting customer account holders alongside account and transfer details.</div>
 </li>
 </ul>
 </div>
@@ -455,15 +458,19 @@
 <li><i class="fas fa-check"></i> <span><strong>ORDER BY Visibility:</strong> Because <code>ORDER BY</code> executes in Phase 6 (after <code>SELECT</code>), it can reference all column aliases without performance penalty.</span></li>
 <li><i class="fas fa-check"></i> <span><strong>Table Alias Universality:</strong> Table aliases declared in <code>FROM</code> (Phase 1) are immediately bound and accessible across all subsequent query phases (<code>WHERE</code>, <code>GROUP BY</code>, <code>SELECT</code>, <code>ORDER BY</code>).</span></li>
 </ul>
+</div>
 
-<h3>Detailed Technical Breakdown &amp; Scope Comparison</h3>
-<div class="table-responsive">
-<table class="compare-table">
+<!-- Section 6: Comprehensive Comparison Table -->
+<h2>6. Architectural Comparison: Alias Types &amp; Execution Scopes</h2>
+<p>Quick reference comparison across all SQL aliasing patterns:</p>
+
+<div class="table-responsive" style="margin: 1.5rem 0;">
+<table class="styled-table" style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-<th>Alias Target</th>
-<th>SQL Syntax Example</th>
-<th>Scope of Existence</th>
+<th>Alias Category</th>
+<th>Example Syntax Pattern</th>
+<th>Scope of Visibility</th>
 <th>Usable in WHERE?</th>
 <th>Usable in ORDER BY?</th>
 </tr>
@@ -471,7 +478,7 @@
 <tbody>
 <tr>
 <td><strong>Calculated Column</strong></td>
-<td><code>price * 0.90 AS discounted_price</code></td>
+<td><code>ROUND(balance * 0.045, 2) AS annual_yield</code></td>
 <td>Single query projection</td>
 <td>No (Evaluated in Phase 5)</td>
 <td>Yes (Phase 6 occurs after Phase 5)</td>
@@ -485,7 +492,7 @@
 </tr>
 <tr>
 <td><strong>Relational Table</strong></td>
-<td><code>FROM sells_list AS s</code></td>
+<td><code>FROM transactions AS t</code></td>
 <td>Entire query pipeline</td>
 <td>Yes (Declared in Phase 1 FROM)</td>
 <td>Yes</td>
@@ -565,8 +572,13 @@ Because the <code>AS</code> keyword is optional, omitting a comma between column
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

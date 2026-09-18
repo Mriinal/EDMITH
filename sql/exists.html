@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -226,8 +225,8 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>EXISTS</code> running against active relational tables (<code>customers</code>, <code>sells_list</code>, <code>product_list</code>, and <code>employees</code>):</p>
-<!-- Query 1: Active Buyers Detection -->
+<p>Explore production-grade implementations of <code>EXISTS</code> running against active relational tables (<code>customers</code>, <code>accounts</code>, <code>loans</code>, and <code>transactions</code>):</p>
+<!-- Query 1: Active Borrowers Detection -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -235,7 +234,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Active Purchasing Customer Detection</span>
+<span class="terminal-title">Query 1: Active Loan Customer Detection</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -245,8 +244,8 @@
 <span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> <span class="code-num">1</span> 
-    <span class="code-keyword">FROM</span> sells_list s 
-    <span class="code-keyword">WHERE</span> s.customer_id <span class="code-op">=</span> c.customer_id
+    <span class="code-keyword">FROM</span> loans l 
+    <span class="code-keyword">WHERE</span> l.customer_id <span class="code-op">=</span> c.customer_id
 )
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
@@ -254,21 +253,21 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-users"></i>
-<h4>Purchasing Customer Detection Breakdown</h4>
+<h4>Loan Customer Detection Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Identifies Customers:</strong> Identifies customers from the 612-record table who have made at least one documented purchase in <code>sells_list</code>.</div>
+<div><strong>Identifies Borrowers:</strong> Identifies customers from the 100-profile directory who have at least one documented loan facility in <code>loans</code>.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Unlike An:</strong> Unlike an <code>INNER JOIN</code>, <code>EXISTS</code> preserves uniqueness without requiring <code>SELECT DISTINCT</code>, even if a customer has placed multiple orders.</div>
+<div><strong>Preserves Uniqueness:</strong> Unlike an <code>INNER JOIN</code>, <code>EXISTS</code> preserves row uniqueness without requiring <code>SELECT DISTINCT</code>, even if a customer holds multiple credit facilities.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Retrieves Exactly:</strong> Retrieves exactly 59 active buyers with high query efficiency.</div>
+<div><strong>Retrieves Exactly 40 Borrowers:</strong> Pinpoints the 40 borrowing customers with early-exit subquery efficiency.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -276,7 +275,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 2: NOT EXISTS for Churn / Inactive Accounts -->
+<!-- Query 2: NOT EXISTS for Debt-Free Accounts -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -284,7 +283,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Unconverted Prospect Identification (NOT EXISTS)</span>
+<span class="terminal-title">Query 2: Debt-Free Prospect Identification (NOT EXISTS)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -294,8 +293,8 @@
 <span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> <span class="code-num">1</span> 
-    <span class="code-keyword">FROM</span> sells_list s 
-    <span class="code-keyword">WHERE</span> s.customer_id <span class="code-op">=</span> c.customer_id
+    <span class="code-keyword">FROM</span> loans l 
+    <span class="code-keyword">WHERE</span> l.customer_id <span class="code-op">=</span> c.customer_id
 )
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
@@ -303,21 +302,21 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Unconverted Prospect Identification Breakdown</h4>
+<h4>Debt-Free Prospect Identification Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Discovers Registered:</strong> Discovers registered accounts that have never completed a transaction (yielding 553 unconverted leads).</div>
+<div><strong>Discovers Unencumbered Accounts:</strong> Discovers depositors who hold zero debt liabilities across the bank (yielding 60 debt-free prospects).</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div><strong>Employs An:</strong> Employs an Anti-Semi Join pattern, which is completely immune to NULL evaluation traps that plague <code>NOT IN</code>.</div>
+<div><strong>Anti-Semi Join Pattern:</strong> Employs an Anti-Semi Join pattern, which is completely immune to NULL evaluation traps that plague <code>NOT IN</code>.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Essential For:</strong> Essential for re-engagement marketing campaigns and customer onboarding audits.</div>
+<div><strong>Targeted Lending Campaigns:</strong> Essential for prime pre-approved personal loan marketing campaigns and cross-selling credit products.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -325,7 +324,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 3: High-Revenue Product Filter -->
+<!-- Query 3: High-Value Commercial Loan Filter -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -333,41 +332,41 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: High-Volume Revenue Product Filter</span>
+<span class="terminal-title">Query 3: High-Value Commercial Loan Borrower Filter</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> p.product_id, p.product_name, p.category, p.price
-<span class="code-keyword">FROM</span> product_list p
+<pre><code><span class="code-keyword">SELECT</span> c.customer_id, c.first_name, c.last_name, c.credit_score
+<span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> <span class="code-num">1</span> 
-    <span class="code-keyword">FROM</span> sells_list s 
-    <span class="code-keyword">WHERE</span> s.product_id <span class="code-op">=</span> p.product_id 
-      <span class="code-keyword">AND</span> s.total_price &gt;= 500.00
+    <span class="code-keyword">FROM</span> loans l 
+    <span class="code-keyword">WHERE</span> l.customer_id <span class="code-op">=</span> c.customer_id 
+      <span class="code-keyword">AND</span> l.amount &gt;= <span class="code-num">100000.00</span>
 )
-<span class="code-keyword">ORDER BY</span> p.price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> c.credit_score <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>High-Volume Product Filter Breakdown</h4>
+<h4>High-Value Loan Filter Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Correlates <code>Product_List</code>:</strong> Correlates <code>product_list</code> with <code>sells_list</code> to locate catalog items that have driven substantial single-order transaction volumes ($500+).</div>
+<div><strong>Correlates Customers With Loans:</strong> Correlates <code>customers</code> with <code>loans</code> to locate borrowers who hold major commercial debt facilities ($100,000+).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Returns 6:</strong> Returns 6 catalog products while avoiding duplicate product output without needing <code>GROUP BY</code>.</div>
+<div><strong>Returns Exactly 30 Borrowers:</strong> Returns 30 high-exposure clients while avoiding duplicate profile output without needing <code>GROUP BY</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Sequences Matching:</strong> Sequences matching inventory from most expensive to least expensive.</div>
+<div><strong>Credit Score Ordering:</strong> Sequences matching clients from highest credit rating to lowest for risk monitoring.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -503,7 +502,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: VIP Settlement Gatekeeper</span>
+<span class="terminal-title">Production Query: VIP Credit Extension Gatekeeper</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -513,16 +512,15 @@
 <span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> <span class="code-num">1</span> 
-    <span class="code-keyword">FROM</span> sells_list s 
-    <span class="code-keyword">WHERE</span> s.customer_id <span class="code-op">=</span> c.customer_id 
-      <span class="code-keyword">AND</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-      <span class="code-keyword">AND</span> s.total_price &gt;= <span class="code-num">1000.00</span>
+    <span class="code-keyword">FROM</span> accounts a 
+    <span class="code-keyword">WHERE</span> a.customer_id <span class="code-op">=</span> c.customer_id 
+      <span class="code-keyword">AND</span> a.balance &gt;= <span class="code-num">50000.00</span>
 )
 <span class="code-keyword">AND</span> <span class="code-keyword">NOT</span> <span class="code-keyword">EXISTS</span> (
     <span class="code-keyword">SELECT</span> <span class="code-num">1</span> 
-    <span class="code-keyword">FROM</span> sells_list s2 
-    <span class="code-keyword">WHERE</span> s2.customer_id <span class="code-op">=</span> c.customer_id 
-      <span class="code-keyword">AND</span> s2.payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>
+    <span class="code-keyword">FROM</span> loans l 
+    <span class="code-keyword">WHERE</span> l.customer_id <span class="code-op">=</span> c.customer_id 
+      <span class="code-keyword">AND</span> l.status <span class="code-op">=</span> <span class="code-string">'Defaulted'</span>
 )
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
@@ -530,21 +528,21 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-shield-alt"></i>
-<h4>VIP Settlement Gatekeeper Breakdown</h4>
+<h4>VIP Credit Extension Gatekeeper Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Pairs Positive:</strong> Pairs positive existence verification (<code>EXISTS</code> for $1000+ settled orders) with negative absence enforcement (<code>NOT EXISTS</code> for outstanding pending debts).</div>
+<div><strong>Pairs Positive and Negative:</strong> Pairs positive existence verification (<code>EXISTS</code> for $50,000+ active account liquidity) with negative absence enforcement (<code>NOT EXISTS</code> for any defaulted loan history).</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Accurately Pinpoints:</strong> Accurately pinpoints 4 stellar customer accounts who qualify for immediate credit-line extensions.</div>
+<div><strong>Accurately Pinpoints 48 Prospects:</strong> Accurately pinpoints 48 stellar customer accounts who qualify for immediate credit-line extensions without human underwriting delays.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Demonstrates The:</strong> Demonstrates the power of compound subquery predicates in enterprise risk management.</div>
+<div><strong>Compound Risk Guardrails:</strong> Demonstrates the power of compound subquery predicates in enterprise risk management.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -557,7 +555,7 @@
 <ul class="summary-list">
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Index the Correlation Columns:</strong> Always maintain an index on the inner table's correlated column (e.g., <code>sells_list.customer_id</code>) so the subquery can leverage index seeks.</span>
+<span><strong>Index the Correlation Columns:</strong> Always maintain an index on the inner table's correlated column (e.g., <code>accounts.customer_id</code> and <code>loans.customer_id</code>) so the subquery can leverage index seeks.</span>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
@@ -626,8 +624,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

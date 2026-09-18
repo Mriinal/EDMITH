@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -224,7 +223,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of single-line and multi-line SQL comments running against active relational tables (<code>employees</code>, <code>sells_list</code>, <code>product_list</code>, and <code>customers</code>):</p>
+<p>Explore production-grade implementations of single-line and multi-line SQL comments running against active relational tables (<code>employees</code>, <code>transactions</code>, <code>accounts</code>, and <code>branches</code>):</p>
 <!-- Query 1: Single-Line Merit Increase Projection -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -292,18 +291,18 @@
 </div>
 <pre><code><span class="code-comment">/*
 =====================================================
-Pipeline: Executive Q1 Financial Reconciliation
-Author: Data Engineering Operations
-Purpose: Aggregates settled revenue transactions
-         while excluding pending and disputed orders.
+Pipeline: Executive Daily Settlement Reconciliation
+Author: Treasury Operations &amp; Risk Analytics
+Purpose: Aggregates settled transaction volume
+         grouped by status while auditing exposure.
 =====================================================
 */</span>
 <span class="code-keyword">SELECT</span> 
-    payment_status,
+    status,
     <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_transactions,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> aggregate_revenue
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">GROUP BY</span> payment_status;</code></pre>
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> aggregate_volume
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">GROUP BY</span> status;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -319,11 +318,11 @@ Purpose: Aggregates settled revenue transactions
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Documents Author:</strong> Documents author identity, pipeline name, and data filtration criteria directly within the SQL file.</div>
+<div><strong>Documents Pipeline:</strong> Documents author identity, pipeline name, and operational scope directly within the SQL file.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Aggregates <code>Sells_List</code>:</strong> Aggregates <code>sells_list</code> into payment categories, totaling $15,615.17 across settled transactions.</div>
+<div><strong>Aggregates <code>transactions</code>:</strong> Aggregates <code>transactions</code> into settlement categories, totaling $276,400.00 across 167 completed records.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -346,15 +345,15 @@ Purpose: Aggregates settled revenue transactions
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    product_id,
-    product_name,
-    category,
-    price,
-    stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
-  <span class="code-comment">/* AND stock_quantity &gt; 50 -- Temporarily bypassed to inspect low-stock hardware */</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span>
+  <span class="code-comment">/* AND balance &gt; 25000.00 -- Temporarily bypassed to inspect low-tier liquid reserves */</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -370,11 +369,11 @@ Purpose: Aggregates settled revenue transactions
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Bypasses <code>And:</code></strong> Bypasses <code>AND stock_quantity &gt; 50</code> without deleting the code, allowing low-stock inventory to appear.</div>
+<div><strong>Bypasses <code>AND:</code></strong> Bypasses <code>AND balance &gt; 25000.00</code> without deleting code, allowing all savings accounts to appear.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Returns All:</strong> Returns all 6 Electronics products ordered by descending price.</div>
+<div><strong>Returns All:</strong> Returns all 34 Savings accounts ordered by descending balance.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -396,18 +395,18 @@ Purpose: Aggregates settled revenue transactions
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Extract client acquisition and transaction metrics</span>
+<pre><code><span class="code-comment">-- Extract client portfolio and deposit metrics</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    <span class="code-func">COUNT</span>(s.sale_id) <span class="code-keyword">AS</span> total_orders, <span class="code-comment">-- Total completed and pending orders</span>
-    <span class="code-func">ROUND</span>(<span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> lifetime_value
+    <span class="code-func">COUNT</span>(a.account_id) <span class="code-keyword">AS</span> total_accounts, <span class="code-comment">-- Total open and active accounts</span>
+    <span class="code-func">ROUND</span>(<span class="code-func">COALESCE</span>(<span class="code-func">SUM</span>(a.balance), <span class="code-num">0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_deposited_balance
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">INNER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> a.customer_id
 <span class="code-keyword">WHERE</span> c.customer_id &lt;= <span class="code-num">20</span> <span class="code-comment">-- Sampling first cohort</span>
 <span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
-<span class="code-keyword">ORDER BY</span> lifetime_value <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> total_deposited_balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -427,7 +426,7 @@ Purpose: Aggregates settled revenue transactions
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Returns Active:</strong> Returns active cohort accounts sorted by highest customer lifetime value (LTV).</div>
+<div><strong>Returns Active:</strong> Returns active cohort accounts sorted by highest total deposited balance.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -499,7 +498,7 @@ Purpose: Aggregates settled revenue transactions
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Executive Sales Volume &amp; Category Audit:</strong> Examine how comprehensive documentation improves the readability of revenue aggregation reports across active merchandise departments.</p>
+<p><strong>Executive Branch Liquidity Audit:</strong> Examine how comprehensive documentation improves the readability of deposit aggregation reports across active branch operations.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -507,32 +506,32 @@ Purpose: Aggregates settled revenue transactions
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: Documented Category Performance Report</span>
+<span class="terminal-title">Production Query: Documented Branch Liquidity Report</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">/* 
-   Executive Audit: High-Volume Regional Performance
-   Filters sales records by threshold and computes revenue impact
+   Executive Audit: High-Volume Branch Liquidity Breakdown
+   Filters active checking and savings portfolios to compute reserve impact
 */</span>
 <span class="code-keyword">SELECT</span> 
-    p.category,
-    <span class="code-func">COUNT</span>(s.sale_id) <span class="code-keyword">AS</span> items_sold,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_ticket_size,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_gross_sales
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-comment">-- Strict settlement filter</span>
-<span class="code-keyword">GROUP BY</span> p.category
-<span class="code-keyword">ORDER BY</span> total_gross_sales <span class="code-keyword">DESC</span>;</code></pre>
+    b.branch_name,
+    <span class="code-func">COUNT</span>(a.account_id) <span class="code-keyword">AS</span> active_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(a.balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_account_balance,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(a.balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_branch_deposits
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">INNER JOIN</span> branches b <span class="code-keyword">ON</span> a.branch_id <span class="code-op">=</span> b.branch_id
+<span class="code-keyword">WHERE</span> a.status <span class="code-op">=</span> <span class="code-string">'Active'</span> <span class="code-comment">-- Strict active reserve filter</span>
+<span class="code-keyword">GROUP BY</span> b.branch_name
+<span class="code-keyword">ORDER BY</span> total_branch_deposits <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-chart-line"></i>
-<h4>Documented Performance Report Breakdown</h4>
+<h4>Documented Branch Liquidity Report Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
@@ -542,11 +541,11 @@ Purpose: Aggregates settled revenue transactions
 </li>
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Demonstrates How:</strong> Demonstrates how clear annotations enable engineers to immediately recognize that only settled transactions are counted.</div>
+<div><strong>Demonstrates How:</strong> Demonstrates how clear annotations enable engineers to immediately recognize that only active accounts are evaluated.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>Summarizes $15,615.17 in settled revenue led by Electronics ($12,149.68) and Footwear ($939.90).</div>
+<div>Summarizes branch liquidity reserves led by premier metropolitan branch hubs.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -624,8 +623,13 @@ Purpose: Aggregates settled revenue transactions
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

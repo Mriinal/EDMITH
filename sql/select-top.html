@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -230,9 +229,9 @@
 </ul>
 </div>
 
-<!-- Section 2: Top N Products on product_list -->
-<h2>2. Top-N Analysis: Isolating Flagship Catalog Merchandise</h2>
-<p>Extract the 5 most expensive merchandise products on <code>product_list</code> by sorting price descending and limiting results:</p>
+<!-- Section 2: Top N Portfolios on accounts -->
+<h2>2. Top-N Analysis: Isolating Flagship Deposit Accounts</h2>
+<p>Extract the 5 highest-balance accounts on <code>accounts</code> by sorting balance descending and limiting results:</p>
 
 <!-- Top Products Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -242,16 +241,16 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Top 5 Highest-Priced Catalog Products</span>
+<span class="terminal-title">Query: Top 5 Highest-Balance Bank Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve the 5 most premium products in the catalog</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>
+<pre><code><span class="code-comment">-- Retrieve the 5 highest-balance accounts in the bank</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">5</span>;</code></pre>
 </div>
 
@@ -259,22 +258,22 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-medal"></i>
-<h4>Top-N Product Breakdown</h4>
+<h4>Top-N Account Breakdown</h4>
 </div>
-<p>How the query isolates premium inventory:</p>
+<p>How the query isolates premium liquidity portfolios:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-trophy"></i>
-<div><strong>Descending Sort:</strong> Places the <em>Pro Laptop 15"</em> ($1299.99), <em>Ultra-Wide 4K Monitor</em> ($349.99), and <em>Air Fryer Pro</em> ($149.99) at the head of the stream.</div>
+<div><strong>Descending Sort:</strong> Places the largest corporate and personal deposit accounts at the head of the stream.</div>
 </li>
 <li>
 <i class="fas fa-cut"></i>
-<div><strong>Stream Truncation:</strong> <code>LIMIT 5</code> halts result transmission after row 5, dropping the remaining 20 products from processing.</div>
+<div><strong>Stream Truncation:</strong> <code>LIMIT 5</code> halts result transmission after row 5, dropping the remaining accounts from client processing.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to test this query live against the 25-item <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to test this query live against the 150-account <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -385,9 +384,9 @@
 </ul>
 </div>
 
-<!-- Section 5: Top Settled Orders on sells_list -->
-<h2>5. Financial Reporting: Top 5 Highest-Grossing Sales Orders</h2>
-<p>Rank and retrieve the top 5 largest fulfilled customer orders on <code>sells_list</code>:</p>
+<!-- Section 5: Top Settled Orders on transactions -->
+<h2>5. Financial Reporting: Top 5 Highest-Value Transactions</h2>
+<p>Rank and retrieve the top 5 largest completed ledger transactions on <code>transactions</code>:</p>
 
 <!-- Sales Top Orders Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -397,17 +396,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Top 5 Highest-Grossing Settled Purchases</span>
+<span class="terminal-title">Query: Top 5 Highest-Value Settled Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- Surface the 5 largest settled customer transactions</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, transaction_date
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">5</span>;</code></pre>
 </div>
 
@@ -415,17 +414,17 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
-<h4>Top Sales Orders Breakdown</h4>
+<h4>Top Transactions Breakdown</h4>
 </div>
-<p>Analyzing high-value revenue drivers:</p>
+<p>Analyzing high-value liquidity drivers:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Payment Verification:</strong> Pre-screens for completed payments, excluding cancelled or pending orders.</div>
+<div><strong>Settlement Verification:</strong> Pre-screens for completed payments, excluding cancelled, failed, or pending transfers.</div>
 </li>
 <li>
 <i class="fas fa-chart-line"></i>
-<div><strong>Peak Orders:</strong> Highlights multi-unit hardware orders totaling $3,899.97, $2,599.98, and $1,299.99 for management review.</div>
+<div><strong>Peak Movements:</strong> Highlights wire transfers and large business deposits exceeding $4,000.00 for executive audit.</div>
 </li>
 </ul>
 </div>
@@ -542,8 +541,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

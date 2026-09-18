@@ -825,9 +825,13 @@ window.openEdmithEditor = function(target) {
         }
     } catch (e) {}
 
-    // 3. Resolve target URL based on current page location
-    const isSqlSubdir = window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/');
-    const editorPath = isSqlSubdir ? 'editor.html' : 'sql/editor.html';
+    // 3. Resolve target URL based on current page location (targeting canonical editors/editor.html)
+    let editorPath = 'editors/editor.html';
+    if (window.location.pathname.includes('/sql/') || window.location.href.includes('/sql/')) {
+        editorPath = '../editors/editor.html';
+    } else if (window.location.pathname.includes('/editors/') || window.location.href.includes('/editors/')) {
+        editorPath = 'editor.html';
+    }
     const targetUrl = editorPath + '?query=' + encodeURIComponent(sql);
 
     // 4. Open or focus the named editor window

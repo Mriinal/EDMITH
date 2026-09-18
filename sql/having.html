@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -284,11 +283,11 @@
 </p>
 </div>
 
-<!-- Section 3: High-Volume Settlement on sells_list -->
-<h2>3. Financial Settlement: High-Volume Payment Statuses</h2>
-<p>Filter payment settlement categories in <code>sells_list</code> to isolate statuses generating at least $2,500.00 in cumulative value:</p>
+<!-- Section 3: High-Volume Branch Portfolios on accounts -->
+<h2>3. Branch Network: High-Deposit Branches</h2>
+<p>Filter branch networks in <code>accounts</code> to isolate branches managing at least $650,000.00 in cumulative deposits:</p>
 
-<!-- Payment Settlement HAVING Terminal (Try in Editor + Copy) -->
+<!-- Branch Deposit HAVING Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -296,48 +295,46 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: High-Value Financial Settlement Tiers</span>
+<span class="terminal-title">Query: High-Deposit Branch Tier Filtering</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Group by payment_status and filter for aggregate revenue exceeding $2,500.00</span>
+<pre><code><span class="code-comment">-- Group by branch_id and filter for cumulative deposits exceeding $650,000.00</span>
 <span class="code-keyword">SELECT</span> 
-    payment_status,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> transaction_count,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_settled_value
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">GROUP BY</span> payment_status
-<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(total_price) <span class="code-op">&gt;=</span> <span class="code-num">2500.00</span>;</code></pre>
+    branch_id,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> account_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_deposits,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">GROUP BY</span> branch_id
+<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(balance) <span class="code-op">&gt;=</span> <span class="code-num">650000.00</span>
+<span class="code-keyword">ORDER BY</span> total_deposits <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Payment Settlement -->
+<!-- Dedicated Explanation Area for Branch Deposit -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-coins"></i>
-<h4>Settlement Revenue Filter Breakdown</h4>
+<i class="fas fa-building"></i>
+<h4>Branch Liquidity Filter Breakdown</h4>
 </div>
-<p>Auditing transaction settlement brackets:</p>
+<p>Auditing branch capitalization brackets:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-money-bill-wave"></i>
-<div><strong>PAID Tier ($15,615.17):</strong> Passes the threshold comfortably with 37 successful sales orders.</div>
+<i class="fas fa-landmark"></i>
+<div><strong>Branch #1 Leadership ($822,718.00):</strong> Manages 14 accounts averaging $58,765.57, leading the branch network in total liquid deposits.</div>
 </li>
 <li>
-<i class="fas fa-hourglass-half"></i>
-<div><strong>PENDING Tier ($2,634.78):</strong> Also surpasses the $2,500 floor across 9 in-flight clearing orders.</div>
-</li>
-<li>
-<i class="fas fa-ban"></i>
-<div><strong>REFUNDED &amp; CANCELLED Omitted:</strong> Refunded ($2,009.82) and Cancelled ($1,200.83) fall below the threshold and are discarded.</div>
+<i class="fas fa-filter"></i>
+<div><strong>Threshold Culling:</strong> Branches with lower deposit totals are discarded after aggregation by the <code>HAVING</code> clause.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 4: Dual Aggregate Condition on product_list -->
-<h2>4. Compound Criteria: Deep Inventory &amp; Premium Category Pricing</h2>
-<p>Evaluate multiple aggregate conditions simultaneously in <code>HAVING</code> using the logical <code>AND</code> operator on <code>product_list</code>:</p>
+<!-- Section 4: Dual Aggregate Condition on accounts -->
+<h2>4. Compound Criteria: Deep Portfolio Count &amp; High Average Balance</h2>
+<p>Evaluate multiple aggregate conditions simultaneously in <code>HAVING</code> using the logical <code>AND</code> operator on <code>accounts</code>:</p>
 
 <!-- Dual Aggregate Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -347,45 +344,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: High Inventory &amp; Premium Unit Price Sectors</span>
+<span class="terminal-title">Query: High Account Volume &amp; Strong Balance Tiers</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find product categories with total stock over 500 units AND average price over $40.00</span>
+<pre><code><span class="code-comment">-- Find account types with at least 30 accounts AND average balance over $50,000.00</span>
 <span class="code-keyword">SELECT</span> 
-    category,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> product_count,
-    <span class="code-func">SUM</span>(stock_quantity)   <span class="code-keyword">AS</span> total_stock,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_category_price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">GROUP BY</span> category
-<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(stock_quantity) <span class="code-op">&gt;</span> <span class="code-num">500</span> <span class="code-keyword">AND</span> <span class="code-func">AVG</span>(price) <span class="code-op">&gt;</span> <span class="code-num">40.00</span>;</code></pre>
+    account_type,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> total_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_deposits,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">GROUP BY</span> account_type
+<span class="code-keyword">HAVING</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-op">&gt;=</span> <span class="code-num">30</span> <span class="code-keyword">AND</span> <span class="code-func">AVG</span>(balance) <span class="code-op">&gt;</span> <span class="code-num">50000.00</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Dual Aggregate -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-warehouse"></i>
+<i class="fas fa-layer-group"></i>
 <h4>Compound Group Filter Breakdown</h4>
 </div>
-<p>Auditing inventory depth and pricing floors simultaneously:</p>
+<p>Auditing account volume and liquidity floors simultaneously:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tags"></i>
-<div><strong>Apparel (745 Stock, $73.99 Avg):</strong> Qualifies under both criteria, demonstrating high fulfillment reserves and solid margins.</div>
+<i class="fas fa-check-double"></i>
+<div><strong>Business, Checking &amp; Savings:</strong> All three qualify with over 30 accounts and average balances exceeding $50,000.00.</div>
 </li>
 <li>
-<i class="fas fa-glasses"></i>
-<div><strong>Accessories (690 Stock, $44.39 Avg):</strong> Satisfies both constraints with deep inventory and healthy unit pricing.</div>
+<i class="fas fa-times-circle"></i>
+<div><strong>Money Market Disqualified:</strong> Excluded because its average balance ($48,812.33) falls below the $50,000.00 ceiling, despite having 33 accounts.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: WHERE and HAVING Synergy on sells_list -->
-<h2>5. WHERE &amp; HAVING Synergy: High-Value Settled Customer Accounts</h2>
-<p>Demonstrate the full pipeline architecture by pairing <code>WHERE</code> (row-level filter) with <code>HAVING</code> (aggregate filter) on <code>sells_list</code>:</p>
+<!-- Section 5: WHERE and HAVING Synergy on transactions -->
+<h2>5. WHERE &amp; HAVING Synergy: High-Activity Transaction Accounts</h2>
+<p>Demonstrate the full pipeline architecture by pairing <code>WHERE</code> (row-level filter) with <code>HAVING</code> (aggregate filter) on <code>transactions</code>:</p>
 
 <!-- WHERE + HAVING Synergy Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -395,41 +392,41 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Verified VIP Customer Spend Threshold</span>
+<span class="terminal-title">Query: Accounts with High Completed Transaction Volume</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Step 1: WHERE filters strictly PAID orders</span>
-<span class="code-comment">-- Step 2: GROUP BY aggregates totals by customer</span>
-<span class="code-comment">-- Step 3: HAVING filters customers with cumulative spend >= $500.00</span>
+<pre><code><span class="code-comment">-- Step 1: WHERE filters strictly Completed transactions</span>
+<span class="code-comment">-- Step 2: GROUP BY aggregates volume by account_id</span>
+<span class="code-comment">-- Step 3: HAVING filters accounts with cumulative volume >= $5,000.00</span>
 <span class="code-keyword">SELECT</span> 
-    customer_id,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> completed_orders,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> cumulative_spent
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">GROUP BY</span> customer_id
-<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(total_price) <span class="code-op">&gt;=</span> <span class="code-num">500.00</span>
-<span class="code-keyword">ORDER BY</span> cumulative_spent <span class="code-keyword">DESC</span>;</code></pre>
+    account_id,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> completed_tx_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> cumulative_amount
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">GROUP BY</span> account_id
+<span class="code-keyword">HAVING</span> <span class="code-func">SUM</span>(amount) <span class="code-op">&gt;=</span> <span class="code-num">5000.00</span>
+<span class="code-keyword">ORDER BY</span> cumulative_amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for WHERE + HAVING -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-crown"></i>
-<h4>VIP Customer Pipeline Breakdown</h4>
+<i class="fas fa-shield-alt"></i>
+<h4>High-Volume Account Pipeline Breakdown</h4>
 </div>
 <p>Auditing the combined execution sequence:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Pre-Filter (WHERE payment_status = 'PAID'):</strong> Immediately eliminates pending, refunded, and cancelled records from memory.</div>
+<div><strong>Pre-Filter (WHERE status = 'Completed'):</strong> Immediately eliminates pending and failed transactions before aggregation occurs.</div>
 </li>
 <li>
 <i class="fas fa-trophy"></i>
-<div><strong>Post-Filter (HAVING SUM(total_price) &gt;= 500.00):</strong> Isolates the top 5 high-value corporate accounts (led by Customer #351 with $3,899.97).</div>
+<div><strong>Post-Filter (HAVING SUM(amount) &gt;= 5000.00):</strong> Isolates the high-volume operational accounts (led by Accounts #51 and #12 with over $7,500.00 in throughput).</div>
 </li>
 </ul>
 </div>
@@ -505,8 +502,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

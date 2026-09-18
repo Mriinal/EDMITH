@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -225,8 +224,8 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>ALL</code> running against active relational tables (<code>product_list</code>, <code>employees</code>, <code>customers</code>, and <code>sells_list</code>):</p>
-<!-- Query 1: Cross-Category Ceiling Outperformance -->
+<p>Explore production-grade implementations of <code>ALL</code> running against active relational tables (<code>accounts</code>, <code>employees</code>, <code>customers</code>, and <code>loans</code>):</p>
+<!-- Query 1: Cross-Type Ceiling Outperformance -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -234,40 +233,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Cross-Category Ceiling Outperformance (&gt; ALL)</span>
+<span class="terminal-title">Query 1: Cross-Type Balance Ceiling Outperformance (&gt; ALL)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &gt; <span class="code-keyword">ALL</span> (
-    <span class="code-keyword">SELECT</span> price 
-    <span class="code-keyword">FROM</span> product_list 
-    <span class="code-keyword">WHERE</span> category = <span class="code-string">'Home &amp; Kitchen'</span>
+<pre><code><span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &gt; <span class="code-keyword">ALL</span> (
+    <span class="code-keyword">SELECT</span> balance 
+    <span class="code-keyword">FROM</span> accounts 
+    <span class="code-keyword">WHERE</span> account_type = <span class="code-string">'Checking'</span>
 )
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Ceiling Outperformance Breakdown</h4>
+<h4>Balance Ceiling Outperformance Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>Finds products whose price is strictly greater than <strong>all</strong> items in Home &amp; Kitchen.</div>
+<div>Finds deposit accounts whose balance is strictly greater than <strong>all</strong> accounts in the Checking portfolio.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Because The:</strong> Because the highest-priced Home &amp; Kitchen item is $84.99 (Dutch Oven), the outer query retrieves catalog items priced above $84.99.</div>
+<div><strong>Checking Portfolio Peak:</strong> Because the highest Checking account balance is $96,904.00, the query isolates accounts that transcend the checking ceiling.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Returns 9:</strong> Returns 9 premium products, primarily laptops, 4K monitors, and specialized electronics.</div>
+<div><strong>Returns Top Tier:</strong> Identifies ultra-high-balance accounts (such as Savings account AC-100132 at $97,427.00).</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -283,7 +282,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Inter-Departmental Compensation Ceiling Filter</span>
+<span class="terminal-title">Query 2: Inter-Departmental Compensation Ceiling Filter (&gt; ALL)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -294,7 +293,7 @@
 <span class="code-keyword">WHERE</span> salary &gt; <span class="code-keyword">ALL</span> (
     <span class="code-keyword">SELECT</span> salary 
     <span class="code-keyword">FROM</span> employees 
-    <span class="code-keyword">WHERE</span> department = <span class="code-string">'Sales'</span>
+    <span class="code-keyword">WHERE</span> department = <span class="code-string">'Retail Banking Operations'</span>
 )
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
@@ -308,15 +307,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>The Sales department compensation ranges from $62,000 to $110,000 (David Miller).</div>
+<div>The Retail Banking Operations division compensation spans from $98,000 to $240,000 (Head of Retail Banking Sarah Jenkins).</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><code>salary &gt; ALL (Sales salaries)</code> requires an employee's salary to exceed the entire Sales roster (&gt; $110,000).</div>
+<div><code>salary &gt; ALL (Retail Banking salaries)</code> requires compensation to strictly exceed the entire division roster (&gt; $240,000).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Accurately isolates the top two executive leaders in the company:</strong> Mrinal Prashar ($150,000) and Ripunjay Kumar ($120,000).</div>
+<div><strong>Accurately isolates the top executive leaders in the bank:</strong> CEO Mrinal Prashar ($350k), CTO Ripunjay Kumar ($280k), and CRO Amritesh Nath ($260k).</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -324,7 +323,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 3: High-Ticket Exclusivity with != ALL -->
+<!-- Query 3: High-Value Liquidity Exclusivity with != ALL -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -332,7 +331,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: High-Ticket Exclusivity Identification (!= ALL)</span>
+<span class="terminal-title">Query 3: High-Value Liquidity Exclusivity Identification (!= ALL)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -341,12 +340,12 @@
 <pre><code><span class="code-keyword">SELECT</span> c.customer_id, c.first_name, c.last_name
 <span class="code-keyword">FROM</span> customers c
 <span class="code-keyword">WHERE</span> c.customer_id <span class="code-op">!=</span> <span class="code-keyword">ALL</span> (
-    <span class="code-keyword">SELECT</span> s.customer_id 
-    <span class="code-keyword">FROM</span> sells_list s 
-    <span class="code-keyword">WHERE</span> s.total_price &lt; <span class="code-num">100.00</span>
+    <span class="code-keyword">SELECT</span> a.customer_id 
+    <span class="code-keyword">FROM</span> accounts a 
+    <span class="code-keyword">WHERE</span> a.balance &lt; <span class="code-num">10000.00</span>
 )
 <span class="code-keyword">AND</span> <span class="code-keyword">EXISTS</span> (
-    <span class="code-keyword">SELECT</span> <span class="code-num">1</span> <span class="code-keyword">FROM</span> sells_list s2 <span class="code-keyword">WHERE</span> s2.customer_id <span class="code-op">=</span> c.customer_id
+    <span class="code-keyword">SELECT</span> <span class="code-num">1</span> <span class="code-keyword">FROM</span> accounts a2 <span class="code-keyword">WHERE</span> a2.customer_id <span class="code-op">=</span> c.customer_id
 )
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
@@ -354,21 +353,21 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>High-Ticket Exclusivity Breakdown</h4>
+<h4>High-Value Liquidity Exclusivity Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Finds active buyers who have <strong>never</strong> purchased an item under $100.</div>
+<div>Finds active depositors who hold <strong>zero</strong> low-balance accounts under $10,000.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><code>!= ALL (subquery)</code> behaves as universal exclusion (identical to <code>NOT IN</code>), asserting that the customer ID does not match any small-basket transaction.</div>
+<div><code>!= ALL (subquery)</code> behaves as universal exclusion (identical to <code>NOT IN</code>), asserting that the customer ID does not match any sub-$10k account holder.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Returns 40:</strong> Returns 40 high-ticket customer accounts who purchase exclusively in premium tiers.</div>
+<div><strong>Returns 92 Clean Accounts:</strong> Identifies depositors who maintain consistently healthy balances across all enrolled account numbers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -376,7 +375,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 4: Entry-Level Category Floor Filter -->
+<!-- Query 4: Entry-Level Credit Facility Discovery -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -384,40 +383,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Sub-Floor Catalog Item Discovery (&lt; ALL)</span>
+<span class="terminal-title">Query 4: Sub-Mortgage Credit Facility Discovery (&lt; ALL)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &lt; <span class="code-keyword">ALL</span> (
-    <span class="code-keyword">SELECT</span> price 
-    <span class="code-keyword">FROM</span> product_list 
-    <span class="code-keyword">WHERE</span> category = <span class="code-string">'Electronics'</span>
+<pre><code><span class="code-keyword">SELECT</span> loan_id, customer_id, loan_type, amount, interest_rate
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> amount &lt; <span class="code-keyword">ALL</span> (
+    <span class="code-keyword">SELECT</span> amount 
+    <span class="code-keyword">FROM</span> loans 
+    <span class="code-keyword">WHERE</span> loan_type = <span class="code-string">'Home Mortgage'</span>
 )
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Sub-Floor Item Discovery Breakdown</h4>
+<h4>Sub-Mortgage Credit Facility Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>The lowest price in Electronics is $49.99 (Ergonomic Wireless Mouse).</div>
+<div>The lowest principal across all Home Mortgage commitments is $58,640.00.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><code>price &lt; ALL (Electronics prices)</code> matches products whose price is strictly lower than the minimum Electronics price (&lt; $49.99).</div>
+<div><code>amount &lt; ALL (Mortgage amounts)</code> matches loans whose principal is strictly lower than every Home Mortgage commitment (&lt; $58,640.00).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Returns 8:</strong> Returns 8 budget items (apparel and home goods) that sit below the tech accessories pricing tier.</div>
+<div><strong>Returns 6 Retail Facilities:</strong> Discovers consumer auto and personal loans operating beneath the mortgage capital tier.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -484,7 +483,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Enterprise Leadership Compensation Verification:</strong> Extract leadership records for executives whose base compensation exceeds ALL staff members in the Operations and Human Resources departments.</p>
+<p><strong>Executive Leadership Compensation Verification:</strong> Extract leadership records for executives whose base compensation exceeds ALL staff members in the Retail Banking and Commercial Lending divisions.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -507,7 +506,7 @@
 <span class="code-keyword">WHERE</span> salary &gt; <span class="code-keyword">ALL</span> (
     <span class="code-keyword">SELECT</span> salary
     <span class="code-keyword">FROM</span> employees
-    <span class="code-keyword">WHERE</span> department <span class="code-keyword">IN</span> (<span class="code-string">'Operations'</span>, <span class="code-string">'HR'</span>)
+    <span class="code-keyword">WHERE</span> department <span class="code-keyword">IN</span> (<span class="code-string">'Retail Banking Operations'</span>, <span class="code-string">'Commercial &amp; Corporate Lending'</span>)
 )
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
@@ -521,15 +520,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>The highest salary in Operations and HR is $105,000 (Michael Chang, Operations Manager).</div>
+<div>The highest salary across Retail Operations and Commercial Lending is $240,000 (Sarah Jenkins, Head of Retail Banking).</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><code>salary &gt; ALL (...)</code> asserts that candidate salaries must be strictly higher than $105,000.</div>
+<div><code>salary &gt; ALL (...)</code> asserts that candidate salaries must be strictly higher than $240,000.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Locates exactly 3 leadership roles across the company:</strong> CEO Mrinal Prashar ($150k), VP Engineering Ripunjay Kumar ($120k), and Sales Director David Miller ($110k).</div>
+<div><strong>Locates exactly 3 C-suite leaders:</strong> CEO Mrinal Prashar ($350,000), CTO Ripunjay Kumar ($280,000), and CRO Amritesh Nath ($260,000).</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -607,8 +606,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

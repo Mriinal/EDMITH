@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -220,9 +219,9 @@
 </ul>
 </div>
 
-<!-- Section 2: Settled Revenue on sells_list -->
-<h2>2. Financial Auditing: Total Gross Settled Revenue</h2>
-<p>Compute the total settled cash revenue collected across all completed purchases on the <code>sells_list</code> table:</p>
+<!-- Section 2: Settled Revenue on transactions -->
+<h2>2. Financial Auditing: Total Cleared Transaction Volume</h2>
+<p>Compute the total cleared settlement volume collected across all completed ledger entries on the <code>transactions</code> table:</p>
 
 <!-- Sales Revenue Sum Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -232,29 +231,29 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Total Settled Commercial Revenue</span>
+<span class="terminal-title">Query: Total Cleared Financial Volume</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Calculate total revenue from verified, completed customer transactions</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_paid_revenue
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+<pre><code><span class="code-comment">-- Calculate total amount from cleared, completed transactions</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_cleared_volume
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Revenue Sum -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-file-invoice-dollar"></i>
-<h4>Revenue Accumulation Breakdown</h4>
+<h4>Volume Accumulation Breakdown</h4>
 </div>
-<p>Analyzing company-wide commerce cash flow:</p>
+<p>Analyzing banking ledger settlement liquidity:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Settled Receipts ($15,615.17):</strong> Sums the 37 completed transactions, excluding pending, cancelled, or refunded orders.</div>
+<div><strong>Settled Receipts:</strong> Sums all cleared movements, excluding pending or failed transfers.</div>
 </li>
 <li>
 <i class="fas fa-coins"></i>
@@ -263,7 +262,7 @@
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the $15,615.17 total calculated live from <code>sells_list</code>!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the aggregate volume calculated live from <code>transactions</code>!</span>
 </div>
 </div>
 
@@ -362,9 +361,9 @@
 </ul>
 </div>
 
-<!-- Section 5: Arithmetic Expression Sum on product_list -->
-<h2>5. Inventory Valuation: Arithmetic Multiplication Inside SUM()</h2>
-<p>Compute total physical warehouse units and total catalog inventory asset value using an in-line expression inside <code>SUM()</code>:</p>
+<!-- Section 5: Portfolio Valuation on accounts -->
+<h2>5. Portfolio Valuation: Total Bank Deposit Balances</h2>
+<p>Compute total customer deposits and active portfolio count across all verified account holdings on <code>accounts</code>:</p>
 
 <!-- Inventory Valuation Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -374,41 +373,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Physical Units &amp; Warehouse Inventory Asset Value</span>
+<span class="terminal-title">Query: Total Active Deposit Account Balances</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Calculate total stock units and total inventory value (price * stock_quantity)</span>
+<pre><code><span class="code-comment">-- Calculate total customer deposits and active portfolio count</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">SUM</span>(stock_quantity)                           <span class="code-keyword">AS</span> total_units_in_stock,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(price <span class="code-op">*</span> stock_quantity), <span class="code-num">2</span>)          <span class="code-keyword">AS</span> total_inventory_valuation
-<span class="code-keyword">FROM</span> product_list;</code></pre>
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                                      <span class="code-keyword">AS</span> total_active_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>)                         <span class="code-keyword">AS</span> total_deposit_liabilities
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Inventory Valuation -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-warehouse"></i>
-<h4>Warehouse Asset Breakdown</h4>
+<i class="fas fa-landmark"></i>
+<h4>Deposit Portfolio Breakdown</h4>
 </div>
-<p>Evaluating enterprise physical merchandise:</p>
+<p>Evaluating enterprise banking deposit liabilities:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-boxes"></i>
-<div><strong>2,555 Total Units:</strong> <code>SUM(stock_quantity)</code> adds all warehouse unit stock counts across the 25 catalog products.</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Active Account Count:</strong> Tallies all open, non-dormant customer portfolios.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>$197,579.45 Inventory Valuation:</strong> For each item, computes <code>price * stock_quantity</code>, then sums all 25 extended values to determine total liquid merchandise worth.</div>
+<div><strong>Cumulative Deposits:</strong> Sums total balances across checking, savings, and wealth accounts to track institutional liquidity.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 6: Categorical Inventory on product_list -->
-<h2>6. Sector Analysis: Electronics Inventory Units</h2>
-<p>Measure physical warehouse capacity allocated specifically to consumer electronics on <code>product_list</code>:</p>
+<!-- Section 6: Categorical Inventory on loans -->
+<h2>6. Sector Analysis: Total Lending Capital on Mortgages</h2>
+<p>Measure total principal capital disbursed specifically for home mortgages on <code>loans</code>:</p>
 
 <!-- Electronics Units Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -418,33 +418,33 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Tallying Electronics Warehouse Stock Units</span>
+<span class="terminal-title">Query: Tallying Mortgage Principal Disbursals</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Total physical stock units reserved for Electronics merchandise</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">SUM</span>(stock_quantity) <span class="code-keyword">AS</span> electronics_inventory_units
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
+<pre><code><span class="code-comment">-- Total principal amount disbursed across active mortgages</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_mortgage_principal
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> loan_type <span class="code-op">=</span> <span class="code-string">'Mortgage'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Electronics Units -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-microchip"></i>
-<h4>Electronics Stock Breakdown</h4>
+<i class="fas fa-home"></i>
+<h4>Mortgage Capital Breakdown</h4>
 </div>
-<p>Departmental physical asset sizing:</p>
+<p>Lending division capital sizing:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-tag"></i>
-<div><strong>Category Filter:</strong> Isolates the 6 electronics hardware items.</div>
+<div><strong>Loan Type Filter:</strong> Isolates home mortgage loans from personal, student, and auto loans.</div>
 </li>
 <li>
-<i class="fas fa-cubes"></i>
-<div><strong>480 Warehouse Units:</strong> Sums Laptops (45), Headphones (80), Keyboards (120), Smartwatches (60), Mice (150), and Monitors (25) into an authoritative 480-unit figure.</div>
+<i class="fas fa-coins"></i>
+<div><strong>Active Book:</strong> Aggregates capital deployed in performing mortgage credit lines.</div>
 </li>
 </ul>
 </div>
@@ -524,8 +524,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

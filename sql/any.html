@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -221,8 +220,8 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>ANY</code> running against active relational tables (<code>product_list</code>, <code>employees</code>, and <code>sells_list</code>):</p>
-<!-- Query 1: Cross-Category Price Benchmark -->
+<p>Explore production-grade implementations of <code>ANY</code> running against active relational tables (<code>accounts</code>, <code>employees</code>, <code>transactions</code>, and <code>loans</code>):</p>
+<!-- Query 1: Cross-Type Balance Benchmark -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,40 +229,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Cross-Category Price Floor Comparison (&gt; ANY)</span>
+<span class="terminal-title">Query 1: Cross-Type Account Balance Floor Comparison (&gt; ANY)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &gt; <span class="code-keyword">ANY</span> (
-    <span class="code-keyword">SELECT</span> price 
-    <span class="code-keyword">FROM</span> product_list 
-    <span class="code-keyword">WHERE</span> category = <span class="code-string">'Home &amp; Kitchen'</span>
+<pre><code><span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &gt; <span class="code-keyword">ANY</span> (
+    <span class="code-keyword">SELECT</span> balance 
+    <span class="code-keyword">FROM</span> accounts 
+    <span class="code-keyword">WHERE</span> account_type = <span class="code-string">'Checking'</span>
 )
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Cross-Category Price Floor Comparison Breakdown</h4>
+<h4>Cross-Type Account Balance Floor Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>Finds products whose price is greater than <strong>any</strong> item in the Home &amp; Kitchen category.</div>
+<div>Finds accounts whose balance is greater than <strong>any</strong> account in the Checking portfolio.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Because The:</strong> Because the cheapest Home &amp; Kitchen item is $34.99 (Essential Oil Diffuser), any product priced higher than $34.99 satisfies this predicate (yielding 20 items).</div>
+<div><strong>Floor Comparison:</strong> Because the lowest Checking account balance is $3,023.00, any account with a balance greater than $3,023.00 satisfies this predicate.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Sequences Matching:</strong> Sequences matching catalog items from most expensive to least expensive.</div>
+<div><strong>Sequences Liquidity:</strong> Sequences matching customer accounts from largest to smallest balance.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -279,7 +278,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Departmental Compensation Benchmark Floor</span>
+<span class="terminal-title">Query 2: Departmental Compensation Benchmark Floor (&gt; ANY)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -290,7 +289,7 @@
 <span class="code-keyword">WHERE</span> salary &gt; <span class="code-keyword">ANY</span> (
     <span class="code-keyword">SELECT</span> salary 
     <span class="code-keyword">FROM</span> employees 
-    <span class="code-keyword">WHERE</span> department = <span class="code-string">'HR'</span>
+    <span class="code-keyword">WHERE</span> department = <span class="code-string">'Risk, Audit &amp; Compliance'</span>
 )
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
@@ -304,15 +303,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>The HR department includes salaries of $58,000 (Rohan Gupta) and $85,000 (Jessica Taylor).</div>
+<div>The Risk, Audit &amp; Compliance division features base salaries of $115,000, $145,000, and $260,000.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><code>salary &gt; ANY (HR salaries)</code> means the salary only needs to exceed the lowest HR compensation ($58,000).</div>
+<div><code>salary &gt; ANY (Risk salaries)</code> requires compensation only to exceed the lowest departmental salary ($115,000).</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Accurately Identifies:</strong> Accurately identifies 14 out of 15 staff members who make more than the entry-level HR salary.</div>
+<div><strong>Accurately Identifies Senior Staff:</strong> Pinpoints high-bracket personnel across all divisions whose earnings exceed the baseline compliance threshold.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -328,20 +327,20 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: VIP Value Alignment Matching (= ANY)</span>
+<span class="terminal-title">Query 3: High-Value Settlement Matching (= ANY)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, sale_id, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> total_price = <span class="code-keyword">ANY</span> (
-    <span class="code-keyword">SELECT</span> total_price 
-    <span class="code-keyword">FROM</span> sells_list 
-    <span class="code-keyword">WHERE</span> total_price &gt;= 1000.00
+<pre><code><span class="code-keyword">SELECT</span> transaction_id, account_id, amount, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> amount = <span class="code-keyword">ANY</span> (
+    <span class="code-keyword">SELECT</span> amount 
+    <span class="code-keyword">FROM</span> transactions 
+    <span class="code-keyword">WHERE</span> amount &gt;= <span class="code-num">4000.00</span>
 )
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -353,15 +352,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Demonstrates the exact semantic identity:</strong> <code>= ANY (subquery)</code> is functionally interchangeable with <code>IN (subquery)</code>.</div>
+<div><strong>Semantic Identity:</strong> Demonstrates that <code>= ANY (subquery)</code> is functionally interchangeable with <code>IN (subquery)</code>.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Extracts All:</strong> Extracts all transactions matching any calculated high-ticket order benchmark ($1000+).</div>
+<div><strong>Extracts Major Transactions:</strong> Extracts all ledger entries matching any high-ticket settlement figure ($4,000+).</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Returns 5:</strong> Returns 5 matching purchase records ordered from largest to smallest.</div>
+<div>Sequences matching financial transactions from largest to smallest volume.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -369,7 +368,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 4: Sub-Ceiling Inventory Identification -->
+<!-- Query 4: Sub-Ceiling Balance Identification -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -377,40 +376,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Sub-Ceiling Catalog Price Filtering (&lt; ANY)</span>
+<span class="terminal-title">Query 4: Sub-Ceiling Balance Filtering (&lt; ANY)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &lt; <span class="code-keyword">ANY</span> (
-    <span class="code-keyword">SELECT</span> price 
-    <span class="code-keyword">FROM</span> product_list 
-    <span class="code-keyword">WHERE</span> category = <span class="code-string">'Electronics'</span>
+<pre><code><span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &lt; <span class="code-keyword">ANY</span> (
+    <span class="code-keyword">SELECT</span> balance 
+    <span class="code-keyword">FROM</span> accounts 
+    <span class="code-keyword">WHERE</span> account_type = <span class="code-string">'Money Market'</span>
 )
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Sub-Ceiling Price Filtering Breakdown</h4>
+<h4>Sub-Ceiling Balance Filtering Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>The maximum price in Electronics is $1299.99 (Pro Laptop 15").</div>
+<div>The highest balance in Money Market accounts is $92,927.00.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><code>price &lt; ANY (Electronics prices)</code> evaluates to TRUE for any product priced lower than that highest value ($1299.99).</div>
+<div><code>balance &lt; ANY (Money Market balances)</code> evaluates to TRUE for any account with a balance lower than that peak value ($92,927.00).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Excludes only the top flagship laptop, returning 24 products spanning all categories.</div>
+<div>Filters out the uppermost peak accounts while preserving broad portfolio visibility.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -473,7 +472,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Competitive Catalog Benchmarking:</strong> Discover products in the active inventory whose retail price undercuts the single-unit purchase total of ANY settled transaction in <code>sells_list</code>.</p>
+<p><strong>Competitive Commercial Loan Facility Benchmarking:</strong> Discover credit facilities in <code>loans</code> whose principal amount is lower than ANY loan underwritten for corporate business expansion.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -481,41 +480,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: Competitive Retail Price Floor Benchmark</span>
+<span class="terminal-title">Production Query: Retail Loan Pricing Floor Benchmark</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> p.product_id, p.product_name, p.category, p.price
-<span class="code-keyword">FROM</span> product_list p
-<span class="code-keyword">WHERE</span> p.price &lt; <span class="code-keyword">ANY</span> (
-    <span class="code-keyword">SELECT</span> s.total_price
-    <span class="code-keyword">FROM</span> sells_list s
-    <span class="code-keyword">WHERE</span> s.payment_status = <span class="code-string">'PAID'</span>
-      <span class="code-keyword">AND</span> s.quantity = 1
+<pre><code><span class="code-keyword">SELECT</span> l.loan_id, l.customer_id, l.loan_type, l.amount, l.interest_rate
+<span class="code-keyword">FROM</span> loans l
+<span class="code-keyword">WHERE</span> l.amount &lt; <span class="code-keyword">ANY</span> (
+    <span class="code-keyword">SELECT</span> amount
+    <span class="code-keyword">FROM</span> loans
+    <span class="code-keyword">WHERE</span> loan_type = <span class="code-string">'Business Expansion'</span>
 )
-<span class="code-keyword">ORDER BY</span> p.price <span class="code-keyword">ASC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> l.amount <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Competitive Price Floor Breakdown</h4>
+<h4>Retail Loan Pricing Floor Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Compares retail pricing against actual single-unit transaction amounts recorded in the order fulfillment stream.</div>
+<div>Compares consumer and retail credit facilities against commercial Business Expansion loans.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Finds all catalog items priced below the maximum single-item purchase recorded by customers.</div>
+<div>Finds all loan products priced below the peak Business Expansion commitment.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Sequences Results:</strong> Sequences results from the lowest price ($14.99) upward to assist merchandising managers in promotional bundling.</div>
+<div><strong>Sequences Results:</strong> Sequences results from the lowest loan amount upward ($21,617.00) to assist asset-liability committees in portfolio duration modeling.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -589,8 +587,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

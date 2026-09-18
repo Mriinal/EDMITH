@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -343,8 +342,8 @@
                     </table>
                 </div>
 
-                <h2>Real-World Practical Scenario: E-Commerce Settlement Pipeline</h2>
-                <p>Let us explore ACID guarantees through an authentic order settlement scenario across our active database tables (<code>sells_list</code>, <code>product_list</code>, and <code>customers</code>).</p>
+                <h2>Real-World Practical Scenario: Inter-Account Funds Transfer Pipeline</h2>
+                <p>Let us explore ACID guarantees through an authentic inter-account funds transfer scenario across our active database tables (<code>accounts</code>, <code>transfers</code>, and <code>customers</code>).</p>
 
                 <!-- Terminal 1: Inspecting Pre-Transaction State -->
                 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -354,25 +353,23 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Query 1: Inspecting Pending Order State Prior to Settlement</span>
+                        <span class="terminal-title">Query 1: Inspecting Initial Balances Prior to Transfer</span>
                         <div class="terminal-header-actions">
                             <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                             <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                         </div>
                     </div>
-                    <pre><code><span class="code-comment">-- Step 1: Query initial order and inventory status before settlement</span>
+                    <pre><code><span class="code-comment">-- Step 1: Query initial balances for sender (Account 1) and receiver (Account 2)</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
-    c.first_name || <span class="code-string">' '</span> || c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    s.quantity,
-    s.total_price,
-    s.payment_status,
-    p.stock_quantity <span class="code-keyword">AS</span> catalog_stock
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id = c.customer_id
-<span class="code-keyword">JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id = p.product_id
-<span class="code-keyword">WHERE</span> s.sale_id = <span class="code-number">1</span>;</code></pre>
+    a.account_id,
+    c.first_name || <span class="code-string">' '</span> || c.last_name <span class="code-keyword">AS</span> account_holder,
+    a.account_number,
+    a.account_type,
+    a.balance,
+    a.status
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id = c.customer_id
+<span class="code-keyword">WHERE</span> a.account_id <span class="code-keyword">IN</span> (<span class="code-number">1</span>, <span class="code-number">2</span>);</code></pre>
                 </div>
 
                 <!-- Explanation Area 1 -->
@@ -385,11 +382,11 @@
                     <ul class="explanation-points">
                         <li>
                             <i class="fas fa-check-circle"></i>
-                            <div><strong>Multi-Table Verification:</strong> Joins customer, product catalog, and transaction records to inspect quantity and current stock levels.</div>
+                            <div><strong>Multi-Table Verification:</strong> Joins customer and account ledger records to verify current account status and liquid balances.</div>
                         </li>
                         <li>
-                            <i class="fas fa-box"></i>
-                            <div><strong>Consistency Guard:</strong> Verifies that <code>catalog_stock</code> exceeds requested <code>quantity</code> before initiating the inventory deduction.</div>
+                            <i class="fas fa-shield-alt"></i>
+                            <div><strong>Consistency Guard:</strong> Verifies that sender account balance exceeds transfer amount ($500.00) before initiating debit operations.</div>
                         </li>
                     </ul>
                 </div>
@@ -402,21 +399,21 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Query 2: Atomic Payment Settlement &amp; Stock Deduction</span>
+                        <span class="terminal-title">Query 2: Atomic Balance Transfer (Debit Sender, Credit Receiver)</span>
                         <div class="terminal-header-actions">
                             <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                             <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                         </div>
                     </div>
-                    <pre><code><span class="code-comment">-- Step 2: Settle order payment status</span>
-<span class="code-keyword">UPDATE</span> sells_list
-<span class="code-keyword">SET</span> payment_status = <span class="code-string">'PAID'</span>
-<span class="code-keyword">WHERE</span> sale_id = <span class="code-number">1</span>;
+                    <pre><code><span class="code-comment">-- Step 2: Atomically debit sender account (enforcing non-negative balance invariant)</span>
+<span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance = balance - <span class="code-number">500.00</span>
+<span class="code-keyword">WHERE</span> account_id = <span class="code-number">1</span> <span class="code-keyword">AND</span> balance &gt;= <span class="code-number">500.00</span>;
 
-<span class="code-comment">-- Step 3: Concurrently deduct physical inventory</span>
-<span class="code-keyword">UPDATE</span> product_list
-<span class="code-keyword">SET</span> stock_quantity = stock_quantity - <span class="code-number">1</span>
-<span class="code-keyword">WHERE</span> product_id = <span class="code-number">1</span> <span class="code-keyword">AND</span> stock_quantity &gt;= <span class="code-number">1</span>;</code></pre>
+<span class="code-comment">-- Step 3: Concurrently credit recipient account</span>
+<span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance = balance + <span class="code-number">500.00</span>
+<span class="code-keyword">WHERE</span> account_id = <span class="code-number">2</span>;</code></pre>
                 </div>
 
                 <!-- Explanation Area 2 -->
@@ -425,15 +422,15 @@
                         <i class="fas fa-sync-alt"></i>
                         <h4>Query 2 Breakdown</h4>
                     </div>
-                    <p>These two modifications execute together to preserve database consistency:</p>
+                    <p>These two modifications execute together inside an atomic boundary to preserve financial consistency:</p>
                     <ul class="explanation-points">
                         <li>
-                            <i class="fas fa-credit-card"></i>
-                            <div><strong>Payment Update:</strong> Marks <code>sale_id = 1</code> as verified and paid.</div>
+                            <i class="fas fa-minus-circle"></i>
+                            <div><strong>Debit Invariant:</strong> Decrements sender balance ($4,373.00 &rarr; $3,873.00) while enforcing <code>balance &gt;= 500.00</code> to prevent overdrafts.</div>
                         </li>
                         <li>
-                            <i class="fas fa-warehouse"></i>
-                            <div><strong>Inventory Deduction:</strong> Decrements the warehouse stock while enforcing <code>stock_quantity &gt;= 1</code> to prevent negative inventory invariants.</div>
+                            <i class="fas fa-plus-circle"></i>
+                            <div><strong>Credit Conservation:</strong> Increments recipient balance ($6,246.00 &rarr; $6,746.00), strictly conserving the total funds invariant ($10,619.00).</div>
                         </li>
                     </ul>
                 </div>
@@ -446,25 +443,23 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">Query 3: Verifying Post-Settlement Transaction Consistency</span>
+                        <span class="terminal-title">Query 3: Verifying Post-Transfer Financial Consistency</span>
                         <div class="terminal-header-actions">
                             <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
                             <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
                         </div>
                     </div>
-                    <pre><code><span class="code-comment">-- Step 4: Verify post-settlement state and updated inventory</span>
+                    <pre><code><span class="code-comment">-- Step 4: Verify post-transfer state and combined conservation of funds</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
-    c.first_name || <span class="code-string">' '</span> || c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    s.quantity,
-    s.total_price,
-    s.payment_status,
-    p.stock_quantity <span class="code-keyword">AS</span> updated_stock
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id = c.customer_id
-<span class="code-keyword">JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id = p.product_id
-<span class="code-keyword">WHERE</span> s.sale_id = <span class="code-number">1</span>;</code></pre>
+    a.account_id,
+    c.first_name || <span class="code-string">' '</span> || c.last_name <span class="code-keyword">AS</span> account_holder,
+    a.account_number,
+    a.account_type,
+    a.balance,
+    a.status
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id = c.customer_id
+<span class="code-keyword">WHERE</span> a.account_id <span class="code-keyword">IN</span> (<span class="code-number">1</span>, <span class="code-number">2</span>);</code></pre>
                 </div>
 
                 <!-- Explanation Area 3 -->
@@ -477,7 +472,7 @@
                     <ul class="explanation-points">
                         <li>
                             <i class="fas fa-shield-alt"></i>
-                            <div><strong>Durability Confirmed:</strong> The payment status displays <code>PAID</code> and the inventory stock reflects the decremented count across the database.</div>
+                            <div><strong>Durability Confirmed:</strong> Both updated balances survive across the database with zero fund leakage and total liquidity fully conserved.</div>
                         </li>
                     </ul>
                 </div>
@@ -543,8 +538,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

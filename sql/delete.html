@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -221,7 +220,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>DELETE</code> running against active relational tables (<code>sells_list</code>, <code>customers</code>, and <code>product_list</code>):</p>
+<p>Explore production-grade implementations of <code>DELETE</code> running against active relational tables (<code>transactions</code>, <code>customers</code>, <code>cards</code>, and <code>audit_logs</code>):</p>
 <!-- Query 1: Single-Row Targeted Deletion by Primary Key -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -236,8 +235,8 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> sale_id <span class="code-op">=</span> <span class="code-num">60</span>;</code></pre>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> transaction_id <span class="code-op">=</span> <span class="code-num">250</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -249,11 +248,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Purges a specific test transaction record (sale ID 60) from <code>sells_list</code> using unique primary key matching.</div>
+<div>Purges a specific erroneous settlement record (transaction ID 250) from <code>transactions</code> using unique primary key matching.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Guarantees Surgical:</strong> Guarantees surgical precision by targeting only one row without risking adjacent sales records.</div>
+<div><strong>Guarantees Surgical:</strong> Guarantees surgical precision by targeting only one row without risking adjacent ledger records.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
@@ -280,7 +279,7 @@
 </div>
 </div>
 <pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> customer_id &gt; <span class="code-num">600</span>;</code></pre>
+<span class="code-keyword">WHERE</span> customer_id &gt; <span class="code-num">100</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -292,15 +291,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Purges staging test accounts whose IDs exceed 600 from the <code>customers</code> directory.</div>
+<div>Purges staging test profiles whose generated IDs exceed 100 from the active <code>customers</code> directory.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Removes 12 transient records simultaneously in a single atomic transaction.</div>
+<div>Eliminates temporary onboarding accounts created during QA stress simulations.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Preserves all genuine customer accounts below ID 601.</div>
+<div>Preserves all 100 genuine production customer records indexed below ID 101.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -316,39 +315,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Subquery-Driven Order Invalidation</span>
+<span class="terminal-title">Query 3: Subquery-Driven Blocked Card Revocation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>
-  <span class="code-keyword">AND</span> product_id <span class="code-keyword">IN</span> (
-      <span class="code-keyword">SELECT</span> product_id 
-      <span class="code-keyword">FROM</span> product_list 
-      <span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Accessories'</span>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> cards
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Blocked'</span>
+  <span class="code-keyword">AND</span> account_id <span class="code-keyword">IN</span> (
+      <span class="code-keyword">SELECT</span> account_id 
+      <span class="code-keyword">FROM</span> accounts 
+      <span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Frozen'</span>
   );</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Subquery-Driven Invalidation Breakdown</h4>
+<h4>Subquery-Driven Revocation Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Identifies And:</strong> Identifies and purges pending orders associated specifically with accessory items.</div>
+<div><strong>Cross-Table Correlation:</strong> Identifies and permanently purges blocked payment cards associated specifically with frozen bank accounts.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Uses A:</strong> Uses a subquery to look up relevant product IDs dynamically from <code>product_list</code>.</div>
+<div><strong>Uses A Subquery:</strong> Uses a nested subquery against <code>accounts</code> to resolve qualifying foreign keys dynamically.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Cleans up 2 outstanding pending orders without touching settled paid transactions.</div>
+<div>Purges exactly 2 high-risk blocked card instruments without disrupting active cards on good standing accounts.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -364,35 +363,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Deprecated Inventory Purge</span>
+<span class="terminal-title">Query 4: Routine Telemetry Audit Log Purge</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price &gt; <span class="code-num">1000.00</span>
-  <span class="code-keyword">AND</span> stock_quantity &lt; <span class="code-num">20</span>;</code></pre>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> audit_logs
+<span class="code-keyword">WHERE</span> action <span class="code-op">=</span> <span class="code-string">'USER_LOGIN'</span>
+  <span class="code-keyword">AND</span> log_timestamp &lt; <span class="code-string">'2025-08-01'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Deprecated Inventory Purge Breakdown</h4>
+<h4>Telemetry Audit Purge Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-columns"></i>
-<div><strong>Applies Compound:</strong> Applies compound filtering criteria (<code>AND</code>) across pricing and inventory columns.</div>
+<div><strong>Applies Compound:</strong> Applies compound filtering criteria (<code>AND</code>) across action type and temporal timestamp.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Demonstrates Defensive:</strong> Demonstrates defensive conditional filtering against catalog data before applying bulk removals.</div>
+<div><strong>Defensive Retention:</strong> Safely shreds routine login events older than the retention window while safeguarding security overrides.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Returns Affected:</strong> Returns affected row count reflecting exact inventory units removed.</div>
+<div><strong>Returns Affected:</strong> Returns affected count of 4 purged telemetry entries, reducing audit table disk footprint.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -457,7 +456,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Stale Unpaid Order Purge Pipeline:</strong> Identify and purge stale unfulfilled orders from <code>sells_list</code> older than 30 days and inspect remaining pending transactions.</p>
+<p><strong>Failed Micro-Transaction Purge Pipeline:</strong> Identify and purge transient low-value failed transaction attempts (&lt; $500.00) from <code>transactions</code> to minimize ledger table bloat and inspect remaining failed records.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -465,35 +464,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Stale Order Invalidation Purge</span>
+<span class="terminal-title">Production Query 1: Transient Failed Transaction Purge</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>
-  <span class="code-keyword">AND</span> sale_date &lt; <span class="code-string">'2026-02-01'</span>;</code></pre>
+<pre><code><span class="code-keyword">DELETE</span> <span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Failed'</span>
+  <span class="code-keyword">AND</span> amount &lt; <span class="code-num">500.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Stale Order Invalidation Breakdown</h4>
+<h4>Failed Transaction Invalidation Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Purges stale abandoned checkout sessions recorded before February 1, 2026.</div>
+<div>Purges low-denomination transient card decline and network timeout attempts under $500.00.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Leaves all recent pending transactions intact for standard payment gateway retries.</div>
+<div>Leaves all high-value failed transfers intact for mandatory compliance review and anti-fraud auditing.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Removes 3 expired records, reducing database table bloat and optimizing query cache efficiency.</div>
+<div>Removes exactly 4 failed records, streamlining ledger queries and indexing buffers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -508,35 +507,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 2: Verify Remaining Pending Accounts</span>
+<span class="terminal-title">Production Query 2: Verify Remaining Failed Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> COUNT(*) <span class="code-keyword">AS</span> remaining_pending_transactions
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span>;</code></pre>
+<pre><code><span class="code-keyword">SELECT</span> COUNT(*) <span class="code-keyword">AS</span> remaining_failed_transactions
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Failed'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-users"></i>
-<h4>Pending Accounts Verification Breakdown</h4>
+<h4>Failed Transactions Verification Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Verifies That:</strong> Verifies that exactly 4 pending orders remain in the active order fulfillment pipeline.</div>
+<div><strong>Verifies Count:</strong> Verifies that exactly 37 failed transactions remain in the compliance auditing queue (reduced from 41).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Confirms that the expiration date cutoff operated accurately without collateral damage.</div>
+<div>Confirms that the amount threshold filter operated accurately without affecting completed or pending settlements.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Demonstrates Verification:</strong> Demonstrates verification hygiene after executing state-altering DML statements.</div>
+<div><strong>Demonstrates Verification:</strong> Demonstrates verification hygiene after executing state-altering DML purge operations.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -614,8 +613,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

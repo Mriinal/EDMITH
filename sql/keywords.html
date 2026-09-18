@@ -34,7 +34,6 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
                 <li><a href="../index.html#contact">Contact Us</a></li>
             </ul>
             <div class="header-actions">
@@ -1070,12 +1069,12 @@
 
                         <div class="scenario-block">
                             <div class="scenario-title"><i class="fas fa-code"></i> Scenario A: Updating a Single Column with Target WHERE Filter</div>
-                            <p class="scenario-desc">Update the tracking number of a specific dispatched delivery order.</p>
+                            <p class="scenario-desc">Update the settlement status of a specific wire transfer order.</p>
                             <div class="carousel-content" style="border-radius: 8px;">
                                 <div class="mac-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                                <pre><code><span class="code-keyword">UPDATE</span> sells_list
-<span class="code-keyword">SET</span> payment_status = <span class="code-string">'PAID'</span>
-<span class="code-keyword">WHERE</span> sale_id = <span class="code-string">15</span>;</code></pre>
+                                <pre><code><span class="code-keyword">UPDATE</span> transfers
+<span class="code-keyword">SET</span> transfer_status = <span class="code-string">'Success'</span>
+<span class="code-keyword">WHERE</span> transfer_id = <span class="code-string">15</span>;</code></pre>
                             </div>
                         </div>
 
@@ -1448,22 +1447,22 @@
 
                         <div class="scenario-block">
                             <div class="scenario-title"><i class="fas fa-code"></i> Scenario: Comprehensive Customer Transaction Audit</div>
-                            <p class="scenario-desc">Cross-reference client accounts against operational sales orders to identify dormant customers and unassigned orders.</p>
+                            <p class="scenario-desc">Cross-reference client profiles against depository accounts to identify prospective customers with no open accounts and unlinked balances.</p>
                             <div class="carousel-content" style="border-radius: 8px;">
                                 <div class="mac-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                                 <pre><code><span class="code-keyword">SELECT</span> 
-    <span class="code-func">COALESCE</span>(c.customer_id, s.customer_id) <span class="code-keyword">AS</span> account_ref,
+    <span class="code-func">COALESCE</span>(c.customer_id, a.customer_id) <span class="code-keyword">AS</span> account_ref,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price,
+    a.account_id,
+    a.balance,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> s.sale_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'Registered (No Orders Placed)'</span>
-        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'Anonymous Checkout'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'Active Order'</span>
+        <span class="code-keyword">WHEN</span> a.account_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'Registered (No Active Accounts)'</span>
+        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'Orphaned Account Record'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Active Funded Account'</span>
     <span class="code-keyword">END AS</span> account_status
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">FULL OUTER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id = s.customer_id;</code></pre>
+<span class="code-keyword">FULL OUTER JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id = a.customer_id;</code></pre>
                             </div>
                         </div>
                     </article>
@@ -2886,15 +2885,15 @@ unit_price <span class="code-keyword">NUMERIC</span>(<span class="code-string">1
                         </div>
 
                         <div class="scenario-block">
-                            <div class="scenario-title"><i class="fas fa-code"></i> Scenario B: Domain Status Enum &amp; Percentage Verification</div>
-                            <p class="scenario-desc">Ensure discount rates stay between 0-70% and orders use approved fulfillment states.</p>
+                            <div class="scenario-title"><i class="fas fa-code"></i> Scenario B: Domain Status Enum &amp; Positive Amount Verification</div>
+                            <p class="scenario-desc">Ensure transfer transactions use approved lifecycle states and enforce positive remittance amounts.</p>
                             <div class="carousel-content" style="border-radius: 8px;">
                                 <div class="mac-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
-                                <pre><code><span class="code-keyword">ALTER TABLE</span> sells_list
-<span class="code-keyword">ADD CONSTRAINT</span> chk_order_status_valid
-    <span class="code-keyword">CHECK</span> (payment_status <span class="code-keyword">IN</span> (<span class="code-string">'PAID'</span>, <span class="code-string">'PENDING'</span>, <span class="code-string">'FAILED'</span>, <span class="code-string">'CANCELLED'</span>)),
-<span class="code-keyword">ADD CONSTRAINT</span> chk_min_quantity_valid
-    <span class="code-keyword">CHECK</span> (quantity <span class="code-op">&gt;</span> <span class="code-string">0</span>);</code></pre>
+                                <pre><code><span class="code-keyword">ALTER TABLE</span> transfers
+<span class="code-keyword">ADD CONSTRAINT</span> chk_transfer_status_valid
+    <span class="code-keyword">CHECK</span> (transfer_status <span class="code-keyword">IN</span> (<span class="code-string">'Success'</span>, <span class="code-string">'Pending'</span>, <span class="code-string">'Failed'</span>, <span class="code-string">'Cancelled'</span>)),
+<span class="code-keyword">ADD CONSTRAINT</span> chk_min_amount_valid
+    <span class="code-keyword">CHECK</span> (amount <span class="code-op">&gt;</span> <span class="code-string">0</span>);</code></pre>
                             </div>
                         </div>
                     </article>
@@ -3030,17 +3029,17 @@ created_at <span class="code-keyword">TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NU
 
                         <div class="scenario-block">
                             <div class="scenario-title"><i class="fas fa-code"></i> Scenario B: Defensive Rollback upon Verification Failure</div>
-                            <p class="scenario-desc">Abort an erroneous bulk price markup if more records than expected were updated.</p>
+                            <p class="scenario-desc">Abort an erroneous bulk interest adjustment if more accounts than expected were modified.</p>
                             <div class="carousel-content" style="border-radius: 8px;">
                                 <div class="mac-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                                 <pre><code><span class="code-keyword">BEGIN TRANSACTION</span>;
 
-<span class="code-keyword">UPDATE</span> product_list 
-<span class="code-keyword">SET</span> price = price * <span class="code-string">1.10</span> 
-<span class="code-keyword">WHERE</span> category = <span class="code-string">'Accessories'</span>;
+<span class="code-keyword">UPDATE</span> accounts 
+<span class="code-keyword">SET</span> balance = balance * <span class="code-string">1.05</span> 
+<span class="code-keyword">WHERE</span> account_type = <span class="code-string">'Savings'</span>;
 
-<span class="code-comment">-- If row count or verification check fails in application code:</span>
-<span class="code-keyword">ROLLBACK</span>; <span class="code-comment">-- Discards the price markup completely</span></code></pre>
+<span class="code-comment">-- If row count or audit threshold fails in application code:</span>
+<span class="code-keyword">ROLLBACK</span>; <span class="code-comment">-- Discards the balance adjustments completely</span></code></pre>
                             </div>
                         </div>
                     </article>
@@ -3079,31 +3078,31 @@ created_at <span class="code-keyword">TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NU
                         <h3 class="keyword-subheading">4. Practical Scenarios &amp; Examples</h3>
 
                         <div class="scenario-block">
-                            <div class="scenario-title"><i class="fas fa-code"></i> Scenario A: Batch Record Processing with Graceful Failure Recovery</div>
-                            <p class="scenario-desc">Process customer order imports, rolling back an individual failed item without aborting the order batch.</p>
+                            <div class="scenario-title"><i class="fas fa-code"></i> Scenario A: Batch Transaction Processing with Graceful Failure Recovery</div>
+                            <p class="scenario-desc">Process batch account transfers, rolling back an individual flagged transfer without aborting the batch.</p>
                             <div class="carousel-content" style="border-radius: 8px;">
                                 <div class="mac-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
                                 <pre><code><span class="code-keyword">BEGIN TRANSACTION</span>;
 
-<span class="code-comment">-- Item 1: Valid Sells Line Item</span>
-<span class="code-keyword">INSERT INTO</span> sells_list (customer_id, product_id, quantity, total_price, payment_status) 
-<span class="code-keyword">VALUES</span> (<span class="code-string">101</span>, <span class="code-string">3</span>, <span class="code-string">2</span>, <span class="code-string">49.98</span>, <span class="code-string">'PAID'</span>);
+<span class="code-comment">-- Item 1: Valid Clearing Transfer</span>
+<span class="code-keyword">INSERT INTO</span> transfers (sender_account_id, receiver_account_id, amount, transfer_date, fee, transfer_status) 
+<span class="code-keyword">VALUES</span> (<span class="code-string">1</span>, <span class="code-string">2</span>, <span class="code-string">250.00</span>, <span class="code-string">'2026-03-15'</span>, <span class="code-string">0</span>, <span class="code-string">'Success'</span>);
 
 <span class="code-comment">-- Create checkpoint before speculative Item 2:</span>
-<span class="code-keyword">SAVEPOINT</span> after_first_item;
+<span class="code-keyword">SAVEPOINT</span> after_first_transfer;
 
-<span class="code-comment">-- Item 2: Fails validation check (negative price)</span>
-<span class="code-keyword">INSERT INTO</span> sells_list (customer_id, product_id, quantity, total_price, payment_status) 
-<span class="code-keyword">VALUES</span> (<span class="code-string">101</span>, <span class="code-string">99</span>, <span class="code-string">1</span>, <span class="code-string">-20.00</span>, <span class="code-string">'FAILED'</span>);
+<span class="code-comment">-- Item 2: Fails compliance check (non-positive amount)</span>
+<span class="code-keyword">INSERT INTO</span> transfers (sender_account_id, receiver_account_id, amount, transfer_date, fee, transfer_status) 
+<span class="code-keyword">VALUES</span> (<span class="code-string">1</span>, <span class="code-string">99</span>, <span class="code-string">-50.00</span>, <span class="code-string">'2026-03-15'</span>, <span class="code-string">0</span>, <span class="code-string">'Failed'</span>);
 
 <span class="code-comment">-- On error, revert Item 2 only:</span>
-<span class="code-keyword">ROLLBACK TO SAVEPOINT</span> after_first_item;
+<span class="code-keyword">ROLLBACK TO SAVEPOINT</span> after_first_transfer;
 
-<span class="code-comment">-- Item 3: Valid Alternate Item</span>
-<span class="code-keyword">INSERT INTO</span> sells_list (customer_id, product_id, quantity, total_price, payment_status) 
-<span class="code-keyword">VALUES</span> (<span class="code-string">101</span>, <span class="code-string">4</span>, <span class="code-string">1</span>, <span class="code-string">29.99</span>, <span class="code-string">'PAID'</span>);
+<span class="code-comment">-- Item 3: Valid Alternate Transfer</span>
+<span class="code-keyword">INSERT INTO</span> transfers (sender_account_id, receiver_account_id, amount, transfer_date, fee, transfer_status) 
+<span class="code-keyword">VALUES</span> (<span class="code-string">1</span>, <span class="code-string">4</span>, <span class="code-string">120.00</span>, <span class="code-string">'2026-03-15'</span>, <span class="code-string">0</span>, <span class="code-string">'Success'</span>);
 
-<span class="code-comment">-- Commit items 1 and 3:</span>
+<span class="code-comment">-- Commit transfers 1 and 3:</span>
 <span class="code-keyword">COMMIT</span>;</code></pre>
                             </div>
                         </div>
@@ -3423,9 +3422,14 @@ global_benchmark <span class="code-keyword">AS</span> (
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="../course.html">All Courses</a></li>
                     <li><a href="index.html">SQL Mastery</a></li>
-                    <li><a href="editor.html">SQL Editor</a></li>
                 </ul>
             </div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
+</div>
             <div class="footer-links">
                 <h3>Support</h3>
                 <ul>

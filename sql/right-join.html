@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -223,7 +222,7 @@
 
 <!-- Section 2: Preserving All Customers on the Right -->
 <h2>2. Master Directory Preservation: Retaining Customers on the Right</h2>
-<p>Query <code>sells_list</code> joined to <code>customers</code> using <code>RIGHT JOIN</code>, ensuring all customer records on the right are preserved:</p>
+<p>Query <code>accounts</code> joined to <code>customers</code> using <code>RIGHT JOIN</code>, ensuring all customer records on the right are preserved:</p>
 
 <!-- Right Join Master Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -239,15 +238,15 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Preserves every customer on the right table; unmatched orders produce NULL</span>
+<pre><code><span class="code-comment">-- Preserves every customer on the right table; unmatched accounts produce NULL</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    a.account_number,
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">RIGHT JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
+    a.balance
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">RIGHT JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -262,11 +261,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Customer Preservation:</strong> Even though <code>sells_list</code> is declared first, all customer rows from <code>customers</code> are preserved because it is the right-hand table.</div>
+<div><strong>Customer Preservation:</strong> Even though <code>accounts</code> is declared first on the left, all customer rows from <code>customers</code> are preserved because it is the right-hand table.</div>
 </li>
 <li>
 <i class="fas fa-unlink"></i>
-<div><strong>NULL Attributes for Left Table:</strong> Unmatched orders produce <code>NULL</code> for <code>s.sale_id</code> and <code>s.total_price</code>.</div>
+<div><strong>NULL Attributes for Left Table:</strong> Clients without deposit accounts produce <code>NULL</code> for <code>a.account_number</code> and <code>a.balance</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -286,8 +285,8 @@
 </div>
 
 <!-- Section 3: Right Anti-Join Pattern -->
-<h2>3. The Right Anti-Join: Identifying Inactive Customer Records</h2>
-<p>Pinpoint registered users who haven't placed an order by testing for <code>s.sale_id IS NULL</code>:</p>
+<h2>3. The Right Anti-Join: Identifying Debt-Free Customer Records</h2>
+<p>Pinpoint registered clients who do not hold an active credit facility by testing for <code>l.loan_id IS NULL</code>:</p>
 
 <!-- Right Anti-Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -297,20 +296,21 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Right Anti-Join for Unmatched Right Records</span>
+<span class="terminal-title">Query: Right Anti-Join for Debt-Free Customers</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Isolate customers on the right table that have no matching orders on the left</span>
+<pre><code><span class="code-comment">-- Isolate customers on the right table that have no matching loans on the left</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
-    c.last_name
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">RIGHT JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">WHERE</span> s.sale_id <span class="code-keyword">IS NULL</span>
+    c.last_name,
+    c.credit_score
+<span class="code-keyword">FROM</span> loans l
+<span class="code-keyword">RIGHT JOIN</span> customers c <span class="code-keyword">ON</span> l.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> l.loan_id <span class="code-keyword">IS NULL</span>
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -325,20 +325,20 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Left-Side Nullability:</strong> Because the left table (<code>sells_list</code>) fails to match, its columns produce <code>NULL</code>, allowing <code>WHERE s.sale_id IS NULL</code> to isolate unlinked accounts.</div>
+<div><strong>Left-Side Nullability:</strong> Because the left table (<code>loans</code>) fails to match, its columns produce <code>NULL</code>, allowing <code>WHERE l.loan_id IS NULL</code> to isolate debt-free client profiles.</div>
 </li>
 <li>
 <i class="fas fa-bullseye"></i>
-<div><strong>Targeting Inactivity:</strong> Quickly identifies customers like Customer #7 (Mrinal Bose) and Customer #8 (Michael White) who have never made a purchase.</div>
+<div><strong>Cross-Selling Target:</strong> Rapidly identifies prime prospects like Customer #1 (credit score 810) who are eligible for credit line expansion.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 4: Catalog Product Inventory via RIGHT JOIN -->
-<h2>4. Catalog Inventory Audit: Product Popularity with RIGHT JOIN</h2>
-<p>Retain all 25 items in <code>product_list</code> on the right side while aggregating transaction activity from <code>sells_list</code> on the left:</p>
+<!-- Section 4: Branch Account Coverage via RIGHT JOIN -->
+<h2>4. Branch Network Coverage: Account Distribution with RIGHT JOIN</h2>
+<p>Retain all 8 physical branches on the right side while aggregating account portfolio totals from <code>accounts</code> on the left:</p>
 
-<!-- Product Right Join Terminal (Try in Editor + Copy) -->
+<!-- Branch Right Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -346,48 +346,47 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Product Catalog Demand Audit via RIGHT JOIN</span>
+<span class="terminal-title">Query: Branch Account Distribution Audit via RIGHT JOIN</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Ensure every product in product_list appears, counting matched orders from sells_list</span>
+<pre><code><span class="code-comment">-- Ensure every branch appears, counting matched accounts from accounts</span>
 <span class="code-keyword">SELECT</span> 
-    p.product_id,
-    p.product_name,
-    p.category,
-    p.price,
-    <span class="code-func">COUNT</span>(s.sale_id) <span class="code-keyword">AS</span> times_purchased
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">RIGHT JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">GROUP BY</span> p.product_id, p.product_name, p.category, p.price
-<span class="code-keyword">ORDER BY</span> times_purchased <span class="code-keyword">DESC</span>
+    b.branch_id,
+    b.branch_name,
+    b.city,
+    <span class="code-func">COUNT</span>(a.account_id) <span class="code-keyword">AS</span> total_accounts
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">RIGHT JOIN</span> branches b <span class="code-keyword">ON</span> a.branch_id <span class="code-op">=</span> b.branch_id
+<span class="code-keyword">GROUP BY</span> b.branch_id, b.branch_name, b.city
+<span class="code-keyword">ORDER BY</span> total_accounts <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Right Join -->
+<!-- Dedicated Explanation Area for Branch Right Join -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-boxes"></i>
-<h4>Catalog Product Demand Breakdown</h4>
+<i class="fas fa-building"></i>
+<h4>Branch Network Distribution Breakdown</h4>
 </div>
-<p>Auditing product fulfillment demand:</p>
+<p>Auditing branch operational coverage:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check"></i>
-<div><strong>Catalog Preservation:</strong> All 25 merchandise items are preserved. High-demand items (like 4K Monitors and Smart Watches) display multiple order matches.</div>
+<div><strong>Branch Preservation:</strong> Every branch in the global network is preserved on the right.</div>
 </li>
 <li>
 <i class="fas fa-zero"></i>
-<div><strong>Zero-Order Products:</strong> If an item had zero purchases, <code>COUNT(s.sale_id)</code> correctly yields <code>0</code> rather than omitting the product.</div>
+<div><strong>Zero-Account Branches:</strong> If a new regional office had no active accounts yet, <code>COUNT(a.account_id)</code> would report <code>0</code> rather than omitting the location.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 5: RIGHT JOIN with ON Filter -->
 <h2>5. Safe Filtering in RIGHT JOIN: Protecting Right-Table Retention</h2>
-<p>Filter left-table order status inside the <code>ON</code> clause to keep all customers while matching only settled <code>PAID</code> orders:</p>
+<p>Filter left-table account status inside the <code>ON</code> clause to keep all customers while matching only <code>Active</code> accounts:</p>
 
 <!-- Right Join ON Filter Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -403,17 +402,17 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Safe: Preserves ALL customers on the right; only PAID orders match from the left</span>
+<pre><code><span class="code-comment">-- Safe: Preserves ALL customers on the right; only Active accounts match from the left</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list s
+    a.account_number,
+    a.balance
+<span class="code-keyword">FROM</span> accounts a
 <span class="code-keyword">RIGHT JOIN</span> customers c 
-    <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id 
-   <span class="code-keyword">AND</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+    <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id 
+   <span class="code-keyword">AND</span> a.status <span class="code-op">=</span> <span class="code-string">'Active'</span>
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -428,11 +427,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check"></i>
-<div><strong>In the ON Clause:</strong> Only orders with <code>payment_status = 'PAID'</code> qualify for linking. Customers without paid orders remain visible with NULL order fields.</div>
+<div><strong>In the ON Clause:</strong> Only accounts with <code>status = 'Active'</code> qualify for linking. Customers with dormant accounts remain visible with NULL account fields.</div>
 </li>
 <li>
 <i class="fas fa-times"></i>
-<div><strong>In the WHERE Clause:</strong> Putting <code>WHERE s.payment_status = 'PAID'</code> eliminates all rows where <code>s.payment_status</code> is NULL, unintentionally discarding all non-buyers!</div>
+<div><strong>In the WHERE Clause:</strong> Putting <code>WHERE a.status = 'Active'</code> eliminates all rows where <code>a.status</code> is NULL, unintentionally discarding all non-active clients!</div>
 </li>
 </ul>
 </div>
@@ -508,8 +507,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

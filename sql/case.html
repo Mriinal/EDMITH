@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -229,8 +228,8 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>CASE</code> running against active relational tables (<code>product_list</code>, <code>sells_list</code>, <code>employees</code>, and <code>customers</code>):</p>
-<!-- Query 1: Searched CASE Catalog Categorization -->
+<p>Explore production-grade implementations of <code>CASE</code> running against active relational tables (<code>customers</code>, <code>transactions</code>, <code>accounts</code>, and <code>employees</code>):</p>
+<!-- Query 1: Searched CASE Customer Credit Tiering -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -238,43 +237,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Dynamic Catalog Pricing Tier Classification</span>
+<span class="terminal-title">Query 1: Dynamic Customer Credit Tier Classification</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    product_name,
-    category,
-    price,
+    first_name,
+    last_name,
+    credit_score,
+    city,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> price &gt;= 150.00 <span class="code-keyword">THEN</span> <span class="code-string">'PREMIUM_LUXURY'</span>
-        <span class="code-keyword">WHEN</span> price &gt;= 60.00 <span class="code-keyword">THEN</span> <span class="code-string">'MID_RANGE'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'BUDGET_TIER'</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> price_tier
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+        <span class="code-keyword">WHEN</span> credit_score &gt;= 750 <span class="code-keyword">THEN</span> <span class="code-string">'EXCELLENT_PRIME'</span>
+        <span class="code-keyword">WHEN</span> credit_score &gt;= 650 <span class="code-keyword">THEN</span> <span class="code-string">'GOOD_STANDARD'</span>
+        <span class="code-keyword">WHEN</span> credit_score &gt;= 580 <span class="code-keyword">THEN</span> <span class="code-string">'FAIR_REBUILDING'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'SUBPRIME_RESTRICTED'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> credit_tier
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">ORDER BY</span> credit_score <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Dynamic Catalog Pricing Tier Classification Breakdown</h4>
+<h4>Dynamic Customer Credit Tier Classification Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-dollar-sign"></i>
-<div><strong>Applies A:</strong> Applies a Searched <code>CASE</code> expression to classify all 25 items in <code>product_list</code> into discrete merchandising tiers based on numerical price ranges.</div>
+<i class="fas fa-id-badge"></i>
+<div><strong>Searched CASE Expression:</strong> Applies a Searched <code>CASE</code> expression to classify all 100 customer profiles into discrete risk ratings based on FICO credit score brackets.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Orders resulting rows by price in descending sequence, allowing marketing and sales teams to easily inspect product distribution.</div>
+<div>Orders resulting rows by credit score in descending sequence, allowing loan underwriting teams to identify prime borrowing prospects.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Items below $60 automatically fall through to the <code>ELSE 'BUDGET_TIER'</code> branch.</div>
+<div>Scores below 580 automatically fall through to the <code>ELSE 'SUBPRIME_RESTRICTED'</code> risk cohort.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -282,7 +283,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 2: Simple CASE Payment Status Badging -->
+<!-- Query 2: Simple CASE Transaction Status Badging -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -290,47 +291,46 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Order Lifecycle Status Badging</span>
+<span class="terminal-title">Query 2: Transaction Lifecycle Status Badging</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    sale_id,
-    customer_id,
-    total_price,
-    payment_status,
-    <span class="code-keyword">CASE</span> payment_status
-        <span class="code-keyword">WHEN</span> <span class="code-string">'PAID'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Settled &amp; Verified'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'PENDING'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Awaiting Confirmation'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'REFUNDED'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Customer Reversal'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-string">'CANCELLED'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Voided Order'</span>
+    transaction_id,
+    account_id,
+    amount,
+    status,
+    <span class="code-keyword">CASE</span> status
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Completed'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Settled &amp; Cleared'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Pending'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Awaiting Settlement'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-string">'Failed'</span> <span class="code-keyword">THEN</span> <span class="code-string">'Transaction Rejected'</span>
         <span class="code-keyword">ELSE</span> <span class="code-string">'Unrecognized State'</span>
     <span class="code-keyword">END</span> <span class="code-keyword">AS</span> readable_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> sale_id &lt;= 15
-<span class="code-keyword">ORDER BY</span> sale_id <span class="code-keyword">ASC</span>;</code></pre>
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> transaction_id &lt;= 15
+<span class="code-keyword">ORDER BY</span> transaction_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Order Lifecycle Status Badging Breakdown</h4>
+<h4>Transaction Lifecycle Status Badging Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Employs A:</strong> Employs a Simple <code>CASE</code> construct to map machine-readable database enum codes (<code>PAID</code>, <code>PENDING</code>, etc.) into human-friendly UI dashboard labels.</div>
+<div><strong>Simple CASE Form:</strong> Employs a Simple <code>CASE</code> construct to map machine-readable database enum codes (<code>Completed</code>, <code>Pending</code>, <code>Failed</code>) into human-friendly UI dashboard labels.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>The <code>CASE payment_status</code> syntax tests the column directly for equality, keeping code concise and readable.</div>
+<div>The <code>CASE status</code> syntax tests the column directly for equality, keeping code concise and readable.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Limits inspection to the first 15 sales records in <code>sells_list</code> for quick operational verification.</div>
+<div>Limits inspection to the first 15 ledger entries in <code>transactions</code> for immediate verification.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -510,7 +510,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Customer Loyalty Segmentation &amp; Coupon Engine:</strong> Calculate customer cumulative purchases across <code>sells_list</code> and award dynamic VIP loyalty tiers with personalized reward discounts.</p>
+<p><strong>Customer Wealth Tiering &amp; VIP Privileges Engine:</strong> Calculate customer cumulative liquidity across <code>accounts</code> and award dynamic private wealth tiers with personalized banking benefits.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -518,7 +518,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: Customer Loyalty Tiering Engine</span>
+<span class="terminal-title">Production Query: Customer Wealth Tiering Engine</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -528,43 +528,43 @@
     c.customer_id,
     c.first_name,
     c.last_name,
-    <span class="code-func">SUM</span>(s.total_price) <span class="code-keyword">AS</span> total_spend,
+    <span class="code-func">SUM</span>(a.balance) <span class="code-keyword">AS</span> total_liquidity,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 1500.00 <span class="code-keyword">THEN</span> <span class="code-string">'VIP_DIAMOND'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 800.00 <span class="code-keyword">THEN</span> <span class="code-string">'GOLD_PREFERRED'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 300.00 <span class="code-keyword">THEN</span> <span class="code-string">'SILVER_MEMBER'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'STANDARD_BRONZE'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 150000.00 <span class="code-keyword">THEN</span> <span class="code-string">'PRIVATE_CLIENT_ELITE'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 80000.00 <span class="code-keyword">THEN</span> <span class="code-string">'PREMIER_SELECT'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 30000.00 <span class="code-keyword">THEN</span> <span class="code-string">'PREFERRED_BANKING'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'STANDARD_RETAIL'</span>
     <span class="code-keyword">END</span> <span class="code-keyword">AS</span> tier_rank,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 1500.00 <span class="code-keyword">THEN</span> <span class="code-string">'15% Reward Coupon'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 800.00 <span class="code-keyword">THEN</span> <span class="code-string">'10% Reward Coupon'</span>
-        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(s.total_price) &gt;= 300.00 <span class="code-keyword">THEN</span> <span class="code-string">'5% Reward Coupon'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'Standard Newsletter'</span>
-    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> loyalty_reward
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 150000.00 <span class="code-keyword">THEN</span> <span class="code-string">'Dedicated Wealth Advisor &amp; 0% Wire Fees'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 80000.00 <span class="code-keyword">THEN</span> <span class="code-string">'Priority Teller &amp; Free International ATM'</span>
+        <span class="code-keyword">WHEN</span> <span class="code-func">SUM</span>(a.balance) &gt;= 30000.00 <span class="code-keyword">THEN</span> <span class="code-string">'Waived Monthly Account Maintenance'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'Standard Digital Banking'</span>
+    <span class="code-keyword">END</span> <span class="code-keyword">AS</span> client_perk
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id = s.customer_id
+<span class="code-keyword">JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id = a.customer_id
 <span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
-<span class="code-keyword">ORDER BY</span> total_spend <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">ORDER BY</span> total_liquidity <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Loyalty Tiering Engine Breakdown</h4>
+<h4>Wealth Tiering Engine Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Joins The:</strong> Joins the 612-row <code>customers</code> directory with the 60-row <code>sells_list</code> to compute aggregated lifetime purchasing volume per buyer.</div>
+<div><strong>Aggregates Total Portfolio:</strong> Joins the 100-profile <code>customers</code> directory with <code>accounts</code> to compute aggregated multi-account balance per depositor.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Applies Dual:</strong> Applies dual parallel <code>CASE</code> expressions to derive both a symbolic tier rating (<code>tier_rank</code>) and an actionable promotion campaign perk (<code>loyalty_reward</code>).</div>
+<div><strong>Applies Dual CASE:</strong> Applies dual parallel <code>CASE</code> expressions to derive both an internal tier classification (<code>tier_rank</code>) and personalized client rewards (<code>client_perk</code>).</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div>Illustrates how enterprise CRM workflows dynamically calculate incentive rewards entirely within SQL query execution.</div>
+<i class="fas fa-gem"></i>
+<div>Illustrates how enterprise banking portals dynamically calculate high-net-worth customer entitlements within high-concurrency analytical queries.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -646,8 +646,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

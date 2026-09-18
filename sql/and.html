@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -222,11 +221,11 @@
 </div>
 </div>
 
-<!-- Section 2: Filtering on product_list -->
-<h2>2. Multi-Attribute Filtering: Product Inventory &amp; Pricing</h2>
-<p>Filter products by matching category, maximum price, and minimum warehouse stock levels simultaneously:</p>
+<!-- Section 2: Filtering on accounts -->
+<h2>2. Multi-Attribute Filtering: High-Yield Active Accounts</h2>
+<p>Filter bank accounts matching account type, minimum balance threshold, and active operational status simultaneously:</p>
 
-<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<!-- Account Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -234,45 +233,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Finding Budget In-Stock Electronics</span>
+<span class="terminal-title">Query: Finding High-Balance Active Savings Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find electronics priced under $200 with at least 25 units in stock</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> 
-  <span class="code-keyword">AND</span> price <span class="code-op">&lt;</span> <span class="code-num">200.00</span> 
-  <span class="code-keyword">AND</span> stock_quantity <span class="code-op">&gt;=</span> <span class="code-num">25</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Find active savings accounts holding at least $25,000</span>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> 
+  <span class="code-keyword">AND</span> balance <span class="code-op">&gt;=</span> <span class="code-num">25000.00</span> 
+  <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Filtering -->
+<!-- Dedicated Explanation Area for Account Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-boxes"></i>
-<h4>Catalog Predicate Breakdown</h4>
+<i class="fas fa-piggy-bank"></i>
+<h4>Account Predicate Breakdown</h4>
 </div>
-<p>How the 3-part conjunction refines the inventory selection:</p>
+<p>How the 3-part conjunction refines the banking account selection:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tag"></i>
-<div><strong>Categorical Filter (<code>category = 'Electronics'</code>):</strong> Narrows the 25 catalog items to the 6 electronics hardware products.</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Account Type Filter (<code>account_type = 'Savings'</code>):</strong> Narrows accounts specifically to interest-bearing savings portfolios.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Price Ceiling (<code>price &lt; 200.00</code>):</strong> Eliminates luxury items (e.g., $1299 Pro Laptop and $349 4K Monitor).</div>
+<div><strong>Balance Threshold (<code>balance &gt;= 25000.00</code>):</strong> Filters for premier, high-liquidity deposit holders.</div>
 </li>
 <li>
-<i class="fas fa-warehouse"></i>
-<div><strong>Stock Availability (<code>stock_quantity &gt;= 25</code>):</strong> Guarantees that only products with immediate warehouse fulfillment capacity (such as Ergonomic Mice and Wireless Earbuds) survive.</div>
+<i class="fas fa-check-circle"></i>
+<div><strong>Operational Status (<code>status = 'Active'</code>):</strong> Guarantees that dormant, frozen, or closed accounts are eliminated from current yield payouts.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -286,11 +285,11 @@
 </p>
 </div>
 
-<!-- Section 3: Fulfillment Filtering on sells_list -->
-<h2>3. Transactional Auditing: High-Value Paid Sales Orders</h2>
-<p>Auditing transactional tables requires compound filtering across payment settlement status, transaction revenue, and item quantities:</p>
+<!-- Section 3: Transactional Auditing on transactions -->
+<h2>3. Transactional Auditing: High-Value Completed Deposits</h2>
+<p>Auditing banking ledger entries requires compound filtering across transaction type, minimum settlement amount, and completion status:</p>
 
-<!-- Sales Terminal (Try in Editor + Copy) -->
+<!-- Transaction Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -298,46 +297,46 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Auditing Settled High-Value Bulk Sales</span>
+<span class="terminal-title">Query: Auditing Completed Large Wire Deposits</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Identify fulfilled transactions exceeding $200 with 2 or more units purchased</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
-  <span class="code-keyword">AND</span> total_price <span class="code-op">&gt;=</span> <span class="code-num">200.00</span> 
-  <span class="code-keyword">AND</span> quantity <span class="code-op">&gt;=</span> <span class="code-num">2</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Identify successfully completed deposit transactions exceeding $2,000</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, transaction_date, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> transaction_type <span class="code-op">=</span> <span class="code-string">'Deposit'</span> 
+  <span class="code-keyword">AND</span> amount <span class="code-op">&gt;=</span> <span class="code-num">2000.00</span> 
+  <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales Filtering -->
+<!-- Dedicated Explanation Area for Transaction Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
-<h4>Sales Conjunction Breakdown</h4>
+<h4>Transaction Conjunction Breakdown</h4>
 </div>
-<p>Filtering transactional orders across multiple operational dimensions:</p>
+<p>Filtering financial transactions across regulatory compliance dimensions:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>Settlement Guarantee (<code>payment_status = 'PAID'</code>):</strong> Drops pending, refunded, and cancelled orders.</div>
+<i class="fas fa-arrow-down"></i>
+<div><strong>Transaction Type (<code>transaction_type = 'Deposit'</code>):</strong> Narrows the ledger to incoming funds credits, excluding debits and fee deductions.</div>
 </li>
 <li>
 <i class="fas fa-coins"></i>
-<div><strong>Revenue Floor (<code>total_price &gt;= 200.00</code>):</strong> Filters out lower-value consumer transactions.</div>
+<div><strong>Amount Floor (<code>amount &gt;= 2000.00</code>):</strong> Filters for substantial capital inflows requiring AML audit logs.</div>
 </li>
 <li>
-<i class="fas fa-cart-plus"></i>
-<div><strong>Bulk Volume (<code>quantity &gt;= 2</code>):</strong> Isolates multiple-unit bulk purchases from single-unit retail checkouts.</div>
+<i class="fas fa-check-circle"></i>
+<div><strong>Settlement Guarantee (<code>status = 'Completed'</code>):</strong> Excludes pending, in-flight, or failed wire attempts.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 4: Staff Salary Filtering on employees -->
-<h2>4. Human Resources Analytics: Engineering Department Salaries</h2>
+<h2>4. Human Resources Analytics: Core IT &amp; Security Compensation</h2>
 <p>Combine categorical departmental filters with compensation thresholds on the <code>employees</code> registry:</p>
 
 <!-- Employee Filtering Terminal (Try in Editor + Copy) -->
@@ -348,42 +347,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Screening Senior Engineering Personnel</span>
+<span class="terminal-title">Query: Screening Senior IT &amp; Security Personnel</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve senior engineers earning $90,000 or higher</span>
-<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
+<pre><code><span class="code-comment">-- Retrieve senior cybersecurity and IT leaders earning $150,000 or higher</span>
+<span class="code-keyword">SELECT</span> employee_id, first_name, last_name, role, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span> 
-  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">90000.00</span>
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Information Security &amp; Core IT'</span> 
+  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">150000.00</span>
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Employee Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-user-tie"></i>
+<i class="fas fa-user-shield"></i>
 <h4>HR Conjunction Breakdown</h4>
 </div>
 <p>How the conjunction screens organizational talent:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-laptop-code"></i>
-<div><strong>Department Isolation:</strong> Eliminates Sales, Marketing, HR, and Operations staff members.</div>
+<div><strong>Department Isolation:</strong> Eliminates Retail, Lending, Wealth, HR, and Operations staff members.</div>
 </li>
 <li>
 <i class="fas fa-award"></i>
-<div><strong>Senior Compensation Threshold:</strong> Identifies technical leadership (VP Engineering Ripunjay Kumar and Senior Engineer Amritesh Nath) while bypassing junior engineering roles.</div>
+<div><strong>Senior Compensation Threshold:</strong> Identifies technical leadership (CTO Ripunjay Kumar and Principal DBA Olivia Brown) while filtering lower compensation tiers.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 5: Relational Filtering Across Joined Tables -->
-<h2>5. Relational Filtering: Paid Orders with Complete Customer Names</h2>
-<p>Chain boolean conditions across multi-table joins, incorporating NULL checks alongside status validations:</p>
+<h2>5. Relational Filtering: High-Balance Accounts with Verified KYC</h2>
+<p>Chain boolean conditions across multi-table joins, incorporating compliance checks alongside balance thresholds:</p>
 
 <!-- Relational Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -393,24 +392,25 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Auditing Paid Orders with Verified Middle Names</span>
+<span class="terminal-title">Query: Auditing High-Balance Accounts with Verified KYC</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Pull fulfilled sales for customers whose official middle name is on file</span>
+<pre><code><span class="code-comment">-- Audit high-balance accounts whose customer has completed verified KYC compliance</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    a.account_id,
+    a.account_number,
     c.first_name,
-    c.middle_name,
     c.last_name,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list <span class="code-keyword">AS</span> s
-<span class="code-keyword">JOIN</span> customers <span class="code-keyword">AS</span> c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
-  <span class="code-keyword">AND</span> c.middle_name <span class="code-keyword">IS NOT NULL</span>
-<span class="code-keyword">ORDER BY</span> s.total_price <span class="code-keyword">DESC</span>
+    c.kyc_status,
+    a.balance
+<span class="code-keyword">FROM</span> accounts <span class="code-keyword">AS</span> a
+<span class="code-keyword">JOIN</span> customers <span class="code-keyword">AS</span> c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> c.kyc_status <span class="code-op">=</span> <span class="code-string">'Verified'</span> 
+  <span class="code-keyword">AND</span> a.balance <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>
+<span class="code-keyword">ORDER BY</span> a.balance <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
 </div>
 
@@ -420,19 +420,19 @@
 <i class="fas fa-id-card"></i>
 <h4>Relational AND Conjunction Breakdown</h4>
 </div>
-<p>Filtering across joined tables with three-valued logic checks:</p>
+<p>Filtering across joined tables with compound identity and financial predicates:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-link"></i>
-<div><strong>Relational Binding:</strong> Joins <code>sells_list</code> to <code>customers</code> on the foreign key <code>s.customer_id = c.customer_id</code>.</div>
+<div><strong>Relational Binding:</strong> Joins <code>accounts</code> to <code>customers</code> on the foreign key <code>a.customer_id = c.customer_id</code>.</div>
 </li>
 <li>
-<i class="fas fa-shield-alt"></i>
-<div><strong>IS NOT NULL Predicate:</strong> Tests whether <code>c.middle_name</code> contains a valid character value, dropping records where middle name is absent.</div>
+<i class="fas fa-user-check"></i>
+<div><strong>KYC Status Predicate:</strong> Tests whether <code>c.kyc_status = 'Verified'</code>, dropping records with pending or unverified customer profiles.</div>
 </li>
 <li>
 <i class="fas fa-check-double"></i>
-<div><strong>Complete Conjunction:</strong> Both the transaction payment status AND the customer identity completeness criteria must be met.</div>
+<div><strong>Complete Conjunction:</strong> Both the verified identity status AND the deposit balance threshold ($50,000+) must evaluate strictly to TRUE.</div>
 </li>
 </ul>
 </div>
@@ -550,8 +550,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

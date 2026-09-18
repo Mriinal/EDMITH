@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -218,11 +217,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Numeric Price Range on product_list -->
-<h2>2. Numerical Range Filtering: Mid-Tier Inventory Pricing</h2>
-<p>Isolate popular mid-tier catalog merchandise priced between $50.00 and $150.00 on <code>product_list</code>:</p>
+<!-- Section 2: Numeric Balance Range on accounts -->
+<h2>2. Numerical Range Filtering: Mid-Tier Account Balances</h2>
+<p>Isolate mid-tier customer portfolios holding balances between $10,000.00 and $50,000.00 on <code>accounts</code>:</p>
 
-<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<!-- Account Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,43 +229,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Filtering Products in the $50 to $150 Range</span>
+<span class="terminal-title">Query: Filtering Accounts in the $10,000 to $50,000 Range</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter catalog items priced between $50.00 and $150.00 inclusive</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price <span class="code-keyword">BETWEEN</span> <span class="code-num">50.00</span> <span class="code-keyword">AND</span> <span class="code-num">150.00</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Filter bank accounts holding balances between $10,000 and $50,000 inclusive</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance <span class="code-keyword">BETWEEN</span> <span class="code-num">10000.00</span> <span class="code-keyword">AND</span> <span class="code-num">50000.00</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Filtering -->
+<!-- Dedicated Explanation Area for Account Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Numerical Price Range Breakdown</h4>
+<h4>Numerical Balance Range Breakdown</h4>
 </div>
-<p>How the range filter isolates consumer sweet-spot merchandise:</p>
+<p>How the range filter isolates deposit accounts:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Inclusive Boundaries:</strong> Items priced at exactly $50.00 (e.g. Leather Belts) and $150.00 (Smart Fitness Watches) are fully included.</div>
+<div><strong>Inclusive Boundaries:</strong> Accounts holding balances of exactly $10,000.00 and $50,000.00 are fully included.</div>
 </li>
 <li>
-<i class="fas fa-shopping-basket"></i>
-<div><strong>Target Market Tier:</strong> Isolates 10 high-velocity products across Electronics, Footwear, Apparel, and Kitchen items.</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Target Liquidity Bracket:</strong> Identifies active mid-market customer accounts across Savings, Checking, and Money Market portfolios.</div>
 </li>
 <li>
 <i class="fas fa-bolt"></i>
-<div><strong>Index Range Scan:</strong> If a B-Tree index exists on <code>price</code>, the database performs a high-speed clustered range seek rather than scanning the full table.</div>
+<div><strong>Index Range Scan:</strong> If a B-Tree index exists on <code>balance</code>, the database performs a high-speed clustered range seek rather than scanning the full table.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -280,9 +279,9 @@
 </p>
 </div>
 
-<!-- Section 3: Date Boundary Filtering on sells_list -->
+<!-- Section 3: Date Boundary Filtering on transactions -->
 <h2>3. Date Boundaries: Auditing Monthly Transaction Windows</h2>
-<p>Filter chronological sales records within a specific calendar date window on <code>sells_list</code>:</p>
+<p>Filter chronological ledger records within a specific calendar date window on <code>transactions</code>:</p>
 
 <!-- Sales Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -292,17 +291,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Filtering Orders Between Jan 15 and Feb 15, 2026</span>
+<span class="terminal-title">Query: Filtering Transactions in Q1 2025</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Audit transactions completed during the mid-winter promotional period</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, sale_date
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> sale_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2026-01-15'</span> <span class="code-keyword">AND</span> <span class="code-string">'2026-02-15'</span>
-<span class="code-keyword">ORDER BY</span> sale_date <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Audit transactions completed during the first quarter of 2025</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, transaction_date, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> transaction_date <span class="code-keyword">BETWEEN</span> <span class="code-string">'2025-01-01'</span> <span class="code-keyword">AND</span> <span class="code-string">'2025-03-31'</span>
+<span class="code-keyword">ORDER BY</span> transaction_date <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Sales Filtering -->
@@ -319,11 +318,11 @@
 </li>
 <li>
 <i class="fas fa-receipt"></i>
-<div><strong>Winter Sales Cohort:</strong> Retrieves 26 transactions finalized precisely within the 31-day seasonal marketing campaign.</div>
+<div><strong>Quarterly Ledger Window:</strong> Retrieves transactions finalized precisely within the Q1 financial calendar.</div>
 </li>
 <li>
 <i class="fas fa-clock"></i>
-<div><strong>Timestamp Gotcha:</strong> When columns contain timestamps (e.g. <code>2026-02-15 14:30:00</code>), <code>BETWEEN '2026-01-15' AND '2026-02-15'</code> defaults to midnight (<code>00:00:00</code>) on the upper bound, omitting events that occurred later that day!</div>
+<div><strong>Timestamp Gotcha:</strong> When columns contain timestamps (e.g. <code>2025-03-31 14:30:00</code>), <code>BETWEEN '2025-01-01' AND '2025-03-31'</code> defaults to midnight (<code>00:00:00</code>) on the upper bound, omitting events that occurred later that day!</div>
 </li>
 </ul>
 </div>
@@ -367,14 +366,14 @@
 </li>
 <li>
 <i class="fas fa-id-card-alt"></i>
-<div><strong>Captured Surnames:</strong> Returns 8 employees including Chang, Clark, Gupta, Iyer, Jenkins, Kumar, Miller, and Nath.</div>
+<div><strong>Captured Surnames:</strong> Returns employees whose last names fall in the specified alphabetical partition.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: Compound Multi-Range on product_list -->
+<!-- Section 5: Compound Multi-Range on loans -->
 <h2>5. Compound Multi-Range Filtering: Dual Dimension Optimization</h2>
-<p>Combine multiple <code>BETWEEN</code> predicates with <code>AND</code> to evaluate dual numeric boundaries on price and inventory:</p>
+<p>Combine multiple <code>BETWEEN</code> predicates with <code>AND</code> to evaluate dual numeric boundaries on loan amounts and interest rates:</p>
 
 <!-- Compound Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -384,18 +383,18 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Dual-Range Price and Stock Filtering</span>
+<span class="terminal-title">Query: Dual-Range Loan Amount and Rate Filtering</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Select affordable products ($20-$80) with healthy inventory (30-100 units)</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price <span class="code-keyword">BETWEEN</span> <span class="code-num">20.00</span> <span class="code-keyword">AND</span> <span class="code-num">80.00</span>
-  <span class="code-keyword">AND</span> stock_quantity <span class="code-keyword">BETWEEN</span> <span class="code-num">30</span> <span class="code-keyword">AND</span> <span class="code-num">100</span>
-<span class="code-keyword">ORDER BY</span> stock_quantity <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Select mid-tier loans ($10,000-$75,000) with moderate rates (4.5%-8.5%)</span>
+<span class="code-keyword">SELECT</span> loan_id, customer_id, loan_type, amount, interest_rate, term_months, status
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> amount <span class="code-keyword">BETWEEN</span> <span class="code-num">10000.00</span> <span class="code-keyword">AND</span> <span class="code-num">75000.00</span>
+  <span class="code-keyword">AND</span> interest_rate <span class="code-keyword">BETWEEN</span> <span class="code-num">4.50</span> <span class="code-keyword">AND</span> <span class="code-num">8.50</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Compound Filtering -->
@@ -404,15 +403,15 @@
 <i class="fas fa-layer-group"></i>
 <h4>Dual-Range Optimization Breakdown</h4>
 </div>
-<p>Simultaneous price and inventory boundary enforcement:</p>
+<p>Simultaneous capital and interest boundary enforcement:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-coins"></i>
-<div><strong>Affordable Price Window:</strong> Restricts prices to accessible $20–$80 consumer items.</div>
+<div><strong>Capital Window:</strong> Restricts lending amounts to standard personal and automotive loan brackets ($10k–$75k).</div>
 </li>
 <li>
-<i class="fas fa-dolly"></i>
-<div><strong>High-Volume Fulfillment:</strong> Ensures warehouse inventory is robust (30 to 100 units), ideal for featured holiday catalog promotions.</div>
+<i class="fas fa-percentage"></i>
+<div><strong>Rate Threshold:</strong> Isolates competitive prime-rate loans (4.5% to 8.5%), filtering out ultra-low subsidies and high-risk unsecured rates.</div>
 </li>
 </ul>
 </div>
@@ -518,8 +517,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

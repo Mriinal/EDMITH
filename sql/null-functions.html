@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -222,7 +221,7 @@ numerator <span class="code-op">/</span> <span class="code-func">NULLIF</span>(d
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of NULL functions running against active relational tables (<code>customers</code>, <code>employees</code>, and <code>sells_list</code>):</p>
+<p>Explore production-grade implementations of NULL functions running against active relational tables (<code>customers</code>, <code>employees</code>, and <code>loans</code>):</p>
 <!-- Query 1: Sanitizing Customer Names with COALESCE -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -341,15 +340,14 @@ numerator <span class="code-op">/</span> <span class="code-func">NULLIF</span>(d
 </div>
 </div>
 <pre><code><span class="code-keyword">SELECT</span> 
-    sale_id,
+    loan_id,
     customer_id,
-    product_id,
-    quantity,
-    total_price,
-    <span class="code-func">ROUND</span>(total_price <span class="code-op">/</span> <span class="code-func">NULLIF</span>(quantity, <span class="code-num">0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> calculated_unit_price
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> sale_id &lt;= 15
-<span class="code-keyword">ORDER BY</span> sale_id <span class="code-keyword">ASC</span>;</code></pre>
+    amount,
+    interest_rate,
+    <span class="code-func">ROUND</span>(amount <span class="code-op">/</span> <span class="code-func">NULLIF</span>(interest_rate, <span class="code-num">0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> principal_per_interest_point
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> loan_id &lt;= 15
+<span class="code-keyword">ORDER BY</span> loan_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -360,16 +358,16 @@ numerator <span class="code-op">/</span> <span class="code-func">NULLIF</span>(d
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-dollar-sign"></i>
-<div>Computes unit prices by dividing <code>total_price</code> by <code>quantity</code> across transactions in <code>sells_list</code>.</div>
+<i class="fas fa-percentage"></i>
+<div>Computes principal leverage by dividing loan <code>amount</code> by <code>interest_rate</code> across active loan facilities in <code>loans</code>.</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div><strong><code>NULLIF(quantity, 0)</code> inspects the denominator:</strong> if quantity is 0, it transforms to <code>NULL</code>, preventing catastrophic divide-by-zero crashes.</div>
+<div><strong><code>NULLIF(interest_rate, 0)</code> inspects the divisor:</strong> If interest rate is 0 (e.g. promotional interest-free lines), it transforms to <code>NULL</code>, preventing catastrophic divide-by-zero crashes.</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div>Any calculation divided by <code>NULL</code> cleanly produces <code>NULL</code> rather than interrupting database execution.</div>
+<div>Any calculation divided by <code>NULL</code> cleanly produces <code>NULL</code> rather than interrupting database engine execution.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -624,8 +622,13 @@ numerator <span class="code-op">/</span> <span class="code-func">NULLIF</span>(d
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

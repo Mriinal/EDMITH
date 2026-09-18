@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -219,11 +218,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Product Price Sorting on product_list -->
-<h2>2. Single-Column Sorting: Price-Sorted Catalog Merchandise</h2>
-<p>Sort active hardware inventory on <code>product_list</code> from least expensive to most expensive:</p>
+<!-- Section 2: Account Balance Sorting on accounts -->
+<h2>2. Single-Column Sorting: Balance-Sorted Bank Portfolios</h2>
+<p>Sort active savings accounts on <code>accounts</code> from lowest to highest balance:</p>
 
-<!-- Product Price Sort Terminal (Try in Editor + Copy) -->
+<!-- Account Balance Sort Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -231,43 +230,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Ascending Price Sort on Electronics</span>
+<span class="terminal-title">Query: Ascending Balance Sort on Savings Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve Electronics merchandise sorted from lowest to highest price</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve Savings accounts sorted from lowest to highest balance</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Price Sort -->
+<!-- Dedicated Explanation Area for Account Balance Sort -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-dollar-sign"></i>
-<h4>Catalog Price Ordering Breakdown</h4>
+<h4>Account Balance Ordering Breakdown</h4>
 </div>
-<p>How the sort organizes commercial merchandise:</p>
+<p>How the sort organizes banking deposit portfolios:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-mouse"></i>
-<div><strong>Lowest Price First:</strong> Surfaces budget accessories like <em>Ergonomic Wireless Mouse</em> ($49.99) and <em>Mechanical Gaming Keyboard</em> ($89.99) at the top of the output.</div>
+<i class="fas fa-arrow-up"></i>
+<div><strong>Lowest Balance First:</strong> Surfaces entry-level savings portfolios at the top of the output ladder.</div>
 </li>
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Highest Price at the End:</strong> Places top-tier enterprise hardware like the <em>Pro Laptop 15"</em> ($1299.99) in the final position.</div>
+<i class="fas fa-landmark"></i>
+<div><strong>Highest Balance at the End:</strong> Places premier high-balance savings portfolios in the final positions.</div>
 </li>
 <li>
 <i class="fas fa-bolt"></i>
-<div><strong>Index Acceleration:</strong> In production RDBMS (PostgreSQL, MySQL, Oracle), a B-Tree index on <code>price</code> allows the engine to stream records directly without performing an in-memory Quicksort.</div>
+<div><strong>Index Acceleration:</strong> In production RDBMS (PostgreSQL, MySQL, Oracle), a B-Tree index on <code>balance</code> allows the engine to stream sorted records directly without performing an in-memory Quicksort.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the ascending price ladder returned from the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the ascending balance ladder returned from the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -324,9 +323,9 @@
 </ul>
 </div>
 
-<!-- Section 4: Revenue Sorting on sells_list -->
+<!-- Section 4: Revenue Sorting on transactions -->
 <h2>4. Financial Auditing: Ranking Highest-Value Transactions</h2>
-<p>Audit fulfilled sales orders on <code>sells_list</code> by sorting settled revenue in descending order:</p>
+<p>Audit completed ledger entries on <code>transactions</code> by sorting settled amounts in descending order:</p>
 
 <!-- Sales Revenue Sort Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -336,17 +335,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Ranking Top Settled Sales Transactions</span>
+<span class="terminal-title">Query: Ranking Top Settled Financial Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Rank settled customer purchases by descending transaction value</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>
+<pre><code><span class="code-comment">-- Rank completed ledger transactions by descending settlement amount</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, transaction_date
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -356,15 +355,15 @@
 <i class="fas fa-file-invoice-dollar"></i>
 <h4>Financial Order Breakdown</h4>
 </div>
-<p>Surfacing peak revenue events for business stakeholders:</p>
+<p>Surfacing peak liquidity events for audit compliance:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-coins"></i>
-<div><strong>Descending Revenue Rank:</strong> Instantly highlights multi-unit purchases exceeding $3,800.00 at the top of the ledger.</div>
+<div><strong>Descending Amount Rank:</strong> Instantly highlights high-value wire transfers and large deposits exceeding $5,000.00 at the top of the ledger.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Status Pre-Filtering:</strong> Combines WHERE clause filtering with ORDER BY to focus purely on settled cash flow.</div>
+<div><strong>Status Pre-Filtering:</strong> Combines WHERE clause filtering (<code>status = 'Completed'</code>) with ORDER BY to focus purely on cleared funds.</div>
 </li>
 </ul>
 </div>
@@ -545,8 +544,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -222,11 +221,11 @@
 </div>
 </div>
 
-<!-- Section 2: Filtering on product_list -->
-<h2>2. Categorical Filtering: Retrieving Multiple Departments</h2>
-<p>Retrieve catalog items belonging to either of two popular product categories on <code>product_list</code>:</p>
+<!-- Section 2: Filtering on accounts -->
+<h2>2. Categorical Filtering: Retrieving Multiple Account Types</h2>
+<p>Retrieve bank accounts belonging to either of two deposit categories on <code>accounts</code>:</p>
 
-<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<!-- Account Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -234,43 +233,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Filtering Electronics or Home &amp; Kitchen Products</span>
+<span class="terminal-title">Query: Filtering Savings or Money Market Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Select items from either the Electronics or Home & Kitchen catalog</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">OR</span> category <span class="code-op">=</span> <span class="code-string">'Home &amp; Kitchen'</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Select accounts that are either Savings or Money Market portfolios</span>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> <span class="code-keyword">OR</span> account_type <span class="code-op">=</span> <span class="code-string">'Money Market'</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Filtering -->
+<!-- Dedicated Explanation Area for Account Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-shopping-cart"></i>
-<h4>Category Disjunction Breakdown</h4>
+<i class="fas fa-piggy-bank"></i>
+<h4>Portfolio Disjunction Breakdown</h4>
 </div>
-<p>How the OR predicate combines distinct catalog departments:</p>
+<p>How the OR predicate combines distinct deposit product lines:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Electronics Records:</strong> Admits all 6 electronic devices (Laptops, Keyboards, Mice, Headphones, Watches, Monitors).</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Savings Records:</strong> Admits interest-bearing retail customer savings balances.</div>
 </li>
 <li>
-<i class="fas fa-blender"></i>
-<div><strong>Home &amp; Kitchen Records:</strong> Admits all 5 kitchen appliances (Coffee Makers, Air Fryers, Blenders, Toasters, Kettles).</div>
+<i class="fas fa-chart-line"></i>
+<div><strong>Money Market Records:</strong> Admits flexible high-yield institutional liquid deposit accounts.</div>
 </li>
 <li>
 <i class="fas fa-layer-group"></i>
-<div><strong>Combined Result:</strong> Successfully combines 11 items into an ascending price-ordered merchandise roster.</div>
+<div><strong>Combined Result:</strong> Unifies both yield-generating categories into a single ranked ledger sorted by balance descending.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the combined 11 records returned from <code>product_list</code>!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to see the combined accounts returned from <code>accounts</code>!</span>
 </div>
 </div>
 
@@ -284,11 +283,11 @@
 </p>
 </div>
 
-<!-- Section 3: Status Filtering on sells_list -->
-<h2>3. Transactional Exceptions: Flagging Non-Standard Sales</h2>
-<p>Auditing transaction ledgers frequently requires retrieving orders matching any non-standard payment status:</p>
+<!-- Section 3: Status Filtering on transactions -->
+<h2>3. Transactional Exceptions: Flagging Non-Standard Transfers</h2>
+<p>Auditing transaction ledgers frequently requires retrieving records matching any non-standard operational status:</p>
 
-<!-- Sales Terminal (Try in Editor + Copy) -->
+<!-- Transaction Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -296,38 +295,38 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Isolating Pending or Refunded Transactions</span>
+<span class="terminal-title">Query: Isolating Pending or Failed Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Flag transactions that are either awaiting payment or have been refunded</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PENDING'</span> <span class="code-keyword">OR</span> payment_status <span class="code-op">=</span> <span class="code-string">'REFUNDED'</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Flag transactions that are either awaiting clearing or have failed</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Pending'</span> <span class="code-keyword">OR</span> status <span class="code-op">=</span> <span class="code-string">'Failed'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales Filtering -->
+<!-- Dedicated Explanation Area for Transaction Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-file-invoice-dollar"></i>
+<i class="fas fa-exclamation-triangle"></i>
 <h4>Status Disjunction Breakdown</h4>
 </div>
 <p>How the OR condition targets exceptional ledger states:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-clock"></i>
-<div><strong>PENDING Status:</strong> Identifies orders awaiting financial clearing or customer authorization.</div>
+<div><strong>Pending Status:</strong> Identifies transfers in settlement queues or awaiting AML clearance.</div>
 </li>
 <li>
-<i class="fas fa-undo"></i>
-<div><strong>REFUNDED Status:</strong> Identifies returns requiring reconciliation with accounting ledgers.</div>
+<i class="fas fa-times-circle"></i>
+<div><strong>Failed Status:</strong> Identifies wire or card failures requiring risk investigation.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Excluding Standard PAID:</strong> Skips routine, settled purchases to surface exactly the 16 attention-worthy orders.</div>
+<div><strong>Excluding Standard Completed:</strong> Skips routine, settled records to surface only high-priority exceptions.</div>
 </li>
 </ul>
 </div>
@@ -344,18 +343,18 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Premium Electronics or Footwear Items</span>
+<span class="terminal-title">Query: High-Balance Checking or Savings Portfolios</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve Electronics or Footwear products priced at $100.00 or more</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> (category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">OR</span> category <span class="code-op">=</span> <span class="code-string">'Footwear'</span>)
-  <span class="code-keyword">AND</span> price <span class="code-op">&gt;=</span> <span class="code-num">100.00</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve Savings or Checking accounts holding $50,000.00 or more</span>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, currency
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> (account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> <span class="code-keyword">OR</span> account_type <span class="code-op">=</span> <span class="code-string">'Checking'</span>)
+  <span class="code-keyword">AND</span> balance <span class="code-op">&gt;=</span> <span class="code-num">50000.00</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Combined Logic -->
@@ -368,22 +367,22 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-project-diagram"></i>
-<div><strong>The Parenthesized Group:</strong> Evaluates <code>(category = 'Electronics' OR category = 'Footwear')</code> first, establishing the acceptable department domain.</div>
+<div><strong>The Parenthesized Group:</strong> Evaluates <code>(account_type = 'Savings' OR account_type = 'Checking')</code> first, establishing the core account domain.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>The Universal Threshold:</strong> Enforces <code>price &gt;= 100.00</code> on both qualifying departments, returning top hardware and premium leather footwear.</div>
+<div><strong>The Universal Threshold:</strong> Enforces <code>balance &gt;= 50000.00</code> on both qualifying account categories, returning top liquidity holders.</div>
 </li>
 <li>
 <i class="fas fa-exclamation-circle"></i>
-<div><strong>Without Parentheses:</strong> The expression <code>WHERE category = 'Electronics' OR category = 'Footwear' AND price &gt;= 100</code> would return <em>every</em> electronic item regardless of price!</div>
+<div><strong>Without Parentheses:</strong> The expression <code>WHERE account_type = 'Savings' OR account_type = 'Checking' AND balance &gt;= 50000</code> would return <em>every</em> savings account regardless of balance!</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 5: Staff Query on employees -->
 <h2>5. Organizational Analytics: Multi-Department Senior Personnel</h2>
-<p>Query leadership and senior staff across either the Sales or Operations divisions on <code>employees</code>:</p>
+<p>Query leadership and senior staff across either Retail Banking or Wealth Management on <code>employees</code>:</p>
 
 <!-- Employee Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -393,17 +392,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: High-Earning Sales or Operations Personnel</span>
+<span class="terminal-title">Query: High-Earning Retail or Wealth Management Personnel</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find staff in Sales or Operations earning $80,000 or higher</span>
+<pre><code><span class="code-comment">-- Find staff in Retail or Wealth Management earning $120,000 or higher</span>
 <span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> (department <span class="code-op">=</span> <span class="code-string">'Sales'</span> <span class="code-keyword">OR</span> department <span class="code-op">=</span> <span class="code-string">'Operations'</span>)
-  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">80000.00</span>
+<span class="code-keyword">WHERE</span> (department <span class="code-op">=</span> <span class="code-string">'Retail Banking Operations'</span> <span class="code-keyword">OR</span> department <span class="code-op">=</span> <span class="code-string">'Wealth &amp; Asset Management'</span>)
+  <span class="code-keyword">AND</span> salary <span class="code-op">&gt;=</span> <span class="code-num">120000.00</span>
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
@@ -416,16 +415,16 @@
 <p>Isolating departmental leadership across business units:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-chart-line"></i>
-<div><strong>Sales Leadership:</strong> Surfaces VP Sales David Miller ($110,000) and Sales Manager Elena Rostova ($82,000).</div>
+<i class="fas fa-university"></i>
+<div><strong>Retail Leadership:</strong> Surfaces Head of Retail Sarah Jenkins ($240,000) and Branch Director Abhishek Prasad ($175,000).</div>
 </li>
 <li>
-<i class="fas fa-cogs"></i>
-<div><strong>Operations Leadership:</strong> Surfaces Director of Operations Michael Chang ($105,000).</div>
+<i class="fas fa-chart-line"></i>
+<div><strong>Wealth Leadership:</strong> Surfaces VP Wealth Emily Clark ($190,000) and Senior Portfolio Manager Rajesh Gupta ($155,000).</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div><strong>Clean Salary Floor:</strong> Bypasses lower-salary associates and recuses other departments.</div>
+<div><strong>Clean Salary Floor:</strong> Bypasses lower-salary associates and recuses other divisions.</div>
 </li>
 </ul>
 </div>
@@ -543,8 +542,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

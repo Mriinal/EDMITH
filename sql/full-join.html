@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -222,9 +221,9 @@
 </ul>
 </div>
 
-<!-- Section 2: Complete Reconciliation of Customers and Sells -->
-<h2>2. Master Reconciliation: Complete Customer &amp; Transaction Audit</h2>
-<p>Perform a bidirectional full outer join between <code>customers</code> and <code>sells_list</code> to audit every customer and order in the system:</p>
+<!-- Section 2: Complete Reconciliation of Customers and Loans -->
+<h2>2. Master Reconciliation: Complete Customer &amp; Loan Portfolio Audit</h2>
+<p>Perform a bidirectional full outer join between <code>customers</code> and <code>loans</code> to audit every borrower profile and credit facility in the banking system:</p>
 
 <!-- Full Outer Join Master Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -234,21 +233,21 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Full Outer Join Customer &amp; Transaction Reconciliation</span>
+<span class="terminal-title">Query: Full Outer Join Customer &amp; Loan Reconciliation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retain all customers AND all orders; missing links display NULL on either side</span>
+<pre><code><span class="code-comment">-- Retain all customers AND all loans; missing links display NULL on either side</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">COALESCE</span>(c.customer_id, s.customer_id) <span class="code-keyword">AS</span> unified_id,
+    <span class="code-func">COALESCE</span>(c.customer_id, l.customer_id) <span class="code-keyword">AS</span> unified_id,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price
+    l.loan_id,
+    l.amount
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">FULL OUTER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">FULL OUTER JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
 <span class="code-keyword">ORDER BY</span> unified_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -263,11 +262,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Unified Identifier:</strong> <code>COALESCE(c.customer_id, s.customer_id)</code> provides a seamless identifier whether the record originated from customers or sells.</div>
+<div><strong>Unified Identifier:</strong> <code>COALESCE(c.customer_id, l.customer_id)</code> provides a seamless identifier whether the record originated from customers or loans.</div>
 </li>
 <li>
 <i class="fas fa-eye"></i>
-<div><strong>Uncompromised Visibility:</strong> Neither non-purchasing customers nor orphan transactions are hidden from the audit log.</div>
+<div><strong>Uncompromised Visibility:</strong> Neither debt-free customers nor loan obligations are hidden from the audit log.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -288,7 +287,7 @@
 
 <!-- Section 3: Bidirectional Gap Analysis -->
 <h2>3. Gap Analysis: Isolating Discrepancies on Either Side</h2>
-<p>Filter with <code>WHERE c.customer_id IS NULL OR s.sale_id IS NULL</code> to pinpoint records that lack an established partner:</p>
+<p>Filter with <code>WHERE c.customer_id IS NULL OR l.loan_id IS NULL</code> to pinpoint records that lack an established partner:</p>
 
 <!-- Gap Analysis Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -304,13 +303,13 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Detect records unique to customers OR unique to sells_list</span>
+<pre><code><span class="code-comment">-- Detect records unique to customers OR unique to loans</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id <span class="code-keyword">AS</span> customer_only_id,
-    s.sale_id     <span class="code-keyword">AS</span> order_only_id
+    l.loan_id     <span class="code-keyword">AS</span> loan_only_id
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">FULL OUTER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
-<span class="code-keyword">WHERE</span> c.customer_id <span class="code-keyword">IS NULL OR</span> s.sale_id <span class="code-keyword">IS NULL</span>
+<span class="code-keyword">FULL OUTER JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
+<span class="code-keyword">WHERE</span> c.customer_id <span class="code-keyword">IS NULL OR</span> l.loan_id <span class="code-keyword">IS NULL</span>
 <span class="code-keyword">ORDER BY</span> customer_only_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -325,7 +324,7 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-exclamation-triangle"></i>
-<div><strong>Anti-Join on Both Flanks:</strong> This bidirectional gap check identifies both inactive customers (no orders) and unlinked transactions (orders without customers).</div>
+<div><strong>Anti-Join on Both Flanks:</strong> This bidirectional gap check identifies both debt-free customers (no loans) and unlinked loan facilities.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
@@ -354,16 +353,16 @@
 </div>
 <pre><code><span class="code-comment">-- Automatically categorize relational link health across both tables</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">COALESCE</span>(c.customer_id, s.customer_id) <span class="code-keyword">AS</span> unified_customer_id,
+    <span class="code-func">COALESCE</span>(c.customer_id, l.customer_id) <span class="code-keyword">AS</span> unified_customer_id,
     c.first_name,
-    s.sale_id,
+    l.loan_id,
     <span class="code-keyword">CASE</span> 
-        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NOT NULL AND</span> s.sale_id <span class="code-keyword">IS NOT NULL THEN</span> <span class="code-string">'MATCHED_ORDER'</span>
-        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NOT NULL AND</span> s.sale_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'UNMATCHED_CUSTOMER'</span>
-        <span class="code-keyword">ELSE</span> <span class="code-string">'ORPHAN_TRANSACTION'</span>
+        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NOT NULL AND</span> l.loan_id <span class="code-keyword">IS NOT NULL THEN</span> <span class="code-string">'MATCHED_LOAN'</span>
+        <span class="code-keyword">WHEN</span> c.customer_id <span class="code-keyword">IS NOT NULL AND</span> l.loan_id <span class="code-keyword">IS NULL THEN</span> <span class="code-string">'UNMATCHED_CUSTOMER'</span>
+        <span class="code-keyword">ELSE</span> <span class="code-string">'ORPHAN_LOAN'</span>
     <span class="code-keyword">END AS</span> audit_status
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">FULL OUTER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">FULL OUTER JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
 <span class="code-keyword">ORDER BY</span> unified_customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -378,11 +377,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check"></i>
-<div><strong>MATCHED_ORDER:</strong> Records where both customer profile and transactional purchase exist.</div>
+<div><strong>MATCHED_LOAN:</strong> Records where both customer profile and active loan facility exist.</div>
 </li>
 <li>
 <i class="fas fa-user-clock"></i>
-<div><strong>UNMATCHED_CUSTOMER:</strong> Preserved registered accounts that have never completed an order.</div>
+<div><strong>UNMATCHED_CUSTOMER:</strong> Preserved registered accounts that do not currently hold an active loan.</div>
 </li>
 </ul>
 </div>
@@ -406,15 +405,15 @@
 </div>
 </div>
 <pre><code><span class="code-comment">-- Standard MySQL / ANSI fallback: LEFT JOIN UNION RIGHT JOIN</span>
-<span class="code-keyword">SELECT</span> c.customer_id, c.first_name, s.sale_id, s.total_price
+<span class="code-keyword">SELECT</span> c.customer_id, c.first_name, l.loan_id, l.amount
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">LEFT JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
 <span class="code-keyword">WHERE</span> c.customer_id <span class="code-op">&lt;=</span> <span class="code-num">10</span>
 <span class="code-keyword">UNION</span>
-<span class="code-keyword">SELECT</span> c.customer_id, c.first_name, s.sale_id, s.total_price
+<span class="code-keyword">SELECT</span> c.customer_id, c.first_name, l.loan_id, l.amount
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">RIGHT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
-<span class="code-keyword">WHERE</span> s.sale_id <span class="code-op">&lt;=</span> <span class="code-num">10</span>
+<span class="code-keyword">RIGHT JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
+<span class="code-keyword">WHERE</span> l.loan_id <span class="code-op">&lt;=</span> <span class="code-num">10</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -526,8 +525,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

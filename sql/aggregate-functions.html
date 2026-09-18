@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -344,11 +343,11 @@
 </ul>
 </div>
 
-<!-- Section 4: Revenue Aggregates on sells_list -->
-<h2>4. Financial Auditing: Revenue &amp; Units Sold on sells_list</h2>
-<p>Summarize transactional revenue across settled orders on the 60-row <code>sells_list</code> ledger:</p>
+<!-- Section 4: Clearing Aggregates on transactions -->
+<h2>4. Financial Auditing: Ledger Volume &amp; Clearing on transactions</h2>
+<p>Summarize transactional volume across cleared events on the active <code>transactions</code> ledger:</p>
 
-<!-- Sales Aggregates Terminal (Try in Editor + Copy) -->
+<!-- Transaction Aggregates Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -356,37 +355,37 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Auditing Settled Commercial Revenue &amp; Units</span>
+<span class="terminal-title">Query: Auditing Completed Banking Ledger Volume &amp; Limits</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Tally paid orders, units fulfilled, gross revenue, and average basket value</span>
+<pre><code><span class="code-comment">-- Tally cleared events, aggregate volume, average size, and peak transfer</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(sale_id) <span class="code-keyword">AS</span> settled_orders,
-    <span class="code-func">SUM</span>(quantity) <span class="code-keyword">AS</span> units_sold,
-    <span class="code-func">SUM</span>(total_price) <span class="code-keyword">AS</span> gross_revenue,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_order_value
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+    <span class="code-func">COUNT</span>(transaction_id)       <span class="code-keyword">AS</span> completed_transactions,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>)       <span class="code-keyword">AS</span> total_cleared_volume,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(amount), <span class="code-num">2</span>)       <span class="code-keyword">AS</span> avg_settlement_size,
+    <span class="code-func">ROUND</span>(<span class="code-func">MAX</span>(amount), <span class="code-num">2</span>)       <span class="code-keyword">AS</span> largest_transaction
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales Aggregates -->
+<!-- Dedicated Explanation Area for Transaction Aggregates -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
-<h4>Commerce Transaction Metrics Breakdown</h4>
+<h4>Ledger Clearing Metrics Breakdown</h4>
 </div>
-<p>Auditing commercial revenue and sales performance:</p>
+<p>Auditing transactional flow and banking performance:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-shopping-basket"></i>
-<div><strong>37 Settled Transactions:</strong> Confirms 37 completed purchases accounting for 83 individual merchandise items sold.</div>
+<i class="fas fa-check-circle"></i>
+<div><strong>167 Cleared Transactions:</strong> Confirms 167 successfully posted debit, credit, and transfer events in the active database.</div>
 </li>
 <li>
 <i class="fas fa-funnel-dollar"></i>
-<div><strong>Key Performance Indicators (KPIs):</strong> Yields $15,615.17 in gross settled revenue at an average checkout order value of $422.03.</div>
+<div><strong>Liquidity Velocity:</strong> Yields $276,400.00 in gross cleared settlement volume at an average transaction size of $1,655.09 and a ceiling transfer of $4,412.00.</div>
 </li>
 </ul>
 </div>
@@ -552,8 +551,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

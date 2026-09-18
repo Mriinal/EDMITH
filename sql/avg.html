@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -318,11 +317,11 @@
 </ul>
 </div>
 
-<!-- Section 4: Retail Pricing on product_list -->
-<h2>4. Merchandise Analytics: Average Category Price</h2>
-<p>Determine the typical price point for consumer electronics on the <code>product_list</code> table:</p>
+<!-- Section 4: Portfolio Balances on accounts -->
+<h2>4. Portfolio Analytics: Average Checking Account Balance</h2>
+<p>Determine the typical liquid liquidity held across active Checking accounts on the <code>accounts</code> ledger:</p>
 
-<!-- Electronics Average Price Terminal (Try in Editor + Copy) -->
+<!-- Checking Average Balance Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -330,42 +329,42 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Average Electronics Price Point</span>
+<span class="terminal-title">Query: Mean Balance for Active Checking Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find the average retail price across electronics merchandise</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> electronics_avg_price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
+<pre><code><span class="code-comment">-- Calculate mean balance across all active checking accounts</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_checking_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Checking'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Electronics Average -->
+<!-- Dedicated Explanation Area for Checking Average -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-tag"></i>
-<h4>Retail Pricing Breakdown</h4>
+<i class="fas fa-wallet"></i>
+<h4>Checking Liquidity Breakdown</h4>
 </div>
-<p>Computing sector-level price points:</p>
+<p>Evaluating account deposit levels:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-microchip"></i>
-<div><strong>$356.66 Electronics Average:</strong> Averages items ranging from $49.99 (mouse) to $1299.99 (laptop), providing a clear midpoint for catalog positioning.</div>
+<i class="fas fa-coins"></i>
+<div><strong>$54,312.52 Mean Checking Balance:</strong> Aggregates balances across active checking portfolios, establishing a benchmark for retail liquidity reserves.</div>
 </li>
 <li>
-<i class="fas fa-chart-pie"></i>
-<div><strong>Comparative Metrics:</strong> Comparing this against other categories (e.g. Books or Footwear) helps merchants structure bundle discounts.</div>
+<i class="fas fa-filter"></i>
+<div><strong>Compound Filtering:</strong> Excludes dormant, closed, and non-checking records before computing the arithmetic mean.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: Average Basket Size on sells_list -->
-<h2>5. Commerce KPIs: Average Order Value &amp; Basket Quantity</h2>
-<p>Measure commercial shopping habits by calculating average revenue per order and average units purchased on <code>sells_list</code>:</p>
+<!-- Section 5: Transaction Flow on transactions -->
+<h2>5. Banking Velocity: Average Settled Transaction Amount</h2>
+<p>Measure operational transaction velocity by calculating the mean settlement volume across completed transfers and payments on <code>transactions</code>:</p>
 
-<!-- Sales Average Order Terminal (Try in Editor + Copy) -->
+<!-- Transaction Average Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -373,35 +372,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Average Paid Order Value (AOV) &amp; Item Basket Size</span>
+<span class="terminal-title">Query: Average Completed Transaction Settlement</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Calculate Average Order Value (AOV) and average units per customer order</span>
+<pre><code><span class="code-comment">-- Calculate mean settlement amount across completed transactions</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_paid_ticket,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(quantity), <span class="code-num">1</span>)    <span class="code-keyword">AS</span> avg_units_per_order
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_completed_amount,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)               <span class="code-keyword">AS</span> completed_tx_count
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales Average -->
+<!-- Dedicated Explanation Area for Transaction Average -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-shopping-cart"></i>
-<h4>Commerce Key Metrics Breakdown</h4>
+<i class="fas fa-exchange-alt"></i>
+<h4>Transaction Velocity Breakdown</h4>
 </div>
-<p>Auditing transactional behavior:</p>
+<p>Auditing clearing volume:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-receipt"></i>
-<div><strong>Average Order Value ($422.03):</strong> Highlights strong commercial basket size driven by high-ticket electronics purchases.</div>
+<div><strong>Average Settlement ($1,655.09):</strong> Reflects typical customer movement across deposits, withdrawals, and merchant payments.</div>
 </li>
 <li>
-<i class="fas fa-cubes"></i>
-<div><strong>Basket Size (2.2 Units):</strong> Shoppers typically purchase between 2 and 3 units per checkout session.</div>
+<i class="fas fa-check-circle"></i>
+<div><strong>Clearing Filter:</strong> Restricting to <code>status = 'Completed'</code> discards pending authorizations and failed executions from distortion.</div>
 </li>
 </ul>
 </div>
@@ -517,8 +516,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

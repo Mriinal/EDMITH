@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -160,14 +159,14 @@
 <div class="lesson-content">
 <!-- Visual Concept Card: Real-World Analogy -->
 <div class="visual-concept-card" style="align-items: flex-start;">
-<div class="concept-icon"><i class="fas fa-archive"></i></div>
+<div class="concept-icon"><i class="fas fa-university"></i></div>
 <div class="concept-text">
-<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Warehouse Freight Receiving Dock Analogy</h4>
-<p>Picture an enterprise logistics fulfillment center receiving brand new pallets of merchandise from freight carriers:</p>
-<p style="margin-top: 8px !important;"><strong>1. The Receiving Bay:</strong> An empty slot in the warehouse is designed with labeled compartments for Item ID, Description, Category, Price, and Stock.</p>
-<p style="margin-top: 8px !important;"><strong>2. The Manifest Declaration:</strong> Before unloading, the dock supervisor checks the receiving manifest specifying slot locations: <code>(product_id, product_name, category, price, stock_quantity)</code>.</p>
-<p style="margin-top: 8px !important;"><strong>3. Single Pallet Ingestion:</strong> A technician registers a single arriving item onto the conveyor belt with exact field measurements.</p>
-<p style="margin-top: 8px !important;"><strong>4. Bulk Freight Batching:</strong> An automated forklift unloads 50 standardized boxes at once in a single high-efficiency maneuver.</p>
+<h4 style="margin-bottom: 10px; font-size: 1.2rem;">The Core Banking Ledger Ingestion Analogy</h4>
+<p>Picture a tier-1 retail bank opening new accounts and processing inbound transactional deposits:</p>
+<p style="margin-top: 8px !important;"><strong>1. The Ledger Slot:</strong> An allocated record structure in the core banking ledger designed with strict fields for Account ID, Customer ID, Branch ID, Account Type, Balance, and Status.</p>
+<p style="margin-top: 8px !important;"><strong>2. The Ingestion Manifest:</strong> Before writing records, the engine validates the schema declaration specifying column attributes: <code>(account_id, customer_id, branch_id, account_number, account_type, balance, currency, status)</code>.</p>
+<p style="margin-top: 8px !important;"><strong>3. Single Customer Onboarding:</strong> A compliance officer registers a single new KYC-verified customer profile into the central directory.</p>
+<p style="margin-top: 8px !important;"><strong>4. Bulk Account Provisioning:</strong> An automated portfolio onboarding engine provisions multiple checking, savings, and investment accounts in a single atomic batch.</p>
 <p style="margin-top: 8px !important;">The INSERT INTO command persists brand new rows into tables, either one record at a time or through high-speed multi-row bulk batches.</p>
 </div>
 </div>
@@ -224,7 +223,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>INSERT INTO</code> running against active relational tables (<code>customers</code>, <code>product_list</code>, <code>employees</code>, and <code>sells_list</code>):</p>
+<p>Explore production-grade implementations of <code>INSERT INTO</code> running against active relational tables (<code>customers</code>, <code>accounts</code>, <code>employees</code>, and <code>transactions</code>):</p>
 <!-- Query 1: Single Row Insert into customers -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -239,8 +238,8 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customers (customer_id, first_name, middle_name, last_name)
-<span class="code-keyword">VALUES</span> (613, <span class="code-string">'Eleanor'</span>, <span class="code-string">'Marie'</span>, <span class="code-string">'Vance'</span>);</code></pre>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> customers (customer_id, first_name, last_name, email, phone, kyc_status, city, credit_score)
+<span class="code-keyword">VALUES</span> (101, <span class="code-string">'Eleanor'</span>, <span class="code-string">'Vance'</span>, <span class="code-string">'eleanor.vance@example.com'</span>, <span class="code-string">'+1-555-0199'</span>, <span class="code-string">'Verified'</span>, <span class="code-string">'Chicago'</span>, 740);</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -252,7 +251,7 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Appends a brand-new customer account (ID:</strong> 613) into the active <code>customers</code> directory.</div>
+<div><strong>Appends a brand-new customer account (ID:</strong> 101) into the active <code>customers</code> directory.</div>
 </li>
 <li>
 <i class="fas fa-columns"></i>
@@ -268,7 +267,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 2: Multi-Row Batch Insert into product_list -->
+<!-- Query 2: Multi-Row Batch Insert into accounts -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -276,29 +275,29 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: High-Performance Bulk Inventory Batch Seeding</span>
+<span class="terminal-title">Query 2: High-Performance Bulk Account Provisioning Batch Seeding</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> product_list (product_id, product_name, category, price, stock_quantity)
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> accounts (account_id, customer_id, branch_id, account_number, account_type, balance, currency, status)
 <span class="code-keyword">VALUES</span> 
-    (26, <span class="code-string">'Noise-Cancelling Earbuds Pro'</span>, <span class="code-string">'Electronics'</span>, 149.99, 45),
-    (27, <span class="code-string">'Ergonomic Desk Mat XL'</span>, <span class="code-string">'Home &amp; Kitchen'</span>, 29.99, 120),
-    (28, <span class="code-string">'Thermal Travel Mug 16oz'</span>, <span class="code-string">'Home &amp; Kitchen'</span>, 24.99, 85);</code></pre>
+    (134, 101, 1, <span class="code-string">'AC-100134'</span>, <span class="code-string">'Checking'</span>, 15000.00, <span class="code-string">'USD'</span>, <span class="code-string">'Active'</span>),
+    (135, 101, 1, <span class="code-string">'AC-100135'</span>, <span class="code-string">'Savings'</span>, 45000.00, <span class="code-string">'USD'</span>, <span class="code-string">'Active'</span>),
+    (136, 101, 2, <span class="code-string">'AC-100136'</span>, <span class="code-string">'Money Market'</span>, 25000.00, <span class="code-string">'USD'</span>, <span class="code-string">'Active'</span>);</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-stream"></i>
-<h4>Bulk Inventory Seeding Breakdown</h4>
+<h4>Bulk Account Provisioning Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Inserts three distinct products into <code>product_list</code> in a single SQL operation.</div>
+<div>Inserts three distinct banking accounts into <code>accounts</code> in a single SQL operation.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
@@ -306,7 +305,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Successfully expands the catalog from 25 to 28 active SKUs.</div>
+<div>Successfully provisions Checking, Savings, and Money Market facilities for client 101.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -328,8 +327,8 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> employees (employee_id, first_name, last_name, department, salary, manager_id)
-<span class="code-keyword">VALUES</span> (16, <span class="code-string">'Clara'</span>, <span class="code-string">'Oswald'</span>, <span class="code-string">'Engineering'</span>, 92000.00, 2);</code></pre>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> employees (employee_id, branch_id, first_name, last_name, role, department, salary, manager_id)
+<span class="code-keyword">VALUES</span> (41, 1, <span class="code-string">'Clara'</span>, <span class="code-string">'Oswald'</span>, <span class="code-string">'Senior Risk Analyst'</span>, <span class="code-string">'Risk &amp; Compliance'</span>, 92000.00, 2);</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -341,7 +340,7 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Adds a new senior engineer (employee ID 16) to the Engineering department.</div>
+<div>Adds a new senior risk analyst (employee ID 41) to the Risk &amp; Compliance department.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
@@ -349,7 +348,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Maintains complete relational integrity across foreign key dependencies.</div>
+<div>Maintains complete relational integrity across branch and management dependencies.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -365,14 +364,14 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Real-Time Point-of-Sale Transaction Ingestion</span>
+<span class="terminal-title">Query 4: Real-Time Wire Deposit Transaction Ingestion</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> sells_list (sale_id, customer_id, product_id, quantity, total_price, sale_date, payment_status)
-<span class="code-keyword">VALUES</span> (61, 613, 26, 2, 299.98, <span class="code-string">'2026-03-15'</span>, <span class="code-string">'PAID'</span>);</code></pre>
+<pre><code><span class="code-keyword">INSERT</span> <span class="code-keyword">INTO</span> transactions (transaction_id, account_id, transaction_type, amount, transaction_date, description, status)
+<span class="code-keyword">VALUES</span> (251, 134, <span class="code-string">'Deposit'</span>, 5000.00, <span class="code-string">'2026-03-15'</span>, <span class="code-string">'Initial Checking Opening Wire'</span>, <span class="code-string">'Completed'</span>);</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -384,15 +383,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Records an order (sale ID 61) linking our newly registered customer (613) with newly added catalog inventory (26).</div>
+<div>Records an inbound wire deposit (transaction ID 251) crediting the newly opened account <code>134</code>.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Calculates Total:</strong> Calculates total pricing based on item price ($149.99 * 2 = $299.98) and sets status to <code>'PAID'</code>.</div>
+<div><strong>Records Amount:</strong> Allocates $5,000.00 with immediate cleared status of <code>'Completed'</code>.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Demonstrates Cross-Table:</strong> Demonstrates cross-table referential integrity during continuous transactional ingest.</div>
+<div><strong>Demonstrates Cross-Table:</strong> Demonstrates cross-table referential integrity between customer, account, and transaction ledgers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -464,7 +463,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Immediate Record Verification:</strong> Confirm that the newly registered customer (ID 613) is immediately accessible and queryable within the active customer directory.</p>
+<p><strong>Immediate Record Verification:</strong> Confirm that the newly registered customer (ID 101) is immediately accessible and queryable within the active customer directory.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -478,9 +477,9 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, last_name, email, city, credit_score
 <span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> customer_id = 613;</code></pre>
+<span class="code-keyword">WHERE</span> customer_id = 101;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -492,11 +491,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Executes A:</strong> Executes a point lookup on primary key <code>customer_id = 613</code> to verify that the earlier INSERT completed successfully.</div>
+<div><strong>Executes A:</strong> Executes a point lookup on primary key <code>customer_id = 101</code> to verify that the earlier INSERT completed successfully.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Validates that all declared attributes (<code>Eleanor</code>, <code>Marie</code>, <code>Vance</code>) were faithfully recorded into the table storage engine.</div>
+<div>Validates that all declared attributes (<code>Eleanor</code>, <code>Vance</code>, <code>Chicago</code>) were faithfully recorded into the table storage engine.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
@@ -578,8 +577,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

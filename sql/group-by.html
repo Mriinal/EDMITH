@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -285,11 +284,11 @@
 </p>
 </div>
 
-<!-- Section 3: Catalog Category Valuation on product_list -->
-<h2>3. Catalog Economics: Category Inventory &amp; Unit Pricing</h2>
-<p>Group items in <code>product_list</code> by category to evaluate stock volume and average price per sector:</p>
+<!-- Section 3: Deposit Portfolio Valuation on accounts -->
+<h2>3. Portfolio Distribution: Deposits &amp; Balances by Account Type</h2>
+<p>Group records in <code>accounts</code> by account type to evaluate liquidity volume and mean holdings per portfolio category:</p>
 
-<!-- Category Valuation Terminal (Try in Editor + Copy) -->
+<!-- Account Valuation Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -297,47 +296,47 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Category Inventory &amp; Pricing Valuation</span>
+<span class="terminal-title">Query: Account Portfolio Distribution &amp; Balances</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Aggregate product volume, total warehouse inventory, and average price per category</span>
+<pre><code><span class="code-comment">-- Aggregate account count, total deposits, and average balance per account category</span>
 <span class="code-keyword">SELECT</span> 
-    category,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> total_products,
-    <span class="code-func">SUM</span>(stock_quantity)   <span class="code-keyword">AS</span> total_inventory_units,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_product_price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">GROUP BY</span> category
-<span class="code-keyword">ORDER BY</span> total_inventory_units <span class="code-keyword">DESC</span>;</code></pre>
+    account_type,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> total_accounts,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_deposits,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_account_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">GROUP BY</span> account_type
+<span class="code-keyword">ORDER BY</span> total_deposits <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Category Valuation -->
+<!-- Dedicated Explanation Area for Account Valuation -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-tags"></i>
-<h4>Category Inventory Breakdown</h4>
+<i class="fas fa-wallet"></i>
+<h4>Portfolio Distribution Breakdown</h4>
 </div>
-<p>Analyzing warehouse distribution across commercial sectors:</p>
+<p>Analyzing deposit distribution across retail and commercial account tiers:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tshirt"></i>
-<div><strong>Apparel Dominance (745 Units):</strong> Holds the highest warehouse volume across 5 catalog products with an accessible average price of $73.99.</div>
+<i class="fas fa-piggy-bank"></i>
+<div><strong>Savings Dominance ($1,710,107.00):</strong> Comprises 34 accounts with the highest aggregate deposit pool across retail savings portfolios.</div>
 </li>
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Electronics Premium ($356.66 Avg):</strong> Represents the highest capital density in the catalog with 480 inventory units across 6 specialized tech products.</div>
+<i class="fas fa-briefcase"></i>
+<div><strong>Business Portfolios ($51,634.36 Avg):</strong> Holds the highest average individual account balance across commercial checking and operating facilities.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 4: Transaction Status Settlement on sells_list -->
-<h2>4. Financial Settlement: Revenue &amp; Volume by Payment Status</h2>
-<p>Measure fulfillment performance by aggregating the 60 records in <code>sells_list</code> across payment statuses:</p>
+<!-- Section 4: Transaction Flow Settlement on transactions -->
+<h2>4. Financial Velocity: Volume &amp; Clearing by Transaction Type</h2>
+<p>Measure operational clearing volume by aggregating the ledger records in <code>transactions</code> across transaction categories:</p>
 
-<!-- Payment Status Terminal (Try in Editor + Copy) -->
+<!-- Transaction Flow Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -345,45 +344,45 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Settlement Breakdown by Payment Status</span>
+<span class="terminal-title">Query: Ledger Clearing by Transaction Type</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Determine transaction volume, units fulfilled, and gross revenue by settlement status</span>
+<pre><code><span class="code-comment">-- Determine transaction volume and average settlement value by transaction type</span>
 <span class="code-keyword">SELECT</span> 
-    payment_status,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> transaction_count,
-    <span class="code-func">SUM</span>(quantity)              <span class="code-keyword">AS</span> total_units_sold,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> gross_settled_value
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">GROUP BY</span> payment_status
-<span class="code-keyword">ORDER BY</span> gross_settled_value <span class="code-keyword">DESC</span>;</code></pre>
+    transaction_type,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> transaction_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_volume,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(amount), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_transaction_amount
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">GROUP BY</span> transaction_type
+<span class="code-keyword">ORDER BY</span> total_volume <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Payment Status -->
+<!-- Dedicated Explanation Area for Transaction Flow -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-money-check-alt"></i>
-<h4>Payment Settlement Breakdown</h4>
+<i class="fas fa-exchange-alt"></i>
+<h4>Ledger Flow Breakdown</h4>
 </div>
-<p>Auditing transaction fulfillment integrity:</p>
+<p>Auditing transactional flow and clearing volume:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>PAID Transactions (37 Orders):</strong> Represents $15,615.17 in realized revenue and 83 physical units delivered, establishing healthy cash flow.</div>
+<i class="fas fa-arrow-circle-down"></i>
+<div><strong>Deposit Inflows ($187,150.00):</strong> Accounts for 83 customer deposit events averaging $2,254.82 per transaction.</div>
 </li>
 <li>
-<i class="fas fa-clock"></i>
-<div><strong>PENDING Pipeline (9 Orders):</strong> Accounts for $2,634.78 in pending clearing value awaiting payment gateway confirmation.</div>
+<i class="fas fa-file-invoice-dollar"></i>
+<div><strong>Fee Revenue ($1,122.00):</strong> Tracks automated bank service fee debits (42 transactions averaging $26.71).</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: Multi-Column Grouping: Customer Spend by Status -->
-<h2>5. Multi-Column Grouping: Customer Spend by Settlement Tier</h2>
-<p>Combine multiple categorical dimensions in <code>GROUP BY</code> to partition customer order activity by payment status:</p>
+<!-- Section 5: Multi-Column Grouping: Account Type and Status -->
+<h2>5. Multi-Column Grouping: Account Portfolio &amp; Lifecycle Status</h2>
+<p>Combine multiple categorical dimensions in <code>GROUP BY</code> to partition account balances by type and status:</p>
 
 <!-- Multi-Column Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -393,21 +392,21 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Customer Order Tiers Across Payment Statuses</span>
+<span class="terminal-title">Query: Accounts Grouped by Type and Status</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Group by customer_id and payment_status to track granular customer accounts</span>
+<pre><code><span class="code-comment">-- Group by account_type and status to inspect portfolio lifecycle states</span>
 <span class="code-keyword">SELECT</span> 
-    customer_id,
-    payment_status,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                   <span class="code-keyword">AS</span> order_count,
-    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(total_price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_spent
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">GROUP BY</span> customer_id, payment_status
-<span class="code-keyword">ORDER BY</span> total_spent <span class="code-keyword">DESC</span>
+    account_type,
+    status,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)               <span class="code-keyword">AS</span> account_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(balance), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">GROUP BY</span> account_type, status
+<span class="code-keyword">ORDER BY</span> total_balance <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -421,18 +420,18 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-layer-group"></i>
-<div><strong>Composite Key Creation:</strong> The engine creates a compound grouping key for each unique <code>(customer_id, payment_status)</code> pair.</div>
+<div><strong>Composite Key Creation:</strong> The engine creates a compound grouping key for each unique <code>(account_type, status)</code> pair.</div>
 </li>
 <li>
 <i class="fas fa-user-shield"></i>
-<div><strong>Account Audit:</strong> Enables risk officers to immediately spot customers with high totals in <code>REFUNDED</code> or <code>PENDING</code> statuses compared to completed <code>PAID</code> orders.</div>
+<div><strong>Compliance Surveillance:</strong> Enables risk officers to isolate dormant or frozen assets (e.g., $434,152 in Frozen Money Market funds) separately from active working balances.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 6: Group By with WHERE Predicate Filter -->
-<h2>6. Pre-Aggregation Filtering: In-Stock Category Economics</h2>
-<p>Apply a <code>WHERE</code> clause before <code>GROUP BY</code> to eliminate low-stock items from category-level calculations:</p>
+<h2>6. Pre-Aggregation Filtering: Active Lending Facilities</h2>
+<p>Apply a <code>WHERE</code> clause before <code>GROUP BY</code> to aggregate loan metrics exclusively for active facilities in <code>loans</code>:</p>
 
 <!-- Pre-Filtering Group By Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -442,22 +441,22 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: High-Stock Product Category Valuation</span>
+<span class="terminal-title">Query: Active Lending Portfolio by Facility Type</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter rows where stock_quantity >= 50 BEFORE aggregating into categories</span>
+<pre><code><span class="code-comment">-- Filter status = 'Active' BEFORE aggregating into loan categories</span>
 <span class="code-keyword">SELECT</span> 
-    category,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)              <span class="code-keyword">AS</span> high_stock_products,
-    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(price), <span class="code-num">2</span>)  <span class="code-keyword">AS</span> avg_price,
-    <span class="code-func">MAX</span>(price)            <span class="code-keyword">AS</span> highest_category_price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> stock_quantity <span class="code-op">&gt;=</span> <span class="code-num">50</span>
-<span class="code-keyword">GROUP BY</span> category
-<span class="code-keyword">ORDER BY</span> avg_price <span class="code-keyword">DESC</span>;</code></pre>
+    loan_type,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                    <span class="code-keyword">AS</span> active_loan_count,
+    <span class="code-func">ROUND</span>(<span class="code-func">AVG</span>(interest_rate), <span class="code-num">2</span>) <span class="code-keyword">AS</span> avg_interest_rate,
+    <span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(amount), <span class="code-num">2</span>)        <span class="code-keyword">AS</span> total_principal_lent
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>
+<span class="code-keyword">GROUP BY</span> loan_type
+<span class="code-keyword">ORDER BY</span> total_principal_lent <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Pre-Filtering -->
@@ -470,11 +469,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-step-forward"></i>
-<div><strong>Step 2 (WHERE Filter):</strong> Rows with <code>stock_quantity &lt; 50</code> are discarded immediately from the pipeline.</div>
+<div><strong>Step 2 (WHERE Filter):</strong> Paid-off and defaulted loans are discarded before grouping.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Step 3 (GROUP BY Aggregation):</strong> Only well-stocked products are grouped into categories, ensuring low-inventory anomalies do not skew categorical averages.</div>
+<div><strong>Step 3 (GROUP BY Aggregation):</strong> Only active performing loans are aggregated into facility types, ensuring risk summaries reflect current credit exposure.</div>
 </li>
 </ul>
 </div>
@@ -550,8 +549,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

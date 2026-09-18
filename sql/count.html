@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -323,9 +322,9 @@
 </ul>
 </div>
 
-<!-- Section 4: COUNT(DISTINCT) on product_list -->
-<h2>4. Deduplicated Cardinality: Counting Unique Product Categories</h2>
-<p>Compare total catalog inventory against the number of unique product categories on <code>product_list</code> using <code>COUNT(DISTINCT)</code>:</p>
+<!-- Section 4: COUNT(DISTINCT) on accounts -->
+<h2>4. Deduplicated Cardinality: Counting Unique Account Types</h2>
+<p>Compare total deposit accounts against the number of unique portfolio types on <code>accounts</code> using <code>COUNT(DISTINCT)</code>:</p>
 
 <!-- Distinct Category Count Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -335,41 +334,41 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Counting Unique Categories vs Total Catalog SKUs</span>
+<span class="terminal-title">Query: Counting Unique Account Types vs Total Portfolios</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Tally distinct merchandise categories alongside total catalog items</span>
+<pre><code><span class="code-comment">-- Tally distinct account types alongside total deposit accounts</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> category) <span class="code-keyword">AS</span> distinct_categories,
-    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                  <span class="code-keyword">AS</span> total_products
-<span class="code-keyword">FROM</span> product_list;</code></pre>
+    <span class="code-func">COUNT</span>(<span class="code-keyword">DISTINCT</span> account_type) <span class="code-keyword">AS</span> distinct_account_types,
+    <span class="code-func">COUNT</span>(<span class="code-op">*</span>)                     <span class="code-keyword">AS</span> total_accounts
+<span class="code-keyword">FROM</span> accounts;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Distinct Category Count -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-boxes"></i>
-<h4>Distinct Category Breakdown</h4>
+<i class="fas fa-piggy-bank"></i>
+<h4>Distinct Account Type Breakdown</h4>
 </div>
-<p>How the DISTINCT modifier collapses repeated categorical entries:</p>
+<p>How the DISTINCT modifier collapses repeated account classifications:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-tags"></i>
-<div><strong>5 Unique Categories:</strong> Returns 5 unique retail sectors (Apparel, Books, Electronics, Footwear, Home &amp; Kitchen).</div>
+<div><strong>4 Unique Types:</strong> Identifies the 4 primary deposit portfolios (Checking, Savings, Money Market, and Certificate of Deposit).</div>
 </li>
 <li>
-<i class="fas fa-cube"></i>
-<div><strong>25 Total SKUs:</strong> The total inventory contains 25 items distributed across these 5 core sectors.</div>
+<i class="fas fa-landmark"></i>
+<div><strong>150 Total Portfolios:</strong> The bank's retail balances are distributed across these 4 core account classes.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 5: Filtered Counting on sells_list -->
+<!-- Section 5: Filtered Counting on transactions -->
 <h2>5. Filtered Cardinality: High-Value Settled Transactions</h2>
-<p>Combine row-level conditions with <code>COUNT(*)</code> on <code>sells_list</code> to measure how many customer purchases meet high-value criteria:</p>
+<p>Combine row-level conditions with <code>COUNT(*)</code> on <code>transactions</code> to measure how many ledger movements meet high-value criteria:</p>
 
 <!-- Sales Filtered Count Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -379,17 +378,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Tallying Paid Transactions of $200.00 or Higher</span>
+<span class="terminal-title">Query: Tallying Completed Transactions of $2,000.00 or Higher</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Count settled sales exceeding the $200 revenue threshold</span>
-<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> paid_orders_over_200
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> 
-  <span class="code-keyword">AND</span> total_price <span class="code-op">&gt;=</span> <span class="code-num">200.00</span>;</code></pre>
+<pre><code><span class="code-comment">-- Count completed transactions exceeding the $2,000 threshold</span>
+<span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> high_value_completed_txs
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span> 
+  <span class="code-keyword">AND</span> amount <span class="code-op">&gt;=</span> <span class="code-num">2000.00</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Filtered Count -->
@@ -402,11 +401,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Execution Sequence:</strong> The WHERE clause filters out pending/refunded orders and purchases below $200 before the accumulator tallies rows.</div>
+<div><strong>Execution Sequence:</strong> The WHERE clause filters out pending/failed items and amounts below $2,000 before the accumulator tallies rows.</div>
 </li>
 <li>
 <i class="fas fa-award"></i>
-<div><strong>15 High-Value Orders:</strong> Accurately surfaces 15 transactions driving top-tier commercial volume.</div>
+<div><strong>AML Audit Threshold:</strong> Accurately surfaces large transactions requiring regulatory ledger oversight.</div>
 </li>
 </ul>
 </div>
@@ -552,8 +551,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

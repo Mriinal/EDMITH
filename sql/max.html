@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -218,11 +217,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Catalog Ceilings on product_list -->
-<h2>2. Catalog Economics: Highest Price &amp; Maximum Warehouse Inventory</h2>
-<p>Discover the most premium catalog price and the largest warehouse stock holding on the <code>product_list</code> table:</p>
+<!-- Section 2: Account Ceilings on accounts -->
+<h2>2. Liquidity Ceilings: Maximum Active Account Balance</h2>
+<p>Discover the highest liquidity balance maintained across active customer portfolios on the <code>accounts</code> ledger:</p>
 
-<!-- Product MAX Terminal (Try in Editor + Copy) -->
+<!-- Account MAX Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,39 +229,39 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Catalog Peak Price &amp; Maximum Stock</span>
+<span class="terminal-title">Query: Peak Active Account Balance</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Identify the most expensive item and largest warehouse stock level</span>
+<pre><code><span class="code-comment">-- Identify the highest liquid deposit balance among active customer accounts</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MAX</span>(price)          <span class="code-keyword">AS</span> highest_price,
-    <span class="code-func">MAX</span>(stock_quantity) <span class="code-keyword">AS</span> highest_stock
-<span class="code-keyword">FROM</span> product_list;</code></pre>
+    <span class="code-func">MAX</span>(balance) <span class="code-keyword">AS</span> highest_account_balance
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product MAX -->
+<!-- Dedicated Explanation Area for Account MAX -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-tags"></i>
-<h4>Catalog Maximums Breakdown</h4>
+<i class="fas fa-wallet"></i>
+<h4>Liquidity Ceiling Breakdown</h4>
 </div>
-<p>Evaluating commercial upper bounds:</p>
+<p>Evaluating peak account holdings:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-gem"></i>
-<div><strong>Highest Price ($299.99):</strong> Pinpoints the premium catalog ceiling across all 25 merchandise items (Noise-Canceling Headphones).</div>
+<div><strong>Peak Deposit ($97,427.00):</strong> Pinpoints the highest individual liquidity balance currently deposited in active bank accounts.</div>
 </li>
 <li>
-<i class="fas fa-boxes"></i>
-<div><strong>Maximum Stock (250 Units):</strong> Identifies the deepest inventory holding in the fulfillment center (Organic Green Tea).</div>
+<i class="fas fa-user-shield"></i>
+<div><strong>VIP Portfolio Tracking:</strong> Allows wealth management specialists to identify high-net-worth customer holdings for tailored private banking services.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -357,11 +356,11 @@
 </ul>
 </div>
 
-<!-- Section 5: Largest Paid Checkout on sells_list -->
-<h2>5. Transactional Ceilings: Largest Settled Checkout Order</h2>
-<p>Determine the largest revenue checkout and highest item volume among settled sales on <code>sells_list</code>:</p>
+<!-- Section 5: Largest Settled Transaction on transactions -->
+<h2>5. Transactional Ceilings: Largest Cleared Transaction</h2>
+<p>Determine the largest single settlement volume cleared through the <code>transactions</code> ledger:</p>
 
-<!-- Sales MAX Order Terminal (Try in Editor + Copy) -->
+<!-- Transactions MAX Order Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -369,44 +368,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Largest Settled Customer Purchase</span>
+<span class="terminal-title">Query: Peak Cleared Transaction Volume</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find the largest transaction value and highest item volume among settled customer orders</span>
+<pre><code><span class="code-comment">-- Find the single largest transaction cleared on the banking ledger</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MAX</span>(total_price) <span class="code-keyword">AS</span> largest_sale_value,
-    <span class="code-func">MAX</span>(quantity)    <span class="code-keyword">AS</span> max_units_sold
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+    <span class="code-func">MAX</span>(amount) <span class="code-keyword">AS</span> largest_transaction_amount
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Sales MAX -->
+<!-- Dedicated Explanation Area for Transactions MAX -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
 <h4>Transaction Ceiling Breakdown</h4>
 </div>
-<p>Auditing maximum commercial checkout volume:</p>
+<p>Auditing maximum settlement volume:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Highest Ticket Value ($1,199.96):</strong> Discovers the single highest grossing checkout transaction recorded in the sales log.</div>
+<div><strong>Highest Settlement ($4,412.00):</strong> Discovers the single highest grossing payment or transfer recorded in the active ledger.</div>
 </li>
 <li>
-<i class="fas fa-cubes"></i>
-<div><strong>Maximum Volume (5 Units):</strong> Tracks the peak item quantity ordered in a single customer checkout.</div>
+<i class="fas fa-filter"></i>
+<div><strong>Reconciliation Scope:</strong> Excludes pending or failed transfers to guarantee that liquidity metrics reflect cleared funds only.</div>
 </li>
 </ul>
 </div>
 
-<!-- Section 6: Electronics Category Peak on product_list -->
-<h2>6. Sector Ceilings: Electronics Price &amp; Stock Apex</h2>
-<p>Isolate the highest price and largest stock holding strictly within the Electronics category on <code>product_list</code>:</p>
+<!-- Section 6: Loan Portfolio Ceilings on loans -->
+<h2>6. Credit Portfolio: Maximum Loan Principal &amp; Interest Apex</h2>
+<p>Isolate the peak borrowing facility and highest interest rate charged on active loans in <code>loans</code>:</p>
 
-<!-- Electronics MAX Terminal (Try in Editor + Copy) -->
+<!-- Loan MAX Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -414,35 +412,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Electronics Sector Peak Valuation</span>
+<span class="terminal-title">Query: Peak Loan Principal and Interest Apex</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Find the peak price and maximum warehouse stock for Electronics hardware</span>
+<pre><code><span class="code-comment">-- Find the largest active credit line and highest interest rate</span>
 <span class="code-keyword">SELECT</span> 
-    <span class="code-func">MAX</span>(price)          <span class="code-keyword">AS</span> max_electronics_price,
-    <span class="code-func">MAX</span>(stock_quantity) <span class="code-keyword">AS</span> max_electronics_stock
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>;</code></pre>
+    <span class="code-func">MAX</span>(amount)        <span class="code-keyword">AS</span> max_loan_principal,
+    <span class="code-func">MAX</span>(interest_rate) <span class="code-keyword">AS</span> highest_interest_rate
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Electronics MAX -->
+<!-- Dedicated Explanation Area for Loan MAX -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-headphones"></i>
-<h4>Electronics Ceiling Breakdown</h4>
+<i class="fas fa-landmark"></i>
+<h4>Credit Risk Ceiling Breakdown</h4>
 </div>
-<p>Evaluating computing hardware upper bounds:</p>
+<p>Evaluating active lending exposure:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tag"></i>
-<div><strong>$299.99 Hardware Ceiling:</strong> Confirms the Noise-Canceling Headphones as the highest-ticket item in the electronics lineup.</div>
+<i class="fas fa-file-invoice-dollar"></i>
+<div><strong>$459,276.00 Peak Principal:</strong> Highlights the largest single underwriting exposure held under active loan servicing.</div>
 </li>
 <li>
-<i class="fas fa-warehouse"></i>
-<div><strong>180 Units Stock Peak:</strong> Highlights substantial inventory depth for fast-moving electronic accessories.</div>
+<i class="fas fa-percentage"></i>
+<div><strong>8.50% Interest Apex:</strong> Identifies the maximum interest ceiling applied across variable credit risk tiers.</div>
 </li>
 </ul>
 </div>
@@ -518,8 +516,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

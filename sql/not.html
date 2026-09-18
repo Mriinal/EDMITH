@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -218,11 +217,11 @@
 </ul>
 </div>
 
-<!-- Section 2: Inversion Filtering on product_list -->
-<h2>2. Compound Negation: Excluding High-Tier Luxury Hardware</h2>
-<p>Negate a compound condition on <code>product_list</code> to exclude expensive flagship electronics while preserving all other inventory:</p>
+<!-- Section 2: Inversion Filtering on accounts -->
+<h2>2. Compound Negation: Excluding Low-Balance Savings Accounts</h2>
+<p>Negate a compound condition on <code>accounts</code> to exclude low-balance savings portfolios while preserving all other account types and balances:</p>
 
-<!-- Product Filtering Terminal (Try in Editor + Copy) -->
+<!-- Account Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -230,43 +229,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Excluding Premium Flagship Electronics</span>
+<span class="terminal-title">Query: Excluding Low-Balance Savings Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve all catalog products EXCEPT electronics priced over $300.00</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> (category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">AND</span> price <span class="code-op">&gt;</span> <span class="code-num">300.00</span>)
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve all accounts EXCEPT savings portfolios with balances under $10,000.00</span>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> <span class="code-keyword">NOT</span> (account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> <span class="code-keyword">AND</span> balance <span class="code-op">&lt;</span> <span class="code-num">10000.00</span>)
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Filtering -->
+<!-- Dedicated Explanation Area for Account Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-filter"></i>
 <h4>Compound Inversion Breakdown</h4>
 </div>
-<p>How the negated predicate protects affordable hardware and other categories:</p>
+<p>How the negated predicate protects high-balance savings and other account types:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Targeted Exclusion:</strong> Specifically drops the $1299.99 Pro Laptop and the $349.99 4K Monitor because both satisfy <code>category = 'Electronics' AND price &gt; 300.00</code>.</div>
+<i class="fas fa-piggy-bank"></i>
+<div><strong>Targeted Exclusion:</strong> Specifically drops smaller retail savings accounts whose balance is below $10,000.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Preserved Affordability:</strong> Mid-tier and budget electronics (Keyboards, Mice, Earbuds) pass the filter because their price is under $300.</div>
+<div><strong>Preserved High Yield:</strong> Premium savings accounts with balances >= $10,000 pass the filter cleanly.</div>
 </li>
 <li>
-<i class="fas fa-boxes"></i>
-<div><strong>Intact Departments:</strong> All non-electronics items (Footwear, Apparel, Kitchen items) pass automatically since their category condition evaluates to FALSE.</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Intact Categories:</strong> Checking, Business, and Money Market accounts pass automatically regardless of balance because their account type condition evaluates to FALSE.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>product_list</code> table!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query against the active <code>accounts</code> table!</span>
 </div>
 </div>
 
@@ -281,7 +280,7 @@
 
 <!-- Section 3: Set Exclusion with NOT IN on employees -->
 <h2>3. Set Exclusion: Filtering Out Corporate Divisions with NOT IN</h2>
-<p>Exclude multiple discrete departments using <code>NOT IN</code> on the <code>employees</code> roster:</p>
+<p>Exclude specific departments using <code>NOT IN</code> on the <code>employees</code> roster:</p>
 
 <!-- Employee Filtering Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -291,16 +290,16 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Filtering Operational Personnel Outside Executive &amp; HR</span>
+<span class="terminal-title">Query: Filtering Personnel Outside Executive Leadership &amp; HR</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Select company staff working outside the Executive and HR departments</span>
+<pre><code><span class="code-comment">-- Select bank staff working outside Executive and Human Resources</span>
 <span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'Executive'</span>, <span class="code-string">'HR'</span>)
+<span class="code-keyword">WHERE</span> department <span class="code-keyword">NOT</span> <span class="code-keyword">IN</span> (<span class="code-string">'Executive Leadership'</span>, <span class="code-string">'Human Capital &amp; Talent'</span>)
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
@@ -314,11 +313,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-ban"></i>
-<div><strong>Departmental Exclusion:</strong> Excludes Executive leadership (Mrinal Prashar) and HR personnel (Jessica Taylor, Rohan Gupta).</div>
+<div><strong>Departmental Exclusion:</strong> Excludes Executive leadership (CEO Mrinal Prashar) and HR talent management staff.</div>
 </li>
 <li>
 <i class="fas fa-briefcase"></i>
-<div><strong>Operational Focus:</strong> Returns the 12 engineers, sales executives, marketing strategists, and operations analysts.</div>
+<div><strong>Operational Focus:</strong> Returns technologists, risk officers, branch directors, portfolio managers, and commercial underwriters.</div>
 </li>
 <li>
 <i class="fas fa-exclamation-triangle"></i>
@@ -346,7 +345,7 @@
 </div>
 </div>
 <pre><code><span class="code-comment">-- Find customers whose last name does not start with the letter 'P'</span>
-<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name, city, credit_score
 <span class="code-keyword">FROM</span> customers
 <span class="code-keyword">WHERE</span> last_name <span class="code-keyword">NOT</span> <span class="code-keyword">LIKE</span> <span class="code-string">'P%'</span>
 <span class="code-keyword">ORDER BY</span> last_name <span class="code-keyword">ASC</span>
@@ -367,7 +366,7 @@
 </li>
 <li>
 <i class="fas fa-ban"></i>
-<div><strong>The NOT Inversion:</strong> Eliminates every customer with a 'P' surname, surfacing customers beginning with A, B, C, etc.</div>
+<div><strong>The NOT Inversion:</strong> Eliminates every customer with a 'P' surname, surfacing customers beginning with other letters.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -376,11 +375,11 @@
 </div>
 </div>
 
-<!-- Section 5: Range Negation with NOT BETWEEN on sells_list -->
+<!-- Section 5: Range Negation with NOT BETWEEN on transactions -->
 <h2>5. Range Negation: Identifying Outlier Transactions with NOT BETWEEN</h2>
-<p>Surface anomalous sales that fall outside the standard $50.00 to $300.00 transaction bracket on <code>sells_list</code>:</p>
+<p>Surface anomalous payments that fall outside the standard $200.00 to $1,500.00 bracket on <code>transactions</code>:</p>
 
-<!-- Sales Terminal (Try in Editor + Copy) -->
+<!-- Transaction Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -388,17 +387,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Isolating Sub-$50 and Super-$300 Outlier Transactions</span>
+<span class="terminal-title">Query: Isolating Sub-$200 and Super-$1,500 Outlier Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Identify sales transactions falling strictly outside the $50 to $300 bracket</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> total_price <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> <span class="code-num">50.00</span> <span class="code-keyword">AND</span> <span class="code-num">300.00</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Identify transactions falling strictly outside the $200 to $1,500 bracket</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> amount <span class="code-keyword">NOT</span> <span class="code-keyword">BETWEEN</span> <span class="code-num">200.00</span> <span class="code-keyword">AND</span> <span class="code-num">1500.00</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for NOT BETWEEN -->
@@ -407,15 +406,15 @@
 <i class="fas fa-arrows-alt-h"></i>
 <h4>Range Negation Breakdown</h4>
 </div>
-<p>Filtering non-boundary outliers across sales ledgers:</p>
+<p>Filtering non-boundary outliers across transaction ledgers:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-external-link-alt"></i>
-<div><strong>Outlier Splitting:</strong> <code>total_price NOT BETWEEN 50 AND 300</code> is mathematically equivalent to <code>total_price &lt; 50.00 OR total_price &gt; 300.00</code>.</div>
+<div><strong>Outlier Splitting:</strong> <code>amount NOT BETWEEN 200 AND 1500</code> is mathematically equivalent to <code>amount &lt; 200.00 OR amount &gt; 1500.00</code>.</div>
 </li>
 <li>
 <i class="fas fa-gem"></i>
-<div><strong>High-Yield Sales:</strong> Surfaces enterprise transactions (such as Sale 1 at $1299.99) while also capturing micro-purchases under $50.</div>
+<div><strong>High-Yield Transactions:</strong> Surfaces large wire transfers and commercial payouts (e.g., $3,000+) while capturing fee deductions under $200.</div>
 </li>
 </ul>
 </div>
@@ -515,8 +514,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

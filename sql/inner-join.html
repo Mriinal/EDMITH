@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -221,9 +220,9 @@
 </ul>
 </div>
 
-<!-- Section 2: 2-Table INNER JOIN on sells_list and customers -->
-<h2>2. Commercial Joins: Customer Order History</h2>
-<p>Join transaction records in <code>sells_list</code> with customer profiles in <code>customers</code> using <code>customer_id</code>:</p>
+<!-- Section 2: 2-Table INNER JOIN on accounts and customers -->
+<h2>2. Commercial Joins: Customer Account Profiles</h2>
+<p>Join account records in <code>accounts</code> with customer profiles in <code>customers</code> using <code>customer_id</code>:</p>
 
 <!-- 2-Table Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -233,23 +232,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Order Records with Verified Customer Profiles</span>
+<span class="terminal-title">Query: Account Records with Verified Customer Profiles</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Fetch transactions joined with matching customer names</span>
+<pre><code><span class="code-comment">-- Fetch accounts joined with matching customer names</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    a.account_number,
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.total_price,
-    s.payment_status
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+    a.balance,
+    a.status
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">ORDER BY</span> a.account_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -257,17 +256,17 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
-<h4>Customer Transaction Match Breakdown</h4>
+<h4>Customer Account Match Breakdown</h4>
 </div>
-<p>Auditing transaction-to-customer linkages:</p>
+<p>Auditing account-to-customer linkages:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Referential Integrity:</strong> Each transaction in <code>sells_list</code> resolves directly to a verified customer account (such as Customer #1, Mrinal Prashar).</div>
+<div><strong>Referential Integrity:</strong> Each account in <code>accounts</code> resolves directly to a verified customer record (such as Customer #1, Mrinal Prashar).</div>
 </li>
 <li>
-<i class="fas fa-user-times"></i>
-<div><strong>Exclusion of Non-Buyers:</strong> Customers who have never placed an order are excluded automatically by INNER JOIN.</div>
+<i class="fas fa-user-shield"></i>
+<div><strong>Account Audit:</strong> Allows branches to display primary account holder credentials in real-time alongside balances.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -286,11 +285,11 @@
 </p>
 </div>
 
-<!-- Section 3: Catalog Product Integration -->
-<h2>3. Catalog Integration: Order Details with Item Names &amp; Categories</h2>
-<p>Join <code>sells_list</code> with <code>product_list</code> using <code>product_id</code> to evaluate commercial sales performance by product:</p>
+<!-- Section 3: Branch Account Integration -->
+<h2>3. Branch Integration: Accounts with Branch Name &amp; Geographic Location</h2>
+<p>Join <code>accounts</code> with <code>branches</code> using <code>branch_id</code> to evaluate regional bank branch capitalization:</p>
 
-<!-- Product Detail Join Terminal (Try in Editor + Copy) -->
+<!-- Branch Detail Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -298,48 +297,48 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Transaction Items with Product Metadata</span>
+<span class="terminal-title">Query: Accounts with Branch Metadata</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Correlate transaction logs with merchandise names and categories</span>
+<pre><code><span class="code-comment">-- Correlate account records with branch names and cities</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
-    p.product_name,
-    p.category,
-    p.price               <span class="code-keyword">AS</span> unit_price,
-    s.quantity,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+    a.account_number,
+    b.branch_name,
+    b.city,
+    a.account_type,
+    a.balance,
+    a.currency
+<span class="code-keyword">FROM</span> accounts a
+<span class="code-keyword">INNER JOIN</span> branches b <span class="code-keyword">ON</span> a.branch_id <span class="code-op">=</span> b.branch_id
+<span class="code-keyword">ORDER BY</span> a.account_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
-<!-- Dedicated Explanation Area for Product Detail Join -->
+<!-- Dedicated Explanation Area for Branch Detail Join -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-box-open"></i>
-<h4>Catalog Correlation Breakdown</h4>
+<i class="fas fa-building"></i>
+<h4>Branch Network Correlation Breakdown</h4>
 </div>
-<p>Resolving normalized product entities:</p>
+<p>Resolving normalized branch entities:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-tag"></i>
-<div><strong>Dynamic Pricing Audit:</strong> Verifies that <code>s.total_price</code> matches <code>s.quantity * p.price</code> for each purchase.</div>
+<i class="fas fa-map-marker-alt"></i>
+<div><strong>Regional Routing:</strong> Connects accounts in Chicago, London, Silicon Valley, and Mumbai with their originating retail branches.</div>
 </li>
 <li>
-<i class="fas fa-folder-open"></i>
-<div><strong>Category Context:</strong> Equips transaction analysis with sector groupings (Electronics, Apparel, Accessories) without modifying the transactional schema.</div>
+<i class="fas fa-coins"></i>
+<div><strong>Multi-Currency Portfolios:</strong> Displays currency designations alongside branch affiliations for treasury audits.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 4: 3-Way INNER JOIN -->
-<h2>4. Multi-Table Chaining: Customers, Transactions &amp; Products</h2>
-<p>Chain three tables together into a unified analytical view: who bought what, and when:</p>
+<h2>4. Multi-Table Chaining: Transactions, Accounts &amp; Customers</h2>
+<p>Chain three tables together into a unified analytical audit: who made the transaction, from which account, and when:</p>
 
 <!-- 3-Way Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -349,26 +348,25 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: 3-Table Unified Sales Pipeline</span>
+<span class="terminal-title">Query: 3-Table Unified Banking Ledger Pipeline</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Connect customers, sells_list, and product_list for settled purchases</span>
+<pre><code><span class="code-comment">-- Connect customers, accounts, and transactions for completed settlements</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    t.transaction_id,
     c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    p.category,
-    s.quantity,
-    s.total_price,
-    s.sale_date
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">ORDER BY</span> s.sale_id <span class="code-keyword">ASC</span>
+    a.account_number,
+    t.transaction_type,
+    t.amount,
+    t.transaction_date
+<span class="code-keyword">FROM</span> transactions t
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> t.status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> t.transaction_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -382,11 +380,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-stream"></i>
-<div><strong>Triple Junction Execution:</strong> The database engine performs an index scan on <code>sells_list</code>, probes <code>customers</code> via <code>customer_id</code>, and probes <code>product_list</code> via <code>product_id</code>.</div>
+<div><strong>Triple Junction Execution:</strong> The database engine performs an index scan on <code>transactions</code>, probes <code>accounts</code> via <code>account_id</code>, and probes <code>customers</code> via <code>customer_id</code>.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Combined Filtering:</strong> The <code>WHERE s.payment_status = 'PAID'</code> filter guarantees that only completed commercial revenue is returned.</div>
+<div><strong>Combined Filtering:</strong> The <code>WHERE t.status = 'Completed'</code> filter guarantees that only cleared, posted ledger records are returned.</div>
 </li>
 </ul>
 </div>
@@ -511,8 +509,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -233,7 +232,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of SQL wildcards running against active relational tables (<code>product_list</code>, <code>employees</code>, <code>customers</code>, and <code>sells_list</code>):</p>
+<p>Explore production-grade implementations of SQL wildcards running against active relational tables (<code>customers</code>, <code>accounts</code>, <code>employees</code>, <code>branches</code>, and <code>transactions</code>):</p>
 <!-- Query 1: Prefix Wildcard Search -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -242,16 +241,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Prefix Pattern Search (Wireless%)</span>
+<span class="terminal-title">Query 1: Prefix Pattern Search (Al%)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Prefix wildcard: Find all audio and accessory items starting with 'Wireless'</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'Wireless%'</span>;</code></pre>
+<pre><code><span class="code-comment">-- Prefix wildcard: Find all customers whose first name begins with 'Al'</span>
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name, city, email
+<span class="code-keyword">FROM</span> customers
+<span class="code-keyword">WHERE</span> first_name <span class="code-keyword">LIKE</span> <span class="code-string">'Al%'</span>
+<span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -263,15 +263,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Applies The:</strong> Applies the prefix pattern <code>'Wireless%'</code> to find products whose titles begin with 'Wireless'.</div>
+<div><strong>Applies The Prefix:</strong> Applies the prefix pattern <code>'Al%'</code> to find clients whose given names begin with 'Al' (e.g. Alice, Alexander).</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>Leverages Index:</strong> Leverages index seek capability because the prefix is fixed and known at parse time.</div>
+<i class="fas fa-bolt"></i>
+<div><strong>Leverages Index:</strong> Leverages B-Tree index seek capability because the prefix is fixed and known at query compile time.</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>Matches Wireless:</strong> Matches Wireless Noise-Canceling Headphones ($199.99).</div>
+<i class="fas fa-user-check"></i>
+<div><strong>Target Directory:</strong> Seamlessly pulls matching profiles from the verified <code>customers</code> registry.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -287,16 +287,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Infix Substring Matching (%Leather%)</span>
+<span class="terminal-title">Query 2: Infix Substring Matching (%Transfer%)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Infix wildcard: Find all products mentioning 'Leather' anywhere in title</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Leather%'</span>;</code></pre>
+<pre><code><span class="code-comment">-- Infix wildcard: Find all transactions mentioning 'Transfer' anywhere in description</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, description
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> description <span class="code-keyword">LIKE</span> <span class="code-string">'%Transfer%'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -308,15 +309,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Encloses 'Leather':</strong> Encloses 'Leather' between two <code>%</code> wildcards, matching the term at the start, middle, or end of titles.</div>
+<div><strong>Encloses 'Transfer':</strong> Encloses 'Transfer' between two <code>%</code> wildcards, matching the token anywhere in the ledger memo.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Filters The:</strong> Filters the 25-product catalog for leather merchandise.</div>
+<div><strong>Ledger Auditing:</strong> Isolates inter-account movements, wire transfers, and disbursals.</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>Returns Classic:</strong> Returns Classic Leather Loafers ($89.99) and Genuine Leather Wallet ($39.99).</div>
+<i class="fas fa-coins"></i>
+<div><strong>Descending Value:</strong> Orders matches by amount descending to spotlight high-value capital transfers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -485,7 +486,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Cross-Table Hardware Pro-Tier Pattern Search:</strong> Find all settled sales transactions associated with premium professional equipment across the catalog and client base.</p>
+<p><strong>Cross-Table Wire Transfer Pattern Search:</strong> Find all settled wire transfers and disbursals across customer accounts and the compliance ledger.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -493,7 +494,7 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: Multi-Table Professional Equipment Search</span>
+<span class="terminal-title">Production Query: Multi-Table Wire Transfer Search</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
@@ -501,36 +502,37 @@
 </div>
 <pre><code><span class="code-comment">-- Combined wildcard search across joined tables</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
+    t.transaction_id,
     c.first_name,
     c.last_name,
-    p.product_name,
-    s.total_price
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> p.product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Pro%'</span> <span class="code-keyword">AND</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">ORDER BY</span> s.total_price <span class="code-keyword">DESC</span>;</code></pre>
+    a.account_type,
+    t.description,
+    t.amount
+<span class="code-keyword">FROM</span> transactions t
+<span class="code-keyword">INNER JOIN</span> accounts a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> t.description <span class="code-keyword">LIKE</span> <span class="code-string">'%Wire%'</span> <span class="code-keyword">AND</span> t.status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">ORDER BY</span> t.amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-search"></i>
-<h4>Professional Equipment Search Breakdown</h4>
+<h4>Wire Transfer Search Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Joins Customer:</strong> Joins customer profiles and transactions against products matching the infix keyword <code>%Pro%</code>.</div>
+<div><strong>Three-Way Join:</strong> Joins ledger transactions to deposit accounts and customer master profiles.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Matches High-Performance:</strong> Matches high-performance hardware lines such as Pro Laptop 15" and Running Shoes Pro.</div>
+<div><strong>Matches High-Value Wires:</strong> Matches descriptions containing the keyword <code>%Wire%</code>.</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div>Isolates 6 completed sales led by Priya Patel ($3,899.97) and Mia Robinson ($2,599.98).</div>
+<i class="fas fa-bolt"></i>
+<div><strong>Completed Funds Only:</strong> Restricts results to completed wire transfers for AML compliance auditing.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -608,8 +610,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

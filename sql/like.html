@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -337,9 +336,9 @@
 </ul>
 </div>
 
-<!-- Section 4: Substring Contains Matching on product_list -->
-<h2>4. Substring Search: Finding Products Containing Specific Keywords</h2>
-<p>Locate all audio and peripheral gear containing the keyword <code>Wireless</code> anywhere in the product name on <code>product_list</code>:</p>
+<!-- Section 4: Substring Contains Matching on transactions -->
+<h2>4. Substring Search: Finding Transactions Containing Specific Keywords</h2>
+<p>Locate all ledger entries containing the keyword <code>Deposit</code> anywhere in the description on <code>transactions</code>:</p>
 
 <!-- Substring Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -349,23 +348,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Substring Search for 'Wireless' Hardware</span>
+<span class="terminal-title">Query: Substring Search for 'Deposit' Ledger Entries</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve products with 'Wireless' anywhere in the title</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> product_name <span class="code-keyword">LIKE</span> <span class="code-string">'%Wireless%'</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve transactions with 'Deposit' anywhere in the description</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, description, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> description <span class="code-keyword">LIKE</span> <span class="code-string">'%Deposit%'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Substring Query -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-wifi"></i>
+<i class="fas fa-search"></i>
 <h4>Substring Contains Breakdown</h4>
 </div>
 <p>How the enclosing percent signs capture internal keywords:</p>
@@ -375,8 +374,8 @@
 <div><strong>Flanking Wildcards:</strong> Wrapping a token in <code>'%...%'</code> matches the search term regardless of whether it appears at the beginning, middle, or end of the string.</div>
 </li>
 <li>
-<i class="fas fa-headphones"></i>
-<div><strong>Identified Inventory:</strong> Captures <em>Wireless Noise-Canceling Headphones</em> ($199.99), <em>True Wireless Earbuds</em> ($79.99), and <em>Ergonomic Wireless Mouse</em> ($49.99).</div>
+<i class="fas fa-money-check-alt"></i>
+<div><strong>Identified Transactions:</strong> Captures both <em>Monthly Salary Direct Deposit</em> and other deposit credits.</div>
 </li>
 <li>
 <i class="fas fa-info-circle"></i>
@@ -387,7 +386,7 @@
 
 <!-- Section 5: Suffix Matching on customers -->
 <h2>5. Suffix Matching: Finding Patronymic Family Names</h2>
-<p>Query the 612-record <code>customers</code> directory for customers whose last names end with the traditional patronymic suffix <code>son</code> (such as Jackson, Johnson, or Anderson):</p>
+<p>Query the <code>customers</code> directory for customers whose last names end with the traditional patronymic suffix <code>son</code> (such as Jackson, Johnson, or Anderson):</p>
 
 <!-- Customer Suffix Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -404,7 +403,7 @@
 </div>
 </div>
 <pre><code><span class="code-comment">-- Find customers whose surname ends with 'son'</span>
-<span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<span class="code-keyword">SELECT</span> customer_id, first_name, last_name, city, credit_score
 <span class="code-keyword">FROM</span> customers
 <span class="code-keyword">WHERE</span> last_name <span class="code-keyword">LIKE</span> <span class="code-string">'%son'</span>
 <span class="code-keyword">ORDER BY</span> customer_id <span class="code-keyword">ASC</span>
@@ -425,7 +424,7 @@
 </li>
 <li>
 <i class="fas fa-user-friends"></i>
-<div><strong>Targeted Population:</strong> Successfully retrieves customer profiles like <em>Zoe Alexander Jackson</em> and related lineages.</div>
+<div><strong>Targeted Population:</strong> Successfully retrieves customer profiles like <em>Johnson</em> and related lineages.</div>
 </li>
 <li>
 <i class="fas fa-sort-numeric-up"></i>
@@ -434,9 +433,9 @@
 </ul>
 </div>
 
-<!-- Section 6: Compound Negation with NOT LIKE on product_list -->
+<!-- Section 6: Compound Negation with NOT LIKE on transactions -->
 <h2>6. Negative Pattern Inversion: The NOT LIKE Operator</h2>
-<p>Combine category filtering with pattern exclusions to filter out peripheral accessories like cables and mice:</p>
+<p>Combine operational filtering with pattern exclusions to filter out recurring routine fees and cash withdrawals:</p>
 
 <!-- NOT LIKE Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -446,19 +445,19 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Excluding Cables and Mice from Electronics Catalog</span>
+<span class="terminal-title">Query: Excluding Routine Fees and ATM Withdrawals</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter Electronics while excluding accessory cables and mouse peripherals</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> 
-  <span class="code-keyword">AND</span> product_name <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%Cable%'</span> 
-  <span class="code-keyword">AND</span> product_name <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%Mouse%'</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Filter completed transactions excluding Fee and ATM withdrawals</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, description
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span> 
+  <span class="code-keyword">AND</span> description <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%Fee%'</span> 
+  <span class="code-keyword">AND</span> description <span class="code-keyword">NOT LIKE</span> <span class="code-string">'%ATM%'</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for NOT LIKE Query -->
@@ -467,15 +466,15 @@
 <i class="fas fa-filter"></i>
 <h4>NOT LIKE Inversion Breakdown</h4>
 </div>
-<p>Filtering out accessory noise from core computing inventory:</p>
+<p>Filtering out routine maintenance noise from core commercial cash flow:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-ban"></i>
-<div><strong>Pattern Inversion:</strong> <code>NOT LIKE '%Cable%'</code> rejects any product containing the word "Cable" in its name.</div>
+<div><strong>Pattern Inversion:</strong> <code>NOT LIKE '%Fee%'</code> rejects any ledger entry containing the word "Fee" in its description.</div>
 </li>
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Core Hardware Isolation:</strong> Preserves flagship items like <em>Pro Laptop 15"</em>, <em>Ultra-Wide 4K Monitor</em>, and <em>Mechanical Keyboard</em>.</div>
+<i class="fas fa-coins"></i>
+<div><strong>High-Value Flow Isolation:</strong> Preserves primary transactions like commercial wire transfers, contract payments, and salary credits.</div>
 </li>
 </ul>
 </div>
@@ -605,8 +604,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

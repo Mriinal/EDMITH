@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -221,9 +220,9 @@
 </ul>
 </div>
 
-<!-- Section 2: Preserving All Customers on sells_list -->
-<h2>2. Master Directory Preservation: All Customers with Order Logs</h2>
-<p>Query the <code>customers</code> master table joined with <code>sells_list</code>, ensuring customer profiles are retained even without purchases:</p>
+<!-- Section 2: Preserving All Customers on accounts -->
+<h2>2. Master Directory Preservation: All Customers with Account Profiles</h2>
+<p>Query the <code>customers</code> master table joined with <code>accounts</code>, ensuring customer profiles are retained even without open facilities:</p>
 
 <!-- Left Join Master Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -233,22 +232,22 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Complete Customer Directory with Transaction Matching</span>
+<span class="terminal-title">Query: Complete Customer Directory with Account Matching</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Preserve all customers; orders are matched where available, otherwise NULL</span>
+<pre><code><span class="code-comment">-- Preserve all customers; accounts are matched where available, otherwise NULL</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price,
-    s.payment_status
+    a.account_number,
+    a.balance,
+    a.status
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">LEFT JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> a.customer_id
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -262,12 +261,12 @@
 <p>Auditing master record preservation:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-shopping-cart"></i>
-<div><strong>Active Buyers:</strong> Customers with purchase logs (such as Customer #1, Mrinal Prashar) show their real <code>sale_id</code> and <code>total_price</code>.</div>
+<i class="fas fa-wallet"></i>
+<div><strong>Account Holders:</strong> Customers with deposit facilities (such as Customer #1, Mrinal Prashar) show their real <code>account_number</code> and <code>balance</code>.</div>
 </li>
 <li>
 <i class="fas fa-user-clock"></i>
-<div><strong>Inactive Accounts:</strong> Registered users who have never checked out remain in the dataset with <code>sale_id = NULL</code> rather than being purged.</div>
+<div><strong>Non-Deposit Accounts:</strong> Prospective or credit-only clients remain in the dataset with <code>account_number = NULL</code> rather than being eliminated.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -287,8 +286,8 @@
 </div>
 
 <!-- Section 3: The Anti-Join Pattern -->
-<h2>3. The Classic Anti-Join: Zero-Purchase Accounts</h2>
-<p>Find customers who have created an account but have never completed a transaction by filtering for <code>s.sale_id IS NULL</code>:</p>
+<h2>3. The Classic Anti-Join: Customers Without Active Loans</h2>
+<p>Find customers who maintain an active profile but have never originated a loan facility by filtering for <code>l.loan_id IS NULL</code>:</p>
 
 <!-- Anti-Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -298,20 +297,21 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Anti-Join Pattern for Inactive Accounts</span>
+<span class="terminal-title">Query: Anti-Join Pattern for Debt-Free Accounts</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Isolate customers with ZERO matching records in the sales table</span>
+<pre><code><span class="code-comment">-- Isolate customers with ZERO matching records in the loans table</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
-    c.last_name
+    c.last_name,
+    c.credit_score
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
-<span class="code-keyword">WHERE</span> s.sale_id <span class="code-keyword">IS NULL</span>
+<span class="code-keyword">LEFT JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
+<span class="code-keyword">WHERE</span> l.loan_id <span class="code-keyword">IS NULL</span>
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -322,11 +322,11 @@
 <i class="fas fa-user-slash"></i>
 <h4>Anti-Join Marketing Filter Breakdown</h4>
 </div>
-<p>Auditing unengaged registered users:</p>
+<p>Auditing customers without loan products:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-bullseye"></i>
-<div><strong>High-Conversion Retargeting:</strong> Accounts like Customer #7 (Mrinal Bose) and Customer #8 (Michael White) have registered profiles but haven't placed an order yet.</div>
+<div><strong>High-Conversion Cross-Selling:</strong> High-credit customers like Customer #1 (credit score 810) and Customer #8 (credit score 795) hold no debt, making them prime targets for mortgage pre-approvals.</div>
 </li>
 <li>
 <i class="fas fa-bolt"></i>
@@ -336,8 +336,8 @@
 </div>
 
 <!-- Section 4: Aggregate Left Join -->
-<h2>4. Lifetime Customer Value: Aggregate Summaries with COALESCE</h2>
-<p>Compute total transaction count and lifetime revenue per customer, wrapping aggregate totals with <code>COALESCE</code> to display <code>0.00</code> for non-buyers:</p>
+<h2>4. Total Customer Capitalization: Aggregate Summaries with COALESCE</h2>
+<p>Compute total account holdings per customer, wrapping aggregate balance totals with <code>COALESCE</code> to display <code>0.00</code> for empty portfolios:</p>
 
 <!-- Aggregate Left Join Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -347,23 +347,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query: Customer Lifetime Spend Aggregation</span>
+<span class="terminal-title">Query: Customer Total Deposit Wealth Aggregation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Aggregate purchases per customer, showing $0.00 for accounts without orders</span>
+<pre><code><span class="code-comment">-- Aggregate balances per customer, showing $0.00 for accounts with zero holdings</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    <span class="code-func">COUNT</span>(s.sale_id)                                  <span class="code-keyword">AS</span> order_count,
-    <span class="code-func">COALESCE</span>(<span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(s.total_price), <span class="code-num">2</span>), <span class="code-num">0.00</span>)     <span class="code-keyword">AS</span> lifetime_spend
+    <span class="code-func">COUNT</span>(a.account_id)                               <span class="code-keyword">AS</span> account_count,
+    <span class="code-func">COALESCE</span>(<span class="code-func">ROUND</span>(<span class="code-func">SUM</span>(a.balance), <span class="code-num">2</span>), <span class="code-num">0.00</span>)          <span class="code-keyword">AS</span> total_wealth
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
+<span class="code-keyword">LEFT JOIN</span> accounts a <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> a.customer_id
 <span class="code-keyword">GROUP BY</span> c.customer_id, c.first_name, c.last_name
-<span class="code-keyword">ORDER BY</span> lifetime_spend <span class="code-keyword">DESC</span>
+<span class="code-keyword">ORDER BY</span> total_wealth <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
 
@@ -371,24 +371,24 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-chart-pie"></i>
-<h4>Customer Lifetime Value Breakdown</h4>
+<h4>Customer Capitalization Breakdown</h4>
 </div>
 <p>Analyzing customer financial metrics:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-coins"></i>
-<div><strong>COALESCE Fallback:</strong> If <code>SUM(s.total_price)</code> produces NULL because the customer made zero purchases, <code>COALESCE</code> replaces the NULL with <code>0.00</code>.</div>
+<div><strong>COALESCE Fallback:</strong> If <code>SUM(a.balance)</code> produces NULL because the customer has no accounts, <code>COALESCE</code> replaces NULL with <code>0.00</code>.</div>
 </li>
 <li>
 <i class="fas fa-crown"></i>
-<div><strong>Top Spenders:</strong> Customer #351 (Priya Patel, $3,899.97) and Customer #176 (Mia Robinson, $2,599.98) lead cumulative client spend.</div>
+<div><strong>Top Wealth Holders:</strong> Customer #99 (Kunal Young, $190,354.00) and Customer #48 (Amit White, $189,308.00) lead cumulative personal deposits.</div>
 </li>
 </ul>
 </div>
 
 <!-- Section 5: The ON vs WHERE Trap -->
 <h2>5. Filtering Traps: Placing Right-Table Conditions in ON vs WHERE</h2>
-<p>Observe how placing right-table filters inside the <code>ON</code> clause preserves all customers while checking only settled PAID orders:</p>
+<p>Observe how placing right-table filters inside the <code>ON</code> clause preserves all customers while checking only Active accounts:</p>
 
 <!-- ON vs WHERE Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -404,17 +404,17 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Safe: Keeps ALL customers; only PAID orders match, non-paid or non-buyers show NULL</span>
+<pre><code><span class="code-comment">-- Safe: Keeps ALL customers; only Active accounts match, dormant or non-holders show NULL</span>
 <span class="code-keyword">SELECT</span> 
     c.customer_id,
     c.first_name,
     c.last_name,
-    s.sale_id,
-    s.total_price
+    a.account_number,
+    a.balance
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">LEFT JOIN</span> sells_list s 
-    <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id 
-   <span class="code-keyword">AND</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
+<span class="code-keyword">LEFT JOIN</span> accounts a 
+    <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> a.customer_id 
+   <span class="code-keyword">AND</span> a.status <span class="code-op">=</span> <span class="code-string">'Active'</span>
 <span class="code-keyword">ORDER BY</span> c.customer_id <span class="code-keyword">ASC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-num">10</span>;</code></pre>
 </div>
@@ -429,11 +429,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check"></i>
-<div><strong>In the ON Clause:</strong> Filters what matches on the right side. Customers without paid orders are still preserved in the output with NULL.</div>
+<div><strong>In the ON Clause:</strong> Filters what matches on the right side. Customers with dormant accounts (like Abhishek Prasad) are still preserved in the output with NULL.</div>
 </li>
 <li>
 <i class="fas fa-times"></i>
-<div><strong>In the WHERE Clause:</strong> Writing <code>WHERE s.payment_status = 'PAID'</code> purges all rows where <code>s.payment_status IS NULL</code>, silently converting your query into an INNER JOIN.</div>
+<div><strong>In the WHERE Clause:</strong> Writing <code>WHERE a.status = 'Active'</code> purges all rows where <code>a.status IS NULL</code>, silently converting your outer join into an INNER JOIN.</div>
 </li>
 </ul>
 </div>
@@ -558,8 +558,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -225,7 +224,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>UPDATE</code> running against active relational tables (<code>employees</code>, <code>product_list</code>, <code>sells_list</code>, and <code>customers</code>):</p>
+<p>Explore production-grade implementations of <code>UPDATE</code> running against active relational tables (<code>employees</code>, <code>accounts</code>, <code>transactions</code>, and <code>customers</code>):</p>
 <!-- Query 1: Single-Row Targeted Salary Update -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -241,7 +240,7 @@
 </div>
 </div>
 <pre><code><span class="code-keyword">UPDATE</span> employees
-<span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-num">82000.00</span>
+<span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-num">185000.00</span>
 <span class="code-keyword">WHERE</span> employee_id <span class="code-op">=</span> <span class="code-num">5</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
@@ -258,7 +257,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Updates base compensation from $75,000 to $82,000 while preserving department and managerial links.</div>
+<div>Updates base compensation from $175,000 to $185,000 while preserving branch and departmental links.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
@@ -278,36 +277,35 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: Category-Wide Promotional Markdown &amp; Restock</span>
+<span class="terminal-title">Query 2: Portfolio-Wide Savings Yield Credit Adjustment</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> product_list
-<span class="code-keyword">SET</span> price <span class="code-op">=</span> <span class="code-func">ROUND</span>(price <span class="code-op">*</span> <span class="code-num">0.90</span>, <span class="code-num">2</span>),
-    stock_quantity <span class="code-op">=</span> stock_quantity <span class="code-op">+</span> <span class="code-num">20</span>
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Home &amp; Kitchen'</span>;</code></pre>
+<pre><code><span class="code-keyword">UPDATE</span> accounts
+<span class="code-keyword">SET</span> balance <span class="code-op">=</span> <span class="code-func">ROUND</span>(balance <span class="code-op">*</span> <span class="code-num">1.04</span>, <span class="code-num">2</span>)
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Active'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Promotional Markdown Breakdown</h4>
+<h4>Portfolio-Wide Savings Yield Credit Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Applies A:</strong> Applies a 10% promotional price discount while simultaneously adding 20 inventory units to stock.</div>
+<div><strong>Applies Yield:</strong> Credits a 4.0% interest yield compounding to all active savings accounts across the branch network.</div>
 </li>
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Filters By:</strong> Filters by <code>category = 'Home &amp; Kitchen'</code>, modifying all 5 category products in a single operation.</div>
+<div><strong>Filters By:</strong> Filters by <code>account_type = 'Savings' AND status = 'Active'</code>, updating all qualifying savings portfolios in a single atomic sweep.</div>
 </li>
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Employs dynamic column math:</strong> <code>stock_quantity = stock_quantity + 20</code> increments current stock atomically without race conditions.</div>
+<div><strong>Employs dynamic column math:</strong> <code>balance = ROUND(balance * 1.04, 2)</code> calculates new balances directly in the storage engine without race conditions.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -323,15 +321,15 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Point-of-Sale Transaction Status Transition</span>
+<span class="terminal-title">Query 3: Clearing House Settlement State Transition</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">UPDATE</span> sells_list
-<span class="code-keyword">SET</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-<span class="code-keyword">WHERE</span> sale_id <span class="code-op">=</span> <span class="code-num">6</span>;</code></pre>
+<pre><code><span class="code-keyword">UPDATE</span> transactions
+<span class="code-keyword">SET</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>
+<span class="code-keyword">WHERE</span> transaction_id <span class="code-op">=</span> <span class="code-num">4</span> <span class="code-keyword">AND</span> status <span class="code-op">=</span> <span class="code-string">'Pending'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -343,7 +341,7 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Transitions order transaction 6 from <code>PENDING</code> to <code>PAID</code> following successful gateway webhook verification.</div>
+<div>Transitions pending deposit transaction 4 to <code>'Completed'</code> following automated clearing house (ACH) network clearance.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
@@ -351,7 +349,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Demonstrates Real-Time:</strong> Demonstrates real-time state machine lifecycle management in e-commerce backend pipelines.</div>
+<div><strong>Demonstrates Real-Time:</strong> Demonstrates real-time state machine lifecycle management in banking settlement pipelines.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -367,35 +365,36 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 4: Customer Identity Attribute Enrichment</span>
+<span class="terminal-title">Query 4: Customer KYC Verification &amp; Credit Score Merit Boost</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-keyword">UPDATE</span> customers
-<span class="code-keyword">SET</span> middle_name <span class="code-op">=</span> <span class="code-string">'Devi'</span>
+<span class="code-keyword">SET</span> kyc_status <span class="code-op">=</span> <span class="code-string">'Verified'</span>,
+    credit_score <span class="code-op">=</span> credit_score <span class="code-op">+</span> <span class="code-num">25</span>
 <span class="code-keyword">WHERE</span> customer_id <span class="code-op">=</span> <span class="code-num">9</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Identity Attribute Enrichment Breakdown</h4>
+<h4>Customer Verification &amp; Credit Boost Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Populates a previously missing middle name field for customer ID 9 (Priya Sharma).</div>
+<div>Updates compliance standing to <code>'Verified'</code> and elevates credit score by 25 points for customer ID 9 (Elena Rostova).</div>
 </li>
 <li>
 <i class="fas fa-shield-alt"></i>
-<div>Replaces <code>NULL</code> with <code>'Devi'</code> without disturbing existing first or last name values.</div>
+<div>Demonstrates multi-column update syntax combining constant assignment with dynamic integer arithmetic.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div>Illustrates customer support profile editing workflows in CRM management systems.</div>
+<div>Illustrates real-time KYC compliance underwriting workflows in modern digital banking systems.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -467,7 +466,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Departmental Performance Merit Adjustment:</strong> Execute an 8% compensation merit increase across the Engineering team and immediately inspect the updated salary roster.</p>
+<p><strong>Departmental Performance Merit Adjustment:</strong> Execute an 8% compensation merit increase across the Information Security &amp; Core IT team and immediately inspect the updated salary roster.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -483,7 +482,7 @@
 </div>
 <pre><code><span class="code-keyword">UPDATE</span> employees
 <span class="code-keyword">SET</span> salary <span class="code-op">=</span> <span class="code-func">ROUND</span>(salary <span class="code-op">*</span> <span class="code-num">1.08</span>, <span class="code-num">2</span>)
-<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>;</code></pre>
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Information Security &amp; Core IT'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -495,7 +494,7 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Applies A:</strong> Applies a uniform 8% compensation adjustment to all 4 engineers simultaneously.</div>
+<div><strong>Applies A:</strong> Applies a uniform 8% compensation adjustment to all 4 IT specialists simultaneously.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
@@ -526,7 +525,7 @@
 </div>
 <pre><code><span class="code-keyword">SELECT</span> employee_id, first_name, last_name, department, salary
 <span class="code-keyword">FROM</span> employees
-<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Engineering'</span>
+<span class="code-keyword">WHERE</span> department <span class="code-op">=</span> <span class="code-string">'Information Security &amp; Core IT'</span>
 <span class="code-keyword">ORDER BY</span> salary <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
@@ -543,11 +542,11 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>VP of Engineering Ripunjay Kumar scales to $129,600, followed by Amritesh Nath at $102,600.</div>
+<div>Lead Architect Ripunjay Kumar scales to $302,400, followed by Michael Chang at $199,800.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Confirms that rows outside the Engineering department remained completely unchanged.</div>
+<div>Confirms that rows outside Information Security &amp; Core IT remained completely unchanged.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -625,8 +624,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

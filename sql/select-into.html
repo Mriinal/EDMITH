@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -225,7 +224,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>SELECT INTO</code> running against active relational tables (<code>customers</code>, <code>product_list</code>, <code>sells_list</code>, and <code>employees</code>):</p>
+<p>Explore production-grade implementations of <code>SELECT INTO</code> running against active relational tables (<code>customers</code>, <code>accounts</code>, <code>transactions</code>, and <code>employees</code>):</p>
 <!-- Query 1: VIP Customer Directory Snapshot -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -240,10 +239,10 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, middle_name, last_name
+<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, last_name, credit_score, city
 <span class="code-keyword">INTO</span> vip_customers_snapshot
 <span class="code-keyword">FROM</span> customers
-<span class="code-keyword">WHERE</span> customer_id &lt;= <span class="code-num">10</span>;</code></pre>
+<span class="code-keyword">WHERE</span> credit_score &gt;= <span class="code-num">750</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -255,15 +254,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Spawns a brand new physical table named <code>vip_customers_snapshot</code> in the database.</div>
+<div>Spawns a brand new physical table named <code>vip_customers_snapshot</code> in the database storage engine.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Selects The:</strong> Selects the top 10 foundational customer records and copies them into the snapshot table.</div>
+<div><strong>Selects Qualifying Tier:</strong> Selects all high-credit patron records (score 750+) and copies 44 rows into the snapshot table.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Returns An:</strong> Returns an affected row count of <code>10</code>, verifying immediate availability of the cloned table.</div>
+<div><strong>Returns An:</strong> Returns an affected row count of <code>44</code>, verifying immediate availability of the cloned table.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -271,7 +270,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 2: Premium Electronics Catalog Archival -->
+<!-- Query 2: High-Net-Worth Accounts Portfolio Archival -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -279,36 +278,36 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 2: High-End Catalog Segment Archival</span>
+<span class="terminal-title">Query 2: High-Net-Worth Accounts Portfolio Archival</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">INTO</span> premium_electronics_catalog
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">AND</span> price &gt;= <span class="code-num">100.00</span>;</code></pre>
+<pre><code><span class="code-keyword">SELECT</span> account_id, customer_id, account_type, balance, currency, status
+<span class="code-keyword">INTO</span> high_net_worth_accounts
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance &gt;= <span class="code-num">50000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-tags"></i>
-<h4>Catalog Archival Snapshot Breakdown</h4>
+<h4>High-Net-Worth Snapshot Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-filter"></i>
-<div><strong>Filters <code>Product_List</code>:</strong> Filters <code>product_list</code> for premium electronics ($100.00+) and creates <code>premium_electronics_catalog</code>.</div>
+<div><strong>Filters <code>accounts</code>:</strong> Filters active and deposit accounts holding $50,000+ balances and creates <code>high_net_worth_accounts</code>.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Clones 4 flagship hardware items into the dedicated showcase table.</div>
+<div>Clones 67 institutional and private wealth accounts into a dedicated showcase data table.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Enables marketing teams to run intensive reporting without querying main inventory tables.</div>
+<div>Enables portfolio managers to run intensive risk reporting without querying active operational transactional tables.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -324,32 +323,32 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 3: Settled Transaction Ledger Snapshot</span>
+<span class="terminal-title">Query 3: Completed Settlement Transaction Archive Snapshot</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, sale_date
-<span class="code-keyword">INTO</span> paid_sales_archive
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>;</code></pre>
+<pre><code><span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, transaction_date
+<span class="code-keyword">INTO</span> completed_settlement_archive
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Ledger Snapshot Breakdown</h4>
+<h4>Settlement Archive Snapshot Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>Isolates 37 finalized revenue transactions from active point-of-sale operational logs.</div>
+<div>Isolates 167 finalized wire and transfer transactions from active operational ingestion queues.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Creates an immutable financial audit table (<code>paid_sales_archive</code>) for year-end accounting.</div>
+<div>Creates an immutable financial audit table (<code>completed_settlement_archive</code>) for year-end compliance reporting.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
@@ -470,7 +469,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Executive Client Transaction Snapshot:</strong> Join high-value customer records with high-value transactions ($200.00+) into a dedicated analytical snapshot table and inspect the resulting dataset.</p>
+<p><strong>Executive Client Loan Portfolio Snapshot:</strong> Join high-value customer records with commercial and mortgage facilities ($100,000.00+) into a dedicated risk audit snapshot table and inspect the resulting dataset.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -478,37 +477,37 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query 1: Create Executive Transaction Snapshot</span>
+<span class="terminal-title">Production Query 1: Create Executive Loan Portfolio Snapshot</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> c.customer_id, c.first_name, c.last_name, s.sale_id, s.total_price, s.sale_date
-<span class="code-keyword">INTO</span> executive_client_transactions
+<pre><code><span class="code-keyword">SELECT</span> c.customer_id, c.first_name, c.last_name, c.credit_score, l.loan_id, l.loan_type, l.amount, l.interest_rate
+<span class="code-keyword">INTO</span> executive_loan_portfolio
 <span class="code-keyword">FROM</span> customers c
-<span class="code-keyword">INNER JOIN</span> sells_list s <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> s.customer_id
-<span class="code-keyword">WHERE</span> s.total_price &gt;= <span class="code-num">200.00</span>;</code></pre>
+<span class="code-keyword">INNER JOIN</span> loans l <span class="code-keyword">ON</span> c.customer_id <span class="code-op">=</span> l.customer_id
+<span class="code-keyword">WHERE</span> l.amount &gt;= <span class="code-num">100000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Executive Snapshot Creation Breakdown</h4>
+<h4>Executive Loan Snapshot Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Performs A:</strong> Performs a multi-table relational inner join between <code>customers</code> and <code>sells_list</code>.</div>
+<div><strong>Performs A Relational Join:</strong> Performs a multi-table inner join between <code>customers</code> and <code>loans</code>.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Filters For:</strong> Filters for high-value orders ($200.00+) and creates the <code>executive_client_transactions</code> table in one step.</div>
+<div><strong>Filters For High Exposure:</strong> Filters for large debt facilities ($100,000+) and generates <code>executive_loan_portfolio</code> in a single operation.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div>Populates 24 high-revenue transactions into the snapshot table.</div>
+<div>Populates 30 major underwriting facilities into the standalone analytical snapshot table.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -529,9 +528,9 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, last_name, sale_id, total_price, sale_date
-<span class="code-keyword">FROM</span> executive_client_transactions
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-keyword">SELECT</span> customer_id, first_name, last_name, loan_id, loan_type, amount, interest_rate
+<span class="code-keyword">FROM</span> executive_loan_portfolio
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -547,11 +546,11 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div>Displays high-spending patrons led by Priya Patel ($3,899.97) and Mia Robinson ($2,599.98).</div>
+<div>Displays premier borrowing patrons led by Elena Rostova ($459,276) and Utpal Kumar ($446,935).</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div>Confirms that the new table functions as a fully queryable, standalone relational asset.</div>
+<div>Confirms that the cloned table functions as a fully queryable, standalone relational asset.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -629,8 +628,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

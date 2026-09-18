@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -226,8 +225,8 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of <code>UNION ALL</code> running against active relational tables (<code>sells_list</code>, <code>employees</code>, <code>product_list</code>, and <code>customers</code>):</p>
-<!-- Query 1: Partitioned Sales Stream Aggregation -->
+<p>Explore production-grade implementations of <code>UNION ALL</code> running against active relational tables (<code>accounts</code>, <code>employees</code>, <code>transactions</code>, and <code>transfers</code>):</p>
+<!-- Query 1: Partitioned Branch Account Concatenation -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -235,40 +234,40 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Partitioned Channel Sales Concatenation</span>
+<span class="terminal-title">Query 1: Partitioned Branch Account Concatenation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, total_price, <span class="code-string">'ELECTRONICS'</span> <span class="code-keyword">AS</span> channel
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> product_id <span class="code-keyword">BETWEEN</span> 1 <span class="code-keyword">AND</span> 7
+<pre><code><span class="code-keyword">SELECT</span> account_id, customer_id, branch_id, balance, <span class="code-string">'METRO_BRANCHES'</span> <span class="code-keyword">AS</span> region_partition
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> branch_id <span class="code-keyword">BETWEEN</span> 1 <span class="code-keyword">AND</span> 5
 <span class="code-keyword">UNION ALL</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, total_price, <span class="code-string">'HOME_OFFICE'</span> <span class="code-keyword">AS</span> channel
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> product_id <span class="code-keyword">BETWEEN</span> 8 <span class="code-keyword">AND</span> 15
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>;</code></pre>
+<span class="code-keyword">SELECT</span> account_id, customer_id, branch_id, balance, <span class="code-string">'REGIONAL_BRANCHES'</span> <span class="code-keyword">AS</span> region_partition
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> branch_id <span class="code-keyword">BETWEEN</span> 6 <span class="code-keyword">AND</span> 10
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Partitioned Channel Sales Concatenation Breakdown</h4>
+<h4>Partitioned Branch Account Concatenation Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Combines Two:</strong> Combines two partitioned product subsets from <code>sells_list</code> into a single 38-row high-performance stream.</div>
+<div><strong>High-Performance Concatenation:</strong> Combines two partitioned branch subsets from <code>accounts</code> into a unified 133-row liquidity stream.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Because The:</strong> Because the product ID ranges are mutually disjoint (1-7 vs 8-15), duplicate rows cannot exist; using <code>UNION ALL</code> saves unnecessary CPU cycles.</div>
+<div><strong>Disjoint Partitions:</strong> Because branch ID ranges are mutually disjoint (1-5 vs 6-10), duplicate rows cannot exist; using <code>UNION ALL</code> saves CPU sorting cycles.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div>Sorts the entire unified transaction stream from largest to smallest order value via <code>ORDER BY total_price DESC</code>.</div>
+<div><strong>Global Valuation Ordering:</strong> Sorts the entire unified balance stream from highest to lowest balance via <code>ORDER BY balance DESC</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -334,14 +333,14 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> c.customer_id <span class="code-keyword">AS</span> account_id, c.first_name || <span class="code-string">' '</span> || c.last_name <span class="code-keyword">AS</span> account_name, s.total_price <span class="code-keyword">AS</span> volume, <span class="code-string">'REVENUE'</span> <span class="code-keyword">AS</span> ledger_type
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id = c.customer_id
-<span class="code-keyword">WHERE</span> s.total_price &gt;= 1000.00
+<pre><code><span class="code-keyword">SELECT</span> a.account_id, a.account_number <span class="code-keyword">AS</span> reference_code, t.amount <span class="code-keyword">AS</span> volume, <span class="code-string">'LEDGER_SETTLEMENT'</span> <span class="code-keyword">AS</span> ledger_type
+<span class="code-keyword">FROM</span> transactions t
+<span class="code-keyword">JOIN</span> accounts a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">WHERE</span> t.amount <span class="code-op">&gt;=</span> <span class="code-num">3500.00</span>
 <span class="code-keyword">UNION ALL</span>
-<span class="code-keyword">SELECT</span> e.employee_id <span class="code-keyword">AS</span> account_id, e.first_name || <span class="code-string">' '</span> || e.last_name <span class="code-keyword">AS</span> account_name, e.salary <span class="code-keyword">AS</span> volume, <span class="code-string">'PAYROLL_EXPENSE'</span> <span class="code-keyword">AS</span> ledger_type
+<span class="code-keyword">SELECT</span> e.employee_id <span class="code-keyword">AS</span> account_id, <span class="code-string">'EMP-'</span> || e.employee_id <span class="code-keyword">AS</span> reference_code, e.salary <span class="code-keyword">AS</span> volume, <span class="code-string">'PAYROLL_LIABILITY'</span> <span class="code-keyword">AS</span> ledger_type
 <span class="code-keyword">FROM</span> employees e
-<span class="code-keyword">WHERE</span> e.salary &gt;= 100000.00
+<span class="code-keyword">WHERE</span> e.salary <span class="code-op">&gt;=</span> <span class="code-num">100000.00</span>
 <span class="code-keyword">ORDER BY</span> volume <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
@@ -354,15 +353,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-user-check"></i>
-<div>Merges incoming customer sales revenue ($1000+) with outgoing executive salary liabilities ($100,000+) into a single cash-flow balance sheet.</div>
+<div>Merges incoming transaction settlements ($3,500+) with outgoing executive salary liabilities ($100,000+) into a single cash-flow balance sheet.</div>
 </li>
 <li>
-<i class="fas fa-user-check"></i>
-<div>Preserves exact monetary amounts even if a customer purchase amount matches an employee payroll figure.</div>
+<i class="fas fa-coins"></i>
+<div>Preserves exact monetary amounts even if a transaction settlement figure matches an employee payroll liability.</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Demonstrates Cross-Functional:</strong> Demonstrates cross-functional relational joins within individual <code>UNION ALL</code> branches.</div>
+<div>Demonstrates cross-functional relational joins within individual <code>UNION ALL</code> branches.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -386,9 +385,9 @@
 </div>
 <pre><code><span class="code-keyword">SELECT</span> <span class="code-func">COUNT</span>(<span class="code-op">*</span>) <span class="code-keyword">AS</span> total_stream_records
 <span class="code-keyword">FROM</span> (
-    <span class="code-keyword">SELECT</span> sale_id, total_price <span class="code-keyword">FROM</span> sells_list
+    <span class="code-keyword">SELECT</span> transaction_id, amount <span class="code-keyword">FROM</span> transactions
     <span class="code-keyword">UNION ALL</span>
-    <span class="code-keyword">SELECT</span> product_id, price <span class="code-keyword">FROM</span> product_list
+    <span class="code-keyword">SELECT</span> transfer_id, amount <span class="code-keyword">FROM</span> transfers
 ) <span class="code-keyword">AS</span> unified_event_stream;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
@@ -401,15 +400,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-database"></i>
-<div>Pipes 60 rows from <code>sells_list</code> and 25 rows from <code>product_list</code> through a derived table subquery to compute the aggregate event volume (85 total records).</div>
+<div>Pipes 250 rows from <code>transactions</code> and 75 rows from <code>transfers</code> through a derived table subquery to compute the aggregate event volume (325 total records).</div>
 </li>
 <li>
 <i class="fas fa-database"></i>
-<div><strong>Because <code>Union:</code></strong> Because <code>UNION ALL</code> preserves all rows without deduplication, the mathematical sum is exactly <code>COUNT(table1) + COUNT(table2)</code>.</div>
+<div><strong>Fast Cardinality Sum:</strong> Because <code>UNION ALL</code> preserves all rows without deduplication, the mathematical sum is exactly <code>COUNT(table1) + COUNT(table2)</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Allows Data:</strong> Allows data pipelines to verify total ingestion volume before loading into downstream analytics warehouses.</div>
+<div><strong>Data Warehouse Ingestion:</strong> Allows ETL pipelines to verify total ingestion volume before loading into downstream financial data warehouses.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -481,7 +480,7 @@
 </ul>
 </div>
 <h2>Real-World Practical Scenario</h2>
-<p><strong>Multi-Channel Payment Settlement Stream:</strong> Extract settled payments alongside pending customer invoices to generate a unified financial auditing stream.</p>
+<p><strong>Multi-Channel Payment Settlement Stream:</strong> Extract settled payments alongside pending customer transactions to generate a unified financial auditing stream.</p>
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -495,13 +494,13 @@
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-keyword">SELECT</span> sale_id <span class="code-keyword">AS</span> transaction_id, customer_id, total_price <span class="code-keyword">AS</span> amount, payment_status, <span class="code-string">'SETTLED_STREAM'</span> <span class="code-keyword">AS</span> stream_source
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status = <span class="code-string">'PAID'</span>
+<pre><code><span class="code-keyword">SELECT</span> transaction_id, account_id, amount, status, <span class="code-string">'SETTLED_STREAM'</span> <span class="code-keyword">AS</span> stream_source
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'Completed'</span>
 <span class="code-keyword">UNION ALL</span>
-<span class="code-keyword">SELECT</span> sale_id <span class="code-keyword">AS</span> transaction_id, customer_id, total_price <span class="code-keyword">AS</span> amount, payment_status, <span class="code-string">'PENDING_STREAM'</span> <span class="code-keyword">AS</span> stream_source
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status = <span class="code-string">'PENDING'</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, amount, status, <span class="code-string">'PENDING_STREAM'</span> <span class="code-keyword">AS</span> stream_source
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status = <span class="code-string">'Pending'</span>
 <span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
@@ -514,15 +513,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Combines 46:</strong> Combines 46 matching financial transactions across two distinct payment lifecycles into a single prioritized audit stream.</div>
+<div><strong>Combines 209 Records:</strong> Combines 209 matching financial transactions (167 Completed + 42 Pending) across distinct payment lifecycles into a single prioritized audit stream.</div>
 </li>
 <li>
 <i class="fas fa-user-check"></i>
-<div><strong>Maintains absolute event fidelity:</strong> multiple purchases by the same customer are preserved without deduplication.</div>
+<div><strong>Maintains absolute event fidelity:</strong> Multiple transactions by the same account are preserved without deduplication.</div>
 </li>
 <li>
 <i class="fas fa-dollar-sign"></i>
-<div><strong>Sequences The:</strong> Sequences the entire combined revenue flow from highest to lowest monetary amount.</div>
+<div><strong>Sequences Revenue Flow:</strong> Sequences the entire combined transaction flow from highest to lowest monetary amount.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -604,8 +603,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

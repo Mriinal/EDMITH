@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -222,9 +221,9 @@
 </div>
 </div>
 
-<!-- Section 2: Numerical Filtering on product_list -->
-<h2>2. Numerical Comparisons: Filtering Product Inventory</h2>
-<p>Use standard relational comparison operators (<code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>&lt;&gt;</code>) to filter catalog records based on numeric thresholds (explore all operators in our <a href="operators.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">SQL Operators Reference</a>):</p>
+<!-- Section 2: Numerical Filtering on accounts -->
+<h2>2. Numerical Comparisons: Filtering Bank Accounts by Balance</h2>
+<p>Use standard relational comparison operators (<code>=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>&lt;&gt;</code>) to filter customer accounts based on balance thresholds (explore all operators in our <a href="operators.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">SQL Operators Reference</a>):</p>
 
 <!-- Numerical Comparison Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -234,43 +233,43 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Comparison Query: Filtering Products by Price Threshold</span>
+<span class="terminal-title">Comparison Query: Filtering Accounts by Balance Threshold</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter products priced greater than or equal to $100.00</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price <span class="code-op">&gt;=</span> <span class="code-num">100.00</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">DESC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Filter bank accounts holding a balance greater than or equal to $25,000</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance <span class="code-op">&gt;=</span> <span class="code-num">25000.00</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Numerical Filtering -->
 <div class="code-explanation-area">
 <div class="explanation-header">
-<i class="fas fa-tag"></i>
+<i class="fas fa-wallet"></i>
 <h4>Numerical Comparison Breakdown</h4>
 </div>
 <p>How numeric predicates filter records at the storage boundary:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-greater-than-equal"></i>
-<div><strong>Relational Threshold (<code>&gt;=</code>):</strong> Tests whether the numeric value of <code>price</code> is at least 100.00.</div>
+<div><strong>Relational Threshold (<code>&gt;=</code>):</strong> Tests whether the numeric value of <code>balance</code> is at least 25,000.00.</div>
 </li>
 <li>
-<i class="fas fa-boxes"></i>
-<div><strong>Catalog Filtering:</strong> Out of 25 products in <code>product_list</code>, exactly 7 premium items (such as the Pro Laptop, 4K Monitor, and Noise-Canceling Headphones) satisfy this condition.</div>
+<i class="fas fa-landmark"></i>
+<div><strong>Banking Ledger Filtering:</strong> Evaluates all 150 deposit portfolios in <code>accounts</code>, selecting high-liquidity accounts qualifying for premium yield.</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Order of Execution:</strong> The database engine applies <code>WHERE price &gt;= 100.00</code> first to eliminate cheaper items, and only sorts the 7 surviving rows by <code>price DESC</code>.</div>
+<div><strong>Order of Execution:</strong> The database engine evaluates <code>WHERE balance &gt;= 25000.00</code> first to eliminate smaller accounts, and only sorts the surviving rows by <code>balance DESC</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the <code>product_list</code> table in the SQL Workbench!</span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the <code>accounts</code> table in the SQL Workbench!</span>
 </div>
 </div>
 
@@ -283,9 +282,9 @@
 </p>
 </div>
 
-<!-- Section 3: Text Exact Match on product_list -->
+<!-- Section 3: Text Exact Match on accounts -->
 <h2>3. Categorical Filtering: Exact Text Matching</h2>
-<p>In standard SQL, text string literals must be wrapped in single quotes (<code>'Electronics'</code>) and evaluated with exact character matching:</p>
+<p>In standard SQL, text string literals must be wrapped in single quotes (<code>'Savings'</code>) and evaluated with exact character matching:</p>
 
 <!-- String Matching Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -295,17 +294,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Exact Match Query: Filtering by Product Category</span>
+<span class="terminal-title">Exact Match Query: Filtering by Account Type</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Filter catalog items belonging exclusively to the 'Electronics' category</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, price, stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> category <span class="code-op">=</span> <span class="code-string">'Electronics'</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Filter deposit portfolios belonging exclusively to the 'Savings' category</span>
+<span class="code-keyword">SELECT</span> account_id, customer_id, account_number, account_type, balance, status
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> account_type <span class="code-op">=</span> <span class="code-string">'Savings'</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for String Matching -->
@@ -318,16 +317,16 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-font"></i>
-<div><strong>Single Quote Delimiters:</strong> Text literals in SQL must always be wrapped in single quotation marks (<code>'Electronics'</code>). Omitting quotes causes SQL engines to misinterpret the text as a column name.</div>
+<div><strong>Single Quote Delimiters:</strong> Text literals in SQL must always be wrapped in single quotation marks (<code>'Savings'</code>). Omitting quotes causes SQL engines to misinterpret the text as a column identifier.</div>
 </li>
 <li>
-<i class="fas fa-laptop"></i>
-<div><strong>Categorical Isolation:</strong> Isolates the 6 electronics devices (Laptops, Headphones, Watches, Keyboards, Mice, Monitors) while bypassing footwear, apparel, and kitchen items.</div>
+<i class="fas fa-piggy-bank"></i>
+<div><strong>Portfolio Isolation:</strong> Isolates interest-bearing personal savings accounts while bypassing checking, money market, and CD portfolios.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-exclamation-triangle"></i>
-<span><strong>SQL Standard Rule:</strong> Never use double quotes for string values in standard SQL; double quotes are reserved for delimited column or table identifiers (e.g., <code>"product_name"</code>).</span>
+<span><strong>SQL Standard Rule:</strong> Never use double quotes for string values in standard SQL; double quotes are reserved for delimited column or table identifiers (e.g., <code>"account_number"</code>).</span>
 </div>
 </div>
 
@@ -343,17 +342,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Range Query: Filtering Mid-Tier Product Prices</span>
+<span class="terminal-title">Range Query: Filtering Mid-Tier Account Balances</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve products within an affordable price bracket of $30.00 to $80.00</span>
-<span class="code-keyword">SELECT</span> product_id, product_name, category, price
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> price <span class="code-keyword">BETWEEN</span> <span class="code-num">30.00</span> <span class="code-keyword">AND</span> <span class="code-num">80.00</span>
-<span class="code-keyword">ORDER BY</span> price <span class="code-keyword">ASC</span>;</code></pre>
+<pre><code><span class="code-comment">-- Retrieve accounts within a mid-tier balance bracket of $10,000 to $50,000</span>
+<span class="code-keyword">SELECT</span> account_id, account_number, account_type, balance, currency
+<span class="code-keyword">FROM</span> accounts
+<span class="code-keyword">WHERE</span> balance <span class="code-keyword">BETWEEN</span> <span class="code-num">10000.00</span> <span class="code-keyword">AND</span> <span class="code-num">50000.00</span>
+<span class="code-keyword">ORDER BY</span> balance <span class="code-keyword">ASC</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for BETWEEN Range -->
@@ -366,11 +365,11 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-double"></i>
-<div><strong>Inclusive Endpoints:</strong> <code>price BETWEEN 30.00 AND 80.00</code> is logically equivalent to <code>price &gt;= 30.00 AND price &lt;= 80.00</code>, inclusive of both boundary amounts.</div>
+<div><strong>Inclusive Endpoints:</strong> <code>balance BETWEEN 10000.00 AND 50000.00</code> is logically equivalent to <code>balance &gt;= 10000.00 AND balance &lt;= 50000.00</code>, inclusive of both boundary amounts.</div>
 </li>
 <li>
-<i class="fas fa-shopping-bag"></i>
-<div><strong>Target Market Tier:</strong> Identifies 11 mid-market products across apparel, accessories, and home items (such as Denim Jeans at $59.99 and Coffee Makers at $69.99).</div>
+<i class="fas fa-balance-scale"></i>
+<div><strong>Target Liquidity Bracket:</strong> Surfaces middle-market customer portfolios positioned between entry-tier checking and private wealth banking tiers.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -379,9 +378,9 @@
 </div>
 </div>
 
-<!-- Section 5: Compound Logic on sells_list -->
-<h2>5. Compound Predicates: Status &amp; Quantity Filtering on Sells</h2>
-<p>Combine multiple boolean conditions using <code>AND</code>, <code>OR</code>, and comparison operators to express business rules on sales orders:</p>
+<!-- Section 5: Compound Logic on transactions -->
+<h2>5. Compound Predicates: Status &amp; Amount on Transactions</h2>
+<p>Combine multiple boolean conditions using <code>AND</code>, <code>OR</code>, and comparison operators to express business rules on ledger transactions:</p>
 
 <!-- Compound Conditions Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -391,17 +390,17 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Compound Query: Filtering Paid Bulk Sales Orders</span>
+<span class="terminal-title">Compound Query: Auditing Completed Large Transactions</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Identify completed sales orders with a quantity of 2 or more units</span>
-<span class="code-keyword">SELECT</span> sale_id, customer_id, product_id, quantity, total_price, payment_status
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span> <span class="code-keyword">AND</span> quantity <span class="code-op">&gt;=</span> <span class="code-num">2</span>
-<span class="code-keyword">ORDER BY</span> total_price <span class="code-keyword">DESC</span>
+<pre><code><span class="code-comment">-- Identify completed ledger transactions with a value of $1,500 or more</span>
+<span class="code-keyword">SELECT</span> transaction_id, account_id, transaction_type, amount, status
+<span class="code-keyword">FROM</span> transactions
+<span class="code-keyword">WHERE</span> status <span class="code-op">=</span> <span class="code-string">'Completed'</span> <span class="code-keyword">AND</span> amount <span class="code-op">&gt;=</span> <span class="code-num">1500.00</span>
+<span class="code-keyword">ORDER BY</span> amount <span class="code-keyword">DESC</span>
 <span class="code-keyword">LIMIT</span> <span class="code-string">10</span>;</code></pre>
 </div>
 
@@ -409,32 +408,32 @@
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-receipt"></i>
-<h4>Compound Sales Predicate Breakdown</h4>
+<h4>Compound Transaction Predicate Breakdown</h4>
 </div>
-<p>Filtering transactional orders across multiple dimensions:</p>
+<p>Filtering transactional ledger entries across multiple dimensions:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-link"></i>
-<div><strong>The <code>AND</code> Conjunction:</strong> Requires BOTH expressions (<code>payment_status = 'PAID'</code> AND <code>quantity &gt;= 2</code>) to evaluate to <code>TRUE</code> simultaneously.</div>
+<div><strong>The <code>AND</code> Conjunction:</strong> Requires BOTH expressions (<code>status = 'Completed'</code> AND <code>amount &gt;= 1500.00</code>) to evaluate to <code>TRUE</code> simultaneously.</div>
 </li>
 <li>
-<i class="fas fa-coins"></i>
-<div><strong>Bulk Revenue Analysis:</strong> Screens out single-item orders as well as pending or cancelled transactions, surfacing only fulfilled high-volume purchases.</div>
+<i class="fas fa-shield-alt"></i>
+<div><strong>Audit Compliance:</strong> Screens out pending, failed, or reversed settlements, surfacing only fully cleared high-value fund movements.</div>
 </li>
 <li>
 <i class="fas fa-stream"></i>
-<div><strong>Top 10 High Value:</strong> Orders the resulting sales by <code>total_price DESC</code> to highlight the highest-grossing fulfilled purchases.</div>
+<div><strong>Top 10 High Value:</strong> Orders the resulting entries by <code>amount DESC</code> to highlight the largest settled transactions.</div>
 </li>
 </ul>
 <div class="explanation-tip">
 <i class="fas fa-lightbulb"></i>
-<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to inspect live sales records from the <code>sells_list</code> table! For complete logic rules and truth tables, explore our dedicated guides on <a href="and.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">AND</a>, <a href="or.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">OR</a>, and <a href="not.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">NOT</a>, or consult the <a href="operators.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">SQL Operators Reference →</a></span>
+<span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to inspect live financial records from the <code>transactions</code> table! For complete logic rules and truth tables, explore our dedicated guides on <a href="and.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">AND</a>, <a href="or.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">OR</a>, and <a href="not.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">NOT</a>, or consult the <a href="operators.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">SQL Operators Reference →</a></span>
 </div>
 </div>
 
 <!-- Section 6: Relational Filtering Across Joined Tables -->
-<h2>6. Relational Filtering: Connecting Sales, Customers &amp; Products</h2>
-<p>The <code>WHERE</code> clause filters records seamlessly across multi-table relational joins, allowing you to audit purchases by specific customers:</p>
+<h2>6. Relational Filtering: Connecting Customers, Accounts &amp; Transactions</h2>
+<p>The <code>WHERE</code> clause filters records seamlessly across multi-table relational joins, allowing you to audit activity for specific banking clients:</p>
 
 <!-- Relational Query Terminal (Try in Editor + Copy) -->
 <div class="code-terminal" style="border-radius: 12px; margin-top: 1.5rem; margin-bottom: 1.25rem; box-shadow: var(--shadow-md);">
@@ -444,24 +443,24 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Relational Query: Filtering Purchases by Specific Customer</span>
+<span class="terminal-title">Relational Query: Auditing Ledger Activity for Specific Customer</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
 <button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
-<pre><code><span class="code-comment">-- Retrieve purchase history for customer Mrinal (customer_id = 1)</span>
+<pre><code><span class="code-comment">-- Retrieve transaction ledger entries for customer (customer_id = 1)</span>
 <span class="code-keyword">SELECT</span> 
     c.first_name, 
     c.last_name, 
-    p.product_name, 
-    s.quantity, 
-    s.total_price, 
-    s.sale_date
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.customer_id <span class="code-op">=</span> <span class="code-num">1</span>;</code></pre>
+    a.account_number, 
+    t.transaction_type, 
+    t.amount, 
+    t.transaction_date
+<span class="code-keyword">FROM</span> transactions t
+<span class="code-keyword">JOIN</span> accounts a <span class="code-keyword">ON</span> t.account_id <span class="code-op">=</span> a.account_id
+<span class="code-keyword">JOIN</span> customers c <span class="code-keyword">ON</span> a.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">WHERE</span> c.customer_id <span class="code-op">=</span> <span class="code-num">1</span>;</code></pre>
 </div>
 
 <!-- Dedicated Explanation Area for Relational Filtering -->
@@ -470,19 +469,19 @@
 <i class="fas fa-project-diagram"></i>
 <h4>Relational Join &amp; WHERE Filtering Breakdown</h4>
 </div>
-<p>How the WHERE clause operates in relational pipelines:</p>
+<p>How the WHERE clause operates in relational banking pipelines:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-user"></i>
-<div><strong>Targeted Customer Filter:</strong> <code>WHERE s.customer_id = 1</code> isolates orders placed specifically by Mrinal Prashar.</div>
+<i class="fas fa-user-check"></i>
+<div><strong>Targeted Customer Filter:</strong> <code>WHERE c.customer_id = 1</code> isolates transactions tied to customer ID 1 across all of their accounts.</div>
 </li>
 <li>
 <i class="fas fa-network-wired"></i>
-<div><strong>Three-Way Join:</strong> Connects the sales transaction to the <code>customers</code> registry (for customer name) and the <code>product_list</code> catalog (for product name).</div>
+<div><strong>Three-Way Relational Join:</strong> Connects the ledger entry in <code>transactions</code> to the <code>accounts</code> record, and from <code>accounts</code> to the <code>customers</code> master profile.</div>
 </li>
 <li>
 <i class="fas fa-bolt"></i>
-<div><strong>Index Efficiency:</strong> Filtering on the foreign key <code>s.customer_id</code> allows the database engine to perform rapid index seeks instead of full table scans.</div>
+<div><strong>Index Efficiency:</strong> Filtering on foreign keys (<code>account_id</code>, <code>customer_id</code>) enables fast B-Tree index lookups without scanning every row in the ledger.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -516,44 +515,44 @@
 <tbody>
 <tr>
 <td><strong>Equality (=)</strong></td>
-<td><code>WHERE category = 'Electronics'</code></td>
-<td><code>product_list</code></td>
+<td><code>WHERE account_type = 'Savings'</code></td>
+<td><code>accounts</code></td>
 <td>Matches exact string literal value</td>
 <td>High (Direct B-Tree Seek)</td>
 </tr>
 <tr>
 <td><strong>Inequality (&lt;&gt; / !=)</strong></td>
-<td><code>WHERE payment_status &lt;&gt; 'CANCELLED'</code></td>
-<td><code>sells_list</code></td>
-<td>Excludes specific cancelled rows</td>
+<td><code>WHERE status &lt;&gt; 'Closed'</code></td>
+<td><code>accounts</code></td>
+<td>Excludes inactive or closed accounts</td>
 <td>Moderate (Requires table scan)</td>
 </tr>
 <tr>
 <td><strong>Relational (&gt;=, &lt;=)</strong></td>
-<td><code>WHERE price &gt;= 100.00</code></td>
-<td><code>product_list</code></td>
+<td><code>WHERE balance &gt;= 25000.00</code></td>
+<td><code>accounts</code></td>
 <td>Evaluates numeric or chronological order</td>
 <td>High (Index Range Scan)</td>
 </tr>
 <tr>
 <td><strong>Range (BETWEEN)</strong></td>
-<td><code>WHERE price BETWEEN 30 AND 80</code></td>
-<td><code>product_list</code></td>
+<td><code>WHERE balance BETWEEN 10000 AND 50000</code></td>
+<td><code>accounts</code></td>
 <td>Inclusive lower and upper boundary test</td>
 <td>High (Clustered Range Scan)</td>
 </tr>
 <tr>
 <td><strong>Compound (AND)</strong></td>
-<td><code>WHERE payment_status = 'PAID' AND quantity &gt;= 2</code></td>
-<td><code>sells_list</code></td>
+<td><code>WHERE status = 'Completed' AND amount &gt;= 1500</code></td>
+<td><code>transactions</code></td>
 <td>Both conditions must be TRUE</td>
 <td>High (Composite Index Filter)</td>
 </tr>
 <tr>
 <td><strong>Foreign Key Filter</strong></td>
-<td><code>WHERE s.customer_id = 1</code></td>
-<td><code>sells_list</code></td>
-<td>Isolates orders for specific customer ID</td>
+<td><code>WHERE c.customer_id = 1</code></td>
+<td><code>customers</code></td>
+<td>Isolates records for specific customer ID</td>
 <td>Optimal (Single-key index seek)</td>
 </tr>
 </tbody>
@@ -570,8 +569,8 @@
 <h3>SARGable Predicates: Why WHERE col + 1 = 10 Destroys Performance</h3>
 <p>For a WHERE clause to leverage high-speed B-Tree indexes, predicates must be written in SARGable (Search Argument Able) format:</p>
 <ul class="summary-list" style="margin-bottom: 1.5rem;">
-<li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <span><strong>Non-SARGable (Slow):</strong> <code>WHERE price * 0.9 &gt;= 90.00</code> forces the database to evaluate arithmetic on every single row in the table (Full Table Scan).</span></li>
-<li><i class="fas fa-check-circle" style="color: var(--success);"></i> <span><strong>SARGable (Fast):</strong> <code>WHERE price &gt;= 100.00</code> allows the engine to jump directly to the index range in RAM.</span></li>
+<li><i class="fas fa-times-circle" style="color: var(--danger);"></i> <span><strong>Non-SARGable (Slow):</strong> <code>WHERE balance * 1.05 &gt;= 26250.00</code> forces the database to evaluate arithmetic on every single row in the table (Full Table Scan).</span></li>
+<li><i class="fas fa-check-circle" style="color: var(--success);"></i> <span><strong>SARGable (Fast):</strong> <code>WHERE balance &gt;= 25000.00</code> allows the engine to jump directly to the index range in RAM.</span></li>
 <li><i class="fas fa-shield-alt" style="color: var(--accent);"></i> <span><strong>Column Side Isolation:</strong> Never apply mathematical operators, typecasts, or functions to the column side of a comparison predicate.</span></li>
 </ul>
 
@@ -636,8 +635,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>

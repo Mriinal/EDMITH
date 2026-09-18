@@ -33,7 +33,6 @@
 <li><a href="../index.html#home">Home</a></li>
 <li><a href="../course.html">Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html"><i class="fas fa-terminal" style="color: var(--accent);"></i> SQL Editor</a></li>
 <li><a href="../index.html#contact">Contact Us</a></li>
 </ul>
 <div class="header-actions">
@@ -233,7 +232,7 @@
 </ul>
 </div>
 <h2>Interactive Query Terminals</h2>
-<p>Explore production-grade implementations of SQL operators running against active relational tables (<code>sells_list</code>, <code>employees</code>, <code>customers</code>, and <code>product_list</code>):</p>
+<p>Explore production-grade implementations of SQL operators running against active relational tables (<code>loans</code>, <code>employees</code>, <code>customers</code>, and <code>branches</code>):</p>
 <!-- Query 1: Arithmetic Operators & Modulo -->
 <div class="code-terminal">
 <div class="terminal-header">
@@ -242,22 +241,23 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Query 1: Arithmetic Computations &amp; Modulo Packaging</span>
+<span class="terminal-title">Query 1: Arithmetic Computations &amp; Term Modulo</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- Arithmetic Operators: Multiplication (*), Division (/), Subtraction (-), and Modulo (%)</span>
 <span class="code-keyword">SELECT</span> 
-    sale_id,
-    quantity,
-    total_price,
-    <span class="code-func">ROUND</span>(total_price <span class="code-op">/</span> quantity, <span class="code-num">2</span>) <span class="code-keyword">AS</span> unit_price,
-    <span class="code-func">ROUND</span>(total_price <span class="code-op">*</span> <span class="code-num">0.90</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> discounted_ten_pct,
-    quantity <span class="code-op">%</span> <span class="code-num">4</span> <span class="code-keyword">AS</span> loose_units_after_crates
-<span class="code-keyword">FROM</span> sells_list
-<span class="code-keyword">WHERE</span> sale_id &lt;= <span class="code-num">10</span>;</code></pre>
+    loan_id,
+    amount <span class="code-keyword">AS</span> principal,
+    interest_rate,
+    term_months,
+    <span class="code-func">ROUND</span>(amount <span class="code-op">*</span> (interest_rate <span class="code-op">/</span> <span class="code-num">100.0</span>) <span class="code-op">/</span> <span class="code-num">12</span>, <span class="code-num">2</span>) <span class="code-keyword">AS</span> monthly_interest_cost,
+    <span class="code-func">ROUND</span>((amount <span class="code-op">/</span> term_months) <span class="code-op">+</span> (amount <span class="code-op">*</span> (interest_rate <span class="code-op">/</span> <span class="code-num">100.0</span>) <span class="code-op">/</span> <span class="code-num">12</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> estimated_monthly_emi,
+    term_months <span class="code-op">%</span> <span class="code-num">12</span> <span class="code-keyword">AS</span> remaining_months_beyond_years
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> loan_id &lt;= <span class="code-num">10</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -268,16 +268,16 @@
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
-<i class="fas fa-dollar-sign"></i>
-<div><strong>Applies Division:</strong> Applies division (<code>total_price / quantity</code>) to derive effective unit prices.</div>
+<i class="fas fa-percentage"></i>
+<div><strong>Calculates Interest Fractions:</strong> Computes monthly interest cost via multiplication and division (<code>amount * (interest_rate / 100.0) / 12</code>).</div>
 </li>
 <li>
-<i class="fas fa-dollar-sign"></i>
-<div><strong>Applies Multiplication:</strong> Applies multiplication (<code>total_price * 0.90</code>) to simulate a 10% promotional rebate.</div>
+<i class="fas fa-calculator"></i>
+<div><strong>Estimates Monthly EMI:</strong> Combines principal amortization and monthly accrued interest.</div>
 </li>
 <li>
-<i class="fas fa-check-circle"></i>
-<div><strong>Calculates Carton:</strong> Calculates carton packing remainders via modulo (<code>quantity % 4</code>).</div>
+<i class="fas fa-calendar-alt"></i>
+<div><strong>Evaluates Term Remainder:</strong> Calculates non-annual remaining loan periods via modulo (<code>term_months % 12</code>).</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -404,15 +404,16 @@
 </div>
 <pre><code><span class="code-comment">-- Logical Operators: Combined Compound Predicates (AND, OR, NOT)</span>
 <span class="code-keyword">SELECT</span> 
-    product_id,
-    product_name,
-    category,
-    price,
-    stock_quantity
-<span class="code-keyword">FROM</span> product_list
-<span class="code-keyword">WHERE</span> (category <span class="code-op">=</span> <span class="code-string">'Electronics'</span> <span class="code-keyword">OR</span> category <span class="code-op">=</span> <span class="code-string">'Footwear'</span>)
-  <span class="code-keyword">AND NOT</span> (price &lt; <span class="code-num">50.00</span>)
-  <span class="code-keyword">AND</span> stock_quantity &gt;= <span class="code-num">30</span>;</code></pre>
+    loan_id,
+    customer_id,
+    loan_type,
+    amount,
+    interest_rate,
+    status
+<span class="code-keyword">FROM</span> loans
+<span class="code-keyword">WHERE</span> (loan_type <span class="code-op">=</span> <span class="code-string">'Home Mortgage'</span> <span class="code-keyword">OR</span> loan_type <span class="code-op">=</span> <span class="code-string">'Business Expansion'</span>)
+  <span class="code-keyword">AND NOT</span> (status <span class="code-op">=</span> <span class="code-string">'Defaulted'</span>)
+  <span class="code-keyword">AND</span> amount &gt;= <span class="code-num">100000.00</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
@@ -424,15 +425,15 @@
 <ul class="explanation-points">
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Enforces Explicit:</strong> Enforces explicit priority grouping with parentheses <code>(category = 'Electronics' OR category = 'Footwear')</code>.</div>
+<div><strong>Enforces Explicit Grouping:</strong> Enforces explicit priority grouping with parentheses <code>(loan_type = 'Home Mortgage' OR loan_type = 'Business Expansion')</code>.</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Applies The:</strong> Applies the unary <code>NOT</code> operator to exclude budget items (&lt; $50.00).</div>
+<div><strong>Applies Unary NOT:</strong> Applies the unary <code>NOT</code> operator to exclude delinquent accounts (<code>NOT (status = 'Defaulted')</code>).</div>
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<div><strong>Returns 8:</strong> Returns 8 premium items with healthy inventory levels (&gt;= 30 units).</div>
+<div><strong>Filters High-Value Facilities:</strong> Restricts records to institutional commitments with principal <code>amount &gt;= 100000.00</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -535,47 +536,48 @@
 <span class="dot yellow"></span>
 <span class="dot green"></span>
 </div>
-<span class="terminal-title">Production Query: Billing Reconciliation &amp; Pricing Variance</span>
+<span class="terminal-title">Production Query: Loan Portfolio Yield &amp; First-Year Exposure Analysis</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- Production Comprehensive Operator Pipeline: Relational Join with Arithmetic and Logical Filtering</span>
 <span class="code-keyword">SELECT</span> 
-    s.sale_id,
-    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> customer_name,
-    p.product_name,
-    s.quantity,
-    p.price <span class="code-keyword">AS</span> list_price,
-    s.total_price <span class="code-keyword">AS</span> total_billed,
-    <span class="code-func">ROUND</span>(s.total_price <span class="code-op">-</span> (s.quantity <span class="code-op">*</span> p.price), <span class="code-num">2</span>) <span class="code-keyword">AS</span> pricing_variance
-<span class="code-keyword">FROM</span> sells_list s
-<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> s.customer_id <span class="code-op">=</span> c.customer_id
-<span class="code-keyword">INNER JOIN</span> product_list p <span class="code-keyword">ON</span> s.product_id <span class="code-op">=</span> p.product_id
-<span class="code-keyword">WHERE</span> s.payment_status <span class="code-op">=</span> <span class="code-string">'PAID'</span>
-  <span class="code-keyword">AND</span> (s.total_price &gt;= <span class="code-num">200.00</span> <span class="code-keyword">OR</span> s.quantity &gt; <span class="code-num">1</span>)
-<span class="code-keyword">ORDER BY</span> s.total_price <span class="code-keyword">DESC</span>;</code></pre>
+    l.loan_id,
+    c.first_name <span class="code-op">||</span> <span class="code-string">' '</span> <span class="code-op">||</span> c.last_name <span class="code-keyword">AS</span> borrower_name,
+    b.branch_name,
+    l.loan_type,
+    l.amount <span class="code-keyword">AS</span> facility_amount,
+    l.interest_rate,
+    <span class="code-func">ROUND</span>(l.amount <span class="code-op">*</span> (l.interest_rate <span class="code-op">/</span> <span class="code-num">100.0</span>), <span class="code-num">2</span>) <span class="code-keyword">AS</span> annual_interest_accrual,
+    <span class="code-func">ROUND</span>(l.amount <span class="code-op">+</span> (l.amount <span class="code-op">*</span> (l.interest_rate <span class="code-op">/</span> <span class="code-num">100.0</span>)), <span class="code-num">2</span>) <span class="code-keyword">AS</span> total_first_year_exposure
+<span class="code-keyword">FROM</span> loans l
+<span class="code-keyword">INNER JOIN</span> customers c <span class="code-keyword">ON</span> l.customer_id <span class="code-op">=</span> c.customer_id
+<span class="code-keyword">INNER JOIN</span> branches b <span class="code-keyword">ON</span> l.branch_id <span class="code-op">=</span> b.branch_id
+<span class="code-keyword">WHERE</span> l.status <span class="code-op">=</span> <span class="code-string">'Active'</span>
+  <span class="code-keyword">AND</span> (l.amount &gt;= <span class="code-num">150000.00</span> <span class="code-keyword">OR</span> l.interest_rate &gt; <span class="code-num">7.00</span>)
+<span class="code-keyword">ORDER BY</span> l.amount <span class="code-keyword">DESC</span>;</code></pre>
 </div>
 <!-- Separated Code Explanation Area -->
 <div class="code-explanation-area">
 <div class="explanation-header">
 <i class="fas fa-code"></i>
-<h4>Billing Reconciliation Breakdown</h4>
+<h4>Loan Portfolio Yield Breakdown</h4>
 </div>
 <p>Auditing the execution logic and relational mechanics of this query:</p>
 <ul class="explanation-points">
 <li>
 <i class="fas fa-calculator"></i>
-<div><strong>Combines Arithmetic:</strong> Combines arithmetic operators (<code>-</code>, <code>*</code>), string concatenation (<code>||</code>), and relational comparison (<code>=</code>, <code>&gt;=</code>, <code>&gt;</code>).</div>
+<div><strong>Combines Arithmetic:</strong> Combines arithmetic operators (<code>*</code>, <code>/</code>, <code>+</code>), string concatenation (<code>||</code>), and relational comparison (<code>=</code>, <code>&gt;=</code>, <code>&gt;</code>).</div>
 </li>
 <li>
 <i class="fas fa-sort-amount-down"></i>
-<div><strong>Verifies That:</strong> Verifies that billed amounts match extended list pricing (<code>pricing_variance = 0.00</code>) across 27 high-ticket orders.</div>
+<div><strong>Quantifies Credit Exposure:</strong> Calculates annual interest yield and total balance commitment across active high-value facilities.</div>
 </li>
 <li>
-<i class="fas fa-calculator"></i>
-<div><strong>Demonstrates How:</strong> Demonstrates how compound expressions drive production accounting and invoice reconciliation.</div>
+<i class="fas fa-university"></i>
+<div><strong>Demonstrates Institutional Modeling:</strong> Models comprehensive credit risk by joining <code>loans</code>, <code>customers</code>, and <code>branches</code>.</div>
 </li>
 </ul>
 <div class="explanation-tip">
@@ -653,8 +655,13 @@
 <li><a href="../index.html">Home</a></li>
 <li><a href="../course.html">All Courses</a></li>
 <li><a href="index.html">SQL Mastery</a></li>
-<li><a href="editor.html">SQL Editor</a></li>
 </ul>
+</div>
+<div class="footer-links">
+    <h3>Editors</h3>
+    <ul>
+        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+    </ul>
 </div>
 <div class="footer-links">
 <h3>Support</h3>
