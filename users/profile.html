@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description"
+        content="Your EDMITH profile — view your account details, assessment rankings, and learning progress.">
+    <title>My Profile | EDMITH</title>
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Fixed Header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../sql/index.html">SQL Mastery</a></li>
+                <li><a href="../Leaderboard.html">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Profile Area -->
+    <main class="profile-dashboard" id="profileMain">
+
+        <!-- 1. LOADING STATE -->
+        <div id="profileStateLoading" class="profile-state-card">
+            <div class="profile-state-icon" style="color: var(--accent);">
+                <i class="fas fa-circle-notch fa-spin"></i>
+            </div>
+            <h2>Loading your profile…</h2>
+            <p>Fetching your verified credentials and assessment records from EDMITH.</p>
+        </div>
+
+        <!-- 2. UNAUTHENTICATED STATE -->
+        <div id="profileStateUnauth" class="profile-state-card" style="display: none;">
+            <div class="profile-state-icon" style="color: #f59e0b;">
+                <i class="fas fa-user-lock"></i>
+            </div>
+            <h2>Sign In Required</h2>
+            <p>You need to be logged in to view your profile dashboard and personal rankings.</p>
+            <a href="login.html" class="btn-enroll"><i class="fas fa-right-to-bracket"></i> Sign In to EDMITH</a>
+        </div>
+
+        <!-- 3. ERROR STATE -->
+        <div id="profileStateError" class="profile-state-card" style="display: none;">
+            <div class="profile-state-icon" style="color: #ef4444;">
+                <i class="fas fa-triangle-exclamation"></i>
+            </div>
+            <h2>Profile Temporarily Unavailable</h2>
+            <p id="profileErrorMessage">Unable to load profile data. Please check your network connection.</p>
+            <button type="button" class="btn-enroll" id="profileRetryBtn"><i class="fas fa-redo"></i> Retry
+                Loading</button>
+        </div>
+
+        <!-- 4. AUTHENTICATED PROFILE CONTENT -->
+        <div id="profileStateContent" style="display: none;">
+
+            <!-- Welcome banner -->
+            <div class="profile-welcome-banner" id="welcomeBanner">
+                <div class="profile-welcome-info">
+                    <div class="profile-welcome-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="profile-welcome-text">
+                        <h1 id="welcomeHeading">Welcome back!</h1>
+                        <p id="welcomeSub">You're signed in to EDMITH.</p>
+                    </div>
+                </div>
+                <div class="profile-actions-bar">
+                    <!-- <a href="edit-profile.html" class="profile-edit-btn" id="editProfileBtn">
+                        <i class="fas fa-user-pen"></i> Edit Profile
+                    </a> -->
+                    <button id="logoutBtn" class="profile-logout-btn" title="Sign out">
+                        <i class="fas fa-right-from-bracket"></i> Sign Out
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview Grid -->
+            <div class="profile-stats-grid">
+                <div class="profile-stat-card">
+                    <div class="profile-stat-icon icon-purple"><i class="fas fa-clipboard-check"></i></div>
+                    <div class="profile-stat-data">
+                        <span>Tests Completed</span>
+                        <strong id="statTestsTaken">0</strong>
+                    </div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-icon icon-emerald"><i class="fas fa-award"></i></div>
+                    <div class="profile-stat-data">
+                        <span>Total Points</span>
+                        <strong id="statTotalScore">0 pts</strong>
+                    </div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-icon icon-blue"><i class="fas fa-bullseye"></i></div>
+                    <div class="profile-stat-data">
+                        <span>Avg Accuracy</span>
+                        <strong id="statAvgAccuracy">0%</strong>
+                    </div>
+                </div>
+                <div class="profile-stat-card">
+                    <div class="profile-stat-icon icon-amber"><i class="fas fa-trophy"></i></div>
+                    <div class="profile-stat-data">
+                        <span>Global Rank</span>
+                        <strong id="statHighestRank">—</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Main Grid -->
+            <div class="profile-grid">
+
+                <!-- Account Information Card -->
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Account Information</span>
+                    </div>
+                    <div class="profile-card-body">
+                        <div class="profile-avatar-row">
+                            <div class="profile-avatar" id="profileAvatar">
+                                <span id="avatarInitial">?</span>
+                            </div>
+                            <div class="profile-avatar-info">
+                                <h2 class="profile-avatar-name" id="avatarName">EDMITH Learner</h2>
+                                <p class="profile-avatar-tag" id="avatarUsername">@username</p>
+                            </div>
+                        </div>
+
+                        <div class="profile-info-list">
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-user"></i> Full Name</span>
+                                <span class="profile-info-value" id="profileName">—</span>
+                            </div>
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-at"></i> Username</span>
+                                <span class="profile-info-value" id="profileUsername">—</span>
+                            </div>
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-envelope"></i> Email</span>
+                                <span class="profile-info-value" id="profileEmail">—</span>
+                            </div>
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-map-marker-alt"></i> Country</span>
+                                <span class="profile-info-value" id="profileCountry">—</span>
+                            </div>
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-bullseye"></i> Goal</span>
+                                <span class="profile-info-value" id="profileGoal">—</span>
+                            </div>
+                            <div class="profile-info-row">
+                                <span class="profile-info-label"><i class="fas fa-calendar-plus"></i> Member
+                                    Since</span>
+                                <span class="profile-info-value" id="profileCreated">—</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning Progress Card -->
+                <div class="profile-card" id="learningProgressCard">
+                    <div class="profile-card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Course Curriculum Progress</span>
+                    </div>
+                    <div class="profile-card-body" id="progressCardBody">
+                        <div class="profile-loading" style="padding: 2rem 1rem;">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                            <p>Loading course progress…</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SQL Leaderboard Standings Card -->
+                <div class="profile-card" style="grid-column: 1 / -1;">
+                    <div class="profile-card-header">
+                        <i class="fas fa-ranking-star"></i>
+                        <span>Assessment Standings by Difficulty</span>
+                    </div>
+                    <div class="profile-card-body">
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                            Rankings earned from completed SQL MCQ and Practical Coding assessments:
+                        </p>
+                        <div class="difficulty-cards-row" id="difficultiesContainer">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
+                            <a href="../Leaderboard.html" class="btn-plain" style="font-size: 0.9rem;">
+                                <i class="fas fa-trophy"></i> View Full Leaderboard <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Assessment Attempts Card -->
+                <div class="profile-card" style="grid-column: 1 / -1;">
+                    <div class="profile-card-header">
+                        <i class="fas fa-clock-rotate-left"></i>
+                        <span>Recent Assessment Attempts</span>
+                    </div>
+                    <div class="profile-card-body">
+                        <div class="recent-attempts-table-wrap">
+                            <table class="recent-attempts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Subject</th>
+                                        <th>Type</th>
+                                        <th>Difficulty</th>
+                                        <th>Score</th>
+                                        <th>Accuracy</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentAttemptsBody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /profile-grid -->
+
+        </div>
+        <!-- /profileStateContent -->
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="../sql/index.html">SQL Mastery</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="../Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="../report-bug.html" class="report-bug-link">Report a Bug</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/sql-leaderboard.js"></script>
+    <script src="../javascript/profile-page.js"></script>
+</body>
+
+</html>

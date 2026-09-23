@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Report a Bug & Platform Feedback - Submit defects directly to EDMITH platform engineering.">
-    <title>Report a Bug - EDMITH</title>
+    <meta name="description" content="Report a Bug & Platform Feedback - Submit defects directly to the EDMITH Development Team.">
+    <meta name="robots" content="index,follow">
+    <title>Report a Bug & Platform Feedback | EDMITH</title>
+
+    <link rel="canonical" href="https://edmith.com/sql/report-bug.html">
     <!-- Prevent theme flicker before paint -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (theme === 'dark' || (!theme && prefersDark)) {
@@ -16,10 +20,9 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="../css/style.css?v=1.3.2">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Self-contained Critical Submit Bar & Action Button Styling (Cache-Resistant) */
         .bug-submit-row {
             display: flex !important;
             align-items: center !important;
@@ -185,6 +188,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Reading Progress Bar -->
@@ -200,7 +204,7 @@
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../course.html">Courses</a></li>
                 <li><a href="index.html">SQL Mastery</a></li>
-                <li><a href="../index.html#contact">Contact Us</a></li>
+                <li><a href="../Leaderboard.html">Leaderboard</a></li>
             </ul>
             <div class="header-actions">
                 <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
@@ -214,7 +218,7 @@
     </header>
 
     <main class="report-bug-container">
-        
+
         <!-- Breadcrumbs -->
         <div class="lesson-breadcrumbs" style="margin-bottom: 2rem;">
             <a href="../index.html">Home</a> &gt; <a href="index.html">SQL Mastery</a> &gt; <span>Report a Bug</span>
@@ -224,7 +228,8 @@
         <div class="report-bug-hero">
             <span class="badge-live"><span class="live-dot"></span> Live Defect Dispatch System</span>
             <h1>Report a Bug &amp; Feedback</h1>
-            <p>Help us maintain an impeccable learning experience across all courses and query terminals. Every submission is directly routed to <strong>Development Team</strong> for rapid investigation.</p>
+            <p>Help us maintain an impeccable learning experience across all courses and query terminals. Every
+                submission is directly routed to <strong>Development Team</strong> for rapid investigation.</p>
         </div>
 
         <!-- Bug Portal Card -->
@@ -234,26 +239,33 @@
                     <i class="fas fa-shield-alt" style="color: var(--accent);"></i>
                     Official Defect &amp; Feedback Dispatcher
                 </span>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
-                    <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Direct to: <strong>Development Team</strong>
+                <span
+                    style="font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 6px;">
+                    <i class="fas fa-shield-alt" style="color: var(--accent);"></i> Direct to:
+                    <strong>Development Team</strong>
                 </span>
             </div>
 
             <!-- Main Interactive Form -->
-            <form class="bug-form-body" id="bugReportForm" action="https://formsubmit.co/a17946fc1c022cd57d76cfe775919a3d" method="POST">
+            <form class="bug-form-body" id="bugReportForm"
+                action="https://formsubmit.co/a17946fc1c022cd57d76cfe775919a3d" method="POST">
                 <div class="bug-form-grid">
                     <div>
-                        <label class="bug-label" for="reporterName">Your Name <span style="color: #EF4444;">*</span></label>
+                        <label class="bug-label" for="reporterName">Your Name <span
+                                style="color: #EF4444;">*</span></label>
                         <input type="text" id="reporterName" class="bug-input" placeholder="e.g. John Doe" required />
                     </div>
 
                     <div>
-                        <label class="bug-label" for="reporterEmail">Your Email Address <span style="color: #EF4444;">*</span></label>
-                        <input type="email" id="reporterEmail" class="bug-input" placeholder="e.g. john.doe@example.com" required />
+                        <label class="bug-label" for="reporterEmail">Your Email Address <span
+                                style="color: #EF4444;">*</span></label>
+                        <input type="email" id="reporterEmail" class="bug-input" placeholder="e.g. john.doe@example.com"
+                            required />
                     </div>
 
                     <div>
-                        <label class="bug-label" for="bugCategory">Bug Category <span style="color: #EF4444;">*</span></label>
+                        <label class="bug-label" for="bugCategory">Bug Category <span
+                                style="color: #EF4444;">*</span></label>
                         <select id="bugCategory" class="bug-select" required>
                             <option value="" disabled selected>Select issue category...</option>
                             <option value="SQL Query Syntax / Code Error">SQL Query Syntax / Code Error</option>
@@ -262,13 +274,15 @@
                             <option value="Broken Link or Navigation">Broken Link or 404 Navigation</option>
                             <option value="Theme / Visual Glitch">Theme / Dark Mode / Visual Glitch</option>
                             <option value="Mobile Responsive Defect">Mobile Layout / Responsive Defect</option>
-                            <option value="Typo or Pedagogical Suggestion">Lesson Typo or Pedagogical Suggestion</option>
+                            <option value="Typo or Pedagogical Suggestion">Lesson Typo or Pedagogical Suggestion
+                            </option>
                             <option value="Other Technical Issue">Other Technical Inconsistency</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="bug-label" for="severityLevel">Severity Level <span style="color: #EF4444;">*</span></label>
+                        <label class="bug-label" for="severityLevel">Severity Level <span
+                                style="color: #EF4444;">*</span></label>
                         <select id="severityLevel" class="bug-select" required>
                             <option value="Medium - Normal Defect" selected>Medium - Normal Defect (Default)</option>
                             <option value="Low - Minor Visual / Typo">Low - Minor Visual / Typo</option>
@@ -279,32 +293,41 @@
 
                     <div class="form-group-full">
                         <label class="bug-label" for="pageUrl">Affected Webpage / Lesson URL</label>
-                        <input type="text" id="pageUrl" class="bug-input" placeholder="e.g. /sql/where.html or /editors/editor.html" value="" />
+                        <input type="text" id="pageUrl" class="bug-input"
+                            placeholder="e.g. /sql/where.html or /editors/editor.html" value="" />
                     </div>
 
                     <div class="form-group-full">
-                        <label class="bug-label" for="bugTitle">Issue Summary <span style="color: #EF4444;">*</span></label>
-                        <input type="text" id="bugTitle" class="bug-input" placeholder="Brief summary of the issue (e.g., Query syntax error in WHERE clause scenario)" required />
+                        <label class="bug-label" for="bugTitle">Issue Summary <span
+                                style="color: #EF4444;">*</span></label>
+                        <input type="text" id="bugTitle" class="bug-input"
+                            placeholder="Brief summary of the issue (e.g., Query syntax error in WHERE clause scenario)"
+                            required />
                     </div>
 
                     <div class="form-group-full">
                         <label class="bug-label" for="bugSteps">Steps to Reproduce</label>
-                        <textarea id="bugSteps" class="bug-textarea" placeholder="1. Navigate to /sql/where.html&#10;2. Click 'Try in Editor' on Query 2&#10;3. Observe the unexpected output..." rows="3"></textarea>
+                        <textarea id="bugSteps" class="bug-textarea"
+                            placeholder="1. Navigate to /sql/where.html&#10;2. Click 'Try in Editor' on Query 2&#10;3. Observe the unexpected output..."
+                            rows="3"></textarea>
                     </div>
 
                     <div>
                         <label class="bug-label" for="expectedBehavior">Expected Behavior</label>
-                        <textarea id="expectedBehavior" class="bug-textarea" placeholder="What did you expect to happen?" rows="3"></textarea>
+                        <textarea id="expectedBehavior" class="bug-textarea"
+                            placeholder="What did you expect to happen?" rows="3"></textarea>
                     </div>
 
                     <div>
                         <label class="bug-label" for="actualBehavior">Actual Behavior</label>
-                        <textarea id="actualBehavior" class="bug-textarea" placeholder="What error message or behavior actually occurred?" rows="3"></textarea>
+                        <textarea id="actualBehavior" class="bug-textarea"
+                            placeholder="What error message or behavior actually occurred?" rows="3"></textarea>
                     </div>
 
                     <div class="form-group-full">
                         <label class="bug-label">System Diagnostics (Auto-Attached)</label>
-                        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);" id="diagnosticInfo">
+                        <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); padding: 10px 14px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.85rem; color: var(--text-secondary);"
+                            id="diagnosticInfo">
                             Collecting system metadata...
                         </div>
                     </div>
@@ -320,7 +343,8 @@
                                 <span class="security-status-indicator"></span> Encrypted Token Dispatch
                             </span>
                             <span class="security-subline">
-                                Transmitted directly to <strong>EDMITH Engineering</strong> via encrypted token dispatch.
+                                Transmitted directly to <strong>EDMITH Engineering</strong> via encrypted token
+                                dispatch.
                             </span>
                         </div>
                     </div>
@@ -343,13 +367,17 @@
                     <i class="fas fa-check"></i>
                 </div>
                 <h3>Defect Report Successfully Dispatched!</h3>
-                <p>Thank you for helping improve EDMITH. Your report has been delivered directly to <strong>Development Team</strong>. Our engineering team has logged your submission and will review the diagnostic traces.</p>
-                
-                <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px 20px; max-width: 600px; margin: 0 auto 1.8rem; text-align: left; font-size: 0.92rem;">
+                <p>Thank you for helping improve EDMITH. Your report has been delivered directly to <strong>Development
+                        Team</strong>. Our engineering team has logged your submission and will review the diagnostic
+                    traces.</p>
+
+                <div
+                    style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 16px 20px; max-width: 600px; margin: 0 auto 1.8rem; text-align: left; font-size: 0.92rem;">
                     <p style="margin: 0 0 6px;"><strong>Recipient:</strong> Development Team</p>
                     <p style="margin: 0 0 6px;" id="summaryTicketTitle"><strong>Summary:</strong> Issue Title</p>
                     <p style="margin: 0 0 6px;" id="summaryTicketSeverity"><strong>Severity:</strong> Medium</p>
-                    <p style="margin: 0;" id="summaryTicketStatus"><strong>Status:</strong> <span style="color: #10B981; font-weight: 700;">Dispatched &amp; Queued</span></p>
+                    <p style="margin: 0;" id="summaryTicketStatus"><strong>Status:</strong> <span
+                            style="color: #10B981; font-weight: 700;">Dispatched &amp; Queued</span></p>
                 </div>
 
                 <div class="bug-success-actions">
@@ -364,8 +392,11 @@
         </div>
 
         <!-- Alternative Support Channels -->
-        <h2 style="font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--text-primary);">Alternative Reporting Channels</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">You can also reach out through our direct engineering channels:</p>
+        <h2
+            style="font-size: 1.6rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: var(--text-primary);">
+            Alternative Reporting Channels</h2>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">You can also reach out through
+            our direct engineering channels:</p>
 
         <div class="bug-channels-grid">
             <div class="channel-card">
@@ -413,12 +444,18 @@
                     <li><a href="index.html">SQL Mastery</a></li>
                 </ul>
             </div>
-<div class="footer-links">
-    <h3>Editors</h3>
-    <ul>
-        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
-    </ul>
-</div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="../Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
             <div class="footer-links">
                 <h3>Support</h3>
                 <ul>
@@ -442,10 +479,6 @@
             const successState = document.getElementById('bugSuccessState');
             const diagDiv = document.getElementById('diagnosticInfo');
             const pageUrlInput = document.getElementById('pageUrl');
-            const channelMail = document.getElementById('directEmailChannel');
-
-            // Protected recipient address (decoded only at client action runtime)
-            const getRecipient = () => atob('bXJpaW5hbEBpY2xvdWQuY29t');
 
             // 1. Auto-detect source page from URL parameter or document.referrer
             const urlParams = new URLSearchParams(window.location.search);
@@ -456,7 +489,7 @@
                 try {
                     const refUrl = new URL(document.referrer);
                     pageUrlInput.value = refUrl.pathname;
-                } catch(e) {}
+                } catch (e) { }
             }
 
             // 2. Build system diagnostics string
@@ -479,7 +512,7 @@
 
                 const subject = encodeURIComponent(`[EDMITH Bug Report] ${severity.split('-')[0].trim()}: ${title}`);
                 const body = encodeURIComponent(
-`EDMITH Bug & Defect Report
+                    `EDMITH Bug & Defect Report
 =======================================
 Reporter Name: ${name}
 Reporter Email: ${email}
@@ -502,20 +535,25 @@ ${diagString}
 =======================================`
                 );
 
-                return `mailto:${getRecipient()}?subject=${subject}&body=${body}`;
+                const recipient = atob('bXJpaW5hbEBpY2xvdWQuY29t');
+                return `mailto:${recipient}?subject=${subject}&body=${body}`;
             }
 
             // 4. Manual Mailto button click
             if (mailtoBtn) {
                 mailtoBtn.addEventListener('click', () => {
-                    window.location.href = buildMailtoLink();
+                    const mailtoUrl = buildMailtoLink();
+                    window.location.href = mailtoUrl;
                 });
             }
 
-            if (channelMail) {
-                channelMail.addEventListener('click', (e) => {
+            // Direct email link click
+            const emailUsBtn = document.getElementById('directEmailChannel');
+            if (emailUsBtn) {
+                emailUsBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.location.href = `mailto:${getRecipient()}?subject=[Bug%20Report]%20EDMITH%20Platform`;
+                    const recipient = atob('bXJpaW5hbEBpY2xvdWQuY29t');
+                    window.location.href = `mailto:${recipient}?subject=[Bug%20Report]%20EDMITH%20Platform`;
                 });
             }
 
@@ -571,17 +609,15 @@ ${diagString}
                         successState.style.display = "block";
                         document.getElementById('summaryTicketTitle').innerHTML = `<strong>Summary:</strong> ${title}`;
                         document.getElementById('summaryTicketSeverity').innerHTML = `<strong>Severity:</strong> ${severity}`;
-                        
+
                         // Scroll card into view
                         document.getElementById('bugPortalCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
                     } catch (err) {
                         console.warn('Direct API submission encountered network error, invoking mailto fallback:', err);
-                        // Fallback: If network/adblocker blocks the API, open the user's email client directly
                         const mailtoUrl = buildMailtoLink();
                         window.location.href = mailtoUrl;
 
-                        // Also reveal success view
                         form.style.display = "none";
                         successState.style.display = "block";
                         document.getElementById('summaryTicketTitle').innerHTML = `<strong>Summary:</strong> ${title}`;
@@ -596,4 +632,5 @@ ${diagString}
         });
     </script>
 </body>
+
 </html>

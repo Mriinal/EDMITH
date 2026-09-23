@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH SQL Assessment Hub — Practice MCQ and Coding tests across Easy, Medium, and Hard difficulty rounds.">
+    <title>SQL Tests &amp; Assessments | EDMITH</title>
+
+    <script>
+        (function(){
+            const t = localStorage.getItem('edmith-theme');
+            if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/test.css">
+
+    <style>
+        .test-section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .test-tier-row {
+            margin-top: 1.5rem;
+        }
+        .test-tier-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 0.5rem;
+        }
+        .test-rounds-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .round-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .round-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(121, 63, 224, 0.15);
+        }
+        .round-card.is-locked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .round-card .round-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+            margin-bottom: 0.35rem;
+        }
+        .round-card .round-meta {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.85rem;
+        }
+        .round-card .round-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--accent);
+            color: #fff;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .eligibility-status-banner {
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        .eligibility-unlocked {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: #10b981;
+        }
+        .eligibility-locked {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            color: #d97706;
+        }
+        @media (max-width: 900px) {
+            .test-rounds-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 540px) {
+            .test-rounds-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header detail-header">
+        <nav class="navbar">
+            <a class="logo" href="../../index.html">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../course.html">Courses</a></li>
+                <li><a href="../index.html">SQL Mastery</a></li>
+                <li><a href="../../Leaderboard.html">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button aria-label="Toggle Navigation Menu" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="sql-tests-index">
+        <div class="sql-tests-heading">
+            <div class="lesson-breadcrumbs"><a href="../index.html">SQL Mastery</a> &gt; <span>Module 4: Assessments</span></div>
+            <h1>Module 4: SQL Tests &amp; Assessments</h1>
+            <p>Challenge yourself with timed multiple-choice assessments and interactive database coding examinations.</p>
+        </div>
+
+        <!-- Course Progress Eligibility Status -->
+        <div id="eligibilityBanner" class="eligibility-status-banner eligibility-locked">
+            <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <i class="fas fa-circle-notch fa-spin" style="font-size: 1.4rem;" id="eligibilityIcon"></i>
+                <div>
+                    <strong id="eligibilityTitle">Checking Course Progress Eligibility...</strong>
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);" id="eligibilityDesc">
+                        Users must complete at least 15% of the course to unlock tests.
+                    </div>
+                </div>
+            </div>
+            <a href="../index.html" class="btn-enroll" id="eligibilityActionBtn" style="padding: 8px 16px; font-size: 0.85rem;">
+                Continue Course
+            </a>
+        </div>
+
+        <!-- ============================================================
+             SECTION 1: MCQ TESTS (3 Difficulties x 5 Rounds)
+        ============================================================ -->
+        <section class="test-section-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="font-size: 1.6rem; margin-bottom: 0.35rem;"><i class="fas fa-list-check" style="color: var(--accent);"></i> Section 1: SQL MCQ Assessments</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                        15 questions per test with a 30-second timer per question. Questions never repeat between rounds.
+                    </p>
+                </div>
+                <span class="sql-category"><i class="fas fa-brain"></i> Theory &amp; Concepts</span>
+            </div>
+
+            <!-- Easy MCQ Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #10b981; font-size: 1.1rem;"><i class="fas fa-seedling"></i> Easy Level</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(1 Mark per correct answer)</span>
+                    </div>
+                    <span class="sql-difficulty">15 Questions / Round</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="sql_basics.html?level=easy&round=1" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 1</div>
+                        <div class="round-meta">Questions 1–15 · 15 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=easy&round=2" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 2</div>
+                        <div class="round-meta">Questions 16–30 · 15 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=easy&round=3" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 3</div>
+                        <div class="round-meta">Questions 31–45 · 15 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=easy&round=4" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 4</div>
+                        <div class="round-meta">Questions 46–60 · 15 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=easy&round=5" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 5</div>
+                        <div class="round-meta">Questions 61–75 · 15 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Medium MCQ Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #3b82f6; font-size: 1.1rem;"><i class="fas fa-chart-simple"></i> Medium Level</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(3 Marks per correct answer)</span>
+                    </div>
+                    <span class="sql-difficulty">15 Questions / Round</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="sql_basics.html?level=medium&round=1" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 1</div>
+                        <div class="round-meta">Questions 101–115 · 45 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=medium&round=2" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 2</div>
+                        <div class="round-meta">Questions 116–130 · 45 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=medium&round=3" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 3</div>
+                        <div class="round-meta">Questions 131–145 · 45 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=medium&round=4" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 4</div>
+                        <div class="round-meta">Questions 146–160 · 45 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=medium&round=5" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 5</div>
+                        <div class="round-meta">Questions 161–175 · 45 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hard MCQ Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #ef4444; font-size: 1.1rem;"><i class="fas fa-fire"></i> Hard Level</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(6 Marks per correct answer)</span>
+                    </div>
+                    <span class="sql-difficulty">15 Questions / Round</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="sql_basics.html?level=hard&round=1" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 1</div>
+                        <div class="round-meta">Questions 201–215 · 90 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=hard&round=2" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 2</div>
+                        <div class="round-meta">Questions 216–230 · 90 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=hard&round=3" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 3</div>
+                        <div class="round-meta">Questions 231–245 · 90 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=hard&round=4" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 4</div>
+                        <div class="round-meta">Questions 246–260 · 90 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                    <a href="sql_basics.html?level=hard&round=5" class="round-card test-launch-link">
+                        <div class="round-title">MCQ Test 5</div>
+                        <div class="round-meta">Questions 261–275 · 90 Marks</div>
+                        <span class="round-btn">Start <i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             SECTION 2: CODING TESTS (3 Difficulties x 5 Rounds)
+        ============================================================ -->
+        <section class="test-section-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="font-size: 1.6rem; margin-bottom: 0.35rem;"><i class="fas fa-laptop-code" style="color: var(--accent);"></i> Section 2: SQL Coding Examinations</h2>
+                    <p style="color: var(--text-secondary); font-size: 0.92rem;">
+                        Interactive in-browser query execution and test-case verification. Evaluated against real relational banking tables.
+                    </p>
+                </div>
+                <span class="sql-category"><i class="fas fa-terminal"></i> Hands-on Coding</span>
+            </div>
+
+            <!-- Easy Coding Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #10b981; font-size: 1.1rem;"><i class="fas fa-code"></i> Easy Coding</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(3 Marks per question · 5 Problems)</span>
+                    </div>
+                    <span class="sql-difficulty">20 Min Timer · 15 Marks</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="coding_test.html?level=easy&round=1" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 1</div>
+                        <div class="round-meta">5 Problems · 15 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=easy&round=2" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 2</div>
+                        <div class="round-meta">5 Problems · 15 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=easy&round=3" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 3</div>
+                        <div class="round-meta">5 Problems · 15 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=easy&round=4" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 4</div>
+                        <div class="round-meta">5 Problems · 15 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=easy&round=5" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 5</div>
+                        <div class="round-meta">5 Problems · 15 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Medium Coding Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #3b82f6; font-size: 1.1rem;"><i class="fas fa-code"></i> Medium Coding</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(6 Marks per question · 3 Problems)</span>
+                    </div>
+                    <span class="sql-difficulty">20 Min Timer · 18 Marks</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="coding_test.html?level=medium&round=1" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 1</div>
+                        <div class="round-meta">3 Problems · 18 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=medium&round=2" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 2</div>
+                        <div class="round-meta">3 Problems · 18 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=medium&round=3" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 3</div>
+                        <div class="round-meta">3 Problems · 18 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=medium&round=4" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 4</div>
+                        <div class="round-meta">3 Problems · 18 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=medium&round=5" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 5</div>
+                        <div class="round-meta">3 Problems · 18 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hard Coding Rounds -->
+            <div class="test-tier-row">
+                <div class="test-tier-heading">
+                    <div>
+                        <strong style="color: #ef4444; font-size: 1.1rem;"><i class="fas fa-code"></i> Hard Coding</strong>
+                        <span style="font-size: 0.82rem; color: var(--text-secondary); margin-left: 0.5rem;">(12 Marks per question · 2 Problems)</span>
+                    </div>
+                    <span class="sql-difficulty">25 Min Timer · 24 Marks</span>
+                </div>
+                <div class="test-rounds-grid">
+                    <a href="coding_test.html?level=hard&round=1" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 1</div>
+                        <div class="round-meta">2 Problems · 24 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=hard&round=2" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 2</div>
+                        <div class="round-meta">2 Problems · 24 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=hard&round=3" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 3</div>
+                        <div class="round-meta">2 Problems · 24 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=hard&round=4" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 4</div>
+                        <div class="round-meta">2 Problems · 24 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                    <a href="coding_test.html?level=hard&round=5" class="round-card test-launch-link">
+                        <div class="round-title">Coding Test 5</div>
+                        <div class="round-meta">2 Problems · 24 Marks</div>
+                        <span class="round-btn">Code <i class="fas fa-code"></i></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dedicated Leaderboard CTA -->
+        <section style="text-align: center; margin: 3rem 0; padding: 2.5rem; background: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--card-border);">
+            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 0.5rem;"><i class="fas fa-trophy"></i></div>
+            <h2 style="margin-bottom: 0.5rem;">Official EDMITH Leaderboard</h2>
+            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem;">
+                Compete with fellow engineers. Points earned from both MCQ tests and Coding examinations combine into your overall ranking.
+            </p>
+            <a href="../../Leaderboard.html" class="btn-enroll" style="padding: 12px 28px; font-size: 1rem;">
+                <i class="fas fa-medal"></i> View All Rankings
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Reusable Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../index.html#home">Home</a></li>
+                    <li><a href="../../course.html">All Courses</a></li>
+                    <li><a href="../index.html">SQL Mastery</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="../../Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="../../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../../index.html#contact">Help Center</a></li>
+                    <li><a href="../../index.html#contact">Contact Us</a></li>
+                    <li><a href="../../report-bug.html" class="report-bug-link">Report a Bug</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../javascript/auth-modal.js"></script>
+    <script src="../../javascript/script.js"></script>
+    <script>
+    (async function () {
+        'use strict';
+
+        const banner = document.getElementById('eligibilityBanner');
+        const icon = document.getElementById('eligibilityIcon');
+        const title = document.getElementById('eligibilityTitle');
+        const desc = document.getElementById('eligibilityDesc');
+        const actionBtn = document.getElementById('eligibilityActionBtn');
+        const links = document.querySelectorAll('.test-launch-link');
+
+        // Check authentication & course eligibility
+        const eligibility = await window.EdmithProgress.checkTestEligibility('sql_mastery');
+
+        if (!eligibility.user) {
+            banner.className = 'eligibility-status-banner eligibility-locked';
+            icon.className = 'fas fa-lock';
+            title.textContent = 'Sign In Required to Unlock Tests';
+            desc.textContent = 'Please log in to your EDMITH account to check your course eligibility and participate in tests.';
+            actionBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i> Sign In';
+            actionBtn.href = '#';
+            actionBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.EdmithAuthModal.show({ returnTo: window.location.href });
+            });
+
+            // Intercept test launch links
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.EdmithAuthModal.show({ returnTo: link.href });
+                });
+            });
+
+        } else if (!eligibility.eligible) {
+            banner.className = 'eligibility-status-banner eligibility-locked';
+            icon.className = 'fas fa-lock';
+            title.textContent = `Course Incomplete (${eligibility.percentage}% Completed)`;
+            desc.textContent = `You have completed ${eligibility.completedCount} of ${eligibility.totalLessons} lessons. You must reach at least 15% to take tests.`;
+            actionBtn.innerHTML = '<i class="fas fa-book-open"></i> Continue Course';
+            actionBtn.href = `../${eligibility.nextLessonFile}`;
+
+            // Warn on link click
+            links.forEach(link => {
+                link.classList.add('is-locked');
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert(`Complete at least 15% of the course before starting this test. Current progress: ${eligibility.percentage}%.`);
+                    window.location.href = `../${eligibility.nextLessonFile}`;
+                });
+            });
+
+        } else {
+            banner.className = 'eligibility-status-banner eligibility-unlocked';
+            icon.className = 'fas fa-unlock';
+            title.textContent = `Tests Unlocked! (${eligibility.percentage}% Course Completed)`;
+            desc.textContent = `Congratulations, ${eligibility.user.email}! You are eligible to take both MCQ and Coding tests.`;
+            actionBtn.innerHTML = '<i class="fas fa-trophy"></i> View Leaderboard';
+            actionBtn.href = '../../Leaderboard.html';
+        }
+
+    })();
+    </script>
+</body>
+</html>

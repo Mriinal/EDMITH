@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -6,6 +6,17 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Module 3: SQL Operators Reference - Master arithmetic, comparison, logical, and string operators in standard SQL on EDMITH." name="description"/>
 <title>SQL Operators Reference - EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/sql/operators.html">
+    <meta name="robots" content="index,follow">
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/sql/operators.html">
+    <meta property="og:title" content="SQL Operators Reference - EDMITH">
+    <meta property="og:description" content="Module 3: SQL Operators Reference - Master arithmetic, comparison, logical, and string operators in standard SQL on EDMITH.">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SQL Operators Reference - EDMITH">
+    <meta name="twitter:description" content="Module 3: SQL Operators Reference - Master arithmetic, comparison, logical, and string operators in standard SQL on EDMITH.">
 <!-- Prevent theme flicker before paint -->
 <script>
         (function() {
@@ -137,8 +148,27 @@
 <ul>
 <li><a href="wildcards.html"><i class="fas fa-percent"></i> SQL Wildcards Reference</a></li>
 <li class="active"><a href="operators.html"><i class="fas fa-percentage"></i> SQL Operators Reference</a></li>
+                        <li><a href="functions.html"><i class="fas fa-cube"></i> SQL Functions Reference</a></li>
 <li><a href="keywords.html"><i class="fas fa-book"></i> SQL Keywords Dictionary</a></li>
 <li><a href="acid-properties.html"><i class="fas fa-shield-alt"></i> ACID Properties</a></li>
+</ul>
+</div>
+</div>
+<!-- Module 4: Assessments -->
+<div class="sidebar-module-group collapsed" data-module="module-4">
+<div aria-controls="mod4-list" aria-expanded="false" class="sidebar-module-header" role="button" tabindex="0">
+<div class="module-header-left">
+<span class="module-hamburger" title="Toggle Module 4 Menu"><i class="fas fa-bars"></i></span>
+<span class="module-title">Module 4: Assessments</span>
+</div>
+<i class="fas fa-chevron-down module-chevron"></i>
+</div>
+<div class="sidebar-module-list" id="mod4-list">
+<ul>
+<li><a href="tests/index.html"><i class="fas fa-clipboard-check"></i> All Assessments Hub</a></li>
+<li><a href="tests/sql_basics.html"><i class="fas fa-list-check"></i> SQL Basics MCQ Test</a></li>
+<li><a href="tests/coding_test.html"><i class="fas fa-code"></i> SQL Coding Test</a></li>
+<li><a href="../Leaderboard.html"><i class="fas fa-trophy"></i> SQL Leaderboard</a></li>
 </ul>
 </div>
 </div>
@@ -189,7 +219,7 @@
 </div>
 <span class="terminal-title">SQL Syntax Grammar Blueprint</span>
 <div class="terminal-header-actions">
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'><\/i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'><\/i> Copy', 2000);" title="Copy SQL Grammar"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- 1. Arithmetic Operators (+, -, *, /, %)</span>
@@ -233,7 +263,7 @@
 </div>
 <h2>Interactive Query Terminals</h2>
 <p>Explore production-grade implementations of SQL operators running against active relational tables (<code>loans</code>, <code>employees</code>, <code>customers</code>, and <code>branches</code>):</p>
-<!-- Query 1: Arithmetic Operators & Modulo -->
+<!-- Query 1: Arithmetic Operators &amp; Modulo -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -285,7 +315,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 2: Comparison & Range Predicates -->
+<!-- Query 2: Comparison &amp; Range Predicates -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -296,7 +326,7 @@
 <span class="terminal-title">Query 2: Comparison &amp; Range Evaluation</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'><\/i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'><\/i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- Comparison &amp; Range Operators: &gt;=, &lt;&gt;, BETWEEN, and IN</span>
@@ -337,7 +367,7 @@
 <span><strong>Interactive Practice:</strong> Click <strong>Try in Editor</strong> above to run this query live against the active database!</span>
 </div>
 </div>
-<!-- Query 3: String Concatenation & Null Handling -->
+<!-- Query 3: String Concatenation &amp; Null Handling -->
 <div class="code-terminal">
 <div class="terminal-header">
 <div class="terminal-dots">
@@ -348,7 +378,7 @@
 <span class="terminal-title">Query 3: String Concatenation &amp; Conditional Null Safe Logic</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'><\/i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'><\/i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- String Concatenation (||) and NULL-Safe Logic</span>
@@ -399,7 +429,7 @@
 <span class="terminal-title">Query 4: Compound Boolean Logic (AND, OR, NOT)</span>
 <div class="terminal-header-actions">
 <button class="try-editor-btn" onclick="openEdmithEditor(this)" title="Open and practice in Interactive SQL Editor"><i class="fas fa-play"></i> Try in Editor</button>
-<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='&lt;i class=\'fas fa-check\'&gt;&lt;/i&gt; Copied!'; setTimeout(() =&gt; this.innerHTML='&lt;i class=\'far fa-copy\'&gt;&lt;/i&gt; Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.closest('.code-terminal').querySelector('code').innerText); this.innerHTML='<i class=\'fas fa-check\'><\/i> Copied!'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'><\/i> Copy', 2000);" title="Copy SQL"><i class="far fa-copy"></i> Copy</button>
 </div>
 </div>
 <pre><code><span class="code-comment">-- Logical Operators: Combined Compound Predicates (AND, OR, NOT)</span>
@@ -598,7 +628,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Next Step:</strong> Explore the comprehensive keyword vocabulary in the <a href="keywords.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Keywords Dictionary</a>.</span>
+<span><strong>Next Step:</strong> Explore the complete SQL function reference in the <a href="functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Functions Reference</a>.</span>
 </li>
 </ul>
 </div>
@@ -617,7 +647,7 @@
 </li>
 <li>
 <i class="fas fa-check-circle"></i>
-<span><strong>Next Chapter:</strong> Complete the curriculum with the comprehensive <a href="keywords.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Keywords Dictionary →</a></span>
+<span><strong>Next Chapter:</strong> Explore the complete reference with the <a href="functions.html" style="color: var(--accent); font-weight: 700; text-decoration: underline;">SQL Functions Reference 📖</a></span>
 </li>
 </ul>
 </div>
@@ -635,8 +665,8 @@
 </button>
 </div>
 <div class="lesson-nav-next">
-<a class="btn-enroll" href="keywords.html" title="Next: SQL Keywords Dictionary">
-<span class="btn-text">Next: SQL Keywords Dictionary</span> <i class="fas fa-arrow-right"></i>
+<a class="btn-enroll" href="functions.html" title="Next: SQL Functions Reference">
+<span class="btn-text">Next: SQL Functions Reference</span> <i class="fas fa-arrow-right"></i>
 </a>
 </div>
 </div>

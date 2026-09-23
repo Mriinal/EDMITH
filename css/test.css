@@ -1,0 +1,748 @@
+/* ============================================================================
+   EDMITH SQL & Assessment Stylesheet — css/test.css
+   Covers MCQ assessments, Coding examination workstations, and Assessment hub.
+   ============================================================================ */
+
+/* --- Base Layout --- */
+.sql-test-page,
+.sql-tests-index {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 110px 24px 70px;
+    min-height: 100vh;
+}
+
+.sql-test-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.sql-test-header {
+    padding: 2rem 2rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.sql-test-breadcrumb,
+.lesson-breadcrumbs {
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    margin-bottom: 0.65rem;
+}
+
+.sql-test-breadcrumb a,
+.lesson-breadcrumbs a {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.sql-test-header h1,
+.sql-tests-heading h1 {
+    font-size: clamp(1.55rem, 3vw, 2.2rem);
+    margin-bottom: 0.4rem;
+}
+
+.sql-test-header p,
+.sql-tests-heading p {
+    color: var(--text-secondary);
+}
+
+.sql-test-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-weight: 700;
+}
+
+.sql-test-status #timer {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--accent);
+}
+
+.sql-test-status #timer.timer-warning {
+    color: #ef4444;
+}
+
+.sql-progress {
+    height: 6px;
+    background: var(--bg-secondary);
+}
+
+.sql-progress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--accent);
+    transition: width 0.2s ease;
+}
+
+.sql-question-card {
+    padding: 2rem;
+}
+
+.sql-question-meta {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+}
+
+.sql-category,
+.sql-difficulty {
+    font-size: 0.76rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    padding: 0.35rem 0.7rem;
+    background: var(--accent-subtle);
+    color: var(--accent);
+}
+
+.sql-difficulty {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.sql-question-card h2 {
+    font-size: clamp(1.15rem, 2.3vw, 1.45rem);
+    line-height: 1.55;
+    margin-bottom: 1.5rem;
+}
+
+.sql-question-card fieldset {
+    border: 0;
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Fully Clickable Answer Option Cards --- */
+.sql-option {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    color: var(--text-primary);
+    background: var(--card-bg);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+    position: relative;
+}
+
+.sql-option:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    transform: translateY(-1px);
+}
+
+.sql-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--accent);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.sql-option:has(input:checked),
+.sql-option.is-selected {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    box-shadow: 0 0 0 2px var(--accent-subtle);
+}
+
+.sql-option-marker {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    flex: 0 0 32px;
+    background: var(--bg-secondary);
+    transition: all 0.2s ease;
+}
+
+.sql-option:has(input:checked) .sql-option-marker,
+.sql-option.is-selected .sql-option-marker {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.sql-option-text {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.sql-test-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 2rem 2rem;
+}
+
+.sql-test-alert {
+    margin: 0 2rem 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-md);
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    font-size: 0.9rem;
+}
+
+/* --- Result Modal Overlay — Clickability Bug Fix --- */
+.sql-result-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(10, 5, 20, 0.75);
+    backdrop-filter: blur(6px);
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease;
+}
+
+.sql-result-overlay.is-visible {
+    display: flex !important;
+    opacity: 1;
+    pointer-events: auto !important;
+}
+
+.sql-result-overlay[hidden],
+.sql-result-overlay[aria-hidden="true"] {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+.sql-result-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 620px;
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+    transform: translateY(12px) scale(0.98);
+    transition: transform 0.18s ease;
+}
+
+.sql-result-overlay.is-visible .sql-result-modal {
+    transform: none;
+}
+
+.sql-result-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.sql-result-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.sql-result-modal h2 {
+    margin-bottom: 0.25rem;
+}
+
+.sql-result-exam-name {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.sql-result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.sql-result-grid > div {
+    padding: 0.9rem 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.sql-result-grid span {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+.sql-result-grid strong {
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.sql-save-status {
+    min-height: 1.4em;
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    margin: 1rem 0;
+}
+
+.sql-result-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.sql-result-actions > * {
+    flex: 1;
+    text-align: center;
+}
+
+/* --- Level & Round Setup Screen --- */
+.sql-level-screen {
+    padding: 2.25rem;
+}
+
+.sql-level-screen h1 {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin-bottom: 0.5rem;
+}
+
+.sql-level-screen > p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.sql-level-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.sql-level-card {
+    appearance: none;
+    text-align: left;
+    border: 1px solid var(--card-border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.sql-level-card strong {
+    display: block;
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+}
+
+.sql-level-card span {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.sql-level-card:hover,
+.sql-level-card:focus-visible {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+    outline: none;
+}
+
+.sql-level-card.is-selected {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    box-shadow: 0 0 0 2px var(--accent-subtle);
+}
+
+.sql-start-btn {
+    min-width: 170px;
+}
+
+/* --- Coding Examination Split-Workstation --- */
+.coding-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.coding-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    min-height: calc(100vh - 200px);
+    margin-bottom: 2rem;
+}
+
+.coding-pane {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.coding-pane-header {
+    padding: 1rem 1.25rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+
+.coding-pane-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.coding-editor-wrap {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.coding-textarea {
+    width: 100%;
+    flex: 1;
+    min-height: 280px;
+    padding: 1.25rem;
+    background: #0f172a;
+    color: #f8fafc;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.coding-editor-actions {
+    padding: 0.85rem 1.25rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.coding-output-panel {
+    padding: 1rem 1.25rem;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--card-border);
+    min-height: 140px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.status-idle {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+.status-passed {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.status-failed {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.q-pills {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.q-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    display: grid;
+    place-items: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.q-pill:hover,
+.q-pill.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.q-pill.passed {
+    border-color: #10b981;
+    color: #10b981;
+}
+
+.q-pill.active.passed {
+    background: #10b981;
+    color: #fff;
+}
+
+.paste-alert-banner {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.coding-table-preview {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+}
+
+.coding-table-preview th,
+.coding-table-preview td {
+    padding: 6px 10px;
+    border: 1px solid var(--card-border);
+    text-align: left;
+}
+
+.coding-table-preview th {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/* --- Assessment Hub Rounds Grid --- */
+.test-section-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.test-tier-row {
+    margin-top: 1.5rem;
+}
+
+.test-tier-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 0.5rem;
+}
+
+.test-rounds-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.round-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.round-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.round-card .round-num {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin-bottom: 0.35rem;
+}
+
+.round-card .round-meta {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.round-card .round-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.eligibility-status-banner {
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.eligibility-unlocked {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: #10b981;
+}
+
+.eligibility-locked {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    color: #d97706;
+}
+
+/* --- Accessibility & Responsive Rules --- */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 900px) {
+    .coding-layout {
+        grid-template-columns: 1fr;
+    }
+    .test-rounds-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .sql-test-header {
+        flex-direction: column;
+    }
+    .sql-test-status {
+        align-items: flex-start;
+    }
+    .sql-test-actions {
+        flex-direction: column;
+    }
+    .sql-test-actions > * {
+        width: 100%;
+        text-align: center;
+    }
+    .sql-result-grid {
+        grid-template-columns: 1fr;
+    }
+    .sql-test-page,
+    .sql-tests-index {
+        padding: 95px 14px 45px;
+    }
+    .sql-question-card {
+        padding: 1.25rem;
+    }
+    .sql-test-header {
+        padding: 1.25rem;
+    }
+    .sql-test-actions {
+        padding: 1rem 1.25rem 1.25rem;
+    }
+    .sql-result-modal {
+        padding: 1.4rem;
+    }
+    .sql-level-screen {
+        padding: 1.25rem;
+    }
+    .sql-level-grid {
+        grid-template-columns: 1fr;
+    }
+    .sql-start-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 540px) {
+    .test-rounds-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SQL Basics MCQ Test — Choose your difficulty and round to answer 15 non-repeating timed questions on EDMITH.">
+    <title>SQL Basics MCQ Test - EDMITH</title>
+
+    <script>
+        (function(){
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/test.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header detail-header">
+        <nav class="navbar">
+            <a class="logo" href="../../index.html">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html#home">Home</a></li>
+                <li><a href="../../course.html">Courses</a></li>
+                <li><a href="../index.html">SQL Mastery</a></li>
+                <li><a href="../../Leaderboard.html">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <button aria-label="Toggle Navigation Menu" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="sql-test-page">
+        
+        <!-- Eligibility / Incomplete Course Warning -->
+        <div id="courseEligibilityAlert" class="sql-test-card" style="display: none; padding: 2.5rem; text-align: center; margin-bottom: 2rem;">
+            <div style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;"><i class="fas fa-lock"></i></div>
+            <h2 style="margin-bottom: 0.5rem;">Course Completion Required</h2>
+            <p style="color: var(--text-secondary); max-width: 540px; margin: 0 auto 1.5rem;" id="eligibilityMessage">
+                You must complete at least 15% of the SQL course before starting tests.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="../index.html" class="btn-enroll" id="continueCourseBtn"><i class="fas fa-book-open"></i> Continue Course</a>
+                <a href="index.html" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Tests</a>
+            </div>
+        </div>
+
+        <section class="sql-test-card" id="testCardContainer" aria-labelledby="testTitle">
+            
+            <!-- Setup & Round Selection Screen -->
+            <div id="levelScreen" class="sql-level-screen">
+                <div class="sql-test-breadcrumb"><a href="../index.html">SQL Mastery</a> &gt; <a href="index.html">SQL Tests</a> &gt; MCQ Assessment</div>
+                <h1 id="testTitle">SQL BASICS MCQ TEST</h1>
+                <p>Choose your difficulty level and round. Each test presents 15 unique timed questions without repetition across rounds.</p>
+                
+                <div id="examAlert" class="sql-test-alert" role="alert" hidden></div>
+
+                <h3 style="font-size: 1.05rem; margin: 1.5rem 0 0.75rem;">1. Select Difficulty</h3>
+                <div class="sql-level-grid" role="radiogroup" aria-label="Choose exam level">
+                    <button type="button" class="sql-level-card" data-level="easy" aria-pressed="false">
+                        <strong>Easy</strong>
+                        <span>1 Mark/Question · Fundamental syntax &amp; filters</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-level="medium" aria-pressed="false">
+                        <strong>Medium</strong>
+                        <span>3 Marks/Question · Grouping, Joins &amp; Subqueries</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-level="hard" aria-pressed="false">
+                        <strong>Hard</strong>
+                        <span>6 Marks/Question · Window functions, ACID &amp; optimization</span>
+                    </button>
+                </div>
+
+                <h3 style="font-size: 1.05rem; margin: 1.5rem 0 0.75rem;">2. Select Round</h3>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem;" id="roundSelector">
+                    <button type="button" class="sql-level-card is-selected" data-round="1" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 1</strong>
+                        <span>Questions 1–15</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="2" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 2</strong>
+                        <span>Questions 16–30</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="3" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 3</strong>
+                        <span>Questions 31–45</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="4" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 4</strong>
+                        <span>Questions 46–60</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="5" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 5</strong>
+                        <span>Questions 61–75</span>
+                    </button>
+                </div>
+
+                <button class="btn-enroll sql-start-btn" id="startButton" type="button" disabled>
+                    <i class="fas fa-play"></i> Start Test
+                </button>
+            </div>
+
+            <!-- Active Exam Screen -->
+            <div id="examScreen" hidden>
+                <div class="sql-test-header">
+                    <div>
+                        <div class="sql-test-breadcrumb"><a href="../index.html">SQL Mastery</a> &gt; <a href="index.html">SQL Tests</a></div>
+                        <h1>SQL BASICS MCQ TEST</h1>
+                        <p id="levelLabel">Level: —</p>
+                    </div>
+                    <div class="sql-test-status">
+                        <span id="questionCounter">Question 1 of 15</span>
+                        <span id="timer" role="timer" aria-live="polite">00:30</span>
+                    </div>
+                </div>
+
+                <div class="sql-progress" aria-hidden="true">
+                    <span id="progressBar"></span>
+                </div>
+
+                <form id="questionForm" novalidate>
+                    <div id="questionContent"></div>
+                    <div class="sql-test-actions">
+                        <a class="btn-outline" href="index.html"><i class="fas fa-arrow-left"></i> Exit Test</a>
+                        <button class="btn-enroll" id="nextButton" type="submit">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Result Modal -->
+    <div class="sql-result-overlay" id="resultModal" hidden aria-hidden="true">
+        <div class="sql-result-modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+            <button class="sql-result-close" id="resultClose" type="button" aria-label="Close result"><i class="fas fa-times"></i></button>
+            <div class="sql-result-icon"><i class="fas fa-trophy"></i></div>
+            <h2 id="resultTitle">🎉 Test Completed!</h2>
+            <p class="sql-result-exam-name">SQL Basics Test · <span id="resultLevel">Level: —</span></p>
+            <div class="sql-result-grid">
+                <div><span>Score</span><strong id="resultScore">0 / 15</strong></div>
+                <div><span>Percentage</span><strong id="resultPercentage">0%</strong></div>
+                <div><span>Rating</span><strong id="resultRating">Below Average</strong></div>
+                <div><span>Correct Answers</span><strong id="resultCorrect">0</strong></div>
+                <div><span>Incorrect Answers</span><strong id="resultIncorrect">0</strong></div>
+                <div><span>Unanswered</span><strong id="resultUnanswered">0</strong></div>
+                <div><span>Time Taken</span><strong id="resultTime">0:00</strong></div>
+            </div>
+            <p class="sql-save-status" id="saveStatus" role="status"></p>
+            <div class="sql-result-actions">
+                <button class="btn-enroll" id="retryButton" type="button"><i class="fas fa-redo"></i> Retry Test</button>
+                <a class="btn-outline" href="index.html"><i class="fas fa-list"></i> Back to SQL Tests</a>
+                <a class="btn-outline" href="../../Leaderboard.html"><i class="fas fa-trophy"></i> View Leaderboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reusable Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../index.html#home">Home</a></li>
+                    <li><a href="../../course.html">All Courses</a></li>
+                    <li><a href="../index.html">SQL Mastery</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="../../Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="../../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../../index.html#contact">Help Center</a></li>
+                    <li><a href="../../index.html#contact">Contact Us</a></li>
+                    <li><a href="../../report-bug.html" class="report-bug-link">Report a Bug</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../javascript/auth-modal.js"></script>
+    <script src="../../javascript/script.js"></script>
+    <script src="../../javascript/sql-basic-questions.js"></script>
+    <script src="../../javascript/sql-exam-engine.js"></script>
+    <script src="../../javascript/sql-basics-page.js"></script>
+</body>
+</html>

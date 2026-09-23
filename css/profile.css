@@ -1,0 +1,215 @@
+/**
+ * EDMITH - User Profile Dashboard Stylesheet
+ */
+
+.profile-dashboard {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+}
+
+/* Stats Overview Grid */
+.profile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 860px) {
+    .profile-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.profile-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.icon-purple { background: rgba(121, 63, 224, 0.12); color: #793fe4; }
+.icon-emerald { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.icon-amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+.icon-blue { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+
+.profile-stat-data span {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-stat-data strong {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+/* Difficulty Cards Row */
+.difficulty-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .difficulty-cards-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.diff-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: all 0.2s ease;
+}
+
+.diff-card:hover {
+    border-color: var(--accent);
+}
+
+.diff-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.diff-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+}
+
+.diff-badge.easy { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.diff-badge.medium { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.diff-badge.hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+
+.diff-rank {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.diff-rank.not-attempted {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.diff-details {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.diff-details strong {
+    color: var(--text-primary);
+}
+
+/* Recent Attempts Table */
+.recent-attempts-table-wrap {
+    overflow-x: auto;
+    margin-top: 1rem;
+}
+
+.recent-attempts-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.recent-attempts-table th,
+.recent-attempts-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: left;
+}
+
+.recent-attempts-table th {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.attempt-type-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.attempt-type-badge.mcq { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.attempt-type-badge.coding { background: rgba(121, 63, 224, 0.15); color: #793fe4; }
+
+/* State Placeholders */
+.profile-state-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    max-width: 580px;
+    margin: 40px auto;
+    box-shadow: var(--shadow-md);
+}
+
+.profile-state-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+}
+
+.profile-state-card h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+}
+
+.profile-state-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}

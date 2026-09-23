@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="EDMITH Official Leaderboards — Track rankings across SQL, Python, and Web Development assessments. Combined scores from MCQ and Coding tests.">
+    <title>Leaderboard | EDMITH</title>
+
+    <script>
+        (function () {
+            const t = localStorage.getItem('edmith-theme');
+            if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="course.html">Courses</a></li>
+                <li><a href="sql/index.html">SQL Mastery</a></li>
+                <li><a href="Leaderboard.html" class="active">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button aria-label="Toggle Dark Mode" class="theme-btn" id="themeToggle"><i
+                        class="fas fa-moon"></i></button>
+                <button aria-label="Toggle Navigation Menu" class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="leaderboard-hero">
+            <h1>SQL Leaderboard</h1>
+            <p>
+                Celebrating top learners and data specialists. Rankings are determined by combined scores from timed MCQ
+                assessments and hands-on coding examinations.
+            </p>
+        </section>
+
+        <!-- Subject Switcher -->
+        <div class="subject-tabs-container">
+            <button type="button" class="subject-tab-btn is-active" id="tabSql">
+                <i class="fas fa-database" style="color: #10b981;"></i>
+                <span>SQL &amp; Databases</span>
+            </button>
+            <button type="button" class="subject-tab-btn is-coming-soon" id="tabPython"
+                title="Python tests coming soon">
+                <i class="fab fa-python" style="color: #3b82f6;"></i>
+                <span>Python</span>
+                <span class="badge-soon">Coming Soon</span>
+            </button>
+            <button type="button" class="subject-tab-btn is-coming-soon" id="tabHtml" title="HTML tests coming soon">
+                <i class="fab fa-html5" style="color: #e34c26;"></i>
+                <span>HTML &amp; Web</span>
+                <span class="badge-soon">Coming Soon</span>
+            </button>
+        </div>
+
+        <!-- Leaderboard Table Container -->
+        <div class="leaderboard-container">
+
+            <!-- User's Personal Position Banner -->
+            <div id="userPositionBanner" class="user-position-card" style="display: none;">
+                <div>
+                    <span
+                        style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 800;">
+                        <i class="fas fa-user-tag"></i> Your Current Standings
+                    </span>
+                    <h3 style="margin-top: 0.25rem; font-size: 1.35rem;" id="myPositionTitle">Loading your position...
+                    </h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;" id="myPositionMeta">
+                        Scores calculated from all completed SQL assessment attempts.
+                    </p>
+                </div>
+                <div id="myPositionBadge" style="text-align: right;"></div>
+            </div>
+
+            <!-- Header Controls: Title & Scoring Modal trigger -->
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
+                <h2
+                    style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-trophy" style="color: #f59e0b;"></i> Official Standings
+                </h2>
+                <div>
+                    <button type="button" class="btn-scoring-modal" id="openScoringModalBtn">
+                        <i class="fas fa-circle-question"></i> How scoring works
+                    </button>
+                </div>
+            </div>
+
+            <!-- Leaderboard Table -->
+            <div class="sql-leaderboard-wrap" style="box-shadow: var(--shadow-md);">
+                <table class="sql-leaderboard">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">Rank</th>
+                            <th>Username</th>
+                            <th>MCQ Pts</th>
+                            <th>Coding Pts</th>
+                            <th>Total Score</th>
+                            <th>Accuracy</th>
+                            <th>Tests</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardBody">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                                <i class="fas fa-circle-notch fa-spin"
+                                    style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
+                                Loading official leaderboard standings...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Information Callout -->
+            <div
+                style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-secondary);">
+                <strong><i class="fas fa-scale-balanced"></i> Fair Assessment Rules:</strong>
+                Scores are aggregated solely from completed test attempts recorded in the database. Completed tests with
+                0 marks receive valid rank placement. Unattempted learners display "Not attempted / No rank yet".
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="course.html">All Courses</a></li>
+                    <li><a href="sql/index.html">SQL Mastery</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="index.html#contact">Help Center</a></li>
+                    <li><a href="index.html#contact">Contact Us</a></li>
+                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Grading System Modal -->
+    <div class="edmith-modal-overlay" id="gradingModal" hidden aria-hidden="true">
+        <div class="edmith-modal-card" role="dialog" aria-modal="true" aria-labelledby="gradingModalTitle">
+            <button class="edmith-modal-close" id="closeGradingModalBtn" type="button"
+                aria-label="Close scoring guide"><i class="fas fa-times"></i></button>
+            <div class="edmith-modal-header">
+                <div class="edmith-modal-icon"><i class="fas fa-award"></i></div>
+                <h2 id="gradingModalTitle">Scoring &amp; Grading Rules</h2>
+                <p>Scores are awarded based on assessment question difficulty across MCQ and Coding tests.</p>
+            </div>
+            <div class="scoring-rules-grid">
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge easy">Easy</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 1 Mark / question</div>
+                        <div><strong>Coding:</strong> 3 Marks / problem</div>
+                    </div>
+                    <p>Fundamental syntax, SELECT filters, and basic single-table queries.</p>
+                </div>
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge medium">Medium</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 3 Marks / question</div>
+                        <div><strong>Coding:</strong> 6 Marks / problem</div>
+                    </div>
+                    <p>Aggregate functions, GROUP BY, multi-table JOINs, and subqueries.</p>
+                </div>
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge hard">Hard</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 6 Marks / question</div>
+                        <div><strong>Coding:</strong> 12 Marks / problem</div>
+                    </div>
+                    <p>Window functions, complex CTEs, transactions (ACID), and query optimization.</p>
+                </div>
+            </div>
+            <div class="scoring-modal-footer">
+                <button type="button" class="btn-enroll" id="gotItBtn">Got It</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="javascript/auth-modal.js"></script>
+    <script src="javascript/script.js"></script>
+    <script src="javascript/sql-leaderboard.js"></script>
+    <script src="javascript/leaderboard-page.js"></script>
+</body>
+
+</html>

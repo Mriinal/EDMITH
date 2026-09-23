@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description" content="Edit your EDMITH profile settings and learning preferences.">
+    <title>Edit Profile - EDMITH</title>
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         FIXED HEADER
+    ============================================================ -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../sql/index.html">SQL Mastery</a></li>
+                <li><a href="../Leaderboard.html">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         MAIN EDIT PROFILE AREA
+    ============================================================ -->
+    <main class="auth-main">
+        <div class="auth-container" style="max-width: 580px;">
+
+            <!-- Back to Profile Link -->
+            <a href="profile.html" class="profile-back-link">
+                <i class="fas fa-arrow-left"></i> Back to Profile
+            </a>
+
+            <!-- Loading State -->
+            <div id="editLoading" class="profile-loading">
+                <i class="fas fa-circle-notch fa-spin"></i>
+                <p>Loading profile settings…</p>
+            </div>
+
+            <!-- Edit Card -->
+            <div class="auth-card" id="editCard" style="display: none;">
+
+                <div class="auth-card-header">
+                    <h1 class="auth-card-title">Edit Profile</h1>
+                    <p class="auth-card-subtitle">
+                        Update your personal information and learning preferences.
+                    </p>
+                </div>
+
+                <div id="statusMessage" style="display: none; margin: 0 1.5rem 1rem;"></div>
+
+                <form id="editProfileForm" class="auth-form" novalidate>
+
+                    <div class="auth-form-section">
+
+                        <!-- Name Row -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <!-- First Name -->
+                            <div class="auth-field-group">
+                                <label class="auth-label" for="editFirstName">
+                                    First Name <span class="auth-required">*</span>
+                                </label>
+                                <div class="auth-input-wrap">
+                                    <i class="fas fa-user auth-input-icon"></i>
+                                    <input type="text" id="editFirstName" class="auth-input"
+                                        placeholder="e.g. Mrinal" maxlength="50" required>
+                                </div>
+                                <span class="auth-field-error" id="firstNameError"></span>
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="auth-field-group">
+                                <label class="auth-label" for="editLastName">Last Name</label>
+                                <div class="auth-input-wrap">
+                                    <i class="fas fa-user auth-input-icon"></i>
+                                    <input type="text" id="editLastName" class="auth-input"
+                                        placeholder="e.g. Mishra" maxlength="50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Username (Display & Edit with Case-Insensitivity Check) -->
+                        <div class="auth-field-group">
+                            <label class="auth-label" for="editUsername">
+                                Username <span class="auth-required">*</span>
+                            </label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-at auth-input-icon"></i>
+                                <input type="text" id="editUsername" class="auth-input"
+                                    placeholder="your_username" maxlength="30" required>
+                                <span id="usernameStatus" style="position: absolute; right: 14px; top: 50%; transform: translateY(-50%);"></span>
+                            </div>
+                            <span class="auth-field-error" id="usernameError"></span>
+                        </div>
+
+                        <!-- Email Address (Read-only as per Requirement 5) -->
+                        <div class="auth-field-group">
+                            <label class="auth-label" for="editEmail">Email Address</label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-envelope auth-input-icon"></i>
+                                <input type="email" id="editEmail" class="auth-input" disabled readonly
+                                    style="opacity: 0.75; cursor: not-allowed; background: var(--bg-main);" aria-readonly="true">
+                            </div>
+                            <span class="profile-readonly-note">
+                                <i class="fas fa-lock"></i> Email address is permanently linked to your account and cannot be changed after sign-up.
+                            </span>
+                        </div>
+
+                        <!-- Country -->
+                        <div class="auth-field-group">
+                            <label class="auth-label" for="editCountry">
+                                Country <span class="auth-required">*</span>
+                            </label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-globe auth-input-icon"></i>
+                                <select id="editCountry" class="auth-select" required>
+                                    <option value="">Select your country</option>
+                                    <option value="India">India</option>
+                                    <option value="United States">United States</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="United Arab Emirates">United Arab Emirates</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <span class="auth-field-error" id="countryError"></span>
+                        </div>
+
+                        <!-- Learning Goal -->
+                        <div class="auth-field-group">
+                            <label class="auth-label" for="editGoal">Learning Goal</label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-bullseye auth-input-icon"></i>
+                                <select id="editGoal" class="auth-select">
+                                    <option value="">What is your primary goal?</option>
+                                    <option value="Student">🎓 Student</option>
+                                    <option value="Professional">💼 Professional</option>
+                                    <option value="Career Switch">🚀 Career Switch</option>
+                                    <option value="Curiosity">✨ Curiosity</option>
+                                    <option value="Master SQL & Databases">Master SQL &amp; Databases</option>
+                                    <option value="Learn Python Programming">Learn Python Programming</option>
+                                    <option value="Prepare for Tech Interviews">Prepare for Tech Interviews</option>
+                                    <option value="Build Web Applications">Build Web Applications</option>
+                                    <option value="Upskill for Career Growth">Upskill for Career Growth</option>
+                                    <option value="Academic & College Studies">Academic &amp; College Studies</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Submit section -->
+                    <div class="auth-submit-section" style="padding-top: 1rem;">
+                        <button type="submit" id="saveBtn" class="auth-submit-btn">
+                            <i class="fas fa-floppy-disk"></i>
+                            <span>Save Changes</span>
+                        </button>
+                        <a href="profile.html" class="auth-guest-btn" style="text-align: center; margin-top: 0.5rem;">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="brand-title">EDMITH</div>
+                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../course.html">All Courses</a></li>
+                    <li><a href="../sql/index.html">SQL Mastery</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Leaderboard</h3>
+                <ul>
+                    <li><a href="../Leaderboard.html">Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Editors</h3>
+                <ul>
+                    <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../index.html#contact">Help Center</a></li>
+                    <li><a href="../index.html#contact">Contact Us</a></li>
+                    <li><a href="../report-bug.html" class="report-bug-link">Report a Bug</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         SCRIPTS
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../javascript/script.js"></script>
+    <script>
+        const PROFILE_SUPABASE_URL      = 'https://jnoigbvvxwpvxefunvfc.supabase.co';
+        const PROFILE_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impub2lnYnZ2eHdwdnhlZnVudmZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk3NDkzMjEsImV4cCI6MjEwNTMyNTMyMX0.kg07-fyqAPdnSqs4RxNvzvbD5VhNR8vtFkg-RS5pMnA';
+
+        let supabase = null;
+        try {
+            if (window.supabase && typeof window.supabase.createClient === 'function') {
+                supabase = window.supabase.createClient(PROFILE_SUPABASE_URL, PROFILE_SUPABASE_ANON_KEY, {
+                    auth: {
+                        persistSession: true,
+                        autoRefreshToken: true,
+                        detectSessionInUrl: true
+                    }
+                });
+                window.profileSupabase = supabase;
+            }
+        } catch (e) {
+            console.warn('[EDMITH Edit] Supabase init warning:', e);
+        }
+
+        const loadingEl      = document.getElementById('editLoading');
+        const cardEl         = document.getElementById('editCard');
+        const form           = document.getElementById('editProfileForm');
+        const firstNameEl    = document.getElementById('editFirstName');
+        const lastNameEl     = document.getElementById('editLastName');
+        const usernameEl     = document.getElementById('editUsername');
+        const emailEl        = document.getElementById('editEmail');
+        const countryEl      = document.getElementById('editCountry');
+        const goalEl         = document.getElementById('editGoal');
+        const saveBtn        = document.getElementById('saveBtn');
+        const statusMsg      = document.getElementById('statusMessage');
+        const usernameErrEl  = document.getElementById('usernameError');
+        const usernameStatEl = document.getElementById('usernameStatus');
+
+        let currentUser = null;
+        let originalUsername = '';
+
+        (async function initEdit() {
+            try {
+                if (!supabase) {
+                    if (window.EdmithProgress?.getEdmithSupabaseClient) {
+                        supabase = await window.EdmithProgress.getEdmithSupabaseClient();
+                    }
+                }
+
+                // 1. Instantly check for cached user to prefill without delay
+                const cachedUser = window.EdmithProgress?.getActiveAuthUserSync ? window.EdmithProgress.getActiveAuthUserSync() : null;
+                if (cachedUser) {
+                    currentUser = cachedUser;
+                    const meta = cachedUser.user_metadata || {};
+                    originalUsername = meta.username_display || meta.username || '';
+                    if (firstNameEl) firstNameEl.value = meta.first_name || '';
+                    if (lastNameEl) lastNameEl.value  = meta.last_name || '';
+                    if (usernameEl) usernameEl.value  = originalUsername;
+                    if (emailEl) emailEl.value     = cachedUser.email || meta.email || '';
+                    if (countryEl && meta.country) countryEl.value = meta.country;
+                    if (goalEl && meta.learning_goal) goalEl.value = meta.learning_goal;
+                }
+
+                // 2. Authoritative Supabase auth verification with getSession first (refreshes if needed)
+                let activeUser = null;
+                if (supabase) {
+                    try {
+                        const { data: sessionData } = await supabase.auth.getSession();
+                        if (sessionData && sessionData.session && sessionData.session.user) {
+                            activeUser = sessionData.session.user;
+                        } else {
+                            const { data: userData, error: uErr } = await supabase.auth.getUser();
+                            if (userData && userData.user && !uErr) {
+                                activeUser = userData.user;
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('[EDMITH Edit] Session lookup warning:', e);
+                    }
+                }
+
+                if (activeUser) {
+                    currentUser = activeUser;
+                }
+
+                if (!currentUser) {
+                    if (loadingEl) loadingEl.style.display = 'none';
+                    if (statusMsg) {
+                        statusMsg.className = 'auth-card-banner-msg warning';
+                        statusMsg.innerHTML = '<i class="fas fa-user-lock"></i> Sign in required. Redirecting to login…';
+                        statusMsg.style.display = 'flex';
+                    }
+                    if (cardEl) cardEl.style.display = 'block';
+                    setTimeout(() => {
+                        window.location.href = `login.html?returnTo=${encodeURIComponent(window.location.href)}`;
+                    }, 1000);
+                    return;
+                }
+
+                let meta = currentUser.user_metadata || {};
+
+                // 3. Fetch latest details from public.users table if available (by auth_user_id or email)
+                if (supabase && currentUser) {
+                    try {
+                        let query = supabase.from('users').select('*');
+                        if (currentUser.id && currentUser.email) {
+                            query = query.or(`auth_user_id.eq.${currentUser.id},email.eq.${currentUser.email}`);
+                        } else if (currentUser.id) {
+                            query = query.eq('auth_user_id', currentUser.id);
+                        } else if (currentUser.email) {
+                            query = query.eq('email', currentUser.email);
+                        }
+                        const { data: dbUser, error: dbFetchErr } = await query.maybeSingle();
+                        if (dbUser && !dbFetchErr) {
+                            meta = { ...meta, ...dbUser };
+                        }
+                    } catch (e) {
+                        console.warn('[EDMITH Edit] Could not fetch DB record:', e);
+                    }
+                }
+
+                originalUsername = meta.username_display || meta.username || '';
+
+                if (firstNameEl) firstNameEl.value = meta.first_name || '';
+                if (lastNameEl) lastNameEl.value  = meta.last_name || '';
+                if (usernameEl) usernameEl.value  = originalUsername;
+                if (emailEl) emailEl.value     = currentUser.email || meta.email || '';
+                if (countryEl && meta.country) {
+                    const countryExists = Array.from(countryEl.options).some(o => o.value.toLowerCase() === meta.country.toLowerCase());
+                    if (!countryExists && meta.country) {
+                        const opt = document.createElement('option');
+                        opt.value = meta.country;
+                        opt.textContent = meta.country;
+                        countryEl.appendChild(opt);
+                    }
+                    countryEl.value = meta.country;
+                }
+                if (goalEl && meta.learning_goal) {
+                    const goalExists = Array.from(goalEl.options).some(o => o.value.toLowerCase() === meta.learning_goal.toLowerCase());
+                    if (!goalExists && meta.learning_goal) {
+                        const opt = document.createElement('option');
+                        opt.value = meta.learning_goal;
+                        opt.textContent = meta.learning_goal;
+                        goalEl.appendChild(opt);
+                    }
+                    goalEl.value = meta.learning_goal;
+                }
+
+            } catch (err) {
+                console.error('[EDMITH Edit] Error initializing edit form:', err);
+            } finally {
+                if (loadingEl) loadingEl.style.display = 'none';
+                if (cardEl) cardEl.style.display = 'block';
+            }
+        })();
+
+        // Username live validation with case-insensitive uniqueness
+        let debounceTimer = null;
+        usernameEl.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            usernameErrEl.textContent = '';
+            usernameErrEl.style.display = 'none';
+            usernameStatEl.textContent = '';
+
+            const val = usernameEl.value.trim();
+            if (!val || val.toLowerCase() === originalUsername.toLowerCase()) {
+                return;
+            }
+            if (val.length < 3) {
+                usernameErrEl.textContent = 'Username must be at least 3 characters.';
+                usernameErrEl.style.display = 'block';
+                return;
+            }
+            if (!/^[a-zA-Z0-9._-]{3,30}$/.test(val)) {
+                usernameErrEl.textContent = 'Invalid characters. Letters, numbers, dots, hyphens, and underscores only.';
+                usernameErrEl.style.display = 'block';
+                return;
+            }
+
+            usernameStatEl.innerHTML = '<i class="fas fa-circle-notch fa-spin" style="color: var(--text-secondary);"></i>';
+
+            debounceTimer = setTimeout(async () => {
+                const normalized = val.toLowerCase();
+                try {
+                    if (!supabase) return;
+                    const { data, error } = await supabase
+                        .from('users')
+                        .select('user_id, email')
+                        .ilike('username', normalized)
+                        .maybeSingle();
+
+                    if (!error && data && currentUser && data.email && data.email.toLowerCase() !== currentUser.email.toLowerCase()) {
+                        usernameStatEl.innerHTML = '<i class="fas fa-circle-xmark" style="color: #ef4444;"></i>';
+                        usernameErrEl.textContent = 'This username is already taken. Please choose another username.';
+                        usernameErrEl.style.display = 'block';
+                    } else {
+                        usernameStatEl.innerHTML = '<i class="fas fa-circle-check" style="color: #10b981;"></i>';
+                    }
+                } catch (e) {
+                    usernameStatEl.textContent = '';
+                }
+            }, 500);
+        });
+
+        // Save Profile Form
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const firstName = firstNameEl.value.trim();
+            const lastName  = lastNameEl.value.trim();
+            const username  = usernameEl.value.trim();
+            const country   = countryEl.value;
+            const goal      = goalEl.value;
+
+            if (!firstName) {
+                alert('Please enter your first name.');
+                firstNameEl.focus();
+                return;
+            }
+            if (!username) {
+                alert('Please enter your username.');
+                usernameEl.focus();
+                return;
+            }
+            if (!/^[a-zA-Z0-9._-]{3,30}$/.test(username)) {
+                usernameErrEl.textContent = 'Username must be 3-30 characters with letters, numbers, dots, hyphens, or underscores only.';
+                usernameErrEl.style.display = 'block';
+                usernameEl.focus();
+                return;
+            }
+            if (!country) {
+                alert('Please select your country.');
+                countryEl.focus();
+                return;
+            }
+
+            // If username changed, verify case-insensitive uniqueness
+            if (username.toLowerCase() !== originalUsername.toLowerCase() && supabase) {
+                try {
+                    const { data, error } = await supabase
+                        .from('users')
+                        .select('user_id, email')
+                        .ilike('username', username.toLowerCase())
+                        .maybeSingle();
+
+                    if (!error && data && currentUser && data.email && data.email.toLowerCase() !== currentUser.email.toLowerCase()) {
+                        usernameErrEl.textContent = 'This username is already taken. Please choose another username.';
+                        usernameErrEl.style.display = 'block';
+                        return;
+                    }
+                } catch (e) {
+                    console.warn('[EDMITH Edit] Pre-submit username check warning:', e);
+                }
+            }
+
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Saving…</span>';
+
+            try {
+                if (!supabase) throw new Error('Database connection failed. Please check network.');
+
+                // Ensure active session
+                await supabase.auth.getSession();
+
+                const updatedMeta = {
+                    first_name: firstName,
+                    last_name: lastName || null,
+                    username: username.toLowerCase(),
+                    username_display: username,
+                    country: country,
+                    learning_goal: goal || null
+                };
+
+                // 1. Update Supabase Auth User Metadata (Authoritative auth profile - email is never modified)
+                const { data: authUpdateData, error: authErr } = await supabase.auth.updateUser({
+                    data: updatedMeta
+                });
+                if (authErr) throw authErr;
+
+                // 2. Persist to public.users table (for leaderboards and public profile lookups)
+                if (currentUser && currentUser.email) {
+                    const updatePayload = {
+                        first_name: firstName,
+                        last_name: lastName || null,
+                        username: username.toLowerCase(),
+                        country: country,
+                        learning_goal: goal || null,
+                        updated_at: new Date().toISOString()
+                    };
+
+                    let dbUpdated = false;
+
+                    // A. Attempt update by auth_user_id
+                    if (currentUser.id) {
+                        const { data: upData1, error: upErr1 } = await supabase
+                            .from('users')
+                            .update(updatePayload)
+                            .eq('auth_user_id', currentUser.id)
+                            .select('user_id');
+
+                        if (!upErr1 && Array.isArray(upData1) && upData1.length > 0) {
+                            dbUpdated = true;
+                        } else if (upErr1 && upErr1.code === '23505') {
+                            throw new Error('This username is already taken by another account.');
+                        }
+                    }
+
+                    // B. If not updated by auth_user_id, attempt update by email and link auth_user_id
+                    if (!dbUpdated && currentUser.email) {
+                        const { data: upData2, error: upErr2 } = await supabase
+                            .from('users')
+                            .update({ ...updatePayload, auth_user_id: currentUser.id })
+                            .eq('email', currentUser.email)
+                            .select('user_id');
+
+                        if (!upErr2 && Array.isArray(upData2) && upData2.length > 0) {
+                            dbUpdated = true;
+                        } else if (upErr2) {
+                            if (upErr2.code === '23505') {
+                                throw new Error('This username is already taken by another account.');
+                            }
+                            throw upErr2;
+                        }
+                    }
+
+                    // C. If user record does not exist yet in public.users, insert it
+                    if (!dbUpdated) {
+                        const { error: insErr } = await supabase
+                            .from('users')
+                            .insert({
+                                auth_user_id: currentUser.id,
+                                email: currentUser.email,
+                                ...updatePayload
+                            });
+
+                        if (insErr) {
+                            if (insErr.code === '23505') {
+                                throw new Error('This username is already taken by another account.');
+                            }
+                            throw insErr;
+                        }
+                    }
+                }
+
+                // 3. Update localStorage session cache so changes reflect instantly across all pages without re-login
+                try {
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const k = localStorage.key(i);
+                        if (k && k.startsWith('sb-') && k.endsWith('-auth-token')) {
+                            const raw = localStorage.getItem(k);
+                            if (raw) {
+                                const parsed = JSON.parse(raw);
+                                if (parsed.user) {
+                                    parsed.user.user_metadata = { ...parsed.user.user_metadata, ...updatedMeta };
+                                }
+                                if (parsed.currentSession && parsed.currentSession.user) {
+                                    parsed.currentSession.user.user_metadata = { ...parsed.currentSession.user.user_metadata, ...updatedMeta };
+                                }
+                                localStorage.setItem(k, JSON.stringify(parsed));
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.warn('[EDMITH Edit] Cache update warning:', e);
+                }
+
+                originalUsername = username;
+                statusMsg.className = 'auth-card-banner-msg success';
+                statusMsg.innerHTML = '<i class="fas fa-circle-check"></i> Profile updated successfully! Redirecting to profile…';
+                statusMsg.style.display = 'flex';
+
+                setTimeout(() => {
+                    window.location.href = 'profile.html';
+                }, 800);
+
+            } catch (err) {
+                console.error('[EDMITH Edit] Update failed:', err);
+                let friendlyMsg = err.message || 'An unexpected error occurred while updating your profile.';
+                if (friendlyMsg.toLowerCase().includes('unique') || friendlyMsg.includes('23505') || friendlyMsg.toLowerCase().includes('already exists')) {
+                    friendlyMsg = 'This username is already taken. Please choose another username.';
+                } else if (friendlyMsg.toLowerCase().includes('permission') || friendlyMsg.toLowerCase().includes('row-level')) {
+                    friendlyMsg = 'Database permission error. Please verify your login credentials.';
+                } else if (friendlyMsg.toLowerCase().includes('network') || friendlyMsg.toLowerCase().includes('fetch')) {
+                    friendlyMsg = 'Network connection error. Please check your internet connection.';
+                }
+
+                statusMsg.className = 'auth-card-banner-msg warning';
+                statusMsg.innerHTML = `<i class="fas fa-triangle-exclamation"></i> ${friendlyMsg}`;
+                statusMsg.style.display = 'flex';
+
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<i class="fas fa-floppy-disk"></i> <span>Save Changes</span>';
+            }
+        });
+    </script>
+
+</body>
+</html>

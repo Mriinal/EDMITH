@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="description" content="Log in to your EDMITH account to continue learning SQL, Python, C, and Web Development.">
+    <title>Log In - EDMITH</title>
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ============================================================
+         FIXED HEADER
+    ============================================================ -->
+    <header class="header" id="authHeader">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">EDMITH</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../course.html">Courses</a></li>
+                <li><a href="../sql/index.html">SQL Mastery</a></li>
+                <li><a href="../Leaderboard.html">Leaderboard</a></li>
+            </ul>
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         MAIN AUTH AREA
+    ============================================================ -->
+    <main class="auth-main">
+        <div class="auth-container" style="max-width: 480px;">
+
+            <!-- Decorative floating icons -->
+            <i class="fab fa-python auth-float-icon auth-icon-1" aria-hidden="true"></i>
+            <i class="fas fa-database auth-float-icon auth-icon-2" aria-hidden="true"></i>
+            <i class="fas fa-code auth-float-icon auth-icon-3" aria-hidden="true"></i>
+            <i class="fas fa-terminal auth-float-icon auth-icon-4" aria-hidden="true"></i>
+
+            <!-- ────────────────── Login Card ────────────────── -->
+            <div class="auth-card" id="authCard">
+
+                <!-- Gradient Header Band -->
+                <div class="auth-card-header">
+                    <a href="../index.html" class="auth-card-logo">EDMITH</a>
+                    <h1 class="auth-card-title">Welcome Back</h1>
+                    <p class="auth-card-subtitle">
+                        Log in to continue your learning journey.
+                    </p>
+                </div>
+
+                <!-- ============ LOGIN FORM ============ -->
+                <form id="loginForm" class="auth-form" novalidate autocomplete="on">
+
+                    <!-- Login Method Toggle (Username default / Email switch) -->
+                    <div class="auth-toggle-group" role="tablist" aria-label="Login method">
+                        <button type="button" class="auth-toggle-tab active" id="tabUsername" role="tab" aria-selected="true">
+                            <i class="fas fa-at" aria-hidden="true"></i>
+                            <span>Username</span>
+                        </button>
+                        <button type="button" class="auth-toggle-tab" id="tabEmail" role="tab" aria-selected="false">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <span>Email</span>
+                        </button>
+                    </div>
+
+                    <div class="auth-form-section">
+                        <!-- Dynamic Identifier (Username or Email) -->
+                        <div class="auth-field-group">
+                            <label class="auth-label" for="identifier" id="identifierLabel">
+                                <span id="identifierLabelText">Username</span> <span class="auth-required" title="Required">*</span>
+                            </label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-at auth-input-icon" id="identifierIcon" aria-hidden="true"></i>
+                                <input type="text" id="identifier" class="auth-input"
+                                    placeholder="Enter your username" maxlength="100"
+                                    autocomplete="username" aria-required="true"
+                                    aria-describedby="identifierError">
+                            </div>
+                            <span class="auth-field-error" id="identifierError" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="auth-field-group" style="margin-bottom: 0.25rem;">
+                            <label class="auth-label" for="password">
+                                Password <span class="auth-required" title="Required">*</span>
+                            </label>
+                            <div class="auth-input-wrap">
+                                <i class="fas fa-key auth-input-icon" aria-hidden="true"></i>
+                                <input type="password" id="password" class="auth-input"
+                                    placeholder="Enter your password" maxlength="128"
+                                    autocomplete="current-password" aria-required="true"
+                                    aria-describedby="passwordError">
+                                <button type="button" class="auth-toggle-pwd" id="togglePassword"
+                                    title="Show / hide password" aria-label="Toggle password visibility">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="auth-field-error" id="passwordError" aria-live="polite"></span>
+                        </div>
+
+                        <!-- Forgot Password Link -->
+                        <div class="auth-forgot-row">
+                            <a href="forgot-password.html" class="auth-forgot-link" id="forgotPasswordLink">
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ── Form-level error message ── -->
+                    <div class="auth-form-error" id="formError" style="display: none; margin-top: 1rem;" role="alert">
+                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                        <span id="formErrorText"></span>
+                    </div>
+
+                    <!-- ── Submit & Action Buttons ── -->
+                    <div class="auth-submit-section">
+                        <button type="submit" id="submitBtn" class="auth-submit-btn">
+                            <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
+                            <span>Log In</span>
+                        </button>
+
+                        <button type="button" id="guestBtn" class="auth-guest-btn">
+                            <i class="fas fa-user-clock" aria-hidden="true"></i>
+                            <span>Continue as Guest</span>
+                        </button>
+
+                        <p class="auth-switch-link" style="margin-top: 1.25rem;">
+                            Don't have an account?
+                            <a href="signup.html" id="signupLink" class="auth-link">Sign up</a>
+                        </p>
+                    </div>
+
+                </form>
+                <!-- /loginForm -->
+
+            </div>
+            <!-- /authCard -->
+
+        </div>
+        <!-- /auth-container -->
+    </main>
+
+    <!-- ============================================================
+         SCRIPTS — Supabase CDN first, then auth.js, then script.js
+    ============================================================ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="auth.js"></script>
+    <script src="../javascript/script.js"></script>
+
+</body>
+
+</html>
