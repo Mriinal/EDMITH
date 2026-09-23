@@ -122,7 +122,9 @@
         if (problemOutputDesc) problemOutputDesc.textContent = q.output_description || 'Query output schema.';
         if (problemConstraints) problemConstraints.textContent = q.constraints || 'Standard SQL.';
 
-        textarea.value = ans.submittedCode || q.starter_code || '';
+        // If candidate previously typed code, restore it; otherwise display clean starter placeholder
+        const hasCandidateCode = typeof ans.submittedCode === 'string' && ans.submittedCode.trim().length > 0;
+        textarea.value = hasCandidateCode ? ans.submittedCode : (q.starter_code || '-- Write your code here\n');
 
         if (testStatusBadge) {
             if (ans.passed) {
@@ -154,7 +156,7 @@
             if (!textarea) return;
             const sql = textarea.value;
             const q = examState.questions[examState.currentIndex];
-            const evalResult = window.EdmithCodingExamEngine.evaluateQuery(sql, q.expected_sql);
+            const evalResult = window.EdmithCodingExamEngine.evaluateQuery(sql, q.id);
 
             if (testStatusBadge) {
                 if (evalResult.passed) {
@@ -185,7 +187,7 @@
             ans.submittedCode = sql;
             ans.executed = true;
 
-            const evalResult = window.EdmithCodingExamEngine.evaluateQuery(sql, q.expected_sql);
+            const evalResult = window.EdmithCodingExamEngine.evaluateQuery(sql, q.id);
             ans.passed = evalResult.passed;
             ans.lastError = evalResult.error;
 
@@ -211,7 +213,11 @@
         resetCodeBtn.addEventListener('click', () => {
             if (!textarea) return;
             const q = examState.questions[examState.currentIndex];
-            textarea.value = q.starter_code || '';
+            const ans = examState.answers[examState.currentIndex];
+            textarea.value = q.starter_code || '-- Write your code here\n';
+            if (ans) {
+                ans.submittedCode = '';
+            }
         });
     }
 

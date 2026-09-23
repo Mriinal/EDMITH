@@ -1,5 +1,7 @@
-// EDMITH SQL Coding Question Bank — Exactly 120 Questions (60 Easy, 30 Medium, 30 Hard)
-// Easy: 5 rounds x 5 = 25 questions consumed | Medium: 5 rounds x 3 = 15 consumed | Hard: 5 rounds x 2 = 10 consumed
+/**
+ * EDMITH SQL Practical Coding Assessment Bank (120 Relational Engine Problems)
+ * Categories: Easy (Set 1-40), Medium (Set 41-80), Hard (Set 81-120)
+ */
 window.SQL_CODING_QUESTIONS = [
   {
     "id": 1,
@@ -10,7 +12,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "customers table with 10 rows",
     "output_description": "10 rows returned with all customer fields",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your SQL query below\nSELECT * FROM customers ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT * FROM customers ORDER BY customer_id ASC",
     "marks": 3
   },
@@ -23,7 +25,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table with various balances",
     "output_description": "Accounts with balance > 5000 in descending order",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "SELECT account_id, customer_id, account_type, balance FROM accounts WHERE balance > 5000 ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, account_type, balance FROM accounts WHERE balance > 5000 ORDER BY balance DESC",
     "marks": 3
   },
@@ -36,7 +38,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "customers table with multiple cities",
     "output_description": "Verified customers living in New York",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "SELECT customer_id, first_name, last_name, city FROM customers WHERE city = 'New York' AND kyc_status = 'Verified' ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name, city FROM customers WHERE city = 'New York' AND kyc_status = 'Verified' ORDER BY customer_id ASC",
     "marks": 3
   },
@@ -49,7 +51,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "branches table",
     "output_description": "total_branches count",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "SELECT COUNT(*) AS total_branches FROM branches;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS total_branches FROM branches",
     "marks": 3
   },
@@ -62,7 +64,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "customers table with credit scores",
     "output_description": "max_credit_score value",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "SELECT MAX(credit_score) AS max_credit_score FROM customers;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT MAX(credit_score) AS max_credit_score FROM customers",
     "marks": 3
   },
@@ -75,7 +77,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -88,7 +90,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -101,7 +103,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -114,7 +116,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -127,7 +129,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -140,7 +142,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "departments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on departments\nSELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC",
     "marks": 3
   },
@@ -153,7 +155,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "employees table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on employees\nSELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id",
     "marks": 3
   },
@@ -166,7 +168,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loan_payments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loan_payments\nSELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed'",
     "marks": 3
   },
@@ -179,7 +181,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "merchants table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on merchants\nSELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name",
     "marks": 3
   },
@@ -192,7 +194,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "exchange_rates table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on exchange_rates\nSELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC",
     "marks": 3
   },
@@ -205,7 +207,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -218,7 +220,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -231,7 +233,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -244,7 +246,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -257,7 +259,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -270,7 +272,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "departments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on departments\nSELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC",
     "marks": 3
   },
@@ -283,7 +285,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "employees table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on employees\nSELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id",
     "marks": 3
   },
@@ -296,7 +298,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loan_payments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loan_payments\nSELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed'",
     "marks": 3
   },
@@ -309,7 +311,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "merchants table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on merchants\nSELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name",
     "marks": 3
   },
@@ -322,7 +324,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "exchange_rates table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on exchange_rates\nSELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC",
     "marks": 3
   },
@@ -335,7 +337,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -348,7 +350,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -361,7 +363,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -374,7 +376,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -387,7 +389,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -400,7 +402,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "departments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on departments\nSELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC",
     "marks": 3
   },
@@ -413,7 +415,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "employees table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on employees\nSELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id",
     "marks": 3
   },
@@ -426,7 +428,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loan_payments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loan_payments\nSELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed'",
     "marks": 3
   },
@@ -439,7 +441,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "merchants table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on merchants\nSELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name",
     "marks": 3
   },
@@ -452,7 +454,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "exchange_rates table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on exchange_rates\nSELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC",
     "marks": 3
   },
@@ -465,7 +467,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -478,7 +480,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -491,7 +493,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -504,7 +506,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -517,7 +519,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -530,7 +532,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "departments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on departments\nSELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC",
     "marks": 3
   },
@@ -543,7 +545,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "employees table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on employees\nSELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id",
     "marks": 3
   },
@@ -556,7 +558,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loan_payments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loan_payments\nSELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed'",
     "marks": 3
   },
@@ -569,7 +571,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "merchants table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on merchants\nSELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name",
     "marks": 3
   },
@@ -582,7 +584,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "exchange_rates table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on exchange_rates\nSELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC",
     "marks": 3
   },
@@ -595,7 +597,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -608,7 +610,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -621,7 +623,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -634,7 +636,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -647,7 +649,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -660,7 +662,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "departments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on departments\nSELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department_name, annual_budget FROM departments WHERE annual_budget >= 1000000 ORDER BY annual_budget DESC",
     "marks": 3
   },
@@ -673,7 +675,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "employees table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on employees\nSELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT employee_id, first_name, last_name, role FROM employees WHERE branch_id = 1 ORDER BY employee_id",
     "marks": 3
   },
@@ -686,7 +688,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loan_payments table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loan_payments\nSELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT SUM(amount_paid) AS total_repaid FROM loan_payments WHERE status = 'Completed'",
     "marks": 3
   },
@@ -699,7 +701,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "merchants table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on merchants\nSELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT merchant_name, city, country FROM merchants WHERE category = 'Retail' ORDER BY merchant_name",
     "marks": 3
   },
@@ -712,7 +714,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "exchange_rates table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on exchange_rates\nSELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT to_currency, rate FROM exchange_rates WHERE from_currency = 'USD' ORDER BY rate DESC",
     "marks": 3
   },
@@ -725,7 +727,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "loans table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on loans\nSELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT loan_id, customer_id, loan_amount FROM loans WHERE loan_amount > 20000 ORDER BY loan_amount DESC",
     "marks": 3
   },
@@ -738,7 +740,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "cards table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on cards\nSELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS active_cards FROM cards WHERE card_type = 'Debit' AND status = 'Active'",
     "marks": 3
   },
@@ -751,7 +753,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "accounts table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on accounts\nSELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT ROUND(AVG(balance), 2) AS avg_balance FROM accounts",
     "marks": 3
   },
@@ -764,7 +766,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "transactions table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on transactions\nSELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed';",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT COUNT(*) AS completed_txns FROM transactions WHERE status = 'Completed'",
     "marks": 3
   },
@@ -777,7 +779,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "beneficiaries table records",
     "output_description": "Filtered / computed query result",
     "constraints": "Standard relational SQL. Return required columns.",
-    "starter_code": "-- Write your query on beneficiaries\nSELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT beneficiary_id, beneficiary_name, bank_name FROM beneficiaries WHERE is_verified = 'Yes' ORDER BY beneficiary_id",
     "marks": 3
   },
@@ -790,7 +792,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "SELECT customer_id, SUM(balance) AS total_balance FROM accounts GROUP BY customer_id ORDER BY total_balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, SUM(balance) AS total_balance FROM accounts GROUP BY customer_id ORDER BY total_balance DESC",
     "marks": 6
   },
@@ -803,7 +805,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "SELECT c.first_name, c.last_name, a.account_number, a.balance FROM customers c INNER JOIN accounts a ON c.customer_id = a.customer_id ORDER BY a.balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.first_name, c.last_name, a.account_number, a.balance FROM customers c INNER JOIN accounts a ON c.customer_id = a.customer_id ORDER BY a.balance DESC",
     "marks": 6
   },
@@ -816,7 +818,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "SELECT branch_id, COUNT(*) AS employee_count FROM employees GROUP BY branch_id HAVING COUNT(*) > 3 ORDER BY employee_count DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT branch_id, COUNT(*) AS employee_count FROM employees GROUP BY branch_id HAVING COUNT(*) > 3 ORDER BY employee_count DESC",
     "marks": 6
   },
@@ -829,7 +831,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -842,7 +844,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -855,7 +857,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC",
     "marks": 6
   },
@@ -868,7 +870,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC",
     "marks": 6
   },
@@ -881,7 +883,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC",
     "marks": 6
   },
@@ -894,7 +896,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -907,7 +909,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -920,7 +922,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC",
     "marks": 6
   },
@@ -933,7 +935,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC",
     "marks": 6
   },
@@ -946,7 +948,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC",
     "marks": 6
   },
@@ -959,7 +961,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -972,7 +974,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -985,7 +987,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC",
     "marks": 6
   },
@@ -998,7 +1000,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC",
     "marks": 6
   },
@@ -1011,7 +1013,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC",
     "marks": 6
   },
@@ -1024,7 +1026,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -1037,7 +1039,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -1050,7 +1052,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC",
     "marks": 6
   },
@@ -1063,7 +1065,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC",
     "marks": 6
   },
@@ -1076,7 +1078,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC",
     "marks": 6
   },
@@ -1089,7 +1091,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -1102,7 +1104,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -1115,7 +1117,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT department, COUNT(*) AS emp_count, ROUND(AVG(salary), 2) AS avg_salary FROM employees GROUP BY department ORDER BY avg_salary DESC",
     "marks": 6
   },
@@ -1128,7 +1130,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT m.category, COUNT(p.payment_id) AS payment_count, SUM(p.amount) AS total_spent FROM merchants m JOIN merchant_payments p ON m.merchant_id = p.merchant_id GROUP BY m.category ORDER BY total_spent DESC",
     "marks": 6
   },
@@ -1141,7 +1143,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, first_name, last_name FROM customers WHERE customer_id NOT IN (SELECT DISTINCT customer_id FROM loans) ORDER BY customer_id ASC",
     "marks": 6
   },
@@ -1154,7 +1156,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, COUNT(*) AS txn_count, SUM(amount) AS total_amount FROM transactions GROUP BY account_id HAVING COUNT(*) >= 2 ORDER BY total_amount DESC",
     "marks": 6
   },
@@ -1167,7 +1169,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Interconnected banking relational tables",
     "output_description": "Aggregated/joined relational result table",
     "constraints": "Standard relational SQL. Use GROUP BY / HAVING / JOIN as required.",
-    "starter_code": "-- Write your medium query below\nSELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, c.kyc_status, l.loan_amount, l.loan_type FROM customers c JOIN loans l ON c.customer_id = l.customer_id WHERE c.kyc_status = 'Verified' ORDER BY l.loan_amount DESC",
     "marks": 6
   },
@@ -1180,7 +1182,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "SELECT customer_id, SUM(balance) AS total_wealth, RANK() OVER (ORDER BY SUM(balance) DESC) AS wealth_rank FROM accounts GROUP BY customer_id ORDER BY wealth_rank ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT customer_id, SUM(balance) AS total_wealth, RANK() OVER (ORDER BY SUM(balance) DESC) AS wealth_rank FROM accounts GROUP BY customer_id ORDER BY wealth_rank ASC",
     "marks": 12
   },
@@ -1193,7 +1195,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "SELECT e.department, e.first_name, e.last_name, e.salary FROM employees e WHERE e.salary = (SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department = e.department) ORDER BY e.salary DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT e.department, e.first_name, e.last_name, e.salary FROM employees e WHERE e.salary = (SELECT MAX(e2.salary) FROM employees e2 WHERE e2.department = e.department) ORDER BY e.salary DESC",
     "marks": 12
   },
@@ -1206,7 +1208,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "SELECT c.customer_id, c.first_name, (SELECT COUNT(*) FROM accounts a WHERE a.customer_id = c.customer_id) AS num_accounts, (SELECT COUNT(*) FROM loans l WHERE l.customer_id = c.customer_id) AS num_loans FROM customers c ORDER BY c.customer_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, (SELECT COUNT(*) FROM accounts a WHERE a.customer_id = c.customer_id) AS num_accounts, (SELECT COUNT(*) FROM loans l WHERE l.customer_id = c.customer_id) AS num_loans FROM customers c ORDER BY c.customer_id ASC",
     "marks": 12
   },
@@ -1219,7 +1221,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1232,7 +1234,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   },
@@ -1245,7 +1247,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC",
     "marks": 12
   },
@@ -1258,7 +1260,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC",
     "marks": 12
   },
@@ -1271,7 +1273,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency",
     "marks": 12
   },
@@ -1284,7 +1286,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1297,7 +1299,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   },
@@ -1310,7 +1312,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC",
     "marks": 12
   },
@@ -1323,7 +1325,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC",
     "marks": 12
   },
@@ -1336,7 +1338,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency",
     "marks": 12
   },
@@ -1349,7 +1351,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1362,7 +1364,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   },
@@ -1375,7 +1377,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC",
     "marks": 12
   },
@@ -1388,7 +1390,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC",
     "marks": 12
   },
@@ -1401,7 +1403,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency",
     "marks": 12
   },
@@ -1414,7 +1416,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1427,7 +1429,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   },
@@ -1440,7 +1442,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC",
     "marks": 12
   },
@@ -1453,7 +1455,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC",
     "marks": 12
   },
@@ -1466,7 +1468,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency",
     "marks": 12
   },
@@ -1479,7 +1481,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1492,7 +1494,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   },
@@ -1505,7 +1507,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT c.customer_id, c.first_name, SUM(mp.amount) AS total_merchant_spent FROM customers c JOIN accounts a ON c.customer_id = a.customer_id JOIN merchant_payments mp ON a.account_id = mp.account_id JOIN merchants m ON mp.merchant_id = m.merchant_id WHERE m.category = 'Retail' GROUP BY c.customer_id, c.first_name ORDER BY total_merchant_spent DESC",
     "marks": 12
   },
@@ -1518,7 +1520,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT account_id, customer_id, balance FROM accounts WHERE balance > (SELECT AVG(balance) * 1.5 FROM accounts) ORDER BY balance DESC",
     "marks": 12
   },
@@ -1531,7 +1533,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.account_id, a.balance AS balance_usd, er.to_currency, ROUND(a.balance * er.rate, 2) AS converted_balance FROM accounts a CROSS JOIN exchange_rates er WHERE er.from_currency = 'USD' AND a.account_id <= 5 ORDER BY a.account_id, er.to_currency",
     "marks": 12
   },
@@ -1544,7 +1546,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT a.log_id, a.action, e.first_name AS emp_name, m.first_name AS mgr_name FROM audit_logs a JOIN employees e ON a.employee_id = e.employee_id LEFT JOIN employees m ON e.manager_id = m.employee_id ORDER BY a.log_id ASC",
     "marks": 12
   },
@@ -1557,7 +1559,7 @@ window.SQL_CODING_QUESTIONS = [
     "input_description": "Complex multi-table schema with relational constraints",
     "output_description": "Analytical result set with computed fields and rankings",
     "constraints": "Subqueries, window functions, conditional CASE, or multi-way joins required.",
-    "starter_code": "-- Advanced SQL problem\nSELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC;",
+    "starter_code": "-- Write your code here\n",
     "expected_sql": "SELECT l.loan_id, c.first_name, l.loan_amount, l.interest_rate, CASE WHEN c.credit_score < 650 THEN 'High Risk' WHEN c.credit_score BETWEEN 650 AND 750 THEN 'Medium Risk' ELSE 'Low Risk' END AS risk_tier FROM loans l JOIN customers c ON l.customer_id = c.customer_id ORDER BY l.loan_amount DESC",
     "marks": 12
   }

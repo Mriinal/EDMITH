@@ -12,6 +12,9 @@
 (function () {
     'use strict';
 
+    // Private solution registry so candidate never receives official solution in UI state
+    const solutionRegistry = new Map();
+
     const CodingExamEngine = {
         initExam(config) {
             const level = String(config.difficulty || 'easy').toLowerCase();
@@ -25,35 +28,56 @@
             const allBank = Array.isArray(config.questionBank) ? config.questionBank : (window.SQL_CODING_QUESTIONS || []);
             const levelQuestions = allBank.filter(q => String(q.difficulty || '').toLowerCase() === level);
 
+            // Populate private solution registry
+            allBank.forEach(q => {
+                if (q && q.id && q.expected_sql) {
+                    solutionRegistry.set(String(q.id), q.expected_sql);
+                }
+            });
+
             // Deterministic non-repeating allocation:
-            // Easy: Round 1 (0..4), Round 2 (5..9), Round 3 (10..14), Round 4 (15..19), Round 5 (20..24)
-            // Medium: Round 1 (0..2), Round 2 (3..5), Round 3 (6..8), Round 4 (9..11), Round 5 (12..14)
-            // Hard: Round 1 (0..1), Round 2 (2..3), Round 3 (4..5), Round 4 (6..7), Round 5 (8..9)
             const startIndex = (roundNumber - 1) * questionCount;
             let roundQuestions = levelQuestions.slice(startIndex, startIndex + questionCount);
             if (roundQuestions.length < questionCount) {
                 roundQuestions = levelQuestions.slice(0, questionCount);
             }
 
+            // Create sanitized question objects for frontend UI (strip expected_sql)
+            const sanitizedQuestions = roundQuestions.map(q => {
+                const safeQ = {
+                    id: q.id,
+                    title: q.title,
+                    difficulty: q.difficulty,
+                    subject: q.subject,
+                    problem_statement: q.problem_statement,
+                    input_description: q.input_description,
+                    output_description: q.output_description,
+                    constraints: q.constraints,
+                    starter_code: q.starter_code || '-- Write your code here\n',
+                    marks: q.marks || marksPerQuestion
+                };
+                return safeQ;
+            });
+
             const state = {
                 subject: config.subject || 'sql',
                 difficulty: level,
                 roundNumber: roundNumber,
-                questionCount: roundQuestions.length,
+                questionCount: sanitizedQuestions.length,
                 marksPerQuestion: marksPerQuestion,
-                maximumScore: roundQuestions.length * marksPerQuestion,
-                questions: roundQuestions,
+                maximumScore: sanitizedQuestions.length * marksPerQuestion,
+                questions: sanitizedQuestions,
                 currentIndex: 0,
                 timeRemainingSeconds: timeLimitMinutes * 60,
                 timerId: null,
                 startedAt: new Date(),
                 completed: false,
                 submitting: false,
-                answers: roundQuestions.map(q => ({
+                answers: sanitizedQuestions.map(q => ({
                     questionId: q.id,
                     title: q.title,
                     marks: marksPerQuestion,
-                    submittedCode: q.starter_code || '',
+                    submittedCode: '', // Candidate starts with empty editor/starter placeholder
                     passed: false,
                     executed: false,
                     lastError: null,
@@ -71,11 +95,22 @@
         },
 
         // Evaluate user's SQL query against the database using AlaSQL
-        evaluateQuery(sql, expectedSql) {
+        evaluateQuery(sql, target) {
             if (!sql || !sql.trim()) {
                 return {
                     passed: false,
-                    error: 'Query cannot be empty.',
+                    error: 'Query cannot be empty. Please write your SQL solution.',
+                    actualData: null,
+                    expectedData: null
+                };
+            }
+
+            // Validate that query is not merely comments
+            const codeWithoutComments = sql.replace(/--.*$/gm, '').trim();
+            if (!codeWithoutComments) {
+                return {
+                    passed: false,
+                    error: 'Please write your SQL query. The editor currently contains only comments.',
                     actualData: null,
                     expectedData: null
                 };
@@ -85,6 +120,30 @@
                 return {
                     passed: false,
                     error: 'Local SQL execution engine (AlaSQL) is unavailable.',
+                    actualData: null,
+                    expectedData: null
+                };
+            }
+
+            // Resolve expected query from private registry or target string
+            let expectedSql = '';
+            if (typeof target === 'string' && (target.toLowerCase().startsWith('select') || target.toLowerCase().includes('from'))) {
+                expectedSql = target;
+            } else if (target !== undefined && target !== null) {
+                expectedSql = solutionRegistry.get(String(target)) || '';
+            }
+
+            if (!expectedSql && window.SQL_CODING_QUESTIONS) {
+                const found = window.SQL_CODING_QUESTIONS.find(q => String(q.id) === String(target));
+                if (found && found.expected_sql) {
+                    expectedSql = found.expected_sql;
+                }
+            }
+
+            if (!expectedSql) {
+                return {
+                    passed: false,
+                    error: 'Evaluation error: expected test case definition not found.',
                     actualData: null,
                     expectedData: null
                 };
@@ -106,7 +165,7 @@
                         passed: false,
                         error: 'Query must return tabular result records.',
                         actualData,
-                        expectedData
+                        expectedData: null
                     };
                 }
 
@@ -116,7 +175,7 @@
                         passed: false,
                         error: `Row count mismatch: expected ${expectedData.length} rows, but your query returned ${actualData.length} rows.`,
                         actualData,
-                        expectedData
+                        expectedData: null
                     };
                 }
 
