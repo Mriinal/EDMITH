@@ -26,6 +26,26 @@ try {
     console.error('[EDMITH Auth] Supabase init failed. Did you add the CDN script?', e);
 }
 
+// ── CONNECTION PRE-WARM ──────────────────────────────────────────
+// Supabase free tier hibernates after ~5 min of inactivity causing
+// 10-15s cold starts. We fire a silent HEAD request immediately so
+// the connection is hot by the time the user submits a form.
+// This costs ~0 bandwidth and is completely silent to the user.
+(function warmSupabaseConnection() {
+    try {
+        const warmUrl = SUPABASE_URL + '/rest/v1/users?select=count&limit=0';
+        fetch(warmUrl, {
+            method: 'HEAD',
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+                'Prefer': 'count=none'
+            },
+            // Don't wait for response — fire and forget
+        }).catch(() => {}); // silently ignore any error
+    } catch (_) {}
+})();
+
 // ============================================================
 // SHARED UTILITIES & HELPERS
 // ============================================================
@@ -237,7 +257,7 @@ if (signupForm) {
                 } else {
                     if (statusEl) statusEl.textContent = '';
                 }
-            }, 600);
+            }, 300); // 300ms debounce — fast enough to feel live
         });
     }
 
@@ -620,14 +640,16 @@ if (signupForm) {
         try {
             const normalized = (username || '').trim().toLowerCase();
             if (!normalized) return null;
+            // Use eq (exact match) instead of ilike — usernames are stored lowercase,
+            // so this is both correct AND index-friendly (no full table scan).
             const { data, error } = await supabaseClient
                 .from('users')
                 .select('username')
-                .ilike('username', normalized)
+                .eq('username', normalized)
                 .maybeSingle();
 
             if (error) { console.warn('[EDMITH Auth] Username check error:', error); return null; }
-            return data === null;
+            return data === null; // null → not found → available
         } catch (e) {
             console.warn('[EDMITH Auth] Username check failed:', e);
             return null;
@@ -664,255 +686,339 @@ if (signupForm) {
 
 
 // ============================================================
-// LOGIN PAGE CONTROLLER
-// Only initializes if loginForm exists in the DOM.
-// Supports Username (default) and Email authentication modes.
+// LOGIN PAGE CONTROLLER  (2-Step flow)
+// Step 1: verify username/email exists in public.users
+// Step 2: enter password → signInWithPassword
+// Columns used: email, username, first_name  (username_display does NOT exist)
 // ============================================================
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-    const tabUsername = document.getElementById('tabUsername');
-    const tabEmail = document.getElementById('tabEmail');
-    const identifierInput = document.getElementById('identifier') || document.getElementById('email');
+(function initLoginController() {
+
+    // ── DOM references (Step 1 — Identifier) ─────────────────────
+    const stepIdentifier      = document.getElementById('stepIdentifier');
+    const identifierForm      = document.getElementById('identifierForm');
+    const tabUsername         = document.getElementById('tabUsername');
+    const tabEmail            = document.getElementById('tabEmail');
+    const identifierInput     = document.getElementById('identifier');
     const identifierLabelText = document.getElementById('identifierLabelText');
-    const identifierIcon = document.getElementById('identifierIcon');
-    const loginPasswordEl = document.getElementById('password');
-    const loginSubmitBtn = document.getElementById('submitBtn');
-    const guestBtn = document.getElementById('guestBtn');
-    const signupLink = document.getElementById('signupLink');
-    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    const identifierIcon      = document.getElementById('identifierIcon');
+    const identifierSpinner   = document.getElementById('identifierSpinner');
+    const continueBtn         = document.getElementById('continueBtn');
+    const guestBtn            = document.getElementById('guestBtn');
+    const signupLink          = document.getElementById('signupLink');
+    const identifierFormErr   = document.getElementById('identifierFormError');
+    const identifierFormErrTx = document.getElementById('identifierFormErrorText');
 
-    let loginMode = 'username'; // 'username' (default) | 'email'
+    // ── DOM references (Step 2 — Password) ───────────────────────
+    const stepPassword        = document.getElementById('stepPassword');
+    const passwordForm        = document.getElementById('passwordForm');
+    const loginPasswordEl     = document.getElementById('password');
+    const loginSubmitBtn      = document.getElementById('submitBtn');
+    const forgotPasswordLink  = document.getElementById('forgotPasswordLink');
+    const changeAccountBtn    = document.getElementById('changeAccountBtn');
+    const foundPillName       = document.getElementById('foundName');
+    const foundPillSub        = document.getElementById('foundSub');
+    const foundPillAvatar     = document.getElementById('foundAvatar');
+    const passwordFormErr     = document.getElementById('passwordFormError');
+    const passwordFormErrTx   = document.getElementById('passwordFormErrorText');
 
-    // Switch between Username and Email modes dynamically without page reload
+    // Exit if we are NOT on the login page
+    if (!stepIdentifier || !identifierForm) return;
+
+    // ── State ─────────────────────────────────────────────────────
+    let loginMode    = 'username';   // 'username' | 'email'
+    let resolvedEmail = '';          // email resolved after step-1 lookup
+
+    // ── Helpers ───────────────────────────────────────────────────
+    function showStep1() {
+        if (stepIdentifier) stepIdentifier.style.display = '';
+        if (stepPassword)   stepPassword.style.display   = 'none';
+        // Reset card heading
+        const heading   = document.getElementById('loginCardHeading');
+        const subheading = document.getElementById('loginCardSubheading');
+        if (heading)    heading.textContent  = 'Welcome Back';
+        if (subheading) subheading.textContent = 'Log in to continue your learning journey.';
+    }
+
+    function showStep2(displayName, identifier) {
+        if (stepIdentifier) stepIdentifier.style.display = 'none';
+        if (stepPassword)   stepPassword.style.display   = '';
+        // Update card heading
+        const heading    = document.getElementById('loginCardHeading');
+        const subheading = document.getElementById('loginCardSubheading');
+        if (heading)    heading.textContent   = `Hi, ${displayName}! 👋`;
+        if (subheading) subheading.textContent = 'Enter your password to continue.';
+        // Populate found pill
+        if (foundPillName)   foundPillName.textContent   = displayName;
+        if (foundPillSub)    foundPillSub.textContent    = identifier;
+        if (foundPillAvatar) foundPillAvatar.textContent = displayName.charAt(0).toUpperCase();
+        // Focus password field
+        if (loginPasswordEl) loginPasswordEl.focus();
+    }
+
+    function showIdentifierError(msg) {
+        if (identifierFormErr)   identifierFormErr.style.display   = 'flex';
+        if (identifierFormErrTx) identifierFormErrTx.textContent   = msg;
+    }
+    function hideIdentifierError() {
+        if (identifierFormErr)   identifierFormErr.style.display   = 'none';
+        if (identifierFormErrTx) identifierFormErrTx.textContent   = '';
+    }
+    function showPasswordError(msg) {
+        if (passwordFormErr)   passwordFormErr.style.display   = 'flex';
+        if (passwordFormErrTx) passwordFormErrTx.textContent   = msg;
+    }
+    function hidePasswordError() {
+        if (passwordFormErr)   passwordFormErr.style.display   = 'none';
+        if (passwordFormErrTx) passwordFormErrTx.textContent   = '';
+    }
+
+    function setSpinner(on) {
+        if (identifierSpinner) identifierSpinner.style.display = on ? 'inline-flex' : 'none';
+        if (continueBtn) continueBtn.disabled = on;
+        if (on && continueBtn) {
+            continueBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Checking…</span>';
+        } else if (continueBtn) {
+            continueBtn.innerHTML = '<i class="fas fa-arrow-right"></i> <span>Continue</span>';
+        }
+    }
+
+    // ── Tab switching ─────────────────────────────────────────────
     function setLoginMode(mode) {
         loginMode = mode;
-        hideFormError();
+        hideIdentifierError();
         clearError('identifierError');
-        clearError('emailError');
-        clearError('passwordError');
-
-        if (identifierInput) {
-            setFieldState(identifierInput, 'idle');
-            identifierInput.value = '';
-        }
+        if (identifierInput) { setFieldState(identifierInput, 'idle'); identifierInput.value = ''; }
 
         if (mode === 'username') {
-            tabUsername?.classList.add('active');
-            tabUsername?.setAttribute('aria-selected', 'true');
-            tabEmail?.classList.remove('active');
-            tabEmail?.setAttribute('aria-selected', 'false');
-
+            tabUsername?.classList.add('active');    tabUsername?.setAttribute('aria-selected', 'true');
+            tabEmail?.classList.remove('active');    tabEmail?.setAttribute('aria-selected', 'false');
             if (identifierLabelText) identifierLabelText.textContent = 'Username';
-            if (identifierIcon) identifierIcon.className = 'fas fa-at auth-input-icon';
+            if (identifierIcon)      identifierIcon.className = 'fas fa-at auth-input-icon';
             if (identifierInput) {
-                identifierInput.type = 'text';
-                identifierInput.placeholder = 'Enter your username';
+                identifierInput.type = 'text'; identifierInput.placeholder = 'Enter your username';
                 identifierInput.autocomplete = 'username';
             }
         } else {
-            tabEmail?.classList.add('active');
-            tabEmail?.setAttribute('aria-selected', 'true');
-            tabUsername?.classList.remove('active');
-            tabUsername?.setAttribute('aria-selected', 'false');
-
+            tabEmail?.classList.add('active');       tabEmail?.setAttribute('aria-selected', 'true');
+            tabUsername?.classList.remove('active'); tabUsername?.setAttribute('aria-selected', 'false');
             if (identifierLabelText) identifierLabelText.textContent = 'Email Address';
-            if (identifierIcon) identifierIcon.className = 'fas fa-envelope auth-input-icon';
+            if (identifierIcon)      identifierIcon.className = 'fas fa-envelope auth-input-icon';
             if (identifierInput) {
-                identifierInput.type = 'email';
-                identifierInput.placeholder = 'e.g. mrinal@example.com';
+                identifierInput.type = 'email'; identifierInput.placeholder = 'e.g. yourname@example.com';
                 identifierInput.autocomplete = 'email';
             }
         }
-
         identifierInput?.focus();
     }
 
     if (tabUsername) tabUsername.addEventListener('click', () => setLoginMode('username'));
-    if (tabEmail) tabEmail.addEventListener('click', () => setLoginMode('email'));
+    if (tabEmail)    tabEmail.addEventListener('click',    () => setLoginMode('email'));
 
-    // ── Check if already logged in with a valid session ──────────
-    (async function checkExistingSession() {
-        if (supabaseClient) {
-            try {
-                const { data: { session } } = await supabaseClient.auth.getSession();
-                if (session && session.user) {
-                    const safeUrl = getSafeReturnUrl();
-                    window.location.href = safeUrl || '../index.html';
-                }
-            } catch (e) {
-                console.warn('[EDMITH Auth] Session check error:', e);
-            }
-        }
-    })();
-
-    // ── Preserve returnTo destination on links ──────────────────
+    // ── Preserve returnTo across links ────────────────────────────
     const safeReturn = getSafeReturnUrl();
     if (safeReturn) {
-        if (signupLink) signupLink.href = `signup.html?returnTo=${encodeURIComponent(safeReturn)}`;
-        if (forgotPasswordLink) forgotPasswordLink.href = `forgot-password.html?returnTo=${encodeURIComponent(safeReturn)}`;
+        if (signupLink)          signupLink.href         = `signup.html?returnTo=${encodeURIComponent(safeReturn)}`;
+        if (forgotPasswordLink)  forgotPasswordLink.href = `forgot-password.html?returnTo=${encodeURIComponent(safeReturn)}`;
     }
 
-    // ── Password visibility toggle ──────────────────────────────
+    // ── Password toggle ───────────────────────────────────────────
     setupPasswordToggle('togglePassword', 'password');
 
-    // ── Live clearing of input error states ──────────────────────
-    if (identifierInput) {
-        identifierInput.addEventListener('input', () => {
-            clearError('identifierError');
-            clearError('emailError');
-            if (identifierInput.classList.contains('input-error')) {
-                setFieldState(identifierInput, 'idle');
+    // ── Already logged in? Redirect immediately ───────────────────
+    (async function checkExistingSession() {
+        if (!supabaseClient) return;
+        try {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            if (session?.user) {
+                window.location.href = safeReturn || '../index.html';
             }
-        });
-    }
+        } catch (e) { console.warn('[EDMITH Auth] Session check error:', e); }
+    })();
 
-    if (loginPasswordEl) {
-        loginPasswordEl.addEventListener('input', () => {
-            clearError('passwordError');
-            if (loginPasswordEl.classList.contains('input-error')) {
-                setFieldState(loginPasswordEl, 'idle');
-            }
-        });
-    }
+    // ── Live input clearing ───────────────────────────────────────
+    identifierInput?.addEventListener('input', () => {
+        hideIdentifierError();
+        clearError('identifierError');
+        setFieldState(identifierInput, 'idle');
+    });
+    loginPasswordEl?.addEventListener('input', () => {
+        hidePasswordError();
+        clearError('passwordError');
+        setFieldState(loginPasswordEl, 'idle');
+    });
 
-    // ── Continue as Guest Handler ────────────────────────────────
-    // Remembers guest preference using sessionStorage for the active session.
-    // Does NOT create a fake Supabase account.
-    if (guestBtn) {
-        guestBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            sessionStorage.setItem('edmith_guest', 'true');
-            const safeUrl = getSafeReturnUrl();
-            window.location.href = safeUrl || '../index.html';
-        });
-    }
-
-    // ── Login Form Submission ────────────────────────────────────
-    loginForm.addEventListener('submit', async (e) => {
+    // ── Guest button ──────────────────────────────────────────────
+    guestBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        hideFormError();
+        sessionStorage.setItem('edmith_guest', 'true');
+        window.location.href = safeReturn || '../index.html';
+    });
 
-        let valid = true;
+    // ── Change account (back to step 1) ──────────────────────────
+    changeAccountBtn?.addEventListener('click', () => {
+        resolvedEmail = '';
+        hidePasswordError();
+        clearError('passwordError');
+        if (loginPasswordEl) { loginPasswordEl.value = ''; setFieldState(loginPasswordEl, 'idle'); }
+        showStep1();
+        identifierInput?.focus();
+    });
+
+    // ────────────────────────────────────────────────────────────
+    // STEP 1 SUBMIT — look up identifier in public.users
+    // ────────────────────────────────────────────────────────────
+    identifierForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hideIdentifierError();
+
         const rawIdentifier = identifierInput ? identifierInput.value.trim() : '';
-        const password = loginPasswordEl ? loginPasswordEl.value : '';
-        const errorId = document.getElementById('identifierError') ? 'identifierError' : 'emailError';
 
-        // Identifier validation
+        // Validate not empty
         if (!rawIdentifier) {
             const label = loginMode === 'username' ? 'Username' : 'Email address';
-            setFieldError(errorId, `${label} is required.`);
-            if (identifierInput) setFieldState(identifierInput, 'error');
-            valid = false;
-        } else if (loginMode === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawIdentifier)) {
-            setFieldError(errorId, 'Please enter a valid email address.');
-            if (identifierInput) setFieldState(identifierInput, 'error');
-            valid = false;
-        } else {
-            clearError(errorId);
-            if (identifierInput) setFieldState(identifierInput, 'success');
+            setFieldError('identifierError', `${label} is required.`);
+            setFieldState(identifierInput, 'error');
+            return;
+        }
+        // Validate email format if in email mode
+        if (loginMode === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawIdentifier)) {
+            setFieldError('identifierError', 'Please enter a valid email address.');
+            setFieldState(identifierInput, 'error');
+            return;
         }
 
-        // Password validation
+        clearError('identifierError');
+        setFieldState(identifierInput, 'idle');
+
+        if (!supabaseClient) {
+            showIdentifierError('Authentication service is unavailable. Please try again later.');
+            return;
+        }
+
+        setSpinner(true);
+
+        try {
+            const isEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawIdentifier);
+            let userRow = null;
+
+            if (isEmailFormat) {
+                // Look up by email — stored lowercase, eq is exact & fast
+                const { data, error } = await supabaseClient
+                    .from('users')
+                    .select('email, username, first_name')
+                    .eq('email', rawIdentifier.toLowerCase())
+                    .maybeSingle();
+
+                if (!error && data) userRow = data;
+            } else {
+                // Look up by username — stored lowercase, eq is exact & fast
+                const cleanUser = rawIdentifier.replace(/^@+/, '').toLowerCase();
+                const { data, error } = await supabaseClient
+                    .from('users')
+                    .select('email, username, first_name')
+                    .eq('username', cleanUser)
+                    .maybeSingle();
+
+                if (!error && data) userRow = data;
+            }
+
+            if (!userRow || !userRow.email) {
+                // Account not found — stay on step 1 with a clear message
+                const label = loginMode === 'username' ? 'username' : 'email address';
+                setFieldError('identifierError', `No account found with this ${label}.`);
+                setFieldState(identifierInput, 'error');
+                return;
+            }
+
+            // Account confirmed — save resolved email and go to step 2
+            resolvedEmail = userRow.email;
+            const displayName = userRow.first_name || userRow.username || 'Learner';
+            const identifierDisplay = isEmailFormat ? userRow.email : `@${userRow.username}`;
+            setFieldState(identifierInput, 'success');
+            showStep2(displayName, identifierDisplay);
+
+        } catch (err) {
+            console.error('[EDMITH Auth] Identifier lookup error:', err);
+            showIdentifierError('Unable to verify your account. Please check your connection and try again.');
+        } finally {
+            setSpinner(false);
+        }
+    });
+
+    // ────────────────────────────────────────────────────────────
+    // STEP 2 SUBMIT — sign in with resolved email + password
+    // ────────────────────────────────────────────────────────────
+    passwordForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        hidePasswordError();
+
+        const password = loginPasswordEl ? loginPasswordEl.value : '';
+
         if (!password) {
             setFieldError('passwordError', 'Password is required.');
-            if (loginPasswordEl) setFieldState(loginPasswordEl, 'error');
-            valid = false;
-        } else {
-            clearError('passwordError');
-            if (loginPasswordEl) setFieldState(loginPasswordEl, 'idle');
+            setFieldState(loginPasswordEl, 'error');
+            return;
         }
 
-        if (!valid) return;
+        if (!resolvedEmail) {
+            // Should not happen, but guard anyway
+            showPasswordError('Session expired. Please start again.');
+            setTimeout(showStep1, 1500);
+            return;
+        }
 
-        // Set Loading state
         if (loginSubmitBtn) {
             loginSubmitBtn.disabled = true;
             loginSubmitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Logging In...</span>';
         }
 
         try {
-            if (!supabaseClient || SUPABASE_URL.includes('YOUR_PROJECT_REF')) {
-                throw new Error('Supabase is not configured. Please check your Supabase credentials in users/auth.js.');
-            }
-
-            let targetEmail = '';
-
-            if (loginMode === 'username') {
-                const normalizedUser = rawIdentifier.toLowerCase();
-                // Securely resolve username to account email
-                // Query looks up only the email corresponding to this specific normalized username
-                const { data: userRow, error: lookupErr } = await supabaseClient
-                    .from('users')
-                    .select('email')
-                    .ilike('username', normalizedUser)
-                    .maybeSingle();
-
-                if (lookupErr || !userRow || !userRow.email) {
-                    // Safe generic error: avoid disclosing account existence
-                    throw new Error('Invalid username or password.');
-                }
-                targetEmail = userRow.email;
-            } else {
-                targetEmail = rawIdentifier.toLowerCase();
-            }
-
-            // Authenticate with Supabase email & password
             const { data, error } = await supabaseClient.auth.signInWithPassword({
-                email: targetEmail,
+                email: resolvedEmail,
                 password,
             });
 
-            if (error) throw error;
-            if (!data || !data.user) {
-                throw new Error(loginMode === 'username' ? 'Invalid username or password.' : 'Invalid email or password.');
+            if (error) {
+                const errStr = (error.message || '').toLowerCase();
+                if (errStr.includes('invalid') || errStr.includes('credentials')) {
+                    throw new Error('Incorrect password. Please try again.');
+                }
+                throw error;
             }
 
-            /*
-             * ============================================================
-             * TODO: EMAIL VERIFICATION CHECK (FUTURE ARCHITECTURE)
-             *
-             * Email verification is mandatory for EDMITH users in production.
-             * Currently disabled because email verification is out of scope
-             * for the current EDMITH authentication implementation.
-             *
-             * When enabled in future:
-             * if (data.user && !data.user.email_confirmed_at) {
-             *     await supabaseClient.auth.signOut();
-             *     throw new Error('Please verify your email before logging in.');
-             * }
-             *
-             * DO NOT ENABLE THIS FOR THE CURRENT IMPLEMENTATION.
-             * ============================================================
-             */
+            if (!data?.user) {
+                throw new Error('Login failed. Please try again.');
+            }
 
-            // Clear temporary guest flag now that user has an active authenticated session
+            // Clear guest flag
             sessionStorage.removeItem('edmith_guest');
 
-            // Success feedback
+            // Success UI
             if (loginSubmitBtn) {
-                loginSubmitBtn.disabled = true;
-                loginSubmitBtn.style.background = '#10b981';
-                loginSubmitBtn.style.boxShadow = '0 6px 20px rgba(16,185,129,0.4)';
+                loginSubmitBtn.style.background  = '#10b981';
+                loginSubmitBtn.style.boxShadow   = '0 6px 20px rgba(16,185,129,0.4)';
                 loginSubmitBtn.innerHTML = '<i class="fas fa-circle-check"></i> <span>Welcome back! Redirecting…</span>';
             }
 
             setTimeout(() => {
-                const safeUrl = getSafeReturnUrl();
-                window.location.href = safeUrl || '../index.html';
-            }, 800);
+                window.location.href = safeReturn || '../index.html';
+            }, 600);
 
         } catch (err) {
             console.error('[EDMITH Auth] Login error:', err);
-            showFormError(friendlyLoginError(err.message || String(err), loginMode));
+            showPasswordError(err.message || 'Incorrect password. Please try again.');
+            setFieldState(loginPasswordEl, 'error');
             if (loginSubmitBtn) {
                 loginSubmitBtn.disabled = false;
                 loginSubmitBtn.style.background = '';
-                loginSubmitBtn.style.boxShadow = '';
+                loginSubmitBtn.style.boxShadow  = '';
                 loginSubmitBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i> <span>Log In</span>';
             }
         }
     });
-}
+
+})(); // end initLoginController
+
 
 
 

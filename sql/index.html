@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master SQL and Relational Databases with EDMITH. Hands-on modules covering DDL, DML, DQL, Joins, Window Functions, and Data Warehouse ETL.">
-    <title>SQL Mastery - EDMITH</title>
+    <meta name="description" content="Master SQL and Relational Database Engineering with EDMITH. 47 structured lessons covering DDL, DML, DQL, Joins, Window Functions, Stored Procedures, and ACID transactions.">
+    <title>SQL &amp; Relational Database Mastery — EDMITH</title>
     <link rel="canonical" href="https://edmith.com/sql/index.html">
     <meta name="robots" content="index,follow">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://edmith.com/sql/index.html">
     <meta property="og:title" content="SQL Mastery - EDMITH">
-    <meta property="og:description" content="Master SQL and Relational Databases with EDMITH. Hands-on modules covering DDL, DML, DQL, Joins, Window Functions, and Data Warehouse ETL.">
+    <meta property="og:description" content="Master SQL and Relational Databases with EDMITH. 47 hands-on lessons covering DDL, DML, DQL, Joins, and Data Warehouse ETL.">
+
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SQL Mastery - EDMITH">
     <meta name="twitter:description" content="Master SQL and Relational Databases with EDMITH. Hands-on modules covering DDL, DML, DQL, Joins, Window Functions, and Data Warehouse ETL.">
+
     <!-- Prevent theme flicker before paint -->
     <script>
-        (function() {
+        (function () {
             const theme = localStorage.getItem('edmith-theme');
             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             if (theme === 'dark' || (!theme && prefersDark)) {
@@ -27,257 +31,700 @@
             }
         })();
     </script>
+
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <!-- Smart Header -->
-    <header class="header detail-header" id="detailHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html" class="active">Courses</a></li>
-                <li><a href="../Leaderboard.html">Leaderboard</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
 
-    <!-- Hero Section -->
+    <!-- World-Class Course Hero -->
     <section class="detail-hero">
         <div class="detail-hero-bg"></div>
         <div class="detail-hero-content">
-            <h1>SQL & Database Mastery</h1>
+            <div class="section-tag-badge" style="margin-bottom: 1.25rem;">
+                <i class="fas fa-database"></i>
+                <span>Enterprise Relational Data Track</span>
+            </div>
+
+            <h1>SQL &amp; Database Mastery</h1>
+
             <p class="relevance-text">
-                <strong>Why this skill is mandatory today:</strong> SQL is the undisputed, non-negotiable backbone of the data-driven world. Whether you are aiming for Database Development, ETL Engineering, becoming an ETL Tester, managing a Data Warehouse (DWH), or stepping into a Data Engineer role, mastering SQL is your mandatory first step to handling enterprise data.
+                <strong>Why this skill is mandatory:</strong> Structured Query Language (SQL) is the universal lingua franca of the modern data landscape. From application persistence to high-throughput OLAP data lakes and financial analytics, every data professional must reason rigorously in relational algebra. EDMITH delivers 47 systematically sequenced lessons and an interactive in-browser workbench with zero setup required.
             </p>
+
+            <div class="hero-tag-pills" style="margin-top: 1.5rem;">
+                <span class="hero-tag-pill"><i class="fas fa-book-open"></i> 50 Modular Lessons</span>
+                <span class="hero-tag-pill"><i class="fas fa-terminal"></i> Live In-Browser Sandbox</span>
+                <span class="hero-tag-pill"><i class="fas fa-layer-group"></i> 5 Structured Modules</span>
+                <span class="hero-tag-pill"><i class="fas fa-clipboard-check"></i> Proctored Certification</span>
+                <span class="hero-tag-pill"><i class="fas fa-infinity"></i> Free Lifetime Access</span>
+            </div>
         </div>
     </section>
 
     <!-- Main Course Detail Grid -->
     <section class="detail-container">
-        
-        <!-- Left Side: Course Content & Description -->
-        <div class="detail-main">
-            
-            <h2>What You Will Learn</h2>
-            
-            <h3 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">Part 1: The Basics</h3>
-            <div class="learning-grid" style="margin-bottom: 2rem;">
-                <p><i class="fas fa-check-circle"></i> <span><strong>SQL Introduction:</strong> Understand relational databases and how data is stored.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>Order of Execution (Priority):</strong> Learn how SQL actually runs behind the scenes (FROM &rarr; GROUP BY &rarr; SELECT &rarr; ORDER BY).</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>The 5 SQL Languages:</strong> Master DDL, DML, DQL, TCL, and DCL commands.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>Database Foundations:</strong> Learn how to create, manage, and structure database files.</span></p>
+
+        <!-- Left Column: Syllabus & Learning Content -->
+        <main class="detail-main">
+
+            <!-- Live Course Progress Hub Card -->
+            <div class="course-hub-progress-card" id="sqlProgressCard" aria-label="Course Learning Status">
+                <div class="hub-progress-header">
+                    <div class="hub-progress-title">
+                        <i class="fas fa-chart-line"></i>
+                        <span id="sqlProgressTitle">Your SQL Progress</span>
+                    </div>
+                    <span class="hub-progress-pct" id="sqlProgressPct">0%</span>
+                </div>
+                <div class="hub-progress-bar-track">
+                    <div class="hub-progress-bar-fill" id="sqlProgressBarFill" style="width: 0%;"></div>
+                </div>
+                <div class="hub-progress-footer">
+                    <span id="sqlProgressCount"><i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> 0 of 50 lessons completed</span>
+                    <a href="intro.html" class="hub-progress-resume-btn" id="sqlResumeBtn">
+                        <span>Start Lesson 1</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
 
-            <h3 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">Part 2: The Advance</h3>
-            <div class="learning-grid">
-                <p><i class="fas fa-check-circle"></i> <span><strong>Complex Joins:</strong> Combine multiple tables effortlessly.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>Window Functions:</strong> Perform advanced analytics without grouping data.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>ETL Concepts:</strong> Learn how SQL integrates into Data Warehousing pipelines.</span></p>
-                <p><i class="fas fa-check-circle"></i> <span><strong>Performance Tuning:</strong> Write queries that run fast on massive datasets.</span></p>
+            <!-- 5-Stage Roadmap Strip -->
+            <div class="course-roadmap-strip" aria-label="Course Learning Roadmap">
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">01</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Core Syntax</span>
+                        <span class="roadmap-stage-sub">Grammar &amp; Order</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">02</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Filtering &amp; Math</span>
+                        <span class="roadmap-stage-sub">WHERE &amp; Aggregates</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">03</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Relational Joins</span>
+                        <span class="roadmap-stage-sub">Multi-Table Data</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">04</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Conditional Logic</span>
+                        <span class="roadmap-stage-sub">CASE, Subqueries, NULL</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">05</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Enterprise Ops</span>
+                        <span class="roadmap-stage-sub">DML, ACID &amp; Stored Procs</span>
+                    </div>
+                </div>
             </div>
 
-            <h2>Course Description</h2>
-            <p class="description-text">
-                Welcome to the most comprehensive SQL Masterclass at EDMITH. In today's tech market, data is everything, and SQL is the universal language used to communicate with it. This course is carefully designed to take you from an absolute beginner to a confident data professional. We break down complex concepts into digestible pieces—starting with the absolute basics like understanding the 5 sub-languages of SQL (DML, DDL, TCL, etc.) and the hidden "Order of Execution" that most beginners get wrong. By the end of this course, you will write queries like a seasoned Data Engineer and be fully prepared to tackle enterprise databases.
-            </p>
+            <!-- What You Will Master: 4 Core Learning Pillars -->
+            <h2>Core Competencies You Will Master</h2>
 
-            <h2>Course Content</h2>
+            <div class="learning-pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h4>The 5 SQL Languages</h4>
+                    <p>Internalize the formal taxonomy dividing DDL, DML, DQL, TCL, and DCL commands with strict transaction boundaries.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-sort-amount-down"></i>
+                    </div>
+                    <h4>The Priority Rule</h4>
+                    <p>Understand the precise order in which relational engines evaluate clauses: FROM &rarr; WHERE &rarr; GROUP BY &rarr; HAVING &rarr; SELECT &rarr; ORDER BY.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h4>Enterprise Multi-Table Joins</h4>
+                    <p>Accurately correlate disparate transactional entities with INNER, LEFT, RIGHT, FULL OUTER, and recursive SELF joins without Cartesian blowouts.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h4>ACID Transactions &amp; Procs</h4>
+                    <p>Ensure mission-critical reliability with Atomicity, Consistency, Isolation, and Durability principles and reusable stored procedures.</p>
+                </div>
+            </div>
+
+            <!-- In-Browser SQL Sandbox Callout -->
+            <div class="editor-callout-card">
+                <div class="editor-callout-text">
+                    <h3><i class="fas fa-terminal" style="color: #38BDF8; margin-right: 8px;"></i> Interactive In-Browser SQL Sandbox</h3>
+                    <p>Execute real queries, inspect schemas, and validate data against our embedded enterprise database with instant visual feedback.</p>
+                </div>
+                <a href="../editors/editor.html" class="editor-callout-btn">
+                    <i class="fas fa-play"></i> Open SQL Workbench
+                </a>
+            </div>
+
+            <!-- Course Curriculum Accordion -->
+            <h2 style="margin-top: 2.75rem;">Complete Curriculum &amp; Syllabus</h2>
+
             <div class="syllabus-accordion">
+
+                <!-- Module 1: Foundations & Core Query Syntax (Lessons 01–17) -->
                 <div class="accordion-item active">
-                    <div class="accordion-header">
-                        <h3>Module 1: SQL and Basics (47 Lessons)</h3>
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-layer-group" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 1: SQL Foundations &amp; Query Syntax (Lessons 01–17)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
-                    <div class="accordion-body" style="max-height: 2500px; padding: 1.5rem; overflow-y: auto;">
-                        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px 20px;">
-                            <li><i class="fas fa-book-open"></i> <a href="intro.html" style="color: var(--accent); font-weight: 600;">SQL Introduction</a></li>
-                            <li><i class="fas fa-laptop-code"></i> <a href="languages.html" style="color: var(--accent); font-weight: 600;">The 5 SQL Languages</a></li>
-                            <li><i class="fas fa-list-ol"></i> <a href="priority-rule.html" style="color: var(--accent); font-weight: 600;">The Priority Rule</a></li>
-                            <li><i class="fas fa-terminal"></i> <a href="syntax.html" style="color: var(--accent); font-weight: 600;">SQL Syntax &amp; Statement Grammar</a></li>
-                            <li><i class="fas fa-search"></i> <a href="select.html" style="color: var(--accent); font-weight: 600;">The SELECT Statement</a></li>
-                            <li><i class="fas fa-tag"></i> <a href="aliases.html" style="color: var(--accent); font-weight: 600;">SQL Aliases (The AS Keyword)</a></li>
-                            <li><i class="fas fa-filter"></i> <a href="select-distinct.html" style="color: var(--accent); font-weight: 600;">SELECT DISTINCT (Deduplication)</a></li>
-                            <li><i class="fas fa-sliders-h"></i> <a href="where.html" style="color: var(--accent); font-weight: 600;">The WHERE Clause</a></li>
-                            <li><i class="fas fa-plus"></i> <a href="and.html" style="color: var(--accent); font-weight: 600;">The AND Operator</a></li>
-                            <li><i class="fas fa-random"></i> <a href="or.html" style="color: var(--accent); font-weight: 600;">The OR Operator</a></li>
-                            <li><i class="fas fa-ban"></i> <a href="not.html" style="color: var(--accent); font-weight: 600;">The NOT Operator</a></li>
-                            <li><i class="fas fa-arrows-alt-h"></i> <a href="between.html" style="color: var(--accent); font-weight: 600;">The BETWEEN Operator</a></li>
-                            <li><i class="fas fa-sign-in-alt"></i> <a href="in.html" style="color: var(--accent); font-weight: 600;">The IN Operator</a></li>
-                            <li><i class="fas fa-asterisk"></i> <a href="like.html" style="color: var(--accent); font-weight: 600;">The LIKE Operator</a></li>
-                            <li><i class="fas fa-question-circle"></i> <a href="null-values.html" style="color: var(--accent); font-weight: 600;">NULL Values &amp; Three-Valued Logic</a></li>
-                            <li><i class="fas fa-sort-amount-down"></i> <a href="order-by.html" style="color: var(--accent); font-weight: 600;">The ORDER BY Clause</a></li>
-                            <li><i class="fas fa-stream"></i> <a href="select-top.html" style="color: var(--accent); font-weight: 600;">SELECT TOP, LIMIT &amp; Pagination</a></li>
-                            <li><i class="fas fa-calculator"></i> <a href="aggregate-functions.html" style="color: var(--accent); font-weight: 600;">SQL Aggregate Functions Overview</a></li>
-                            <li><i class="fas fa-hashtag"></i> <a href="count.html" style="color: var(--accent); font-weight: 600;">The COUNT() Function</a></li>
-                            <li><i class="fas fa-coins"></i> <a href="sum.html" style="color: var(--accent); font-weight: 600;">The SUM() Function</a></li>
-                            <li><i class="fas fa-divide"></i> <a href="avg.html" style="color: var(--accent); font-weight: 600;">The AVG() Function</a></li>
-                            <li><i class="fas fa-arrow-down"></i> <a href="min.html" style="color: var(--accent); font-weight: 600;">The MIN() Function</a></li>
-                            <li><i class="fas fa-arrow-up"></i> <a href="max.html" style="color: var(--accent); font-weight: 600;">The MAX() Function</a></li>
-                            <li><i class="fas fa-boxes"></i> <a href="group-by.html" style="color: var(--accent); font-weight: 600;">The GROUP BY Statement</a></li>
-                            <li><i class="fas fa-filter"></i> <a href="having.html" style="color: var(--accent); font-weight: 600;">The HAVING Clause</a></li>
-                            <li><i class="fas fa-object-group"></i> <a href="joins.html" style="color: var(--accent); font-weight: 600;">SQL Joins Overview</a></li>
-                            <li><i class="fas fa-link"></i> <a href="inner-join.html" style="color: var(--accent); font-weight: 600;">INNER JOIN</a></li>
-                            <li><i class="fas fa-arrow-left"></i> <a href="left-join.html" style="color: var(--accent); font-weight: 600;">LEFT JOIN (Outer Join)</a></li>
-                            <li><i class="fas fa-arrow-right"></i> <a href="right-join.html" style="color: var(--accent); font-weight: 600;">RIGHT JOIN (Outer Join)</a></li>
-                            <li><i class="fas fa-arrows-alt-h"></i> <a href="full-join.html" style="color: var(--accent); font-weight: 600;">FULL OUTER JOIN</a></li>
-                            <li><i class="fas fa-sync"></i> <a href="self-join.html" style="color: var(--accent); font-weight: 600;">SELF JOIN</a></li>
-                            <li><i class="fas fa-layer-group"></i> <a href="union.html" style="color: var(--accent); font-weight: 600;">The UNION Operator</a></li>
-                            <li><i class="fas fa-clone"></i> <a href="union-all.html" style="color: var(--accent); font-weight: 600;">The UNION ALL Operator</a></li>
-                            <li><i class="fas fa-code-branch"></i> <a href="case.html" style="color: var(--accent); font-weight: 600;">The CASE Expression</a></li>
-                            <li><i class="fas fa-shield-alt"></i> <a href="null-functions.html" style="color: var(--accent); font-weight: 600;">SQL NULL Functions (COALESCE &amp; IFNULL)</a></li>
-                            <li><i class="fas fa-eye"></i> <a href="exists.html" style="color: var(--accent); font-weight: 600;">The EXISTS Operator</a></li>
-                            <li><i class="fas fa-check-double"></i> <a href="any.html" style="color: var(--accent); font-weight: 600;">The ANY Operator</a></li>
-                            <li><i class="fas fa-check-circle"></i> <a href="all.html" style="color: var(--accent); font-weight: 600;">The ALL Operator</a></li>
-                            <li><i class="fas fa-plus-circle"></i> <a href="insert-into.html" style="color: var(--accent); font-weight: 600;">The INSERT INTO Statement</a></li>
-                            <li><i class="fas fa-edit"></i> <a href="update.html" style="color: var(--accent); font-weight: 600;">The UPDATE Statement</a></li>
-                            <li><i class="fas fa-trash-alt"></i> <a href="delete.html" style="color: var(--accent); font-weight: 600;">The DELETE Statement</a></li>
-                            <li><i class="fas fa-copy"></i> <a href="select-into.html" style="color: var(--accent); font-weight: 600;">The SELECT INTO Statement</a></li>
-                            <li><i class="fas fa-file-import"></i> <a href="insert-into-select.html" style="color: var(--accent); font-weight: 600;">The INSERT INTO SELECT Statement</a></li>
-                            <li><i class="fas fa-comment-dots"></i> <a href="comments.html" style="color: var(--accent); font-weight: 600;">SQL Comments</a></li>
-                            <li><i class="fas fa-cogs"></i> <a href="stored-procedures.html" style="color: var(--accent); font-weight: 600;">Stored Procedures</a></li>
+                    <div class="accordion-body" style="max-height: 1800px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="intro.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">SQL Introduction</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="languages.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">The 5 SQL Languages</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="priority-rule.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">The Priority Rule</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="syntax.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">SQL Syntax Grammar</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="select.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">The SELECT Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="aliases.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">SQL Aliases (AS)</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="select-distinct.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">SELECT DISTINCT</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="where.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">The WHERE Clause</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="and.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">The AND Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="or.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">The OR Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="not.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">The NOT Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="between.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">The BETWEEN Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="in.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">The IN Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="like.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">The LIKE Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="null-values.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">NULL Values &amp; Logic</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="order-by.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">The ORDER BY Clause</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="select-top.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">SELECT TOP &amp; LIMIT</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: Aggregations & Analytical Functions (Lessons 18–25) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-calculator" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 2: Aggregations &amp; Grouping (Lessons 18–25)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 1200px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="aggregate-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Aggregate Functions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="count.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">The COUNT() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="sum.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">The SUM() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="avg.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">The AVG() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="min.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">The MIN() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="max.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">The MAX() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="group-by.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">The GROUP BY Clause</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="having.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">25</span>
+                                    <span class="syllabus-lesson-title">The HAVING Clause</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Relational Joins & Set Operations (Lessons 26–33) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-link" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 3: Relational Joins &amp; Sets (Lessons 26–33)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 1200px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="joins.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">26</span>
+                                    <span class="syllabus-lesson-title">Joins Overview</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="inner-join.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">27</span>
+                                    <span class="syllabus-lesson-title">INNER JOIN</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="left-join.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">28</span>
+                                    <span class="syllabus-lesson-title">LEFT JOIN</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="right-join.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">29</span>
+                                    <span class="syllabus-lesson-title">RIGHT JOIN</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="full-join.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">30</span>
+                                    <span class="syllabus-lesson-title">FULL OUTER JOIN</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="self-join.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">31</span>
+                                    <span class="syllabus-lesson-title">SELF JOIN</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="union.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">32</span>
+                                    <span class="syllabus-lesson-title">The UNION Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="union-all.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">33</span>
+                                    <span class="syllabus-lesson-title">The UNION ALL Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: Conditional Expressions & Subqueries (Lessons 34–38) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-code-branch" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 4: Conditional Logic &amp; Subqueries (Lessons 34–38)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 1000px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="case.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">34</span>
+                                    <span class="syllabus-lesson-title">The CASE Expression</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="null-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">35</span>
+                                    <span class="syllabus-lesson-title">NULL Functions (COALESCE)</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="exists.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">36</span>
+                                    <span class="syllabus-lesson-title">The EXISTS Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="any.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">37</span>
+                                    <span class="syllabus-lesson-title">The ANY Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="all.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">38</span>
+                                    <span class="syllabus-lesson-title">The ALL Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Data Modification, Stored Procedures & ACID (Lessons 39–47) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-database" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 5: DML, Procedures &amp; ACID Integrity (Lessons 39–47)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 1200px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="insert-into.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">39</span>
+                                    <span class="syllabus-lesson-title">The INSERT INTO</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="update.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">40</span>
+                                    <span class="syllabus-lesson-title">The UPDATE Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="delete.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">41</span>
+                                    <span class="syllabus-lesson-title">The DELETE Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="select-into.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">42</span>
+                                    <span class="syllabus-lesson-title">The SELECT INTO</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="insert-into-select.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">43</span>
+                                    <span class="syllabus-lesson-title">INSERT INTO SELECT</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="comments.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">44</span>
+                                    <span class="syllabus-lesson-title">SQL Comments</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="stored-procedures.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">45</span>
+                                    <span class="syllabus-lesson-title">Stored Procedures</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="acid-properties.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">46</span>
+                                    <span class="syllabus-lesson-title">ACID Transactions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">47</span>
+                                    <span class="syllabus-lesson-title">SQL Functions Library</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6: Dictionaries & Enterprise References -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-book-bookmark" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 6: Dictionaries &amp; Enterprise References</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 600px; padding: 1.5rem;">
+                        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 12px;">
+                            <li><i class="fas fa-percent" style="color: var(--accent);"></i> <a href="wildcards.html">SQL Wildcards Reference</a></li>
+                            <li><i class="fas fa-calculator" style="color: var(--accent);"></i> <a href="operators.html">SQL Operators Reference</a></li>
+                            <li><i class="fas fa-cube" style="color: var(--accent);"></i> <a href="functions.html">SQL Functions Guide</a></li>
+                            <li><i class="fas fa-book" style="color: var(--accent);"></i> <a href="keywords.html">SQL Keywords Dictionary</a></li>
+                            <li><i class="fas fa-shield-halved" style="color: var(--accent);"></i> <a href="acid-properties.html">ACID Properties Reference</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Module 2: Advanced Data Retrieval (Coming Soon)</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li><i class="fas fa-lock"></i> Advanced Joins (Coming Soon...)</li>
-                            <li><i class="fas fa-lock"></i> Window Functions (Coming Soon...)</li>
-                            <li><i class="fas fa-lock"></i> Subqueries &amp; CTEs (Coming Soon...)</li>
-                            <li><i class="fas fa-lock"></i> Performance Tuning (Coming Soon...)</li>
-                        </ul>
-                    </div>
-                </div>
-
+                <!-- Module 7: Assessments & Certification -->
                 <div class="accordion-item active">
-                    <div class="accordion-header">
-                        <h3>Module 3: References &amp; Dictionaries</h3>
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-award" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 7: Certification Assessments &amp; Rankings</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 500px; padding: 1.5rem;">
                         <ul>
-                            <li><i class="fas fa-percent" style="color: var(--accent);"></i> <a href="wildcards.html" style="color: var(--accent); font-weight: 700;">SQL Wildcards Reference</a></li>
-                            <li><i class="fas fa-percentage" style="color: var(--accent);"></i> <a href="operators.html" style="color: var(--accent); font-weight: 700;">SQL Operators Reference</a></li>
-                            <li><i class="fas fa-cube" style="color: var(--accent);"></i> <a href="functions.html" style="color: var(--accent); font-weight: 700;">SQL Functions Reference (Full Guide)</a></li>
-                            <li><i class="fas fa-book" style="color: var(--accent);"></i> <a href="keywords.html" style="color: var(--accent); font-weight: 700;">SQL Keywords Dictionary (Full Reference)</a></li>
-                            <li><i class="fas fa-shield-alt" style="color: var(--accent);"></i> <a href="acid-properties.html" style="color: var(--accent); font-weight: 700;">ACID Properties (Transactions &amp; Data Integrity)</a></li>
+                            <li><i class="fas fa-list-check" style="color: var(--accent);"></i> <a href="tests/sql_basics.html">SQL Basics MCQ Certification Test (15 Questions · Timed)</a></li>
+                            <li><i class="fas fa-code" style="color: var(--accent);"></i> <a href="tests/coding_test.html">SQL Practical Coding Test (Query Evaluation)</a></li>
+                            <li><i class="fas fa-clipboard-check" style="color: var(--accent);"></i> <a href="tests/index.html">All Assessment Tracks &amp; Testing Rules</a></li>
+                            <li><i class="fas fa-trophy" style="color: #F59E0B;"></i> <a href="../Leaderboard.html" style="color: #F59E0B; font-weight: 700;">Official SQL Leaderboard &amp; Rankings</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <h3>Module 4: Assessments &amp; Check Your Knowledge</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-body">
-                        <ul>
-                            <li><i class="fas fa-list-check" style="color: var(--accent);"></i> <a href="tests/sql_basics.html" style="color: var(--accent); font-weight: 700;">SQL Basics MCQ Test (15 Questions · Timed)</a></li>
-                            <li><i class="fas fa-code" style="color: var(--accent);"></i> <a href="tests/coding_test.html" style="color: var(--accent); font-weight: 700;">SQL Practical Coding Test (Query Evaluation)</a></li>
-                            <li><i class="fas fa-clipboard-check" style="color: var(--accent);"></i> <a href="tests/index.html" style="color: var(--accent); font-weight: 700;">All SQL Assessment Tracks &amp; Rules</a></li>
-                            <li><i class="fas fa-trophy" style="color: #f59e0b;"></i> <a href="../Leaderboard.html" style="color: #f59e0b; font-weight: 700;">Official SQL Leaderboard &amp; Rankings</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Right Side: Sticky Sidebar -->
-        <aside class="detail-sidebar">
+        <!-- Right Side: Sticky Action Sidebar -->
+        <aside class="detail-sidebar" aria-label="Course Overview & Actions">
             <div class="sidebar-card">
-                <div class="sidebar-img">
-                    <i class="fas fa-database"></i>
+                <div class="sidebar-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, #4C1D95 0%, #6D28D9 50%, #8B5CF6 100%);">
+                    <i class="fas fa-database" style="font-size: 4.5rem; color: #FFFFFF; opacity: 0.95;"></i>
                 </div>
-                <div class="sidebar-content">
-                    <div class="course-meta-list">
+                <div class="sidebar-content" style="padding: 1.75rem 1.5rem;">
+                    <div class="course-meta-list" style="margin-bottom: 1.5rem;">
                         <div class="meta-item">
-                            <i class="fas fa-hourglass-start"></i>
-                            <div><strong>Basic Level:</strong> 12 Hours</div>
+                            <i class="fas fa-clock"></i>
+                            <div><strong>Duration:</strong> ~12 Hours self-paced</div>
                         </div>
                         <div class="meta-item">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <div><strong>Advance Level:</strong> Coming soon</div>
+                            <i class="fas fa-book"></i>
+                            <div><strong>Curriculum:</strong> 47 Modular Lessons</div>
                         </div>
                         <div class="meta-item">
-                            <i class="fas fa-laptop-code"></i>
-                            <div><strong>Exercises:</strong> Coming soon</div>
+                            <i class="fas fa-signal"></i>
+                            <div><strong>Skill Level:</strong> Beginner to Advanced</div>
                         </div>
                         <div class="meta-item">
-                            <i class="fas fa-comments"></i>
-                            <div><strong>Interview Prep:</strong> Coming soon</div>
+                            <i class="fas fa-terminal"></i>
+                            <div><strong>Practice:</strong> Interactive In-Browser Sandbox</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <div><strong>Credential:</strong> Verified Certificate upon Completion</div>
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-infinity"></i>
-                            <div><strong>Access:</strong> Full Lifetime Access</div>
+                            <div><strong>Access:</strong> Full Lifetime Free Access</div>
                         </div>
                     </div>
-                    <button class="btn-enroll" onclick="window.location.href='intro.html'">Start Learning Now</button>
-                    <button class="btn-enroll" style="background: rgba(16, 185, 129, 0.18); border: 1px solid #10B981; color: #34D399; margin-top: 10px;" onclick="window.location.href='../editors/editor.html'"><i class="fas fa-terminal"></i> Launch SQL Playground</button>
-                    <button class="btn-enroll" style="margin-top: 10px;" onclick="window.location.href='tests/index.html'"><i class="fas fa-clipboard-check"></i> Take SQL Tests</button>
+
+                    <a href="intro.html" id="sidebarPrimaryBtn" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; text-decoration: none;">
+                        <i class="fas fa-rocket"></i> <span id="sidebarPrimaryBtnText">Start Learning (Lesson 1)</span>
+                    </a>
+
+                    <a href="../editors/editor.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: rgba(16, 185, 129, 0.16); border: 1.5px solid #10B981; color: #10B981; text-decoration: none;">
+                        <i class="fas fa-terminal"></i> Launch SQL Playground
+                    </a>
+
+                    <a href="tests/index.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: var(--card-bg); border: 1.5px solid var(--card-border); color: var(--text-primary); text-decoration: none;">
+                        <i class="fas fa-clipboard-check"></i> Take Assessment Tests
+                    </a>
+
+                    <a href="../Leaderboard.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: rgba(245, 158, 11, 0.12); border: 1.5px solid #F59E0B; color: #F59E0B; text-decoration: none;">
+                        <i class="fas fa-trophy"></i> View Leaderboard
+                    </a>
                 </div>
             </div>
         </aside>
 
     </section>
 
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="index.html">SQL Mastery</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Leaderboard</h3>
-                <ul>
-                    <li><a href="../Leaderboard.html">Rankings</a></li>
-                </ul>
-            </div>
-<div class="footer-links">
-    <h3>Editors</h3>
-    <ul>
-        <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
-    </ul>
-</div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
 
-    <!-- Fixed relative path to JavaScript -->
+    <script src="../components/components.js"></script>
     <script src="../javascript/script.js"></script>
+
+    <!-- Dynamic Course Progress Synchronizer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (window.EdmithProgress && typeof window.EdmithProgress.calculateCourseProgress === 'function') {
+                    const activeUser = window.EdmithProgress.getActiveAuthUserSync ? window.EdmithProgress.getActiveAuthUserSync() : null;
+                    const userId = activeUser ? activeUser.id : (sessionStorage.getItem('edmith_guest') === 'true' ? 'guest' : 'guest');
+                    
+                    if (window.EdmithProgress.fetchUserProgressFromSupabase && userId !== 'guest') {
+                        await window.EdmithProgress.fetchUserProgressFromSupabase(userId);
+                    }
+
+                    const progress = window.EdmithProgress.calculateCourseProgress('sql_mastery', userId);
+                    if (progress) {
+                        const pctEl = document.getElementById('sqlProgressPct');
+                        const fillEl = document.getElementById('sqlProgressBarFill');
+                        const countEl = document.getElementById('sqlProgressCount');
+                        const resumeBtn = document.getElementById('sqlResumeBtn');
+                        const sideBtn = document.getElementById('sidebarPrimaryBtn');
+                        const sideBtnText = document.getElementById('sidebarPrimaryBtnText');
+
+                        if (pctEl) pctEl.textContent = progress.progress_percentage + '%';
+                        if (fillEl) fillEl.style.width = progress.progress_percentage + '%';
+                        if (countEl) {
+                            countEl.innerHTML = `<i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> ${progress.completed_count} of ${progress.total_lessons} lessons completed`;
+                        }
+
+                        if (progress.completed_count > 0 || progress.is_started) {
+                            const nextTarget = progress.next_lesson_file || 'intro.html';
+                            const nextTitle = progress.next_lesson_title || 'Next Lesson';
+                            if (resumeBtn) {
+                                resumeBtn.href = nextTarget;
+                                resumeBtn.innerHTML = `<span>Resume: ${nextTitle}</span> <i class="fas fa-arrow-right"></i>`;
+                            }
+                            if (sideBtn && sideBtnText) {
+                                sideBtn.href = nextTarget;
+                                sideBtnText.textContent = `Resume Learning (${nextTitle})`;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('[EDMITH SQL] Progress bar init notice:', err);
+            }
+        });
+    </script>
 </body>
+
 </html>

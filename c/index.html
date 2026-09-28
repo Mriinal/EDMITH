@@ -1,0 +1,2512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master C Programming from fundamental computer science concepts to advanced pointers, memory management, and data structures with EDMITH. 290 structured lessons with in-browser sandboxes.">
+    <title>C Programming Mastery — Complete Beginner to Advanced Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/c/index.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/c/index.html">
+    <meta property="og:title" content="C Programming Mastery — EDMITH">
+    <meta property="og:description" content="Master C Programming from scratch with EDMITH. 290 structured lessons covering Syntax, Data Types, Control Flow, Functions, Arrays, Strings, and Pointers.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="C Programming Mastery — EDMITH">
+    <meta name="twitter:description" content="Free, comprehensive C Programming course. Learn memory architecture, pointers, and systems programming.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- World-Class Course Hero -->
+    <section class="detail-hero">
+        <div class="detail-hero-bg"></div>
+        <div class="detail-hero-content">
+            <div class="section-tag-badge" style="margin-bottom: 1.25rem;">
+                <i class="fas fa-code"></i>
+                <span>Core Computer Science &amp; Systems Programming Track</span>
+            </div>
+
+            <h1>C Programming Mastery</h1>
+
+            <p class="relevance-text">
+                <strong>Why C is mandatory for every engineer:</strong> C is the mother of modern computing. Operating system kernels (Linux, macOS, Windows), high-performance databases, embedded robotics, and modern language runtimes (Python, Node.js V8) are written in C. By learning C, you stop treating memory and hardware as magical black boxes and understand precisely how CPU registers, stacks, heaps, and pointers orchestrate computations.
+            </p>
+
+            <div class="hero-tag-pills" style="margin-top: 1.5rem;">
+                <span class="hero-tag-pill"><i class="fas fa-book-open"></i> 290 Modular Lessons</span>
+                <span class="hero-tag-pill"><i class="fas fa-terminal"></i> In-Browser Sandboxes</span>
+                <span class="hero-tag-pill"><i class="fas fa-layer-group"></i> 15 Structured Modules</span>
+                <span class="hero-tag-pill"><i class="fas fa-location-crosshairs"></i> Comprehensive Pointers Deep Dive</span>
+                <span class="hero-tag-pill"><i class="fas fa-infinity"></i> Free Lifetime Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Course Detail Grid -->
+    <section class="detail-container">
+        <!-- Left Column: Syllabus & Learning Content -->
+        <main class="detail-main">
+
+            <!-- Live Course Progress Hub Card -->
+            <div class="course-hub-progress-card" id="cProgressCard" aria-label="Course Learning Status">
+                <div class="hub-progress-header">
+                    <div class="hub-progress-title">
+                        <i class="fas fa-chart-line"></i>
+                        <span id="cProgressTitle">Your C Programming Progress</span>
+                    </div>
+                    <span class="hub-progress-pct" id="cProgressPct">0%</span>
+                </div>
+                <div class="hub-progress-bar-track">
+                    <div class="hub-progress-bar-fill" id="cProgressBarFill" style="width: 0%; background: linear-gradient(90deg, #10B981 0%, #3B82F6 100%);"></div>
+                </div>
+                <div class="hub-progress-footer">
+                    <span id="cProgressCount"><i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> 0 of 290 lessons completed</span>
+                    <a href="what-is-programming.html" class="hub-progress-resume-btn" id="cResumeBtn">
+                        <span>Start Lesson 1</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5-Stage Roadmap Strip -->
+            <div class="course-roadmap-strip" aria-label="Course Learning Roadmap">
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">01</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Fundamentals</span>
+                        <span class="roadmap-stage-sub">Compilers &amp; Syntax</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">02</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Data &amp; I/O</span>
+                        <span class="roadmap-stage-sub">Types &amp; Formatted Streams</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">03</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Control Logic</span>
+                        <span class="roadmap-stage-sub">Branches &amp; Loops</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">04</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Modularity</span>
+                        <span class="roadmap-stage-sub">Functions &amp; Arrays</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right roadmap-divider" aria-hidden="true"></i>
+
+                <div class="roadmap-stage">
+                    <span class="roadmap-stage-num">05</span>
+                    <div class="roadmap-stage-info">
+                        <span class="roadmap-stage-title">Memory Mastery</span>
+                        <span class="roadmap-stage-sub">Pointers &amp; Strings</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What You Will Master: 4 Core Learning Pillars -->
+            <h2>Core Competencies You Will Master</h2>
+
+            <div class="learning-pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h4>Hardware &amp; Memory Architecture</h4>
+                    <p>Demystify RAM byte addressing, CPU register allocation, cache efficiency, and stack vs heap lifetimes without runtime abstractions.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-location-crosshairs"></i>
+                    </div>
+                    <h4>Pointers &amp; Memory Addresses</h4>
+                    <p>Master direct memory manipulation with address-of (&amp;), dereference (*), multi-level pointers, and pointer arithmetic across dedicated lessons.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h4>Standard ISO Compliance &amp; Safety</h4>
+                    <p>Write robust code conforming strictly to ISO/IEC 9899 standards with zero undefined behavior, memory leaks, or buffer overflows.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h4>Modular Software Engineering</h4>
+                    <p>Architect clean modular code using header files, preprocessor directives, recursive functions, custom data types, and function pointers.</p>
+                </div>
+            </div>
+
+            <!-- In-Browser C Sandbox Callout -->
+            <div class="editor-callout-card">
+                <div class="editor-callout-text">
+                    <h3><i class="fas fa-terminal" style="color: #38BDF8; margin-right: 8px;"></i> Interactive In-Browser C Code Workbench</h3>
+                    <p>Compile and run C code directly in your browser with real-time compiler diagnostics and terminal output without installing local toolchains.</p>
+                </div>
+                <a href="../editors/c-editor.html" class="editor-callout-btn">
+                    <i class="fas fa-play"></i> Open C Workbench
+                </a>
+            </div>
+
+            <!-- Course Curriculum Accordion -->
+            <h2 style="margin-top: 2.75rem;">Complete Curriculum &amp; Syllabus</h2>
+
+            <div class="syllabus-accordion">
+                <!-- Module 1: Programming Fundamentals (17 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-terminal" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 1: Programming Fundamentals (17 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="what-is-programming.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">What is Programming?</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="what-is-a-programming-language.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">What is a Programming Language?</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="compiler-vs-interpreter.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Compiler vs Interpreter</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="source-object-executable-code.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Source Code, Object Code, Executable Code</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="how-a-c-program-works.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">How a C Program Works</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c-compilation-process.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">C Compilation Process</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c-program-execution-flow.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">C Program Execution Flow</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="basic-problem-solving-approach.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Basic Problem-Solving Approach</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="algorithms.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Algorithms</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="flowcharts.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Flowcharts</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pseudocode.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Pseudocode</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="variables-and-data.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Variables and Data</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="input-processing-output.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Input → Processing → Output</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="debugging-fundamentals.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Debugging Fundamentals</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="syntax-errors.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Syntax Errors</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="runtime-errors.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Runtime Errors</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="logical-errors.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">Logical Errors</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2: Introduction to C (20 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-code" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 2: Introduction to C (20 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="history-of-c.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">History of C</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="features-of-c.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Features of C</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="applications-of-c.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Applications of C</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c-standards.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">C Standards</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c89-c90-standard.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">C89/C90 Standard</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c99-standard.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">C99 Standard</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c11-standard.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">C11 Standard</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c17-standard.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">C17 Standard</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="c23-standard.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">C23 Standard</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="structure-of-a-c-program.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Structure of a C Program</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="main-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">main() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="header-files.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Header Files</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="preprocessor-directives.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Preprocessor Directives</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="comments.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Comments</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="statements.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Statements</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="blocks.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Blocks</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="identifiers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">Identifiers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="keywords.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Keywords</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="naming-conventions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">Naming Conventions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="case-sensitivity.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">Case Sensitivity</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 3: Setting Up C (11 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-gears" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 3: Setting Up C (11 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="installing-a-c-compiler.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Installing a C Compiler</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="gcc-compiler.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">GCC Compiler</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="clang-compiler.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Clang Compiler</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="msvc-compiler.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">MSVC Compiler</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="ides-and-editors.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">IDEs and Editors</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="compiling-from-command-line.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Compiling from Command Line</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="running-c-programs.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Running C Programs</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="compile-link-runtime.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Compile-Time vs Link-Time vs Runtime</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="compiler-warnings.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Compiler Warnings</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strict-compilation-flags.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Strict Compilation Flags</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="debug-vs-release-builds.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Debug Builds vs Release Builds</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4: Basic Syntax (12 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-brackets-curly" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 4: Basic Syntax (12 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="include-directive.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">#include Directive</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="define-directive.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">#define Directive</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="main-syntax.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">main() Syntax</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="braces.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Braces { }</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="semicolon.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Semicolon ;</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="comma-syntax.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Comma ,</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="parentheses.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Parentheses ( )</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="square-brackets.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Square Brackets [ ]</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="syntax-comments.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Comments in C</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="escape-sequences.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Escape Sequences</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="whitespace.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Whitespace</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="statements-and-expressions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Statements and Expressions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 5: Variables and Constants (14 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-box-archive" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 5: Variables and Constants (14 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="variable-declaration.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Variable Declaration</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="variable-initialization.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Variable Initialization</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="variable-assignment.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Variable Assignment</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="multiple-variable-declarations.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Multiple Variable Declarations</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="constants.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Constants</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="literal-values.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Literal Values</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="integer-constants.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Integer Constants</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="floating-point-constants.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Floating-Point Constants</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="character-constants.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Character Constants</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-literals-constant.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">String Literals</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="const-qualifier.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">const Qualifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="define-constants.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">#define Constants</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="scope-of-variables.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Scope of Variables</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="lifetime-of-variables.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Lifetime of Variables</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6: C Data Types (32 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-cubes" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 6: C Data Types (32 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="fundamental-data-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Fundamental Data Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="char-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">char Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="signed-char.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">signed char</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="unsigned-char.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">unsigned char</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="short-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">short Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="unsigned-short.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">unsigned short</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="int-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">int Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="unsigned-int.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">unsigned int</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="long-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">long Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="unsigned-long.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">unsigned long</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="long-long-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">long long Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="unsigned-long-long.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">unsigned long long</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="float-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">float Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="double-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">double Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="long-double-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">long double</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="bool-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">_Bool Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="void-data-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">void Data Type</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="integer-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Integer Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="floating-point-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">Floating-Point Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="signed-vs-unsigned.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">Signed vs Unsigned</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="type-ranges.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">Type Ranges</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="sizeof-operator-type.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">sizeof Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="implementation-defined-sizes.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">Implementation-Defined Sizes</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="fixed-width-integer-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">Fixed-Width Integer Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="int8-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">25</span>
+                                    <span class="syllabus-lesson-title">int8_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="int16-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">26</span>
+                                    <span class="syllabus-lesson-title">int16_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="int32-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">27</span>
+                                    <span class="syllabus-lesson-title">int32_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="int64-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">28</span>
+                                    <span class="syllabus-lesson-title">int64_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="uint8-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">29</span>
+                                    <span class="syllabus-lesson-title">uint8_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="uint16-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">30</span>
+                                    <span class="syllabus-lesson-title">uint16_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="uint32-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">31</span>
+                                    <span class="syllabus-lesson-title">uint32_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="uint64-t.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">32</span>
+                                    <span class="syllabus-lesson-title">uint64_t</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 7: Input and Output (26 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-keyboard" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 7: Input and Output (26 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="printf-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">printf() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="scanf-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">scanf() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="getchar-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">getchar() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="putchar-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">putchar() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="fgets-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">fgets() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="puts-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">puts() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="format-specifiers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Format Specifiers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-d.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">%d Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-i.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">%i Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-u.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">%u Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-f.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">%f Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-lf.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">%lf Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-c.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">%c Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-s.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">%s Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-x.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">%x Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-uppercase-x.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">%X Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-o.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">%o Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-p.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">%p Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-lld.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">%lld Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="specifier-zu.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">%zu Format Specifier</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="width-and-precision.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">Width and Precision</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="io-escape-sequences.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">Escape Sequences in I/O</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="formatted-output.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">Formatted Output</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="formatted-input.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">Formatted Input</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="input-buffering.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">25</span>
+                                    <span class="syllabus-lesson-title">Input Buffering</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="common-scanf-problems.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">26</span>
+                                    <span class="syllabus-lesson-title">Common scanf() Problems</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 8: Operators (29 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-calculator" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 8: Operators (29 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="arithmetic-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Arithmetic Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-addition.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Addition Operator +</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-subtraction.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Subtraction Operator -</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-multiplication.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Multiplication Operator *</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-division.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Division Operator /</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-modulo.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Modulo Operator %</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="relational-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Relational Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operators-less-greater.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Less Than < and Greater Than ></span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operators-less-greater-equal.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Less Than or Equal <= and Greater Than or Equal >=</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-equality.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Equality Operator ==</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-inequality.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Inequality Operator !=</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="logical-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Logical Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-logical-and.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Logical AND &&</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-logical-or.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Logical OR ||</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-logical-not.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Logical NOT !</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="assignment-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Assignment Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="compound-assignment-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">Compound Assignment Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="bitwise-operators.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Bitwise Operators</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-bitwise-and.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">Bitwise AND &</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-bitwise-or.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">Bitwise OR |</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-bitwise-xor.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">Bitwise XOR ^</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-bitwise-not.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">Bitwise NOT ~</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-bitwise-shifts.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">Bitwise Shift Operators << >></span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="increment-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">Increment Operator ++</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="decrement-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">25</span>
+                                    <span class="syllabus-lesson-title">Decrement Operator --</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="conditional-ternary-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">26</span>
+                                    <span class="syllabus-lesson-title">Conditional/Ternary Operator ?:</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="comma-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">27</span>
+                                    <span class="syllabus-lesson-title">Comma Operator</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="operator-precedence-associativity.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">28</span>
+                                    <span class="syllabus-lesson-title">Operator Precedence and Associativity</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="expressions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">29</span>
+                                    <span class="syllabus-lesson-title">Expressions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 9: Type Conversion (11 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-arrow-right-arrow-left" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 9: Type Conversion (11 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="implicit-conversion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Implicit Conversion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="explicit-conversion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Explicit Conversion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="type-casting.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Type Casting</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="integer-promotion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Integer Promotion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="usual-arithmetic-conversions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Usual Arithmetic Conversions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="signed-unsigned-conversion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Signed/Unsigned Conversion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="integer-overflow.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Integer Overflow</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="floating-point-conversion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Floating-Point Conversion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="narrowing-conversions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Narrowing Conversions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="conversion-pitfalls.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Conversion Pitfalls</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="undefined-behavior-conversions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Undefined Behavior Related to Conversions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 10: Decision Making (13 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-code-branch" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 10: Decision Making (13 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="if-statement.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">if Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="if-else-statement.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">if-else Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="nested-if.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Nested if</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="else-if-ladder.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">else-if Ladder</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="switch-statement.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">switch Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="case-default-labels.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">case and default Labels</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="break-in-switch.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">break Statement in switch</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="nested-switch.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Nested switch</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="conditional-operator-decisions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Conditional Operator in Decision Making</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="multiple-conditions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Multiple Conditions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="truth-values-in-c.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Truth Values in C</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="bool-decisions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">_Bool and Boolean Logic</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="decision-making-pitfalls.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Common Decision-Making Pitfalls</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 11: Loops (12 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-repeat" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 11: Loops (12 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="for-loop.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">for Loop</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="while-loop.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">while Loop</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="do-while-loop.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">do-while Loop</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="nested-loops.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Nested Loops</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="infinite-loops.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Infinite Loops</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="break-in-loops.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">break in Loops</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="continue-statement.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">continue Statement</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="loop-control.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Loop Control</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="counter-controlled-loops.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Counter-Controlled Loops</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="sentinel-controlled-loops.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Sentinel-Controlled Loops</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="loop-nesting-patterns.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Loop Nesting Patterns</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="common-loop-mistakes.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Common Loop Mistakes</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 12: Functions (20 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-cube" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 12: Functions (20 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="function-declaration.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Function Declaration</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-definition.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Function Definition</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-call.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Function Call</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-prototypes.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Function Prototypes</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="parameters-and-arguments.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Parameters and Arguments</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="return-values.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Return Values</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="void-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">void Functions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="functions-with-parameters.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Functions with Parameters</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="functions-without-parameters.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Functions without Parameters</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="functions-returning-values.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Functions Returning Values</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pass-by-value.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Pass-by-Value</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="scope-in-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Scope in Functions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="local-variables.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Local Variables</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="global-variables.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Global Variables</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="static-local-variables.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Static Local Variables</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-recursion.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Function Recursion</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="recursive-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">Recursive Functions in Practice</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="recursion-vs-iteration.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Recursion vs Iteration</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">Function Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="callback-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">Callback Functions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 13: Arrays (16 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-table-cells" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 13: Arrays (16 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="one-dimensional-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">One-Dimensional Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-declaration.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Array Declaration</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-initialization.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Array Initialization</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-indexing.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Array Indexing</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="traversing-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Traversing Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="updating-array-elements.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Updating Array Elements</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="multidimensional-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Multidimensional Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="two-dimensional-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Two-Dimensional Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="three-dimensional-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Three-Dimensional Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="arrays-of-different-data-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Arrays of Different Data Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="passing-arrays-to-functions.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Passing Arrays to Functions</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-size-calculation.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Array Size Calculation</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="variable-length-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Variable-Length Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-bounds.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Array Bounds</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="out-of-bounds-access.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Out-of-Bounds Access</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="arrays-and-pointers-relationship.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Relationship Between Arrays and Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 14: Strings (24 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-font" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 14: Strings (24 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="character-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">Character Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-literals.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">String Literals</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="null-terminator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Null Terminator '\0'</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-initialization.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">String Initialization</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="reading-strings.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Reading Strings</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="printing-strings.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Printing Strings</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-traversal.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">String Traversal</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-length.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">String Length</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-comparison.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">String Comparison</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-copying.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">String Copying</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-concatenation.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">String Concatenation</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="searching-strings.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Searching Strings</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-h-header.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title"><string.h> Header</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strlen-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">strlen() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strcpy-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">strcpy() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strncpy-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">strncpy() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strcat-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">strcat() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strncat-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">strncat() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strcmp-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">strcmp() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strncmp-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">strncmp() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strchr-strrchr.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">strchr() and strrchr()</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strstr-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">strstr() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="strtok-function.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">strtok() Function</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="string-safety-buffer-overflow.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">String Safety and Buffer Overflow</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 15: Pointers — Core Topic (33 Lessons) -->
+                <div class="accordion-item active">
+                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
+                        <h3><i class="fas fa-location-crosshairs" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 15: Pointers — Core Topic (33 Lessons)</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
+                        <div class="syllabus-lesson-grid">
+                            <a href="what-is-a-pointer.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">01</span>
+                                    <span class="syllabus-lesson-title">What is a Pointer?</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="memory-addresses.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">02</span>
+                                    <span class="syllabus-lesson-title">Memory Addresses</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="address-of-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">03</span>
+                                    <span class="syllabus-lesson-title">Address-of Operator &</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="dereference-operator.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">04</span>
+                                    <span class="syllabus-lesson-title">Dereference Operator *</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-declaration.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">05</span>
+                                    <span class="syllabus-lesson-title">Pointer Declaration</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-initialization.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">06</span>
+                                    <span class="syllabus-lesson-title">Pointer Initialization</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-types.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">07</span>
+                                    <span class="syllabus-lesson-title">Pointer Types</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="null-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">08</span>
+                                    <span class="syllabus-lesson-title">Null Pointers and NULL</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-arithmetic.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">09</span>
+                                    <span class="syllabus-lesson-title">Pointer Arithmetic</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="incrementing-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">10</span>
+                                    <span class="syllabus-lesson-title">Incrementing Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="decrementing-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">11</span>
+                                    <span class="syllabus-lesson-title">Decrementing Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-comparison.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">12</span>
+                                    <span class="syllabus-lesson-title">Pointer Comparison</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointers-and-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">13</span>
+                                    <span class="syllabus-lesson-title">Pointers and Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointers-and-strings.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">14</span>
+                                    <span class="syllabus-lesson-title">Pointers and Strings</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointers-as-function-arguments.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">15</span>
+                                    <span class="syllabus-lesson-title">Pointers as Function Arguments</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="modifying-variables-through-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">16</span>
+                                    <span class="syllabus-lesson-title">Modifying Variables Through Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-to-pointer.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">17</span>
+                                    <span class="syllabus-lesson-title">Pointer to Pointer</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="multiple-levels-of-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">18</span>
+                                    <span class="syllabus-lesson-title">Multiple Levels of Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="void-generic-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">19</span>
+                                    <span class="syllabus-lesson-title">void * Generic Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="const-with-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">20</span>
+                                    <span class="syllabus-lesson-title">const with Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-to-const.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">21</span>
+                                    <span class="syllabus-lesson-title">Pointer to const</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="const-pointer.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">22</span>
+                                    <span class="syllabus-lesson-title">const Pointer</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="const-pointer-to-const.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">23</span>
+                                    <span class="syllabus-lesson-title">const Pointer to const</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="function-pointers-in-depth.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">24</span>
+                                    <span class="syllabus-lesson-title">Function Pointers in Depth</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-arrays.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">25</span>
+                                    <span class="syllabus-lesson-title">Pointer Arrays</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="array-of-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">26</span>
+                                    <span class="syllabus-lesson-title">Array of Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-to-array.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">27</span>
+                                    <span class="syllabus-lesson-title">Pointer to Array</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="dangling-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">28</span>
+                                    <span class="syllabus-lesson-title">Dangling Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="wild-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">29</span>
+                                    <span class="syllabus-lesson-title">Wild Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="null-pointer-dereference.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">30</span>
+                                    <span class="syllabus-lesson-title">Null Pointer Dereference</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="invalid-pointers.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">31</span>
+                                    <span class="syllabus-lesson-title">Invalid Pointers</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-lifetime.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">32</span>
+                                    <span class="syllabus-lesson-title">Pointer Lifetime</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                            <a href="pointer-ownership-concepts.html" class="syllabus-lesson-card">
+                                <div class="syllabus-lesson-left">
+                                    <span class="syllabus-lesson-num">33</span>
+                                    <span class="syllabus-lesson-title">Pointer Ownership Concepts</span>
+                                </div>
+                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Side: Sticky Action Sidebar -->
+        <aside class="detail-sidebar" aria-label="Course Overview &amp; Actions">
+            <div class="sidebar-card">
+                <div class="sidebar-img" style="display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);">
+                    <i class="fas fa-code" style="font-size: 4.5rem; color: #FFFFFF; opacity: 0.95;"></i>
+                </div>
+                <div class="sidebar-content" style="padding: 1.75rem 1.5rem;">
+                    <div class="course-meta-list" style="margin-bottom: 1.5rem;">
+                        <div class="meta-item">
+                            <i class="fas fa-clock"></i>
+                            <div><strong>Duration:</strong> ~40 Hours self-paced</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-book"></i>
+                            <div><strong>Curriculum:</strong> 290 Modular Lessons</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-signal"></i>
+                            <div><strong>Skill Level:</strong> Complete Beginner to Advanced</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-terminal"></i>
+                            <div><strong>Practice:</strong> Interactive In-Browser C Compiler</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <div><strong>Credential:</strong> Verified Certificate upon Completion</div>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-infinity"></i>
+                            <div><strong>Access:</strong> Full Lifetime Free Access</div>
+                        </div>
+                    </div>
+
+                    <a href="what-is-programming.html" id="cSidebarPrimaryBtn" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; text-decoration: none;">
+                        <i class="fas fa-rocket"></i> <span id="cSidebarPrimaryBtnText">Start Learning (Lesson 1)</span>
+                    </a>
+
+                    <a href="../editors/c-editor.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: rgba(16, 185, 129, 0.16); border: 1.5px solid #10B981; color: #10B981; text-decoration: none;">
+                        <i class="fas fa-terminal"></i> Launch C Compiler Workbench
+                    </a>
+
+                    <a href="what-is-a-pointer.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: var(--card-bg); border: 1.5px solid var(--card-border); color: var(--text-primary); text-decoration: none;">
+                        <i class="fas fa-location-crosshairs"></i> Jump to Pointers Deep Dive
+                    </a>
+
+                    <a href="../Leaderboard.html" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 10px; background: rgba(245, 158, 11, 0.12); border: 1.5px solid #F59E0B; color: #F59E0B; text-decoration: none;">
+                        <i class="fas fa-trophy"></i> View Leaderboard
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+
+    <!-- Dynamic Course Progress Synchronizer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (window.EdmithProgress && typeof window.EdmithProgress.calculateCourseProgress === 'function') {
+                    const activeUser = window.EdmithProgress.getActiveAuthUserSync ? window.EdmithProgress.getActiveAuthUserSync() : null;
+                    const userId = activeUser ? activeUser.id : (sessionStorage.getItem('edmith_guest') === 'true' ? 'guest' : 'guest');
+                    
+                    if (window.EdmithProgress.fetchUserProgressFromSupabase && userId !== 'guest') {
+                        await window.EdmithProgress.fetchUserProgressFromSupabase(userId);
+                    }
+
+                    const progress = window.EdmithProgress.calculateCourseProgress('c_programming', userId);
+                    if (progress) {
+                        const pctEl = document.getElementById('cProgressPct');
+                        const fillEl = document.getElementById('cProgressBarFill');
+                        const countEl = document.getElementById('cProgressCount');
+                        const resumeBtn = document.getElementById('cResumeBtn');
+                        const sideBtn = document.getElementById('cSidebarPrimaryBtn');
+                        const sideBtnText = document.getElementById('cSidebarPrimaryBtnText');
+
+                        if (pctEl) pctEl.textContent = progress.progress_percentage + '%';
+                        if (fillEl) fillEl.style.width = progress.progress_percentage + '%';
+                        if (countEl) {
+                            countEl.innerHTML = `<i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> ${progress.completed_count} of ${progress.total_lessons} lessons completed`;
+                        }
+
+                        if (progress.completed_count > 0 || progress.is_started) {
+                            const nextTarget = progress.next_lesson_file || 'what-is-programming.html';
+                            const nextTitle = progress.next_lesson_title || 'Next Lesson';
+                            if (resumeBtn) {
+                                resumeBtn.href = nextTarget;
+                                resumeBtn.innerHTML = `<span>Resume: ${nextTitle}</span> <i class="fas fa-arrow-right"></i>`;
+                            }
+                            if (sideBtn && sideBtnText) {
+                                sideBtn.href = nextTarget;
+                                sideBtnText.textContent = `Resume Learning (${nextTitle})`;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('[EDMITH C Progress Sync Error]', err);
+            }
+        });
+    </script>
+</body>
+</html>

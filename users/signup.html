@@ -29,52 +29,120 @@
     <!-- ============================================================
          FIXED HEADER
     ============================================================ -->
-    <header class="header" id="authHeader">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="../sql/index.html">SQL Mastery</a></li>
-                <li><a href="../Leaderboard.html">Leaderboard</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
 
     <!-- ============================================================
          MAIN AUTH AREA
     ============================================================ -->
-    <main class="auth-main">
-        <div class="auth-container">
+    <main class="auth-main signup-page-main">
+        <div class="login-split-container signup-split-container">
 
-            <!-- Decorative floating icons -->
+            <!-- Decorative floating background icons -->
             <i class="fab fa-python auth-float-icon auth-icon-1" aria-hidden="true"></i>
             <i class="fas fa-database auth-float-icon auth-icon-2" aria-hidden="true"></i>
             <i class="fas fa-code auth-float-icon auth-icon-3" aria-hidden="true"></i>
             <i class="fas fa-terminal auth-float-icon auth-icon-4" aria-hidden="true"></i>
 
-            <!-- ────────────────── Auth Card ────────────────── -->
-            <div class="auth-card" id="authCard">
-
-                <!-- Gradient Header Band -->
-                <div class="auth-card-header">
-                    <a href="../index.html" class="auth-card-logo">EDMITH</a>
-                    <h1 class="auth-card-title">Create Your Account</h1>
-                    <p class="auth-card-subtitle">
-                        Join thousands of learners mastering SQL, Python, C &amp; Web Development — for free.
-                    </p>
+            <!-- LEFT SHOWCASE PANEL (Desktop only) -->
+            <aside class="signup-showcase-panel" aria-label="EDMITH Platform Benefits">
+                <div class="login-showcase-badge">
+                    <span class="badge-pulse-dot" aria-hidden="true"></span>
+                    <i class="fas fa-rocket"></i>
+                    <span>Free Lifetime Membership</span>
                 </div>
 
-                <!-- ============ SIGNUP FORM ============ -->
-                <form id="signupForm" class="auth-form" novalidate autocomplete="off">
+                <h2 class="login-showcase-title">
+                    Accelerate your career in <span class="gradient-accent-text">Data &amp; Engineering</span>.
+                </h2>
+
+                <p class="login-showcase-desc">
+                    Create your free EDMITH learner account to unlock interactive SQL &amp; ETL test workbenches, track your learning journey, and compete on the global leaderboard.
+                </p>
+
+                <!-- Value Highlights -->
+                <div class="login-feature-list">
+                    <div class="login-feature-item">
+                        <div class="login-feature-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="login-feature-text">
+                            <strong>Zero Setup Workstation</strong>
+                            <span>Practice queries and test data pipelines directly in your browser with live database engines.</span>
+                        </div>
+                    </div>
+                    <div class="login-feature-item">
+                        <div class="login-feature-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="login-feature-text">
+                            <strong>Skill Progression Tracking</strong>
+                            <span>Automatic progress saving, personalized analytics, and chapter completion records.</span>
+                        </div>
+                    </div>
+                    <div class="login-feature-item">
+                        <div class="login-feature-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="login-feature-text">
+                            <strong>Verified Certifications &amp; Tests</strong>
+                            <span>Take timed MCQs and practical coding tests to validate your industry readiness.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Terminal Preview Card -->
+                <div class="login-code-card" aria-hidden="true">
+                    <div class="code-card-header">
+                        <div class="code-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="code-tab-title">
+                            <i class="fas fa-code-branch code-tab-icon"></i>
+                            <span>etl_pipeline_check.sql</span>
+                        </div>
+                        <div class="code-exec-badge"><i class="fas fa-check"></i> Passed</div>
+                    </div>
+                    <pre class="code-body"><code><span class="code-comment">-- ETL Source-to-Target Row Count Validation</span>
+<span class="code-keyword">SELECT</span> 
+    (<span class="code-keyword">SELECT COUNT</span>(*) <span class="code-keyword">FROM</span> src_customers) <span class="code-keyword">AS</span> src_count,
+    (<span class="code-keyword">SELECT COUNT</span>(*) <span class="code-keyword">FROM</span> tgt_dim_customer) <span class="code-keyword">AS</span> tgt_count,
+    <span class="code-string">'100% RECONCILED'</span> <span class="code-keyword">AS</span> validation_status;</code></pre>
+                    <div class="code-card-footer">
+                        <span class="code-pill"><i class="fas fa-circle-check"></i> 0 Mismatches • 100% Data Integrity</span>
+                    </div>
+                </div>
+
+                <!-- Social Proof -->
+                <div class="login-social-proof">
+                    <div class="social-proof-avatars">
+                        <span class="avatar-chip av-1">AJ</span>
+                        <span class="avatar-chip av-2">VN</span>
+                        <span class="avatar-chip av-3">TK</span>
+                        <span class="avatar-chip av-more">+10k</span>
+                    </div>
+                    <div class="social-proof-info">
+                        <div class="social-proof-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <strong>4.95/5 Rating</strong>
+                        </div>
+                        <span class="social-proof-sub"><span class="live-dot"></span> 10,000+ active learners worldwide</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- RIGHT AUTH CARD PANEL -->
+            <section class="signup-card-panel">
+                <div class="auth-card" id="authCard">
+
+                    <!-- Gradient Header Band -->
+                    <div class="auth-card-header">
+                        <a href="../index.html" class="auth-card-logo">EDMITH</a>
+                        <h1 class="auth-card-title">Create Your Account</h1>
+                        <p class="auth-card-subtitle">
+                            Join thousands of learners mastering SQL, ETL Testing, Python &amp; Data Engineering — 100% free.
+                        </p>
+                    </div>
+
+                    <!-- ============ SIGNUP FORM ============ -->
+                    <form id="signupForm" class="auth-form" novalidate autocomplete="off">
 
                     <!-- ── SECTION 1 : Personal Information ── -->
                     <div class="auth-form-section">
@@ -581,11 +649,12 @@
                 </form>
                 <!-- /signupForm -->
 
-            </div>
-            <!-- /auth-card -->
+                </div>
+                <!-- /auth-card -->
+            </section>
 
         </div>
-        <!-- /auth-container -->
+        <!-- /signup-split-container -->
     </main>
 
     <!-- ============================================================
@@ -619,11 +688,15 @@
         </div>
     </div>
 
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
     <!-- ============================================================
          SCRIPTS — Supabase CDN first, then auth.js, then script.js
     ============================================================ -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="auth.js"></script>
+    <script src="../components/components.js"></script>
     <script src="../javascript/script.js"></script>
 
 </body>

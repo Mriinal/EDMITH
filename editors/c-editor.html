@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH Interactive C Code Workbench & Compiler - Practice, compile, and execute C programming code directly in your browser with real-time terminal diagnostics and beginner tips.">
+    <meta name="robots" content="index,follow">
+    <title>Interactive C Editor &amp; In-Browser Compiler | EDMITH</title>
+
+    <link rel="canonical" href="https://edmith.com/editors/c-editor.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://edmith.com/editors/c-editor.html">
+    <meta property="og:title" content="Interactive C Editor &amp; In-Browser Compiler | EDMITH">
+    <meta property="og:description" content="Compile and run C code directly in your browser with real-time diagnostics, memory safety, and interactive input.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Interactive C Editor &amp; Compiler | EDMITH">
+    <meta name="twitter:description" content="Compile and run C code directly in your browser with interactive execution.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function() {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
+
+    <!-- Main C Editor Application Area -->
+    <main class="sql-editor-app">
+        
+        <!-- Header Command Bar -->
+        <div class="editor-header-bar">
+            <div class="editor-title-wrap">
+                <h1><i class="fas fa-terminal" style="color: var(--accent);"></i> C Code Workbench &amp; Compiler</h1>
+                <div class="engine-badge" id="cEngineBadge" title="Sandboxed WebAssembly / Client Execution">
+                    <span class="pulse-dot"></span>
+                    <span>In-Browser C Engine (Active)</span>
+                </div>
+            </div>
+            <div class="editor-top-nav-links">
+                <a href="../c/index.html" class="editor-nav-btn">
+                    <i class="fas fa-book-open"></i> C Curriculum (290 Lessons)
+                </a>
+            </div>
+        </div>
+
+        <!-- Workbench 2-Column Split: Left Code Editor, Right Terminal Output -->
+        <div class="sql-workbench-layout" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 1.5rem; align-items: start;">
+            
+            <!-- Left Side: Code Editor Pane -->
+            <div class="main-workbench" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                
+                <!-- Code Editor Window -->
+                <div class="sql-editor-pane">
+                    
+                    <!-- Editor Toolbar -->
+                    <div class="editor-toolbar">
+                        <div class="editor-toolbar-left">
+                            <div class="terminal-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span style="font-weight: 700; font-size: 0.95rem; color: #FFF; margin-right: 4px;">C Source Code:</span>
+                        </div>
+
+                        <div class="editor-toolbar-right">
+                            <button class="btn-editor-action btn-run-query" id="runCodeBtn" title="Compile and Run (Ctrl + Enter)">
+                                <i class="fas fa-play"></i> <span>Run Code &raquo;</span>
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool" id="resetCodeBtn" title="Reset to original lesson code">
+                                <i class="fas fa-undo"></i> Reset
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool" id="copyCodeBtn" title="Copy code to clipboard">
+                                <i class="far fa-copy"></i> Copy
+                            </button>
+                            <button class="btn-editor-action btn-editor-tool" id="clearOutputBtn" title="Clear console output">
+                                <i class="fas fa-trash-alt"></i> Clear Output
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Editor Textarea with Line Numbers -->
+                    <div class="editor-input-area" style="min-height: 380px;">
+                        <div class="editor-line-numbers" id="editorLineNumbers">
+                            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+                        </div>
+                        <div class="editor-code-container">
+                            <textarea id="cEditorText" class="sql-editor-textarea" spellcheck="false" aria-label="C Source Code Input" style="min-height: 380px;">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    printf("Hello, World!\n");
+    return 0;
+}</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Interactive stdin input area -->
+                    <div class="stdin-container" style="padding: 10px 16px; background: rgba(14, 9, 28, 0.95); border-top: 1px solid rgba(121, 63, 224, 0.2);">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                            <label for="stdinInput" style="font-size: 0.8rem; font-weight: 700; color: #D8C5F0; display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-keyboard" style="color: var(--accent);"></i> Program Input (<code style="background: rgba(121,63,224,0.3); padding: 1px 4px; border-radius: 3px;">stdin</code> for <code>scanf</code>):
+                            </label>
+                            <span style="font-size: 0.74rem; color: #9CA3AF;">Optional &bull; Sent to interactive reads</span>
+                        </div>
+                        <input type="text" id="stdinInput" placeholder="Enter input here (e.g. 25, Alex, etc.)..." style="width: 100%; box-sizing: border-box; padding: 8px 12px; background: rgba(10, 6, 20, 0.9); border: 1px solid rgba(121, 63, 224, 0.3); border-radius: 6px; color: #FFF; font-family: var(--font-mono); font-size: 0.88rem; outline: none;">
+                    </div>
+
+                    <!-- Editor Status Bar -->
+                    <div class="editor-statusbar">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-indicator" id="executionStatusDot" style="background: #10B981;"></span>
+                            <span id="executionStatusText">Ready</span>
+                        </div>
+                        <div>
+                            <span>Press <kbd style="background: rgba(121,63,224,0.3); padding: 2px 6px; border-radius: 4px; color: #FFF; font-family: var(--font-mono);">Ctrl + Enter</kbd> to compile &amp; run</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Side: Program Output Terminal Pane -->
+            <div class="sql-results-pane" style="display: flex; flex-direction: column; background: linear-gradient(180deg, #150F26 0%, #0E081C 100%); border: 1px solid rgba(121, 63, 224, 0.3); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 30px rgba(10, 5, 20, 0.45); min-height: 480px;">
+                
+                <div class="results-header" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: rgba(25, 17, 45, 0.9); border-bottom: 1px solid rgba(121, 63, 224, 0.25);">
+                    <div class="results-title-wrap" style="display: flex; align-items: center; gap: 10px;">
+                        <h3 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: #FFF;"><i class="fas fa-terminal" style="color: var(--accent); margin-right: 6px;"></i> Program Output:</h3>
+                        <div class="result-meta-badge" id="outputMetaBadge">
+                            <span class="meta-highlight">Awaiting execution...</span>
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="btn-result-action" onclick="navigator.clipboard.writeText(document.getElementById('terminalOutput').innerText); this.innerHTML='<i class=\'fas fa-check\'></i> Copied'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copy Output', 1500);" title="Copy console output">
+                            <i class="fas fa-copy"></i> Copy Output
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terminal Output Viewport -->
+                <div class="results-scroll-container" id="terminalOutput" style="flex: 1; padding: 1rem; overflow-y: auto; background: rgba(10, 6, 20, 0.95); min-height: 400px; box-sizing: border-box;">
+                    <div class="result-empty-message" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 280px; color: var(--text-secondary); text-align: center;">
+                        <i class="fas fa-terminal" style="font-size: 2.5rem; margin-bottom: 0.85rem; color: rgba(121, 63, 224, 0.45);"></i>
+                        <p style="margin: 0; font-size: 0.95rem;">Click <strong>Run Code &raquo;</strong> (or press <kbd style="background: rgba(121,63,224,0.25); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono);">Ctrl + Enter</kbd>) to compile and run your program.</p>
+                        <p style="margin: 6px 0 0; font-size: 0.85rem; color: #9CA3AF;">Interactive standard I/O, pointers, arrays, loops, and math are fully supported.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../javascript/jscpp.min.js"></script>
+    <script src="../javascript/c-editor.js"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

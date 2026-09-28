@@ -1,5 +1,5 @@
 // EDMITH Reusable Global Auth Modal — javascript/auth-modal.js
-// Makes the authentic EDITH Login Popup available on EVERY page.
+// Makes the authentic EDMIT Login Popup available on EVERY page.
 // Integrates seamlessly with Supabase Auth and maintains state across the application.
 
 (function () {
@@ -9,6 +9,22 @@
         url: 'https://jnoigbvvxwpvxefunvfc.supabase.co',
         anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impub2lnYnZ2eHdwdnhlZnVudmZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk3NDkzMjEsImV4cCI6MjEwNTMyNTMyMX0.kg07-fyqAPdnSqs4RxNvzvbD5VhNR8vtFkg-RS5pMnA'
     };
+
+    // ── PRE-WARM: fire a silent HEAD to wake Supabase from hibernation ──
+    // Free-tier projects hibernate after ~5 min and take 10-15s to wake.
+    // This tiny request ensures the connection is hot before the user submits.
+    (function warmConn() {
+        try {
+            fetch(SUPABASE_CONFIG.url + '/rest/v1/users?select=count&limit=0', {
+                method: 'HEAD',
+                headers: {
+                    'apikey': SUPABASE_CONFIG.anonKey,
+                    'Authorization': 'Bearer ' + SUPABASE_CONFIG.anonKey,
+                    'Prefer': 'count=none'
+                }
+            }).catch(() => {});
+        } catch (_) {}
+    })();
 
     let supabaseClient = null;
 
@@ -90,7 +106,9 @@
                     <h2 class="auth-card-title" id="modalCardTitle">${title || 'Welcome Back'}</h2>
                     <p class="auth-card-subtitle" id="modalCardSubtitle">${subtitle || 'Log in to continue your learning journey and access tests.'}</p>
                 </div>
+
                 <form id="modalLoginForm" class="auth-form" novalidate autocomplete="on" style="padding: 1.5rem 1.75rem 2rem;">
+                    <!-- Login Method Toggle Tabs -->
                     <div class="auth-toggle-group" role="tablist" aria-label="Login method" style="margin-bottom: 1.25rem;">
                         <button type="button" class="auth-toggle-tab active" id="modalTabUsername" role="tab" aria-selected="true">
                             <i class="fas fa-at" aria-hidden="true"></i>
@@ -102,7 +120,8 @@
                         </button>
                     </div>
 
-                    <div class="auth-form-section">
+                    <div class="auth-form-section" style="padding: 0; border: none;">
+                        <!-- Identifier Field (Username or Email) -->
                         <div class="auth-field-group">
                             <label class="auth-label" for="modalIdentifier" id="modalIdentifierLabel">
                                 <span id="modalIdentifierLabelText">Username</span> <span class="auth-required" title="Required">*</span>
@@ -114,6 +133,7 @@
                             <span class="auth-field-error" id="modalIdentifierError" aria-live="polite"></span>
                         </div>
 
+                        <!-- Password Field -->
                         <div class="auth-field-group" style="margin-bottom: 0.25rem;">
                             <label class="auth-label" for="modalPassword">
                                 Password <span class="auth-required" title="Required">*</span>
@@ -128,17 +148,20 @@
                             <span class="auth-field-error" id="modalPasswordError" aria-live="polite"></span>
                         </div>
 
+                        <!-- Forgot Password Link -->
                         <div class="auth-forgot-row">
                             <a href="${prefix}users/forgot-password.html" class="auth-forgot-link" id="modalForgotPasswordLink">Forgot Password?</a>
                         </div>
                     </div>
 
-                    <div class="auth-form-error" id="modalFormError" style="display: none; margin-top: 1rem;" role="alert">
+                    <!-- Form-level Error Message -->
+                    <div class="auth-form-error" id="modalFormError" style="display: none; margin: 0.75rem 0 1rem;" role="alert">
                         <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
                         <span id="modalFormErrorText"></span>
                     </div>
 
-                    <div class="auth-submit-section" style="margin-top: 1.25rem;">
+                    <!-- Submit & Action Buttons -->
+                    <div class="auth-submit-section" style="padding: 0; margin-top: 1.25rem;">
                         <button type="submit" id="modalSubmitBtn" class="auth-submit-btn">
                             <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
                             <span>Log In</span>
@@ -189,14 +212,12 @@
         let overlay = document.getElementById('edmithLoginModalOverlay');
         const prefix = getPathPrefix();
 
-        if (overlay) overlay.remove(); // Rebuild to reflect specific title/force options
+        if (overlay) overlay.remove(); // Rebuild with current options
         const temp = document.createElement('div');
         temp.innerHTML = buildModalHtml(prefix, title, subtitle, showGuest);
         overlay = temp.firstElementChild;
         document.body.appendChild(overlay);
 
-        const cardTitle = overlay.querySelector('#modalCardTitle');
-        const cardSubtitle = overlay.querySelector('#modalCardSubtitle');
         const formError = overlay.querySelector('#modalFormError');
         const formErrorText = overlay.querySelector('#modalFormErrorText');
         const idInput = overlay.querySelector('#modalIdentifier');
@@ -218,15 +239,15 @@
         if (forgotLink) forgotLink.href = `${prefix}users/forgot-password.html?returnTo=${encodeURIComponent(returnTo)}`;
         if (signupLink) signupLink.href = `${prefix}users/signup.html?returnTo=${encodeURIComponent(returnTo)}`;
 
-        let mode = 'username';
+        let mode = 'username'; // 'username' | 'email'
 
         function setMode(newMode) {
             mode = newMode;
             formError.style.display = 'none';
             idError.textContent = '';
             pwdError.textContent = '';
-            idInput.classList.remove('input-error', 'input-success');
-            idInput.value = '';
+            idInput.classList.remove('input-error');
+            pwdInput.classList.remove('input-error');
 
             if (mode === 'username') {
                 tabUsername.classList.add('active');
@@ -246,14 +267,26 @@
                 idLabelText.textContent = 'Email Address';
                 idIcon.className = 'fas fa-envelope auth-input-icon';
                 idInput.type = 'email';
-                idInput.placeholder = 'e.g. learner@example.com';
+                idInput.placeholder = 'e.g. yourname@example.com';
                 idInput.autocomplete = 'email';
             }
             idInput.focus();
         }
 
-        tabUsername.addEventListener('click', () => setMode('username'));
-        tabEmail.addEventListener('click', () => setMode('email'));
+        if (tabUsername) tabUsername.addEventListener('click', () => setMode('username'));
+        if (tabEmail) tabEmail.addEventListener('click', () => setMode('email'));
+
+        idInput.addEventListener('input', () => {
+            idError.textContent = '';
+            idInput.classList.remove('input-error');
+            formError.style.display = 'none';
+        });
+
+        pwdInput.addEventListener('input', () => {
+            pwdError.textContent = '';
+            pwdInput.classList.remove('input-error');
+            formError.style.display = 'none';
+        });
 
         togglePwd.addEventListener('click', () => {
             const isPassword = pwdInput.type === 'password';
@@ -262,6 +295,7 @@
         });
 
         function hideModal() {
+            document.body.classList.remove('login-modal-open');
             overlay.classList.remove('modal-visible');
             setTimeout(() => {
                 if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
@@ -272,6 +306,7 @@
         function onEsc(e) {
             if (e.key === 'Escape') {
                 if (force) {
+                    document.body.classList.remove('login-modal-open');
                     if (onCancel) onCancel();
                     else window.location.href = `${prefix}sql/index.html`;
                 } else {
@@ -283,6 +318,7 @@
 
         closeBtn.addEventListener('click', () => {
             if (force) {
+                document.body.classList.remove('login-modal-open');
                 if (onCancel) onCancel();
                 else window.location.href = `${prefix}sql/index.html`;
             } else {
@@ -349,20 +385,25 @@
                 if (!client) throw new Error('Database connection failed. Please check network.');
 
                 let targetEmail = '';
-                if (mode === 'username') {
-                    const normalized = rawId.toLowerCase();
+                const isEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawId);
+
+                if (isEmailFormat) {
+                    targetEmail = rawId.toLowerCase();
+                } else {
+                    // Username: stored lowercase — eq is exact & index-friendly
+                    const normalizedUser = rawId.replace(/^@+/, '').toLowerCase();
                     const { data: userRow, error: uErr } = await client
                         .from('users')
                         .select('email')
-                        .ilike('username', normalized)
+                        .eq('username', normalizedUser)
                         .maybeSingle();
 
-                    if (uErr || !userRow || !userRow.email) {
-                        throw new Error('Invalid username or password.');
+                    if (!uErr && userRow && userRow.email) {
+                        targetEmail = userRow.email;
+                    } else {
+                        // Fallback: use input as-is (might be email typed in username tab)
+                        targetEmail = rawId.toLowerCase();
                     }
-                    targetEmail = userRow.email;
-                } else {
-                    targetEmail = rawId.toLowerCase();
                 }
 
                 const { data, error } = await client.auth.signInWithPassword({
@@ -370,9 +411,16 @@
                     password
                 });
 
-                if (error) throw error;
+                if (error) {
+                    const errStr = (error.message || '').toLowerCase();
+                    if (errStr.includes('invalid') || errStr.includes('credentials')) {
+                        throw new Error('Invalid username or password.');
+                    }
+                    throw error;
+                }
+
                 if (!data || !data.user) {
-                    throw new Error('Invalid credentials.');
+                    throw new Error('Invalid username or password.');
                 }
 
                 sessionStorage.removeItem('edmith_guest');
@@ -385,14 +433,13 @@
                     if (typeof onLoginSuccess === 'function') {
                         onLoginSuccess(data.user);
                     } else {
-                        // Refresh to apply session
                         window.location.reload();
                     }
                 }, 600);
 
             } catch (err) {
                 console.warn('[EDMITH AuthModal] Sign-in error:', err);
-                formErrorText.textContent = err.message || 'Invalid login credentials.';
+                formErrorText.textContent = err.message || 'Invalid username or password.';
                 formError.style.display = 'flex';
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i> <span>Log In</span>';
@@ -401,6 +448,7 @@
 
         // Trigger animation
         requestAnimationFrame(() => {
+            document.body.classList.add('login-modal-open');
             overlay.classList.add('modal-visible');
             idInput.focus();
         });

@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Defect Description Writing in ETL Testing. Comprehensive guide covering concepts, real-world examples, SQL validation queries, and QA checklists.">
+    <title>Defect Description Writing — ETL Testing Mastery | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/etl/defect-description-writing.html">
+    <meta name="robots" content="index,follow">
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="reading-progress-container" aria-hidden="true">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+    <header id="site-header"></header>
+    <div class="learning-layout">
+        <!-- Left Course Syllabus Sidebar -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer & Data Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer & Data Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer & Data Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-data.html"><i class="fas fa-database"></i> What is Data?</a></li>
+                        <li><a href="types-of-data.html"><i class="fas fa-shapes"></i> Types of Data</a></li>
+                        <li><a href="structured-data.html"><i class="fas fa-table"></i> Structured Data</a></li>
+                        <li><a href="semi-structured-data.html"><i class="fas fa-sitemap"></i> Semi-Structured Data</a></li>
+                        <li><a href="unstructured-data.html"><i class="fas fa-file-alt"></i> Unstructured Data</a></li>
+                        <li><a href="data-formats.html"><i class="fas fa-file-code"></i> Data Formats</a></li>
+                        <li><a href="csv.html"><i class="fas fa-file-csv"></i> CSV Files (Comma-Separated Values)</a></li>
+                        <li><a href="excel.html"><i class="fas fa-file-excel"></i> Excel Files (.xlsx, .xls)</a></li>
+                        <li><a href="json.html"><i class="fas fa-brackets-curly"></i> JSON Data (JavaScript Object Notation)</a></li>
+                        <li><a href="xml.html"><i class="fas fa-code"></i> XML Data (Extensible Markup Language)</a></li>
+                        <li><a href="parquet.html"><i class="fas fa-layer-group"></i> Apache Parquet</a></li>
+                        <li><a href="avro.html"><i class="fas fa-network-wired"></i> Apache Avro</a></li>
+                        <li><a href="orc.html"><i class="fas fa-cubes"></i> Apache ORC (Optimized Row Columnar)</a></li>
+                        <li><a href="txt.html"><i class="fas fa-align-left"></i> TXT Files (Delimited & Fixed-Width)</a></li>
+                        <li><a href="files-vs-databases.html"><i class="fas fa-server"></i> Files vs Databases</a></li>
+                        <li><a href="tables-rows-columns.html"><i class="fas fa-border-all"></i> Tables, Rows & Columns</a></li>
+                        <li><a href="records.html"><i class="fas fa-bars-staggered"></i> Records</a></li>
+                        <li><a href="fields.html"><i class="fas fa-columns"></i> Fields</a></li>
+                        <li><a href="primary-identifiers.html"><i class="fas fa-key"></i> Primary Identifiers</a></li>
+                        <li><a href="data-types.html"><i class="fas fa-spell-check"></i> Data Types</a></li>
+                        <li><a href="null-values.html"><i class="fas fa-ban"></i> NULL Values</a></li>
+                        <li><a href="duplicate-data.html"><i class="fas fa-clone"></i> Duplicate Data</a></li>
+                        <li><a href="missing-data.html"><i class="fas fa-magnifying-glass-chart"></i> Missing Data</a></li>
+                        <li><a href="invalid-data.html"><i class="fas fa-triangle-exclamation"></i> Invalid Data</a></li>
+                        <li><a href="data-quality.html"><i class="fas fa-award"></i> Data Quality Dimensions</a></li>
+                        <li><a href="data-lifecycle.html"><i class="fas fa-arrows-spin"></i> Data Lifecycle</a></li>
+                        <li><a href="crud-operations.html"><i class="fas fa-pen-to-square"></i> CRUD Operations</a></li>
+                        <li><a href="oltp-vs-olap.html"><i class="fas fa-chart-column"></i> OLTP vs OLAP</a></li>
+                        <li><a href="what-is-data-pipeline.html"><i class="fas fa-stream"></i> What is a Data Pipeline?</a></li>
+                        <li><a href="what-is-data-movement.html"><i class="fas fa-truck-fast"></i> What is Data Movement?</a></li>
+                        <li><a href="what-is-data-processing.html"><i class="fas fa-gears"></i> What is Data Processing?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: ETL Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: ETL Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: ETL Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="what-is-etl.html"><i class="fas fa-diagram-project"></i> What is ETL?</a></li>
+                        <li><a href="why-etl-is-required.html"><i class="fas fa-circle-question"></i> Why ETL is Required</a></li>
+                        <li><a href="etl-architecture.html"><i class="fas fa-sitemap"></i> ETL Architecture</a></li>
+                        <li><a href="extract.html"><i class="fas fa-file-import"></i> Extract</a></li>
+                        <li><a href="transform.html"><i class="fas fa-gears"></i> Transform</a></li>
+                        <li><a href="load.html"><i class="fas fa-file-export"></i> Load</a></li>
+                        <li><a href="source.html"><i class="fas fa-database"></i> Source</a></li>
+                        <li><a href="staging.html"><i class="fas fa-boxes-packing"></i> Staging</a></li>
+                        <li><a href="transformation-layer.html"><i class="fas fa-filter"></i> Transformation Layer</a></li>
+                        <li><a href="target.html"><i class="fas fa-bullseye"></i> Target</a></li>
+                        <li><a href="etl-pipeline.html"><i class="fas fa-stream"></i> ETL Pipeline</a></li>
+                        <li><a href="etl-workflow.html"><i class="fas fa-network-wired"></i> ETL Workflow</a></li>
+                        <li><a href="etl-job.html"><i class="fas fa-briefcase"></i> ETL Job</a></li>
+                        <li><a href="etl-batch.html"><i class="fas fa-layer-group"></i> ETL Batch</a></li>
+                        <li><a href="etl-schedule.html"><i class="fas fa-calendar-days"></i> ETL Schedule</a></li>
+                        <li><a href="etl-dependencies.html"><i class="fas fa-link"></i> ETL Dependencies</a></li>
+                        <li><a href="full-extraction.html"><i class="fas fa-download"></i> Full Extraction</a></li>
+                        <li><a href="incremental-extraction.html"><i class="fas fa-clock-rotate-left"></i> Incremental Extraction</a></li>
+                        <li><a href="initial-extraction.html"><i class="fas fa-play"></i> Initial Load</a></li>
+                        <li><a href="delta-extraction.html"><i class="fas fa-arrows-split-up-and-left"></i> Delta Load</a></li>
+                        <li><a href="cdc.html"><i class="fas fa-binoculars"></i> Change Data Capture</a></li>
+                        <li><a href="timestamp-based-extraction.html"><i class="fas fa-calendar-check"></i> Timestamp-Based Extraction</a></li>
+                        <li><a href="flag-based-extraction.html"><i class="fas fa-flag"></i> Flag-Based Extraction</a></li>
+                        <li><a href="log-based-extraction.html"><i class="fas fa-file-lines"></i> Log-Based Extraction</a></li>
+                        <li><a href="query-based-extraction.html"><i class="fas fa-magnifying-glass"></i> Query-Based Extraction</a></li>
+                        <li><a href="source-extraction-filters.html"><i class="fas fa-filter-circle-dollar"></i> Source Extraction Filters</a></li>
+                        <li><a href="data-cleansing.html"><i class="fas fa-broom"></i> Data Cleansing</a></li>
+                        <li><a href="data-validation.html"><i class="fas fa-check-double"></i> Data Validation</a></li>
+                        <li><a href="data-standardization.html"><i class="fas fa-scale-balanced"></i> Data Standardization</a></li>
+                        <li><a href="data-conversion.html"><i class="fas fa-right-left"></i> Data Conversion</a></li>
+                        <li><a href="data-mapping.html"><i class="fas fa-arrow-right-arrow-left"></i> Data Mapping</a></li>
+                        <li><a href="data-filtering.html"><i class="fas fa-filter"></i> Data Filtering</a></li>
+                        <li><a href="data-splitting.html"><i class="fas fa-scissors"></i> Data Splitting</a></li>
+                        <li><a href="data-merging.html"><i class="fas fa-code-merge"></i> Data Merging</a></li>
+                        <li><a href="data-aggregation.html"><i class="fas fa-chart-column"></i> Data Aggregation</a></li>
+                        <li><a href="sorting.html"><i class="fas fa-sort-amount-down"></i> Sorting</a></li>
+                        <li><a href="deduplication.html"><i class="fas fa-clone"></i> Deduplication</a></li>
+                        <li><a href="lookup.html"><i class="fas fa-search"></i> Lookup</a></li>
+                        <li><a href="join.html"><i class="fas fa-link"></i> Join</a></li>
+                        <li><a href="derived-columns.html"><i class="fas fa-calculator"></i> Derived Columns</a></li>
+                        <li><a href="conditional-transformations.html"><i class="fas fa-code-branch"></i> Conditional Transformations</a></li>
+                        <li><a href="data-enrichment.html"><i class="fas fa-wand-magic-sparkles"></i> Data Enrichment</a></li>
+                        <li><a href="data-masking.html"><i class="fas fa-user-secret"></i> Data Masking</a></li>
+                        <li><a href="data-validation-rules.html"><i class="fas fa-clipboard-check"></i> Data Validation Rules</a></li>
+                        <li><a href="full-load.html"><i class="fas fa-database"></i> Full Load</a></li>
+                        <li><a href="incremental-load.html"><i class="fas fa-clock-rotate-left"></i> Incremental Load</a></li>
+                        <li><a href="initial-load.html"><i class="fas fa-play"></i> Initial Load</a></li>
+                        <li><a href="delta-load.html"><i class="fas fa-triangle-exclamation"></i> Delta Load</a></li>
+                        <li><a href="append.html"><i class="fas fa-folder-plus"></i> Append</a></li>
+                        <li><a href="update.html"><i class="fas fa-pen-to-square"></i> Update</a></li>
+                        <li><a href="insert.html"><i class="fas fa-square-plus"></i> Insert</a></li>
+                        <li><a href="upsert.html"><i class="fas fa-arrows-split-up-and-left"></i> Upsert</a></li>
+                        <li><a href="merge.html"><i class="fas fa-code-merge"></i> Merge</a></li>
+                        <li><a href="scd-loading.html"><i class="fas fa-timeline"></i> Slowly Changing Dimension Loading</a></li>
+                        <li><a href="batch-loading.html"><i class="fas fa-boxes-stacked"></i> Batch Loading</a></li>
+                        <li><a href="bulk-loading.html"><i class="fas fa-truck-fast"></i> Bulk Loading</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Data Warehousing Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Data Warehousing Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Data Warehousing Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="er-diagrams.html"><i class="fas fa-project-diagram"></i> ER Diagrams</a></li>
+                        <li><a href="relationships.html"><i class="fas fa-network-wired"></i> Relationships</a></li>
+                        <li><a href="normalization.html"><i class="fas fa-layer-group"></i> Normalization</a></li>
+                        <li><a href="1nf.html"><i class="fas fa-table"></i> 1NF</a></li>
+                        <li><a href="2nf.html"><i class="fas fa-table-cells"></i> 2NF</a></li>
+                        <li><a href="3nf.html"><i class="fas fa-table-list"></i> 3NF</a></li>
+                        <li><a href="denormalization.html"><i class="fas fa-table-columns"></i> Denormalization</a></li>
+                        <li><a href="referential-integrity.html"><i class="fas fa-link"></i> Referential Integrity</a></li>
+                        <li><a href="what-is-a-data-warehouse.html"><i class="fas fa-warehouse"></i> What is a Data Warehouse?</a></li>
+                        <li><a href="why-data-warehouses-are-required.html"><i class="fas fa-chart-line"></i> Why Data Warehouses are Required</a></li>
+                        <li><a href="database-vs-data-warehouse.html"><i class="fas fa-code-compare"></i> Database vs Data Warehouse</a></li>
+                        <li><a href="oltp.html"><i class="fas fa-cash-register"></i> OLTP</a></li>
+                        <li><a href="olap.html"><i class="fas fa-chart-pie"></i> OLAP</a></li>
+                        <li><a href="oltp-vs-olap-comparison.html"><i class="fas fa-sliders"></i> OLTP vs OLAP</a></li>
+                        <li><a href="data-warehouse-architecture.html"><i class="fas fa-sitemap"></i> Data Warehouse Architecture</a></li>
+                        <li><a href="enterprise-data-warehouse.html"><i class="fas fa-building-columns"></i> Enterprise Data Warehouse</a></li>
+                        <li><a href="data-mart.html"><i class="fas fa-store"></i> Data Mart</a></li>
+                        <li><a href="operational-data-store.html"><i class="fas fa-clock-rotate-left"></i> Operational Data Store</a></li>
+                        <li><a href="data-lake.html"><i class="fas fa-water"></i> Data Lake</a></li>
+                        <li><a href="data-lakehouse.html"><i class="fas fa-house-laptop"></i> Data Lakehouse</a></li>
+                        <li><a href="staging-area.html"><i class="fas fa-boxes-packing"></i> Staging Area</a></li>
+                        <li><a href="source-system.html"><i class="fas fa-server"></i> Source System</a></li>
+                        <li><a href="target-system.html"><i class="fas fa-bullseye"></i> Target System</a></li>
+                        <li><a href="data-warehouse-layers.html"><i class="fas fa-layer-group"></i> Data Warehouse Layers</a></li>
+                        <li><a href="presentation-layer.html"><i class="fas fa-display"></i> Presentation Layer</a></li>
+                        <li><a href="semantic-layer.html"><i class="fas fa-brain"></i> Semantic Layer</a></li>
+                        <li><a href="reporting-layer.html"><i class="fas fa-chart-pie"></i> Reporting Layer</a></li>
+                        <li><a href="star-schema.html"><i class="fas fa-star"></i> Star Schema</a></li>
+                        <li><a href="snowflake-schema.html"><i class="fas fa-snowflake"></i> Snowflake Schema</a></li>
+                        <li><a href="galaxy-schema.html"><i class="fas fa-meteor"></i> Galaxy Schema / Fact Constellation</a></li>
+                        <li><a href="star-vs-snowflake-schema.html"><i class="fas fa-code-compare"></i> Star vs Snowflake Schema</a></li>
+                        <li><a href="what-is-a-fact-table.html"><i class="fas fa-receipt"></i> What is a Fact Table?</a></li>
+                        <li><a href="types-of-facts.html"><i class="fas fa-calculator"></i> Types of Facts</a></li>
+                        <li><a href="additive-facts.html"><i class="fas fa-plus"></i> Additive Facts</a></li>
+                        <li><a href="semi-additive-facts.html"><i class="fas fa-calendar-xmark"></i> Semi-Additive Facts</a></li>
+                        <li><a href="non-additive-facts.html"><i class="fas fa-percent"></i> Non-Additive Facts</a></li>
+                        <li><a href="fact-table-grain.html"><i class="fas fa-microscope"></i> Fact Table Grain</a></li>
+                        <li><a href="transaction-fact.html"><i class="fas fa-receipt"></i> Transaction Fact</a></li>
+                        <li><a href="periodic-snapshot-fact.html"><i class="fas fa-camera"></i> Periodic Snapshot Fact</a></li>
+                        <li><a href="accumulating-snapshot-fact.html"><i class="fas fa-timeline"></i> Accumulating Snapshot Fact</a></li>
+                        <li><a href="what-is-a-dimension.html"><i class="fas fa-cube"></i> What is a Dimension?</a></li>
+                        <li><a href="dimension-attributes.html"><i class="fas fa-tags"></i> Dimension Attributes</a></li>
+                        <li><a href="dimension-keys.html"><i class="fas fa-key"></i> Dimension Keys</a></li>
+                        <li><a href="dimension-hierarchy.html"><i class="fas fa-sitemap"></i> Dimension Hierarchy</a></li>
+                        <li><a href="dimension-types.html"><i class="fas fa-shapes"></i> Dimension Types</a></li>
+                        <li><a href="conformed-dimensions.html"><i class="fas fa-link"></i> Conformed Dimensions</a></li>
+                        <li><a href="role-playing-dimensions.html"><i class="fas fa-masks-theater"></i> Role-Playing Dimensions</a></li>
+                        <li><a href="degenerate-dimensions.html"><i class="fas fa-fingerprint"></i> Degenerate Dimensions</a></li>
+                        <li><a href="junk-dimensions.html"><i class="fas fa-box-archive"></i> Junk Dimensions</a></li>
+                        <li><a href="mini-dimensions.html"><i class="fas fa-table-cells-large"></i> Mini Dimensions</a></li>
+                        <li><a href="slowly-changing-dimensions.html"><i class="fas fa-clock-rotate-left"></i> Slowly Changing Dimensions</a></li>
+                        <li><a href="scd-type-0.html"><i class="fas fa-lock"></i> SCD Type 0</a></li>
+                        <li><a href="scd-type-1.html"><i class="fas fa-pen-to-square"></i> SCD Type 1</a></li>
+                        <li><a href="scd-type-2.html"><i class="fas fa-clock-rotate-left"></i> SCD Type 2</a></li>
+                        <li><a href="scd-type-3.html"><i class="fas fa-table-columns"></i> SCD Type 3</a></li>
+                        <li><a href="scd-type-4.html"><i class="fas fa-folder-open"></i> SCD Type 4</a></li>
+                        <li><a href="scd-type-6.html"><i class="fas fa-code-merge"></i> SCD Type 6</a></li>
+                        <li><a href="effective-date.html"><i class="fas fa-calendar-plus"></i> Effective Date</a></li>
+                        <li><a href="expiry-date.html"><i class="fas fa-calendar-xmark"></i> Expiry Date</a></li>
+                        <li><a href="current-flag.html"><i class="fas fa-flag"></i> Current Flag</a></li>
+                        <li><a href="version-number.html"><i class="fas fa-list-ol"></i> Version Number</a></li>
+                        <li><a href="historical-records.html"><i class="fas fa-landmark"></i> Historical Records</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: ETL vs ELT Architecture -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: ETL vs ELT Architecture Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: ETL vs ELT Architecture</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="etl-architecture.html"><i class="fas fa-sitemap"></i> ETL Architecture</a></li>
+                        <li><a href="elt-architecture.html"><i class="fas fa-rotate"></i> ELT Architecture</a></li>
+                        <li><a href="etl-vs-elt.html"><i class="fas fa-code-compare"></i> ETL vs ELT</a></li>
+                        <li><a href="when-etl-is-used.html"><i class="fas fa-circle-check"></i> When ETL is Used</a></li>
+                        <li><a href="when-elt-is-used.html"><i class="fas fa-circle-check"></i> When ELT is Used</a></li>
+                        <li><a href="advantages-of-etl.html"><i class="fas fa-thumbs-up"></i> Advantages of ETL</a></li>
+                        <li><a href="limitations-of-etl.html"><i class="fas fa-thumbs-down"></i> Limitations of ETL</a></li>
+                        <li><a href="advantages-of-elt.html"><i class="fas fa-thumbs-up"></i> Advantages of ELT</a></li>
+                        <li><a href="limitations-of-elt.html"><i class="fas fa-thumbs-down"></i> Limitations of ELT</a></li>
+                        <li><a href="modern-cloud-data-pipelines.html"><i class="fas fa-cloud"></i> Modern Cloud Data Pipelines</a></li>
+                        <li><a href="cloud-native-etl-elt.html"><i class="fas fa-cloud-arrow-up"></i> Cloud-Native ETL/ELT</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 5: Data Integration Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-5">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod5-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 5: Data Integration Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 5: Data Integration Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod5-list">
+                    <ul>
+                        <li><a href="what-is-data-integration.html"><i class="fas fa-puzzle-piece"></i> What is Data Integration?</a></li>
+                        <li><a href="why-data-integration-is-required.html"><i class="fas fa-circle-question"></i> Why Data Integration is Required</a></li>
+                        <li><a href="source-to-target-integration.html"><i class="fas fa-arrow-right-arrow-left"></i> Source-to-Target Integration</a></li>
+                        <li><a href="batch-integration.html"><i class="fas fa-layer-group"></i> Batch Integration</a></li>
+                        <li><a href="real-time-integration.html"><i class="fas fa-bolt"></i> Real-Time Integration</a></li>
+                        <li><a href="near-real-time-integration.html"><i class="fas fa-gauge-high"></i> Near-Real-Time Integration</a></li>
+                        <li><a href="api-based-integration.html"><i class="fas fa-plug"></i> API-Based Integration</a></li>
+                        <li><a href="file-based-integration.html"><i class="fas fa-file-import"></i> File-Based Integration</a></li>
+                        <li><a href="database-to-database-integration.html"><i class="fas fa-database"></i> Database-to-Database Integration</a></li>
+                        <li><a href="application-to-database-integration.html"><i class="fas fa-window-restore"></i> Application-to-Database Integration</a></li>
+                        <li><a href="event-driven-integration.html"><i class="fas fa-bell"></i> Event-Driven Integration</a></li>
+                        <li><a href="streaming-data-integration.html"><i class="fas fa-stream"></i> Streaming Data Integration</a></li>
+                        <li><a href="data-synchronization.html"><i class="fas fa-rotate"></i> Data Synchronization</a></li>
+                        <li><a href="data-replication.html"><i class="fas fa-copy"></i> Data Replication</a></li>
+                        <li><a href="data-federation.html"><i class="fas fa-circle-nodes"></i> Data Federation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 6: ETL Mapping Concepts -->
+            <div class="sidebar-module-group collapsed" data-module="module-6">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod6-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 6: ETL Mapping Concepts Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 6: ETL Mapping Concepts</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod6-list">
+                    <ul>
+                        <li><a href="source-to-target-mapping.html"><i class="fas fa-arrow-right-arrow-left"></i> Source-to-Target Mapping</a></li>
+                        <li><a href="source-columns.html"><i class="fas fa-columns"></i> Source Columns</a></li>
+                        <li><a href="target-columns.html"><i class="fas fa-bullseye"></i> Target Columns</a></li>
+                        <li><a href="transformation-rules.html"><i class="fas fa-gears"></i> Transformation Rules</a></li>
+                        <li><a href="business-rules.html"><i class="fas fa-scale-balanced"></i> Business Rules</a></li>
+                        <li><a href="data-type-mapping.html"><i class="fas fa-spell-check"></i> Data Type Mapping</a></li>
+                        <li><a href="default-values.html"><i class="fas fa-shield-halved"></i> Default Values</a></li>
+                        <li><a href="null-handling.html"><i class="fas fa-ban"></i> Null Handling</a></li>
+                        <li><a href="derived-fields.html"><i class="fas fa-calculator"></i> Derived Fields</a></li>
+                        <li><a href="lookup-rules.html"><i class="fas fa-magnifying-glass"></i> Lookup Rules</a></li>
+                        <li><a href="filter-conditions.html"><i class="fas fa-filter"></i> Filter Conditions</a></li>
+                        <li><a href="join-conditions.html"><i class="fas fa-link"></i> Join Conditions</a></li>
+                        <li><a href="aggregation-rules.html"><i class="fas fa-chart-pie"></i> Aggregation Rules</a></li>
+                        <li><a href="data-conversion-rules.html"><i class="fas fa-arrows-rotate"></i> Data Conversion Rules</a></li>
+                        <li><a href="reject-rules.html"><i class="fas fa-circle-xmark"></i> Reject Rules</a></li>
+                        <li><a href="error-handling-rules.html"><i class="fas fa-triangle-exclamation"></i> Error Handling Rules</a></li>
+                        <li><a href="mapping-documents.html"><i class="fas fa-file-lines"></i> Mapping Documents</a></li>
+                        <li><a href="source-to-target-mapping-documents.html"><i class="fas fa-file-invoice"></i> Source-to-Target Mapping Documents</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 7: ETL Testing Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-7">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod7-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 7: ETL Testing Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 7: ETL Testing Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod7-list">
+                    <ul>
+                        <li><a href="what-is-etl-testing.html"><i class="fas fa-vial-circle-check"></i> What is ETL Testing?</a></li>
+                        <li><a href="why-etl-testing-is-required.html"><i class="fas fa-circle-question"></i> Why ETL Testing is Required</a></li>
+                        <li><a href="role-of-an-etl-tester.html"><i class="fas fa-user-check"></i> Role of an ETL Tester</a></li>
+                        <li><a href="etl-tester-vs-manual-tester.html"><i class="fas fa-people-arrows"></i> ETL Tester vs Manual Tester</a></li>
+                        <li><a href="etl-tester-vs-data-engineer.html"><i class="fas fa-user-gear"></i> ETL Tester vs Data Engineer</a></li>
+                        <li><a href="etl-testing-lifecycle.html"><i class="fas fa-arrows-spin"></i> ETL Testing Lifecycle</a></li>
+                        <li><a href="etl-testing-process.html"><i class="fas fa-bars-progress"></i> ETL Testing Process</a></li>
+                        <li><a href="etl-testing-strategy.html"><i class="fas fa-chess"></i> ETL Testing Strategy</a></li>
+                        <li><a href="etl-test-plan.html"><i class="fas fa-clipboard-list"></i> ETL Test Plan</a></li>
+                        <li><a href="etl-test-scenarios.html"><i class="fas fa-list-check"></i> ETL Test Scenarios</a></li>
+                        <li><a href="etl-test-cases.html"><i class="fas fa-vial"></i> ETL Test Cases</a></li>
+                        <li><a href="test-data.html"><i class="fas fa-database"></i> Test Data</a></li>
+                        <li><a href="expected-results.html"><i class="fas fa-square-check"></i> Expected Results</a></li>
+                        <li><a href="actual-results.html"><i class="fas fa-clipboard-check"></i> Actual Results</a></li>
+                        <li><a href="test-evidence.html"><i class="fas fa-camera"></i> Test Evidence</a></li>
+                        <li><a href="defect-reporting.html"><i class="fas fa-bug"></i> Defect Reporting</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 8: Types of ETL Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-8">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod8-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 8: Types of ETL Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 8: Types of ETL Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod8-list">
+                    <ul>
+                        <li><a href="source-to-target-testing.html"><i class="fas fa-arrow-right-arrow-left"></i> Source-to-Target Testing</a></li>
+                        <li><a href="data-validation-testing.html"><i class="fas fa-check-double"></i> Data Validation Testing</a></li>
+                        <li><a href="data-completeness-testing.html"><i class="fas fa-database"></i> Data Completeness Testing</a></li>
+                        <li><a href="data-accuracy-testing.html"><i class="fas fa-bullseye"></i> Data Accuracy Testing</a></li>
+                        <li><a href="data-consistency-testing.html"><i class="fas fa-arrows-split-up-and-left"></i> Data Consistency Testing</a></li>
+                        <li><a href="data-integrity-testing.html"><i class="fas fa-shield-halved"></i> Data Integrity Testing</a></li>
+                        <li><a href="data-transformation-testing.html"><i class="fas fa-gears"></i> Data Transformation Testing</a></li>
+                        <li><a href="data-mapping-testing.html"><i class="fas fa-diagram-project"></i> Data Mapping Testing</a></li>
+                        <li><a href="data-type-testing.html"><i class="fas fa-spell-check"></i> Data Type Testing</a></li>
+                        <li><a href="null-validation.html"><i class="fas fa-ban"></i> Null Validation</a></li>
+                        <li><a href="duplicate-validation.html"><i class="fas fa-clone"></i> Duplicate Validation</a></li>
+                        <li><a href="referential-integrity-testing.html"><i class="fas fa-link"></i> Referential Integrity Testing</a></li>
+                        <li><a href="constraint-testing.html"><i class="fas fa-lock"></i> Constraint Testing</a></li>
+                        <li><a href="lookup-testing.html"><i class="fas fa-magnifying-glass"></i> Lookup Testing</a></li>
+                        <li><a href="join-testing.html"><i class="fas fa-network-wired"></i> Join Testing</a></li>
+                        <li><a href="aggregation-testing.html"><i class="fas fa-chart-pie"></i> Aggregation Testing</a></li>
+                        <li><a href="filter-testing.html"><i class="fas fa-filter"></i> Filter Testing</a></li>
+                        <li><a href="business-rule-validation.html"><i class="fas fa-scale-balanced"></i> Business-Rule Validation</a></li>
+                        <li><a href="default-value-validation.html"><i class="fas fa-shield-check"></i> Default-Value Validation</a></li>
+                        <li><a href="boundary-value-testing.html"><i class="fas fa-arrows-left-right-to-line"></i> Boundary-Value Testing</a></li>
+                        <li><a href="negative-testing.html"><i class="fas fa-circle-minus"></i> Negative Testing</a></li>
+                        <li><a href="regression-testing.html"><i class="fas fa-clock-rotate-left"></i> Regression Testing</a></li>
+                        <li><a href="smoke-testing.html"><i class="fas fa-fire"></i> Smoke Testing</a></li>
+                        <li><a href="sanity-testing.html"><i class="fas fa-stethoscope"></i> Sanity Testing</a></li>
+                        <li><a href="functional-testing.html"><i class="fas fa-sliders"></i> Functional Testing</a></li>
+                        <li><a href="integration-testing.html"><i class="fas fa-puzzle-piece"></i> Integration Testing</a></li>
+                        <li><a href="system-testing.html"><i class="fas fa-server"></i> System Testing</a></li>
+                        <li><a href="end-to-end-testing.html"><i class="fas fa-route"></i> End-to-End Testing</a></li>
+                        <li><a href="performance-testing.html"><i class="fas fa-gauge-high"></i> Performance Testing</a></li>
+                        <li><a href="security-testing.html"><i class="fas fa-shield-cat"></i> Security Testing</a></li>
+                        <li><a href="recovery-testing.html"><i class="fas fa-trash-can-arrow-up"></i> Recovery Testing</a></li>
+                        <li><a href="restartability-testing.html"><i class="fas fa-rotate-right"></i> Restartability Testing</a></li>
+                        <li><a href="failure-handling-testing.html"><i class="fas fa-triangle-exclamation"></i> Failure Handling Testing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 9: Source-to-Target Validation -->
+            <div class="sidebar-module-group collapsed" data-module="module-9">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod9-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 9: Source-to-Target Validation Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 9: Source-to-Target Validation</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod9-list">
+                    <ul>
+                        <li><a href="source-to-target-validation.html"><i class="fas fa-arrow-right-arrow-left"></i> Source-to-Target Validation</a></li>
+                        <li><a href="column-mapping.html"><i class="fas fa-table-columns"></i> Column Mapping</a></li>
+                        <li><a href="row-mapping.html"><i class="fas fa-table-cells-large"></i> Row Mapping</a></li>
+                        <li><a href="record-count-comparison.html"><i class="fas fa-calculator"></i> Record Count Comparison</a></li>
+                        <li><a href="column-count-comparison.html"><i class="fas fa-list-ol"></i> Column Count Comparison</a></li>
+                        <li><a href="data-type-comparison.html"><i class="fas fa-spell-check"></i> Data Type Comparison</a></li>
+                        <li><a href="length-comparison.html"><i class="fas fa-ruler-horizontal"></i> Length Comparison</a></li>
+                        <li><a href="precision-comparison.html"><i class="fas fa-crosshairs"></i> Precision Comparison</a></li>
+                        <li><a href="scale-comparison.html"><i class="fas fa-sliders"></i> Scale Comparison</a></li>
+                        <li><a href="value-comparison.html"><i class="fas fa-code-compare"></i> Value Comparison</a></li>
+                        <li><a href="transformation-comparison.html"><i class="fas fa-gears"></i> Transformation Comparison</a></li>
+                        <li><a href="null-comparison.html"><i class="fas fa-ban"></i> Null Comparison</a></li>
+                        <li><a href="duplicate-comparison.html"><i class="fas fa-clone"></i> Duplicate Comparison</a></li>
+                        <li><a href="aggregation-comparison.html"><i class="fas fa-chart-pie"></i> Aggregation Comparison</a></li>
+                        <li><a href="filter-comparison.html"><i class="fas fa-filter"></i> Filter Comparison</a></li>
+                        <li><a href="business-rule-comparison.html"><i class="fas fa-scale-balanced"></i> Business-Rule Comparison</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 10: Data Completeness Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-10">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod10-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 10: Data Completeness Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 10: Data Completeness Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod10-list">
+                    <ul>
+                        <li><a href="source-record-count.html"><i class="fas fa-database"></i> Source Record Count</a></li>
+                        <li><a href="target-record-count.html"><i class="fas fa-bullseye"></i> Target Record Count</a></li>
+                        <li><a href="count-reconciliation.html"><i class="fas fa-scale-balanced"></i> Count Reconciliation</a></li>
+                        <li><a href="missing-records.html"><i class="fas fa-circle-xmark"></i> Missing Records</a></li>
+                        <li><a href="extra-records.html"><i class="fas fa-plus-circle"></i> Extra Records</a></li>
+                        <li><a href="missing-columns.html"><i class="fas fa-table-columns"></i> Missing Columns</a></li>
+                        <li><a href="missing-values.html"><i class="fas fa-file-circle-xmark"></i> Missing Values</a></li>
+                        <li><a href="partial-loads.html"><i class="fas fa-hourglass-half"></i> Partial Loads</a></li>
+                        <li><a href="rejected-records.html"><i class="fas fa-ban"></i> Rejected Records</a></li>
+                        <li><a href="duplicate-records.html"><i class="fas fa-clone"></i> Duplicate Records</a></li>
+                        <li><a href="source-vs-staging-count.html"><i class="fas fa-arrow-right"></i> Source vs Staging Count</a></li>
+                        <li><a href="staging-vs-target-count.html"><i class="fas fa-arrow-right-to-bracket"></i> Staging vs Target Count</a></li>
+                        <li><a href="end-to-end-record-count.html"><i class="fas fa-route"></i> End-to-End Record Count</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 11: Data Accuracy Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-11">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod11-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 11: Data Accuracy Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 11: Data Accuracy Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod11-list">
+                    <ul>
+                        <li><a href="exact-value-comparison.html"><i class="fas fa-equals"></i> Exact Value Comparison</a></li>
+                        <li><a href="transformed-value-validation.html"><i class="fas fa-gears"></i> Transformed Value Validation</a></li>
+                        <li><a href="calculated-field-validation.html"><i class="fas fa-calculator"></i> Calculated Field Validation</a></li>
+                        <li><a href="derived-field-validation.html"><i class="fas fa-microchip"></i> Derived Field Validation</a></li>
+                        <li><a href="business-rule-accuracy-validation.html"><i class="fas fa-scale-balanced"></i> Business Rule Validation</a></li>
+                        <li><a href="currency-conversion-validation.html"><i class="fas fa-dollar-sign"></i> Currency Conversion Validation</a></li>
+                        <li><a href="date-conversion-validation.html"><i class="fas fa-calendar-days"></i> Date Conversion Validation</a></li>
+                        <li><a href="numeric-conversion-validation.html"><i class="fas fa-hashtag"></i> Numeric Conversion Validation</a></li>
+                        <li><a href="aggregated-value-validation.html"><i class="fas fa-chart-pie"></i> Aggregated Value Validation</a></li>
+                        <li><a href="lookup-result-validation.html"><i class="fas fa-magnifying-glass"></i> Lookup Result Validation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 12: Data Quality Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-12">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod12-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 12: Data Quality Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 12: Data Quality Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod12-list">
+                    <ul>
+                        <li><a href="data-quality-accuracy.html"><i class="fas fa-bullseye"></i> Accuracy</a></li>
+                        <li><a href="data-quality-completeness.html"><i class="fas fa-clipboard-check"></i> Completeness</a></li>
+                        <li><a href="data-quality-consistency.html"><i class="fas fa-arrows-split-up-and-left"></i> Consistency</a></li>
+                        <li><a href="data-quality-validity.html"><i class="fas fa-certificate"></i> Validity</a></li>
+                        <li><a href="data-quality-uniqueness.html"><i class="fas fa-fingerprint"></i> Uniqueness</a></li>
+                        <li><a href="data-quality-timeliness.html"><i class="fas fa-clock"></i> Timeliness</a></li>
+                        <li><a href="data-quality-integrity.html"><i class="fas fa-shield-halved"></i> Integrity</a></li>
+                        <li><a href="null-values-testing.html"><i class="fas fa-ban"></i> Null Values</a></li>
+                        <li><a href="blank-values.html"><i class="fas fa-square"></i> Blank Values</a></li>
+                        <li><a href="duplicate-values.html"><i class="fas fa-clone"></i> Duplicate Values</a></li>
+                        <li><a href="invalid-values.html"><i class="fas fa-triangle-exclamation"></i> Invalid Values</a></li>
+                        <li><a href="out-of-range-values.html"><i class="fas fa-arrows-up-down"></i> Out-of-Range Values</a></li>
+                        <li><a href="incorrect-formats.html"><i class="fas fa-font"></i> Incorrect Formats</a></li>
+                        <li><a href="invalid-dates.html"><i class="fas fa-calendar-xmark"></i> Invalid Dates</a></li>
+                        <li><a href="invalid-codes.html"><i class="fas fa-barcode"></i> Invalid Codes</a></li>
+                        <li><a href="invalid-relationships.html"><i class="fas fa-link-slash"></i> Invalid Relationships</a></li>
+                        <li><a href="orphan-records.html"><i class="fas fa-user-slash"></i> Orphan Records</a></li>
+                        <li><a href="unexpected-characters.html"><i class="fas fa-keyboard"></i> Unexpected Characters</a></li>
+                        <li><a href="truncated-data.html"><i class="fas fa-scissors"></i> Truncated Data</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 13: Data Transformation Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-13">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod13-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 13: Data Transformation Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 13: Data Transformation Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod13-list">
+                    <ul>
+                        <li><a href="string-transformations.html"><i class="fas fa-font"></i> String Transformations</a></li>
+                        <li><a href="numeric-transformations.html"><i class="fas fa-calculator"></i> Numeric Transformations</a></li>
+                        <li><a href="date-transformations.html"><i class="fas fa-calendar"></i> Date Transformations</a></li>
+                        <li><a href="conditional-transformation-testing.html"><i class="fas fa-code-branch"></i> Conditional Transformations</a></li>
+                        <li><a href="lookup-transformations.html"><i class="fas fa-magnifying-glass"></i> Lookup Transformations</a></li>
+                        <li><a href="join-transformations.html"><i class="fas fa-link"></i> Join Transformations</a></li>
+                        <li><a href="aggregations-testing.html"><i class="fas fa-chart-pie"></i> Aggregations</a></li>
+                        <li><a href="calculations-testing.html"><i class="fas fa-square-root-variable"></i> Calculations</a></li>
+                        <li><a href="concatenation.html"><i class="fas fa-circle-nodes"></i> Concatenation</a></li>
+                        <li><a href="splitting.html"><i class="fas fa-scissors"></i> Splitting</a></li>
+                        <li><a href="formatting.html"><i class="fas fa-wand-magic-sparkles"></i> Formatting</a></li>
+                        <li><a href="rounding.html"><i class="fas fa-circle-half-stroke"></i> Rounding</a></li>
+                        <li><a href="currency-conversion.html"><i class="fas fa-coins"></i> Currency Conversion</a></li>
+                        <li><a href="unit-conversion.html"><i class="fas fa-scale-unbalanced-flip"></i> Unit Conversion</a></li>
+                        <li><a href="null-handling-transformation.html"><i class="fas fa-ban"></i> Null Handling</a></li>
+                        <li><a href="default-values-transformation.html"><i class="fas fa-shield-halved"></i> Default Values</a></li>
+                        <li><a href="data-cleansing-testing.html"><i class="fas fa-broom"></i> Data Cleansing</a></li>
+                        <li><a href="deduplication-testing.html"><i class="fas fa-clone"></i> Deduplication</a></li>
+                        <li><a href="filtering-transformation.html"><i class="fas fa-filter"></i> Filtering</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 14: Incremental Load Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-14">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod14-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 14: Incremental Load Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 14: Incremental Load Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod14-list">
+                    <ul>
+                        <li><a href="full-load-vs-incremental-load.html"><i class="fas fa-arrows-split-up-and-left"></i> Full Load vs Incremental Load</a></li>
+                        <li><a href="delta-identification.html"><i class="fas fa-filter"></i> Delta Identification</a></li>
+                        <li><a href="new-records.html"><i class="fas fa-square-plus"></i> New Records</a></li>
+                        <li><a href="updated-records.html"><i class="fas fa-pen-to-square"></i> Updated Records</a></li>
+                        <li><a href="deleted-records.html"><i class="fas fa-trash-can"></i> Deleted Records</a></li>
+                        <li><a href="unchanged-records.html"><i class="fas fa-equals"></i> Unchanged Records</a></li>
+                        <li><a href="timestamp-based-incremental-load.html"><i class="fas fa-clock"></i> Timestamp-Based Incremental Load</a></li>
+                        <li><a href="cdc-based-incremental-load.html"><i class="fas fa-binoculars"></i> CDC-Based Incremental Load</a></li>
+                        <li><a href="watermark.html"><i class="fas fa-water"></i> Watermark</a></li>
+                        <li><a href="last-run-timestamp.html"><i class="fas fa-stopwatch"></i> Last-Run Timestamp</a></li>
+                        <li><a href="duplicate-prevention.html"><i class="fas fa-shield-halved"></i> Duplicate Prevention</a></li>
+                        <li><a href="incremental-reconciliation.html"><i class="fas fa-scale-balanced"></i> Incremental Reconciliation</a></li>
+                        <li><a href="multiple-incremental-runs.html"><i class="fas fa-rotate"></i> Multiple Incremental Runs</a></li>
+                        <li><a href="late-arriving-data.html"><i class="fas fa-hourglass-end"></i> Late-Arriving Data</a></li>
+                        <li><a href="out-of-order-data.html"><i class="fas fa-arrow-down-up-across-line"></i> Out-of-Order Data</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 15: Slowly Changing Dimensions (SCD) Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-15">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod15-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 15: Slowly Changing Dimensions (SCD) Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 15: Slowly Changing Dimensions (SCD) Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod15-list">
+                    <ul>
+                        <li><a href="scd-type-0-testing.html"><i class="fas fa-lock"></i> SCD Type 0 Testing</a></li>
+                        <li><a href="scd-type-1-testing.html"><i class="fas fa-eraser"></i> SCD Type 1 Testing</a></li>
+                        <li><a href="scd-type-2-testing.html"><i class="fas fa-clock-rotate-left"></i> SCD Type 2 Testing</a></li>
+                        <li><a href="scd-type-3-testing.html"><i class="fas fa-table-columns"></i> SCD Type 3 Testing</a></li>
+                        <li><a href="historical-record-validation.html"><i class="fas fa-landmark"></i> Historical Record Validation</a></li>
+                        <li><a href="new-record-validation.html"><i class="fas fa-circle-plus"></i> New Record Validation</a></li>
+                        <li><a href="updated-record-validation.html"><i class="fas fa-pen-nib"></i> Updated Record Validation</a></li>
+                        <li><a href="effective-date-validation.html"><i class="fas fa-calendar-plus"></i> Effective Date Validation</a></li>
+                        <li><a href="expiry-date-validation.html"><i class="fas fa-calendar-xmark"></i> Expiry Date Validation</a></li>
+                        <li><a href="current-flag-validation.html"><i class="fas fa-flag"></i> Current Flag Validation</a></li>
+                        <li><a href="version-validation.html"><i class="fas fa-code-branch"></i> Version Validation</a></li>
+                        <li><a href="duplicate-history-validation.html"><i class="fas fa-clone"></i> Duplicate History Validation</a></li>
+                        <li><a href="overlapping-date-validation.html"><i class="fas fa-arrows-left-right"></i> Overlapping Date Validation</a></li>
+                        <li><a href="missing-history-validation.html"><i class="fas fa-circle-question"></i> Missing History Validation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 16: Data Reconciliation -->
+            <div class="sidebar-module-group collapsed" data-module="module-16">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod16-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 16: Data Reconciliation Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 16: Data Reconciliation</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod16-list">
+                    <ul>
+                        <li><a href="what-is-reconciliation.html"><i class="fas fa-compass"></i> What is Reconciliation?</a></li>
+                        <li><a href="source-vs-target-reconciliation.html"><i class="fas fa-arrow-right-arrow-left"></i> Source vs Target Reconciliation</a></li>
+                        <li><a href="count-reconciliation-testing.html"><i class="fas fa-calculator"></i> Count Reconciliation</a></li>
+                        <li><a href="sum-reconciliation.html"><i class="fas fa-plus-minus"></i> Sum Reconciliation</a></li>
+                        <li><a href="hash-reconciliation.html"><i class="fas fa-hashtag"></i> Hash Reconciliation</a></li>
+                        <li><a href="column-level-reconciliation.html"><i class="fas fa-table-columns"></i> Column-Level Reconciliation</a></li>
+                        <li><a href="record-level-reconciliation.html"><i class="fas fa-bars-staggered"></i> Record-Level Reconciliation</a></li>
+                        <li><a href="aggregate-reconciliation.html"><i class="fas fa-chart-pie"></i> Aggregate Reconciliation</a></li>
+                        <li><a href="financial-reconciliation.html"><i class="fas fa-sack-dollar"></i> Financial Reconciliation</a></li>
+                        <li><a href="reconciliation-reports.html"><i class="fas fa-file-invoice-dollar"></i> Reconciliation Reports</a></li>
+                        <li><a href="difference-identification.html"><i class="fas fa-magnifying-glass"></i> Difference Identification</a></li>
+                        <li><a href="difference-investigation.html"><i class="fas fa-searchengin"></i> Difference Investigation</a></li>
+                        <li><a href="reconciliation-sql-queries.html"><i class="fas fa-code"></i> Reconciliation SQL Queries</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 17: ETL Error & Exception Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-17">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod17-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 17: ETL Error & Exception Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 17: ETL Error & Exception Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod17-list">
+                    <ul>
+                        <li><a href="reject-records-testing.html"><i class="fas fa-circle-xmark"></i> Reject Records</a></li>
+                        <li><a href="error-records.html"><i class="fas fa-triangle-exclamation"></i> Error Records</a></li>
+                        <li><a href="error-tables.html"><i class="fas fa-table-list"></i> Error Tables</a></li>
+                        <li><a href="error-logs.html"><i class="fas fa-file-waveform"></i> Error Logs</a></li>
+                        <li><a href="error-messages.html"><i class="fas fa-comment-dots"></i> Error Messages</a></li>
+                        <li><a href="invalid-source-data.html"><i class="fas fa-circle-exclamation"></i> Invalid Source Data</a></li>
+                        <li><a href="transformation-failures.html"><i class="fas fa-gears"></i> Transformation Failures</a></li>
+                        <li><a href="target-failures.html"><i class="fas fa-bullseye"></i> Target Failures</a></li>
+                        <li><a href="database-failures.html"><i class="fas fa-server"></i> Database Failures</a></li>
+                        <li><a href="connection-failures.html"><i class="fas fa-network-wired"></i> Connection Failures</a></li>
+                        <li><a href="timeout-failures.html"><i class="fas fa-hourglass-empty"></i> Timeout Failures</a></li>
+                        <li><a href="duplicate-failures.html"><i class="fas fa-clone"></i> Duplicate Failures</a></li>
+                        <li><a href="constraint-failures.html"><i class="fas fa-shield-halved"></i> Constraint Failures</a></li>
+                        <li><a href="data-type-failures.html"><i class="fas fa-spell-check"></i> Data Type Failures</a></li>
+                        <li><a href="restart-after-failure.html"><i class="fas fa-rotate-right"></i> Restart After Failure</a></li>
+                        <li><a href="recovery-testing-methods.html"><i class="fas fa-trash-can-arrow-up"></i> Recovery Testing</a></li>
+                        <li><a href="partial-load-testing.html"><i class="fas fa-battery-half"></i> Partial-Load Testing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 18: File-Based ETL Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-18">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod18-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 18: File-Based ETL Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 18: File-Based ETL Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod18-list">
+                    <ul>
+                        <li><a href="csv-testing.html"><i class="fas fa-file-csv"></i> CSV Testing</a></li>
+                        <li><a href="excel-testing.html"><i class="fas fa-file-excel"></i> Excel Testing</a></li>
+                        <li><a href="txt-testing.html"><i class="fas fa-file-lines"></i> TXT Testing</a></li>
+                        <li><a href="json-testing.html"><i class="fas fa-file-code"></i> JSON Testing</a></li>
+                        <li><a href="xml-testing.html"><i class="fas fa-code"></i> XML Testing</a></li>
+                        <li><a href="fixed-width-files-testing.html"><i class="fas fa-arrows-left-right"></i> Fixed-Width Files</a></li>
+                        <li><a href="delimited-files-testing.html"><i class="fas fa-grip-lines-vertical"></i> Delimited Files</a></li>
+                        <li><a href="header-validation.html"><i class="fas fa-heading"></i> Header Validation</a></li>
+                        <li><a href="footer-validation.html"><i class="fas fa-shoe-prints"></i> Footer Validation</a></li>
+                        <li><a href="column-validation.html"><i class="fas fa-table-columns"></i> Column Validation</a></li>
+                        <li><a href="file-record-count-validation.html"><i class="fas fa-list-ol"></i> Record Count</a></li>
+                        <li><a href="file-size-validation.html"><i class="fas fa-weight-scale"></i> File Size</a></li>
+                        <li><a href="file-naming-conventions.html"><i class="fas fa-signature"></i> File Naming Conventions</a></li>
+                        <li><a href="file-format-validation.html"><i class="fas fa-file-circle-check"></i> File Format</a></li>
+                        <li><a href="file-encoding-validation.html"><i class="fas fa-globe"></i> Encoding</a></li>
+                        <li><a href="file-special-characters-validation.html"><i class="fas fa-asterisk"></i> Special Characters</a></li>
+                        <li><a href="file-quotes-validation.html"><i class="fas fa-quote-left"></i> Quotes</a></li>
+                        <li><a href="file-delimiters-validation.html"><i class="fas fa-bars"></i> Delimiters</a></li>
+                        <li><a href="file-line-breaks-validation.html"><i class="fas fa-arrow-turn-down"></i> Line Breaks</a></li>
+                        <li><a href="missing-files-testing.html"><i class="fas fa-file-circle-xmark"></i> Missing Files</a></li>
+                        <li><a href="empty-files-testing.html"><i class="fas fa-file"></i> Empty Files</a></li>
+                        <li><a href="duplicate-files-testing.html"><i class="fas fa-copy"></i> Duplicate Files</a></li>
+                        <li><a href="corrupted-files-testing.html"><i class="fas fa-file-excel"></i> Corrupted Files</a></li>
+                        <li><a href="late-files-testing.html"><i class="fas fa-clock"></i> Late Files</a></li>
+                        <li><a href="partial-files-testing.html"><i class="fas fa-file-waveform"></i> Partial Files</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 19: Data Warehouse Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-19">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod19-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 19: Data Warehouse Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 19: Data Warehouse Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod19-list">
+                    <ul>
+                        <li><a href="dimension-testing.html"><i class="fas fa-cubes"></i> Dimension Testing</a></li>
+                        <li><a href="fact-testing.html"><i class="fas fa-calculator"></i> Fact Testing</a></li>
+                        <li><a href="fact-dimension-relationships-testing.html"><i class="fas fa-link"></i> Fact-Dimension Relationships</a></li>
+                        <li><a href="grain-validation.html"><i class="fas fa-crosshairs"></i> Grain Validation</a></li>
+                        <li><a href="surrogate-key-validation.html"><i class="fas fa-key"></i> Surrogate Key Validation</a></li>
+                        <li><a href="foreign-key-validation.html"><i class="fas fa-link-slash"></i> Foreign Key Validation</a></li>
+                        <li><a href="referential-integrity-validation.html"><i class="fas fa-shield-halved"></i> Referential Integrity</a></li>
+                        <li><a href="hierarchy-validation.html"><i class="fas fa-sitemap"></i> Hierarchy Validation</a></li>
+                        <li><a href="aggregation-validation.html"><i class="fas fa-chart-pie"></i> Aggregation Validation</a></li>
+                        <li><a href="snapshot-validation.html"><i class="fas fa-camera-retro"></i> Snapshot Validation</a></li>
+                        <li><a href="historical-data-validation.html"><i class="fas fa-landmark"></i> Historical Data Validation</a></li>
+                        <li><a href="scd-testing-overview.html"><i class="fas fa-clock-rotate-left"></i> SCD Testing</a></li>
+                        <li><a href="data-mart-testing.html"><i class="fas fa-store"></i> Data Mart Testing</a></li>
+                        <li><a href="reporting-layer-testing.html"><i class="fas fa-chart-line"></i> Reporting Layer Testing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 20: Database Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-20">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod20-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 20: Database Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 20: Database Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod20-list">
+                    <ul>
+                        <li><a href="database-functional-testing.html"><i class="fas fa-sliders"></i> Database Functional Testing</a></li>
+                        <li><a href="database-schema-testing.html"><i class="fas fa-sitemap"></i> Schema Testing</a></li>
+                        <li><a href="database-table-testing.html"><i class="fas fa-table"></i> Table Testing</a></li>
+                        <li><a href="database-column-testing.html"><i class="fas fa-table-columns"></i> Column Testing</a></li>
+                        <li><a href="database-data-type-testing.html"><i class="fas fa-spell-check"></i> Data Type Testing</a></li>
+                        <li><a href="database-constraint-testing.html"><i class="fas fa-lock"></i> Constraint Testing</a></li>
+                        <li><a href="primary-key-testing.html"><i class="fas fa-key"></i> Primary Key Testing</a></li>
+                        <li><a href="foreign-key-testing.html"><i class="fas fa-link"></i> Foreign Key Testing</a></li>
+                        <li><a href="index-testing.html"><i class="fas fa-bolt"></i> Index Testing</a></li>
+                        <li><a href="view-testing.html"><i class="fas fa-eye"></i> View Testing</a></li>
+                        <li><a href="stored-procedure-testing.html"><i class="fas fa-file-code"></i> Stored Procedure Testing</a></li>
+                        <li><a href="function-testing.html"><i class="fas fa-calculator"></i> Function Testing</a></li>
+                        <li><a href="trigger-testing.html"><i class="fas fa-wand-magic-sparkles"></i> Trigger Testing</a></li>
+                        <li><a href="database-data-integrity-testing.html"><i class="fas fa-shield-heart"></i> Data Integrity</a></li>
+                        <li><a href="database-referential-integrity-testing.html"><i class="fas fa-shield-halved"></i> Referential Integrity</a></li>
+                        <li><a href="database-performance-basics.html"><i class="fas fa-gauge-high"></i> Database Performance Basics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 21: Data Lineage -->
+            <div class="sidebar-module-group collapsed" data-module="module-21">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod21-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 21: Data Lineage Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 21: Data Lineage</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod21-list">
+                    <ul>
+                        <li><a href="what-is-data-lineage.html"><i class="fas fa-route"></i> What is Data Lineage?</a></li>
+                        <li><a href="source-to-target-lineage.html"><i class="fas fa-arrow-right-arrow-left"></i> Source-to-Target Lineage</a></li>
+                        <li><a href="column-level-lineage.html"><i class="fas fa-table-columns"></i> Column-Level Lineage</a></li>
+                        <li><a href="table-level-lineage.html"><i class="fas fa-table"></i> Table-Level Lineage</a></li>
+                        <li><a href="transformation-lineage.html"><i class="fas fa-gears"></i> Transformation Lineage</a></li>
+                        <li><a href="business-lineage.html"><i class="fas fa-briefcase"></i> Business Lineage</a></li>
+                        <li><a href="technical-lineage.html"><i class="fas fa-microchip"></i> Technical Lineage</a></li>
+                        <li><a href="upstream-dependencies.html"><i class="fas fa-arrow-left"></i> Upstream Dependencies</a></li>
+                        <li><a href="downstream-dependencies.html"><i class="fas fa-arrow-right"></i> Downstream Dependencies</a></li>
+                        <li><a href="impact-analysis.html"><i class="fas fa-magnifying-glass-chart"></i> Impact Analysis</a></li>
+                        <li><a href="lineage-validation.html"><i class="fas fa-check-double"></i> Lineage Validation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 22: Metadata Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-22">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod22-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 22: Metadata Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 22: Metadata Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod22-list">
+                    <ul>
+                        <li><a href="what-is-metadata.html"><i class="fas fa-tags"></i> What is Metadata?</a></li>
+                        <li><a href="technical-metadata-testing.html"><i class="fas fa-code-branch"></i> Technical Metadata</a></li>
+                        <li><a href="business-metadata-testing.html"><i class="fas fa-briefcase"></i> Business Metadata</a></li>
+                        <li><a href="operational-metadata-testing.html"><i class="fas fa-stopwatch"></i> Operational Metadata</a></li>
+                        <li><a href="schema-metadata-testing.html"><i class="fas fa-sitemap"></i> Schema Metadata</a></li>
+                        <li><a href="column-metadata-testing.html"><i class="fas fa-table-columns"></i> Column Metadata</a></li>
+                        <li><a href="data-type-metadata-testing.html"><i class="fas fa-spell-check"></i> Data Type Metadata</a></li>
+                        <li><a href="data-lineage-metadata-testing.html"><i class="fas fa-route"></i> Data Lineage Metadata</a></li>
+                        <li><a href="metadata-validation.html"><i class="fas fa-clipboard-check"></i> Metadata Validation</a></li>
+                        <li><a href="schema-changes-testing.html"><i class="fas fa-arrows-rotate"></i> Schema Changes</a></li>
+                        <li><a href="schema-evolution-testing.html"><i class="fas fa-dna"></i> Schema Evolution</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 23: Schema Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-23">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod23-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 23: Schema Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 23: Schema Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod23-list">
+                    <ul>
+                        <li><a href="schema-comparison.html"><i class="fas fa-code-compare"></i> Schema Comparison</a></li>
+                        <li><a href="schema-column-comparison.html"><i class="fas fa-table-columns"></i> Column Comparison</a></li>
+                        <li><a href="schema-data-type-comparison.html"><i class="fas fa-spell-check"></i> Data Type Comparison</a></li>
+                        <li><a href="schema-length-comparison.html"><i class="fas fa-ruler-horizontal"></i> Length Comparison</a></li>
+                        <li><a href="schema-precision-testing.html"><i class="fas fa-crosshairs"></i> Precision</a></li>
+                        <li><a href="schema-scale-testing.html"><i class="fas fa-sliders"></i> Scale</a></li>
+                        <li><a href="schema-nullable-property-testing.html"><i class="fas fa-ban"></i> Nullable Property</a></li>
+                        <li><a href="schema-primary-keys-testing.html"><i class="fas fa-key"></i> Primary Keys</a></li>
+                        <li><a href="schema-foreign-keys-testing.html"><i class="fas fa-link"></i> Foreign Keys</a></li>
+                        <li><a href="schema-new-columns-testing.html"><i class="fas fa-circle-plus"></i> New Columns</a></li>
+                        <li><a href="schema-removed-columns-testing.html"><i class="fas fa-circle-minus"></i> Removed Columns</a></li>
+                        <li><a href="schema-renamed-columns-testing.html"><i class="fas fa-pen-to-square"></i> Renamed Columns</a></li>
+                        <li><a href="schema-evolution-architecture.html"><i class="fas fa-layer-group"></i> Schema Evolution</a></li>
+                        <li><a href="schema-backward-compatibility.html"><i class="fas fa-shield-halved"></i> Backward Compatibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 24: Regression Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-24">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod24-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 24: Regression Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 24: Regression Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod24-list">
+                    <ul>
+                        <li><a href="what-is-regression-testing.html"><i class="fas fa-rotate-left"></i> What is Regression Testing?</a></li>
+                        <li><a href="etl-regression-testing.html"><i class="fas fa-diagram-project"></i> ETL Regression Testing</a></li>
+                        <li><a href="data-regression-testing.html"><i class="fas fa-database"></i> Data Regression Testing</a></li>
+                        <li><a href="pipeline-regression-testing.html"><i class="fas fa-stream"></i> Pipeline Regression</a></li>
+                        <li><a href="schema-regression-testing.html"><i class="fas fa-sitemap"></i> Schema Regression</a></li>
+                        <li><a href="business-rule-regression-testing.html"><i class="fas fa-scale-balanced"></i> Business-Rule Regression</a></li>
+                        <li><a href="incremental-regression-testing.html"><i class="fas fa-clock-rotate-left"></i> Incremental Regression</a></li>
+                        <li><a href="historical-data-regression-testing.html"><i class="fas fa-landmark"></i> Historical Data Regression</a></li>
+                        <li><a href="automated-regression-testing.html"><i class="fas fa-robot"></i> Automated Regression</a></li>
+                        <li><a href="regression-test-suite.html"><i class="fas fa-box-archive"></i> Regression Test Suite</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 25: Test Data Management -->
+            <div class="sidebar-module-group collapsed" data-module="module-25">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod25-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 25: Test Data Management Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 25: Test Data Management</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod25-list">
+                    <ul>
+                        <li><a href="test-data-creation.html"><i class="fas fa-wand-magic-sparkles"></i> Test Data Creation</a></li>
+                        <li><a href="test-data-preparation.html"><i class="fas fa-kitchen-set"></i> Test Data Preparation</a></li>
+                        <li><a href="test-data-selection.html"><i class="fas fa-hand-pointer"></i> Test Data Selection</a></li>
+                        <li><a href="positive-test-data.html"><i class="fas fa-circle-check"></i> Positive Test Data</a></li>
+                        <li><a href="negative-test-data.html"><i class="fas fa-circle-xmark"></i> Negative Test Data</a></li>
+                        <li><a href="boundary-test-data.html"><i class="fas fa-arrows-left-right-to-line"></i> Boundary Test Data</a></li>
+                        <li><a href="large-volume-test-data.html"><i class="fas fa-server"></i> Large-Volume Data</a></li>
+                        <li><a href="duplicate-test-data.html"><i class="fas fa-clone"></i> Duplicate Data</a></li>
+                        <li><a href="null-test-data.html"><i class="fas fa-ban"></i> Null Data</a></li>
+                        <li><a href="invalid-test-data.html"><i class="fas fa-triangle-exclamation"></i> Invalid Data</a></li>
+                        <li><a href="historical-test-data.html"><i class="fas fa-landmark"></i> Historical Data</a></li>
+                        <li><a href="incremental-test-data.html"><i class="fas fa-clock-rotate-left"></i> Incremental Data</a></li>
+                        <li><a href="synthetic-test-data.html"><i class="fas fa-robot"></i> Synthetic Data</a></li>
+                        <li><a href="masked-production-data.html"><i class="fas fa-user-secret"></i> Masked Production Data</a></li>
+                        <li><a href="data-refresh-management.html"><i class="fas fa-arrows-rotate"></i> Data Refresh</a></li>
+                        <li><a href="test-environment-data.html"><i class="fas fa-network-wired"></i> Test Environment Data</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 26: ETL Test Cases -->
+            <div class="sidebar-module-group collapsed" data-module="module-26">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod26-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 26: ETL Test Cases Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 26: ETL Test Cases</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod26-list">
+                    <ul>
+                        <li><a href="source-validation-test-cases.html"><i class="fas fa-database"></i> Source Validation</a></li>
+                        <li><a href="target-validation-test-cases.html"><i class="fas fa-bullseye"></i> Target Validation</a></li>
+                        <li><a href="count-validation-test-cases.html"><i class="fas fa-calculator"></i> Count Validation</a></li>
+                        <li><a href="transformation-validation-test-cases.html"><i class="fas fa-gears"></i> Transformation Validation</a></li>
+                        <li><a href="null-validation-test-cases.html"><i class="fas fa-ban"></i> Null Validation</a></li>
+                        <li><a href="duplicate-validation-test-cases.html"><i class="fas fa-clone"></i> Duplicate Validation</a></li>
+                        <li><a href="data-type-validation-test-cases.html"><i class="fas fa-spell-check"></i> Data Type Validation</a></li>
+                        <li><a href="business-rule-validation-test-cases.html"><i class="fas fa-scale-balanced"></i> Business Rule Validation</a></li>
+                        <li><a href="lookup-validation-test-cases.html"><i class="fas fa-magnifying-glass"></i> Lookup Validation</a></li>
+                        <li><a href="join-validation-test-cases.html"><i class="fas fa-link"></i> Join Validation</a></li>
+                        <li><a href="aggregation-validation-test-cases.html"><i class="fas fa-chart-pie"></i> Aggregation Validation</a></li>
+                        <li><a href="incremental-load-test-cases.html"><i class="fas fa-clock-rotate-left"></i> Incremental Load</a></li>
+                        <li><a href="full-load-test-cases.html"><i class="fas fa-download"></i> Full Load</a></li>
+                        <li><a href="scd-test-cases.html"><i class="fas fa-timeline"></i> SCD</a></li>
+                        <li><a href="error-handling-test-cases.html"><i class="fas fa-triangle-exclamation"></i> Error Handling</a></li>
+                        <li><a href="reject-records-test-cases.html"><i class="fas fa-circle-xmark"></i> Reject Records</a></li>
+                        <li><a href="job-execution-test-cases.html"><i class="fas fa-play"></i> Job Execution</a></li>
+                        <li><a href="scheduling-test-cases.html"><i class="fas fa-calendar-days"></i> Scheduling</a></li>
+                        <li><a href="performance-test-cases.html"><i class="fas fa-gauge-high"></i> Performance</a></li>
+                        <li><a href="recovery-test-cases.html"><i class="fas fa-trash-can-arrow-up"></i> Recovery</a></li>
+                        <li><a href="restartability-test-cases.html"><i class="fas fa-rotate-right"></i> Restartability</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 27: Defect Management -->
+            <div class="sidebar-module-group" data-module="module-27">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod27-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 27: Defect Management Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 27: Defect Management</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod27-list">
+                    <ul>
+                        <li><a href="what-is-a-defect.html"><i class="fas fa-bug"></i> What is a Defect?</a></li>
+                        <li><a href="defect-management-lifecycle.html"><i class="fas fa-arrows-spin"></i> Defect Lifecycle</a></li>
+                        <li><a href="defect-severity.html"><i class="fas fa-fire"></i> Severity</a></li>
+                        <li><a href="defect-priority.html"><i class="fas fa-arrow-up-wide-short"></i> Priority</a></li>
+                        <li><a href="defect-title-writing.html"><i class="fas fa-heading"></i> Defect Title</a></li>
+                        <li class="active"><a href="defect-description-writing.html" class="active"><i class="fas fa-align-left"></i> Description</a></li>
+                        <li><a href="defect-steps-to-reproduce.html"><i class="fas fa-list-ol"></i> Steps to Reproduce</a></li>
+                        <li><a href="defect-expected-result.html"><i class="fas fa-square-check"></i> Expected Result</a></li>
+                        <li><a href="defect-actual-result.html"><i class="fas fa-triangle-exclamation"></i> Actual Result</a></li>
+                        <li><a href="defect-evidence-gathering.html"><i class="fas fa-camera"></i> Evidence</a></li>
+                        <li><a href="defect-sql-evidence.html"><i class="fas fa-code"></i> SQL Evidence</a></li>
+                        <li><a href="defect-logs-evidence.html"><i class="fas fa-file-lines"></i> Logs</a></li>
+                        <li><a href="defect-screenshots-evidence.html"><i class="fas fa-image"></i> Screenshots</a></li>
+                        <li><a href="defect-root-cause-analysis.html"><i class="fas fa-searchengin"></i> Root Cause</a></li>
+                        <li><a href="defect-retesting.html"><i class="fas fa-vial-circle-check"></i> Retesting</a></li>
+                        <li><a href="defect-regression-testing.html"><i class="fas fa-rotate-left"></i> Regression</a></li>
+                        <li><a href="defect-closure.html"><i class="fas fa-circle-check"></i> Defect Closure</a></li>
+                        <li><a href="duplicate-defect-handling.html"><i class="fas fa-copy"></i> Duplicate Defect</a></li>
+                        <li><a href="reopened-defect-handling.html"><i class="fas fa-rotate-right"></i> Reopened Defect</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 28: Data Migration Testing -->
+            <div class="sidebar-module-group collapsed" data-module="module-28">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod28-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 28: Data Migration Testing Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 28: Data Migration Testing</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod28-list">
+                    <ul>
+                        <li><a href="what-is-data-migration.html"><i class="fas fa-truck-fast"></i> What is Data Migration?</a></li>
+                        <li><a href="migration-strategy.html"><i class="fas fa-chess"></i> Migration Strategy</a></li>
+                        <li><a href="migration-source-system.html"><i class="fas fa-database"></i> Source System</a></li>
+                        <li><a href="migration-legacy-system.html"><i class="fas fa-server"></i> Legacy System</a></li>
+                        <li><a href="migration-target-system.html"><i class="fas fa-bullseye"></i> Target System</a></li>
+                        <li><a href="migration-mapping.html"><i class="fas fa-arrow-right-arrow-left"></i> Mapping</a></li>
+                        <li><a href="migration-transformation.html"><i class="fas fa-gears"></i> Transformation</a></li>
+                        <li><a href="migration-validation.html"><i class="fas fa-check-double"></i> Migration Validation</a></li>
+                        <li><a href="migration-record-count.html"><i class="fas fa-calculator"></i> Record Count</a></li>
+                        <li><a href="migration-data-comparison.html"><i class="fas fa-code-compare"></i> Data Comparison</a></li>
+                        <li><a href="migration-data-integrity.html"><i class="fas fa-shield-halved"></i> Data Integrity</a></li>
+                        <li><a href="migration-historical-data.html"><i class="fas fa-landmark"></i> Historical Data</a></li>
+                        <li><a href="migration-referential-integrity.html"><i class="fas fa-link"></i> Referential Integrity</a></li>
+                        <li><a href="migration-duplicate-validation.html"><i class="fas fa-clone"></i> Duplicate Validation</a></li>
+                        <li><a href="migration-reconciliation.html"><i class="fas fa-scale-balanced"></i> Reconciliation</a></li>
+                        <li><a href="migration-performance.html"><i class="fas fa-gauge-high"></i> Migration Performance</a></li>
+                        <li><a href="migration-rollback.html"><i class="fas fa-backward-step"></i> Migration Rollback</a></li>
+                        <li><a href="migration-cutover.html"><i class="fas fa-flag-checkered"></i> Cutover</a></li>
+                        <li><a href="post-migration-validation.html"><i class="fas fa-circle-check"></i> Post-Migration Validation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 29: Agile & Software Testing Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-29">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod29-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 29: Agile & Software Testing Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 29: Agile & Software Testing Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod29-list">
+                    <ul>
+                        <li><a href="sdlc-fundamentals.html"><i class="fas fa-arrows-spin"></i> SDLC</a></li>
+                        <li><a href="stlc-fundamentals.html"><i class="fas fa-vial-circle-check"></i> STLC</a></li>
+                        <li><a href="agile-methodology.html"><i class="fas fa-person-running"></i> Agile</a></li>
+                        <li><a href="scrum-framework.html"><i class="fas fa-arrows-rotate"></i> Scrum</a></li>
+                        <li><a href="sprint-cycle.html"><i class="fas fa-calendar-week"></i> Sprint</a></li>
+                        <li><a href="product-backlog.html"><i class="fas fa-list-check"></i> Product Backlog</a></li>
+                        <li><a href="user-story-structure.html"><i class="fas fa-user-pen"></i> User Story</a></li>
+                        <li><a href="acceptance-criteria.html"><i class="fas fa-circle-check"></i> Acceptance Criteria</a></li>
+                        <li><a href="epic-management.html"><i class="fas fa-mountain"></i> Epic</a></li>
+                        <li><a href="task-tracking.html"><i class="fas fa-list-ul"></i> Task</a></li>
+                        <li><a href="bug-fundamentals.html"><i class="fas fa-bug"></i> Bug</a></li>
+                        <li><a href="daily-standup-meeting.html"><i class="fas fa-people-arrows"></i> Daily Stand-up</a></li>
+                        <li><a href="sprint-planning-meeting.html"><i class="fas fa-calendar-plus"></i> Sprint Planning</a></li>
+                        <li><a href="sprint-review-meeting.html"><i class="fas fa-chalkboard-user"></i> Sprint Review</a></li>
+                        <li><a href="retrospective-meeting.html"><i class="fas fa-comments"></i> Retrospective</a></li>
+                        <li><a href="quality-assurance-qa.html"><i class="fas fa-award"></i> QA</a></li>
+                        <li><a href="quality-control-qc.html"><i class="fas fa-shield-halved"></i> QC</a></li>
+                        <li><a href="verification-process.html"><i class="fas fa-magnifying-glass"></i> Verification</a></li>
+                        <li><a href="validation-process.html"><i class="fas fa-clipboard-check"></i> Validation</a></li>
+                        <li><a href="test-scenario-fundamentals.html"><i class="fas fa-file-lines"></i> Test Scenario</a></li>
+                        <li><a href="test-case-fundamentals.html"><i class="fas fa-vial"></i> Test Case</a></li>
+                        <li><a href="test-execution-fundamentals.html"><i class="fas fa-play"></i> Test Execution</a></li>
+                        <li><a href="agile-defect-lifecycle.html"><i class="fas fa-bug-slash"></i> Defect Lifecycle</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 30: ETL Testing Documentation -->
+            <div class="sidebar-module-group collapsed" data-module="module-30">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod30-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 30: ETL Testing Documentation Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 30: ETL Testing Documentation</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod30-list">
+                    <ul>
+                        <li><a href="requirement-document.html"><i class="fas fa-file-lines"></i> Requirement Document</a></li>
+                        <li><a href="source-to-target-mapping-doc.html"><i class="fas fa-file-invoice"></i> Source-to-Target Mapping Document</a></li>
+                        <li><a href="data-mapping-document.html"><i class="fas fa-map"></i> Data Mapping Document</a></li>
+                        <li><a href="test-strategy-document.html"><i class="fas fa-chess"></i> Test Strategy</a></li>
+                        <li><a href="test-plan-document.html"><i class="fas fa-clipboard-list"></i> Test Plan</a></li>
+                        <li><a href="test-scenarios-document.html"><i class="fas fa-list-check"></i> Test Scenarios</a></li>
+                        <li><a href="test-cases-document.html"><i class="fas fa-vial"></i> Test Cases</a></li>
+                        <li><a href="test-data-document.html"><i class="fas fa-database"></i> Test Data</a></li>
+                        <li><a href="traceability-matrix.html"><i class="fas fa-table-cells"></i> Traceability Matrix</a></li>
+                        <li><a href="defect-report-document.html"><i class="fas fa-bug"></i> Defect Report</a></li>
+                        <li><a href="test-execution-report-document.html"><i class="fas fa-chart-column"></i> Test Execution Report</a></li>
+                        <li><a href="test-summary-report-document.html"><i class="fas fa-file-circle-check"></i> Test Summary Report</a></li>
+                        <li><a href="reconciliation-report-document.html"><i class="fas fa-scale-balanced"></i> Reconciliation Report</a></li>
+                        <li><a href="data-quality-report-document.html"><i class="fas fa-award"></i> Data-Quality Report</a></li>
+                        <li><a href="production-validation-report.html"><i class="fas fa-shield-check"></i> Production Validation Report</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 31: Enterprise Architecture References & Dictionaries -->
+            <div class="sidebar-module-group collapsed" data-module="module-31">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod31-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 31: Enterprise Architecture References & Dictionaries Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 31: Enterprise Architecture References & Dictionaries</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod31-list">
+                    <ul>
+                        <li><a href="structured-vs-semi-structured-vs-unstructured-data.html"><i class="fas fa-layer-group"></i> Structured vs Semi-Structured vs Unstructured Data Reference</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 32: Quality Assessments & Certification -->
+            <div class="sidebar-module-group collapsed" data-module="module-32">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod32-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 32: Quality Assessments & Certification Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 32: Quality Assessments & Certification</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod32-list">
+                    <ul>
+                        <li><a href="../sql/tests/sql_basics.html"><i class="fas fa-list-check"></i> SQL Basics QA Certification Test (15 Questions · Timed)</a></li>
+                        <li><a href="../sql/tests/coding_test.html"><i class="fas fa-code"></i> Data Validation Coding Test (Query Evaluation)</a></li>
+                        <li><a href="../sql/tests/index.html"><i class="fas fa-book-open"></i> All Assessment Tracks &amp; Testing Rules</a></li>
+                        <li><a href="../Leaderboard.html"><i class="fas fa-trophy"></i> Official EDMITH Leaderboard &amp; Rankings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <main class="lesson-container">
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents"><i class="fas fa-list"></i> Table of Contents</button>
+            <div class="lesson-header">
+                <nav class="lesson-breadcrumbs" aria-label="Breadcrumbs">
+                    <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                    <i class="fas fa-chevron-right separator"></i>
+                    <a href="../course.html">Courses</a>
+                    <i class="fas fa-chevron-right separator"></i>
+                    <a href="index.html">ETL Testing</a>
+                    <i class="fas fa-chevron-right separator"></i>
+                    <span>Defect Management</span>
+                    <i class="fas fa-chevron-right separator"></i>
+                    <span class="current">Defect Description Writing</span>
+                </nav>
+                <h1>Defect Description Writing</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 13 Min Read &bull; <i class="fas fa-layer-group"></i> Defect Management</p>
+            </div>
+            <div class="lesson-content">
+                <div class="visual-concept-card">
+                    <div class="concept-icon"><i class="fas fa-align-left"></i></div>
+                    <div class="concept-text">
+                        <h4 style="margin-bottom:8px;font-size:1.15rem;">Structuring Detailed Bug Reports with Context, Environment & Impact</h4>
+                        <p>A defect description provides full context: environment details, pipeline batch IDs, source inputs, expected behavior, actual behavior, and business impact.</p>
+                    </div>
+                </div>
+                <h2>1. Structure of an ETL Bug Report</h2>
+                <p>An ETL developer should never have to ask: <em>'Which environment? What batch ID? What query did you run?'</em> A world-class defect description contains all answers upfront in a clean, reproducible layout.</p>
+                <h2>2. Standard Description Template</h2>
+                <div class="detail-card" style="padding:1.25rem;background:var(--bg-secondary);border-radius:var(--radius-sm);margin:1.5rem 0;">
+                    <ul style="color:var(--text-secondary);line-height:1.8;margin:0;list-style:none;">
+                        <li><strong>Environment:</strong> QA-Cluster-02 / Snowflake DW_DEV / S3 Bucket: qa-datalake-ingest</li>
+                        <li><strong>Pipeline / Job:</strong> <code>dag_financial_orders_daily</code> (Build v2.4.1)</li>
+                        <li><strong>Batch / Execution ID:</strong> <code>BATCH_2026_03_25_001</code></li>
+                        <li><strong>Summary:</strong> Discounted orders over $1,000 fail to apply promotional code discount.</li>
+                        <li><strong>Pre-Conditions:</strong> Customer exists in <code>dim_customer</code> with loyalty status 'GOLD'.</li>
+                    </ul>
+                </div>
+                <h2>3. Verification SQL Query Pattern</h2><p>Documenting verification queries inside description:</p>                <div class="code-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Verification Evidence Query</span>
+                        <span class="terminal-lang">SQL</span>
+                        <button class="copy-code-btn" type="button" aria-label="Copy code to clipboard"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                    <pre><code><span class="code-comment">-- Reproduction Query attached to ticket description</span>
+<span class="code-keyword">SELECT</span> 
+    order_id, customer_id, promo_code, gross_amount, discount_amount, net_amount
+<span class="code-keyword">FROM</span> dw.fact_orders
+<span class="code-keyword">WHERE</span> promo_code = <span class="code-string">'SPRING2026'</span> <span class="code-keyword">AND</span> discount_amount = 0.00;</code></pre>
+                </div>                <h2>Why This Matters in ETL Testing</h2>
+                <div class="code-explanation-area">
+                    <div class="explanation-header">
+                        <i class="fas fa-check-double"></i>
+                        <h4>ETL Testing Considerations</h4>
+                    </div>
+                    <ul class="explanation-points">
+                        <li><i class="fas fa-align-left" style="color:var(--accent);"></i><div><strong>Structured Layout:</strong> Use bold headers, bullet lists, and code blocks rather than a wall of unformatted text.</div></li>
+                        <li><i class="fas fa-server" style="color:#10B981;"></i><div><strong>Environment Details:</strong> Specify exact cluster, database schema, build tag, and execution time.</div></li>
+                        <li><i class="fas fa-scale-balanced" style="color:#EF4444;"></i><div><strong>Business Impact:</strong> State the business consequence: 'Causes financial statements to overstate monthly margin by 12%'</div></li>
+
+                    </ul>
+                </div>
+                <h2>Summary</h2>
+                <div class="summary-box summary-card">
+                    <h3 style="margin-bottom:0.75rem;color:var(--text-primary);"><i class="fas fa-book-reader" style="color:var(--accent);margin-right:8px;"></i> Basics</h3>
+                    <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:1.5rem;">Defect descriptions must supply complete technical context: environment, job name, batch ID, pre-conditions, and business impact.</p>
+                    <h3 style="margin-bottom:0.75rem;color:var(--text-primary);"><i class="fas fa-list-check" style="color:var(--accent);margin-right:8px;"></i> Key Points</h3>
+                    <ul class="summary-list">
+                        <li><i class="fas fa-check-circle"></i> <span>Follows a structured template with clear markdown formatting.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Includes environment identifiers, pipeline version tags, and batch IDs.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Connects technical failures to enterprise business consequences.</span></li>
+
+                    </ul>
+                    <h3 style="margin-top:1.5rem;margin-bottom:0.75rem;color:var(--text-primary);"><i class="fas fa-lightbulb" style="color:#F59E0B;margin-right:8px;"></i> Remember</h3>
+                    <div class="detail-card" style="padding:1.25rem;background:var(--bg-secondary);border-left:4px solid var(--accent);border-radius:var(--radius-sm);">
+                        <p style="color:var(--text-secondary);font-size:0.95rem;margin:0;line-height:1.6;">A defect report without environment and batch ID details cannot be investigated and will be rejected by engineering.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a href="defect-title-writing.html" class="btn-outline" title="Previous: Defect Title">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Defect Title</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" id="markCompleteBtn" data-lesson-id="etl_defect_description_writing">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a href="defect-steps-to-reproduce.html" class="btn-enroll" title="Next: Steps to Reproduce">
+                        <span class="btn-text">Next: Steps to Reproduce</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer id="site-footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

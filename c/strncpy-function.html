@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn strncpy() Function in C Programming. Complete beginner tutorial with syntax, memory concepts, standard library compliance, and practical code examples.">
+    <title>strncpy() Function — C Programming Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/c/strncpy-function.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/c/strncpy-function.html">
+    <meta property="og:title" content="strncpy() Function — C Programming Tutorial">
+    <meta property="og:description" content="Learn strncpy() Function with EDMITH C Programming. Beginner-friendly breakdown, memory diagrams, and C code examples.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Programming Fundamentals -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Programming Fundamentals Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Programming Fundamentals</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-language"></i> What is a Programming Language?</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-bolt"></i> Compiler vs Interpreter</a></li>
+                        <li><a href="source-object-executable-code.html"><i class="fas fa-file-code"></i> Source Code, Object Code, Executable Code</a></li>
+                        <li><a href="how-a-c-program-works.html"><i class="fas fa-gears"></i> How a C Program Works</a></li>
+                        <li><a href="c-compilation-process.html"><i class="fas fa-sitemap"></i> C Compilation Process</a></li>
+                        <li><a href="c-program-execution-flow.html"><i class="fas fa-arrow-trend-up"></i> C Program Execution Flow</a></li>
+                        <li><a href="basic-problem-solving-approach.html"><i class="fas fa-brain"></i> Basic Problem-Solving Approach</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-diagram-project"></i> Algorithms</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-bezier-curve"></i> Flowcharts</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-pen-to-square"></i> Pseudocode</a></li>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box-archive"></i> Variables and Data</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrows-split-up-and-left"></i> Input → Processing → Output</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-bug-slash"></i> Debugging Fundamentals</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-circle-xmark"></i> Syntax Errors</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-lightbulb"></i> Logical Errors</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Introduction to C -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Introduction to C Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Introduction to C</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="history-of-c.html"><i class="fas fa-clock-rotate-left"></i> History of C</a></li>
+                        <li><a href="features-of-c.html"><i class="fas fa-star"></i> Features of C</a></li>
+                        <li><a href="applications-of-c.html"><i class="fas fa-cubes"></i> Applications of C</a></li>
+                        <li><a href="c-standards.html"><i class="fas fa-certificate"></i> C Standards</a></li>
+                        <li><a href="c89-c90-standard.html"><i class="fas fa-landmark"></i> C89/C90 Standard</a></li>
+                        <li><a href="c99-standard.html"><i class="fas fa-laptop-code"></i> C99 Standard</a></li>
+                        <li><a href="c11-standard.html"><i class="fas fa-layer-group"></i> C11 Standard</a></li>
+                        <li><a href="c17-standard.html"><i class="fas fa-wrench"></i> C17 Standard</a></li>
+                        <li><a href="c23-standard.html"><i class="fas fa-wand-magic-sparkles"></i> C23 Standard</a></li>
+                        <li><a href="structure-of-a-c-program.html"><i class="fas fa-sitemap"></i> Structure of a C Program</a></li>
+                        <li><a href="main-function.html"><i class="fas fa-play"></i> main() Function</a></li>
+                        <li><a href="header-files.html"><i class="fas fa-file-lines"></i> Header Files</a></li>
+                        <li><a href="preprocessor-directives.html"><i class="fas fa-hashtag"></i> Preprocessor Directives</a></li>
+                        <li><a href="comments.html"><i class="fas fa-comment-dots"></i> Comments</a></li>
+                        <li><a href="statements.html"><i class="fas fa-code"></i> Statements</a></li>
+                        <li><a href="blocks.html"><i class="fas fa-brackets-curly"></i> Blocks</a></li>
+                        <li><a href="identifiers.html"><i class="fas fa-id-card"></i> Identifiers</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-key"></i> Keywords</a></li>
+                        <li><a href="naming-conventions.html"><i class="fas fa-signature"></i> Naming Conventions</a></li>
+                        <li><a href="case-sensitivity.html"><i class="fas fa-font"></i> Case Sensitivity</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Setting Up C -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Setting Up C Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Setting Up C</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="installing-a-c-compiler.html"><i class="fas fa-download"></i> Installing a C Compiler</a></li>
+                        <li><a href="gcc-compiler.html"><i class="fas fa-server"></i> GCC Compiler</a></li>
+                        <li><a href="clang-compiler.html"><i class="fas fa-fire"></i> Clang Compiler</a></li>
+                        <li><a href="msvc-compiler.html"><i class="fas fa-windows"></i> MSVC Compiler</a></li>
+                        <li><a href="ides-and-editors.html"><i class="fas fa-desktop"></i> IDEs and Editors</a></li>
+                        <li><a href="compiling-from-command-line.html"><i class="fas fa-terminal"></i> Compiling from Command Line</a></li>
+                        <li><a href="running-c-programs.html"><i class="fas fa-play"></i> Running C Programs</a></li>
+                        <li><a href="compile-link-runtime.html"><i class="fas fa-network-wired"></i> Compile-Time vs Link-Time vs Runtime</a></li>
+                        <li><a href="compiler-warnings.html"><i class="fas fa-triangle-exclamation"></i> Compiler Warnings</a></li>
+                        <li><a href="strict-compilation-flags.html"><i class="fas fa-shield-halved"></i> Strict Compilation Flags</a></li>
+                        <li><a href="debug-vs-release-builds.html"><i class="fas fa-sliders"></i> Debug Builds vs Release Builds</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Basic Syntax -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Basic Syntax Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Basic Syntax</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="include-directive.html"><i class="fas fa-file-import"></i> #include Directive</a></li>
+                        <li><a href="define-directive.html"><i class="fas fa-hashtag"></i> #define Directive</a></li>
+                        <li><a href="main-syntax.html"><i class="fas fa-play"></i> main() Syntax</a></li>
+                        <li><a href="braces.html"><i class="fas fa-brackets-curly"></i> Braces { }</a></li>
+                        <li><a href="semicolon.html"><i class="fas fa-quote-right"></i> Semicolon ;</a></li>
+                        <li><a href="comma-syntax.html"><i class="fas fa-comma"></i> Comma ,</a></li>
+                        <li><a href="parentheses.html"><i class="fas fa-brackets-round"></i> Parentheses ( )</a></li>
+                        <li><a href="square-brackets.html"><i class="fas fa-brackets-square"></i> Square Brackets [ ]</a></li>
+                        <li><a href="syntax-comments.html"><i class="fas fa-comment-slash"></i> Comments in C</a></li>
+                        <li><a href="escape-sequences.html"><i class="fas fa-arrow-turn-down"></i> Escape Sequences</a></li>
+                        <li><a href="whitespace.html"><i class="fas fa-align-left"></i> Whitespace</a></li>
+                        <li><a href="statements-and-expressions.html"><i class="fas fa-equals"></i> Statements and Expressions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 5: Variables and Constants -->
+            <div class="sidebar-module-group collapsed" data-module="module-5">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod5-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 5: Variables and Constants Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 5: Variables and Constants</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod5-list">
+                    <ul>
+                        <li><a href="variable-declaration.html"><i class="fas fa-pen"></i> Variable Declaration</a></li>
+                        <li><a href="variable-initialization.html"><i class="fas fa-circle-check"></i> Variable Initialization</a></li>
+                        <li><a href="variable-assignment.html"><i class="fas fa-arrow-right-arrow-left"></i> Variable Assignment</a></li>
+                        <li><a href="multiple-variable-declarations.html"><i class="fas fa-list-ol"></i> Multiple Variable Declarations</a></li>
+                        <li><a href="constants.html"><i class="fas fa-lock"></i> Constants</a></li>
+                        <li><a href="literal-values.html"><i class="fas fa-tag"></i> Literal Values</a></li>
+                        <li><a href="integer-constants.html"><i class="fas fa-calculator"></i> Integer Constants</a></li>
+                        <li><a href="floating-point-constants.html"><i class="fas fa-chart-line"></i> Floating-Point Constants</a></li>
+                        <li><a href="character-constants.html"><i class="fas fa-font"></i> Character Constants</a></li>
+                        <li><a href="string-literals-constant.html"><i class="fas fa-quote-left"></i> String Literals</a></li>
+                        <li><a href="const-qualifier.html"><i class="fas fa-shield"></i> const Qualifier</a></li>
+                        <li><a href="define-constants.html"><i class="fas fa-hashtag"></i> #define Constants</a></li>
+                        <li><a href="scope-of-variables.html"><i class="fas fa-globe"></i> Scope of Variables</a></li>
+                        <li><a href="lifetime-of-variables.html"><i class="fas fa-hourglass-half"></i> Lifetime of Variables</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 6: C Data Types -->
+            <div class="sidebar-module-group collapsed" data-module="module-6">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod6-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 6: C Data Types Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 6: C Data Types</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod6-list">
+                    <ul>
+                        <li><a href="fundamental-data-types.html"><i class="fas fa-cubes"></i> Fundamental Data Types</a></li>
+                        <li><a href="char-data-type.html"><i class="fas fa-font"></i> char Data Type</a></li>
+                        <li><a href="signed-char.html"><i class="fas fa-minus"></i> signed char</a></li>
+                        <li><a href="unsigned-char.html"><i class="fas fa-plus"></i> unsigned char</a></li>
+                        <li><a href="short-data-type.html"><i class="fas fa-ruler-horizontal"></i> short Data Type</a></li>
+                        <li><a href="unsigned-short.html"><i class="fas fa-arrow-up"></i> unsigned short</a></li>
+                        <li><a href="int-data-type.html"><i class="fas fa-hashtag"></i> int Data Type</a></li>
+                        <li><a href="unsigned-int.html"><i class="fas fa-circle-plus"></i> unsigned int</a></li>
+                        <li><a href="long-data-type.html"><i class="fas fa-arrows-left-right"></i> long Data Type</a></li>
+                        <li><a href="unsigned-long.html"><i class="fas fa-circle-arrow-up"></i> unsigned long</a></li>
+                        <li><a href="long-long-data-type.html"><i class="fas fa-maximize"></i> long long Data Type</a></li>
+                        <li><a href="unsigned-long-long.html"><i class="fas fa-circle-dot"></i> unsigned long long</a></li>
+                        <li><a href="float-data-type.html"><i class="fas fa-water"></i> float Data Type</a></li>
+                        <li><a href="double-data-type.html"><i class="fas fa-gem"></i> double Data Type</a></li>
+                        <li><a href="long-double-data-type.html"><i class="fas fa-crown"></i> long double</a></li>
+                        <li><a href="bool-data-type.html"><i class="fas fa-toggle-on"></i> _Bool Data Type</a></li>
+                        <li><a href="void-data-type.html"><i class="fas fa-ban"></i> void Data Type</a></li>
+                        <li><a href="integer-types.html"><i class="fas fa-list-ol"></i> Integer Types</a></li>
+                        <li><a href="floating-point-types.html"><i class="fas fa-percent"></i> Floating-Point Types</a></li>
+                        <li><a href="signed-vs-unsigned.html"><i class="fas fa-scale-balanced"></i> Signed vs Unsigned</a></li>
+                        <li><a href="type-ranges.html"><i class="fas fa-arrows-split-up-and-left"></i> Type Ranges</a></li>
+                        <li><a href="sizeof-operator-type.html"><i class="fas fa-ruler-combined"></i> sizeof Operator</a></li>
+                        <li><a href="implementation-defined-sizes.html"><i class="fas fa-microchip"></i> Implementation-Defined Sizes</a></li>
+                        <li><a href="fixed-width-integer-types.html"><i class="fas fa-shield-halved"></i> Fixed-Width Integer Types</a></li>
+                        <li><a href="int8-t.html"><i class="fas fa-square"></i> int8_t</a></li>
+                        <li><a href="int16-t.html"><i class="fas fa-square-check"></i> int16_t</a></li>
+                        <li><a href="int32-t.html"><i class="fas fa-square-full"></i> int32_t</a></li>
+                        <li><a href="int64-t.html"><i class="fas fa-layer-group"></i> int64_t</a></li>
+                        <li><a href="uint8-t.html"><i class="fas fa-circle"></i> uint8_t</a></li>
+                        <li><a href="uint16-t.html"><i class="fas fa-circle-notch"></i> uint16_t</a></li>
+                        <li><a href="uint32-t.html"><i class="fas fa-circle-check"></i> uint32_t</a></li>
+                        <li><a href="uint64-t.html"><i class="fas fa-circle-dot"></i> uint64_t</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 7: Input and Output -->
+            <div class="sidebar-module-group collapsed" data-module="module-7">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod7-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 7: Input and Output Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 7: Input and Output</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod7-list">
+                    <ul>
+                        <li><a href="printf-function.html"><i class="fas fa-print"></i> printf() Function</a></li>
+                        <li><a href="scanf-function.html"><i class="fas fa-keyboard"></i> scanf() Function</a></li>
+                        <li><a href="getchar-function.html"><i class="fas fa-arrow-down-short-wide"></i> getchar() Function</a></li>
+                        <li><a href="putchar-function.html"><i class="fas fa-arrow-up-wide-short"></i> putchar() Function</a></li>
+                        <li><a href="fgets-function.html"><i class="fas fa-lines-leaning"></i> fgets() Function</a></li>
+                        <li><a href="puts-function.html"><i class="fas fa-arrow-down-a-z"></i> puts() Function</a></li>
+                        <li><a href="format-specifiers.html"><i class="fas fa-percent"></i> Format Specifiers</a></li>
+                        <li><a href="specifier-d.html"><i class="fas fa-hashtag"></i> %d Format Specifier</a></li>
+                        <li><a href="specifier-i.html"><i class="fas fa-code"></i> %i Format Specifier</a></li>
+                        <li><a href="specifier-u.html"><i class="fas fa-circle-plus"></i> %u Format Specifier</a></li>
+                        <li><a href="specifier-f.html"><i class="fas fa-water"></i> %f Format Specifier</a></li>
+                        <li><a href="specifier-lf.html"><i class="fas fa-gem"></i> %lf Format Specifier</a></li>
+                        <li><a href="specifier-c.html"><i class="fas fa-font"></i> %c Format Specifier</a></li>
+                        <li><a href="specifier-s.html"><i class="fas fa-quote-left"></i> %s Format Specifier</a></li>
+                        <li><a href="specifier-x.html"><i class="fas fa-dice-d6"></i> %x Format Specifier</a></li>
+                        <li><a href="specifier-uppercase-x.html"><i class="fas fa-cube"></i> %X Format Specifier</a></li>
+                        <li><a href="specifier-o.html"><i class="fas fa-circle-nodes"></i> %o Format Specifier</a></li>
+                        <li><a href="specifier-p.html"><i class="fas fa-location-crosshairs"></i> %p Format Specifier</a></li>
+                        <li><a href="specifier-lld.html"><i class="fas fa-maximize"></i> %lld Format Specifier</a></li>
+                        <li><a href="specifier-zu.html"><i class="fas fa-ruler-combined"></i> %zu Format Specifier</a></li>
+                        <li><a href="width-and-precision.html"><i class="fas fa-arrows-left-right-to-line"></i> Width and Precision</a></li>
+                        <li><a href="io-escape-sequences.html"><i class="fas fa-terminal"></i> Escape Sequences in I/O</a></li>
+                        <li><a href="formatted-output.html"><i class="fas fa-table-cells"></i> Formatted Output</a></li>
+                        <li><a href="formatted-input.html"><i class="fas fa-indent"></i> Formatted Input</a></li>
+                        <li><a href="input-buffering.html"><i class="fas fa-hard-drive"></i> Input Buffering</a></li>
+                        <li><a href="common-scanf-problems.html"><i class="fas fa-triangle-exclamation"></i> Common scanf() Problems</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 8: Operators -->
+            <div class="sidebar-module-group collapsed" data-module="module-8">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod8-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 8: Operators Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 8: Operators</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod8-list">
+                    <ul>
+                        <li><a href="arithmetic-operators.html"><i class="fas fa-plus-minus"></i> Arithmetic Operators</a></li>
+                        <li><a href="operator-addition.html"><i class="fas fa-plus"></i> Addition Operator +</a></li>
+                        <li><a href="operator-subtraction.html"><i class="fas fa-minus"></i> Subtraction Operator -</a></li>
+                        <li><a href="operator-multiplication.html"><i class="fas fa-xmark"></i> Multiplication Operator *</a></li>
+                        <li><a href="operator-division.html"><i class="fas fa-divide"></i> Division Operator /</a></li>
+                        <li><a href="operator-modulo.html"><i class="fas fa-percent"></i> Modulo Operator %</a></li>
+                        <li><a href="relational-operators.html"><i class="fas fa-code-compare"></i> Relational Operators</a></li>
+                        <li><a href="operators-less-greater.html"><i class="fas fa-greater-than"></i> Less Than < and Greater Than ></a></li>
+                        <li><a href="operators-less-greater-equal.html"><i class="fas fa-equals"></i> Less Than or Equal <= and Greater Than or Equal >=</a></li>
+                        <li><a href="operator-equality.html"><i class="fas fa-check-double"></i> Equality Operator ==</a></li>
+                        <li><a href="operator-inequality.html"><i class="fas fa-not-equal"></i> Inequality Operator !=</a></li>
+                        <li><a href="logical-operators.html"><i class="fas fa-shuffle"></i> Logical Operators</a></li>
+                        <li><a href="operator-logical-and.html"><i class="fas fa-arrows-split-up-and-left"></i> Logical AND &&</a></li>
+                        <li><a href="operator-logical-or.html"><i class="fas fa-arrows-turn-to-dots"></i> Logical OR ||</a></li>
+                        <li><a href="operator-logical-not.html"><i class="fas fa-circle-exclamation"></i> Logical NOT !</a></li>
+                        <li><a href="assignment-operators.html"><i class="fas fa-arrow-left"></i> Assignment Operators</a></li>
+                        <li><a href="compound-assignment-operators.html"><i class="fas fa-calculator"></i> Compound Assignment Operators</a></li>
+                        <li><a href="bitwise-operators.html"><i class="fas fa-binary"></i> Bitwise Operators</a></li>
+                        <li><a href="operator-bitwise-and.html"><i class="fas fa-filter"></i> Bitwise AND &</a></li>
+                        <li><a href="operator-bitwise-or.html"><i class="fas fa-layer-group"></i> Bitwise OR |</a></li>
+                        <li><a href="operator-bitwise-xor.html"><i class="fas fa-arrows-up-down"></i> Bitwise XOR ^</a></li>
+                        <li><a href="operator-bitwise-not.html"><i class="fas fa-rotate"></i> Bitwise NOT ~</a></li>
+                        <li><a href="operator-bitwise-shifts.html"><i class="fas fa-arrows-left-right"></i> Bitwise Shift Operators << >></a></li>
+                        <li><a href="increment-operator.html"><i class="fas fa-circle-chevron-up"></i> Increment Operator ++</a></li>
+                        <li><a href="decrement-operator.html"><i class="fas fa-circle-chevron-down"></i> Decrement Operator --</a></li>
+                        <li><a href="conditional-ternary-operator.html"><i class="fas fa-code-branch"></i> Conditional/Ternary Operator ?:</a></li>
+                        <li><a href="comma-operator.html"><i class="fas fa-arrow-right-long"></i> Comma Operator</a></li>
+                        <li><a href="operator-precedence-associativity.html"><i class="fas fa-list-check"></i> Operator Precedence and Associativity</a></li>
+                        <li><a href="expressions.html"><i class="fas fa-wave-square"></i> Expressions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 9: Type Conversion -->
+            <div class="sidebar-module-group collapsed" data-module="module-9">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod9-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 9: Type Conversion Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 9: Type Conversion</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod9-list">
+                    <ul>
+                        <li><a href="implicit-conversion.html"><i class="fas fa-wand-magic-sparkles"></i> Implicit Conversion</a></li>
+                        <li><a href="explicit-conversion.html"><i class="fas fa-hand"></i> Explicit Conversion</a></li>
+                        <li><a href="type-casting.html"><i class="fas fa-arrows-rotate"></i> Type Casting</a></li>
+                        <li><a href="integer-promotion.html"><i class="fas fa-arrow-up-right-dots"></i> Integer Promotion</a></li>
+                        <li><a href="usual-arithmetic-conversions.html"><i class="fas fa-scale-balanced"></i> Usual Arithmetic Conversions</a></li>
+                        <li><a href="signed-unsigned-conversion.html"><i class="fas fa-triangle-exclamation"></i> Signed/Unsigned Conversion</a></li>
+                        <li><a href="integer-overflow.html"><i class="fas fa-circle-radiation"></i> Integer Overflow</a></li>
+                        <li><a href="floating-point-conversion.html"><i class="fas fa-water"></i> Floating-Point Conversion</a></li>
+                        <li><a href="narrowing-conversions.html"><i class="fas fa-compress"></i> Narrowing Conversions</a></li>
+                        <li><a href="conversion-pitfalls.html"><i class="fas fa-skull-crossbones"></i> Conversion Pitfalls</a></li>
+                        <li><a href="undefined-behavior-conversions.html"><i class="fas fa-bomb"></i> Undefined Behavior Related to Conversions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 10: Decision Making -->
+            <div class="sidebar-module-group collapsed" data-module="module-10">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod10-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 10: Decision Making Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 10: Decision Making</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod10-list">
+                    <ul>
+                        <li><a href="if-statement.html"><i class="fas fa-code-branch"></i> if Statement</a></li>
+                        <li><a href="if-else-statement.html"><i class="fas fa-arrows-split-up-and-left"></i> if-else Statement</a></li>
+                        <li><a href="nested-if.html"><i class="fas fa-network-wired"></i> Nested if</a></li>
+                        <li><a href="else-if-ladder.html"><i class="fas fa-bars-staggered"></i> else-if Ladder</a></li>
+                        <li><a href="switch-statement.html"><i class="fas fa-signs-post"></i> switch Statement</a></li>
+                        <li><a href="case-default-labels.html"><i class="fas fa-tag"></i> case and default Labels</a></li>
+                        <li><a href="break-in-switch.html"><i class="fas fa-hand"></i> break Statement in switch</a></li>
+                        <li><a href="nested-switch.html"><i class="fas fa-cubes"></i> Nested switch</a></li>
+                        <li><a href="conditional-operator-decisions.html"><i class="fas fa-question"></i> Conditional Operator in Decision Making</a></li>
+                        <li><a href="multiple-conditions.html"><i class="fas fa-cubes-stacked"></i> Multiple Conditions</a></li>
+                        <li><a href="truth-values-in-c.html"><i class="fas fa-circle-check"></i> Truth Values in C</a></li>
+                        <li><a href="bool-decisions.html"><i class="fas fa-toggle-on"></i> _Bool and Boolean Logic</a></li>
+                        <li><a href="decision-making-pitfalls.html"><i class="fas fa-bug"></i> Common Decision-Making Pitfalls</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 11: Loops -->
+            <div class="sidebar-module-group collapsed" data-module="module-11">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod11-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 11: Loops Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 11: Loops</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod11-list">
+                    <ul>
+                        <li><a href="for-loop.html"><i class="fas fa-rotate"></i> for Loop</a></li>
+                        <li><a href="while-loop.html"><i class="fas fa-repeat"></i> while Loop</a></li>
+                        <li><a href="do-while-loop.html"><i class="fas fa-arrow-rotate-right"></i> do-while Loop</a></li>
+                        <li><a href="nested-loops.html"><i class="fas fa-table-cells"></i> Nested Loops</a></li>
+                        <li><a href="infinite-loops.html"><i class="fas fa-infinity"></i> Infinite Loops</a></li>
+                        <li><a href="break-in-loops.html"><i class="fas fa-circle-stop"></i> break in Loops</a></li>
+                        <li><a href="continue-statement.html"><i class="fas fa-forward-step"></i> continue Statement</a></li>
+                        <li><a href="loop-control.html"><i class="fas fa-sliders"></i> Loop Control</a></li>
+                        <li><a href="counter-controlled-loops.html"><i class="fas fa-list-ol"></i> Counter-Controlled Loops</a></li>
+                        <li><a href="sentinel-controlled-loops.html"><i class="fas fa-flag"></i> Sentinel-Controlled Loops</a></li>
+                        <li><a href="loop-nesting-patterns.html"><i class="fas fa-shapes"></i> Loop Nesting Patterns</a></li>
+                        <li><a href="common-loop-mistakes.html"><i class="fas fa-triangle-exclamation"></i> Common Loop Mistakes</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 12: Functions -->
+            <div class="sidebar-module-group collapsed" data-module="module-12">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod12-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 12: Functions Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 12: Functions</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod12-list">
+                    <ul>
+                        <li><a href="function-declaration.html"><i class="fas fa-file-signature"></i> Function Declaration</a></li>
+                        <li><a href="function-definition.html"><i class="fas fa-gears"></i> Function Definition</a></li>
+                        <li><a href="function-call.html"><i class="fas fa-play"></i> Function Call</a></li>
+                        <li><a href="function-prototypes.html"><i class="fas fa-scroll"></i> Function Prototypes</a></li>
+                        <li><a href="parameters-and-arguments.html"><i class="fas fa-brackets-round"></i> Parameters and Arguments</a></li>
+                        <li><a href="return-values.html"><i class="fas fa-arrow-turn-up"></i> Return Values</a></li>
+                        <li><a href="void-functions.html"><i class="fas fa-ban"></i> void Functions</a></li>
+                        <li><a href="functions-with-parameters.html"><i class="fas fa-list-check"></i> Functions with Parameters</a></li>
+                        <li><a href="functions-without-parameters.html"><i class="fas fa-circle-minus"></i> Functions without Parameters</a></li>
+                        <li><a href="functions-returning-values.html"><i class="fas fa-receipt"></i> Functions Returning Values</a></li>
+                        <li><a href="pass-by-value.html"><i class="fas fa-clone"></i> Pass-by-Value</a></li>
+                        <li><a href="scope-in-functions.html"><i class="fas fa-cube"></i> Scope in Functions</a></li>
+                        <li><a href="local-variables.html"><i class="fas fa-box"></i> Local Variables</a></li>
+                        <li><a href="global-variables.html"><i class="fas fa-globe"></i> Global Variables</a></li>
+                        <li><a href="static-local-variables.html"><i class="fas fa-lock"></i> Static Local Variables</a></li>
+                        <li><a href="function-recursion.html"><i class="fas fa-arrows-spin"></i> Function Recursion</a></li>
+                        <li><a href="recursive-functions.html"><i class="fas fa-tree"></i> Recursive Functions in Practice</a></li>
+                        <li><a href="recursion-vs-iteration.html"><i class="fas fa-scale-balanced"></i> Recursion vs Iteration</a></li>
+                        <li><a href="function-pointers.html"><i class="fas fa-arrow-pointer"></i> Function Pointers</a></li>
+                        <li><a href="callback-functions.html"><i class="fas fa-phone-volume"></i> Callback Functions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 13: Arrays -->
+            <div class="sidebar-module-group collapsed" data-module="module-13">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod13-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 13: Arrays Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 13: Arrays</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod13-list">
+                    <ul>
+                        <li><a href="one-dimensional-arrays.html"><i class="fas fa-bars"></i> One-Dimensional Arrays</a></li>
+                        <li><a href="array-declaration.html"><i class="fas fa-pen-ruler"></i> Array Declaration</a></li>
+                        <li><a href="array-initialization.html"><i class="fas fa-list-check"></i> Array Initialization</a></li>
+                        <li><a href="array-indexing.html"><i class="fas fa-hashtag"></i> Array Indexing</a></li>
+                        <li><a href="traversing-arrays.html"><i class="fas fa-person-walking"></i> Traversing Arrays</a></li>
+                        <li><a href="updating-array-elements.html"><i class="fas fa-pen-to-square"></i> Updating Array Elements</a></li>
+                        <li><a href="multidimensional-arrays.html"><i class="fas fa-layer-group"></i> Multidimensional Arrays</a></li>
+                        <li><a href="two-dimensional-arrays.html"><i class="fas fa-table"></i> Two-Dimensional Arrays</a></li>
+                        <li><a href="three-dimensional-arrays.html"><i class="fas fa-cube"></i> Three-Dimensional Arrays</a></li>
+                        <li><a href="arrays-of-different-data-types.html"><i class="fas fa-shapes"></i> Arrays of Different Data Types</a></li>
+                        <li><a href="passing-arrays-to-functions.html"><i class="fas fa-share-from-square"></i> Passing Arrays to Functions</a></li>
+                        <li><a href="array-size-calculation.html"><i class="fas fa-ruler"></i> Array Size Calculation</a></li>
+                        <li><a href="variable-length-arrays.html"><i class="fas fa-expand"></i> Variable-Length Arrays</a></li>
+                        <li><a href="array-bounds.html"><i class="fas fa-shield"></i> Array Bounds</a></li>
+                        <li><a href="out-of-bounds-access.html"><i class="fas fa-triangle-exclamation"></i> Out-of-Bounds Access</a></li>
+                        <li><a href="arrays-and-pointers-relationship.html"><i class="fas fa-link"></i> Relationship Between Arrays and Pointers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 14: Strings -->
+            <div class="sidebar-module-group" data-module="module-14">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod14-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 14: Strings Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 14: Strings</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod14-list">
+                    <ul>
+                        <li><a href="character-arrays.html"><i class="fas fa-font"></i> Character Arrays</a></li>
+                        <li><a href="string-literals.html"><i class="fas fa-quote-left"></i> String Literals</a></li>
+                        <li><a href="null-terminator.html"><i class="fas fa-circle-stop"></i> Null Terminator '\0'</a></li>
+                        <li><a href="string-initialization.html"><i class="fas fa-signature"></i> String Initialization</a></li>
+                        <li><a href="reading-strings.html"><i class="fas fa-keyboard"></i> Reading Strings</a></li>
+                        <li><a href="printing-strings.html"><i class="fas fa-print"></i> Printing Strings</a></li>
+                        <li><a href="string-traversal.html"><i class="fas fa-person-walking"></i> String Traversal</a></li>
+                        <li><a href="string-length.html"><i class="fas fa-ruler-horizontal"></i> String Length</a></li>
+                        <li><a href="string-comparison.html"><i class="fas fa-code-compare"></i> String Comparison</a></li>
+                        <li><a href="string-copying.html"><i class="fas fa-copy"></i> String Copying</a></li>
+                        <li><a href="string-concatenation.html"><i class="fas fa-link"></i> String Concatenation</a></li>
+                        <li><a href="searching-strings.html"><i class="fas fa-magnifying-glass"></i> Searching Strings</a></li>
+                        <li><a href="string-h-header.html"><i class="fas fa-file-code"></i> <string.h> Header</a></li>
+                        <li><a href="strlen-function.html"><i class="fas fa-text-width"></i> strlen() Function</a></li>
+                        <li><a href="strcpy-function.html"><i class="fas fa-paste"></i> strcpy() Function</a></li>
+                        <li class="active"><a href="strncpy-function.html" class="active"><i class="fas fa-shield"></i> strncpy() Function</a></li>
+                        <li><a href="strcat-function.html"><i class="fas fa-plus"></i> strcat() Function</a></li>
+                        <li><a href="strncat-function.html"><i class="fas fa-shield-halved"></i> strncat() Function</a></li>
+                        <li><a href="strcmp-function.html"><i class="fas fa-scale-balanced"></i> strcmp() Function</a></li>
+                        <li><a href="strncmp-function.html"><i class="fas fa-list-check"></i> strncmp() Function</a></li>
+                        <li><a href="strchr-strrchr.html"><i class="fas fa-location-dot"></i> strchr() and strrchr()</a></li>
+                        <li><a href="strstr-function.html"><i class="fas fa-magnifying-glass-plus"></i> strstr() Function</a></li>
+                        <li><a href="strtok-function.html"><i class="fas fa-scissors"></i> strtok() Function</a></li>
+                        <li><a href="string-safety-buffer-overflow.html"><i class="fas fa-circle-exclamation"></i> String Safety and Buffer Overflow</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 15: Pointers — Core Topic -->
+            <div class="sidebar-module-group collapsed" data-module="module-15">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod15-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 15: Pointers — Core Topic Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 15: Pointers — Core Topic</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod15-list">
+                    <ul>
+                        <li><a href="what-is-a-pointer.html"><i class="fas fa-arrow-pointer"></i> What is a Pointer?</a></li>
+                        <li><a href="memory-addresses.html"><i class="fas fa-microchip"></i> Memory Addresses</a></li>
+                        <li><a href="address-of-operator.html"><i class="fas fa-location-crosshairs"></i> Address-of Operator &</a></li>
+                        <li><a href="dereference-operator.html"><i class="fas fa-asterisk"></i> Dereference Operator *</a></li>
+                        <li><a href="pointer-declaration.html"><i class="fas fa-pen"></i> Pointer Declaration</a></li>
+                        <li><a href="pointer-initialization.html"><i class="fas fa-circle-check"></i> Pointer Initialization</a></li>
+                        <li><a href="pointer-types.html"><i class="fas fa-shapes"></i> Pointer Types</a></li>
+                        <li><a href="null-pointers.html"><i class="fas fa-ban"></i> Null Pointers and NULL</a></li>
+                        <li><a href="pointer-arithmetic.html"><i class="fas fa-plus-minus"></i> Pointer Arithmetic</a></li>
+                        <li><a href="incrementing-pointers.html"><i class="fas fa-arrow-up"></i> Incrementing Pointers</a></li>
+                        <li><a href="decrementing-pointers.html"><i class="fas fa-arrow-down"></i> Decrementing Pointers</a></li>
+                        <li><a href="pointer-comparison.html"><i class="fas fa-code-compare"></i> Pointer Comparison</a></li>
+                        <li><a href="pointers-and-arrays.html"><i class="fas fa-link"></i> Pointers and Arrays</a></li>
+                        <li><a href="pointers-and-strings.html"><i class="fas fa-quote-left"></i> Pointers and Strings</a></li>
+                        <li><a href="pointers-as-function-arguments.html"><i class="fas fa-share-from-square"></i> Pointers as Function Arguments</a></li>
+                        <li><a href="modifying-variables-through-pointers.html"><i class="fas fa-pen-to-square"></i> Modifying Variables Through Pointers</a></li>
+                        <li><a href="pointer-to-pointer.html"><i class="fas fa-arrows-split-up-and-left"></i> Pointer to Pointer</a></li>
+                        <li><a href="multiple-levels-of-pointers.html"><i class="fas fa-layer-group"></i> Multiple Levels of Pointers</a></li>
+                        <li><a href="void-generic-pointers.html"><i class="fas fa-box-open"></i> void * Generic Pointers</a></li>
+                        <li><a href="const-with-pointers.html"><i class="fas fa-shield"></i> const with Pointers</a></li>
+                        <li><a href="pointer-to-const.html"><i class="fas fa-lock"></i> Pointer to const</a></li>
+                        <li><a href="const-pointer.html"><i class="fas fa-anchor"></i> const Pointer</a></li>
+                        <li><a href="const-pointer-to-const.html"><i class="fas fa-shield-halved"></i> const Pointer to const</a></li>
+                        <li><a href="function-pointers-in-depth.html"><i class="fas fa-diagram-project"></i> Function Pointers in Depth</a></li>
+                        <li><a href="pointer-arrays.html"><i class="fas fa-bars-staggered"></i> Pointer Arrays</a></li>
+                        <li><a href="array-of-pointers.html"><i class="fas fa-table-list"></i> Array of Pointers</a></li>
+                        <li><a href="pointer-to-array.html"><i class="fas fa-table-cells-large"></i> Pointer to Array</a></li>
+                        <li><a href="dangling-pointers.html"><i class="fas fa-triangle-exclamation"></i> Dangling Pointers</a></li>
+                        <li><a href="wild-pointers.html"><i class="fas fa-bomb"></i> Wild Pointers</a></li>
+                        <li><a href="null-pointer-dereference.html"><i class="fas fa-skull"></i> Null Pointer Dereference</a></li>
+                        <li><a href="invalid-pointers.html"><i class="fas fa-circle-xmark"></i> Invalid Pointers</a></li>
+                        <li><a href="pointer-lifetime.html"><i class="fas fa-hourglass"></i> Pointer Lifetime</a></li>
+                        <li><a href="pointer-ownership-concepts.html"><i class="fas fa-hand-holding-hand"></i> Pointer Ownership Concepts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">C Programming</a> &gt; <span>Module 14: Strings</span>
+                </div>
+                <h1>strncpy() Function</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 10 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> ISO C Standard</p>
+            </div>
+
+            <div class="lesson-content">
+
+                <h2>Overview: strncpy() Function</h2>
+                <p class="lead-text">
+                    In modern software engineering, <strong>strncpy() Function</strong> forms an essential pillar of low-level computer science, systems programming, and high-performance applications. Whether you are building an operating system kernel, writing embedded device drivers, or optimizing enterprise algorithms, understanding strncpy() function gives you direct insight into how hardware, memory, and software communicate.
+                </p>
+
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-lightbulb" style="color: #F59E0B; margin-right: 8px;"></i> Why This Matters for Beginners</h4>
+                    <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Bounded copying, length parameters, the null-termination caveat, and safe usage idioms. Unlike higher-level languages that hide memory allocations behind automated runtimes, C gives you explicit control over every single byte, pointer, and instruction executed by the CPU.
+                    </p>
+                </div>
+
+                <h2>Key Concepts &amp; Architectural Mechanics</h2>
+                <p>
+                    When programming in C, every construct maps deterministically to physical hardware operations. Let us break down the exact operational model behind <strong>strncpy() Function</strong>:
+                </p>
+
+                <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid var(--card-border); border-radius: var(--radius-md);">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-microchip" style="color: var(--accent); margin-right: 8px;"></i> Memory &amp; Machine Level</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+                            Directly impacts CPU instruction cycles, stack frames, register allocation, and memory cache line efficiency during execution.
+                        </p>
+                    </div>
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid var(--card-border); border-radius: var(--radius-md);">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-shield-halved" style="color: #10B981; margin-right: 8px;"></i> Standard Compliance</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+                            Conforms strictly to ISO/IEC 9899 standards (C89, C99, C11, C17, C23) ensuring deterministic behavior across modern compilers (GCC, Clang, MSVC).
+                        </p>
+                    </div>
+                </div>
+
+                <h2>C Code Implementation &amp; Syntax</h2>
+                <p>
+                    Below is a practical, beginner-friendly C program demonstrating <strong>strncpy() Function</strong> in action. Follow the comments to understand each step from initialization to execution:
+                </p>
+
+                <div class="code-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">strncpy() Function — Practical Demonstration</span>
+                        <div class="terminal-header-actions">
+                            <span class="terminal-lang">C</span>
+                            <button class="try-editor-btn" type="button" onclick="openEdmithCEditor(this)" aria-label="Try this code in C Editor"><i class="fas fa-play"></i> Try in Editor</button>
+                            <button class="copy-code-btn" type="button" aria-label="Copy code to clipboard"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main(void)
+{
+    char src[] = "SuperLongInput";
+    char dest[8];
+
+    // Safe bounded copy: copies at most sizeof(dest) - 1 characters
+    strncpy(dest, src, sizeof(dest) - 1);
+    dest[sizeof(dest) - 1] = '\0'; // Ensure null termination
+
+    printf("Safely bounded: %s\n", dest);
+    return 0;
+}</code></pre>
+                </div>
+
+                <!-- Dedicated Explanation Card for C Code Demonstration -->
+                <div class="code-explanation-area" id="code-explanation">
+                    <div class="explanation-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h4>strncpy() Function Code Explanation &amp; Breakdown</h4>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 1rem;">
+                        <h5 style="margin: 0 0 0.4rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-circle-info" style="color: var(--accent); font-size: 0.9rem;"></i> What this code does
+                        </h5>
+                        <p style="margin: 0; line-height: 1.6; color: var(--text-secondary);">Demonstrates the safer, bounded strncpy() preventing buffer overflow.</p>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 1rem;">
+                        <h5 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-gears" style="color: var(--accent); font-size: 0.9rem;"></i> How it works (Line-by-line breakdown)
+                        </h5>
+                        <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-shield"></i>
+                            <div><strong>strncpy(dest, src, max_len):</strong> Limits copy length so destination buffer never overflows.</div>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 0.8rem;">
+                        <h5 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-check-double" style="color: #10B981; font-size: 0.9rem;"></i> Key takeaways
+                        </h5>
+                        <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Safety Standard:</strong> Always manually ensure null termination when using strncpy.</div>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="explanation-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <span><strong>Fresher Tip:</strong> Always manually set dest[sizeof(dest) - 1] = '\0' when using strncpy!</span>
+                    </div>
+                </div>
+
+                <h2>Program Output</h2>
+                <div class="code-terminal" style="margin-bottom: 2rem;">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Console Terminal Output</span>
+                        <span class="terminal-lang">Terminal</span>
+                    </div>
+                    <pre><code style="color: #10B981;">$ gcc -Wall -Wextra -std=c17 program.c -o program
+$ ./program
+Safely bounded: SuperLo
+[Process completed with exit code 0]</code></pre>
+                </div>
+
+                <h2>Common Beginner Mistakes &amp; How to Avoid Them</h2>
+                <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid rgba(239, 68, 68, 0.3); border-left: 4px solid #EF4444; border-radius: var(--radius-sm); margin-bottom: 2rem;">
+                    <h4 style="margin: 0 0 0.5rem; color: #EF4444;"><i class="fas fa-triangle-exclamation"></i> Critical Watch-Out</h4>
+                    <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        <strong>Uninitialized Memory:</strong> In C, local variables without explicit initialization contain unpredictable garbage data previously left behind in RAM. Always initialize your variables (e.g. <code>int count = 0;</code>) at declaration time to guarantee reliable program behavior.
+                    </p>
+                </div>
+
+                <!-- Summary Section (MANDATORY) -->
+                <h2>Summary</h2>
+                <div class="summary-box summary-card">
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-book-reader" style="color: var(--accent); margin-right: 8px;"></i> Basics</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+                        strncpy() Function provides a fundamental building block in C development. Bounded copying, length parameters, the null-termination caveat, and safe usage idioms.
+                    </p>
+
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-list-check" style="color: var(--accent); margin-right: 8px;"></i> Key Points</h3>
+                    <ul class="summary-list">
+                        <li><i class="fas fa-check-circle"></i> <span>Direct control over hardware resources, memory addressing, and deterministic CPU cycle execution.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Strictly adheres to standard ANSI/ISO C specifications across GCC, Clang, and MSVC compilers.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Avoids runtime overhead, garbage collection pauses, and hidden abstractions common in higher-level languages.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Forms the foundation for subsequent modules including data structures, file I/O, and advanced pointer engineering.</span></li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-lightbulb" style="color: #F59E0B; margin-right: 8px;"></i> Remember</h3>
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0; line-height: 1.6;">
+                            Mastering C requires writing code and testing compiler diagnostics. Always compile with <code>-Wall -Wextra</code> to catch subtle defects before running your executable!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Professional 3-Column Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="strcpy-function.html" title="Previous: strcpy() Function">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: strcpy() Function</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="c_strncpy_function" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="strcat-function.html" title="Next: strcat() Function">
+                        <span class="btn-text">Next: strcat() Function</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

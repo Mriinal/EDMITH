@@ -1,0 +1,59 @@
+<!-- EDMITH Centralized Header Component -->
+<nav class="navbar" aria-label="Main navigation">
+    <a href="{{ROOT}}index.html" class="logo">EDMITH</a>
+
+    <!-- Desktop Navigation Links (Clean text, no icons, no wrapping) -->
+    <ul class="nav-links desktop-nav-links" id="desktopNavLinks">
+        <li><a href="{{ROOT}}index.html#home" data-nav="home">Home</a></li>
+        <li><a href="{{ROOT}}course.html" data-nav="courses">Browse All Courses</a></li>
+        <li><a href="{{ROOT}}Leaderboard.html" data-nav="leaderboard">Leaderboard</a></li>
+    </ul>
+
+    <div class="header-actions">
+        <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</nav>
+
+<!-- Mobile Navigation Backdrop & Bottom Drawer (Independent of header containing block) -->
+<div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+<aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile navigation menu">
+    <div class="mobile-drawer-header">
+        <div class="mobile-drawer-handle" aria-hidden="true"></div>
+        <div class="mobile-drawer-topbar">
+            <span class="mobile-drawer-title"><i class="fas fa-compass" aria-hidden="true"></i> Explore EDMITH</span>
+            <button type="button" class="mobile-drawer-close" id="mobileDrawerCloseBtn" aria-label="Close navigation menu">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <ul class="mobile-nav-links" id="mobileNavLinks">
+        <li style="--item-index: 1;">
+            <a href="{{ROOT}}index.html#home" data-nav="home">
+                <span class="mobile-nav-icon" aria-hidden="true"><i class="fas fa-house"></i></span>
+                <span>Home</span>
+            </a>
+        </li>
+        <li style="--item-index: 2;">
+            <a href="{{ROOT}}course.html" data-nav="courses">
+                <span class="mobile-nav-icon" aria-hidden="true"><i class="fas fa-graduation-cap"></i></span>
+                <span>Browse All Courses</span>
+            </a>
+        </li>
+        <li style="--item-index: 3;">
+            <a href="{{ROOT}}Leaderboard.html" data-nav="leaderboard">
+                <span class="mobile-nav-icon" aria-hidden="true"><i class="fas fa-trophy"></i></span>
+                <span>Leaderboard</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="mobile-drawer-auth" id="mobileNavAuth">
+        <!-- Dynamically rendered: Create Free Account & Log In OR Profile -->
+    </div>
+</aside>

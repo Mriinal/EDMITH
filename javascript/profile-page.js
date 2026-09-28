@@ -335,20 +335,69 @@
             if (Array.isArray(dbLessons) && window.EdmithProgress?.getScopedLessonKey) {
                 dbLessons.forEach(lp => {
                     if (lp.completed && lp.lesson_id) {
-                        const cleanId = lp.lesson_id.replace(/^sql_/, '');
-                        localStorage.setItem(window.EdmithProgress.getScopedLessonKey(user.id, cleanId), 'true');
+                        const cId = lp.course_id || (lp.lesson_id.startsWith('etl_') ? 'etl_testing' : (lp.lesson_id.startsWith('c_') ? 'c_programming' : 'sql_mastery'));
+                        const cleanId = lp.lesson_id.replace(/^(sql_|etl_|c_)/, '');
+                        localStorage.setItem(window.EdmithProgress.getScopedLessonKey(user.id, cleanId, cId), 'true');
                     }
                 });
             }
 
-            const progress = window.EdmithProgress?.calculateCourseProgress
-                ? window.EdmithProgress.calculateCourseProgress('sql_mastery', user.id)
-                : { progress_percentage: 0, completed_count: 0, total_lessons: 47 };
+            const courses = window.EdmithProgress?.EDMITH_COURSES || {};
+            const courseIds = Object.keys(courses);
+            let activeCardsHtml = '';
+            let startedAny = false;
 
-            const hasDbProgress = dbCourses.some(c => c.course_id === 'sql_mastery');
-            const isStarted = hasDbProgress || progress.is_started || progress.completed_count > 0;
+            courseIds.forEach(cId => {
+                const courseDef = courses[cId];
+                const progress = window.EdmithProgress?.calculateCourseProgress
+                    ? window.EdmithProgress.calculateCourseProgress(cId, user.id)
+                    : { progress_percentage: 0, completed_count: 0, total_lessons: courseDef.totalLessons };
 
-            if (!isStarted) {
+                const hasDbProgress = dbCourses.some(c => c.course_id === cId);
+                const isStarted = hasDbProgress || progress.is_started || progress.completed_count > 0;
+
+                if (isStarted) {
+                    startedAny = true;
+                    const pct = Math.min(100, Math.max(0, progress.progress_percentage || 0));
+                    const completed = progress.completed_count || 0;
+                    const total = progress.total_lessons || courseDef.totalLessons;
+                    const courseDir = courseDef.id === 'etl_testing' ? 'etl' : (courseDef.id === 'c_programming' ? 'c' : 'sql');
+                    const fallbackFile = courseDef.id === 'c_programming' ? 'what-is-programming.html' : (courseDef.id === 'etl_testing' ? 'what-is-data.html' : 'intro.html');
+                    const nextFile = progress.next_lesson_file || (courseDef.lessons && courseDef.lessons[0] ? courseDef.lessons[0].file : fallbackFile);
+                    const nextUrl = `../${courseDir}/${nextFile}`;
+                    const isComplete = pct === 100;
+
+                    activeCardsHtml += `
+                        <div class="progress-course-card" data-course-id="${cId}" style="margin-bottom: 1.25rem;">
+                            <div class="progress-course-header">
+                                <div class="progress-course-info">
+                                    <div class="progress-course-icon"><i class="${courseDef.icon}"></i></div>
+                                    <div>
+                                        <h4 class="progress-course-title">${courseDef.title}</h4>
+                                        <span class="progress-course-meta">${courseDef.module}</span>
+                                    </div>
+                                </div>
+                                <span class="progress-percentage-badge">${pct}%</span>
+                            </div>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar-fill" style="width: ${pct}%;"></div>
+                            </div>
+                            <div class="progress-footer-row">
+                                <span class="progress-lessons-count">
+                                    <i class="fas ${isComplete ? 'fa-circle-check' : 'fa-check-double'}"></i>
+                                    ${completed} of ${total} lessons completed
+                                </span>
+                                <a href="${nextUrl}" class="progress-continue-btn">
+                                    <span>${isComplete ? 'Review Course' : 'Continue Learning'}</span>
+                                    <i class="fas ${isComplete ? 'fa-rotate-right' : 'fa-arrow-right'}"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (!startedAny) {
                 progressCardBody.innerHTML = `
                     <div class="progress-empty-state">
                         <div class="progress-empty-icon"><i class="fas fa-graduation-cap"></i></div>
@@ -362,40 +411,9 @@
                 return;
             }
 
-            const pct = Math.min(100, Math.max(0, progress.progress_percentage || 0));
-            const completed = progress.completed_count || 0;
-            const total = progress.total_lessons || 47;
-            const nextFile = progress.next_lesson_file || 'intro.html';
-            const nextUrl = `../sql/${nextFile}`;
-            const isComplete = pct === 100;
-
             progressCardBody.innerHTML = `
                 <div class="progress-list-container">
-                    <div class="progress-course-card">
-                        <div class="progress-course-header">
-                            <div class="progress-course-info">
-                                <div class="progress-course-icon"><i class="fas fa-database"></i></div>
-                                <div>
-                                    <h4 class="progress-course-title">SQL &amp; Databases Mastery</h4>
-                                    <span class="progress-course-meta">Comprehensive 4-Module Curriculum</span>
-                                </div>
-                            </div>
-                            <span class="progress-percentage-badge">${pct}%</span>
-                        </div>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar-fill" style="width: ${pct}%;"></div>
-                        </div>
-                        <div class="progress-footer-row">
-                            <span class="progress-lessons-count">
-                                <i class="fas ${isComplete ? 'fa-circle-check' : 'fa-check-double'}"></i>
-                                ${completed} of ${total} lessons completed
-                            </span>
-                            <a href="${nextUrl}" class="progress-continue-btn">
-                                <span>${isComplete ? 'Review Course' : 'Continue Learning'}</span>
-                                <i class="fas ${isComplete ? 'fa-rotate-right' : 'fa-arrow-right'}"></i>
-                            </a>
-                        </div>
-                    </div>
+                    ${activeCardsHtml}
                 </div>
             `;
         } catch (err) {

@@ -4,22 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master coding with EDMITH's hands-on interactive tutorials and real-time SQL workstation. Learn SQL, Python, C, Web Development, and data fundamentals with zero friction.">
+    <meta name="description" content="Master SQL, ETL Testing, Python, and Software Engineering with EDMITH. Interactive in-browser workstations, structured learning roadmaps, and timed certifications.">
     <meta name="robots" content="index,follow">
-    <title>EDMITH | Master SQL, Python, C and Web Development</title>
+    <title>EDMITH | Master SQL, ETL Testing, Python &amp; Data Engineering</title>
 
     <link rel="canonical" href="https://edmith.com/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://edmith.com/">
-    <meta property="og:title" content="EDMITH | Master SQL, Python, C and Web Development">
-    <meta property="og:description" content="Master coding with EDMITH's hands-on interactive tutorials and real-time SQL workstation. Learn SQL, Python, C, Web Development, and data fundamentals.">
+    <meta property="og:title" content="EDMITH | Master SQL, ETL Testing, Python &amp; Data Engineering">
+    <meta property="og:description" content="Master coding and data validation with EDMITH's hands-on interactive tutorials and real-time SQL workstations. Learn SQL, ETL Testing, Python, and data fundamentals.">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="EDMITH | Master SQL, Python, C and Web Development">
-    <meta name="twitter:description" content="Master coding with EDMITH's hands-on interactive tutorials and real-time SQL workstation.">
+    <meta name="twitter:title" content="EDMITH | Master SQL, ETL Testing, Python &amp; Data Engineering">
+    <meta name="twitter:description" content="Master coding and data validation with EDMITH's hands-on interactive tutorials and real-time SQL workstations.">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -31,8 +31,7 @@
                 "@id": "https://edmith.com/#organization",
                 "name": "EDMITH",
                 "url": "https://edmith.com/",
-                "logo": "https://edmith.com/assets/logo.png",
-                "sameAs": []
+                "logo": "https://edmith.com/assets/logo.png"
             },
             {
                 "@type": "WebSite",
@@ -40,7 +39,7 @@
                 "url": "https://edmith.com/",
                 "name": "EDMITH",
                 "publisher": { "@id": "https://edmith.com/#organization" },
-                "description": "Interactive coding education platform for SQL, Python, C, and Web Development.",
+                "description": "Interactive technical education platform for SQL, ETL Testing, Python, and Software Engineering.",
                 "potentialAction": {
                     "@type": "SearchAction",
                     "target": "https://edmith.com/course.html?search={search_term_string}",
@@ -50,6 +49,7 @@
         ]
     }
     </script>
+
     <!-- Prevent theme flicker before paint -->
     <script>
         (function () {
@@ -68,143 +68,271 @@
 
 <body>
 
-    <!-- Fixed Header -->
-    <header class="header">
-        <nav class="navbar">
-            <a href="index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#courses">Courses</a></li>
-                <li><a href="course.html">Browse All</a></li>
-                <li><a href="Leaderboard.html">Leaderboard</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
 
-    <!-- Hero with Rounded Search -->
+    <!-- Hero Section with Unified Search -->
     <section id="home" class="hero">
         <i class="fab fa-python float-icon icon-1" aria-hidden="true"></i>
         <i class="fas fa-database float-icon icon-2" aria-hidden="true"></i>
-        <i class="fas fa-c float-icon icon-3" aria-hidden="true"></i>
+        <i class="fas fa-diagram-project float-icon icon-3" aria-hidden="true"></i>
         <i class="fas fa-code float-icon icon-4" aria-hidden="true"></i>
 
         <div class="hero-content">
-            <h1 class="gradient-text">EDMITH</h1>
-            <p>Empowering minds with code. Find your next skill today.</p>
+            <div class="section-tag-badge" style="margin-bottom: 1.25rem;">
+                <span class="badge-pulse-dot" aria-hidden="true" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10b981;margin-right:6px;"></span>
+                <span>The Interactive Technical Learning Platform</span>
+            </div>
 
+            <h1 class="gradient-text">Learn. Practice. Test. Improve.</h1>
+            <p>Master enterprise tech skills through hands-on lessons, instant in-browser workstations, and structured learning tracks.</p>
+
+            <!-- Search Bar (Preserves script.js courseSearch and searchBtn IDs) -->
             <div class="search-container">
-                <input type="text" id="courseSearch" placeholder="Search for SQL, HTML, Python..."
-                    aria-label="Search courses">
+                <input type="text" id="courseSearch" placeholder="Search for SQL, ETL Testing, Python, C..." aria-label="Search courses">
                 <button type="button" id="searchBtn" aria-label="Execute search"><i class="fas fa-search"></i></button>
             </div>
         </div>
     </section>
 
-    <!-- Courses Section -->
+    <!-- Metric Stats Strip -->
+    <section class="home-stats-strip" aria-label="EDMITH Highlights">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-number">47+</span>
+                <span class="stat-label">Hands-On SQL Lessons</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">ETL</span>
+                <span class="stat-label">Data Pipeline Validation Track</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0 Setup</span>
+                <span class="stat-label">In-Browser Live Workstations</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Free Lifetime Access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Continue Learning Section (Rendered via script.js if user has active course progress) -->
+    <div id="continueLearningContainer" style="display:none; padding: 0 1.5rem;"></div>
+
+    <!-- Primary Course Discovery Section: Browse All Courses -->
     <section id="courses" class="courses">
-        <div class="section-header">
-            <h2>Our Important Courses</h2>
+        <div class="preview-section" style="padding: 0 0 2rem; background: transparent;">
+            <div class="section-header">
+                <div class="section-tag-badge">Course Catalog</div>
+                <h2>Browse All Courses</h2>
+                <p class="section-subtitle">Discover our comprehensive, self-paced technical curriculums. Build real-world skills from foundational concepts to advanced production techniques.</p>
+            </div>
         </div>
 
         <div class="course-container" id="courseList">
-            <!-- Course 1 -->
-            <div class="plain-card" data-title="html css web">
-                <div class="card-icon" style="color: #e34c26; background: rgba(227, 76, 38, 0.15);"><i
-                        class="fab fa-html5"></i></div>
-                <h3>HTML & CSS</h3>
-                <p>Build stunning, responsive websites from scratch. Master the core building blocks of the web.</p>
-                <a href="course.html?category=programming&search=html" class="btn-plain">View Course</a>
+            <!-- Course 1: SQL Mastery -->
+            <div class="plain-card" data-title="sql database relational query joins">
+                <div class="card-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.15);">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#10b981; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:999px;">Live Course</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 47 Lessons</span>
+                </div>
+                <h3>SQL &amp; Databases Mastery</h3>
+                <p>Master relational databases from syntax and execution order to complex joins, window functions, and query optimization across 47 interactive lessons.</p>
+                <a href="sql/index.html" class="btn-plain">Explore Course</a>
             </div>
 
-            <!-- Course 2 -->
-            <div class="plain-card" data-title="python">
-                <div class="card-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.15);"><i
-                        class="fab fa-python"></i></div>
-                <h3>Python Mastery</h3>
-                <p>Go from zero to hero in Python. Learn data structures, automation, and backend basics.</p>
-                <a href="course.html?category=programming&search=python" class="btn-plain">View Course</a>
+            <!-- Course 2: ETL Testing -->
+            <div class="plain-card" data-title="etl testing data warehouse pipeline reconciliation validation">
+                <div class="card-icon" style="color: var(--accent); background: var(--accent-subtle);">
+                    <i class="fas fa-diagram-project"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:var(--accent-subtle); padding:2px 8px; border-radius:999px;">Live Course</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 31 Lessons</span>
+                </div>
+                <h3>ETL Testing &amp; Data Warehouse</h3>
+                <p>Master Computer &amp; Data Fundamentals, data formats (CSV, JSON, Parquet, Avro, ORC), quality dimensions, and data pipeline validation across 31 structured lessons.</p>
+                <a href="etl/index.html" class="btn-plain">Explore Course</a>
             </div>
 
-            <!-- Course 3 -->
-            <div class="plain-card" data-title="sql database">
-                <div class="card-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.15);"><i
-                        class="fas fa-database"></i></div>
-                <h3>SQL & Databases</h3>
-                <p>Learn how to query, manage, and analyze large datasets using modern relational databases.</p>
-                <a href="sql/index.html" class="btn-plain">View Course</a>
+            <!-- Course 3: Python -->
+            <div class="plain-card" data-title="python backend automation scripting">
+                <div class="card-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.15);">
+                    <i class="fab fa-python"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#3b82f6; background:rgba(59,130,246,0.1); padding:2px 8px; border-radius:999px;">Curriculum</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-layer-group"></i> Programming</span>
+                </div>
+                <h3>Python Programming</h3>
+                <p>Go from programming fundamentals to data structures, automation scripts, and backend system development with interactive exercises.</p>
+                <a href="course.html?category=programming&search=python" class="btn-plain">Explore Course</a>
             </div>
 
-            <!-- Course 4 -->
-            <div class="plain-card" data-title="c programming">
-                <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.15);"><i
-                        class="fas fa-c"></i></div>
-                <h3>C Programming</h3>
-                <p>Understand memory management and core computer science concepts with C.</p>
-                <a href="course.html?category=programming&search=c" class="btn-plain">View Course</a>
+            <!-- Course 4: C Programming -->
+            <div class="plain-card" data-title="c programming memory management pointers systems algorithms">
+                <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.15);">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#8b5cf6; background:rgba(139,92,246,0.1); padding:2px 8px; border-radius:999px;">Live Course</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 290 Lessons</span>
+                </div>
+                <h3>C Programming Mastery</h3>
+                <p>Master C from complete beginner fundamentals to memory addresses, deep pointer arithmetic, functions, arrays, and strings across 290 interactive lessons.</p>
+                <a href="c/index.html" class="btn-plain">Explore Course</a>
             </div>
 
-            <!-- Course 5: View All Courses Card -->
-            <div class="plain-card view-all-card" data-title="view all courses catalog">
-                <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
-                <h3>View All Courses</h3>
-                <p>Explore our complete catalog of programming, database, and testing courses.</p>
-                <a href="course.html" class="btn-plain view-all-btn">Browse Catalog</a>
+            <!-- Course 5: HTML & CSS -->
+            <div class="plain-card" data-title="html css web frontend">
+                <div class="card-icon" style="color: #e34c26; background: rgba(227, 76, 38, 0.15);">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#e34c26; background:rgba(227,76,38,0.1); padding:2px 8px; border-radius:999px;">Curriculum</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-code"></i> Frontend</span>
+                </div>
+                <h3>Web Development</h3>
+                <p>Build responsive, modern web interfaces from scratch. Master semantic markup, flexbox, CSS grid, and layout design systems.</p>
+                <a href="course.html?category=programming&search=html" class="btn-plain">Explore Course</a>
+            </div>
+
+            <!-- Course 6: View Full Catalog -->
+            <div class="plain-card catalog-explore-card" data-title="courses catalog curriculum edmith tracks" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%); border: 1.5px dashed var(--accent);">
+                <div class="card-icon" style="color: var(--accent); background: rgba(99, 102, 241, 0.15);">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:rgba(99,102,241,0.1); padding:2px 8px; border-radius:999px;">All Categories</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-arrow-up-right-from-square"></i> Full Catalog</span>
+                </div>
+                <h3>Full Course Directory</h3>
+                <p>Explore our complete library including Power BI, Microsoft Azure Cloud, Advanced Excel, and Software Quality Assurance tracks.</p>
+                <a href="course.html" class="btn-plain" style="border-color: var(--accent); color: var(--accent);">Browse All Courses</a>
             </div>
         </div>
 
-        <p id="noResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem;">No
-            courses found. Try another search.</p>
+        <p id="noResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem;">
+            No courses found matching your search. Try another query or <a href="course.html" style="color: var(--accent); text-decoration: underline;">browse all courses</a>.
+        </p>
     </section>
 
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="course.html">All Courses</a></li>
-                    <li><a href="sql/index.html">SQL Mastery</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Leaderboard</h3>
-                <ul>
-                    <li><a href="Leaderboard.html">Rankings</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Editors</h3>
-                <ul>
-                    <li><a href="editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#contact">Help Center</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="report-bug.html" class="report-bug-link">Report a Bug</a></li>
-                </ul>
+    <!-- The 5-Step EDMITH Learning Journey (Learn -> Practice -> Test -> Track -> Build Skills) -->
+    <section class="learning-journey-section" aria-label="Learning Journey">
+        <div class="preview-section" style="padding: 0; background: transparent;">
+            <div class="section-header">
+                <div class="section-tag-badge">The EDMITH Methodology</div>
+                <h2>A Proven Flow for True Skill Mastery</h2>
+                <p class="section-subtitle">We remove the frustration from learning technical skills by connecting conceptual clarity directly with active practice.</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
 
+        <div class="journey-steps-container">
+            <!-- Step 1 -->
+            <div class="journey-step-card">
+                <div class="journey-step-num">01</div>
+                <h3>Learn Concepts</h3>
+                <p>Bite-sized, jargon-free lessons that explain the WHY and HOW using intuitive real-world analogies before diving into syntax.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="journey-step-card">
+                <div class="journey-step-num">02</div>
+                <h3>Interactive Practice</h3>
+                <p>Execute queries and test cases directly in your browser using our built-in SQL Sandbox. No software installation required.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="journey-step-card">
+                <div class="journey-step-num">03</div>
+                <h3>Test Knowledge</h3>
+                <p>Validate your understanding through timed Multiple Choice Quizzes and real code evaluation assessments.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="journey-step-card">
+                <div class="journey-step-num">04</div>
+                <h3>Track Progress</h3>
+                <p>Monitor your completion percentage, milestone achievements, and personal accuracy statistics across all modules.</p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="journey-step-card">
+                <div class="journey-step-num">05</div>
+                <h3>Build Skills &amp; Compete</h3>
+                <p>Climb the global leaderboard, benchmark your problem-solving speed against peers, and build confidence for technical interviews.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why EDMITH Section -->
+    <section class="why-edmith-section" aria-label="Why EDMITH">
+        <div class="preview-section" style="padding: 0; background: transparent;">
+            <div class="section-header">
+                <div class="section-tag-badge">The EDMITH Advantage</div>
+                <h2>Built for Students &amp; Working Engineers</h2>
+                <p class="section-subtitle">Everything you need to master technical skills efficiently without paywalls or bloated setups.</p>
+            </div>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Zero Environment Setup</h3>
+                <p>Write, run, and debug real SQL queries with our in-browser client. Avoid frustrating local database server installations and start coding immediately.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>Bridge to Data Engineering</h3>
+                <p>We don't stop at basic SELECT statements. EDMITH connects SQL to enterprise ETL Testing, Data Warehousing, and pipeline verification practices.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-shield-halved"></i></div>
+                <h3>Cloud Progress Sync</h3>
+                <p>Every completed lesson, test score, and checkpoint is securely saved to your account. Switch seamlessly between mobile, tablet, and desktop.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-heart"></i></div>
+                <h3>100% Free &amp; Open Access</h3>
+                <p>High-quality engineering education should be accessible to all. All foundational and core modules remain free forever with no credit card required.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- High-Impact Call to Action Banner -->
+    <section class="home-cta-section">
+        <div class="home-cta-card">
+            <div class="section-tag-badge" style="background: rgba(255, 255, 255, 0.12); color: #FFFFFF; border-color: rgba(255, 255, 255, 0.25); margin-bottom: 1.5rem;">
+                <i class="fas fa-graduation-cap"></i> Start Learning Today
+            </div>
+            <h2>Take Your Data &amp; Coding Skills to the Next Level</h2>
+            <p>Join thousands of learners mastering SQL, ETL Testing, Python, and modern software engineering. Free forever — zero installation needed.</p>
+
+            <div class="home-cta-actions">
+                <a href="sql/index.html" class="home-cta-btn-primary">
+                    <i class="fas fa-database"></i> Explore SQL Track
+                </a>
+                <a href="etl/index.html" class="home-cta-btn-secondary">
+                    <i class="fas fa-diagram-project"></i> Explore ETL Testing
+                </a>
+                <a href="course.html" class="home-cta-btn-secondary">
+                    <i class="fas fa-book-open"></i> Browse All Courses
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <script src="components/components.js"></script>
     <script src="javascript/auth-modal.js"></script>
     <script src="javascript/script.js"></script>
 </body>

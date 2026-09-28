@@ -29,25 +29,8 @@
     <!-- ============================================================
          FIXED HEADER
     ============================================================ -->
-    <header class="header">
-        <nav class="navbar">
-            <a href="../index.html" class="logo">EDMITH</a>
-            <ul class="nav-links">
-                <li><a href="../index.html#home">Home</a></li>
-                <li><a href="../course.html">Courses</a></li>
-                <li><a href="../sql/index.html">SQL Mastery</a></li>
-                <li><a href="../Leaderboard.html">Leaderboard</a></li>
-            </ul>
-            <div class="header-actions">
-                <button id="themeToggle" class="theme-btn" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="mobile-menu-btn" title="Toggle Navigation Menu" aria-label="Toggle Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
 
     <!-- ============================================================
          MAIN EDIT PROFILE AREA
@@ -199,51 +182,14 @@
         </div>
     </main>
 
-    <!-- Footer Section -->
-    <footer id="contact" class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <div class="brand-title">EDMITH</div>
-                <p>Empowering the next generation of software engineers through practical, hands-on learning.</p>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../course.html">All Courses</a></li>
-                    <li><a href="../sql/index.html">SQL Mastery</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Leaderboard</h3>
-                <ul>
-                    <li><a href="../Leaderboard.html">Rankings</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Editors</h3>
-                <ul>
-                    <li><a href="../editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="../index.html#contact">Help Center</a></li>
-                    <li><a href="../index.html#contact">Contact Us</a></li>
-                    <li><a href="../report-bug.html" class="report-bug-link">Report a Bug</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; <span class="current-year">2026</span> EDMITH. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
 
     <!-- ============================================================
          SCRIPTS
     ============================================================ -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
     <script src="../javascript/script.js"></script>
     <script>
         const PROFILE_SUPABASE_URL      = 'https://jnoigbvvxwpvxefunvfc.supabase.co';
