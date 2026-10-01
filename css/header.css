@@ -1,0 +1,390 @@
+/* EDMITH Design System — Global Header & Navigation */
+/* --- Global Header & Navigation --- */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--header-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--card-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo:hover {
+    opacity: 0.9;
+}
+
+.nav-links,
+.desktop-nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.nav-links a,
+.desktop-nav-links a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-links a:hover,
+.nav-links a.active,
+.desktop-nav-links a:hover,
+.desktop-nav-links a.active {
+    color: var(--accent);
+}
+
+.nav-links a::after,
+.desktop-nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.25s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after,
+.desktop-nav-links a:hover::after,
+.desktop-nav-links a.active::after {
+    width: 100%;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.theme-btn {
+    background: var(--accent-subtle);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.08);
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    padding: 6px;
+    transition: color 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+    color: var(--accent);
+}
+
+/* Mobile-only drawer elements (hidden by default on desktop) */
+.mobile-nav-backdrop,
+.mobile-nav-drawer,
+.mobile-drawer-header,
+.mobile-drawer-auth,
+.mobile-nav-icon,
+.nav-icon {
+    display: none;
+}
+
+
+/* --- Header Actions Auth & User Menu Dropdown --- */
+/* =========================================================
+   AUTH BUTTONS — Global header buttons (injected via JS)
+   ========================================================= */
+
+.header-login-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    background: transparent;
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    border: 1.5px solid var(--accent);
+    cursor: pointer;
+    transition: background 0.22s ease, color 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+    white-space: nowrap;
+}
+
+.header-login-btn:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.25);
+}
+
+.header-login-btn i {
+    font-size: 0.82rem;
+}
+
+.header-signup-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 18px;
+    background: var(--accent);
+    color: #ffffff !important;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.35);
+    white-space: nowrap;
+}
+
+.header-signup-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(121, 63, 224, 0.5);
+}
+
+.header-signup-btn i {
+    font-size: 0.82rem;
+}
+
+/* Header User Account Menu & Dropdown */
+.header-user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.header-user-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 15px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.header-user-btn:hover,
+.header-user-btn[aria-expanded="true"] {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.35);
+    transform: translateY(-1px);
+}
+
+.header-user-btn i {
+    font-size: 1.05rem;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-user-name {
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+}
+
+.header-user-chevron {
+    font-size: 0.72rem !important;
+    transition: transform 0.2s ease;
+    opacity: 0.85;
+}
+
+.header-user-btn[aria-expanded="true"] .header-user-chevron {
+    transform: rotate(180deg);
+}
+
+.header-user-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 220px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg), 0 12px 30px rgba(0, 0, 0, 0.25);
+    padding: 6px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-user-dropdown.dropdown-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.header-dropdown-greeting {
+    padding: 8px 12px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.dropdown-greeting-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.dropdown-greeting-name {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-dropdown-divider {
+    height: 1px;
+    background: var(--card-border);
+    margin: 4px 0;
+}
+
+.header-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.header-dropdown-item:hover {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    transform: translateX(2px);
+}
+
+.header-dropdown-item i {
+    font-size: 0.95rem;
+    width: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.header-logout-btn {
+    color: #ef4444 !important;
+}
+
+.header-logout-btn i {
+    color: #ef4444 !important;
+}
+
+.header-logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #dc2626 !important;
+}
+
+.header-profile-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 15px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.22s ease;
+}
+
+.header-profile-btn:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.35);
+    transform: translateY(-1px);
+}
+
+.header-profile-btn i {
+    font-size: 0.95rem;
+}
+
+
+

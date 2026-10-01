@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare compilers and interpreters: Ahead-of-Time compilation, Just-in-Time compilation, execution speeds, and hybrid models.">
+    <title>Compiler vs Interpreter — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/compiler-vs-interpreter.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/compiler-vs-interpreter.html">
+    <meta property="og:title" content="Compiler vs. Interpreter — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Compare compilers and interpreters: Ahead-of-Time compilation, Just-in-Time compilation, execution speeds, and hybrid models.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li class="active"><a href="compiler-vs-interpreter.html" class="active"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li><a href="data-types-concept.html"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 1: Computer Science & Programming Basics</span>
+                </div>
+                <h1>Compiler vs. Interpreter</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 8 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. The Translation Challenge</h2>
+                <p class="lead-text">
+                    Because microprocessors only understand binary machine code, every high-level programming language requires a translation mechanism. Computer science has historically developed two foundational translation architectures: <strong>Compilation</strong> and <strong>Interpretation</strong>.
+                </p>
+
+                <h2>2. How a Compiler Works (Ahead-of-Time / AOT)</h2>
+                <p>
+                    A <strong>Compiler</strong> is a program that translates the entire source code file into a standalone, binary machine-code executable <em>before</em> any part of the program is executed.
+                </p>
+                <div style="text-align: center; margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <span style="padding: 6px 12px; background: #3B82F6; color: #fff; border-radius: 4px;">Source Code</span>
+                    <span style="margin: 0 10px; color: var(--text-secondary);">&rarr;</span>
+                    <span style="padding: 6px 12px; background: #6366F1; color: #fff; border-radius: 4px;">Compiler</span>
+                    <span style="margin: 0 10px; color: var(--text-secondary);">&rarr;</span>
+                    <span style="padding: 6px 12px; background: #10B981; color: #fff; border-radius: 4px;">Machine Executable (.exe)</span>
+                    <span style="margin: 0 10px; color: var(--text-secondary);">&rarr;</span>
+                    <span style="padding: 6px 12px; background: #059669; color: #fff; border-radius: 4px;">CPU Execution</span>
+                </div>
+                <ul>
+                    <li><strong>Advantages:</strong> Ultra-fast execution speed because translation happens only once; full-program optimization; early syntax and type verification before shipment.</li>
+                    <li><strong>Disadvantages:</strong> Requires a separate compilation step; the resulting binary runs only on the specific operating system and CPU architecture it was compiled for (e.g., Windows x86 vs Linux ARM).</li>
+                </ul>
+
+                <h2>3. How an Interpreter Works (Just-in-Time Evaluation)</h2>
+                <p>
+                    An <strong>Interpreter</strong> is a program that reads, analyzes, and executes high-level source code instructions sequentially, line-by-line, in real time at runtime.
+                </p>
+                <div style="text-align: center; margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <span style="padding: 6px 12px; background: #3B82F6; color: #fff; border-radius: 4px;">Source Code Line</span>
+                    <span style="margin: 0 10px; color: var(--text-secondary);">&rarr;</span>
+                    <span style="padding: 6px 12px; background: #EC4899; color: #fff; border-radius: 4px;">Interpreter</span>
+                    <span style="margin: 0 10px; color: var(--text-secondary);">&rarr;</span>
+                    <span style="padding: 6px 12px; background: #10B981; color: #fff; border-radius: 4px;">Immediate CPU Action</span>
+                </div>
+                <ul>
+                    <li><strong>Advantages:</strong> Immediate execution without build delays; platform portability (the exact same source file runs anywhere an interpreter is installed); interactive debugging.</li>
+                    <li><strong>Disadvantages:</strong> Slower execution speed because translation happens repeatedly on every run; errors are only discovered when the execution path reaches that specific line.</li>
+                </ul>
+
+                <h2>4. The Modern Hybrid Approach (Bytecode + Virtual Machine)</h2>
+                <p>
+                    Modern programming platforms rarely use pure interpretation. Instead, they use a two-tier hybrid model:
+                </p>
+                <ol style="line-height: 1.7; color: var(--text-secondary);">
+                    <li>A compiler converts source code into an optimized, intermediate representation called <strong>Bytecode</strong>.</li>
+                    <li>A specialized software engine called a <strong>Virtual Machine (VM)</strong> reads the bytecode and executes it, often using Just-In-Time (JIT) compilation to turn hot paths into native machine code.</li>
+                </ol>
+
+                <h2>5. Direct Comparison Table</h2>
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table class="table-custom" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--bg-secondary); text-align: left;">
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Attribute</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Compiler</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Interpreter</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Translation Phase</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Entire program translated beforehand</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Line-by-line during active execution</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Execution Speed</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Very Fast (native machine code)</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Slower (overhead of runtime parsing)</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Error Detection</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">All syntax/type errors reported before execution</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Stops on the first erroneous line encountered</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Portability</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Binary is platform-specific</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Source script is portable across systems</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>6. Key Takeaways</h2>
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li>Compilers translate entire programs into native binaries before execution.</li>
+                        <li>Interpreters evaluate code sequentially on the fly at runtime.</li>
+                        <li>Compiled software provides superior execution performance; interpreted code offers rapid portability.</li>
+                        <li>Modern languages frequently combine both via intermediate bytecode and Virtual Machines.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="source-code-vs-machine-code.html" title="Previous: Source Code vs. Machine Code">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Source Code vs. Machine Code</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_compiler_vs_interpreter" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="runtime.html" title="Next: Runtime Environments">
+                        <span class="btn-text">Next: Runtime Environments</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

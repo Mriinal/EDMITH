@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Official SQL &amp; Databases Mastery Leaderboard — Track rankings across relational queries, window functions, and coding challenges. Top 5 Champions and real-time personal standing.">
+    <title>SQL &amp; Databases Leaderboard | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/leaderboard/sql.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const t = localStorage.getItem('edmith-theme');
+            if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/leaderboard.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="leaderboard-hero">
+            <span class="hero-pill-badge">
+                <i id="lbPillIcon" class="fas fa-database"></i>
+                <span id="lbPillText">SQL Standings</span>
+            </span>
+            <h1 id="lbHeroTitle">SQL &amp; Databases Leaderboard</h1>
+            <p id="lbHeroDesc">
+                Combined points from timed SQL relational MCQ queries and hands-on coding tests.
+            </p>
+
+            <!-- Dynamic Live Stats Ticker -->
+            <div class="leaderboard-stats-ticker">
+                <div class="stat-ticker-card">
+                    <div class="stat-ticker-icon" style="background: rgba(121, 63, 224, 0.12); color: var(--accent);">
+                        <i class="fas fa-users-viewfinder"></i>
+                    </div>
+                    <div class="stat-ticker-val" id="statCompetitors">1,248+</div>
+                    <div class="stat-ticker-label">Active Challengers</div>
+                </div>
+                <div class="stat-ticker-card">
+                    <div class="stat-ticker-icon" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="stat-ticker-val" id="statTests">4,890+</div>
+                    <div class="stat-ticker-label">Tests Completed</div>
+                </div>
+                <div class="stat-ticker-card">
+                    <div class="stat-ticker-icon" style="background: rgba(245, 158, 11, 0.12); color: #f59e0b;">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="stat-ticker-val" id="statHighScore">285 pts</div>
+                    <div class="stat-ticker-label">Top Score</div>
+                </div>
+                <div class="stat-ticker-card">
+                    <div class="stat-ticker-icon" style="background: rgba(59, 130, 246, 0.12); color: #3b82f6;">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <div class="stat-ticker-val" id="statAccuracy">98.4%</div>
+                    <div class="stat-ticker-label">Leader Accuracy</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subject Switcher Navigation Tabs -->
+        <nav class="subject-nav-wrapper" aria-label="Leaderboard category tabs">
+            <div class="subject-tabs-container">
+                <button type="button" class="subject-tab-btn" data-subject="all">
+                    <i class="fas fa-globe" style="color: var(--accent);"></i>
+                    <span>Overall Global</span>
+                </button>
+                <button type="button" class="subject-tab-btn is-active" data-subject="sql">
+                    <i class="fas fa-database" style="color: #10b981;"></i>
+                    <span>SQL &amp; Databases</span>
+                </button>
+                <button type="button" class="subject-tab-btn" data-subject="python">
+                    <i class="fab fa-python" style="color: #3b82f6;"></i>
+                    <span>Python</span>
+                </button>
+                <button type="button" class="subject-tab-btn" data-subject="c">
+                    <i class="fas fa-c" style="color: #6366f1;"></i>
+                    <span>C Programming</span>
+                </button>
+                <button type="button" class="subject-tab-btn" data-subject="fundamentals">
+                    <i class="fas fa-brain" style="color: #ec4899;"></i>
+                    <span>Fundamentals</span>
+                </button>
+                <button type="button" class="subject-tab-btn" data-subject="etl">
+                    <i class="fas fa-shuffle" style="color: #14b8a6;"></i>
+                    <span>ETL Testing</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Champions Podium (Top 3) -->
+        <section class="podium-container" id="podiumWrap" aria-label="Top 3 Champions Showcase"></section>
+
+        <!-- Main Leaderboard Container -->
+        <section class="leaderboard-main-container">
+            <div class="leaderboard-controls-bar">
+                <div class="search-box-wrap">
+                    <i class="fas fa-search search-box-icon"></i>
+                    <input type="text" id="lbSearchInput" placeholder="Search learner or title..." aria-label="Search leaderboard contenders">
+                </div>
+
+                <div class="controls-right-actions">
+                    <div class="timeframe-filter-group" role="group" aria-label="Filter by time">
+                        <button type="button" class="timeframe-btn is-active" data-timeframe="all">All-Time</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="month">This Month</button>
+                        <button type="button" class="timeframe-btn" data-timeframe="week">This Week</button>
+                    </div>
+
+                    <button type="button" class="btn-scoring-modal" id="openScoringModalBtn">
+                        <i class="fas fa-circle-question"></i> How Scoring Works
+                    </button>
+                </div>
+            </div>
+
+            <!-- Standings Table Wrap -->
+            <div class="standings-card-wrap">
+                <div class="standings-table-header">
+                    <div>
+                        <h2 class="standings-table-title">
+                            <i class="fas fa-database" style="color: #10b981;"></i>
+                            SQL Official Top 5 Standings
+                        </h2>
+                        <span class="standings-table-subtitle">Strictly displaying elite Top 5 scores, followed by your pinned standing at #6.</span>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="leaderboard-table" id="leaderboardTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Rank</th>
+                                <th>Learner Profile</th>
+                                <th>MCQ Pts</th>
+                                <th>Coding Pts</th>
+                                <th>Total Score</th>
+                                <th>Accuracy</th>
+                                <th>Assessments</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 2.5rem; color: var(--text-secondary);">
+                                    <i class="fas fa-circle-notch fa-spin" style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block; color: var(--accent);"></i>
+                                    Loading official SQL standings...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Position #6: Pinned Current User Standing Card -->
+            <div id="userPinnedStandingCard" class="user-pinned-standing-card" aria-label="Your current ranking standing"></div>
+
+            <!-- Fair Play Information Banner -->
+            <div class="fair-play-banner">
+                <i class="fas fa-shield-halved" style="color: var(--accent); font-size: 1.3rem; margin-top: 2px;"></i>
+                <div>
+                    <strong>Verified Assessment Standard:</strong>
+                    Rankings are computed from completed test attempts recorded in the database. Completed tests with 0 marks receive valid rank placement. Only the Top 5 contenders are listed globally, with your individual standing pinned at position #6 for personal progress tracking.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Grading Modal -->
+    <div class="edmith-modal-overlay" id="gradingModal" hidden aria-hidden="true">
+        <div class="edmith-modal-card" role="dialog" aria-modal="true" aria-labelledby="gradingModalTitle">
+            <button class="edmith-modal-close" id="closeGradingModalBtn" type="button" aria-label="Close scoring guide">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="edmith-modal-header">
+                <div class="edmith-modal-icon"><i class="fas fa-award"></i></div>
+                <h2 id="gradingModalTitle">SQL Scoring &amp; Grading Rules</h2>
+                <p>Scores are awarded based on assessment question difficulty across MCQ and Coding tests.</p>
+            </div>
+            <div class="scoring-rules-grid">
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge easy">Easy</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 1 Mark / question</div>
+                        <div><strong>Coding:</strong> 3 Marks / problem</div>
+                    </div>
+                    <p>Fundamental syntax, SELECT filters, and basic single-table queries.</p>
+                </div>
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge medium">Medium</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 3 Marks / question</div>
+                        <div><strong>Coding:</strong> 6 Marks / problem</div>
+                    </div>
+                    <p>Aggregate functions, GROUP BY, multi-table JOINs, and subqueries.</p>
+                </div>
+                <div class="scoring-rule-card">
+                    <span class="scoring-badge hard">Hard</span>
+                    <div class="scoring-points">
+                        <div><strong>MCQ:</strong> 6 Marks / question</div>
+                        <div><strong>Coding:</strong> 12 Marks / problem</div>
+                    </div>
+                    <p>Window functions, complex CTEs, transactions (ACID), and query optimization.</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn-enroll" id="gotItBtn" style="padding: 10px 28px;">Got It</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>window.EDMITH_INITIAL_TRACK = 'sql';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+    <script src="../javascript/leaderboard-engine.js"></script>
+    <script src="../javascript/leaderboard-ui.js"></script>
+</body>
+
+</html>

@@ -26,7 +26,15 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -43,47 +51,16 @@
     <div class="learning-layout">
         <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
         <aside class="course-sidebar-nav" aria-label="Course Syllabus">
-            <!-- Module 1: Programming Fundamentals -->
+                        <!-- Module 1: Introduction to C -->
             <div class="sidebar-module-group collapsed" data-module="module-1">
                 <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 1: Programming Fundamentals Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 1: Programming Fundamentals</span>
+                        <span class="module-hamburger" title="Toggle Module 1: Introduction to C Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Introduction to C</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
                 <div class="sidebar-module-list" id="mod1-list">
-                    <ul>
-                        <li><a href="what-is-programming.html"><i class="fas fa-code"></i> What is Programming?</a></li>
-                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-language"></i> What is a Programming Language?</a></li>
-                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-bolt"></i> Compiler vs Interpreter</a></li>
-                        <li><a href="source-object-executable-code.html"><i class="fas fa-file-code"></i> Source Code, Object Code, Executable Code</a></li>
-                        <li><a href="how-a-c-program-works.html"><i class="fas fa-gears"></i> How a C Program Works</a></li>
-                        <li><a href="c-compilation-process.html"><i class="fas fa-sitemap"></i> C Compilation Process</a></li>
-                        <li><a href="c-program-execution-flow.html"><i class="fas fa-arrow-trend-up"></i> C Program Execution Flow</a></li>
-                        <li><a href="basic-problem-solving-approach.html"><i class="fas fa-brain"></i> Basic Problem-Solving Approach</a></li>
-                        <li><a href="algorithms.html"><i class="fas fa-diagram-project"></i> Algorithms</a></li>
-                        <li><a href="flowcharts.html"><i class="fas fa-bezier-curve"></i> Flowcharts</a></li>
-                        <li><a href="pseudocode.html"><i class="fas fa-pen-to-square"></i> Pseudocode</a></li>
-                        <li><a href="variables-and-data.html"><i class="fas fa-box-archive"></i> Variables and Data</a></li>
-                        <li><a href="input-processing-output.html"><i class="fas fa-arrows-split-up-and-left"></i> Input → Processing → Output</a></li>
-                        <li><a href="debugging-fundamentals.html"><i class="fas fa-bug-slash"></i> Debugging Fundamentals</a></li>
-                        <li><a href="syntax-errors.html"><i class="fas fa-circle-xmark"></i> Syntax Errors</a></li>
-                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors</a></li>
-                        <li><a href="logical-errors.html"><i class="fas fa-lightbulb"></i> Logical Errors</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Module 2: Introduction to C -->
-            <div class="sidebar-module-group collapsed" data-module="module-2">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
-                    <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 2: Introduction to C Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 2: Introduction to C</span>
-                    </div>
-                    <i class="fas fa-chevron-down module-chevron"></i>
-                </div>
-                <div class="sidebar-module-list" id="mod2-list">
                     <ul>
                         <li><a href="history-of-c.html"><i class="fas fa-clock-rotate-left"></i> History of C</a></li>
                         <li><a href="features-of-c.html"><i class="fas fa-star"></i> Features of C</a></li>
@@ -94,6 +71,9 @@
                         <li><a href="c11-standard.html"><i class="fas fa-layer-group"></i> C11 Standard</a></li>
                         <li><a href="c17-standard.html"><i class="fas fa-wrench"></i> C17 Standard</a></li>
                         <li><a href="c23-standard.html"><i class="fas fa-wand-magic-sparkles"></i> C23 Standard</a></li>
+                        <li><a href="how-a-c-program-works.html"><i class="fas fa-gears"></i> How a C Program Works</a></li>
+                        <li><a href="c-compilation-process.html"><i class="fas fa-sitemap"></i> C Compilation Process</a></li>
+                        <li><a href="c-program-execution-flow.html"><i class="fas fa-arrow-trend-up"></i> C Program Execution Flow</a></li>
                         <li><a href="structure-of-a-c-program.html"><i class="fas fa-sitemap"></i> Structure of a C Program</a></li>
                         <li><a href="main-function.html"><i class="fas fa-play"></i> main() Function</a></li>
                         <li><a href="header-files.html"><i class="fas fa-file-lines"></i> Header Files</a></li>
@@ -108,16 +88,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 3: Setting Up C -->
-            <div class="sidebar-module-group collapsed" data-module="module-3">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+            <!-- Module 2: Setting Up C -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 3: Setting Up C Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 3: Setting Up C</span>
+                        <span class="module-hamburger" title="Toggle Module 2: Setting Up C Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Setting Up C</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod3-list">
+                <div class="sidebar-module-list" id="mod2-list">
                     <ul>
                         <li><a href="installing-a-c-compiler.html"><i class="fas fa-download"></i> Installing a C Compiler</a></li>
                         <li><a href="gcc-compiler.html"><i class="fas fa-server"></i> GCC Compiler</a></li>
@@ -133,16 +113,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 4: Basic Syntax -->
-            <div class="sidebar-module-group collapsed" data-module="module-4">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+            <!-- Module 3: Basic Syntax -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 4: Basic Syntax Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 4: Basic Syntax</span>
+                        <span class="module-hamburger" title="Toggle Module 3: Basic Syntax Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Basic Syntax</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod4-list">
+                <div class="sidebar-module-list" id="mod3-list">
                     <ul>
                         <li><a href="include-directive.html"><i class="fas fa-file-import"></i> #include Directive</a></li>
                         <li><a href="define-directive.html"><i class="fas fa-hashtag"></i> #define Directive</a></li>
@@ -159,16 +139,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 5: Variables and Constants -->
-            <div class="sidebar-module-group collapsed" data-module="module-5">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod5-list">
+            <!-- Module 4: Variables and Constants -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 5: Variables and Constants Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 5: Variables and Constants</span>
+                        <span class="module-hamburger" title="Toggle Module 4: Variables and Constants Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Variables and Constants</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod5-list">
+                <div class="sidebar-module-list" id="mod4-list">
                     <ul>
                         <li><a href="variable-declaration.html"><i class="fas fa-pen"></i> Variable Declaration</a></li>
                         <li><a href="variable-initialization.html"><i class="fas fa-circle-check"></i> Variable Initialization</a></li>
@@ -187,16 +167,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 6: C Data Types -->
-            <div class="sidebar-module-group collapsed" data-module="module-6">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod6-list">
+            <!-- Module 5: C Data Types -->
+            <div class="sidebar-module-group collapsed" data-module="module-5">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod5-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 6: C Data Types Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 6: C Data Types</span>
+                        <span class="module-hamburger" title="Toggle Module 5: C Data Types Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 5: C Data Types</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod6-list">
+                <div class="sidebar-module-list" id="mod5-list">
                     <ul>
                         <li><a href="fundamental-data-types.html"><i class="fas fa-cubes"></i> Fundamental Data Types</a></li>
                         <li><a href="char-data-type.html"><i class="fas fa-font"></i> char Data Type</a></li>
@@ -233,16 +213,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 7: Input and Output -->
-            <div class="sidebar-module-group collapsed" data-module="module-7">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod7-list">
+            <!-- Module 6: Input and Output -->
+            <div class="sidebar-module-group collapsed" data-module="module-6">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod6-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 7: Input and Output Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 7: Input and Output</span>
+                        <span class="module-hamburger" title="Toggle Module 6: Input and Output Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 6: Input and Output</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod7-list">
+                <div class="sidebar-module-list" id="mod6-list">
                     <ul>
                         <li><a href="printf-function.html"><i class="fas fa-print"></i> printf() Function</a></li>
                         <li><a href="scanf-function.html"><i class="fas fa-keyboard"></i> scanf() Function</a></li>
@@ -273,16 +253,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 8: Operators -->
-            <div class="sidebar-module-group collapsed" data-module="module-8">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod8-list">
+            <!-- Module 7: Operators -->
+            <div class="sidebar-module-group collapsed" data-module="module-7">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod7-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 8: Operators Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 8: Operators</span>
+                        <span class="module-hamburger" title="Toggle Module 7: Operators Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 7: Operators</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod8-list">
+                <div class="sidebar-module-list" id="mod7-list">
                     <ul>
                         <li><a href="arithmetic-operators.html"><i class="fas fa-plus-minus"></i> Arithmetic Operators</a></li>
                         <li><a href="operator-addition.html"><i class="fas fa-plus"></i> Addition Operator +</a></li>
@@ -316,16 +296,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 9: Type Conversion -->
-            <div class="sidebar-module-group collapsed" data-module="module-9">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod9-list">
+            <!-- Module 8: Type Conversion -->
+            <div class="sidebar-module-group collapsed" data-module="module-8">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod8-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 9: Type Conversion Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 9: Type Conversion</span>
+                        <span class="module-hamburger" title="Toggle Module 8: Type Conversion Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 8: Type Conversion</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod9-list">
+                <div class="sidebar-module-list" id="mod8-list">
                     <ul>
                         <li><a href="implicit-conversion.html"><i class="fas fa-wand-magic-sparkles"></i> Implicit Conversion</a></li>
                         <li><a href="explicit-conversion.html"><i class="fas fa-hand"></i> Explicit Conversion</a></li>
@@ -341,16 +321,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 10: Decision Making -->
-            <div class="sidebar-module-group collapsed" data-module="module-10">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod10-list">
+            <!-- Module 9: Decision Making -->
+            <div class="sidebar-module-group collapsed" data-module="module-9">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod9-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 10: Decision Making Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 10: Decision Making</span>
+                        <span class="module-hamburger" title="Toggle Module 9: Decision Making Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 9: Decision Making</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod10-list">
+                <div class="sidebar-module-list" id="mod9-list">
                     <ul>
                         <li><a href="if-statement.html"><i class="fas fa-code-branch"></i> if Statement</a></li>
                         <li><a href="if-else-statement.html"><i class="fas fa-arrows-split-up-and-left"></i> if-else Statement</a></li>
@@ -368,16 +348,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 11: Loops -->
-            <div class="sidebar-module-group" data-module="module-11">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod11-list">
+            <!-- Module 10: Loops -->
+            <div class="sidebar-module-group" data-module="module-10">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod10-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 11: Loops Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 11: Loops</span>
+                        <span class="module-hamburger" title="Toggle Module 10: Loops Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 10: Loops</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod11-list">
+                <div class="sidebar-module-list" id="mod10-list">
                     <ul>
                         <li><a href="for-loop.html"><i class="fas fa-rotate"></i> for Loop</a></li>
                         <li class="active"><a href="while-loop.html" class="active"><i class="fas fa-repeat"></i> while Loop</a></li>
@@ -394,16 +374,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 12: Functions -->
-            <div class="sidebar-module-group collapsed" data-module="module-12">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod12-list">
+            <!-- Module 11: Functions -->
+            <div class="sidebar-module-group collapsed" data-module="module-11">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod11-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 12: Functions Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 12: Functions</span>
+                        <span class="module-hamburger" title="Toggle Module 11: Functions Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 11: Functions</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod12-list">
+                <div class="sidebar-module-list" id="mod11-list">
                     <ul>
                         <li><a href="function-declaration.html"><i class="fas fa-file-signature"></i> Function Declaration</a></li>
                         <li><a href="function-definition.html"><i class="fas fa-gears"></i> Function Definition</a></li>
@@ -428,16 +408,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 13: Arrays -->
-            <div class="sidebar-module-group collapsed" data-module="module-13">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod13-list">
+            <!-- Module 12: Arrays -->
+            <div class="sidebar-module-group collapsed" data-module="module-12">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod12-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 13: Arrays Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 13: Arrays</span>
+                        <span class="module-hamburger" title="Toggle Module 12: Arrays Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 12: Arrays</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod13-list">
+                <div class="sidebar-module-list" id="mod12-list">
                     <ul>
                         <li><a href="one-dimensional-arrays.html"><i class="fas fa-bars"></i> One-Dimensional Arrays</a></li>
                         <li><a href="array-declaration.html"><i class="fas fa-pen-ruler"></i> Array Declaration</a></li>
@@ -458,16 +438,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 14: Strings -->
-            <div class="sidebar-module-group collapsed" data-module="module-14">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod14-list">
+            <!-- Module 13: Strings -->
+            <div class="sidebar-module-group collapsed" data-module="module-13">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod13-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 14: Strings Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 14: Strings</span>
+                        <span class="module-hamburger" title="Toggle Module 13: Strings Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 13: Strings</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod14-list">
+                <div class="sidebar-module-list" id="mod13-list">
                     <ul>
                         <li><a href="character-arrays.html"><i class="fas fa-font"></i> Character Arrays</a></li>
                         <li><a href="string-literals.html"><i class="fas fa-quote-left"></i> String Literals</a></li>
@@ -496,16 +476,16 @@
                     </ul>
                 </div>
             </div>
-            <!-- Module 15: Pointers — Core Topic -->
-            <div class="sidebar-module-group collapsed" data-module="module-15">
-                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod15-list">
+            <!-- Module 14: Pointers — Core Topic -->
+            <div class="sidebar-module-group collapsed" data-module="module-14">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod14-list">
                     <div class="module-header-left">
-                        <span class="module-hamburger" title="Toggle Module 15: Pointers — Core Topic Menu"><i class="fas fa-bars"></i></span>
-                        <span class="module-title">Module 15: Pointers — Core Topic</span>
+                        <span class="module-hamburger" title="Toggle Module 14: Pointers — Core Topic Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 14: Pointers — Core Topic</span>
                     </div>
                     <i class="fas fa-chevron-down module-chevron"></i>
                 </div>
-                <div class="sidebar-module-list" id="mod15-list">
+                <div class="sidebar-module-list" id="mod14-list">
                     <ul>
                         <li><a href="what-is-a-pointer.html"><i class="fas fa-arrow-pointer"></i> What is a Pointer?</a></li>
                         <li><a href="memory-addresses.html"><i class="fas fa-microchip"></i> Memory Addresses</a></li>

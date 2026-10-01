@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understand the concept of data types in computing: why types matter, scalar primitives, composite collections, and type systems.">
+    <title>Data Types Concept — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/data-types-concept.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/data-types-concept.html">
+    <meta property="og:title" content="Data Types Concept — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Understand the concept of data types in computing: why types matter, scalar primitives, composite collections, and type systems.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li class="active"><a href="data-types-concept.html" class="active"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 3: Core Programming Building Blocks</span>
+                </div>
+                <h1>Data Types Concept</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 8 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. Why Do Computers Need Data Types?</h2>
+        <p class="lead-text">
+            At the lowest hardware level, modern digital computers store all information as sequences of binary digits—<strong>bits (0s and 1s)</strong>. To a central processing unit (CPU), a sequence of 32 bits such as <code>01000001010000100100001100000000</code> is completely meaningless on its own.
+        </p>
+        <p>
+            Does that sequence represent the integer <code>1,094,861,568</code>? Does it represent the floating-point number <code>12.14</code>? Or does it represent the text characters <code>"ABC"</code>?
+        </p>
+        <p>
+            A <strong>Data Type</strong> is a classification that tells the compiler, interpreter, and computer hardware two fundamental things:
+        </p>
+        <ul>
+            <li><strong>Memory Size & Layout:</strong> Exactly how many bytes of memory are required to store the value, and how those bits are organized.</li>
+            <li><strong>Valid Operations:</strong> What operations can be performed on the data (e.g., you can divide two numbers, but you cannot divide an email address by a password).</li>
+        </ul>
+
+        <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+            <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-microchip" style="color: var(--accent); margin-right: 8px;"></i> Memory Interpretation Principle</h4>
+            <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                Memory is simply an indexed array of bytes. The data type provides the "lens" through which the raw bits in those bytes are decoded into meaningful values by software.
+            </p>
+        </div>
+
+        <h2>2. Universal Categories of Data Types</h2>
+        <p>
+            Regardless of whether you program in C, Python, JavaScript, Java, Go, or Rust, every modern programming language categorizes data into two overarching families:
+        </p>
+
+        <div style="overflow-x: auto; margin: 1.5rem 0;">
+            <table class="table-custom" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: var(--bg-secondary); text-align: left;">
+                        <th style="padding: 12px; border-bottom: 2px solid var(--border);">Category</th>
+                        <th style="padding: 12px; border-bottom: 2px solid var(--border);">Common Name</th>
+                        <th style="padding: 12px; border-bottom: 2px solid var(--border);">Conceptual Meaning</th>
+                        <th style="padding: 12px; border-bottom: 2px solid var(--border);">Real-World Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Scalar (Primitive)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Integer</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Whole numbers without fractional components</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">User age: <code>25</code>, Item count: <code>100</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Scalar (Primitive)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Floating-Point</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Real numbers with decimal/fractional parts</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Product price: <code>19.99</code>, Pi: <code>3.14159</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Scalar (Primitive)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Boolean</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Binary truth value representing true or false</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><code>is_logged_in = true</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Scalar (Primitive)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Character</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">A single alphanumeric or symbol glyph</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Grade: <code>'A'</code>, Currency symbol: <code>'$'</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Composite (Structured)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">String / Text</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">An ordered sequence of characters</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Username: <code>"alice_dev"</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Composite (Structured)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Collection / Array / List</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">An indexed grouping of multiple elements</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">High scores: <code>[95, 88, 72, 64]</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Composite (Structured)</strong></td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Key-Value / Record</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">Named fields grouping attributes of an entity</td>
+                        <td style="padding: 12px; border-bottom: 1px solid var(--border);">User record: <code>{ name: "Bob", age: 30 }</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>3. Type Systems: Static vs Dynamic Typing</h2>
+        <p>
+            Different programming languages enforce data types at different stages of program development and execution:
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                <h4 style="color: #3B82F6; margin: 0 0 0.5rem;"><i class="fas fa-lock"></i> Statically-Typed Languages</h4>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    Type checking is performed at <strong>compile time</strong> before the program is ever executed. Variables must be explicitly declared with a fixed type that cannot change. Examples: <strong>C, C++, Java, Rust</strong>. Advantage: early catch of type errors, maximum runtime performance.
+                </p>
+            </div>
+            <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                <h4 style="color: #10B981; margin: 0 0 0.5rem;"><i class="fas fa-bolt"></i> Dynamically-Typed Languages</h4>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                    Type checking is performed at <strong>runtime</strong> while the program is actively executing. Variables are flexible identifiers bound to values rather than fixed memory slots. Examples: <strong>Python, JavaScript, Ruby</strong>. Advantage: rapid prototyping, expressive, and concise code.
+                </p>
+            </div>
+        </div>
+
+        <h2>4. Key Takeaways</h2>
+        <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+            <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                <li>Data types give meaning to raw computer memory bits and define permitted operations.</li>
+                <li>Scalar types represent singular values (integers, floats, booleans, characters).</li>
+                <li>Composite types group multiple pieces of data into collections, sequences, or records.</li>
+                <li>Static typing checks types prior to execution; dynamic typing checks types as the program runs.</li>
+            </ul>
+        </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="variables-and-data.html" title="Previous: Variables & Data Storage">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Variables & Data Storage</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_data_types_concept" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="operators-concept.html" title="Next: Operators Concept">
+                        <span class="btn-text">Next: Operators Concept</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

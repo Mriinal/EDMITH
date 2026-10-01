@@ -1,0 +1,807 @@
+/* EDMITH Design System — Modals & Overlays */
+/* =========================================================
+   SIGNUP MODAL OVERLAY (non-root pages)
+   ========================================================= */
+
+.signup-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 5, 20, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.signup-modal-overlay.modal-visible {
+    opacity: 1;
+}
+
+.signup-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2.75rem;
+    max-width: 460px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(10, 5, 20, 0.5);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    text-align: center;
+}
+
+.signup-modal-overlay.modal-visible .signup-modal {
+    transform: translateY(0) scale(1);
+}
+
+.signup-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.signup-modal-close:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.signup-modal-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 1.6rem;
+    color: var(--accent);
+}
+
+.signup-modal-logo {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.signup-modal h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+.signup-modal p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.signup-modal-features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 auto 1.75rem;
+    text-align: left;
+    max-width: 280px;
+}
+
+.signup-modal-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.signup-modal-feature i {
+    color: #10b981;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.btn-modal-signup {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 700;
+    border-radius: var(--radius-pill);
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+    box-shadow: 0 6px 20px rgba(121, 63, 224, 0.35);
+    margin-bottom: 1rem;
+}
+
+.btn-modal-signup:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.5);
+}
+
+.signup-modal-login-link {
+    font-size: 0.88rem !important;
+    margin-bottom: 0 !important;
+}
+
+.signup-modal-login-link a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-modal-login-link a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   LOGIN MODAL OVERLAY (Reusable on ALL pages)
+   ========================================================= */
+
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: rgba(10, 5, 20, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 3500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+}
+
+body.login-modal-open {
+    overflow: hidden !important;
+}
+
+.login-modal-overlay.modal-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.login-modal-card.auth-card,
+.login-modal-card {
+    max-width: 460px;
+    width: 100%;
+    max-height: min(92vh, 92dvh);
+    max-height: calc(100dvh - 2rem);
+    position: relative;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.6);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.login-modal-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.login-modal-card::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.login-modal-card::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 4px;
+}
+
+.login-modal-card::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.login-modal-overlay.modal-visible .login-modal-card {
+    transform: translateY(0) scale(1);
+}
+
+.login-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.login-modal-close i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.login-modal-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: rotate(90deg);
+}
+
+/* ── Login Modal Internal Components ── */
+.login-modal-card .auth-card-header {
+    background: linear-gradient(135deg, #5B21B6 0%, #793FE0 60%, #9D6FF5 100%);
+    padding: 2.25rem 2.25rem 1.85rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.login-modal-card .auth-card-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.login-modal-card .auth-card-logo {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s ease;
+}
+
+.login-modal-card .auth-card-logo:hover {
+    color: #ffffff;
+}
+
+.login-modal-card .auth-card-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.4px;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+}
+
+.login-modal-card .auth-card-subtitle {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.login-modal-card .login-step {
+    padding: 1.5rem 1.75rem 2rem;
+    display: flex;
+    flex-direction: column;
+    animation: modalStepFade 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalStepFade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-modal-card .auth-form {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Account-Found Pill (Step 2) */
+.login-modal-card .auth-found-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 1.15rem;
+}
+
+body.dark-mode .login-modal-card .auth-found-pill,
+.dark-mode .login-modal-card .auth-found-pill {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.login-modal-card .found-pill-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.login-modal-card .found-pill-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.login-modal-card .found-pill-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.login-modal-card .found-pill-sub {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.login-modal-card .found-pill-change {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-modal-card .found-pill-change:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+}
+
+.login-modal-card .auth-input-spinner {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    font-size: 0.9rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Method Toggle Pill Group */
+.login-modal-card .auth-toggle-group {
+    display: flex;
+    background: var(--bg-main);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+    gap: 4px;
+    margin-bottom: 1.25rem;
+}
+
+.login-modal-card .auth-toggle-tab {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 16px;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.login-modal-card .auth-toggle-tab:hover {
+    color: var(--text-primary);
+}
+
+.login-modal-card .auth-toggle-tab.active {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(121, 63, 224, 0.35);
+}
+
+.login-modal-card .auth-form-section {
+    padding: 0 !important;
+    border: none !important;
+}
+
+.login-modal-card .auth-field-group {
+    margin-bottom: 1.2rem;
+}
+
+.login-modal-card .auth-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.45rem;
+}
+
+.login-modal-card .auth-required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.login-modal-card .auth-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.login-modal-card .auth-input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    pointer-events: none;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.login-modal-card .auth-input {
+    width: 100%;
+    padding: 11px 42px 11px 38px;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    background: var(--bg-secondary);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.login-modal-card .auth-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.login-modal-card .auth-input:focus {
+    border-color: var(--accent);
+    background: var(--card-bg);
+    box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+.login-modal-card .auth-input-wrap:focus-within .auth-input-icon {
+    color: var(--accent);
+}
+
+.login-modal-card .auth-input.input-error {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.04);
+}
+
+.login-modal-card .auth-toggle-pwd {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px 6px;
+    font-size: 0.95rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.login-modal-card .auth-toggle-pwd:hover {
+    color: var(--text-primary);
+}
+
+.login-modal-card .auth-field-error {
+    display: block;
+    font-size: 0.8rem;
+    color: #ef4444;
+    font-weight: 600;
+    margin-top: 4px;
+    min-height: 16px;
+}
+
+.login-modal-card .auth-forgot-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-modal-card .auth-forgot-link {
+    font-size: 0.82rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.login-modal-card .auth-forgot-link:hover {
+    color: #9258f7;
+    text-decoration: underline;
+}
+
+.login-modal-card .auth-form-error {
+    padding: 0.85rem 1.1rem;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    border-left: 4px solid #ef4444;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: #dc2626;
+    line-height: 1.45;
+    margin: 0.75rem 0 1rem;
+}
+
+body.dark-mode .login-modal-card .auth-form-error,
+.dark-mode .login-modal-card .auth-form-error {
+    background: rgba(239, 68, 68, 0.12);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+.login-modal-card .auth-form-error i {
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.login-modal-card .auth-submit-section {
+    padding: 0;
+    margin-top: 1.25rem;
+    text-align: center;
+}
+
+.login-modal-card .auth-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: background 0.22s ease, transform 0.15s ease, box-shadow 0.22s ease;
+    box-shadow: 0 4px 16px rgba(121, 63, 224, 0.4);
+    margin-bottom: 0.75rem;
+}
+
+.login-modal-card .auth-submit-btn:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.55);
+}
+
+.login-modal-card .auth-submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-modal-card .auth-guest-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+}
+
+.login-modal-card .auth-guest-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-subtle);
+    transform: translateY(-1px);
+}
+
+.login-modal-card .auth-guest-btn i {
+    font-size: 0.9rem;
+}
+
+.login-modal-card .auth-switch-link {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 1.15rem 0 0;
+    text-align: center;
+}
+
+.login-modal-card .auth-link {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-modal-card .auth-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive login modal rules for small and short viewports */
+@media (max-height: 740px), (max-width: 480px) {
+    .login-modal-overlay {
+        padding: 0.75rem;
+    }
+
+    .login-modal-card.auth-card,
+    .login-modal-card {
+        max-height: calc(100dvh - 1.25rem);
+    }
+
+    .login-modal-card .auth-card-header {
+        padding: 1.35rem 1.4rem 1.1rem;
+    }
+
+    .login-modal-card .auth-card-logo {
+        margin-bottom: 0.3rem;
+        font-size: 0.95rem;
+    }
+
+    .login-modal-card .auth-card-title {
+        font-size: 1.45rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .login-modal-card .auth-card-subtitle {
+        font-size: 0.84rem;
+        line-height: 1.35;
+    }
+
+    .login-modal-card .login-step,
+    .login-modal-card .auth-form {
+        padding: 1.1rem 1.25rem 1.4rem !important;
+    }
+
+    .login-modal-card .auth-form-section {
+        padding: 0 !important;
+        border-bottom: none !important;
+    }
+
+    .login-modal-card .auth-field-group {
+        margin-bottom: 0.8rem;
+    }
+
+    .login-modal-card .auth-label {
+        font-size: 0.82rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .login-modal-card .auth-input {
+        padding: 9px 38px 9px 36px;
+        font-size: 0.9rem;
+    }
+
+    .login-modal-card .auth-toggle-group {
+        margin-bottom: 0.85rem !important;
+        padding: 3px;
+    }
+
+    .login-modal-card .auth-toggle-tab {
+        padding: 7px 12px;
+        font-size: 0.82rem;
+    }
+
+    .login-modal-card .auth-submit-btn {
+        padding: 11px 20px;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .login-modal-card .auth-submit-section {
+        margin-top: 0.85rem !important;
+    }
+}
+

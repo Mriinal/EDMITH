@@ -26,15 +26,49 @@ function hasSupabaseSession() {
 
 (function initGlobalAuthAndNavigation() {
     // ── Determine page depth and relative prefix ──
-    const rawPath = window.location.pathname.replace(/\\/g, '/');
-    let prefix = '';
-    if (rawPath.includes('/sql/tests/')) {
-        prefix = '../../';
-    } else if (rawPath.includes('/sql/') || rawPath.includes('/editors/') || rawPath.includes('/users/') || rawPath.includes('/etl/')) {
-        prefix = '../';
+    function determinePrefix() {
+        if (window.EdmithComponents && typeof window.EdmithComponents.getPrefix === 'function') {
+            const p = window.EdmithComponents.getPrefix();
+            if (p !== undefined && p !== null) return p;
+        }
+
+        const scriptTags = document.querySelectorAll('script[src*="script.js"], script[src*="components.js"]');
+        for (let i = 0; i < scriptTags.length; i++) {
+            const src = scriptTags[i].getAttribute('src') || '';
+            const match = src.match(/^((\.\.\/)+)/);
+            if (match) return match[1];
+            if (src.startsWith('../')) return '../';
+            if (src.indexOf('javascript/script.js') === 0 || src === 'script.js') return '';
+        }
+
+        const raw = (window.location.pathname || '').replace(/\\/g, '/').toLowerCase();
+        if (raw.includes('/sql/tests/')) return '../../';
+        if (
+            raw.includes('/tests/') ||
+            raw.includes('/sql/') ||
+            raw.includes('/editors/') ||
+            raw.includes('/editor/') ||
+            raw.includes('/users/') ||
+            raw.includes('/etl/') ||
+            raw.includes('/c/') ||
+            raw.includes('/python/') ||
+            raw.includes('/fundamentals/')
+        ) {
+            return '../';
+        }
+        return '';
     }
 
-    // ── Ensure auth-modal.js is loaded on every page ──
+    let prefix = determinePrefix();
+    const rawPath = window.location.pathname.replace(/\\/g, '/');
+
+    // ── Ensure modal.css & auth-modal.js are loaded on every page ──
+    if (!document.querySelector('link[href*="modal.css"]')) {
+        const modalLink = document.createElement('link');
+        modalLink.rel = 'stylesheet';
+        modalLink.href = prefix + 'css/modal.css';
+        document.head.appendChild(modalLink);
+    }
     if (!window.EdmithAuthModal && !document.querySelector('script[src*="auth-modal.js"]')) {
         const authScript = document.createElement('script');
         authScript.src = prefix + 'javascript/auth-modal.js';
@@ -179,10 +213,24 @@ function hasSupabaseSession() {
                                 <span class="dropdown-greeting-name">${escapeHtml(firstName)}</span>
                             </div>
                             <div class="header-dropdown-divider"></div>
-                            <a href="${prefix}users/profile.html" class="header-dropdown-item" role="menuitem">
+                            <a href="${prefix}users/profile.html#overview" class="header-dropdown-item" role="menuitem">
                                 <i class="fas fa-id-badge"></i>
                                 <span>My Profile</span>
                             </a>
+                            <div class="header-dropdown-divider"></div>
+                            <a href="${prefix}users/profile.html#in-progress" class="header-dropdown-item" role="menuitem">
+                                <i class="fas fa-book-open-reader"></i>
+                                <span>In Progress Courses</span>
+                            </a>
+                            <a href="${prefix}users/profile.html#completed-courses" class="header-dropdown-item" role="menuitem">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Completed Courses</span>
+                            </a>
+                            <a href="${prefix}users/profile.html#completed-tests" class="header-dropdown-item" role="menuitem">
+                                <i class="fas fa-award"></i>
+                                <span>Completed Tests</span>
+                            </a>
+                            <div class="header-dropdown-divider"></div>
                             <a href="${prefix}users/edit-profile.html" class="header-dropdown-item" role="menuitem">
                                 <i class="fas fa-user-gear"></i>
                                 <span>Edit Profile</span>
@@ -299,10 +347,26 @@ function hasSupabaseSession() {
                         </div>
                     </div>
                     <div class="mobile-user-actions">
-                        <a href="${prefix}users/profile.html" class="mobile-auth-btn mobile-profile-btn" id="mobileProfileLink">
+                        <a href="${prefix}users/profile.html#overview" class="mobile-auth-btn mobile-profile-btn" id="mobileProfileLink">
                             <i class="fas fa-id-badge"></i>
                             <span>My Profile</span>
                             <i class="fas fa-chevron-right mobile-auth-chevron"></i>
+                        </a>
+                        <a href="${prefix}users/profile.html#in-progress" class="mobile-auth-btn mobile-sub-link">
+                            <i class="fas fa-book-open-reader"></i>
+                            <span>In Progress Courses</span>
+                        </a>
+                        <a href="${prefix}users/profile.html#completed-courses" class="mobile-auth-btn mobile-sub-link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Completed Courses</span>
+                        </a>
+                        <a href="${prefix}users/profile.html#completed-tests" class="mobile-auth-btn mobile-sub-link">
+                            <i class="fas fa-award"></i>
+                            <span>Completed Tests</span>
+                        </a>
+                        <a href="${prefix}users/edit-profile.html" class="mobile-auth-btn mobile-sub-link">
+                            <i class="fas fa-user-gear"></i>
+                            <span>Edit Profile</span>
                         </a>
                         <button type="button" class="mobile-auth-btn mobile-logout-btn" id="mobileLogoutBtn">
                             <i class="fas fa-right-from-bracket"></i>
@@ -390,7 +454,13 @@ function hasSupabaseSession() {
         }
     }
 
-    function inject() {
+    function inject(e) {
+        if (e && e.detail && e.detail.prefix) {
+            prefix = e.detail.prefix;
+        } else {
+            prefix = determinePrefix();
+        }
+
         // 1. Remove Contact Us, Live Previews, and legacy items from Header Navigation
         document.querySelectorAll('.desktop-nav-links, .mobile-nav-links, .nav-links').forEach(nav => {
             nav.querySelectorAll('a[href*="#contact"], a[href$="contact"], a[href*="#preview"], a[href$="preview"]').forEach(a => {
@@ -402,23 +472,23 @@ function hasSupabaseSession() {
 
         // 2. Ensure Leaderboard link in Header Navigation
         const desktopNav = document.querySelector('.desktop-nav-links') || document.querySelector('.nav-links');
-        if (desktopNav && !desktopNav.querySelector('a[href*="Leaderboard.html"]')) {
+        if (desktopNav && !desktopNav.querySelector('a[data-nav="leaderboard"], a[href*="leaderboard"]')) {
             const lbItem = document.createElement('li');
-            const isLbActive = rawPath.endsWith('/Leaderboard.html');
-            lbItem.innerHTML = `<a href="${prefix}Leaderboard.html"${isLbActive ? ' class="active"' : ''} data-nav="leaderboard">Leaderboard</a>`;
+            const isLbActive = rawPath.includes('leaderboard');
+            lbItem.innerHTML = `<a href="${prefix}leaderboard/index.html"${isLbActive ? ' class="active"' : ''} data-nav="leaderboard">Leaderboard</a>`;
             desktopNav.appendChild(lbItem);
         }
 
         // 3. Header Actions Auth Buttons
         const headerActions = document.querySelector('.header-actions');
         if (headerActions) {
-            const isRootIndex = (
+            const isRootIndex = (prefix === '' || prefix === './') && (
                 rawPath.endsWith('/index.html') ||
-                rawPath.endsWith('/EDMITH/') ||
-                rawPath.endsWith('/EDMITH') ||
+                rawPath.endsWith('/edmith/') ||
+                rawPath.endsWith('/edmith') ||
                 rawPath === '/' ||
                 rawPath.endsWith('/')
-            ) && !rawPath.includes('/sql/') && !rawPath.includes('/editors/') && !rawPath.includes('/users/') && !rawPath.includes('/etl/');
+            );
 
             // Fast synchronous render based on cached session state to prevent UI flicker
             const initialAuth = hasSupabaseSession();
@@ -927,6 +997,19 @@ function initCodeCopyButtons() {
             }, 350);
         });
     });
+
+    // F. WCAG 2.1 SC 2.1.1 Keyboard Accessibility: Make horizontally scrollable code containers focusable
+    document.querySelectorAll('pre').forEach((preEl) => {
+        if (!preEl.hasAttribute('tabindex')) {
+            preEl.setAttribute('tabindex', '0');
+        }
+        if (!preEl.hasAttribute('role')) {
+            preEl.setAttribute('role', 'region');
+        }
+        if (!preEl.hasAttribute('aria-label')) {
+            preEl.setAttribute('aria-label', 'Code snippet');
+        }
+    });
 }
 document.addEventListener('DOMContentLoaded', initCodeCopyButtons);
 
@@ -1281,27 +1364,94 @@ if (smartHeader) {
 
 
 // =========================================================
-// COURSE DETAIL PAGE LOGIC (sql/index.html)
+// COURSE DETAIL PAGE LOGIC & ACCORDION EXPAND/COLLAPSE CONTROLS
+// (sql/index.html, c/index.html, python/index.html, etl/index.html, fundamentals/index.html)
 // =========================================================
 
-const detailAccordions = document.querySelectorAll('.detail-main .accordion-header');
-if (detailAccordions.length > 0) {
+function initCourseSyllabusAccordions() {
+    const detailAccordions = document.querySelectorAll('.detail-main .accordion-header, .syllabus-accordion .accordion-header');
+    
     detailAccordions.forEach(header => {
-        header.addEventListener('click', function() {
-            const item = this.parentElement;
+        if (header.dataset.accordionBound) return;
+        header.dataset.accordionBound = 'true';
+
+        const toggleAccordion = function() {
+            const item = header.closest('.accordion-item') || header.parentElement;
+            if (!item) return;
             const body = item.querySelector('.accordion-body');
-            
-            if (item.classList.contains('active')) {
+            if (!body) return;
+
+            const isCurrentlyActive = item.classList.contains('active');
+
+            if (isCurrentlyActive) {
                 item.classList.remove('active');
-                body.style.maxHeight = null;
-                body.style.padding = "0 1.5rem";
+                header.setAttribute('aria-expanded', 'false');
+                body.style.maxHeight = '0px';
+                body.style.padding = '0 1.5rem';
             } else {
                 item.classList.add('active');
-                body.style.maxHeight = (body.scrollHeight + 50) + "px";
-                body.style.padding = "1.5rem";
+                header.setAttribute('aria-expanded', 'true');
+                body.style.maxHeight = (body.scrollHeight + 80) + 'px';
+                body.style.padding = '1.25rem 1.5rem';
+            }
+        };
+
+        header.addEventListener('click', toggleAccordion);
+
+        header.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleAccordion();
             }
         });
     });
+
+    // Expand All Modules Button
+    const expandAllBtn = document.getElementById('expandAllModulesBtn');
+    if (expandAllBtn && !expandAllBtn.dataset.bound) {
+        expandAllBtn.dataset.bound = 'true';
+        expandAllBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const items = document.querySelectorAll('.detail-main .accordion-item, .syllabus-accordion .accordion-item');
+            items.forEach(item => {
+                item.classList.add('active');
+                const header = item.querySelector('.accordion-header');
+                if (header) header.setAttribute('aria-expanded', 'true');
+                const body = item.querySelector('.accordion-body');
+                if (body) {
+                    body.style.maxHeight = (body.scrollHeight + 80) + 'px';
+                    body.style.padding = '1.25rem 1.5rem';
+                }
+            });
+        });
+    }
+
+    // Collapse All Modules Button
+    const collapseAllBtn = document.getElementById('collapseAllModulesBtn');
+    if (collapseAllBtn && !collapseAllBtn.dataset.bound) {
+        collapseAllBtn.dataset.bound = 'true';
+        collapseAllBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const items = document.querySelectorAll('.detail-main .accordion-item, .syllabus-accordion .accordion-item');
+            items.forEach(item => {
+                item.classList.remove('active');
+                const header = item.querySelector('.accordion-header');
+                if (header) header.setAttribute('aria-expanded', 'false');
+                const body = item.querySelector('.accordion-body');
+                if (body) {
+                    body.style.maxHeight = '0px';
+                    body.style.padding = '0 1.5rem';
+                }
+            });
+        });
+    }
+}
+
+// Initialize on DOM ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCourseSyllabusAccordions);
+} else {
+    initCourseSyllabusAccordions();
 }
 
 
@@ -1354,13 +1504,13 @@ function getChapterContext() {
 
             const matchedLesson = courseDef.lessons.find(lesson => {
                 if (lesson.file && lesson.file.toLowerCase() === fileName) return true;
-                if (attrId && (lesson.id === attrId || lesson.id.replace(/^(sql_|etl_|c_)/, '') === attrId.replace(/^(sql_|etl_|c_)/, ''))) return true;
+                if (attrId && (lesson.id === attrId || lesson.id.replace(/^(sql_|etl_|c_|python_|pf_)/, '') === attrId.replace(/^(sql_|etl_|c_|python_|pf_)/, ''))) return true;
                 return false;
             });
 
             if (matchedLesson) {
-                const prefix = cId === 'etl_testing' ? 'etl_' : (cId === 'c_programming' ? 'c_' : 'sql_');
-                const cleanId = matchedLesson.id.replace(/^(sql_|etl_|c_)/, '').replace(/[-_]/g, '_');
+                const prefix = cId === 'etl_testing' ? 'etl_' : (cId === 'c_programming' ? 'c_' : (cId === 'python_programming' ? 'python_' : (cId === 'programming_fundamentals' ? 'pf_' : 'sql_')));
+                const cleanId = matchedLesson.id.replace(/^(sql_|etl_|c_|python_|pf_)/, '').replace(/[-_]/g, '_');
                 return {
                     isChapter: true,
                     courseId: cId,
@@ -1384,9 +1534,15 @@ function getChapterContext() {
         } else if (attrId.startsWith('c_') || rawPath.includes('/c/')) {
             courseId = 'c_programming';
             prefix = 'c_';
+        } else if (attrId.startsWith('python_') || rawPath.includes('/python/')) {
+            courseId = 'python_programming';
+            prefix = 'python_';
+        } else if (attrId.startsWith('pf_') || rawPath.includes('/fundamentals/')) {
+            courseId = 'programming_fundamentals';
+            prefix = 'pf_';
         }
 
-        const cleanId = attrId.replace(/^(sql_|etl_|c_)/, '').replace(/[-_]/g, '_');
+        const cleanId = attrId.replace(/^(sql_|etl_|c_|python_|pf_)/, '').replace(/[-_]/g, '_');
         return {
             isChapter: true,
             courseId: courseId,
@@ -1699,9 +1855,19 @@ function isCourseLearningPage() {
                         </div>
                     </div>
                     <div class="st-tab-panel" id="stTabPanelSyllabus" style="display: none;">
-                        <div class="st-syllabus-search-wrap">
-                            <i class="fas fa-search st-syllabus-search-icon"></i>
-                            <input type="text" class="st-syllabus-search-input" id="stSyllabusSearchInput" placeholder="Filter course lessons...">
+                        <div class="st-syllabus-toolbar">
+                            <div class="st-syllabus-search-wrap">
+                                <i class="fas fa-search st-syllabus-search-icon"></i>
+                                <input type="text" class="st-syllabus-search-input" id="stSyllabusSearchInput" placeholder="Filter course lessons...">
+                            </div>
+                            <div class="st-syllabus-toggle-actions">
+                                <button type="button" class="st-toggle-all-btn" id="stExpandAllBtn" title="Expand all modules">
+                                    <i class="fas fa-angles-down"></i> Expand All
+                                </button>
+                                <button type="button" class="st-toggle-all-btn" id="stCollapseAllBtn" title="Collapse all modules">
+                                    <i class="fas fa-angles-up"></i> Collapse All
+                                </button>
+                            </div>
                         </div>
                         <div class="st-syllabus-clone-container" id="stSyllabusCloneWrap"></div>
                     </div>
@@ -1720,13 +1886,44 @@ function isCourseLearningPage() {
                 const hdr = clone.querySelector('.sidebar-module-header');
                 if (hdr) {
                     hdr.setAttribute('aria-expanded', 'true');
-                    hdr.addEventListener('click', (e) => {
+                    const toggleModule = (e) => {
                         e.preventDefault();
-                        clone.classList.toggle('collapsed');
+                        const isCollapsed = clone.classList.toggle('collapsed');
+                        hdr.setAttribute('aria-expanded', String(!isCollapsed));
+                    };
+                    hdr.addEventListener('click', toggleModule);
+                    hdr.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            toggleModule(e);
+                        }
                     });
                 }
                 syllabusWrap.appendChild(clone);
             });
+
+            // Expand all / Collapse all inside syllabus tab
+            const expandAllBtn = modalBackdrop.querySelector('#stExpandAllBtn');
+            const collapseAllBtn = modalBackdrop.querySelector('#stCollapseAllBtn');
+            if (expandAllBtn) {
+                expandAllBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    syllabusWrap.querySelectorAll('.sidebar-module-group').forEach(grp => {
+                        grp.classList.remove('collapsed');
+                        const h = grp.querySelector('.sidebar-module-header');
+                        if (h) h.setAttribute('aria-expanded', 'true');
+                    });
+                });
+            }
+            if (collapseAllBtn) {
+                collapseAllBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    syllabusWrap.querySelectorAll('.sidebar-module-group').forEach(grp => {
+                        grp.classList.add('collapsed');
+                        const h = grp.querySelector('.sidebar-module-header');
+                        if (h) h.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
 
             // Count total lessons for tab badge
             const totalLessonLinks = syllabusWrap.querySelectorAll('li a').length;
@@ -2217,7 +2414,6 @@ const EDMITH_COURSES = {
             { id: 'etl_version_number', title: "Version Number", file: 'version-number.html' },
             { id: 'etl_historical_records', title: "Historical Records", file: 'historical-records.html' },
             // Module 4: ETL vs ELT Architecture
-            { id: 'etl_architecture', title: "ETL Architecture", file: 'etl-architecture.html' },
             { id: 'etl_elt_architecture', title: "ELT Architecture", file: 'elt-architecture.html' },
             { id: 'etl_vs_elt', title: "ETL vs ELT", file: 'etl-vs-elt.html' },
             { id: 'etl_when_etl_is_used', title: "When ETL is Used", file: 'when-etl-is-used.html' },
@@ -2558,7 +2754,7 @@ const EDMITH_COURSES = {
             { id: 'etl_schema_backward_compatibility', title: "Backward Compatibility", file: 'schema-backward-compatibility.html' },
             // Module 24: Regression Testing
             { id: 'etl_what_is_regression_testing', title: "What is Regression Testing?", file: 'what-is-regression-testing.html' },
-            { id: 'etl_regression_testing', title: "ETL Regression Testing", file: 'etl-regression-testing.html' },
+            { id: 'etl_etl_regression_testing', title: "ETL Regression Testing", file: 'etl-regression-testing.html' },
             { id: 'etl_data_regression_testing', title: "Data Regression Testing", file: 'data-regression-testing.html' },
             { id: 'etl_pipeline_regression_testing', title: "Pipeline Regression", file: 'pipeline-regression-testing.html' },
             { id: 'etl_schema_regression_testing', title: "Schema Regression", file: 'schema-regression-testing.html' },
@@ -2687,42 +2883,58 @@ const EDMITH_COURSES = {
             { id: 'etl_data_quality_report_document', title: "Data-Quality Report", file: 'data-quality-report-document.html' },
             { id: 'etl_production_validation_report', title: "Production Validation Report", file: 'production-validation-report.html' },
             // Module 31: Enterprise Architecture References & Dictionaries
-            { id: 'etl_structured_vs_semi_structured_vs_unstructured_data', title: "Structured vs Semi-Structured vs Unstructured Data Reference", file: 'structured-vs-semi-structured-vs-unstructured-data.html' },
-            // Module 32: Quality Assessments & Certification
-            { id: 'etl_sql_sql_basics', title: "SQL Basics QA Certification Test (15 Questions \u00b7 Timed)", file: '../sql/tests/sql_basics.html' },
-            { id: 'etl_sql_coding_test', title: "Data Validation Coding Test (Query Evaluation)", file: '../sql/tests/coding_test.html' },
-            { id: 'etl_sql_index', title: "All Assessment Tracks &amp; Testing Rules", file: '../sql/tests/index.html' },
-            { id: 'etl_Leaderboard', title: "Official EDMITH Leaderboard &amp; Rankings", file: '../Leaderboard.html' },
+            { id: 'etl_structured_vs_semi_structured_vs_unstructured_data', title: "Structured vs Semi-Structured vs Unstructured Data Reference", file: 'structured-vs-semi-structured-vs-unstructured-data.html' }
+        ]
+    },
+    programming_fundamentals: {
+        id: 'programming_fundamentals',
+        title: 'Programming Fundamentals',
+        module: 'Modules 1–4: Core Concepts, Computational Thinking & Debugging',
+        icon: 'fas fa-brain',
+        url: 'fundamentals/index.html',
+        firstLessonUrl: 'fundamentals/what-is-programming.html',
+        totalLessons: 24,
+        lessons: [
+            // Module 1: Computer Science & Programming Basics
+            { id: 'pf_what_is_programming', title: "What is Programming?", file: 'what-is-programming.html' },
+            { id: 'pf_what_is_a_programming_language', title: "What is a Programming Language?", file: 'what-is-a-programming-language.html' },
+            { id: 'pf_how_programs_execute', title: "How Computers Execute Programs", file: 'how-programs-execute.html' },
+            { id: 'pf_source_code_vs_machine_code', title: "Source Code vs Machine Code", file: 'source-code-vs-machine-code.html' },
+            { id: 'pf_compiler_vs_interpreter', title: "Compiler vs Interpreter", file: 'compiler-vs-interpreter.html' },
+            { id: 'pf_runtime', title: "Runtime Environments", file: 'runtime.html' },
+            { id: 'pf_syntax_vs_semantics', title: "Syntax vs Semantics", file: 'syntax-vs-semantics.html' },
+            // Module 2: Computational Thinking & Problem Solving
+            { id: 'pf_problem_solving_techniques', title: "Problem-Solving Techniques", file: 'problem-solving-techniques.html' },
+            { id: 'pf_algorithms', title: "Algorithms", file: 'algorithms.html' },
+            { id: 'pf_flowcharts', title: "Flowcharts", file: 'flowcharts.html' },
+            { id: 'pf_pseudocode', title: "Pseudocode", file: 'pseudocode.html' },
+            { id: 'pf_input_processing_output', title: "Input -> Processing -> Output", file: 'input-processing-output.html' },
+            // Module 3: Core Programming Building Blocks
+            { id: 'pf_variables_and_data', title: "Variables and Data", file: 'variables-and-data.html' },
+            { id: 'pf_data_types_concept', title: "Data Types Concept", file: 'data-types-concept.html' },
+            { id: 'pf_operators_concept', title: "Operators Concept", file: 'operators-concept.html' },
+            { id: 'pf_decision_making_concept', title: "Decision-Making & Branching Concept", file: 'decision-making-concept.html' },
+            { id: 'pf_functions_concept', title: "Functions & Modular Code Concept", file: 'functions-concept.html' },
+            { id: 'pf_comments_fundamentals', title: "Comments & Code Documentation", file: 'comments-fundamentals.html' },
+            // Module 4: Errors, Quality & Debugging
+            { id: 'pf_errors_vs_bugs', title: "Errors vs Bugs", file: 'errors-vs-bugs.html' },
+            { id: 'pf_types_of_programming_errors', title: "Types of Programming Errors", file: 'types-of-programming-errors.html' },
+            { id: 'pf_syntax_errors', title: "Syntax Errors", file: 'syntax-errors.html' },
+            { id: 'pf_runtime_errors', title: "Runtime Errors", file: 'runtime-errors.html' },
+            { id: 'pf_logical_errors', title: "Logical Errors", file: 'logical-errors.html' },
+            { id: 'pf_debugging_fundamentals', title: "Debugging Fundamentals", file: 'debugging-fundamentals.html' },
         ]
     },
     c_programming: {
         id: 'c_programming',
         title: 'C Programming',
-        module: 'Modules 1–15: Complete Beginner-to-Advanced C Programming Mastery',
+        module: 'Modules 1–14: Complete Beginner-to-Advanced C Programming Mastery',
         icon: 'fas fa-c',
         url: 'c/index.html',
-        firstLessonUrl: 'c/what-is-programming.html',
-        totalLessons: 290,
+        firstLessonUrl: 'c/history-of-c.html',
+        totalLessons: 276,
         lessons: [
-            // Module 1: Programming Fundamentals
-            { id: 'c_what_is_programming', title: "What is Programming?", file: 'what-is-programming.html' },
-            { id: 'c_what_is_a_programming_language', title: "What is a Programming Language?", file: 'what-is-a-programming-language.html' },
-            { id: 'c_compiler_vs_interpreter', title: "Compiler vs Interpreter", file: 'compiler-vs-interpreter.html' },
-            { id: 'c_source_object_executable_code', title: "Source Code, Object Code, Executable Code", file: 'source-object-executable-code.html' },
-            { id: 'c_how_a_c_program_works', title: "How a C Program Works", file: 'how-a-c-program-works.html' },
-            { id: 'c_c_compilation_process', title: "C Compilation Process", file: 'c-compilation-process.html' },
-            { id: 'c_c_program_execution_flow', title: "C Program Execution Flow", file: 'c-program-execution-flow.html' },
-            { id: 'c_basic_problem_solving_approach', title: "Basic Problem-Solving Approach", file: 'basic-problem-solving-approach.html' },
-            { id: 'c_algorithms', title: "Algorithms", file: 'algorithms.html' },
-            { id: 'c_flowcharts', title: "Flowcharts", file: 'flowcharts.html' },
-            { id: 'c_pseudocode', title: "Pseudocode", file: 'pseudocode.html' },
-            { id: 'c_variables_and_data', title: "Variables and Data", file: 'variables-and-data.html' },
-            { id: 'c_input_processing_output', title: "Input → Processing → Output", file: 'input-processing-output.html' },
-            { id: 'c_debugging_fundamentals', title: "Debugging Fundamentals", file: 'debugging-fundamentals.html' },
-            { id: 'c_syntax_errors', title: "Syntax Errors", file: 'syntax-errors.html' },
-            { id: 'c_runtime_errors', title: "Runtime Errors", file: 'runtime-errors.html' },
-            { id: 'c_logical_errors', title: "Logical Errors", file: 'logical-errors.html' },
-            // Module 2: Introduction to C
+            // Module 1: Introduction to C & Architecture
             { id: 'c_history_of_c', title: "History of C", file: 'history-of-c.html' },
             { id: 'c_features_of_c', title: "Features of C", file: 'features-of-c.html' },
             { id: 'c_applications_of_c', title: "Applications of C", file: 'applications-of-c.html' },
@@ -2732,6 +2944,9 @@ const EDMITH_COURSES = {
             { id: 'c_c11_standard', title: "C11 Standard", file: 'c11-standard.html' },
             { id: 'c_c17_standard', title: "C17 Standard", file: 'c17-standard.html' },
             { id: 'c_c23_standard', title: "C23 Standard", file: 'c23-standard.html' },
+            { id: 'c_how_a_c_program_works', title: "How a C Program Works", file: 'how-a-c-program-works.html' },
+            { id: 'c_c_compilation_process', title: "C Compilation Process", file: 'c-compilation-process.html' },
+            { id: 'c_c_program_execution_flow', title: "C Program Execution Flow", file: 'c-program-execution-flow.html' },
             { id: 'c_structure_of_a_c_program', title: "Structure of a C Program", file: 'structure-of-a-c-program.html' },
             { id: 'c_main_function', title: "main() Function", file: 'main-function.html' },
             { id: 'c_header_files', title: "Header Files", file: 'header-files.html' },
@@ -2743,7 +2958,7 @@ const EDMITH_COURSES = {
             { id: 'c_keywords', title: "Keywords", file: 'keywords.html' },
             { id: 'c_naming_conventions', title: "Naming Conventions", file: 'naming-conventions.html' },
             { id: 'c_case_sensitivity', title: "Case Sensitivity", file: 'case-sensitivity.html' },
-            // Module 3: Setting Up C
+            // Module 2: Setting Up C
             { id: 'c_installing_a_c_compiler', title: "Installing a C Compiler", file: 'installing-a-c-compiler.html' },
             { id: 'c_gcc_compiler', title: "GCC Compiler", file: 'gcc-compiler.html' },
             { id: 'c_clang_compiler', title: "Clang Compiler", file: 'clang-compiler.html' },
@@ -2755,7 +2970,7 @@ const EDMITH_COURSES = {
             { id: 'c_compiler_warnings', title: "Compiler Warnings", file: 'compiler-warnings.html' },
             { id: 'c_strict_compilation_flags', title: "Strict Compilation Flags", file: 'strict-compilation-flags.html' },
             { id: 'c_debug_vs_release_builds', title: "Debug Builds vs Release Builds", file: 'debug-vs-release-builds.html' },
-            // Module 4: Basic Syntax
+            // Module 3: Basic Syntax
             { id: 'c_include_directive', title: "#include Directive", file: 'include-directive.html' },
             { id: 'c_define_directive', title: "#define Directive", file: 'define-directive.html' },
             { id: 'c_main_syntax', title: "main() Syntax", file: 'main-syntax.html' },
@@ -2768,7 +2983,7 @@ const EDMITH_COURSES = {
             { id: 'c_escape_sequences', title: "Escape Sequences", file: 'escape-sequences.html' },
             { id: 'c_whitespace', title: "Whitespace", file: 'whitespace.html' },
             { id: 'c_statements_and_expressions', title: "Statements and Expressions", file: 'statements-and-expressions.html' },
-            // Module 5: Variables and Constants
+            // Module 4: Variables and Constants
             { id: 'c_variable_declaration', title: "Variable Declaration", file: 'variable-declaration.html' },
             { id: 'c_variable_initialization', title: "Variable Initialization", file: 'variable-initialization.html' },
             { id: 'c_variable_assignment', title: "Variable Assignment", file: 'variable-assignment.html' },
@@ -2778,12 +2993,12 @@ const EDMITH_COURSES = {
             { id: 'c_integer_constants', title: "Integer Constants", file: 'integer-constants.html' },
             { id: 'c_floating_point_constants', title: "Floating-Point Constants", file: 'floating-point-constants.html' },
             { id: 'c_character_constants', title: "Character Constants", file: 'character-constants.html' },
-            { id: 'c_string_literals_constant', title: "String Literals", file: 'string-literals-constant.html' },
+            { id: 'c_string_literals_constant', title: "String Literals as Constants", file: 'string-literals-constant.html' },
             { id: 'c_const_qualifier', title: "const Qualifier", file: 'const-qualifier.html' },
             { id: 'c_define_constants', title: "#define Constants", file: 'define-constants.html' },
             { id: 'c_scope_of_variables', title: "Scope of Variables", file: 'scope-of-variables.html' },
             { id: 'c_lifetime_of_variables', title: "Lifetime of Variables", file: 'lifetime-of-variables.html' },
-            // Module 6: C Data Types
+            // Module 5: C Data Types
             { id: 'c_fundamental_data_types', title: "Fundamental Data Types", file: 'fundamental-data-types.html' },
             { id: 'c_char_data_type', title: "char Data Type", file: 'char-data-type.html' },
             { id: 'c_signed_char', title: "signed char", file: 'signed-char.html' },
@@ -2816,7 +3031,7 @@ const EDMITH_COURSES = {
             { id: 'c_uint16_t', title: "uint16_t", file: 'uint16-t.html' },
             { id: 'c_uint32_t', title: "uint32_t", file: 'uint32-t.html' },
             { id: 'c_uint64_t', title: "uint64_t", file: 'uint64-t.html' },
-            // Module 7: Input and Output
+            // Module 6: Input and Output
             { id: 'c_printf_function', title: "printf() Function", file: 'printf-function.html' },
             { id: 'c_scanf_function', title: "scanf() Function", file: 'scanf-function.html' },
             { id: 'c_getchar_function', title: "getchar() Function", file: 'getchar-function.html' },
@@ -2843,7 +3058,7 @@ const EDMITH_COURSES = {
             { id: 'c_formatted_input', title: "Formatted Input", file: 'formatted-input.html' },
             { id: 'c_input_buffering', title: "Input Buffering", file: 'input-buffering.html' },
             { id: 'c_common_scanf_problems', title: "Common scanf() Problems", file: 'common-scanf-problems.html' },
-            // Module 8: Operators
+            // Module 7: Operators
             { id: 'c_arithmetic_operators', title: "Arithmetic Operators", file: 'arithmetic-operators.html' },
             { id: 'c_operator_addition', title: "Addition Operator +", file: 'operator-addition.html' },
             { id: 'c_operator_subtraction', title: "Subtraction Operator -", file: 'operator-subtraction.html' },
@@ -2873,7 +3088,7 @@ const EDMITH_COURSES = {
             { id: 'c_comma_operator', title: "Comma Operator", file: 'comma-operator.html' },
             { id: 'c_operator_precedence_associativity', title: "Operator Precedence and Associativity", file: 'operator-precedence-associativity.html' },
             { id: 'c_expressions', title: "Expressions", file: 'expressions.html' },
-            // Module 9: Type Conversion
+            // Module 8: Type Conversion
             { id: 'c_implicit_conversion', title: "Implicit Conversion", file: 'implicit-conversion.html' },
             { id: 'c_explicit_conversion', title: "Explicit Conversion", file: 'explicit-conversion.html' },
             { id: 'c_type_casting', title: "Type Casting", file: 'type-casting.html' },
@@ -2885,7 +3100,7 @@ const EDMITH_COURSES = {
             { id: 'c_narrowing_conversions', title: "Narrowing Conversions", file: 'narrowing-conversions.html' },
             { id: 'c_conversion_pitfalls', title: "Conversion Pitfalls", file: 'conversion-pitfalls.html' },
             { id: 'c_undefined_behavior_conversions', title: "Undefined Behavior Related to Conversions", file: 'undefined-behavior-conversions.html' },
-            // Module 10: Decision Making
+            // Module 9: Decision Making
             { id: 'c_if_statement', title: "if Statement", file: 'if-statement.html' },
             { id: 'c_if_else_statement', title: "if-else Statement", file: 'if-else-statement.html' },
             { id: 'c_nested_if', title: "Nested if", file: 'nested-if.html' },
@@ -2899,7 +3114,7 @@ const EDMITH_COURSES = {
             { id: 'c_truth_values_in_c', title: "Truth Values in C", file: 'truth-values-in-c.html' },
             { id: 'c_bool_decisions', title: "_Bool and Boolean Logic", file: 'bool-decisions.html' },
             { id: 'c_decision_making_pitfalls', title: "Common Decision-Making Pitfalls", file: 'decision-making-pitfalls.html' },
-            // Module 11: Loops
+            // Module 10: Loops
             { id: 'c_for_loop', title: "for Loop", file: 'for-loop.html' },
             { id: 'c_while_loop', title: "while Loop", file: 'while-loop.html' },
             { id: 'c_do_while_loop', title: "do-while Loop", file: 'do-while-loop.html' },
@@ -2912,7 +3127,7 @@ const EDMITH_COURSES = {
             { id: 'c_sentinel_controlled_loops', title: "Sentinel-Controlled Loops", file: 'sentinel-controlled-loops.html' },
             { id: 'c_loop_nesting_patterns', title: "Loop Nesting Patterns", file: 'loop-nesting-patterns.html' },
             { id: 'c_common_loop_mistakes', title: "Common Loop Mistakes", file: 'common-loop-mistakes.html' },
-            // Module 12: Functions
+            // Module 11: Functions
             { id: 'c_function_declaration', title: "Function Declaration", file: 'function-declaration.html' },
             { id: 'c_function_definition', title: "Function Definition", file: 'function-definition.html' },
             { id: 'c_function_call', title: "Function Call", file: 'function-call.html' },
@@ -2933,7 +3148,7 @@ const EDMITH_COURSES = {
             { id: 'c_recursion_vs_iteration', title: "Recursion vs Iteration", file: 'recursion-vs-iteration.html' },
             { id: 'c_function_pointers', title: "Function Pointers", file: 'function-pointers.html' },
             { id: 'c_callback_functions', title: "Callback Functions", file: 'callback-functions.html' },
-            // Module 13: Arrays
+            // Module 12: Arrays
             { id: 'c_one_dimensional_arrays', title: "One-Dimensional Arrays", file: 'one-dimensional-arrays.html' },
             { id: 'c_array_declaration', title: "Array Declaration", file: 'array-declaration.html' },
             { id: 'c_array_initialization', title: "Array Initialization", file: 'array-initialization.html' },
@@ -2950,7 +3165,7 @@ const EDMITH_COURSES = {
             { id: 'c_array_bounds', title: "Array Bounds", file: 'array-bounds.html' },
             { id: 'c_out_of_bounds_access', title: "Out-of-Bounds Access", file: 'out-of-bounds-access.html' },
             { id: 'c_arrays_and_pointers_relationship', title: "Relationship Between Arrays and Pointers", file: 'arrays-and-pointers-relationship.html' },
-            // Module 14: Strings
+            // Module 13: Strings
             { id: 'c_character_arrays', title: "Character Arrays", file: 'character-arrays.html' },
             { id: 'c_string_literals', title: "String Literals", file: 'string-literals.html' },
             { id: 'c_null_terminator', title: "Null Terminator '\0'", file: 'null-terminator.html' },
@@ -2975,7 +3190,7 @@ const EDMITH_COURSES = {
             { id: 'c_strstr_function', title: "strstr() Function", file: 'strstr-function.html' },
             { id: 'c_strtok_function', title: "strtok() Function", file: 'strtok-function.html' },
             { id: 'c_string_safety_buffer_overflow', title: "String Safety and Buffer Overflow", file: 'string-safety-buffer-overflow.html' },
-            // Module 15: Pointers — Core Topic
+            // Module 14: Pointers — Core Topic
             { id: 'c_what_is_a_pointer', title: "What is a Pointer?", file: 'what-is-a-pointer.html' },
             { id: 'c_memory_addresses', title: "Memory Addresses", file: 'memory-addresses.html' },
             { id: 'c_address_of_operator', title: "Address-of Operator &", file: 'address-of-operator.html' },
@@ -3009,6 +3224,628 @@ const EDMITH_COURSES = {
             { id: 'c_invalid_pointers', title: "Invalid Pointers", file: 'invalid-pointers.html' },
             { id: 'c_pointer_lifetime', title: "Pointer Lifetime", file: 'pointer-lifetime.html' },
             { id: 'c_pointer_ownership_concepts', title: "Pointer Ownership Concepts", file: 'pointer-ownership-concepts.html' },
+        ]
+    },
+    python_programming: {
+        id: 'python_programming',
+        title: 'Python Programming',
+        module: 'Modules 1–22: Complete Beginner-to-Advanced Python Programming Mastery',
+        icon: 'fab fa-python',
+        url: 'python/index.html',
+        firstLessonUrl: 'python/introduction-to-python.html',
+        totalLessons: 589,
+        lessons: [
+            // Module 1: Introduction to Python & Setup
+            { id: 'python_introduction_to_python', title: "Introduction to Python", file: 'introduction-to-python.html' },
+            { id: 'python_python_use_cases', title: "Python use cases", file: 'python-use-cases.html' },
+            { id: 'python_python_implementations', title: "Python implementations", file: 'python-implementations.html' },
+            { id: 'python_cpython', title: "CPython", file: 'cpython.html' },
+            { id: 'python_python_interpreter', title: "Python interpreter", file: 'python-interpreter.html' },
+            { id: 'python_python_execution_model', title: "Python execution model", file: 'python-execution-model.html' },
+            { id: 'python_python_2_vs_python_3', title: "Python 2 vs Python 3", file: 'python-2-vs-python-3.html' },
+            { id: 'python_python_installation', title: "Python installation", file: 'python-installation.html' },
+            { id: 'python_python_version_management', title: "Python version management", file: 'python-version-management.html' },
+            { id: 'python_python_repl', title: "Python REPL", file: 'python-repl.html' },
+            { id: 'python_running_python_scripts', title: "Running Python scripts", file: 'running-python-scripts.html' },
+            { id: 'python_python_idle', title: "Python IDLE", file: 'python-idle.html' },
+            { id: 'python_vscode_and_pycharm', title: "VS Code / PyCharm", file: 'vscode-and-pycharm.html' },
+            { id: 'python_terminal_command_prompt', title: "Terminal/Command Prompt", file: 'terminal-command-prompt.html' },
+            { id: 'python_python_path', title: "Python PATH", file: 'python-path.html' },
+            { id: 'python_python_vs_python3', title: "python vs python3", file: 'python-vs-python3.html' },
+            { id: 'python_pip_package_manager', title: "pip", file: 'pip-package-manager.html' },
+            { id: 'python_python_documentation', title: "Python documentation", file: 'python-documentation.html' },
+            { id: 'python_peps', title: "PEPs", file: 'peps.html' },
+            { id: 'python_pep_8', title: "PEP 8", file: 'pep-8.html' },
+            // Module 2: Python Syntax & Basic Structure
+            { id: 'python_python_indentation', title: "Python indentation", file: 'python-indentation.html' },
+            { id: 'python_blocks', title: "Blocks", file: 'blocks.html' },
+            { id: 'python_statements', title: "Statements", file: 'statements.html' },
+            { id: 'python_expressions', title: "Expressions", file: 'expressions.html' },
+            { id: 'python_syntax_comments', title: "Comments", file: 'syntax-comments.html' },
+            { id: 'python_single_line_comments', title: "Single-line comments", file: 'single-line-comments.html' },
+            { id: 'python_multiline_comments', title: "Multi-line documentation/comments", file: 'multiline-comments.html' },
+            { id: 'python_identifiers', title: "Identifiers", file: 'identifiers.html' },
+            { id: 'python_naming_conventions', title: "Naming conventions", file: 'naming-conventions.html' },
+            { id: 'python_keywords', title: "Keywords", file: 'keywords.html' },
+            { id: 'python_reserved_words', title: "Reserved words", file: 'reserved-words.html' },
+            { id: 'python_literals', title: "Literals", file: 'literals.html' },
+            { id: 'python_variables', title: "Variables", file: 'variables.html' },
+            { id: 'python_assignment_statements', title: "Assignment statements", file: 'assignment-statements.html' },
+            { id: 'python_multiple_assignment', title: "Multiple assignment", file: 'multiple-assignment.html' },
+            { id: 'python_chained_assignment', title: "Chained assignment", file: 'chained-assignment.html' },
+            { id: 'python_augmented_assignment', title: "Augmented assignment", file: 'augmented-assignment.html' },
+            { id: 'python_dynamic_typing', title: "Dynamic typing", file: 'dynamic-typing.html' },
+            { id: 'python_strong_typing', title: "Strong typing", file: 'strong-typing.html' },
+            { id: 'python_duck_typing', title: "Duck typing", file: 'duck-typing.html' },
+            { id: 'python_object_references', title: "Object references", file: 'object-references.html' },
+            { id: 'python_variable_scope_basics', title: "Variable scope basics", file: 'variable-scope-basics.html' },
+            { id: 'python_type_function', title: "type()", file: 'type-function.html' },
+            { id: 'python_id_function', title: "id()", file: 'id-function.html' },
+            { id: 'python_help_function', title: "help()", file: 'help-function.html' },
+            { id: 'python_dir_function', title: "dir()", file: 'dir-function.html' },
+            // Module 3: Python Data Types
+            { id: 'python_what_is_a_data_type', title: "What is a data type?", file: 'what-is-a-data-type.html' },
+            { id: 'python_mutable_vs_immutable', title: "Mutable vs immutable objects", file: 'mutable-vs-immutable.html' },
+            { id: 'python_builtin_data_types', title: "Built-in data types", file: 'builtin-data-types.html' },
+            { id: 'python_nonetype', title: "NoneType", file: 'nonetype.html' },
+            { id: 'python_boolean_data_type', title: "Boolean", file: 'boolean-data-type.html' },
+            { id: 'python_integer_data_type', title: "Integer", file: 'integer-data-type.html' },
+            { id: 'python_floating_point_numbers', title: "Floating-point numbers", file: 'floating-point-numbers.html' },
+            { id: 'python_complex_numbers', title: "Complex numbers", file: 'complex-numbers.html' },
+            { id: 'python_strings_data_type', title: "Strings", file: 'strings-data-type.html' },
+            { id: 'python_lists_data_type', title: "Lists", file: 'lists-data-type.html' },
+            { id: 'python_tuples_data_type', title: "Tuples", file: 'tuples-data-type.html' },
+            { id: 'python_sets_data_type', title: "Sets", file: 'sets-data-type.html' },
+            { id: 'python_dictionaries_data_type', title: "Dictionaries", file: 'dictionaries-data-type.html' },
+            { id: 'python_range_data_type', title: "range", file: 'range-data-type.html' },
+            { id: 'python_bytes_data_type', title: "Bytes", file: 'bytes-data-type.html' },
+            { id: 'python_bytearray_data_type', title: "Bytearray", file: 'bytearray-data-type.html' },
+            { id: 'python_frozenset_data_type', title: "Frozenset", file: 'frozenset-data-type.html' },
+            { id: 'python_memory_views', title: "Memory views", file: 'memory-views.html' },
+            { id: 'python_type_conversion', title: "Type conversion", file: 'type-conversion.html' },
+            { id: 'python_type_casting', title: "Type casting", file: 'type-casting.html' },
+            { id: 'python_int_function', title: "int()", file: 'int-function.html' },
+            { id: 'python_float_function', title: "float()", file: 'float-function.html' },
+            { id: 'python_complex_function', title: "complex()", file: 'complex-function.html' },
+            { id: 'python_str_function', title: "str()", file: 'str-function.html' },
+            { id: 'python_bool_function', title: "bool()", file: 'bool-function.html' },
+            { id: 'python_list_function', title: "list()", file: 'list-function.html' },
+            { id: 'python_tuple_function', title: "tuple()", file: 'tuple-function.html' },
+            { id: 'python_set_function', title: "set()", file: 'set-function.html' },
+            { id: 'python_dict_function', title: "dict()", file: 'dict-function.html' },
+            { id: 'python_bytes_function', title: "bytes()", file: 'bytes-function.html' },
+            { id: 'python_bytearray_function', title: "bytearray()", file: 'bytearray-function.html' },
+            { id: 'python_truthy_and_falsy_values', title: "Truthy and falsy values", file: 'truthy-and-falsy-values.html' },
+            // Module 4: Operators
+            { id: 'python_arithmetic_operators', title: "Arithmetic operators", file: 'arithmetic-operators.html' },
+            { id: 'python_addition_operator', title: "Addition", file: 'addition-operator.html' },
+            { id: 'python_subtraction_operator', title: "Subtraction", file: 'subtraction-operator.html' },
+            { id: 'python_multiplication_operator', title: "Multiplication", file: 'multiplication-operator.html' },
+            { id: 'python_division_operator', title: "Division", file: 'division-operator.html' },
+            { id: 'python_floor_division_operator', title: "Floor division", file: 'floor-division-operator.html' },
+            { id: 'python_modulus_operator', title: "Modulus", file: 'modulus-operator.html' },
+            { id: 'python_exponentiation_operator', title: "Exponentiation", file: 'exponentiation-operator.html' },
+            { id: 'python_comparison_operators', title: "Comparison operators", file: 'comparison-operators.html' },
+            { id: 'python_equal_operator', title: "Equal", file: 'equal-operator.html' },
+            { id: 'python_not_equal_operator', title: "Not equal", file: 'not-equal-operator.html' },
+            { id: 'python_greater_than_operator', title: "Greater than", file: 'greater-than-operator.html' },
+            { id: 'python_less_than_operator', title: "Less than", file: 'less-than-operator.html' },
+            { id: 'python_greater_than_or_equal_operator', title: "Greater than or equal", file: 'greater-than-or-equal-operator.html' },
+            { id: 'python_less_than_or_equal_operator', title: "Less than or equal", file: 'less-than-or-equal-operator.html' },
+            { id: 'python_assignment_operators', title: "Assignment operators", file: 'assignment-operators.html' },
+            { id: 'python_compound_assignment_operators', title: "Compound assignment", file: 'compound-assignment-operators.html' },
+            { id: 'python_logical_operators', title: "Logical operators", file: 'logical-operators.html' },
+            { id: 'python_and_operator', title: "and", file: 'and-operator.html' },
+            { id: 'python_or_operator', title: "or", file: 'or-operator.html' },
+            { id: 'python_not_operator', title: "not", file: 'not-operator.html' },
+            { id: 'python_identity_operators', title: "Identity operators", file: 'identity-operators.html' },
+            { id: 'python_is_operator', title: "is", file: 'is-operator.html' },
+            { id: 'python_is_not_operator', title: "is not", file: 'is-not-operator.html' },
+            { id: 'python_membership_operators', title: "Membership operators", file: 'membership-operators.html' },
+            { id: 'python_in_operator', title: "in", file: 'in-operator.html' },
+            { id: 'python_not_in_operator', title: "not in", file: 'not-in-operator.html' },
+            { id: 'python_bitwise_operators', title: "Bitwise operators", file: 'bitwise-operators.html' },
+            { id: 'python_bitwise_and_operator', title: "AND", file: 'bitwise-and-operator.html' },
+            { id: 'python_bitwise_or_operator', title: "OR", file: 'bitwise-or-operator.html' },
+            { id: 'python_bitwise_xor_operator', title: "XOR", file: 'bitwise-xor-operator.html' },
+            { id: 'python_bitwise_not_operator', title: "NOT", file: 'bitwise-not-operator.html' },
+            { id: 'python_bitwise_left_shift', title: "Left shift", file: 'bitwise-left-shift.html' },
+            { id: 'python_bitwise_right_shift', title: "Right shift", file: 'bitwise-right-shift.html' },
+            { id: 'python_operator_precedence', title: "Operator precedence", file: 'operator-precedence.html' },
+            { id: 'python_operator_associativity', title: "Operator associativity", file: 'operator-associativity.html' },
+            // Module 5: Input & Output
+            { id: 'python_print_function', title: "print()", file: 'print-function.html' },
+            { id: 'python_input_function', title: "input()", file: 'input-function.html' },
+            { id: 'python_user_input', title: "User input", file: 'user-input.html' },
+            { id: 'python_multiple_inputs', title: "Multiple inputs", file: 'multiple-inputs.html' },
+            { id: 'python_formatting_output', title: "Formatting output", file: 'formatting-output.html' },
+            { id: 'python_sep_parameter', title: "sep", file: 'sep-parameter.html' },
+            { id: 'python_end_parameter', title: "end", file: 'end-parameter.html' },
+            { id: 'python_escape_characters', title: "Escape characters", file: 'escape-characters.html' },
+            { id: 'python_newline_escape', title: "Newline", file: 'newline-escape.html' },
+            { id: 'python_tab_escape', title: "Tab", file: 'tab-escape.html' },
+            { id: 'python_quotes_escaping', title: "Quotes", file: 'quotes-escaping.html' },
+            { id: 'python_raw_strings', title: "Raw strings", file: 'raw-strings.html' },
+            { id: 'python_string_formatting', title: "String formatting", file: 'string-formatting.html' },
+            { id: 'python_percent_formatting', title: "% formatting", file: 'percent-formatting.html' },
+            { id: 'python_str_format_method', title: "str.format()", file: 'str-format-method.html' },
+            { id: 'python_f_strings', title: "f-strings", file: 'f-strings.html' },
+            { id: 'python_format_specifiers', title: "Format specifiers", file: 'format-specifiers.html' },
+            { id: 'python_number_formatting', title: "Number formatting", file: 'number-formatting.html' },
+            { id: 'python_output_alignment', title: "Alignment", file: 'output-alignment.html' },
+            { id: 'python_output_precision', title: "Precision", file: 'output-precision.html' },
+            { id: 'python_output_width', title: "Width", file: 'output-width.html' },
+            { id: 'python_datetime_formatting', title: "Date/time formatting", file: 'datetime-formatting.html' },
+            // Module 6: Conditional Statements
+            { id: 'python_boolean_expressions', title: "Boolean expressions", file: 'boolean-expressions.html' },
+            { id: 'python_if_statement', title: "if", file: 'if-statement.html' },
+            { id: 'python_else_statement', title: "else", file: 'else-statement.html' },
+            { id: 'python_elif_statement', title: "elif", file: 'elif-statement.html' },
+            { id: 'python_nested_conditions', title: "Nested conditions", file: 'nested-conditions.html' },
+            { id: 'python_multiple_conditions', title: "Multiple conditions", file: 'multiple-conditions.html' },
+            { id: 'python_conditional_expressions', title: "Conditional expressions", file: 'conditional-expressions.html' },
+            { id: 'python_ternary_operator', title: "Ternary operator", file: 'ternary-operator.html' },
+            { id: 'python_nested_ternary_expressions', title: "Nested ternary expressions", file: 'nested-ternary-expressions.html' },
+            { id: 'python_short_circuit_evaluation', title: "Short-circuit evaluation", file: 'short-circuit-evaluation.html' },
+            { id: 'python_guard_clauses', title: "Guard clauses", file: 'guard-clauses.html' },
+            // Module 7: Loops
+            { id: 'python_why_loops_are_required', title: "Why loops are required", file: 'why-loops-are-required.html' },
+            { id: 'python_for_loop', title: "for loop", file: 'for-loop.html' },
+            { id: 'python_while_loop', title: "while loop", file: 'while-loop.html' },
+            { id: 'python_nested_loops', title: "Nested loops", file: 'nested-loops.html' },
+            { id: 'python_loop_conditions', title: "Loop conditions", file: 'loop-conditions.html' },
+            { id: 'python_range_function_loops', title: "range()", file: 'range-function-loops.html' },
+            { id: 'python_enumerate_function', title: "enumerate()", file: 'enumerate-function.html' },
+            { id: 'python_break_statement', title: "break", file: 'break-statement.html' },
+            { id: 'python_continue_statement', title: "continue", file: 'continue-statement.html' },
+            { id: 'python_pass_statement', title: "pass", file: 'pass-statement.html' },
+            { id: 'python_loop_else_clause', title: "Loop else", file: 'loop-else-clause.html' },
+            { id: 'python_infinite_loops', title: "Infinite loops", file: 'infinite-loops.html' },
+            { id: 'python_avoiding_infinite_loops', title: "Avoiding infinite loops", file: 'avoiding-infinite-loops.html' },
+            { id: 'python_iteration_patterns', title: "Iteration patterns", file: 'iteration-patterns.html' },
+            { id: 'python_forward_iteration', title: "Forward iteration", file: 'forward-iteration.html' },
+            { id: 'python_reverse_iteration', title: "Reverse iteration", file: 'reverse-iteration.html' },
+            { id: 'python_stepping_through_ranges', title: "Stepping through ranges", file: 'stepping-through-ranges.html' },
+            // Module 8: Strings
+            { id: 'python_creating_strings', title: "Creating strings", file: 'creating-strings.html' },
+            { id: 'python_single_quotes_strings', title: "Single quotes", file: 'single-quotes-strings.html' },
+            { id: 'python_double_quotes_strings', title: "Double quotes", file: 'double-quotes-strings.html' },
+            { id: 'python_triple_quotes_strings', title: "Triple quotes", file: 'triple-quotes-strings.html' },
+            { id: 'python_string_indexing', title: "String indexing", file: 'string-indexing.html' },
+            { id: 'python_positive_indexing', title: "Positive indexing", file: 'positive-indexing.html' },
+            { id: 'python_negative_indexing', title: "Negative indexing", file: 'negative-indexing.html' },
+            { id: 'python_string_slicing', title: "String slicing", file: 'string-slicing.html' },
+            { id: 'python_slice_syntax', title: "Slice syntax", file: 'slice-syntax.html' },
+            { id: 'python_reverse_slicing', title: "Reverse slicing", file: 'reverse-slicing.html' },
+            { id: 'python_string_immutability', title: "String immutability", file: 'string-immutability.html' },
+            { id: 'python_string_concatenation', title: "String concatenation", file: 'string-concatenation.html' },
+            { id: 'python_string_repetition', title: "String repetition", file: 'string-repetition.html' },
+            { id: 'python_string_comparison', title: "String comparison", file: 'string-comparison.html' },
+            { id: 'python_string_membership', title: "String membership", file: 'string-membership.html' },
+            { id: 'python_string_iteration', title: "String iteration", file: 'string-iteration.html' },
+            { id: 'python_len_function_strings', title: "len()", file: 'len-function-strings.html' },
+            { id: 'python_lower_method', title: "lower()", file: 'lower-method.html' },
+            { id: 'python_upper_method', title: "upper()", file: 'upper-method.html' },
+            { id: 'python_capitalize_method', title: "capitalize()", file: 'capitalize-method.html' },
+            { id: 'python_title_method', title: "title()", file: 'title-method.html' },
+            { id: 'python_swapcase_method', title: "swapcase()", file: 'swapcase-method.html' },
+            { id: 'python_casefold_method', title: "casefold()", file: 'casefold-method.html' },
+            { id: 'python_strip_method', title: "strip()", file: 'strip-method.html' },
+            { id: 'python_lstrip_method', title: "lstrip()", file: 'lstrip-method.html' },
+            { id: 'python_rstrip_method', title: "rstrip()", file: 'rstrip-method.html' },
+            { id: 'python_replace_method', title: "replace()", file: 'replace-method.html' },
+            { id: 'python_split_method', title: "split()", file: 'split-method.html' },
+            { id: 'python_rsplit_method', title: "rsplit()", file: 'rsplit-method.html' },
+            { id: 'python_splitlines_method', title: "splitlines()", file: 'splitlines-method.html' },
+            { id: 'python_join_method', title: "join()", file: 'join-method.html' },
+            { id: 'python_find_method', title: "find()", file: 'find-method.html' },
+            { id: 'python_rfind_method', title: "rfind()", file: 'rfind-method.html' },
+            { id: 'python_index_method_strings', title: "index()", file: 'index-method-strings.html' },
+            { id: 'python_count_method_strings', title: "count()", file: 'count-method-strings.html' },
+            { id: 'python_startswith_method', title: "startswith()", file: 'startswith-method.html' },
+            { id: 'python_endswith_method', title: "endswith()", file: 'endswith-method.html' },
+            { id: 'python_partition_method', title: "partition()", file: 'partition-method.html' },
+            { id: 'python_rpartition_method', title: "rpartition()", file: 'rpartition-method.html' },
+            { id: 'python_center_method', title: "center()", file: 'center-method.html' },
+            { id: 'python_ljust_method', title: "ljust()", file: 'ljust-method.html' },
+            { id: 'python_rjust_method', title: "rjust()", file: 'rjust-method.html' },
+            { id: 'python_zfill_method', title: "zfill()", file: 'zfill-method.html' },
+            { id: 'python_removeprefix_method', title: "removeprefix()", file: 'removeprefix-method.html' },
+            { id: 'python_removesuffix_method', title: "removesuffix()", file: 'removesuffix-method.html' },
+            { id: 'python_isalpha_method', title: "isalpha()", file: 'isalpha-method.html' },
+            { id: 'python_isdigit_method', title: "isdigit()", file: 'isdigit-method.html' },
+            { id: 'python_isnumeric_method', title: "isnumeric()", file: 'isnumeric-method.html' },
+            { id: 'python_isalnum_method', title: "isalnum()", file: 'isalnum-method.html' },
+            { id: 'python_isspace_method', title: "isspace()", file: 'isspace-method.html' },
+            { id: 'python_islower_method', title: "islower()", file: 'islower-method.html' },
+            { id: 'python_isupper_method', title: "isupper()", file: 'isupper-method.html' },
+            { id: 'python_istitle_method', title: "istitle()", file: 'istitle-method.html' },
+            { id: 'python_string_escaping', title: "String escaping", file: 'string-escaping.html' },
+            { id: 'python_unicode_in_python', title: "Unicode", file: 'unicode-in-python.html' },
+            { id: 'python_unicode_code_points', title: "Unicode code points", file: 'unicode-code-points.html' },
+            { id: 'python_ord_function', title: "ord()", file: 'ord-function.html' },
+            { id: 'python_chr_function', title: "chr()", file: 'chr-function.html' },
+            { id: 'python_string_encoding', title: "Encoding", file: 'string-encoding.html' },
+            { id: 'python_utf8_encoding', title: "UTF-8", file: 'utf8-encoding.html' },
+            { id: 'python_string_decoding', title: "Decoding", file: 'string-decoding.html' },
+            // Module 9: Lists
+            { id: 'python_creating_lists', title: "Creating lists", file: 'creating-lists.html' },
+            { id: 'python_list_indexing', title: "List indexing", file: 'list-indexing.html' },
+            { id: 'python_negative_list_indexing', title: "Negative indexing", file: 'negative-list-indexing.html' },
+            { id: 'python_list_slicing', title: "List slicing", file: 'list-slicing.html' },
+            { id: 'python_modifying_lists', title: "Modifying lists", file: 'modifying-lists.html' },
+            { id: 'python_adding_list_elements', title: "Adding elements", file: 'adding-list-elements.html' },
+            { id: 'python_append_method', title: "append()", file: 'append-method.html' },
+            { id: 'python_insert_method', title: "insert()", file: 'insert-method.html' },
+            { id: 'python_extend_method', title: "extend()", file: 'extend-method.html' },
+            { id: 'python_removing_list_elements', title: "Removing elements", file: 'removing-list-elements.html' },
+            { id: 'python_remove_method', title: "remove()", file: 'remove-method.html' },
+            { id: 'python_pop_method', title: "pop()", file: 'pop-method.html' },
+            { id: 'python_clear_method', title: "clear()", file: 'clear-method.html' },
+            { id: 'python_del_statement_lists', title: "del", file: 'del-statement-lists.html' },
+            { id: 'python_searching_lists', title: "Searching lists", file: 'searching-lists.html' },
+            { id: 'python_index_method_lists', title: "index()", file: 'index-method-lists.html' },
+            { id: 'python_count_method_lists', title: "count()", file: 'count-method-lists.html' },
+            { id: 'python_sorting_lists', title: "Sorting", file: 'sorting-lists.html' },
+            { id: 'python_sort_method', title: "sort()", file: 'sort-method.html' },
+            { id: 'python_sorted_function', title: "sorted()", file: 'sorted-function.html' },
+            { id: 'python_reverse_sorting', title: "Reverse sorting", file: 'reverse-sorting.html' },
+            { id: 'python_reverse_method', title: "reverse()", file: 'reverse-method.html' },
+            { id: 'python_copying_lists', title: "Copying lists", file: 'copying-lists.html' },
+            { id: 'python_shallow_copy_lists', title: "Shallow copy", file: 'shallow-copy-lists.html' },
+            { id: 'python_deep_copy_lists', title: "Deep copy", file: 'deep-copy-lists.html' },
+            { id: 'python_list_concatenation', title: "List concatenation", file: 'list-concatenation.html' },
+            { id: 'python_list_repetition', title: "List repetition", file: 'list-repetition.html' },
+            { id: 'python_nested_lists', title: "Nested lists", file: 'nested-lists.html' },
+            { id: 'python_iterating_lists', title: "Iterating lists", file: 'iterating-lists.html' },
+            { id: 'python_list_unpacking', title: "List unpacking", file: 'list-unpacking.html' },
+            { id: 'python_extended_unpacking', title: "Extended unpacking", file: 'extended-unpacking.html' },
+            { id: 'python_list_comprehensions', title: "List comprehensions", file: 'list-comprehensions.html' },
+            { id: 'python_conditional_list_comprehensions', title: "Conditional list comprehensions", file: 'conditional-list-comprehensions.html' },
+            { id: 'python_nested_list_comprehensions', title: "Nested list comprehensions", file: 'nested-list-comprehensions.html' },
+            // Module 10: Tuples
+            { id: 'python_creating_tuples', title: "Creating tuples", file: 'creating-tuples.html' },
+            { id: 'python_tuple_indexing', title: "Tuple indexing", file: 'tuple-indexing.html' },
+            { id: 'python_tuple_slicing', title: "Tuple slicing", file: 'tuple-slicing.html' },
+            { id: 'python_tuple_immutability', title: "Tuple immutability", file: 'tuple-immutability.html' },
+            { id: 'python_tuple_packing', title: "Tuple packing", file: 'tuple-packing.html' },
+            { id: 'python_tuple_unpacking', title: "Tuple unpacking", file: 'tuple-unpacking.html' },
+            { id: 'python_nested_tuples', title: "Nested tuples", file: 'nested-tuples.html' },
+            { id: 'python_tuple_methods', title: "Tuple methods", file: 'tuple-methods.html' },
+            { id: 'python_tuple_vs_list', title: "Tuple vs list", file: 'tuple-vs-list.html' },
+            { id: 'python_when_to_use_tuples', title: "When to use tuples", file: 'when-to-use-tuples.html' },
+            // Module 11: Sets
+            { id: 'python_creating_sets', title: "Creating sets", file: 'creating-sets.html' },
+            { id: 'python_set_uniqueness', title: "Set uniqueness", file: 'set-uniqueness.html' },
+            { id: 'python_adding_set_elements', title: "Adding elements", file: 'adding-set-elements.html' },
+            { id: 'python_add_method_sets', title: "add()", file: 'add-method-sets.html' },
+            { id: 'python_update_method_sets', title: "update()", file: 'update-method-sets.html' },
+            { id: 'python_removing_set_elements', title: "Removing elements", file: 'removing-set-elements.html' },
+            { id: 'python_remove_method_sets', title: "remove()", file: 'remove-method-sets.html' },
+            { id: 'python_discard_method_sets', title: "discard()", file: 'discard-method-sets.html' },
+            { id: 'python_pop_method_sets', title: "pop()", file: 'pop-method-sets.html' },
+            { id: 'python_clear_method_sets', title: "clear()", file: 'clear-method-sets.html' },
+            { id: 'python_set_membership', title: "Set membership", file: 'set-membership.html' },
+            { id: 'python_set_union', title: "Union", file: 'set-union.html' },
+            { id: 'python_set_intersection', title: "Intersection", file: 'set-intersection.html' },
+            { id: 'python_set_difference', title: "Difference", file: 'set-difference.html' },
+            { id: 'python_set_symmetric_difference', title: "Symmetric difference", file: 'set-symmetric-difference.html' },
+            { id: 'python_subsets', title: "Subsets", file: 'subsets.html' },
+            { id: 'python_supersets', title: "Supersets", file: 'supersets.html' },
+            { id: 'python_disjoint_sets', title: "Disjoint sets", file: 'disjoint-sets.html' },
+            { id: 'python_set_comprehensions', title: "Set comprehensions", file: 'set-comprehensions.html' },
+            { id: 'python_frozen_sets', title: "Frozen sets", file: 'frozen-sets.html' },
+            { id: 'python_frozenset_function', title: "frozenset()", file: 'frozenset-function.html' },
+            // Module 12: Dictionaries
+            { id: 'python_dictionary_fundamentals', title: "Dictionary fundamentals", file: 'dictionary-fundamentals.html' },
+            { id: 'python_keys_and_values', title: "Keys and values", file: 'keys-and-values.html' },
+            { id: 'python_creating_dictionaries', title: "Creating dictionaries", file: 'creating-dictionaries.html' },
+            { id: 'python_accessing_dictionary_values', title: "Accessing values", file: 'accessing-dictionary-values.html' },
+            { id: 'python_adding_dictionary_entries', title: "Adding entries", file: 'adding-dictionary-entries.html' },
+            { id: 'python_updating_dictionary_entries', title: "Updating entries", file: 'updating-dictionary-entries.html' },
+            { id: 'python_removing_dictionary_entries', title: "Removing entries", file: 'removing-dictionary-entries.html' },
+            { id: 'python_get_method_dictionaries', title: "get()", file: 'get-method-dictionaries.html' },
+            { id: 'python_keys_method', title: "keys()", file: 'keys-method.html' },
+            { id: 'python_values_method', title: "values()", file: 'values-method.html' },
+            { id: 'python_items_method', title: "items()", file: 'items-method.html' },
+            { id: 'python_update_method_dictionaries', title: "update()", file: 'update-method-dictionaries.html' },
+            { id: 'python_pop_method_dictionaries', title: "pop()", file: 'pop-method-dictionaries.html' },
+            { id: 'python_popitem_method', title: "popitem()", file: 'popitem-method.html' },
+            { id: 'python_setdefault_method', title: "setdefault()", file: 'setdefault-method.html' },
+            { id: 'python_clear_method_dictionaries', title: "clear()", file: 'clear-method-dictionaries.html' },
+            { id: 'python_dictionary_membership', title: "Dictionary membership", file: 'dictionary-membership.html' },
+            { id: 'python_nested_dictionaries', title: "Nested dictionaries", file: 'nested-dictionaries.html' },
+            { id: 'python_dictionary_iteration', title: "Dictionary iteration", file: 'dictionary-iteration.html' },
+            { id: 'python_dictionary_unpacking', title: "Dictionary unpacking", file: 'dictionary-unpacking.html' },
+            { id: 'python_dictionary_comprehensions', title: "Dictionary comprehensions", file: 'dictionary-comprehensions.html' },
+            { id: 'python_hashable_objects', title: "Hashable objects", file: 'hashable-objects.html' },
+            { id: 'python_dictionary_key_requirements', title: "Dictionary key requirements", file: 'dictionary-key-requirements.html' },
+            // Module 13: Functions
+            { id: 'python_what_is_a_function', title: "What is a function?", file: 'what-is-a-function.html' },
+            { id: 'python_why_functions_matter', title: "Why functions matter", file: 'why-functions-matter.html' },
+            { id: 'python_defining_functions', title: "Defining functions", file: 'defining-functions.html' },
+            { id: 'python_calling_functions', title: "Calling functions", file: 'calling-functions.html' },
+            { id: 'python_function_parameters', title: "Function parameters", file: 'function-parameters.html' },
+            { id: 'python_function_arguments', title: "Function arguments", file: 'function-arguments.html' },
+            { id: 'python_positional_arguments', title: "Positional arguments", file: 'positional-arguments.html' },
+            { id: 'python_keyword_arguments', title: "Keyword arguments", file: 'keyword-arguments.html' },
+            { id: 'python_default_arguments', title: "Default arguments", file: 'default-arguments.html' },
+            { id: 'python_required_arguments', title: "Required arguments", file: 'required-arguments.html' },
+            { id: 'python_variable_length_arguments', title: "Variable-length arguments", file: 'variable-length-arguments.html' },
+            { id: 'python_args_parameter', title: "*args", file: 'args-parameter.html' },
+            { id: 'python_kwargs_parameter', title: "**kwargs", file: 'kwargs-parameter.html' },
+            { id: 'python_keyword_only_arguments', title: "Keyword-only arguments", file: 'keyword-only-arguments.html' },
+            { id: 'python_positional_only_arguments', title: "Positional-only arguments", file: 'positional-only-arguments.html' },
+            { id: 'python_argument_unpacking', title: "Argument unpacking", file: 'argument-unpacking.html' },
+            { id: 'python_return_values', title: "Return values", file: 'return-values.html' },
+            { id: 'python_multiple_return_values', title: "Multiple return values", file: 'multiple-return-values.html' },
+            { id: 'python_returning_tuples', title: "Returning tuples", file: 'returning-tuples.html' },
+            { id: 'python_none_return_value', title: "None", file: 'none-return-value.html' },
+            { id: 'python_local_variables_functions', title: "Local variables", file: 'local-variables-functions.html' },
+            { id: 'python_global_variables_functions', title: "Global variables", file: 'global-variables-functions.html' },
+            { id: 'python_global_keyword', title: "global", file: 'global-keyword.html' },
+            { id: 'python_nonlocal_keyword', title: "nonlocal", file: 'nonlocal-keyword.html' },
+            { id: 'python_function_scope', title: "Function scope", file: 'function-scope.html' },
+            { id: 'python_legb_rule_functions', title: "LEGB rule", file: 'legb-rule-functions.html' },
+            { id: 'python_function_documentation', title: "Function documentation", file: 'function-documentation.html' },
+            { id: 'python_docstrings', title: "Docstrings", file: 'docstrings.html' },
+            { id: 'python_function_annotations', title: "Function annotations", file: 'function-annotations.html' },
+            { id: 'python_type_hints_functions', title: "Type hints", file: 'type-hints-functions.html' },
+            { id: 'python_lambda_functions', title: "Lambda functions", file: 'lambda-functions.html' },
+            { id: 'python_higher_order_functions', title: "Higher-order functions", file: 'higher-order-functions.html' },
+            { id: 'python_functions_as_objects', title: "Functions as objects", file: 'functions-as-objects.html' },
+            { id: 'python_passing_functions_as_arguments', title: "Passing functions as arguments", file: 'passing-functions-as-arguments.html' },
+            { id: 'python_returning_functions', title: "Returning functions", file: 'returning-functions.html' },
+            { id: 'python_nested_functions', title: "Nested functions", file: 'nested-functions.html' },
+            { id: 'python_closures', title: "Closures", file: 'closures.html' },
+            { id: 'python_recursion', title: "Recursion", file: 'recursion.html' },
+            { id: 'python_recursive_functions', title: "Recursive functions", file: 'recursive-functions.html' },
+            { id: 'python_recursion_limits', title: "Recursion limits", file: 'recursion-limits.html' },
+            // Module 14: Functional Programming
+            { id: 'python_first_class_functions', title: "First-class functions", file: 'first-class-functions.html' },
+            { id: 'python_functional_higher_order_functions', title: "Higher-order functions", file: 'functional-higher-order-functions.html' },
+            { id: 'python_pure_functions', title: "Pure functions", file: 'pure-functions.html' },
+            { id: 'python_side_effects', title: "Side effects", file: 'side-effects.html' },
+            { id: 'python_map_function', title: "map()", file: 'map-function.html' },
+            { id: 'python_filter_function', title: "filter()", file: 'filter-function.html' },
+            { id: 'python_reduce_function', title: "reduce()", file: 'reduce-function.html' },
+            { id: 'python_zip_function', title: "zip()", file: 'zip-function.html' },
+            { id: 'python_enumerate_functional', title: "enumerate()", file: 'enumerate-functional.html' },
+            { id: 'python_any_function', title: "any()", file: 'any-function.html' },
+            { id: 'python_all_function', title: "all()", file: 'all-function.html' },
+            { id: 'python_sum_function', title: "sum()", file: 'sum-function.html' },
+            { id: 'python_min_function', title: "min()", file: 'min-function.html' },
+            { id: 'python_max_function', title: "max()", file: 'max-function.html' },
+            { id: 'python_sorted_functional', title: "sorted()", file: 'sorted-functional.html' },
+            { id: 'python_lambda_expressions', title: "Lambda expressions", file: 'lambda-expressions.html' },
+            { id: 'python_generator_expressions', title: "Generator expressions", file: 'generator-expressions.html' },
+            { id: 'python_functional_programming_patterns', title: "Functional programming patterns", file: 'functional-programming-patterns.html' },
+            // Module 15: Scope & Namespaces
+            { id: 'python_local_scope', title: "Local scope", file: 'local-scope.html' },
+            { id: 'python_global_scope', title: "Global scope", file: 'global-scope.html' },
+            { id: 'python_enclosing_scope', title: "Enclosing scope", file: 'enclosing-scope.html' },
+            { id: 'python_builtin_scope', title: "Built-in scope", file: 'builtin-scope.html' },
+            { id: 'python_legb_rule_depth', title: "LEGB rule", file: 'legb-rule-depth.html' },
+            { id: 'python_what_is_a_namespace', title: "Namespace", file: 'what-is-a-namespace.html' },
+            { id: 'python_global_namespace', title: "Global namespace", file: 'global-namespace.html' },
+            { id: 'python_local_namespace', title: "Local namespace", file: 'local-namespace.html' },
+            { id: 'python_module_namespace', title: "Module namespace", file: 'module-namespace.html' },
+            { id: 'python_globals_function', title: "globals()", file: 'globals-function.html' },
+            { id: 'python_locals_function', title: "locals()", file: 'locals-function.html' },
+            { id: 'python_global_statement', title: "global", file: 'global-statement.html' },
+            { id: 'python_nonlocal_statement', title: "nonlocal", file: 'nonlocal-statement.html' },
+            { id: 'python_variable_shadowing', title: "Variable shadowing", file: 'variable-shadowing.html' },
+            { id: 'python_name_binding', title: "Name binding", file: 'name-binding.html' },
+            // Module 16: Object-Oriented Programming
+            { id: 'python_what_is_oop', title: "What is OOP?", file: 'what-is-oop.html' },
+            { id: 'python_classes_in_python', title: "Classes", file: 'classes-in-python.html' },
+            { id: 'python_objects_in_python', title: "Objects", file: 'objects-in-python.html' },
+            { id: 'python_attributes', title: "Attributes", file: 'attributes.html' },
+            { id: 'python_methods', title: "Methods", file: 'methods.html' },
+            { id: 'python_constructors', title: "Constructors", file: 'constructors.html' },
+            { id: 'python_init_method', title: "__init__", file: 'init-method.html' },
+            { id: 'python_instance_attributes', title: "Instance attributes", file: 'instance-attributes.html' },
+            { id: 'python_class_attributes', title: "Class attributes", file: 'class-attributes.html' },
+            { id: 'python_instance_methods', title: "Instance methods", file: 'instance-methods.html' },
+            { id: 'python_class_methods', title: "Class methods", file: 'class-methods.html' },
+            { id: 'python_static_methods', title: "Static methods", file: 'static-methods.html' },
+            { id: 'python_classmethod_decorator', title: "@classmethod", file: 'classmethod-decorator.html' },
+            { id: 'python_staticmethod_decorator', title: "@staticmethod", file: 'staticmethod-decorator.html' },
+            { id: 'python_self_parameter', title: "self", file: 'self-parameter.html' },
+            { id: 'python_object_identity_oop', title: "Object identity", file: 'object-identity-oop.html' },
+            { id: 'python_encapsulation', title: "Encapsulation", file: 'encapsulation.html' },
+            { id: 'python_abstraction', title: "Abstraction", file: 'abstraction.html' },
+            { id: 'python_inheritance', title: "Inheritance", file: 'inheritance.html' },
+            { id: 'python_polymorphism', title: "Polymorphism", file: 'polymorphism.html' },
+            { id: 'python_composition', title: "Composition", file: 'composition.html' },
+            { id: 'python_aggregation', title: "Aggregation", file: 'aggregation.html' },
+            { id: 'python_association', title: "Association", file: 'association.html' },
+            { id: 'python_single_inheritance', title: "Single inheritance", file: 'single-inheritance.html' },
+            { id: 'python_multiple_inheritance', title: "Multiple inheritance", file: 'multiple-inheritance.html' },
+            { id: 'python_multilevel_inheritance', title: "Multilevel inheritance", file: 'multilevel-inheritance.html' },
+            { id: 'python_hierarchical_inheritance', title: "Hierarchical inheritance", file: 'hierarchical-inheritance.html' },
+            { id: 'python_hybrid_inheritance', title: "Hybrid inheritance", file: 'hybrid-inheritance.html' },
+            { id: 'python_method_overriding', title: "Method overriding", file: 'method-overriding.html' },
+            { id: 'python_method_resolution_order', title: "Method resolution order", file: 'method-resolution-order.html' },
+            { id: 'python_mro_in_python', title: "MRO", file: 'mro-in-python.html' },
+            { id: 'python_super_function', title: "super()", file: 'super-function.html' },
+            { id: 'python_abstract_classes', title: "Abstract classes", file: 'abstract-classes.html' },
+            { id: 'python_abstract_methods', title: "Abstract methods", file: 'abstract-methods.html' },
+            { id: 'python_abc_module_oop', title: "abc module", file: 'abc-module-oop.html' },
+            { id: 'python_interfaces_in_python', title: "Interfaces/conventions in Python", file: 'interfaces-in-python.html' },
+            { id: 'python_properties_oop', title: "Properties", file: 'properties-oop.html' },
+            { id: 'python_getters', title: "Getters", file: 'getters.html' },
+            { id: 'python_setters', title: "Setters", file: 'setters.html' },
+            { id: 'python_deleters', title: "Deleters", file: 'deleters.html' },
+            { id: 'python_property_decorator', title: "@property", file: 'property-decorator.html' },
+            { id: 'python_private_naming_conventions', title: "Private naming conventions", file: 'private-naming-conventions.html' },
+            { id: 'python_name_mangling', title: "Name mangling", file: 'name-mangling.html' },
+            { id: 'python_slots_in_classes', title: "__slots__", file: 'slots-in-classes.html' },
+            { id: 'python_dataclasses_module', title: "Dataclasses", file: 'dataclasses-module.html' },
+            { id: 'python_dataclass_decorator', title: "@dataclass", file: 'dataclass-decorator.html' },
+            // Module 17: Special / Dunder Methods
+            { id: 'python_dunder_init', title: "__init__", file: 'dunder-init.html' },
+            { id: 'python_dunder_new', title: "__new__", file: 'dunder-new.html' },
+            { id: 'python_dunder_str', title: "__str__", file: 'dunder-str.html' },
+            { id: 'python_dunder_repr', title: "__repr__", file: 'dunder-repr.html' },
+            { id: 'python_dunder_len', title: "__len__", file: 'dunder-len.html' },
+            { id: 'python_dunder_bool', title: "__bool__", file: 'dunder-bool.html' },
+            { id: 'python_dunder_eq', title: "__eq__", file: 'dunder-eq.html' },
+            { id: 'python_dunder_ne', title: "__ne__", file: 'dunder-ne.html' },
+            { id: 'python_dunder_lt', title: "__lt__", file: 'dunder-lt.html' },
+            { id: 'python_dunder_le', title: "__le__", file: 'dunder-le.html' },
+            { id: 'python_dunder_gt', title: "__gt__", file: 'dunder-gt.html' },
+            { id: 'python_dunder_ge', title: "__ge__", file: 'dunder-ge.html' },
+            { id: 'python_dunder_add', title: "__add__", file: 'dunder-add.html' },
+            { id: 'python_dunder_sub', title: "__sub__", file: 'dunder-sub.html' },
+            { id: 'python_dunder_mul', title: "__mul__", file: 'dunder-mul.html' },
+            { id: 'python_dunder_truediv', title: "__truediv__", file: 'dunder-truediv.html' },
+            { id: 'python_dunder_floordiv', title: "__floordiv__", file: 'dunder-floordiv.html' },
+            { id: 'python_dunder_mod', title: "__mod__", file: 'dunder-mod.html' },
+            { id: 'python_dunder_pow', title: "__pow__", file: 'dunder-pow.html' },
+            { id: 'python_dunder_contains', title: "__contains__", file: 'dunder-contains.html' },
+            { id: 'python_dunder_getitem', title: "__getitem__", file: 'dunder-getitem.html' },
+            { id: 'python_dunder_setitem', title: "__setitem__", file: 'dunder-setitem.html' },
+            { id: 'python_dunder_delitem', title: "__delitem__", file: 'dunder-delitem.html' },
+            { id: 'python_dunder_iter', title: "__iter__", file: 'dunder-iter.html' },
+            { id: 'python_dunder_next', title: "__next__", file: 'dunder-next.html' },
+            { id: 'python_dunder_call', title: "__call__", file: 'dunder-call.html' },
+            { id: 'python_dunder_enter', title: "__enter__", file: 'dunder-enter.html' },
+            { id: 'python_dunder_exit', title: "__exit__", file: 'dunder-exit.html' },
+            { id: 'python_dunder_hash', title: "__hash__", file: 'dunder-hash.html' },
+            { id: 'python_dunder_getattr', title: "__getattr__", file: 'dunder-getattr.html' },
+            { id: 'python_dunder_getattribute', title: "__getattribute__", file: 'dunder-getattribute.html' },
+            { id: 'python_dunder_setattr', title: "__setattr__", file: 'dunder-setattr.html' },
+            { id: 'python_operator_overloading', title: "Operator overloading", file: 'operator-overloading.html' },
+            { id: 'python_custom_containers', title: "Custom containers", file: 'custom-containers.html' },
+            // Module 18: Exception Handling
+            { id: 'python_errors_vs_exceptions', title: "Errors vs exceptions", file: 'errors-vs-exceptions.html' },
+            { id: 'python_syntax_errors_exceptions', title: "Syntax errors", file: 'syntax-errors-exceptions.html' },
+            { id: 'python_runtime_errors_exceptions', title: "Runtime errors", file: 'runtime-errors-exceptions.html' },
+            { id: 'python_logical_errors_exceptions', title: "Logical errors", file: 'logical-errors-exceptions.html' },
+            { id: 'python_builtin_exceptions', title: "Built-in exceptions", file: 'builtin-exceptions.html' },
+            { id: 'python_try_block', title: "try", file: 'try-block.html' },
+            { id: 'python_except_block', title: "except", file: 'except-block.html' },
+            { id: 'python_else_block_exceptions', title: "else", file: 'else-block-exceptions.html' },
+            { id: 'python_finally_block', title: "finally", file: 'finally-block.html' },
+            { id: 'python_multiple_exceptions', title: "Multiple exceptions", file: 'multiple-exceptions.html' },
+            { id: 'python_exception_hierarchy', title: "Exception hierarchy", file: 'exception-hierarchy.html' },
+            { id: 'python_catching_specific_exceptions', title: "Catching specific exceptions", file: 'catching-specific-exceptions.html' },
+            { id: 'python_generic_exception_handling', title: "Generic exception handling", file: 'generic-exception-handling.html' },
+            { id: 'python_raise_statement', title: "raise", file: 'raise-statement.html' },
+            { id: 'python_custom_exceptions', title: "Custom exceptions", file: 'custom-exceptions.html' },
+            { id: 'python_exception_chaining', title: "Exception chaining", file: 'exception-chaining.html' },
+            { id: 'python_from_keyword_exceptions', title: "from", file: 'from-keyword-exceptions.html' },
+            { id: 'python_assert_statement', title: "assert", file: 'assert-statement.html' },
+            { id: 'python_assertion_error', title: "AssertionError", file: 'assertion-error.html' },
+            { id: 'python_creating_custom_exception_classes', title: "Creating custom exception classes", file: 'creating-custom-exception-classes.html' },
+            { id: 'python_exception_handling_best_practices', title: "Best practices for exception handling", file: 'exception-handling-best-practices.html' },
+            // Module 19: Modules
+            { id: 'python_what_is_a_module', title: "What is a module?", file: 'what-is-a-module.html' },
+            { id: 'python_creating_modules', title: "Creating modules", file: 'creating-modules.html' },
+            { id: 'python_importing_modules', title: "Importing modules", file: 'importing-modules.html' },
+            { id: 'python_import_statement', title: "import", file: 'import-statement.html' },
+            { id: 'python_from_import_statement', title: "from ... import", file: 'from-import-statement.html' },
+            { id: 'python_import_aliases', title: "Import aliases", file: 'import-aliases.html' },
+            { id: 'python_as_keyword_imports', title: "as", file: 'as-keyword-imports.html' },
+            { id: 'python_module_namespaces_import', title: "Module namespaces", file: 'module-namespaces-import.html' },
+            { id: 'python_dunder_name', title: "__name__", file: 'dunder-name.html' },
+            { id: 'python_if_name_main', title: "if __name__ == '__main__'", file: 'if-name-main.html' },
+            { id: 'python_module_search_path', title: "Module search path", file: 'module-search-path.html' },
+            { id: 'python_sys_path', title: "sys.path", file: 'sys-path.html' },
+            { id: 'python_standard_library_overview', title: "Standard library", file: 'standard-library-overview.html' },
+            { id: 'python_third_party_modules', title: "Third-party modules", file: 'third-party-modules.html' },
+            { id: 'python_circular_imports', title: "Circular imports", file: 'circular-imports.html' },
+            { id: 'python_import_best_practices', title: "Import best practices", file: 'import-best-practices.html' },
+            // Module 20: Packages
+            { id: 'python_what_is_a_package', title: "What is a package?", file: 'what-is-a-package.html' },
+            { id: 'python_package_structure', title: "Package structure", file: 'package-structure.html' },
+            { id: 'python_subpackages', title: "Subpackages", file: 'subpackages.html' },
+            { id: 'python_dunder_init_py', title: "__init__.py", file: 'dunder-init-py.html' },
+            { id: 'python_absolute_imports', title: "Absolute imports", file: 'absolute-imports.html' },
+            { id: 'python_relative_imports', title: "Relative imports", file: 'relative-imports.html' },
+            { id: 'python_package_imports', title: "Package imports", file: 'package-imports.html' },
+            { id: 'python_namespace_packages', title: "Namespace packages", file: 'namespace-packages.html' },
+            { id: 'python_package_organization', title: "Package organization", file: 'package-organization.html' },
+            { id: 'python_python_project_structure', title: "Python project structure", file: 'python-project-structure.html' },
+            // Module 21: Python Standard Library
+            { id: 'python_math_module', title: "math", file: 'math-module.html' },
+            { id: 'python_statistics_module', title: "statistics", file: 'statistics-module.html' },
+            { id: 'python_random_module', title: "random", file: 'random-module.html' },
+            { id: 'python_decimal_module', title: "decimal", file: 'decimal-module.html' },
+            { id: 'python_fractions_module', title: "fractions", file: 'fractions-module.html' },
+            { id: 'python_datetime_module', title: "datetime", file: 'datetime-module.html' },
+            { id: 'python_time_module', title: "time", file: 'time-module.html' },
+            { id: 'python_calendar_module', title: "calendar", file: 'calendar-module.html' },
+            { id: 'python_collections_module', title: "collections", file: 'collections-module.html' },
+            { id: 'python_itertools_module', title: "itertools", file: 'itertools-module.html' },
+            { id: 'python_functools_module', title: "functools", file: 'functools-module.html' },
+            { id: 'python_operator_module', title: "operator", file: 'operator-module.html' },
+            { id: 'python_os_module', title: "os", file: 'os-module.html' },
+            { id: 'python_sys_module', title: "sys", file: 'sys-module.html' },
+            { id: 'python_pathlib_module', title: "pathlib", file: 'pathlib-module.html' },
+            { id: 'python_shutil_module', title: "shutil", file: 'shutil-module.html' },
+            { id: 'python_glob_module', title: "glob", file: 'glob-module.html' },
+            { id: 'python_re_module', title: "re", file: 're-module.html' },
+            { id: 'python_json_module', title: "json", file: 'json-module.html' },
+            { id: 'python_csv_module', title: "csv", file: 'csv-module.html' },
+            { id: 'python_sqlite3_module', title: "sqlite3", file: 'sqlite3-module.html' },
+            { id: 'python_pickle_module', title: "pickle", file: 'pickle-module.html' },
+            { id: 'python_shelve_module', title: "shelve", file: 'shelve-module.html' },
+            { id: 'python_subprocess_module', title: "subprocess", file: 'subprocess-module.html' },
+            { id: 'python_argparse_module', title: "argparse", file: 'argparse-module.html' },
+            { id: 'python_logging_module', title: "logging", file: 'logging-module.html' },
+            { id: 'python_configparser_module', title: "configparser", file: 'configparser-module.html' },
+            { id: 'python_secrets_module', title: "secrets", file: 'secrets-module.html' },
+            { id: 'python_hashlib_module', title: "hashlib", file: 'hashlib-module.html' },
+            { id: 'python_uuid_module', title: "uuid", file: 'uuid-module.html' },
+            { id: 'python_enum_module', title: "enum", file: 'enum-module.html' },
+            { id: 'python_dataclasses_stdlib', title: "dataclasses", file: 'dataclasses-stdlib.html' },
+            { id: 'python_typing_module', title: "typing", file: 'typing-module.html' },
+            { id: 'python_abc_stdlib', title: "abc", file: 'abc-stdlib.html' },
+            { id: 'python_contextlib_module', title: "contextlib", file: 'contextlib-module.html' },
+            { id: 'python_traceback_module', title: "traceback", file: 'traceback-module.html' },
+            { id: 'python_warnings_module', title: "warnings", file: 'warnings-module.html' },
+            { id: 'python_copy_module', title: "copy", file: 'copy-module.html' },
+            { id: 'python_pprint_module', title: "pprint", file: 'pprint-module.html' },
+            { id: 'python_textwrap_module', title: "textwrap", file: 'textwrap-module.html' },
+            { id: 'python_string_module', title: "string", file: 'string-module.html' },
+            { id: 'python_platform_module', title: "platform", file: 'platform-module.html' },
+            // Module 22: File Handling
+            { id: 'python_files_and_directories', title: "Files and directories", file: 'files-and-directories.html' },
+            { id: 'python_file_paths', title: "File paths", file: 'file-paths.html' },
+            { id: 'python_relative_paths', title: "Relative paths", file: 'relative-paths.html' },
+            { id: 'python_absolute_paths', title: "Absolute paths", file: 'absolute-paths.html' },
+            { id: 'python_opening_files', title: "Opening files", file: 'opening-files.html' },
+            { id: 'python_open_function', title: "open()", file: 'open-function.html' },
+            { id: 'python_file_read_mode', title: "Read mode", file: 'file-read-mode.html' },
+            { id: 'python_file_write_mode', title: "Write mode", file: 'file-write-mode.html' },
+            { id: 'python_file_append_mode', title: "Append mode", file: 'file-append-mode.html' },
+            { id: 'python_file_binary_mode', title: "Binary mode", file: 'file-binary-mode.html' },
+            { id: 'python_file_text_mode', title: "Text mode", file: 'file-text-mode.html' },
+            { id: 'python_reading_files', title: "Reading files", file: 'reading-files.html' },
+            { id: 'python_read_method', title: "read()", file: 'read-method.html' },
+            { id: 'python_readline_method', title: "readline()", file: 'readline-method.html' },
+            { id: 'python_readlines_method', title: "readlines()", file: 'readlines-method.html' },
+            { id: 'python_iterating_files', title: "Iterating files", file: 'iterating-files.html' },
+            { id: 'python_writing_files', title: "Writing files", file: 'writing-files.html' },
+            { id: 'python_write_method', title: "write()", file: 'write-method.html' },
+            { id: 'python_writelines_method', title: "writelines()", file: 'writelines-method.html' },
+            { id: 'python_file_cursor', title: "File cursor", file: 'file-cursor.html' },
+            { id: 'python_seek_method', title: "seek()", file: 'seek-method.html' },
+            { id: 'python_tell_method', title: "tell()", file: 'tell-method.html' },
+            { id: 'python_closing_files', title: "Closing files", file: 'closing-files.html' },
+            { id: 'python_context_managers_files', title: "Context managers", file: 'context-managers-files.html' },
+            { id: 'python_with_statement_files', title: "with", file: 'with-statement-files.html' },
+            { id: 'python_file_encoding', title: "File encoding", file: 'file-encoding.html' },
+            { id: 'python_utf8_file_encoding', title: "UTF-8", file: 'utf8-file-encoding.html' },
+            { id: 'python_file_error_handling', title: "Error handling", file: 'file-error-handling.html' },
+            { id: 'python_pathlib_file_handling', title: "pathlib", file: 'pathlib-file-handling.html' },
+            { id: 'python_creating_directories', title: "Creating directories", file: 'creating-directories.html' },
+            { id: 'python_renaming_files', title: "Renaming files", file: 'renaming-files.html' },
+            { id: 'python_moving_files', title: "Moving files", file: 'moving-files.html' },
+            { id: 'python_copying_files', title: "Copying files", file: 'copying-files.html' },
+            { id: 'python_deleting_files', title: "Deleting files", file: 'deleting-files.html' },
         ]
     }
 };
@@ -3203,13 +4040,19 @@ function getScopedLessonKey(userId, lessonId, courseId) {
                 clean.startsWith('c_') ||
                 (typeof window !== 'undefined' && window.location.pathname.replace(/\\/g, '/').toLowerCase().includes('/c/'));
 
+    const isPython = courseId === 'python_programming' ||
+                    clean.startsWith('python_') ||
+                    (typeof window !== 'undefined' && window.location.pathname.replace(/\\/g, '/').toLowerCase().includes('/python/'));
+
     if (isEtl) {
         cPrefix = 'etl';
     } else if (isC) {
         cPrefix = 'c';
+    } else if (isPython) {
+        cPrefix = 'python';
     }
 
-    clean = clean.replace(/^(sql_|etl_|c_)/, '').replace(/[-_]/g, '_');
+    clean = clean.replace(/^(sql_|etl_|c_|python_|pf_)/, '').replace(/[-_]/g, '_');
     const scopedKey = `edmith_lesson_done_${safeUser}_${cPrefix}_${clean}`;
 
     // Backward-compatibility and cross-alias migration
@@ -3343,7 +4186,7 @@ async function fetchUserProgressFromSupabase(userId) {
         if (Array.isArray(lessonRows)) {
             lessonRows.forEach(lp => {
                 if (lp.completed && lp.lesson_id) {
-                    const cId = lp.course_id || (lp.lesson_id.startsWith('etl_') ? 'etl_testing' : (lp.lesson_id.startsWith('c_') ? 'c_programming' : 'sql_mastery'));
+                    const cId = lp.course_id || (lp.lesson_id.startsWith('etl_') ? 'etl_testing' : (lp.lesson_id.startsWith('c_') ? 'c_programming' : (lp.lesson_id.startsWith('python_') ? 'python_programming' : 'sql_mastery')));
                     const cleanLesson = lp.lesson_id.replace(/^(sql_|etl_|c_)/, '');
                     localStorage.setItem(getScopedLessonKey(userId, cleanLesson, cId), 'true');
                 }
@@ -3706,8 +4549,8 @@ async function initContinueLearningSection() {
             </div>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
                 ${activeCards.map(p => {
-                    const courseFolder = p.course_id === 'etl_testing' ? 'etl/' : (p.course_id === 'c_programming' ? 'c/' : 'sql/');
-                    const fallbackFile = p.course_id === 'c_programming' ? 'what-is-programming.html' : (p.course_id === 'etl_testing' ? 'what-is-data.html' : 'intro.html');
+                    const courseFolder = p.course_id === 'etl_testing' ? 'etl/' : (p.course_id === 'c_programming' ? 'c/' : (p.course_id === 'python_programming' ? 'python/' : 'sql/'));
+                    const fallbackFile = p.course_id === 'python_programming' ? 'what-is-programming.html' : (p.course_id === 'c_programming' ? 'what-is-programming.html' : (p.course_id === 'etl_testing' ? 'what-is-data.html' : 'intro.html'));
                     const targetFile = p.next_lesson_file || fallbackFile;
                     const continueUrl = `${courseFolder}${targetFile}`;
                     return `
@@ -3742,17 +4585,20 @@ async function initContinueLearningSection() {
 
 // 4. Collapsible Sidebar Modules (Accordion with Hamburger & Chevron)
 function initCollapsibleModules() {
-    const moduleHeaders = document.querySelectorAll('.sidebar-module-header');
+    const moduleHeaders = document.querySelectorAll('.course-sidebar-nav .sidebar-module-header');
     if (!moduleHeaders.length) return;
 
     moduleHeaders.forEach(header => {
+        if (header.dataset.collapseBound) return;
+        header.dataset.collapseBound = 'true';
+
         header.addEventListener('click', function(e) {
             e.preventDefault();
             const group = this.closest('.sidebar-module-group');
             if (!group) return;
 
             const isCollapsed = group.classList.toggle('collapsed');
-            this.setAttribute('aria-expanded', !isCollapsed);
+            this.setAttribute('aria-expanded', String(!isCollapsed));
         });
     });
 

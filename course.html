@@ -55,7 +55,14 @@
             }
         })();
     </script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -111,6 +118,18 @@
     <section class="catalog-section">
         <div class="catalog-grid" id="catalogGrid">
             
+            <!-- Programming: Fundamentals (Live Course) -->
+            <div class="catalog-card" data-category="programming" data-title="programming fundamentals computer science algorithms flowcharts">
+                <div class="catalog-img" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="catalog-info">
+                    <h3>Programming Fundamentals</h3>
+                    <p>Master universal computer science principles, computational thinking, algorithms, flowcharts, and debugging across 24 structured lessons.</p>
+                    <a href="fundamentals/index.html" class="btn-visit">Visit Course</a>
+                </div>
+            </div>
+
             <!-- Data Engineer: SQL (Live Course) -->
             <div class="catalog-card" data-category="data-engineer" data-title="sql databases">
                 <div class="catalog-img" style="background: linear-gradient(135deg, #e0c3fc, #8ec5fc);">
@@ -130,32 +149,32 @@
                 </div>
                 <div class="catalog-info">
                     <h3>ETL Testing &amp; Data Warehouse</h3>
-                    <p>Master data extraction, transformation validation, DWH architectures, schemas, SCDs, and STTM testing.</p>
+                    <p>Master data extraction, transformation validation, DWH architectures, schemas, SCDs, and STTM testing across 592 lessons.</p>
                     <a href="etl/index.html" class="btn-visit">Visit Course</a>
                 </div>
             </div>
 
-            <!-- Programming: C -->
+            <!-- Programming: C (Live Course) -->
             <div class="catalog-card" data-category="programming" data-title="c programming language">
                 <div class="catalog-img" style="background: linear-gradient(135deg, #84fab0, #8fd3f4);">
                     <i class="fas fa-c"></i>
                 </div>
                 <div class="catalog-info">
                     <h3>C Programming</h3>
-                    <p>Master memory management, pointers, and core computer science fundamentals.</p>
+                    <p>Master memory management, pointers, and systems programming across 276 structured lessons.</p>
                     <a href="c/index.html" class="btn-visit">Visit Course</a>
                 </div>
             </div>
 
-            <!-- Programming & Data Engineer: Python -->
+            <!-- Programming & Data Engineer: Python (Live Course) -->
             <div class="catalog-card" data-category="programming data-engineer" data-title="python programming">
                 <div class="catalog-img" style="background: linear-gradient(135deg, #fccb90, #d57eeb);">
                     <i class="fab fa-python"></i>
                 </div>
                 <div class="catalog-info">
                     <h3>Python Mastery</h3>
-                    <p>Learn data structures, automation, backend APIs, and scripting from the ground up.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Python Mastery curriculum is in preparation! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <p>Learn data structures, OOP, functional patterns, automation, and scripting across 589 interactive lessons.</p>
+                    <a href="python/index.html" class="btn-visit">Visit Course</a>
                 </div>
             </div>
 
@@ -165,9 +184,12 @@
                     <i class="fab fa-java"></i>
                 </div>
                 <div class="catalog-info">
-                    <h3>Java Enterprise</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <h3 style="margin-bottom:0;">Java Enterprise</h3>
+                        <span class="badge-coming-soon">Coming Soon</span>
+                    </div>
                     <p>Build scalable applications, concurrency pipelines, and master Object-Oriented Design.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Java Enterprise curriculum is launching soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <span class="btn-visit btn-coming-soon"><i class="fas fa-clock" style="margin-right: 6px;"></i> Launching Soon</span>
                 </div>
             </div>
 
@@ -177,9 +199,12 @@
                     <i class="fas fa-file-excel"></i>
                 </div>
                 <div class="catalog-info">
-                    <h3>Advanced Excel</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <h3 style="margin-bottom:0;">Advanced Excel</h3>
+                        <span class="badge-coming-soon">Coming Soon</span>
+                    </div>
                     <p>Master PivotTables, XLOOKUP, Power Query, Macros, and Business Analytics.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Advanced Excel is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <span class="btn-visit btn-coming-soon"><i class="fas fa-clock" style="margin-right: 6px;"></i> Launching Soon</span>
                 </div>
             </div>
 
@@ -189,9 +214,12 @@
                     <i class="fas fa-chart-pie"></i>
                 </div>
                 <div class="catalog-info">
-                    <h3>Power BI Mastery</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <h3 style="margin-bottom:0;">Power BI Mastery</h3>
+                        <span class="badge-coming-soon">Coming Soon</span>
+                    </div>
                     <p>Create interactive dashboards, DAX formulas, and stunning data storytelling models.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Power BI Mastery is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <span class="btn-visit btn-coming-soon"><i class="fas fa-clock" style="margin-right: 6px;"></i> Launching Soon</span>
                 </div>
             </div>
 
@@ -201,9 +229,12 @@
                     <i class="fab fa-microsoft"></i>
                 </div>
                 <div class="catalog-info">
-                    <h3>Microsoft Azure</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <h3 style="margin-bottom:0;">Microsoft Azure</h3>
+                        <span class="badge-coming-soon">Coming Soon</span>
+                    </div>
                     <p>Deploy cloud apps, manage storage blobs, virtual machines, and Data Factory pipelines.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Microsoft Azure course is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <span class="btn-visit btn-coming-soon"><i class="fas fa-clock" style="margin-right: 6px;"></i> Launching Soon</span>
                 </div>
             </div>
 
@@ -213,9 +244,12 @@
                     <i class="fas fa-vial"></i>
                 </div>
                 <div class="catalog-info">
-                    <h3>Software Testing (QA)</h3>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
+                        <h3 style="margin-bottom:0;">Software Testing (QA)</h3>
+                        <span class="badge-coming-soon">Coming Soon</span>
+                    </div>
                     <p>Master manual test design, Selenium automation, test cases, and Jira defect lifecycle.</p>
-                    <a href="sql/index.html" class="btn-visit" onclick="alert('Software Testing QA is coming soon! Check out SQL Mastery in the meantime.');">Preview Course</a>
+                    <span class="btn-visit btn-coming-soon"><i class="fas fa-clock" style="margin-right: 6px;"></i> Launching Soon</span>
                 </div>
             </div>
 
@@ -229,6 +263,7 @@
     <footer id="site-footer"></footer>
 
     <script src="components/components.js"></script>
+    <script src="javascript/auth-modal.js"></script>
     <script src="javascript/script.js"></script>
 </body>
 </html>

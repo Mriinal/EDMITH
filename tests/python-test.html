@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python Programming MCQ Assessment — Test your knowledge with 15 non-repeating timed questions on EDMITH.">
+    <title>Python MCQ Assessment | EDMITH</title>
+
+    <script>
+        (function(){
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
+
+    <main class="sql-test-page" data-subject="python_programming">
+        
+        <!-- Eligibility / Incomplete Course Warning -->
+        <div id="courseEligibilityAlert" class="sql-test-card" style="display: none; padding: 2.5rem; text-align: center; margin-bottom: 2rem;">
+            <div style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;"><i class="fas fa-lock"></i></div>
+            <h2 style="margin-bottom: 0.5rem;">Course Completion Required</h2>
+            <p style="color: var(--text-secondary); max-width: 540px; margin: 0 auto 1.5rem;" id="eligibilityMessage">
+                You must complete at least 15% of the Python course before starting tests.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="../python/index.html" class="btn-enroll" id="continueCourseBtn"><i class="fas fa-book-open"></i> Continue Course</a>
+                <a href="index.html" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Tests Hub</a>
+            </div>
+        </div>
+
+        <section class="sql-test-card" id="testCardContainer" aria-labelledby="testTitle">
+            
+            <!-- Setup & Round Selection Screen -->
+            <div id="levelScreen" class="sql-level-screen">
+                <div class="sql-test-breadcrumb"><a href="../python/index.html">Python Programming</a> &gt; <a href="index.html">Tests Hub</a> &gt; Python MCQ Assessment</div>
+                <h1 id="testTitle">PYTHON PROGRAMMING MCQ ASSESSMENT</h1>
+                <p>Choose your difficulty level and round. Each test presents 15 unique timed questions without repetition across rounds.</p>
+                
+                <div id="examAlert" class="sql-test-alert" role="alert" hidden></div>
+
+                <h3 style="font-size: 1.05rem; margin: 1.5rem 0 0.75rem;">1. Select Difficulty</h3>
+                <div class="sql-level-grid" role="radiogroup" aria-label="Choose exam level">
+                    <button type="button" class="sql-level-card" data-level="easy" aria-pressed="false">
+                        <strong>Easy</strong>
+                        <span>1 Mark/Question · Fundamental syntax, variables, lists &amp; logic</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-level="medium" aria-pressed="false">
+                        <strong>Medium</strong>
+                        <span>3 Marks/Question · Comprehensions, functions, file I/O &amp; exceptions</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-level="hard" aria-pressed="false">
+                        <strong>Hard</strong>
+                        <span>6 Marks/Question · OOP dunder protocols, descriptors, GIL &amp; asyncio</span>
+                    </button>
+                </div>
+
+                <h3 style="font-size: 1.05rem; margin: 1.5rem 0 0.75rem;">2. Select Round</h3>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem;" id="roundSelector">
+                    <button type="button" class="sql-level-card is-selected" data-round="1" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 1</strong>
+                        <span>Questions 1–15</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="2" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 2</strong>
+                        <span>Questions 16–30</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="3" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 3</strong>
+                        <span>Questions 31–45</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="4" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 4</strong>
+                        <span>Questions 46–60</span>
+                    </button>
+                    <button type="button" class="sql-level-card" data-round="5" style="flex: 1; padding: 1rem; text-align: center;">
+                        <strong>Round 5</strong>
+                        <span>Questions 61–75</span>
+                    </button>
+                </div>
+
+                <button class="btn-enroll sql-start-btn" id="startButton" type="button" disabled>
+                    <i class="fas fa-play"></i> Start Python Test
+                </button>
+            </div>
+
+            <!-- Active Exam Screen -->
+            <div id="examScreen" hidden>
+                <div class="sql-test-header">
+                    <div>
+                        <div class="sql-test-breadcrumb"><a href="../python/index.html">Python</a> &gt; <a href="index.html">Tests</a></div>
+                        <h2 style="font-size: 1.5rem; margin-top: 0.25rem;">PYTHON MCQ ASSESSMENT</h2>
+                        <p id="levelLabel">Level: —</p>
+                    </div>
+                    <div class="sql-test-status">
+                        <span id="questionCounter">Question 1 of 15</span>
+                        <span id="timer" role="timer" aria-live="polite">00:30</span>
+                    </div>
+                </div>
+
+                <div class="sql-progress" aria-hidden="true">
+                    <span id="progressBar"></span>
+                </div>
+
+                <form id="questionForm" novalidate>
+                    <div id="questionContent"></div>
+                    <div class="sql-test-actions">
+                        <a class="btn-outline" href="index.html"><i class="fas fa-arrow-left"></i> Exit Test</a>
+                        <button class="btn-enroll" id="nextButton" type="submit">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Result Modal -->
+    <div class="sql-result-overlay" id="resultModal" hidden aria-hidden="true">
+        <div class="sql-result-modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+            <button class="sql-result-close" id="resultClose" type="button" aria-label="Close result"><i class="fas fa-times"></i></button>
+            <div class="sql-result-icon"><i class="fas fa-trophy"></i></div>
+            <h2 id="resultTitle">🎉 Python Test Completed!</h2>
+            <p class="sql-result-exam-name">Python Assessment · <span id="resultLevel">Level: —</span></p>
+            <div class="sql-result-grid">
+                <div><span>Score</span><strong id="resultScore">0 / 15</strong></div>
+                <div><span>Percentage</span><strong id="resultPercentage">0%</strong></div>
+                <div><span>Rating</span><strong id="resultRating">Below Average</strong></div>
+                <div><span>Correct Answers</span><strong id="resultCorrect">0</strong></div>
+                <div><span>Incorrect Answers</span><strong id="resultIncorrect">0</strong></div>
+                <div><span>Unanswered</span><strong id="resultUnanswered">0</strong></div>
+                <div><span>Time Taken</span><strong id="resultTime">0:00</strong></div>
+            </div>
+            <p class="sql-save-status" id="saveStatus" role="status"></p>
+            <div class="sql-result-actions">
+                <button class="btn-enroll" id="retryButton" type="button"><i class="fas fa-redo"></i> Retry Test</button>
+                <a class="btn-outline" href="../users/profile.html#completed-tests"><i class="fas fa-id-badge"></i> View in Profile</a>
+                <a class="btn-outline" href="index.html"><i class="fas fa-list"></i> Central Tests</a>
+                <a class="btn-outline" href="../Leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../components/components.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/sql-exam-engine.js"></script>
+    <script src="../javascript/python-test-questions.js"></script>
+    <script src="../javascript/multi-test-page.js"></script>
+</body>
+</html>

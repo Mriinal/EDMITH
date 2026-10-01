@@ -1,22 +1,481 @@
 /**
- * EDMITH - User Profile Dashboard Stylesheet
+ * EDMITH - World-Class User Profile & Developer Passport Stylesheet
+ * Crafted for premium visual hierarchy, glassmorphism, dynamic gradients,
+ * micro-interactions, dark/light harmony, and executive dashboard analytics.
  */
 
+/* ==========================================================================
+   1. DASHBOARD CONTAINER & LAYOUT FOUNDATIONS
+   ========================================================================== */
+
 .profile-dashboard {
-    max-width: 1040px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 100px 20px 60px;
+    padding: 110px 24px 80px;
+    position: relative;
+    box-sizing: border-box;
 }
 
-/* Stats Overview Grid */
+/* Ambient backdrop lighting */
+.profile-dashboard::before {
+    content: '';
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 1000px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(121, 63, 224, 0.12) 0%, rgba(59, 130, 246, 0.05) 50%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Common Card Base */
+.profile-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s ease, 
+                border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.profile-card:hover {
+    border-color: rgba(121, 63, 224, 0.4);
+    box-shadow: 0 12px 32px rgba(121, 63, 224, 0.09);
+}
+
+.profile-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 1.2rem 1.6rem;
+    border-bottom: 1px solid var(--card-border);
+    background: linear-gradient(180deg, rgba(121, 63, 224, 0.04) 0%, transparent 100%);
+}
+
+.profile-card-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+}
+
+.profile-card-title-group i {
+    color: var(--accent);
+    font-size: 1.15rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--accent-subtle);
+}
+
+.profile-card-body {
+    padding: 1.6rem;
+}
+
+
+/* ==========================================================================
+   2. HERO PASSPORT — EXECUTIVE LEARNER PROFILE BANNER
+   ========================================================================== */
+
+.profile-passport-hero {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 2rem 2.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 16px 40px -10px rgba(121, 63, 224, 0.12), var(--shadow-sm);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    backdrop-filter: blur(16px);
+}
+
+/* Top iridescent neon highlight sweep */
+.profile-passport-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #793fe4, #3b82f6, #10b981, #f59e0b, #793fe4);
+    background-size: 300% 100%;
+    animation: neonSweep 8s linear infinite;
+}
+
+@keyframes neonSweep {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ambient hero glow */
+.profile-passport-hero::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(121, 63, 224, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.passport-left {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Avatar with gradient ring and active status indicator */
+.passport-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.passport-avatar {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #793fe4 0%, #9b6ff0 50%, #3b82f6 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    box-shadow: 0 10px 25px rgba(121, 63, 224, 0.35);
+    border: 3.5px solid var(--card-bg);
+    transition: transform 0.3s ease;
+}
+
+.passport-avatar-wrap:hover .passport-avatar {
+    transform: scale(1.04) rotate(2deg);
+}
+
+.avatar-status-dot {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #10b981;
+    border: 3px solid var(--card-bg);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.passport-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.passport-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.passport-name {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.passport-verified-badge {
+    color: #3b82f6;
+    font-size: 1.15rem;
+    display: inline-flex;
+    align-items: center;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+.passport-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    flex-wrap: wrap;
+}
+
+.passport-username {
+    color: var(--accent);
+    font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.passport-meta-sep {
+    opacity: 0.4;
+}
+
+.passport-email {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Passport Badge / Attributes Strip */
+.passport-chips-strip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.passport-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.passport-chip i {
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.passport-chip.rank-chip {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #d97706;
+}
+
+.passport-chip.rank-chip i {
+    color: #f59e0b;
+}
+
+.passport-chip.pro-chip {
+    background: linear-gradient(135deg, rgba(121, 63, 224, 0.15) 0%, rgba(121, 63, 224, 0.05) 100%);
+    border-color: rgba(121, 63, 224, 0.4);
+    color: var(--accent);
+}
+
+/* Passport Action Command Bar */
+.passport-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.85rem;
+}
+
+.passport-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.passport-btn-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.passport-btn-edit:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(121, 63, 224, 0.35);
+}
+
+.passport-btn-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    color: #ef4444;
+    border: 1.5px solid rgba(239, 68, 68, 0.35);
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.22s ease;
+}
+
+.passport-btn-logout:hover {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: #ef4444;
+    color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(239, 68, 68, 0.2);
+}
+
+.passport-level-tag {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.passport-level-tag span {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+
+/* ==========================================================================
+   3. MODERN SEGMENTED TAB CONTROLLER
+   ========================================================================== */
+
+.profile-tabs-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 6px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 2;
+}
+
+.profile-tabs-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    text-decoration: none;
+    user-select: none;
+}
+
+.profile-tab-btn i {
+    font-size: 0.95rem;
+    transition: transform 0.2s ease;
+}
+
+.profile-tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    transform: translateY(-1px);
+}
+
+.profile-tab-btn:hover i {
+    transform: scale(1.1);
+}
+
+.profile-tab-btn.active {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, var(--accent) 0%, #632EC2 100%);
+    box-shadow: 0 6px 20px rgba(121, 63, 224, 0.35);
+}
+
+.profile-tab-btn.active i {
+    color: #ffffff !important;
+}
+
+.profile-tab-btn .tab-badge {
+    background: rgba(121, 63, 224, 0.15);
+    color: var(--accent);
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+    min-width: 18px;
+    text-align: center;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+}
+
+.profile-tab-btn.active .tab-badge {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+.profile-tab-pane {
+    display: none;
+}
+
+.profile-tab-pane.active {
+    display: block;
+    animation: tabFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   4. EXECUTIVE KPI STAT TILES
+   ========================================================================== */
+
 .profile-stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
     margin-bottom: 2rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 992px) {
     .profile-stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -32,184 +491,916 @@
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-lg);
-    padding: 1.25rem 1.5rem;
+    padding: 1.4rem 1.5rem;
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.2rem;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
 .profile-stat-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(121, 63, 224, 0.12);
 }
 
+.profile-stat-card:hover::before {
+    opacity: 1;
+}
+
+.profile-stat-card:nth-child(1)::before { background: #793fe4; }
+.profile-stat-card:nth-child(2)::before { background: #10b981; }
+.profile-stat-card:nth-child(3)::before { background: #3b82f6; }
+.profile-stat-card:nth-child(4)::before { background: #f59e0b; }
+
 .profile-stat-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-md);
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
 }
 
-.icon-purple { background: rgba(121, 63, 224, 0.12); color: #793fe4; }
-.icon-emerald { background: rgba(16, 185, 129, 0.12); color: #10b981; }
-.icon-amber { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
-.icon-blue { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+.icon-purple {
+    background: linear-gradient(135deg, rgba(121, 63, 224, 0.18) 0%, rgba(121, 63, 224, 0.08) 100%);
+    color: #793fe4;
+    border: 1px solid rgba(121, 63, 224, 0.25);
+}
+
+.icon-emerald {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(16, 185, 129, 0.08) 100%);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.icon-blue {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0.08) 100%);
+    color: #3b82f6;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.icon-amber {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(245, 158, 11, 0.08) 100%);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.profile-stat-data {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex-grow: 1;
+}
 
 .profile-stat-data span {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.profile-stat-data strong {
+    font-size: 1.65rem;
+    color: var(--text-primary);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+}
+
+.kpi-trend {
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.kpi-trend.positive { color: #10b981; }
+.kpi-trend.gold { color: #f59e0b; }
+
+
+/* ==========================================================================
+   5. BALANCED TWO-COLUMN DASHBOARD GRID
+   ========================================================================== */
+
+.profile-main-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 960px) {
+    .profile-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================================================
+   6. CURRICULUM PROGRESS CARDS (LEFT COLUMN)
+   ========================================================================== */
+
+.progress-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.progress-course-card {
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.35rem 1.4rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-sizing: border-box;
+}
+
+.progress-course-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.1);
+    transform: translateY(-2px);
+    background: var(--card-bg);
+}
+
+.progress-course-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.progress-course-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
+.progress-course-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    border: 1px solid rgba(121, 63, 224, 0.2);
+}
+
+/* Distinct Track Colors */
+.progress-course-card[data-course-id="sql_mastery"] .progress-course-icon {
+    background: rgba(59, 130, 246, 0.12);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.progress-course-card[data-course-id="etl_testing"] .progress-course-icon {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.progress-course-card[data-course-id="programming_fundamentals"] .progress-course-icon {
+    background: rgba(236, 72, 153, 0.12);
+    color: #ec4899;
+    border-color: rgba(236, 72, 153, 0.3);
+}
+
+.progress-course-card[data-course-id="c_programming"] .progress-course-icon {
+    background: rgba(99, 102, 241, 0.12);
+    color: #6366f1;
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.progress-course-card[data-course-id="python_programming"] .progress-course-icon {
+    background: rgba(245, 158, 11, 0.12);
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.progress-course-title {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 3px;
+    letter-spacing: -0.2px;
+}
+
+.progress-course-meta {
     font-size: 0.8rem;
     color: var(--text-secondary);
     display: block;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
-.profile-stat-data strong {
-    font-size: 1.5rem;
-    color: var(--text-primary);
+.progress-percentage-badge {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.88rem;
     font-weight: 800;
-    line-height: 1.2;
+    font-family: var(--font-mono);
+    border: 1px solid rgba(121, 63, 224, 0.25);
+    flex-shrink: 0;
 }
 
-/* Difficulty Cards Row */
+.completed-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 0.84rem;
+    font-weight: 800;
+}
+
+/* Shiny Animated Progress Bar */
+.progress-bar-wrap {
+    width: 100%;
+    height: 9px;
+    background: var(--bg-secondary);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+    border: 1px solid rgba(121, 63, 224, 0.08);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, #a855f7 50%, #3b82f6 100%);
+    border-radius: 999px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: barShine 3s infinite;
+}
+
+@keyframes barShine {
+    0% { left: -100%; }
+    40% { left: 100%; }
+    100% { left: 100%; }
+}
+
+.progress-footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.progress-lessons-count {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.progress-lessons-count i {
+    color: var(--accent);
+}
+
+.progress-continue-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: var(--accent);
+    color: #ffffff !important;
+    border-radius: var(--radius-pill);
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 12px rgba(121, 63, 224, 0.25);
+}
+
+.progress-continue-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(121, 63, 224, 0.45);
+    color: #ffffff !important;
+}
+
+.progress-continue-btn i {
+    transition: transform 0.2s ease;
+}
+
+.progress-continue-btn:hover i {
+    transform: translateX(3px);
+}
+
+
+/* ==========================================================================
+   7. DIFFICULTY STANDINGS BY TIER (LEFT COLUMN BOTTOM)
+   ========================================================================== */
+
 .difficulty-cards-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
     margin-top: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
     .difficulty-cards-row {
         grid-template-columns: 1fr;
     }
 }
 
 .diff-card {
-    background: var(--bg-secondary);
+    background: var(--bg-main);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-md);
-    padding: 1.25rem;
+    padding: 1.4rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    transition: all 0.2s ease;
+    justify-content: space-between;
+    gap: 1.1rem;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .diff-card:hover {
+    transform: translateY(-3px);
     border-color: var(--accent);
+    box-shadow: 0 10px 24px rgba(121, 63, 224, 0.12);
+    background: var(--card-bg);
+}
+
+.diff-card.easy.is-attempted {
+    border-color: rgba(16, 185, 129, 0.4);
 }
 
 .diff-card-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.diff-title-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .diff-badge {
-    font-size: 0.72rem;
+    font-size: 0.74rem;
     font-weight: 800;
-    padding: 2px 8px;
+    padding: 3px 10px;
     border-radius: var(--radius-pill);
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
 }
 
-.diff-badge.easy { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-.diff-badge.medium { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
-.diff-badge.hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.diff-badge.easy { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+.diff-badge.medium { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+.diff-badge.hard { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+
+.diff-tier-label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
 
 .diff-rank {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+    line-height: 1;
 }
 
 .diff-rank.not-attempted {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .diff-details {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 1rem;
 }
 
-.diff-details strong {
+.diff-detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.84rem;
+}
+
+.diff-detail-row span {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.diff-detail-row strong {
     color: var(--text-primary);
+    font-weight: 800;
 }
 
-/* Recent Attempts Table */
+.diff-acc {
+    color: #10b981 !important;
+}
+
+.diff-card-footer {
+    display: flex;
+    align-items: center;
+}
+
+.diff-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1px solid rgba(121, 63, 224, 0.2);
+}
+
+.diff-cta-btn:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+.diff-cta-btn.retake {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: var(--card-border);
+}
+
+.diff-cta-btn.retake:hover {
+    background: var(--accent);
+    color: #ffffff !important;
+    border-color: var(--accent);
+}
+
+
+/* ==========================================================================
+   8. CREDENTIALS PASSPORT & ACHIEVEMENTS (RIGHT COLUMN)
+   ========================================================================== */
+
+.passport-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+/* User Info Rows */
+.profile-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.profile-info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    font-size: 0.88rem;
+    transition: border-color 0.2s ease;
+}
+
+.profile-info-row:hover {
+    border-color: rgba(121, 63, 224, 0.3);
+}
+
+.profile-info-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.profile-info-label i {
+    color: var(--accent);
+    font-size: 0.85rem;
+    width: 16px;
+    text-align: center;
+}
+
+.profile-info-value {
+    color: var(--text-primary);
+    font-weight: 800;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* Honors / Achievements Badges Card */
+.badges-showcase-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+.achievement-badge-card {
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+    transition: all 0.22s ease;
+}
+
+.achievement-badge-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 18px rgba(121, 63, 224, 0.1);
+}
+
+.achievement-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 2px;
+}
+
+.badge-gold { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1.5px solid rgba(245, 158, 11, 0.35); }
+.badge-purple { background: rgba(121, 63, 224, 0.15); color: #793fe4; border: 1.5px solid rgba(121, 63, 224, 0.35); }
+.badge-cyan { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1.5px solid rgba(59, 130, 246, 0.35); }
+.badge-emerald { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1.5px solid rgba(16, 185, 129, 0.35); }
+
+.achievement-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.achievement-desc {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+/* Quick Assessment Launch Shortcuts */
+.quick-launch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.quick-launch-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--bg-main);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.quick-launch-link:hover {
+    background: var(--accent-subtle);
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateX(3px);
+}
+
+.quick-launch-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quick-launch-left i {
+    color: var(--accent);
+    font-size: 1rem;
+}
+
+
+/* ==========================================================================
+   9. ASSESSMENT HISTORY DATA TABLE (FULL WIDTH)
+   ========================================================================== */
+
 .recent-attempts-table-wrap {
     overflow-x: auto;
-    margin-top: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
 }
 
 .recent-attempts-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.88rem;
-}
-
-.recent-attempts-table th,
-.recent-attempts-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--card-border);
     text-align: left;
 }
 
 .recent-attempts-table th {
     background: var(--bg-secondary);
     color: var(--text-secondary);
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--card-border);
+}
+
+.recent-attempts-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-primary);
+    vertical-align: middle;
+}
+
+.recent-attempts-table tr:last-child td {
+    border-bottom: none;
+}
+
+.recent-attempts-table tr:hover td {
+    background: rgba(121, 63, 224, 0.04);
 }
 
 .attempt-type-badge {
     display: inline-block;
-    padding: 2px 7px;
-    border-radius: var(--radius-sm);
-    font-size: 0.75rem;
-    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 0.72rem;
+    font-weight: 800;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.attempt-type-badge.mcq { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
-.attempt-type-badge.coding { background: rgba(121, 63, 224, 0.15); color: #793fe4; }
+.attempt-type-badge.mcq { background: rgba(59, 130, 246, 0.12); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.25); }
+.attempt-type-badge.coding { background: rgba(121, 63, 224, 0.12); color: #793fe4; border: 1px solid rgba(121, 63, 224, 0.25); }
 
-/* State Placeholders */
+
+/* ==========================================================================
+   10. STATE CARDS (LOADING, UNAUTH, ERROR)
+   ========================================================================== */
+
 .profile-state-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    padding: 3.5rem 2rem;
+    border-radius: 24px;
+    padding: 4rem 2rem;
     text-align: center;
     max-width: 580px;
-    margin: 40px auto;
-    box-shadow: var(--shadow-md);
+    margin: 50px auto;
+    box-shadow: 0 16px 40px -10px rgba(121, 63, 224, 0.12), var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-state-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #3b82f6);
 }
 
 .profile-state-icon {
-    font-size: 3rem;
+    font-size: 3.25rem;
     margin-bottom: 1.25rem;
 }
 
 .profile-state-card h2 {
-    font-size: 1.6rem;
+    font-size: 1.65rem;
+    font-weight: 800;
     margin-bottom: 0.6rem;
     color: var(--text-primary);
+    letter-spacing: -0.3px;
 }
 
 .profile-state-card p {
     color: var(--text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     line-height: 1.6;
+    font-size: 0.96rem;
 }
+
+
+/* ==========================================================================
+   11. EMPTY STATES & LOADING STATES
+   ========================================================================== */
+
+.progress-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+}
+
+.progress-empty-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(121, 63, 224, 0.25);
+    box-shadow: 0 6px 20px rgba(121, 63, 224, 0.15);
+}
+
+.progress-empty-state h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+}
+
+.progress-empty-state p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem;
+    max-width: 340px;
+    line-height: 1.55;
+}
+
+.profile-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.profile-loading i {
+    font-size: 2.25rem;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+}
+
+.profile-loading p {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .profile-dashboard {
+        padding: 90px 16px 60px;
+    }
+
+    .profile-passport-hero {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .passport-left {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .passport-right {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .passport-actions-row {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .profile-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .badges-showcase-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .passport-actions-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .passport-btn-edit,
+    .passport-btn-logout {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .badges-showcase-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Edit Profile Form Utilities */
+.profile-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+    transition: all 0.2s ease;
+}
+
+.profile-back-link:hover {
+    color: var(--accent);
+    transform: translateX(-3px);
+}
+
+.profile-readonly-note {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    display: block;
+}
+

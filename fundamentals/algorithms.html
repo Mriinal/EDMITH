@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn what an algorithm is, core characteristics (finiteness, definiteness, input/output), and how to design step-by-step procedures.">
+    <title>Algorithms — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/algorithms.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/algorithms.html">
+    <meta property="og:title" content="What is an Algorithm? — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Learn what an algorithm is, core characteristics (finiteness, definiteness, input/output), and how to design step-by-step procedures.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li class="active"><a href="algorithms.html" class="active"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li><a href="data-types-concept.html"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 2: Computational Thinking & Problem Solving</span>
+                </div>
+                <h1>What is an Algorithm?</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 8 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. The Definition of an Algorithm</h2>
+                <p class="lead-text">
+                    An <strong>algorithm</strong> is a finite, well-ordered, deterministic sequence of unambiguous instructions designed to perform a specific computational task, process data, or solve a problem.
+                </p>
+                <p>
+                    The word "algorithm" derives from the 9th-century Persian mathematician Muhammad ibn Musa al-Khwarizmi, who developed foundational rules for arithmetic. In computer science, an algorithm is completely independent of any programming language: it is the pure conceptual logic that underlies a solution.
+                </p>
+
+                <h2>2. Everyday Real-World Analogies</h2>
+                <ul>
+                    <li><strong>A Culinary Recipe:</strong> Lists ingredients (inputs), specifies temperature and mixing steps (process), and yields a prepared dish (output).</li>
+                    <li><strong>GPS Navigation:</strong> Reads starting coordinates and destination (inputs), computes shortest path avoiding traffic (process), and gives turn-by-turn directions (output).</li>
+                    <li><strong>Assembling Flat-Pack Furniture:</strong> Follows numbered diagrammatic steps in strict sequential order. Skipping Step 2 to do Step 5 results in structural failure.</li>
+                </ul>
+
+                <h2>3. The 5 Essential Properties of a Valid Algorithm</h2>
+                <p>
+                    In theoretical computer science, a procedure must satisfy five rigorous criteria to be classified as a valid algorithm:
+                </p>
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table class="table-custom" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--bg-secondary); text-align: left;">
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Property</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Requirement</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Why It Matters</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>1. Unambiguous (Definiteness)</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Every step must be clearly and uniquely defined.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Computers cannot interpret vague phrases like "stir until ready".</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>2. Finiteness</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Must terminate after a countable number of operations.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">A program that never stops is broken (infinite freeze).</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>3. Inputs</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Accepts zero or more well-defined external inputs.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Specifies the operational boundaries and data domain.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>4. Outputs</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Produces at least one well-defined result or state change.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Without an output, the computation served no purpose.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>5. Feasibility (Effectiveness)</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Each instruction must be physically computable.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Must be executable within finite hardware memory and time.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>4. The Concept of Algorithmic Efficiency</h2>
+                <p>
+                    There can be multiple different algorithms to solve the exact same problem. For example, you can search for a name in a phone book by checking every single page from front to back, or by opening the book in the middle and dividing it in half repeatedly (binary search).
+                </p>
+                <p>
+                    Both algorithms are correct and produce the exact same answer. However, the first takes hours for a large directory, while the second takes less than a second. In computer science, we evaluate algorithms based on <strong>Time Complexity</strong> (how execution time grows as input size increases) and <strong>Space Complexity</strong> (how much memory is consumed).
+                </p>
+
+                <h2>5. Key Takeaways</h2>
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li>An algorithm is a finite, unambiguous set of instructions to solve a problem.</li>
+                        <li>Algorithms are completely language-independent.</li>
+                        <li>A valid algorithm must be definite, finite, feasible, and produce at least one output.</li>
+                        <li>Efficiency (time and memory) distinguishes good engineering from naive approaches.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="problem-solving-techniques.html" title="Previous: Problem-Solving Techniques">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Problem-Solving Techniques</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_algorithms" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="flowcharts.html" title="Next: Flowcharts in Programming">
+                        <span class="btn-text">Next: Flowcharts in Programming</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

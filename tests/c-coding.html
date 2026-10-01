@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH C Coding Examination — Test your low-level systems programming skills with in-browser compilation and test-case validation.">
+    <title>C Coding Examination | EDMITH</title>
+
+    <script>
+        (function(){
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <!-- Modular CSS Architecture -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
+
+    <main class="sql-test-page" style="max-width: 1280px; padding-top: 90px;">
+        
+        <!-- Eligibility Warning -->
+        <div id="courseEligibilityAlert" class="sql-test-card" style="display: none; padding: 2.5rem; text-align: center; margin-bottom: 2rem;">
+            <div style="font-size: 3rem; color: #f59e0b; margin-bottom: 1rem;"><i class="fas fa-lock"></i></div>
+            <h2 style="margin-bottom: 0.5rem;">Course Completion Required</h2>
+            <p style="color: var(--text-secondary); max-width: 540px; margin: 0 auto 1.5rem;" id="eligibilityMessage">
+                You must complete at least 15% of the C Programming course before starting the coding test.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <a href="../c/index.html" class="btn-enroll" id="continueCourseBtn"><i class="fas fa-book-open"></i> Continue Course</a>
+                <a href="index.html" class="btn-outline"><i class="fas fa-arrow-left"></i> Back to Tests Hub</a>
+            </div>
+        </div>
+
+        <!-- Main Test Interface -->
+        <div id="codingTestMain" style="display: none;">
+            
+            <!-- Top Navigation & Timer -->
+            <div class="coding-nav-bar">
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                    <h1 style="font-weight: 800; font-size: 1.1rem; margin: 0; display: inline;" id="examHeaderTitle">C Coding Test</h1>
+                    <span class="sql-difficulty" id="examHeaderLevel">Easy · Round 1</span>
+                    <div class="q-pills" id="questionPills"></div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1.25rem;">
+                    <div class="sql-test-status" style="flex-direction: row; align-items: center;">
+                        <i class="fas fa-clock" style="color: var(--accent);"></i>
+                        <span id="timer" style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 800;">20:00</span>
+                    </div>
+                    <button type="button" class="btn-enroll" id="finishExamBtn" style="padding: 9px 18px; font-size: 0.9rem;">
+                        <i class="fas fa-check-double"></i> Submit Examination
+                    </button>
+                </div>
+            </div>
+
+            <!-- Anti-Paste Alert Banner -->
+            <div class="paste-alert-banner" id="pasteAlert">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span id="pasteAlertText">Pasting is disabled during examinations to maintain test integrity.</span>
+            </div>
+
+            <!-- Split Pane Layout -->
+            <div class="coding-layout">
+                
+                <!-- Left Pane: Problem Description -->
+                <div class="coding-pane">
+                    <div class="coding-pane-header">
+                        <span id="problemHeading">Problem 1</span>
+                        <span class="sql-category" id="problemMarks">3 Marks</span>
+                    </div>
+                    <div class="coding-pane-content">
+                        <h2 style="font-size: 1.35rem; margin-bottom: 0.75rem;" id="problemTitle">Problem Title</h2>
+                        <p style="color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;" id="problemStatement">
+                            Loading problem...
+                        </p>
+
+                        <div style="margin-bottom: 1.25rem;">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.35rem;"><i class="fas fa-file-lines"></i> Input Format</h4>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;" id="problemInputDesc">
+                                Standard input description.
+                            </p>
+                        </div>
+
+                        <div style="margin-bottom: 1.25rem;">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.35rem;"><i class="fas fa-terminal"></i> Output Format</h4>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;" id="problemOutputDesc">
+                                Standard output expectations.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 style="font-size: 0.95rem; margin-bottom: 0.35rem;"><i class="fas fa-shield-halved"></i> Constraints</h4>
+                            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5;" id="problemConstraints">
+                                Standard C99 / C11 constraints.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Pane: Code Editor & Output -->
+                <div class="coding-pane">
+                    <div class="coding-pane-header">
+                        <span><i class="fas fa-c"></i> C Compiler Editor</span>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <span class="sql-category" style="background: var(--bg-primary);"><i class="fas fa-microchip"></i> JSCPP Engine</span>
+                            <button type="button" class="btn-outline" id="resetCodeBtn" style="padding: 4px 10px; font-size: 0.78rem;">
+                                <i class="fas fa-undo"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="coding-editor-wrap">
+                        <textarea class="coding-textarea" id="cEditorTextarea" spellcheck="false" placeholder="#include <stdio.h>&#10;&#10;int main(void) {&#10;    return 0;&#10;}"></textarea>
+                    </div>
+
+                    <div class="coding-editor-actions">
+                        <div id="testStatusBadge" class="status-badge status-idle">
+                            <i class="fas fa-circle-notch"></i> Ready to run
+                        </div>
+                        <div style="display: flex; gap: 0.6rem;">
+                            <button type="button" class="btn-outline" id="runCodeBtn" style="padding: 8px 16px;">
+                                <i class="fas fa-play"></i> Run Tests
+                            </button>
+                            <button type="button" class="btn-enroll" id="submitAnswerBtn" style="padding: 8px 18px;">
+                                <i class="fas fa-check"></i> Submit Solution
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Test Case Output Preview -->
+                    <div class="coding-output-panel" id="outputPanel">
+                        <div style="font-weight: 700; margin-bottom: 0.4rem; color: var(--text-secondary);">Execution Console &amp; Test Cases</div>
+                        <div id="outputMessage" style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.85rem;">
+                            Click "Run Tests" to compile and execute your code against test cases.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Result Modal -->
+    <div class="sql-result-overlay" id="resultModal" hidden aria-hidden="true">
+        <div class="sql-result-modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+            <button class="sql-result-close" id="resultClose" type="button" aria-label="Close result"><i class="fas fa-times"></i></button>
+            <div class="sql-result-icon"><i class="fas fa-trophy"></i></div>
+            <h2 id="resultTitle">🎉 C Examination Completed!</h2>
+            <p class="sql-result-exam-name" id="resultSubtitle">C Programming Assessment</p>
+            <div class="sql-result-grid">
+                <div><span>Score</span><strong id="resultScore">0 / 15</strong></div>
+                <div><span>Percentage</span><strong id="resultPercentage">0%</strong></div>
+                <div><span>Rating</span><strong id="resultRating">Average</strong></div>
+                <div><span>Problems Solved</span><strong id="resultSolved">0 / 4</strong></div>
+                <div><span>Time Taken</span><strong id="resultTime">0:00</strong></div>
+            </div>
+            <p class="sql-save-status" id="saveStatus" role="status" style="margin-top: 1rem;"></p>
+            <div class="sql-result-actions" style="margin-top: 1.25rem;">
+                <button class="btn-enroll" id="retryButton" type="button"><i class="fas fa-redo"></i> Retry Examination</button>
+                <a class="btn-outline" href="../users/profile.html#completed-tests"><i class="fas fa-id-badge"></i> View in Profile</a>
+                <a class="btn-outline" href="index.html"><i class="fas fa-list"></i> Central Tests</a>
+                <a class="btn-outline" href="../Leaderboard.html"><i class="fas fa-trophy"></i> Leaderboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../components/components.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/c-test-questions.js"></script>
+    <script src="../javascript/c-coding-test-page.js"></script>
+</body>
+</html>

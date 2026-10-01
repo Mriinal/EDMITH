@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master C Programming from fundamental computer science concepts to advanced pointers, memory management, and data structures with EDMITH. 290 structured lessons with in-browser sandboxes.">
+    <meta name="description" content="Master C Programming from fundamental computer science concepts to advanced pointers, memory management, and data structures with EDMITH. 276 structured lessons with in-browser sandboxes.">
     <title>C Programming Mastery — Complete Beginner to Advanced Course | EDMITH</title>
     <link rel="canonical" href="https://edmith.com/c/index.html">
     <meta name="robots" content="index,follow">
@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://edmith.com/c/index.html">
     <meta property="og:title" content="C Programming Mastery — EDMITH">
-    <meta property="og:description" content="Master C Programming from scratch with EDMITH. 290 structured lessons covering Syntax, Data Types, Control Flow, Functions, Arrays, Strings, and Pointers.">
+    <meta property="og:description" content="Master C Programming from scratch with EDMITH. 276 structured lessons covering Syntax, Data Types, Control Flow, Functions, Arrays, Strings, and Pointers.">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -31,7 +31,15 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/course.css">
+    <link rel="stylesheet" href="../css/catalog.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -55,9 +63,9 @@
             </p>
 
             <div class="hero-tag-pills" style="margin-top: 1.5rem;">
-                <span class="hero-tag-pill"><i class="fas fa-book-open"></i> 290 Modular Lessons</span>
+                <span class="hero-tag-pill"><i class="fas fa-book-open"></i> 276 Modular Lessons</span>
                 <span class="hero-tag-pill"><i class="fas fa-terminal"></i> In-Browser Sandboxes</span>
-                <span class="hero-tag-pill"><i class="fas fa-layer-group"></i> 15 Structured Modules</span>
+                <span class="hero-tag-pill"><i class="fas fa-layer-group"></i> 14 Structured Modules</span>
                 <span class="hero-tag-pill"><i class="fas fa-location-crosshairs"></i> Comprehensive Pointers Deep Dive</span>
                 <span class="hero-tag-pill"><i class="fas fa-infinity"></i> Free Lifetime Access</span>
             </div>
@@ -82,10 +90,31 @@
                     <div class="hub-progress-bar-fill" id="cProgressBarFill" style="width: 0%; background: linear-gradient(90deg, #10B981 0%, #3B82F6 100%);"></div>
                 </div>
                 <div class="hub-progress-footer">
-                    <span id="cProgressCount"><i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> 0 of 290 lessons completed</span>
-                    <a href="what-is-programming.html" class="hub-progress-resume-btn" id="cResumeBtn">
+                    <span id="cProgressCount"><i class="fas fa-check-circle" style="color: #10B981; margin-right: 5px;"></i> 0 of 276 lessons completed</span>
+                    <a href="history-of-c.html" class="hub-progress-resume-btn" id="cResumeBtn">
                         <span>Start Lesson 1</span>
                         <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Assessments & Certification Card -->
+            <div class="assessment-cta-banner" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(16, 185, 129, 0.15); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0;">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0 0 0.3rem; font-size: 1.15rem; color: var(--text-primary); font-weight: 800;">Assess Your C Programming Mastery</h3>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Test your knowledge of pointers, memory, and algorithms with live in-browser compiler tests.</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                    <a href="../tests/c-test.html" class="btn-enroll" style="padding: 0.65rem 1.25rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-list-check"></i> C MCQ Test
+                    </a>
+                    <a href="../tests/c-coding.html" class="btn-outline" style="padding: 0.65rem 1.25rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-terminal"></i> C Coding Exam
                     </a>
                 </div>
             </div>
@@ -186,140 +215,22 @@
             </div>
 
             <!-- Course Curriculum Accordion -->
-            <h2 style="margin-top: 2.75rem;">Complete Curriculum &amp; Syllabus</h2>
+            <div class="syllabus-header-wrap">
+                <div class="syllabus-header-left">
+                    <h2 style="margin: 0;">Complete Curriculum &amp; Syllabus</h2>
+                    <span class="syllabus-meta-count"><i class="fas fa-layer-group"></i> 14 Modules &bull; 276 Lessons</span>
+                </div>
+                <div class="curriculum-accordion-controls">
+                    <button type="button" class="btn-syllabus-control" id="expandAllModulesBtn" title="Expand All Modules">
+                        <i class="fas fa-angles-down"></i> <span>Expand All</span>
+                    </button>
+                    <button type="button" class="btn-syllabus-control" id="collapseAllModulesBtn" title="Collapse All Modules">
+                        <i class="fas fa-angles-up"></i> <span>Collapse All</span>
+                    </button>
+                </div>
+            </div>
 
             <div class="syllabus-accordion">
-                <!-- Module 1: Programming Fundamentals (17 Lessons) -->
-                <div class="accordion-item active">
-                    <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-terminal" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 1: Programming Fundamentals (17 Lessons)</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
-                        <div class="syllabus-lesson-grid">
-                            <a href="what-is-programming.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">01</span>
-                                    <span class="syllabus-lesson-title">What is Programming?</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="what-is-a-programming-language.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">02</span>
-                                    <span class="syllabus-lesson-title">What is a Programming Language?</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="compiler-vs-interpreter.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">03</span>
-                                    <span class="syllabus-lesson-title">Compiler vs Interpreter</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="source-object-executable-code.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">04</span>
-                                    <span class="syllabus-lesson-title">Source Code, Object Code, Executable Code</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="how-a-c-program-works.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">05</span>
-                                    <span class="syllabus-lesson-title">How a C Program Works</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="c-compilation-process.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">06</span>
-                                    <span class="syllabus-lesson-title">C Compilation Process</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="c-program-execution-flow.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">07</span>
-                                    <span class="syllabus-lesson-title">C Program Execution Flow</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="basic-problem-solving-approach.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">08</span>
-                                    <span class="syllabus-lesson-title">Basic Problem-Solving Approach</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="algorithms.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">09</span>
-                                    <span class="syllabus-lesson-title">Algorithms</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="flowcharts.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">10</span>
-                                    <span class="syllabus-lesson-title">Flowcharts</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="pseudocode.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">11</span>
-                                    <span class="syllabus-lesson-title">Pseudocode</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="variables-and-data.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">12</span>
-                                    <span class="syllabus-lesson-title">Variables and Data</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="input-processing-output.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">13</span>
-                                    <span class="syllabus-lesson-title">Input → Processing → Output</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="debugging-fundamentals.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">14</span>
-                                    <span class="syllabus-lesson-title">Debugging Fundamentals</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="syntax-errors.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">15</span>
-                                    <span class="syllabus-lesson-title">Syntax Errors</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="runtime-errors.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">16</span>
-                                    <span class="syllabus-lesson-title">Runtime Errors</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                            <a href="logical-errors.html" class="syllabus-lesson-card">
-                                <div class="syllabus-lesson-left">
-                                    <span class="syllabus-lesson-num">17</span>
-                                    <span class="syllabus-lesson-title">Logical Errors</span>
-                                </div>
-                                <i class="fas fa-chevron-right syllabus-lesson-arrow"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Module 2: Introduction to C (20 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
@@ -472,10 +383,10 @@
                     </div>
                 </div>
 
-                <!-- Module 3: Setting Up C (11 Lessons) -->
+                <!-- Module 2: Setting Up C (11 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-gears" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 3: Setting Up C (11 Lessons)</h3>
+                        <h3><i class="fas fa-gears" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 2: Setting Up C (11 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -561,10 +472,10 @@
                     </div>
                 </div>
 
-                <!-- Module 4: Basic Syntax (12 Lessons) -->
+                <!-- Module 3: Basic Syntax (12 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-brackets-curly" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 4: Basic Syntax (12 Lessons)</h3>
+                        <h3><i class="fas fa-brackets-curly" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 3: Basic Syntax (12 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -657,10 +568,10 @@
                     </div>
                 </div>
 
-                <!-- Module 5: Variables and Constants (14 Lessons) -->
+                <!-- Module 4: Variables and Constants (14 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-box-archive" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 5: Variables and Constants (14 Lessons)</h3>
+                        <h3><i class="fas fa-box-archive" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 4: Variables and Constants (14 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -767,10 +678,10 @@
                     </div>
                 </div>
 
-                <!-- Module 6: C Data Types (32 Lessons) -->
+                <!-- Module 5: C Data Types (32 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-cubes" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 6: C Data Types (32 Lessons)</h3>
+                        <h3><i class="fas fa-cubes" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 5: C Data Types (32 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1003,10 +914,10 @@
                     </div>
                 </div>
 
-                <!-- Module 7: Input and Output (26 Lessons) -->
+                <!-- Module 6: Input and Output (26 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-keyboard" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 7: Input and Output (26 Lessons)</h3>
+                        <h3><i class="fas fa-keyboard" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 6: Input and Output (26 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1197,10 +1108,10 @@
                     </div>
                 </div>
 
-                <!-- Module 8: Operators (29 Lessons) -->
+                <!-- Module 7: Operators (29 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-calculator" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 8: Operators (29 Lessons)</h3>
+                        <h3><i class="fas fa-calculator" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 7: Operators (29 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1412,10 +1323,10 @@
                     </div>
                 </div>
 
-                <!-- Module 9: Type Conversion (11 Lessons) -->
+                <!-- Module 8: Type Conversion (11 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-arrow-right-arrow-left" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 9: Type Conversion (11 Lessons)</h3>
+                        <h3><i class="fas fa-arrow-right-arrow-left" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 8: Type Conversion (11 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1501,10 +1412,10 @@
                     </div>
                 </div>
 
-                <!-- Module 10: Decision Making (13 Lessons) -->
+                <!-- Module 9: Decision Making (13 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-code-branch" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 10: Decision Making (13 Lessons)</h3>
+                        <h3><i class="fas fa-code-branch" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 9: Decision Making (13 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1604,10 +1515,10 @@
                     </div>
                 </div>
 
-                <!-- Module 11: Loops (12 Lessons) -->
+                <!-- Module 10: Loops (12 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-repeat" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 11: Loops (12 Lessons)</h3>
+                        <h3><i class="fas fa-repeat" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 10: Loops (12 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1700,10 +1611,10 @@
                     </div>
                 </div>
 
-                <!-- Module 12: Functions (20 Lessons) -->
+                <!-- Module 11: Functions (20 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-cube" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 12: Functions (20 Lessons)</h3>
+                        <h3><i class="fas fa-cube" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 11: Functions (20 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1852,10 +1763,10 @@
                     </div>
                 </div>
 
-                <!-- Module 13: Arrays (16 Lessons) -->
+                <!-- Module 12: Arrays (16 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-table-cells" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 13: Arrays (16 Lessons)</h3>
+                        <h3><i class="fas fa-table-cells" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 12: Arrays (16 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -1976,10 +1887,10 @@
                     </div>
                 </div>
 
-                <!-- Module 14: Strings (24 Lessons) -->
+                <!-- Module 13: Strings (24 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-font" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 14: Strings (24 Lessons)</h3>
+                        <h3><i class="fas fa-font" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 13: Strings (24 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -2156,10 +2067,10 @@
                     </div>
                 </div>
 
-                <!-- Module 15: Pointers — Core Topic (33 Lessons) -->
+                <!-- Module 14: Pointers — Core Topic (33 Lessons) -->
                 <div class="accordion-item active">
                     <div class="accordion-header" role="button" tabindex="0" aria-expanded="true">
-                        <h3><i class="fas fa-location-crosshairs" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 15: Pointers — Core Topic (33 Lessons)</h3>
+                        <h3><i class="fas fa-location-crosshairs" style="color: var(--accent); width: auto; height: auto; background: none; border: none; box-shadow: none;"></i> Module 14: Pointers — Core Topic (33 Lessons)</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="accordion-body" style="max-height: 4500px; padding: 1.25rem 1.5rem; overflow-y: visible;">
@@ -2415,7 +2326,7 @@
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-book"></i>
-                            <div><strong>Curriculum:</strong> 290 Modular Lessons</div>
+                            <div><strong>Curriculum:</strong> 276 Modular Lessons</div>
                         </div>
                         <div class="meta-item">
                             <i class="fas fa-signal"></i>
@@ -2435,7 +2346,7 @@
                         </div>
                     </div>
 
-                    <a href="what-is-programming.html" id="cSidebarPrimaryBtn" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; text-decoration: none;">
+                    <a href="history-of-c.html" id="cSidebarPrimaryBtn" class="btn-enroll" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-align: center; text-decoration: none;">
                         <i class="fas fa-rocket"></i> <span id="cSidebarPrimaryBtnText">Start Learning (Lesson 1)</span>
                     </a>
 
@@ -2490,7 +2401,7 @@
                         }
 
                         if (progress.completed_count > 0 || progress.is_started) {
-                            const nextTarget = progress.next_lesson_file || 'what-is-programming.html';
+                            const nextTarget = progress.next_lesson_file || 'history-of-c.html';
                             const nextTitle = progress.next_lesson_title || 'Next Lesson';
                             if (resumeBtn) {
                                 resumeBtn.href = nextTarget;

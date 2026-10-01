@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understand what computer programming is, why it matters, and how code instructs computers to perform complex calculations and automate tasks.">
+    <title>What is Programming? — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/what-is-programming.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/what-is-programming.html">
+    <meta property="og:title" content="What is Programming? — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Understand what computer programming is, why it matters, and how code instructs computers to perform complex calculations and automate tasks.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li class="active"><a href="what-is-programming.html" class="active"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li><a href="data-types-concept.html"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 1: Computer Science & Programming Basics</span>
+                </div>
+                <h1>What is Programming?</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 7 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. The Core Definition of Programming</h2>
+                <p class="lead-text">
+                    At its most fundamental level, <strong>computer programming</strong> is the craft of formulating an unambiguous, ordered sequence of instructions that directs a computing machine to perform specific calculations, process data, and solve problems.
+                </p>
+                <p>
+                    A computer is an extraordinarily fast electronic machine capable of performing billions of arithmetic calculations every second. However, a computer possesses zero independent intelligence, intuition, or common sense. Without software instructions, computing hardware is merely silicon, copper, and plastic. Programming is the craft that breathes logic and life into hardware.
+                </p>
+
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-lightbulb" style="color: #F59E0B; margin-right: 8px;"></i> The Core Principle</h4>
+                    <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Computers do not do what you <em>intend</em> them to do; they do exactly what you <em>instruct</em> them to do. Absolute precision and clarity are the foundational traits of every great software engineer.
+                    </p>
+                </div>
+
+                <h2>2. Hardware vs. Software: The Two Halves of Computing</h2>
+                <p>
+                    Every computing system consists of two tightly coupled components:
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="color: #3B82F6; margin: 0 0 0.5rem;"><i class="fas fa-microchip"></i> Computer Hardware</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            The physical electronic components that you can touch: Central Processing Unit (CPU), Random Access Memory (RAM), hard drives/SSDs, display screens, keyboards, and network cards. Hardware executes electrical operations.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.25rem;">
+                        <h4 style="color: #10B981; margin: 0 0 0.5rem;"><i class="fas fa-code"></i> Computer Software</h4>
+                        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            The intangible sets of programs, data, and algorithms that instruct the hardware what tasks to carry out, when to execute them, and how to respond to user inputs.
+                        </p>
+                    </div>
+                </div>
+
+                <h2>3. The Input-Process-Output Cycle in Everyday Life</h2>
+                <p>
+                    Every program, regardless of how simple or complex, operates on a continuous feedback loop known as the <strong>Input-Process-Output (IPO)</strong> cycle:
+                </p>
+                <div style="text-align: center; margin: 2rem 0; padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                        <div style="padding: 12px 18px; background: #3B82F6; color: #fff; border-radius: 4px; font-weight: bold;">
+                            1. Input<br><span style="font-size: 0.8rem; font-weight: normal;">Data Received</span>
+                        </div>
+                        <div style="font-size: 1.5rem; color: var(--text-secondary);">&rarr;</div>
+                        <div style="padding: 12px 18px; background: #F59E0B; color: #fff; border-radius: 4px; font-weight: bold;">
+                            2. Process<br><span style="font-size: 0.8rem; font-weight: normal;">Logic &amp; Math Applied</span>
+                        </div>
+                        <div style="font-size: 1.5rem; color: var(--text-secondary);">&rarr;</div>
+                        <div style="padding: 12px 18px; background: #10B981; color: #fff; border-radius: 4px; font-weight: bold;">
+                            3. Output<br><span style="font-size: 0.8rem; font-weight: normal;">Result Delivered</span>
+                        </div>
+                    </div>
+                </div>
+                <ul style="line-height: 1.7; color: var(--text-secondary);">
+                    <li><strong>ATM Machine:</strong> Input = PIN &amp; withdrawal amount &rarr; Process = Verify account balance &amp; deduct funds &rarr; Output = Dispense cash &amp; update receipt.</li>
+                    <li><strong>Elevator Controller:</strong> Input = Floor button pressed &rarr; Process = Determine current position &amp; optimal motor trajectory &rarr; Output = Move cabin &amp; open doors.</li>
+                    <li><strong>Web Browser:</strong> Input = URL typed into address bar &rarr; Process = Resolve IP via DNS, fetch HTML, parse layout &rarr; Output = Render webpage on display.</li>
+                </ul>
+
+                <h2>4. Why Learn Fundamentals Before Specific Syntax?</h2>
+                <p>
+                    Novice programmers often rush to memorize specific programming language syntax (such as semicolons in C or indentation rules in Python). However, syntax is merely the dialect you use to speak to a specific compiler or interpreter.
+                </p>
+                <p>
+                    The true core of software engineering is <strong>computational thinking</strong>: learning how to decompose an ambiguous problem into logical steps, how to structure data, and how to verify edge cases. Once you master the fundamentals of programming, learning any new programming language—be it C, Python, Java, JavaScript, or Go—takes mere days rather than months.
+                </p>
+
+                <h2>5. Key Takeaways</h2>
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li>Programming is the craft of designing unambiguous instructions for computer hardware to execute.</li>
+                        <li>Hardware provides physical compute power; software provides the logical direction.</li>
+                        <li>All software operations follow the Input &rarr; Process &rarr; Output paradigm.</li>
+                        <li>Problem-solving principles and computational logic transcend any individual programming language.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="index.html" title="Previous: Course Syllabus">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Course Syllabus</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_what_is_programming" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="what-is-a-programming-language.html" title="Next: What is a Programming Language?">
+                        <span class="btn-text">Next: What is a Programming Language?</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

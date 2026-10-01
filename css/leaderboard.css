@@ -1,234 +1,747 @@
 /**
- * EDMITH - Leaderboard Stylesheet
+ * EDMITH - World-Class Leaderboard Design System
+ * Sleek Dark & Light Mode Glassmorphism, 3D Champions Podium,
+ * Strict Top 5 + Pinned 6th User Position Architecture.
  */
 
+:root {
+    --leaderboard-gold: #fbbf24;
+    --leaderboard-gold-glow: rgba(251, 191, 36, 0.35);
+    --leaderboard-silver: #94a3b8;
+    --leaderboard-silver-glow: rgba(148, 163, 184, 0.25);
+    --leaderboard-bronze: #f97316;
+    --leaderboard-bronze-glow: rgba(249, 115, 22, 0.25);
+}
+
+/* =========================================================
+   1. HERO SECTION & LIVE STATS TICKER
+   ========================================================= */
 .leaderboard-hero {
     text-align: center;
-    padding: 120px 20px 40px;
-    max-width: 900px;
+    padding: 100px 20px 30px;
+    max-width: 1000px;
     margin: 0 auto;
+    position: relative;
+}
+
+.hero-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: var(--accent-subtle);
+    border: 1px solid rgba(121, 63, 224, 0.25);
+    border-radius: var(--radius-pill);
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.12);
 }
 
 .leaderboard-hero h1 {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
-    margin-bottom: 0.75rem;
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--text-primary) 20%, var(--accent) 70%, #3b82f6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .leaderboard-hero p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
     line-height: 1.6;
+}
+
+/* Live Analytics Ticker Grid */
+.leaderboard-stats-ticker {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-ticker-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.15rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    backdrop-filter: blur(8px);
+}
+
+.stat-ticker-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 24px rgba(121, 63, 224, 0.12);
+}
+
+.stat-ticker-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+}
+
+.stat-ticker-val {
+    font-size: 1.55rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.stat-ticker-label {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+}
+
+/* =========================================================
+   2. SUBJECT SWITCHER TABS & CONTROLS
+   ========================================================= */
+.subject-nav-wrapper {
+    max-width: 1140px;
+    margin: 0 auto 2rem;
+    padding: 0 20px;
 }
 
 .subject-tabs-container {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
+    background: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
 }
 
 .subject-tab-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 12px 24px;
-    border-radius: var(--radius-pill);
-    border: 1px solid var(--card-border);
-    background: var(--card-bg);
-    color: var(--text-primary);
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.subject-tab-btn:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-}
-
-.subject-tab-btn.is-active {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent);
-    box-shadow: 0 4px 16px rgba(121, 63, 224, 0.3);
-}
-
-.subject-tab-btn.is-coming-soon {
-    opacity: 0.7;
-    cursor: default;
-}
-
-.badge-soon {
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: var(--radius-pill);
-    background: rgba(245, 158, 11, 0.2);
-    color: #f59e0b;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-.leaderboard-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-}
-
-.user-position-card {
-    background: linear-gradient(135deg, rgba(121, 63, 224, 0.12), rgba(59, 130, 246, 0.08));
-    border: 1px solid var(--accent-subtle);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem 2rem;
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-}
-
-.rank-medal {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-weight: 800;
-    font-size: 0.9rem;
-}
-
-.rank-1 { background: #ffd700; color: #78350f; box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4); }
-.rank-2 { background: #c0c0c0; color: #1e293b; box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4); }
-.rank-3 { background: #cd7f32; color: #451a03; box-shadow: 0 2px 8px rgba(205, 127, 50, 0.4); }
-
-.score-pill {
-    display: inline-block;
-    padding: 3px 8px;
-    border-radius: var(--radius-md);
-    background: var(--bg-secondary);
-    font-family: var(--font-mono, monospace);
-    font-weight: 700;
-    font-size: 0.85rem;
-}
-
-/* Leaderboard Difficulty Filter Tabs */
-.sql-leaderboard-filters {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 4px;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-pill);
-    box-shadow: var(--shadow-sm);
-    flex-wrap: wrap;
-}
-
-.sql-filter {
-    padding: 8px 18px;
+    gap: 8px;
+    padding: 10px 20px;
     border-radius: var(--radius-pill);
     border: 1px solid transparent;
     background: transparent;
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.92rem;
     cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-    -webkit-user-select: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    text-decoration: none;
 }
 
-.sql-filter:hover {
+.subject-tab-btn:hover {
     color: var(--text-primary);
     background: var(--bg-secondary);
 }
 
-.sql-filter.is-selected {
+.subject-tab-btn.is-active {
     background: var(--accent);
-    color: #ffffff;
+    color: #ffffff !important;
     border-color: var(--accent);
-    box-shadow: 0 2px 10px rgba(121, 63, 224, 0.35);
+    box-shadow: 0 4px 18px rgba(121, 63, 224, 0.35);
 }
 
-.sql-filter:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+.subject-tab-btn.is-active i {
+    color: #ffffff !important;
 }
 
-/* Leaderboard Table Wrapper & Table */
-.sql-leaderboard-wrap {
-    overflow-x: auto;
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    background: var(--card-bg);
-    margin-top: 0.5rem;
-    box-shadow: var(--shadow-sm);
+/* Sub-bar Controls (Search & Timeframes) */
+.leaderboard-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
 }
 
-.sql-leaderboard {
+.search-box-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 260px;
+    max-width: 380px;
+}
+
+.search-box-wrap input {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 680px;
-    font-size: 0.95rem;
+    padding: 10px 16px 10px 42px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 
-.sql-leaderboard th,
-.sql-leaderboard td {
-    padding: 1rem 1.25rem;
-    text-align: left;
-    border-bottom: 1px solid var(--card-border);
+.search-box-wrap input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(121, 63, 224, 0.15);
 }
 
-.sql-leaderboard th {
+.search-box-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+.controls-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.timeframe-filter-group {
+    display: inline-flex;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    padding: 4px;
+    gap: 2px;
+}
+
+.timeframe-btn {
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    background: var(--bg-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.sql-leaderboard tbody tr {
-    transition: background 0.15s ease;
+.timeframe-btn:hover {
+    color: var(--text-primary);
 }
 
-.sql-leaderboard tbody tr:hover {
+.timeframe-btn.is-active {
     background: var(--accent-subtle);
+    color: var(--accent);
 }
 
-.sql-leaderboard tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* How scoring works button */
 .btn-scoring-modal {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 6px 14px;
+    gap: 6px;
+    padding: 8px 16px;
     background: var(--bg-secondary);
-    color: var(--accent);
+    color: var(--text-primary);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-pill);
-    font-size: 0.88rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-scoring-modal:hover {
-    background: var(--accent-subtle, rgba(121, 63, 224, 0.1));
+    background: var(--accent-subtle);
     border-color: var(--accent);
+    color: var(--accent);
     transform: translateY(-1px);
 }
 
-/* Modal Popup Styles */
+/* =========================================================
+   3. CHAMPIONS PODIUM (TOP 3 SHOWCASE)
+   ========================================================= */
+.podium-container {
+    max-width: 1140px;
+    margin: 0 auto 3rem;
+    padding: 0 20px;
+}
+
+.podium-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    align-items: flex-end;
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.podium-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.25rem 1.5rem;
+    text-align: center;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.podium-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Rank 1: Elevated & Radiant */
+.podium-card.rank-first {
+    padding-top: 2.75rem;
+    padding-bottom: 2rem;
+    border-color: var(--leaderboard-gold);
+    box-shadow: 0 16px 36px var(--leaderboard-gold-glow);
+    background: linear-gradient(180deg, rgba(251, 191, 36, 0.08) 0%, var(--card-bg) 60%);
+    transform: scale(1.04);
+}
+
+.podium-card.rank-second {
+    border-color: var(--leaderboard-silver);
+    box-shadow: 0 10px 24px var(--leaderboard-silver-glow);
+    background: linear-gradient(180deg, rgba(148, 163, 184, 0.06) 0%, var(--card-bg) 60%);
+}
+
+.podium-card.rank-third {
+    border-color: var(--leaderboard-bronze);
+    box-shadow: 0 10px 24px var(--leaderboard-bronze-glow);
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.06) 0%, var(--card-bg) 60%);
+}
+
+.podium-crown {
+    position: absolute;
+    top: -24px;
+    font-size: 2.2rem;
+    color: var(--leaderboard-gold);
+    filter: drop-shadow(0 4px 10px rgba(251, 191, 36, 0.6));
+    animation: crownFloat 2.6s ease-in-out infinite;
+}
+
+@keyframes crownFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+.podium-avatar-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.podium-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    font-weight: 900;
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.rank-first .podium-avatar {
+    width: 82px;
+    height: 82px;
+    font-size: 1.75rem;
+    border: 3px solid var(--leaderboard-gold);
+}
+
+.podium-badge-icon {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 900;
+    border: 2px solid var(--card-bg);
+}
+
+.rank-first .podium-badge-icon { background: var(--leaderboard-gold); color: #78350f; }
+.rank-second .podium-badge-icon { background: var(--leaderboard-silver); color: #0f172a; }
+.rank-third .podium-badge-icon { background: var(--leaderboard-bronze); color: #ffffff; }
+
+.podium-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+}
+
+.podium-title {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.podium-score-pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    padding: 6px 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--card-border);
+    margin-bottom: 8px;
+}
+
+.podium-score-val {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--text-primary);
+}
+
+.podium-score-lbl {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.podium-meta-pills {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.podium-accuracy {
+    color: #10b981;
+    font-weight: 800;
+}
+
+/* =========================================================
+   4. TOP 5 STANDINGS TABLE
+   ========================================================= */
+.leaderboard-main-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+}
+
+.standings-card-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.standings-table-header {
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.standings-table-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.standings-table-subtitle {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+    font-size: 0.95rem;
+}
+
+.leaderboard-table th {
+    padding: 12px 18px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    text-align: left;
+}
+
+.leaderboard-table td {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--card-border);
+    vertical-align: middle;
+    transition: background 0.15s ease;
+}
+
+.leaderboard-table tbody tr:hover td {
+    background: var(--accent-subtle);
+}
+
+.rank-badge-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-weight: 900;
+    font-size: 0.9rem;
+}
+
+.rank-1-badge { background: linear-gradient(135deg, #fef08a, #eab308); color: #78350f; box-shadow: 0 4px 10px rgba(234, 179, 8, 0.4); }
+.rank-2-badge { background: linear-gradient(135deg, #e2e8f0, #94a3b8); color: #0f172a; box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35); }
+.rank-3-badge { background: linear-gradient(135deg, #fed7aa, #f97316); color: #ffffff; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.35); }
+.rank-default-badge { background: var(--bg-secondary); border: 1px solid var(--card-border); color: var(--text-secondary); }
+
+.user-profile-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cell-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.cell-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cell-user-name {
+    font-weight: 800;
+    color: var(--text-primary);
+    font-size: 0.96rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cell-user-title {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+
+.badge-you {
+    display: inline-block;
+    padding: 2px 7px;
+    background: var(--accent);
+    color: #ffffff;
+    border-radius: var(--radius-pill);
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.score-cell-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.score-cell-total {
+    font-size: 1.12rem;
+    font-weight: 900;
+    color: var(--text-primary);
+}
+
+.accuracy-cell-pill {
+    color: #10b981;
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   5. THE 6TH POINT: PINNED USER CURRENT RANKING CARD / ROW
+   ========================================================= */
+.user-pinned-standing-card {
+    background: linear-gradient(135deg, rgba(121, 63, 224, 0.16) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 10px 30px rgba(121, 63, 224, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    animation: userPinPulse 3s infinite alternate;
+}
+
+@keyframes userPinPulse {
+    0% { border-color: rgba(121, 63, 224, 0.65); box-shadow: 0 10px 25px rgba(121, 63, 224, 0.15); }
+    100% { border-color: var(--accent); box-shadow: 0 12px 35px rgba(121, 63, 224, 0.3); }
+}
+
+.user-pinned-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.user-pinned-profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-pinned-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #3b82f6);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    font-weight: 900;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.35);
+    flex-shrink: 0;
+}
+
+.user-pinned-details h3 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-pinned-meta {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.user-pinned-stats-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.user-pinned-stat-item {
+    text-align: center;
+}
+
+.stat-item-number {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.stat-item-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+.user-pinned-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #ffffff !important;
+    border-radius: var(--radius-pill);
+    font-weight: 800;
+    font-size: 0.92rem;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(121, 63, 224, 0.35);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+}
+
+.user-pinned-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(121, 63, 224, 0.45);
+    background: #6d28d9;
+}
+
+/* =========================================================
+   6. SCORING RULES MODAL & CALLOUTS
+   ========================================================= */
 .edmith-modal-overlay {
     position: fixed;
     inset: 0;
@@ -258,7 +771,7 @@
     border-radius: var(--radius-lg);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
     width: 100%;
-    max-width: 620px;
+    max-width: 640px;
     position: relative;
     padding: 2.25rem;
     transform: scale(0.95);
@@ -316,22 +829,11 @@
     color: var(--text-primary);
 }
 
-.edmith-modal-header p {
-    color: var(--text-secondary);
-    font-size: 0.92rem;
-}
-
 .scoring-rules-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 1.75rem;
-}
-
-@media (max-width: 600px) {
-    .scoring-rules-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .scoring-rule-card {
@@ -366,9 +868,7 @@
     color: var(--text-primary);
 }
 
-.scoring-points strong {
-    color: var(--accent);
-}
+.scoring-points strong { color: var(--accent); }
 
 .scoring-rule-card p {
     font-size: 0.78rem;
@@ -377,13 +877,79 @@
     line-height: 1.4;
 }
 
-.scoring-modal-footer {
+/* Information Banner */
+.fair-play-banner {
+    margin-top: 2rem;
+    padding: 1.35rem 1.75rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
 }
 
-.scoring-modal-footer .btn-enroll {
-    min-width: 140px;
-    text-align: center;
-    padding: 10px 24px;
+/* =========================================================
+   7. RESPONSIVE BREAKPOINTS
+   ========================================================= */
+@media (max-width: 900px) {
+    .leaderboard-stats-ticker {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .podium-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .podium-card.rank-first {
+        transform: none;
+        order: -1;
+    }
+}
+
+@media (max-width: 650px) {
+    .leaderboard-hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .subject-tabs-container {
+        border-radius: var(--radius-lg);
+        justify-content: stretch;
+    }
+
+    .subject-tab-btn {
+        flex: 1 1 45%;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    .scoring-rules-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .user-pinned-standing-card {
+        padding: 1.25rem;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .user-pinned-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .user-pinned-stats-group {
+        justify-content: center;
+    }
+
+    .user-pinned-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
 }

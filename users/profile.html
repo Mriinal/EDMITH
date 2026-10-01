@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex,nofollow">
     <meta name="description"
-        content="Your EDMITH profile — view your account details, assessment rankings, and learning progress.">
+        content="Your EDMITH profile — view verified credentials, assessment rankings, and active learning curriculum.">
     <title>My Profile | EDMITH</title>
 
     <!-- Prevent theme flicker before paint -->
@@ -21,8 +21,13 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -60,156 +65,345 @@
             </div>
             <h2>Profile Temporarily Unavailable</h2>
             <p id="profileErrorMessage">Unable to load profile data. Please check your network connection.</p>
-            <button type="button" class="btn-enroll" id="profileRetryBtn"><i class="fas fa-redo"></i> Retry
-                Loading</button>
+            <button type="button" class="btn-enroll" id="profileRetryBtn"><i class="fas fa-redo"></i> Retry Loading</button>
         </div>
 
         <!-- 4. AUTHENTICATED PROFILE CONTENT -->
         <div id="profileStateContent" style="display: none;">
 
-            <!-- Welcome banner -->
-            <div class="profile-welcome-banner" id="welcomeBanner">
-                <div class="profile-welcome-info">
-                    <div class="profile-welcome-icon">
-                        <i class="fas fa-rocket"></i>
+            <!-- World-Class Learner Passport Hero Banner -->
+            <section class="profile-passport-hero" id="welcomeBanner">
+                <div class="passport-left">
+                    <div class="passport-avatar-wrap">
+                        <div class="passport-avatar" id="profileAvatar">
+                            <span id="avatarInitial">?</span>
+                        </div>
+                        <span class="avatar-status-dot" title="Active Verified Scholar"></span>
                     </div>
-                    <div class="profile-welcome-text">
-                        <h1 id="welcomeHeading">Welcome back!</h1>
-                        <p id="welcomeSub">You're signed in to EDMITH.</p>
-                    </div>
-                </div>
-                <div class="profile-actions-bar">
-                    <!-- <a href="edit-profile.html" class="profile-edit-btn" id="editProfileBtn">
-                        <i class="fas fa-user-pen"></i> Edit Profile
-                    </a> -->
-                    <button id="logoutBtn" class="profile-logout-btn" title="Sign out">
-                        <i class="fas fa-right-from-bracket"></i> Sign Out
-                    </button>
-                </div>
-            </div>
 
-            <!-- Stats Overview Grid -->
-            <div class="profile-stats-grid">
-                <div class="profile-stat-card">
-                    <div class="profile-stat-icon icon-purple"><i class="fas fa-clipboard-check"></i></div>
-                    <div class="profile-stat-data">
-                        <span>Tests Completed</span>
-                        <strong id="statTestsTaken">0</strong>
-                    </div>
-                </div>
-                <div class="profile-stat-card">
-                    <div class="profile-stat-icon icon-emerald"><i class="fas fa-award"></i></div>
-                    <div class="profile-stat-data">
-                        <span>Total Points</span>
-                        <strong id="statTotalScore">0 pts</strong>
-                    </div>
-                </div>
-                <div class="profile-stat-card">
-                    <div class="profile-stat-icon icon-blue"><i class="fas fa-bullseye"></i></div>
-                    <div class="profile-stat-data">
-                        <span>Avg Accuracy</span>
-                        <strong id="statAvgAccuracy">0%</strong>
-                    </div>
-                </div>
-                <div class="profile-stat-card">
-                    <div class="profile-stat-icon icon-amber"><i class="fas fa-trophy"></i></div>
-                    <div class="profile-stat-data">
-                        <span>Global Rank</span>
-                        <strong id="statHighestRank">—</strong>
-                    </div>
-                </div>
-            </div>
+                    <div class="passport-info">
+                        <div class="passport-title-row">
+                            <h1 class="passport-name" id="welcomeHeading">Welcome back, Learner!</h1>
+                            <span class="passport-verified-badge" title="Verified EDMITH Learner">
+                                <i class="fas fa-circle-check"></i>
+                            </span>
+                        </div>
+                        <div class="passport-meta-row">
+                            <span class="passport-username" id="avatarUsername">@username</span>
+                            <span class="passport-meta-sep">•</span>
+                            <span class="passport-email" id="welcomeSub">signed in</span>
+                        </div>
 
-            <!-- Profile Main Grid -->
-            <div class="profile-grid">
+                        <!-- Learner Passport Highlights Strip -->
+                        <div class="passport-chips-strip">
+                            <span class="passport-chip rank-chip" id="heroRankChip">
+                                <i class="fas fa-trophy"></i>
+                                <span id="heroRankVal">Global Rank #1</span>
+                            </span>
+                            <span class="passport-chip pro-chip">
+                                <i class="fas fa-bolt"></i>
+                                <span>Verified Scholar</span>
+                            </span>
+                            <span class="passport-chip" id="heroCountryChip">
+                                <i class="fas fa-location-dot"></i>
+                                <span id="heroCountryVal">Global</span>
+                            </span>
+                            <span class="passport-chip" id="heroGoalChip">
+                                <i class="fas fa-compass"></i>
+                                <span id="heroGoalVal">Curiosity</span>
+                            </span>
+                            <span class="passport-chip" id="heroMemberChip">
+                                <i class="fas fa-calendar-check"></i>
+                                <span id="heroMemberVal">Member</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
-                <!-- Account Information Card -->
+                <div class="passport-right">
+                    <div class="passport-actions-row">
+                        <a href="edit-profile.html" class="passport-btn-edit" id="editProfileBtn">
+                            <i class="fas fa-user-pen"></i>
+                            <span>Edit Profile</span>
+                        </a>
+                        <button id="logoutBtn" class="passport-btn-logout" title="Sign out from EDMITH">
+                            <i class="fas fa-arrow-right-from-bracket"></i>
+                            <span>Sign Out</span>
+                        </button>
+                    </div>
+                    <div class="passport-level-tag">
+                        <i class="fas fa-shield-halved" style="color:#10b981;"></i>
+                        <span>Security: Cloud Synced &amp; Active</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modern Segmented Tab Controller -->
+            <nav class="profile-tabs-nav" id="profileTabsNav" role="tablist" aria-label="Profile Sections">
+                <button type="button" class="profile-tab-btn active" data-tab="overview" role="tab" id="tabBtnOverview">
+                    <i class="fas fa-id-badge"></i>
+                    <span>Dashboard Overview</span>
+                </button>
+                <button type="button" class="profile-tab-btn" data-tab="in-progress" role="tab" id="tabBtnInProgress">
+                    <i class="fas fa-book-open-reader"></i>
+                    <span>In Progress Courses</span>
+                    <span class="tab-badge" id="badgeInProgress">0</span>
+                </button>
+                <button type="button" class="profile-tab-btn" data-tab="completed-courses" role="tab" id="tabBtnCompletedCourses">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Completed Courses</span>
+                    <span class="tab-badge" id="badgeCompletedCourses">0</span>
+                </button>
+                <button type="button" class="profile-tab-btn" data-tab="completed-tests" role="tab" id="tabBtnCompletedTests">
+                    <i class="fas fa-award"></i>
+                    <span>Assessment History</span>
+                    <span class="tab-badge" id="badgeCompletedTests">0</span>
+                </button>
+            </nav>
+
+            <!-- TAB 1: OVERVIEW -->
+            <div class="profile-tab-pane active" id="tabPaneOverview" role="tabpanel">
+
+                <!-- 4 Executive KPI Stat Tiles -->
+                <div class="profile-stats-grid">
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-icon icon-purple">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div class="profile-stat-data">
+                            <span>Assessments Taken</span>
+                            <strong id="statTestsTaken">0</strong>
+                            <span class="kpi-trend positive"><i class="fas fa-circle-check"></i> Verified Records</span>
+                        </div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-icon icon-emerald">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="profile-stat-data">
+                            <span>Total Points</span>
+                            <strong id="statTotalScore">0 pts</strong>
+                            <span class="kpi-trend positive"><i class="fas fa-arrow-trend-up"></i> Top Percentile</span>
+                        </div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-icon icon-blue">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="profile-stat-data">
+                            <span>Avg Accuracy</span>
+                            <strong id="statAvgAccuracy">0%</strong>
+                            <span class="kpi-trend positive"><i class="fas fa-crosshairs"></i> Master Precision</span>
+                        </div>
+                    </div>
+                    <div class="profile-stat-card">
+                        <div class="profile-stat-icon icon-amber">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="profile-stat-data">
+                            <span>Global Rank</span>
+                            <strong id="statHighestRank">—</strong>
+                            <span class="kpi-trend gold"><i class="fas fa-crown"></i> Division Standing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Balanced Two-Column Dashboard Layout -->
+                <div class="profile-main-grid">
+
+                    <!-- Left Column (Curriculum Progression & Assessment Standings) -->
+                    <div style="display: flex; flex-direction: column; gap: 1.75rem;">
+
+                        <!-- Course Curriculum Progress Card -->
+                        <div class="profile-card" id="learningProgressCard">
+                            <div class="profile-card-header">
+                                <div class="profile-card-title-group">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Course Curriculum Progress</span>
+                                </div>
+                                <a href="../course.html" class="btn-plain" style="font-size: 0.85rem;">
+                                    Browse All <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="profile-card-body" id="progressCardBody">
+                                <div class="profile-loading">
+                                    <i class="fas fa-circle-notch fa-spin"></i>
+                                    <p>Loading course curriculum progress…</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assessment Standings by Difficulty Card -->
+                        <div class="profile-card">
+                            <div class="profile-card-header">
+                                <div class="profile-card-title-group">
+                                    <i class="fas fa-ranking-star"></i>
+                                    <span>Assessment Standings by Difficulty</span>
+                                </div>
+                                <a href="../Leaderboard.html" class="btn-plain" style="font-size: 0.85rem;">
+                                    <i class="fas fa-trophy"></i> Full Leaderboard <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="profile-card-body">
+                                <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0 0 1rem;">
+                                    Global division rankings earned from verified technical assessments across EDMITH:
+                                </p>
+                                <div class="difficulty-cards-row" id="difficultiesContainer">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column (Credentials Passport & Honors Badges) -->
+                    <div class="passport-sidebar">
+
+                        <!-- Account Information Card -->
+                        <div class="profile-card">
+                            <div class="profile-card-header">
+                                <div class="profile-card-title-group">
+                                    <i class="fas fa-id-card"></i>
+                                    <span>Account Credentials</span>
+                                </div>
+                                <a href="edit-profile.html" class="btn-plain" style="font-size: 0.82rem;">
+                                    <i class="fas fa-pen"></i> Edit
+                                </a>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="profile-avatar-row" style="display:none;">
+                                    <!-- Kept for script selector compatibility -->
+                                    <span id="avatarName"></span>
+                                </div>
+
+                                <div class="profile-info-list">
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-user"></i> Full Name</span>
+                                        <span class="profile-info-value" id="profileName">—</span>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-at"></i> Username</span>
+                                        <span class="profile-info-value" id="profileUsername">—</span>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-envelope"></i> Email</span>
+                                        <span class="profile-info-value" id="profileEmail">—</span>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-location-dot"></i> Country</span>
+                                        <span class="profile-info-value" id="profileCountry">—</span>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-compass"></i> Learning Goal</span>
+                                        <span class="profile-info-value" id="profileGoal">—</span>
+                                    </div>
+                                    <div class="profile-info-row">
+                                        <span class="profile-info-label"><i class="fas fa-calendar-check"></i> Member Since</span>
+                                        <span class="profile-info-value" id="profileCreated">—</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Honors & Milestones Showcase Card -->
+                        <div class="profile-card">
+                            <div class="profile-card-header">
+                                <div class="profile-card-title-group">
+                                    <i class="fas fa-medal"></i>
+                                    <span>Honors &amp; Milestones</span>
+                                </div>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="badges-showcase-grid">
+                                    <div class="achievement-badge-card">
+                                        <div class="achievement-icon badge-gold">
+                                            <i class="fas fa-crown"></i>
+                                        </div>
+                                        <span class="achievement-title">Division Leader</span>
+                                        <span class="achievement-desc">Global Rank #1</span>
+                                    </div>
+                                    <div class="achievement-badge-card">
+                                        <div class="achievement-icon badge-purple">
+                                            <i class="fas fa-bullseye"></i>
+                                        </div>
+                                        <span class="achievement-title">High Accuracy</span>
+                                        <span class="achievement-desc">95%+ Precision</span>
+                                    </div>
+                                    <div class="achievement-badge-card">
+                                        <div class="achievement-icon badge-cyan">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <span class="achievement-title">Active Scholar</span>
+                                        <span class="achievement-desc">Curriculum In Progress</span>
+                                    </div>
+                                    <div class="achievement-badge-card">
+                                        <div class="achievement-icon badge-emerald">
+                                            <i class="fas fa-shield-halved"></i>
+                                        </div>
+                                        <span class="achievement-title">Verified Member</span>
+                                        <span class="achievement-desc">Protected Account</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Assessment Launcher -->
+                        <div class="profile-card">
+                            <div class="profile-card-header">
+                                <div class="profile-card-title-group">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Quick Assessment Hub</span>
+                                </div>
+                            </div>
+                            <div class="profile-card-body">
+                                <div class="quick-launch-list">
+                                    <a href="../sql/tests/sql_basics.html" class="quick-launch-link">
+                                        <div class="quick-launch-left">
+                                            <i class="fas fa-database" style="color:#3b82f6;"></i>
+                                            <span>SQL &amp; Databases MCQ</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right" style="font-size:0.8rem; color:var(--text-secondary);"></i>
+                                    </a>
+                                    <a href="../tests/python-test.html" class="quick-launch-link">
+                                        <div class="quick-launch-left">
+                                            <i class="fa-brands fa-python" style="color:#f59e0b;"></i>
+                                            <span>Python MCQ Assessment</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right" style="font-size:0.8rem; color:var(--text-secondary);"></i>
+                                    </a>
+                                    <a href="../tests/c-test.html" class="quick-launch-link">
+                                        <div class="quick-launch-left">
+                                            <i class="fas fa-terminal" style="color:#6366f1;"></i>
+                                            <span>C Programming MCQ</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right" style="font-size:0.8rem; color:var(--text-secondary);"></i>
+                                    </a>
+                                    <a href="../tests/index.html" class="quick-launch-link" style="background:var(--accent-subtle); border-color:rgba(121,63,224,0.25);">
+                                        <div class="quick-launch-left">
+                                            <i class="fas fa-layer-group" style="color:var(--accent);"></i>
+                                            <span style="color:var(--accent);">Explore All 5 Tracks</span>
+                                        </div>
+                                        <i class="fas fa-arrow-right" style="font-size:0.8rem; color:var(--accent);"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- /profile-main-grid -->
+
+                <!-- Full-Width Bottom Card: Recent Assessment Attempts -->
                 <div class="profile-card">
                     <div class="profile-card-header">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Account Information</span>
-                    </div>
-                    <div class="profile-card-body">
-                        <div class="profile-avatar-row">
-                            <div class="profile-avatar" id="profileAvatar">
-                                <span id="avatarInitial">?</span>
-                            </div>
-                            <div class="profile-avatar-info">
-                                <h2 class="profile-avatar-name" id="avatarName">EDMITH Learner</h2>
-                                <p class="profile-avatar-tag" id="avatarUsername">@username</p>
-                            </div>
+                        <div class="profile-card-title-group">
+                            <i class="fas fa-clock-rotate-left"></i>
+                            <span>Recent Assessment Attempts</span>
                         </div>
-
-                        <div class="profile-info-list">
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-user"></i> Full Name</span>
-                                <span class="profile-info-value" id="profileName">—</span>
-                            </div>
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-at"></i> Username</span>
-                                <span class="profile-info-value" id="profileUsername">—</span>
-                            </div>
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-envelope"></i> Email</span>
-                                <span class="profile-info-value" id="profileEmail">—</span>
-                            </div>
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-map-marker-alt"></i> Country</span>
-                                <span class="profile-info-value" id="profileCountry">—</span>
-                            </div>
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-bullseye"></i> Goal</span>
-                                <span class="profile-info-value" id="profileGoal">—</span>
-                            </div>
-                            <div class="profile-info-row">
-                                <span class="profile-info-label"><i class="fas fa-calendar-plus"></i> Member
-                                    Since</span>
-                                <span class="profile-info-value" id="profileCreated">—</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Learning Progress Card -->
-                <div class="profile-card" id="learningProgressCard">
-                    <div class="profile-card-header">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Course Curriculum Progress</span>
-                    </div>
-                    <div class="profile-card-body" id="progressCardBody">
-                        <div class="profile-loading" style="padding: 2rem 1rem;">
-                            <i class="fas fa-circle-notch fa-spin"></i>
-                            <p>Loading course progress…</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SQL Leaderboard Standings Card -->
-                <div class="profile-card" style="grid-column: 1 / -1;">
-                    <div class="profile-card-header">
-                        <i class="fas fa-ranking-star"></i>
-                        <span>Assessment Standings by Difficulty</span>
-                    </div>
-                    <div class="profile-card-body">
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">
-                            Rankings earned from completed SQL MCQ and Practical Coding assessments:
-                        </p>
-                        <div class="difficulty-cards-row" id="difficultiesContainer">
-                            <!-- Populated dynamically -->
-                        </div>
-                        <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
-                            <a href="../Leaderboard.html" class="btn-plain" style="font-size: 0.9rem;">
-                                <i class="fas fa-trophy"></i> View Full Leaderboard <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Assessment Attempts Card -->
-                <div class="profile-card" style="grid-column: 1 / -1;">
-                    <div class="profile-card-header">
-                        <i class="fas fa-clock-rotate-left"></i>
-                        <span>Recent Assessment Attempts</span>
+                        <a href="../tests/index.html" class="btn-plain" style="font-size: 0.85rem;">
+                            <i class="fas fa-vial"></i> Take New Test <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                     <div class="profile-card-body">
                         <div class="recent-attempts-table-wrap">
@@ -233,7 +427,84 @@
                 </div>
 
             </div>
-            <!-- /profile-grid -->
+            <!-- /tabPaneOverview -->
+
+            <!-- TAB 2: IN PROGRESS COURSES -->
+            <div class="profile-tab-pane" id="tabPaneInProgress" role="tabpanel">
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <div class="profile-card-title-group">
+                            <i class="fas fa-book-open-reader"></i>
+                            <span>In Progress Courses</span>
+                        </div>
+                        <a href="../course.html" class="btn-plain" style="font-size: 0.85rem;">
+                            Browse Catalog <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="profile-card-body" id="inProgressCoursesContainer">
+                        <div class="profile-loading">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                            <p>Loading active courses…</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: COMPLETED COURSES -->
+            <div class="profile-tab-pane" id="tabPaneCompletedCourses" role="tabpanel">
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <div class="profile-card-title-group">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Completed Courses</span>
+                        </div>
+                        <a href="../course.html" class="btn-plain" style="font-size: 0.85rem;">
+                            Explore New Syllabus <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="profile-card-body" id="completedCoursesContainer">
+                        <div class="profile-loading">
+                            <i class="fas fa-circle-notch fa-spin"></i>
+                            <p>Loading completed courses…</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: COMPLETED TESTS -->
+            <div class="profile-tab-pane" id="tabPaneCompletedTests" role="tabpanel">
+                <div class="profile-card">
+                    <div class="profile-card-header">
+                        <div class="profile-card-title-group">
+                            <i class="fas fa-award"></i>
+                            <span>Completed Test Records</span>
+                        </div>
+                        <a href="../tests/index.html" class="btn-plain" style="font-size: 0.85rem;">
+                            <i class="fas fa-vial"></i> Take New Test <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="profile-card-body" id="allCompletedTestsContainer">
+                        <div class="recent-attempts-table-wrap">
+                            <table class="recent-attempts-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Subject</th>
+                                        <th>Track</th>
+                                        <th>Difficulty</th>
+                                        <th>Score</th>
+                                        <th>Accuracy</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="allCompletedTestsBody">
+                                    <!-- Populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!-- /profileStateContent -->

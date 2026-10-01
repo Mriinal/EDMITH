@@ -20,7 +20,8 @@
     <ul class="nav-links desktop-nav-links" id="desktopNavLinks">
         <li><a href="{{ROOT}}index.html#home" data-nav="home">Home</a></li>
         <li><a href="{{ROOT}}course.html" data-nav="courses">Browse All Courses</a></li>
-        <li><a href="{{ROOT}}Leaderboard.html" data-nav="leaderboard">Leaderboard</a></li>
+        <li><a href="{{ROOT}}tests/index.html" data-nav="tests">Tests</a></li>
+        <li><a href="{{ROOT}}leaderboard/index.html" data-nav="leaderboard">Leaderboard</a></li>
     </ul>
 
     <div class="header-actions">
@@ -60,7 +61,13 @@
             </a>
         </li>
         <li style="--item-index: 3;">
-            <a href="{{ROOT}}Leaderboard.html" data-nav="leaderboard">
+            <a href="{{ROOT}}tests/index.html" data-nav="tests">
+                <span class="mobile-nav-icon" aria-hidden="true"><i class="fas fa-file-alt"></i></span>
+                <span>Tests & Assessments</span>
+            </a>
+        </li>
+        <li style="--item-index: 4;">
+            <a href="{{ROOT}}leaderboard/index.html" data-nav="leaderboard">
                 <span class="mobile-nav-icon" aria-hidden="true"><i class="fas fa-trophy"></i></span>
                 <span>Leaderboard</span>
             </a>
@@ -84,22 +91,27 @@
         <ul>
             <li><a href="{{ROOT}}index.html#home">Home</a></li>
             <li><a href="{{ROOT}}course.html">All Courses</a></li>
+            <li><a href="{{ROOT}}tests/index.html">Tests & Assessments</a></li>
+            <li><a href="{{ROOT}}fundamentals/index.html">Programming Fundamentals</a></li>
             <li><a href="{{ROOT}}sql/index.html">SQL Mastery</a></li>
             <li><a href="{{ROOT}}etl/index.html">ETL Testing</a></li>
             <li><a href="{{ROOT}}c/index.html">C Programming</a></li>
+            <li><a href="{{ROOT}}python/index.html">Python Programming</a></li>
         </ul>
 
     </div>
     <div class="footer-links">
-        <h3>Leaderboard</h3>
+        <h3>Community &amp; Stats</h3>
         <ul>
-            <li><a href="{{ROOT}}Leaderboard.html">Rankings</a></li>
+            <li><a href="{{ROOT}}leaderboard/index.html"><i class="fas fa-trophy"></i> Rankings</a></li>
+            <li><a href="{{ROOT}}users/profile.html"><i class="fas fa-id-badge"></i> User Profile</a></li>
         </ul>
     </div>
     <div class="footer-links">
         <h3>Editors</h3>
         <ul>
             <li><a href="{{ROOT}}editors/editor.html"><i class="fas fa-terminal"></i> SQL Editor</a></li>
+            <li><a href="{{ROOT}}editors/c-editor.html"><i class="fas fa-code"></i> C Editor</a></li>
         </ul>
     </div>
     <div class="footer-links">
@@ -134,7 +146,7 @@
         // 2. Fallback based on pathname
         const rawPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
         if (rawPath.includes('/sql/tests/')) return '../../';
-        if (rawPath.includes('/sql/') || rawPath.includes('/editors/') || rawPath.includes('/users/') || rawPath.includes('/etl/')) return '../';
+        if (rawPath.includes('/tests/') || rawPath.includes('/sql/') || rawPath.includes('/editors/') || rawPath.includes('/editor/') || rawPath.includes('/users/') || rawPath.includes('/etl/') || rawPath.includes('/c/') || rawPath.includes('/python/') || rawPath.includes('/fundamentals/') || rawPath.includes('/leaderboard/')) return '../';
         return '';
     }
 
@@ -182,24 +194,40 @@
         // Reset any existing active classes
         allNavLinks.forEach(a => a.classList.remove('active'));
 
-        let matched = false;
+        // Route categories (evaluated strictly and in priority order)
+        const isTests = currentPath.includes('/tests/') ||
+                        currentPath.includes('/sql/tests/') ||
+                        currentPath.endsWith('/tests') ||
+                        currentPath.endsWith('/tests/');
 
-        // Specific section detection
-        if (currentPath.includes('/leaderboard.html')) {
-            document.querySelectorAll('a[data-nav="leaderboard"], a[href*="Leaderboard.html"]').forEach(a => a.classList.add('active'));
-            matched = true;
-        } else if (currentPath.includes('/course.html') || currentPath.includes('/sql/') || currentPath.includes('/etl/')) {
-            document.querySelectorAll('a[data-nav="courses"], a[href*="course.html"]').forEach(a => a.classList.add('active'));
-            matched = true;
-        } else if (currentPath.includes('/users/profile.html')) {
+        const isLeaderboard = currentPath.includes('leaderboard');
+
+        const isProfile = currentPath.includes('/users/profile.html');
+
+        const isCourses = !isTests && (
+            currentPath.includes('/course.html') ||
+            currentPath.includes('/courses.html') ||
+            currentPath.includes('/sql/') ||
+            currentPath.includes('/etl/') ||
+            currentPath.includes('/c/') ||
+            currentPath.includes('/python/') ||
+            currentPath.includes('/fundamentals/')
+        );
+
+        const isAuth = currentPath.includes('/users/') || currentPath.includes('login') || currentPath.includes('signup');
+
+        if (isLeaderboard) {
+            document.querySelectorAll('a[data-nav="leaderboard"]').forEach(a => a.classList.add('active'));
+        } else if (isTests) {
+            document.querySelectorAll('a[data-nav="tests"]').forEach(a => a.classList.add('active'));
+        } else if (isCourses) {
+            document.querySelectorAll('a[data-nav="courses"]').forEach(a => a.classList.add('active'));
+        } else if (isProfile) {
             const p = document.querySelectorAll('.header-profile-btn, .mobile-profile-btn, .header-user-btn');
             p.forEach(el => el.classList.add('active'));
-            matched = true;
-        }
-
-        // Default to Home if root or unspecifically matched
-        if (!matched && (currentPath.endsWith('/index.html') || currentPath.endsWith('/') || currentPath.endsWith('/edmith') || currentPath.endsWith('/edmith/'))) {
-            document.querySelectorAll('a[data-nav="home"], a[href*="#home"], a[href$="index.html"]').forEach(a => a.classList.add('active'));
+        } else if (!isAuth) {
+            // Default to Home on root, index.html, or landing surfaces
+            document.querySelectorAll('a[data-nav="home"]').forEach(a => a.classList.add('active'));
         }
     }
 

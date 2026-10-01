@@ -1,0 +1,927 @@
+/* EDMITH Design System — Course Detail & Syllabus (sql/index.html, etc.) */
+/* =========================================================
+   COURSE DETAIL PAGE (sql/index.html)
+   ========================================================= */
+
+.detail-hero {
+    position: relative;
+    min-height: 40vh;
+    padding: 4.5rem 0 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, var(--bg-secondary) 0%, var(--bg-main) 80%);
+    border-bottom: 1px solid var(--card-border);
+    margin-top: 65px;
+}
+
+.detail-hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(var(--card-border) 1.5px, transparent 1.5px);
+    background-size: 32px 32px;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+.detail-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 0 5%;
+}
+
+.detail-hero-content h1 {
+    font-size: 3.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.relevance-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    background: var(--card-bg);
+    padding: 22px 26px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+}
+
+.detail-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1.95fr) minmax(0, 360px);
+    gap: 2.5rem;
+    max-width: 1240px;
+    width: 100%;
+    margin: 3rem auto 5rem;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+
+.detail-main {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.detail-sidebar {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.detail-main h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--card-border);
+    padding-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.detail-main h2:first-child {
+    margin-top: 0;
+}
+
+/* Learning Pillars Grid - 100% Fluid & Responsive */
+.learning-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pillar-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+.pillar-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(121, 63, 224, 0.15);
+}
+
+.pillar-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--accent-subtle);
+    border: 1.5px solid rgba(121, 63, 224, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+    flex-shrink: 0;
+}
+
+.pillar-card h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.35;
+}
+
+.pillar-card p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.learning-grid p {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.learning-grid p span {
+    flex: 1;
+}
+
+.learning-grid i {
+    color: var(--accent);
+    margin-top: 4px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.description-text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+/* Universal Table Scroll Wrapper (Prevents Page Viewport Overflow) */
+.table-scroll-wrap,
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.5rem 0;
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+.table-scroll-wrap table,
+.table-container table,
+.data-table {
+    margin: 0 !important;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-scroll-wrap table th,
+.table-scroll-wrap table td,
+.table-container table th,
+.table-container table td,
+.data-table th,
+.data-table td {
+    padding: 13px 18px;
+    border: 1px solid var(--card-border);
+    font-size: 0.92rem;
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+.table-scroll-wrap table th,
+.table-container table th,
+.data-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Guard against standalone tables in lessons that might lack an outer scroll wrapper */
+.lesson-section > table:not(.table-scroll-wrap table):not(.table-container table) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    margin: 1.5rem 0;
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    background: var(--card-bg);
+}
+
+/* Course Live Progress Bar Card for Index Hubs */
+.course-hub-progress-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 2.25rem;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hub-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hub-progress-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.hub-progress-title i {
+    color: var(--accent);
+}
+
+.hub-progress-pct {
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: var(--font-mono, monospace);
+    color: var(--accent);
+    background: var(--accent-subtle);
+    padding: 4px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(121, 63, 224, 0.25);
+}
+
+.hub-progress-bar-track {
+    width: 100%;
+    height: 10px;
+    background: var(--bg-secondary);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+}
+
+.hub-progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent) 0%, #a855f7 100%);
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hub-progress-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+}
+
+.hub-progress-resume-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.hub-progress-resume-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(121, 63, 224, 0.35);
+}
+
+/* =========================================================
+   WORLD-CLASS COURSE SYLLABUS & CURRICULUM ACCORDION
+/* =========================================================
+   Syllabus Header Wrap & Expand / Collapse Controls
+   ========================================================= */
+
+.syllabus-header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 2.75rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1.5px solid var(--card-border);
+}
+
+.syllabus-header-left {
+    flex: 1 1 300px;
+}
+
+.syllabus-header-left h2 {
+    margin: 0 0 0.35rem 0 !important;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.syllabus-meta-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(121, 63, 224, 0.2);
+}
+
+.curriculum-accordion-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.btn-syllabus-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    user-select: none;
+}
+
+.btn-syllabus-control i {
+    font-size: 0.82rem;
+    color: var(--accent);
+    transition: transform 0.2s ease;
+}
+
+.btn-syllabus-control:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-subtle);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(121, 63, 224, 0.18);
+}
+
+.btn-syllabus-control:hover i {
+    transform: scale(1.15);
+}
+
+.btn-syllabus-control:active {
+    transform: translateY(0);
+}
+
+.syllabus-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin: 1.5rem 0 3rem;
+}
+
+.accordion-item {
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-lg, 16px);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-item:hover {
+    border-color: rgba(121, 63, 224, 0.35);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item.active {
+    border-color: rgba(121, 63, 224, 0.55);
+    box-shadow: 0 12px 36px rgba(121, 63, 224, 0.14), 0 0 0 1px rgba(121, 63, 224, 0.2);
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.35rem 1.75rem;
+    cursor: pointer;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid transparent;
+    user-select: none;
+    transition: all 0.25s ease;
+}
+
+.accordion-item.active .accordion-header {
+    border-bottom-color: var(--card-border);
+    background: var(--bg-secondary);
+}
+
+.accordion-header:hover {
+    background: var(--accent-subtle);
+}
+
+.accordion-header h3 {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.4;
+}
+
+.accordion-header i {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+}
+
+.accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.35);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 1.75rem;
+    background: var(--bg-main);
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 8000px;
+}
+
+.accordion-body ul {
+    list-style: none;
+    padding: 1.25rem 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.accordion-body ul[style*="grid"] {
+    display: grid !important;
+    padding: 1.25rem 0;
+    gap: 12px;
+}
+
+.accordion-body li {
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    font-weight: 600;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-body li:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    color: var(--text-primary);
+    transform: translateX(4px);
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.12);
+}
+
+.accordion-body li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    transition: color 0.2s ease;
+}
+
+.accordion-body li:hover a {
+    color: var(--accent);
+}
+
+.accordion-body li i {
+    color: var(--accent);
+    font-size: 0.95rem;
+    width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Course Roadmap Visualization Bar */
+.course-roadmap-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--card-border) transparent;
+}
+
+.course-roadmap-strip::-webkit-scrollbar {
+    height: 5px;
+}
+
+.course-roadmap-strip::-webkit-scrollbar-thumb {
+    background: var(--card-border);
+    border-radius: 4px;
+}
+
+.roadmap-stage {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.roadmap-stage-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(121, 63, 224, 0.3);
+    flex-shrink: 0;
+}
+
+.roadmap-stage-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.roadmap-stage-title {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.roadmap-stage-sub {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.roadmap-divider {
+    color: var(--card-border);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* Lesson Grid & Cards */
+.syllabus-lesson-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 12px;
+    padding: 1.25rem 0 1.5rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.syllabus-lesson-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.syllabus-lesson-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-subtle);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.18), 0 0 0 1px rgba(121, 63, 224, 0.2);
+}
+
+.syllabus-lesson-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    flex: 1;
+}
+
+.syllabus-lesson-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 28px;
+    padding: 0 6px;
+    border-radius: 8px;
+    background: var(--accent-subtle);
+    border: 1px solid rgba(121, 63, 224, 0.25);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-family: var(--font-mono, monospace);
+    letter-spacing: -0.2px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.syllabus-lesson-card:hover .syllabus-lesson-num {
+    background: linear-gradient(135deg, var(--accent) 0%, #6830d4 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 2px 10px rgba(121, 63, 224, 0.35);
+}
+
+.syllabus-lesson-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+}
+
+.syllabus-lesson-card:hover .syllabus-lesson-title {
+    color: var(--accent);
+}
+
+.syllabus-lesson-arrow {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+    margin-left: auto;
+    opacity: 0.55;
+}
+
+.syllabus-lesson-card:hover .syllabus-lesson-arrow {
+    color: var(--accent);
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Interactive Playground Banner */
+.editor-callout-card {
+    background: linear-gradient(135deg, #1A1230 0%, #261642 100%);
+    border: 1px solid rgba(157, 111, 245, 0.3);
+    border-radius: var(--radius-md);
+    padding: 1.75rem 2rem;
+    margin: 2rem 0;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.editor-callout-text h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 0.4rem;
+}
+
+.editor-callout-text p {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.editor-callout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #FFFFFF;
+    padding: 11px 22px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.4);
+}
+
+.editor-callout-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    color: #FFFFFF;
+}
+
+@media (max-width: 680px) {
+    .editor-callout-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+    }
+    .editor-callout-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+.detail-sidebar {
+    position: relative;
+}
+
+.sidebar-card {
+    position: sticky;
+    top: 90px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.sidebar-img {
+    height: 220px;
+    background: linear-gradient(135deg, var(--accent), #D1BDEB);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 6.5rem;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.sidebar-content {
+    padding: 2rem;
+}
+
+.course-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.meta-item i {
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.meta-item strong {
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.btn-enroll {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.35);
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-enroll:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--accent) 0%, #6830d4 100%);
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-hover) 0%, #5824b8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.5);
+    color: #ffffff !important;
+}
+
+

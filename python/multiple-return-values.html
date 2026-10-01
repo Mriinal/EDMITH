@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Multiple return values in Python Programming. Complete beginner tutorial with syntax, explanation cards, expected output, and comprehensive summary on EDMITH.">
+    <title>Multiple return values — Python Programming Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/python/multiple-return-values.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/python/multiple-return-values.html">
+    <meta property="og:title" content="Multiple return values — Python Programming Tutorial">
+    <meta property="og:description" content="Learn Multiple return values with EDMITH Python Programming. Beginner-friendly breakdown, explanation cards, and runnable Python examples.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Multiple return values — Python Programming Tutorial">
+    <meta name="twitter:description" content="Learn Multiple return values with EDMITH Python Programming. Beginner-friendly breakdown, explanation cards, and runnable Python examples.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+                        <!-- Module 1: Introduction to Python & Setup -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Introduction to Python Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Introduction to Python</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="introduction-to-python.html"><i class="fab fa-python"></i> Introduction to Python</a></li>
+                        <li><a href="python-use-cases.html"><i class="fas fa-cubes"></i> Python use cases</a></li>
+                        <li><a href="python-implementations.html"><i class="fas fa-network-wired"></i> Python implementations</a></li>
+                        <li><a href="cpython.html"><i class="fas fa-c"></i> CPython</a></li>
+                        <li><a href="python-interpreter.html"><i class="fas fa-gears"></i> Python interpreter</a></li>
+                        <li><a href="python-execution-model.html"><i class="fas fa-arrow-trend-up"></i> Python execution model</a></li>
+                        <li><a href="python-2-vs-python-3.html"><i class="fas fa-code-compare"></i> Python 2 vs Python 3</a></li>
+                        <li><a href="python-installation.html"><i class="fas fa-download"></i> Python installation</a></li>
+                        <li><a href="python-version-management.html"><i class="fas fa-sliders"></i> Python version management</a></li>
+                        <li><a href="python-repl.html"><i class="fas fa-terminal"></i> Python REPL</a></li>
+                        <li><a href="running-python-scripts.html"><i class="fas fa-play"></i> Running Python scripts</a></li>
+                        <li><a href="python-idle.html"><i class="fas fa-desktop"></i> Python IDLE</a></li>
+                        <li><a href="vscode-and-pycharm.html"><i class="fas fa-laptop-code"></i> VS Code / PyCharm</a></li>
+                        <li><a href="terminal-command-prompt.html"><i class="fas fa-window-maximize"></i> Terminal/Command Prompt</a></li>
+                        <li><a href="python-path.html"><i class="fas fa-route"></i> Python PATH</a></li>
+                        <li><a href="python-vs-python3.html"><i class="fas fa-terminal"></i> python vs python3</a></li>
+                        <li><a href="pip-package-manager.html"><i class="fas fa-box-open"></i> pip</a></li>
+                        <li><a href="python-documentation.html"><i class="fas fa-book"></i> Python documentation</a></li>
+                        <li><a href="peps.html"><i class="fas fa-file-lines"></i> PEPs</a></li>
+                        <li><a href="pep-8.html"><i class="fas fa-check-double"></i> PEP 8</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Python Syntax & Basic Structure -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Python Syntax & Basic Structure Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Python Syntax & Basic Structure</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="python-indentation.html"><i class="fas fa-indent"></i> Python indentation</a></li>
+                        <li><a href="blocks.html"><i class="fas fa-layer-group"></i> Blocks</a></li>
+                        <li><a href="statements.html"><i class="fas fa-paragraph"></i> Statements</a></li>
+                        <li><a href="expressions.html"><i class="fas fa-calculator"></i> Expressions</a></li>
+                        <li><a href="syntax-comments.html"><i class="fas fa-comment"></i> Comments</a></li>
+                        <li><a href="single-line-comments.html"><i class="fas fa-comment-slash"></i> Single-line comments</a></li>
+                        <li><a href="multiline-comments.html"><i class="fas fa-comments"></i> Multi-line documentation/comments</a></li>
+                        <li><a href="identifiers.html"><i class="fas fa-id-badge"></i> Identifiers</a></li>
+                        <li><a href="naming-conventions.html"><i class="fas fa-font"></i> Naming conventions</a></li>
+                        <li><a href="keywords.html"><i class="fas fa-key"></i> Keywords</a></li>
+                        <li><a href="reserved-words.html"><i class="fas fa-shield"></i> Reserved words</a></li>
+                        <li><a href="literals.html"><i class="fas fa-quote-left"></i> Literals</a></li>
+                        <li><a href="variables.html"><i class="fas fa-box"></i> Variables</a></li>
+                        <li><a href="assignment-statements.html"><i class="fas fa-equals"></i> Assignment statements</a></li>
+                        <li><a href="multiple-assignment.html"><i class="fas fa-arrows-split-up-and-left"></i> Multiple assignment</a></li>
+                        <li><a href="chained-assignment.html"><i class="fas fa-link"></i> Chained assignment</a></li>
+                        <li><a href="augmented-assignment.html"><i class="fas fa-plus-minus"></i> Augmented assignment</a></li>
+                        <li><a href="dynamic-typing.html"><i class="fas fa-shuffle"></i> Dynamic typing</a></li>
+                        <li><a href="strong-typing.html"><i class="fas fa-shield-halved"></i> Strong typing</a></li>
+                        <li><a href="duck-typing.html"><i class="fas fa-feather"></i> Duck typing</a></li>
+                        <li><a href="object-references.html"><i class="fas fa-location-arrow"></i> Object references</a></li>
+                        <li><a href="variable-scope-basics.html"><i class="fas fa-eye"></i> Variable scope basics</a></li>
+                        <li><a href="type-function.html"><i class="fas fa-magnifying-glass"></i> type()</a></li>
+                        <li><a href="id-function.html"><i class="fas fa-fingerprint"></i> id()</a></li>
+                        <li><a href="help-function.html"><i class="fas fa-circle-question"></i> help()</a></li>
+                        <li><a href="dir-function.html"><i class="fas fa-list-ul"></i> dir()</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Python Data Types -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Python Data Types Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Python Data Types</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="what-is-a-data-type.html"><i class="fas fa-shapes"></i> What is a data type?</a></li>
+                        <li><a href="mutable-vs-immutable.html"><i class="fas fa-lock"></i> Mutable vs immutable objects</a></li>
+                        <li><a href="builtin-data-types.html"><i class="fas fa-boxes-stacked"></i> Built-in data types</a></li>
+                        <li><a href="nonetype.html"><i class="fas fa-ban"></i> NoneType</a></li>
+                        <li><a href="boolean-data-type.html"><i class="fas fa-toggle-on"></i> Boolean</a></li>
+                        <li><a href="integer-data-type.html"><i class="fas fa-hashtag"></i> Integer</a></li>
+                        <li><a href="floating-point-numbers.html"><i class="fas fa-percent"></i> Floating-point numbers</a></li>
+                        <li><a href="complex-numbers.html"><i class="fas fa-square-root-variable"></i> Complex numbers</a></li>
+                        <li><a href="strings-data-type.html"><i class="fas fa-quote-right"></i> Strings</a></li>
+                        <li><a href="lists-data-type.html"><i class="fas fa-list-ol"></i> Lists</a></li>
+                        <li><a href="tuples-data-type.html"><i class="fas fa-cube"></i> Tuples</a></li>
+                        <li><a href="sets-data-type.html"><i class="fas fa-circle-nodes"></i> Sets</a></li>
+                        <li><a href="dictionaries-data-type.html"><i class="fas fa-address-book"></i> Dictionaries</a></li>
+                        <li><a href="range-data-type.html"><i class="fas fa-arrows-left-right"></i> range</a></li>
+                        <li><a href="bytes-data-type.html"><i class="fas fa-binary"></i> Bytes</a></li>
+                        <li><a href="bytearray-data-type.html"><i class="fas fa-file-binary"></i> Bytearray</a></li>
+                        <li><a href="frozenset-data-type.html"><i class="fas fa-snowflake"></i> Frozenset</a></li>
+                        <li><a href="memory-views.html"><i class="fas fa-memory"></i> Memory views</a></li>
+                        <li><a href="type-conversion.html"><i class="fas fa-shuffle"></i> Type conversion</a></li>
+                        <li><a href="type-casting.html"><i class="fas fa-wand-magic-sparkles"></i> Type casting</a></li>
+                        <li><a href="int-function.html"><i class="fas fa-calculator"></i> int()</a></li>
+                        <li><a href="float-function.html"><i class="fas fa-divide"></i> float()</a></li>
+                        <li><a href="complex-function.html"><i class="fas fa-plus-minus"></i> complex()</a></li>
+                        <li><a href="str-function.html"><i class="fas fa-font"></i> str()</a></li>
+                        <li><a href="bool-function.html"><i class="fas fa-check"></i> bool()</a></li>
+                        <li><a href="list-function.html"><i class="fas fa-list"></i> list()</a></li>
+                        <li><a href="tuple-function.html"><i class="fas fa-layer-group"></i> tuple()</a></li>
+                        <li><a href="set-function.html"><i class="fas fa-certificate"></i> set()</a></li>
+                        <li><a href="dict-function.html"><i class="fas fa-book-bookmark"></i> dict()</a></li>
+                        <li><a href="bytes-function.html"><i class="fas fa-microchip"></i> bytes()</a></li>
+                        <li><a href="bytearray-function.html"><i class="fas fa-pen-ruler"></i> bytearray()</a></li>
+                        <li><a href="truthy-and-falsy-values.html"><i class="fas fa-scale-balanced"></i> Truthy and falsy values</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Operators -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Operators Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Operators</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="arithmetic-operators.html"><i class="fas fa-plus"></i> Arithmetic operators</a></li>
+                        <li><a href="addition-operator.html"><i class="fas fa-plus"></i> Addition</a></li>
+                        <li><a href="subtraction-operator.html"><i class="fas fa-minus"></i> Subtraction</a></li>
+                        <li><a href="multiplication-operator.html"><i class="fas fa-xmark"></i> Multiplication</a></li>
+                        <li><a href="division-operator.html"><i class="fas fa-divide"></i> Division</a></li>
+                        <li><a href="floor-division-operator.html"><i class="fas fa-angle-down"></i> Floor division</a></li>
+                        <li><a href="modulus-operator.html"><i class="fas fa-percent"></i> Modulus</a></li>
+                        <li><a href="exponentiation-operator.html"><i class="fas fa-superscript"></i> Exponentiation</a></li>
+                        <li><a href="comparison-operators.html"><i class="fas fa-scale-unbalanced"></i> Comparison operators</a></li>
+                        <li><a href="equal-operator.html"><i class="fas fa-equals"></i> Equal</a></li>
+                        <li><a href="not-equal-operator.html"><i class="fas fa-not-equal"></i> Not equal</a></li>
+                        <li><a href="greater-than-operator.html"><i class="fas fa-greater-than"></i> Greater than</a></li>
+                        <li><a href="less-than-operator.html"><i class="fas fa-less-than"></i> Less than</a></li>
+                        <li><a href="greater-than-or-equal-operator.html"><i class="fas fa-greater-than-equal"></i> Greater than or equal</a></li>
+                        <li><a href="less-than-or-equal-operator.html"><i class="fas fa-less-than-equal"></i> Less than or equal</a></li>
+                        <li><a href="assignment-operators.html"><i class="fas fa-arrow-left"></i> Assignment operators</a></li>
+                        <li><a href="compound-assignment-operators.html"><i class="fas fa-gears"></i> Compound assignment</a></li>
+                        <li><a href="logical-operators.html"><i class="fas fa-circle-nodes"></i> Logical operators</a></li>
+                        <li><a href="and-operator.html"><i class="fas fa-circle-check"></i> and</a></li>
+                        <li><a href="or-operator.html"><i class="fas fa-circle-pause"></i> or</a></li>
+                        <li><a href="not-operator.html"><i class="fas fa-circle-xmark"></i> not</a></li>
+                        <li><a href="identity-operators.html"><i class="fas fa-fingerprint"></i> Identity operators</a></li>
+                        <li><a href="is-operator.html"><i class="fas fa-arrows-to-dot"></i> is</a></li>
+                        <li><a href="is-not-operator.html"><i class="fas fa-arrows-split-up-and-left"></i> is not</a></li>
+                        <li><a href="membership-operators.html"><i class="fas fa-magnifying-glass-chart"></i> Membership operators</a></li>
+                        <li><a href="in-operator.html"><i class="fas fa-check-double"></i> in</a></li>
+                        <li><a href="not-in-operator.html"><i class="fas fa-ban"></i> not in</a></li>
+                        <li><a href="bitwise-operators.html"><i class="fas fa-binary"></i> Bitwise operators</a></li>
+                        <li><a href="bitwise-and-operator.html"><i class="fas fa-ampersand"></i> AND</a></li>
+                        <li><a href="bitwise-or-operator.html"><i class="fas fa-pipe"></i> OR</a></li>
+                        <li><a href="bitwise-xor-operator.html"><i class="fas fa-caret-up"></i> XOR</a></li>
+                        <li><a href="bitwise-not-operator.html"><i class="fas fa-tilde"></i> NOT</a></li>
+                        <li><a href="bitwise-left-shift.html"><i class="fas fa-angles-left"></i> Left shift</a></li>
+                        <li><a href="bitwise-right-shift.html"><i class="fas fa-angles-right"></i> Right shift</a></li>
+                        <li><a href="operator-precedence.html"><i class="fas fa-list-ol"></i> Operator precedence</a></li>
+                        <li><a href="operator-associativity.html"><i class="fas fa-arrows-left-right"></i> Operator associativity</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 5: Input & Output -->
+            <div class="sidebar-module-group collapsed" data-module="module-5">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod5-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 5: Input & Output Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 5: Input & Output</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod5-list">
+                    <ul>
+                        <li><a href="print-function.html"><i class="fas fa-print"></i> print()</a></li>
+                        <li><a href="input-function.html"><i class="fas fa-keyboard"></i> input()</a></li>
+                        <li><a href="user-input.html"><i class="fas fa-user-pen"></i> User input</a></li>
+                        <li><a href="multiple-inputs.html"><i class="fas fa-users-gear"></i> Multiple inputs</a></li>
+                        <li><a href="formatting-output.html"><i class="fas fa-pen-fancy"></i> Formatting output</a></li>
+                        <li><a href="sep-parameter.html"><i class="fas fa-grip-lines"></i> sep</a></li>
+                        <li><a href="end-parameter.html"><i class="fas fa-arrow-turn-down"></i> end</a></li>
+                        <li><a href="escape-characters.html"><i class="fas fa-code"></i> Escape characters</a></li>
+                        <li><a href="newline-escape.html"><i class="fas fa-arrow-down-short-wide"></i> Newline</a></li>
+                        <li><a href="tab-escape.html"><i class="fas fa-arrows-left-right-to-line"></i> Tab</a></li>
+                        <li><a href="quotes-escaping.html"><i class="fas fa-quote-left"></i> Quotes</a></li>
+                        <li><a href="raw-strings.html"><i class="fas fa-r"></i> Raw strings</a></li>
+                        <li><a href="string-formatting.html"><i class="fas fa-palette"></i> String formatting</a></li>
+                        <li><a href="percent-formatting.html"><i class="fas fa-percent"></i> % formatting</a></li>
+                        <li><a href="str-format-method.html"><i class="fas fa-brackets-curly"></i> str.format()</a></li>
+                        <li><a href="f-strings.html"><i class="fas fa-bolt"></i> f-strings</a></li>
+                        <li><a href="format-specifiers.html"><i class="fas fa-sliders"></i> Format specifiers</a></li>
+                        <li><a href="number-formatting.html"><i class="fas fa-hashtag"></i> Number formatting</a></li>
+                        <li><a href="output-alignment.html"><i class="fas fa-align-left"></i> Alignment</a></li>
+                        <li><a href="output-precision.html"><i class="fas fa-bullseye"></i> Precision</a></li>
+                        <li><a href="output-width.html"><i class="fas fa-ruler-horizontal"></i> Width</a></li>
+                        <li><a href="datetime-formatting.html"><i class="fas fa-calendar-days"></i> Date/time formatting</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 6: Conditional Statements -->
+            <div class="sidebar-module-group collapsed" data-module="module-6">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod6-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 6: Conditional Statements Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 6: Conditional Statements</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod6-list">
+                    <ul>
+                        <li><a href="boolean-expressions.html"><i class="fas fa-scale-balanced"></i> Boolean expressions</a></li>
+                        <li><a href="if-statement.html"><i class="fas fa-arrow-down-right-to-point"></i> if</a></li>
+                        <li><a href="else-statement.html"><i class="fas fa-turn-down"></i> else</a></li>
+                        <li><a href="elif-statement.html"><i class="fas fa-list-ol"></i> elif</a></li>
+                        <li><a href="nested-conditions.html"><i class="fas fa-sitemap"></i> Nested conditions</a></li>
+                        <li><a href="multiple-conditions.html"><i class="fas fa-diagram-project"></i> Multiple conditions</a></li>
+                        <li><a href="conditional-expressions.html"><i class="fas fa-feather"></i> Conditional expressions</a></li>
+                        <li><a href="ternary-operator.html"><i class="fas fa-arrow-right-arrow-left"></i> Ternary operator</a></li>
+                        <li><a href="nested-ternary-expressions.html"><i class="fas fa-network-wired"></i> Nested ternary expressions</a></li>
+                        <li><a href="short-circuit-evaluation.html"><i class="fas fa-bolt"></i> Short-circuit evaluation</a></li>
+                        <li><a href="guard-clauses.html"><i class="fas fa-shield"></i> Guard clauses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 7: Loops -->
+            <div class="sidebar-module-group collapsed" data-module="module-7">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod7-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 7: Loops Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 7: Loops</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod7-list">
+                    <ul>
+                        <li><a href="why-loops-are-required.html"><i class="fas fa-repeat"></i> Why loops are required</a></li>
+                        <li><a href="for-loop.html"><i class="fas fa-arrow-rotate-right"></i> for loop</a></li>
+                        <li><a href="while-loop.html"><i class="fas fa-clock-rotate-left"></i> while loop</a></li>
+                        <li><a href="nested-loops.html"><i class="fas fa-border-all"></i> Nested loops</a></li>
+                        <li><a href="loop-conditions.html"><i class="fas fa-filter"></i> Loop conditions</a></li>
+                        <li><a href="range-function-loops.html"><i class="fas fa-arrow-right-arrow-left"></i> range()</a></li>
+                        <li><a href="enumerate-function.html"><i class="fas fa-list-numeric"></i> enumerate()</a></li>
+                        <li><a href="break-statement.html"><i class="fas fa-hand"></i> break</a></li>
+                        <li><a href="continue-statement.html"><i class="fas fa-forward-step"></i> continue</a></li>
+                        <li><a href="pass-statement.html"><i class="fas fa-forward"></i> pass</a></li>
+                        <li><a href="loop-else-clause.html"><i class="fas fa-circle-check"></i> Loop else</a></li>
+                        <li><a href="infinite-loops.html"><i class="fas fa-infinity"></i> Infinite loops</a></li>
+                        <li><a href="avoiding-infinite-loops.html"><i class="fas fa-shield-halved"></i> Avoiding infinite loops</a></li>
+                        <li><a href="iteration-patterns.html"><i class="fas fa-diagram-next"></i> Iteration patterns</a></li>
+                        <li><a href="forward-iteration.html"><i class="fas fa-arrow-right"></i> Forward iteration</a></li>
+                        <li><a href="reverse-iteration.html"><i class="fas fa-arrow-left"></i> Reverse iteration</a></li>
+                        <li><a href="stepping-through-ranges.html"><i class="fas fa-shoe-prints"></i> Stepping through ranges</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 8: Strings -->
+            <div class="sidebar-module-group collapsed" data-module="module-8">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod8-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 8: Strings Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 8: Strings</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod8-list">
+                    <ul>
+                        <li><a href="creating-strings.html"><i class="fas fa-pen"></i> Creating strings</a></li>
+                        <li><a href="single-quotes-strings.html"><i class="fas fa-quote-left"></i> Single quotes</a></li>
+                        <li><a href="double-quotes-strings.html"><i class="fas fa-quote-right"></i> Double quotes</a></li>
+                        <li><a href="triple-quotes-strings.html"><i class="fas fa-comments"></i> Triple quotes</a></li>
+                        <li><a href="string-indexing.html"><i class="fas fa-arrow-down-1-9"></i> String indexing</a></li>
+                        <li><a href="positive-indexing.html"><i class="fas fa-forward"></i> Positive indexing</a></li>
+                        <li><a href="negative-indexing.html"><i class="fas fa-backward"></i> Negative indexing</a></li>
+                        <li><a href="string-slicing.html"><i class="fas fa-scissors"></i> String slicing</a></li>
+                        <li><a href="slice-syntax.html"><i class="fas fa-code"></i> Slice syntax</a></li>
+                        <li><a href="reverse-slicing.html"><i class="fas fa-rotate-left"></i> Reverse slicing</a></li>
+                        <li><a href="string-immutability.html"><i class="fas fa-lock"></i> String immutability</a></li>
+                        <li><a href="string-concatenation.html"><i class="fas fa-link"></i> String concatenation</a></li>
+                        <li><a href="string-repetition.html"><i class="fas fa-repeat"></i> String repetition</a></li>
+                        <li><a href="string-comparison.html"><i class="fas fa-scale-balanced"></i> String comparison</a></li>
+                        <li><a href="string-membership.html"><i class="fas fa-magnifying-glass"></i> String membership</a></li>
+                        <li><a href="string-iteration.html"><i class="fas fa-list-ol"></i> String iteration</a></li>
+                        <li><a href="len-function-strings.html"><i class="fas fa-ruler-horizontal"></i> len()</a></li>
+                        <li><a href="lower-method.html"><i class="fas fa-font"></i> lower()</a></li>
+                        <li><a href="upper-method.html"><i class="fas fa-font"></i> upper()</a></li>
+                        <li><a href="capitalize-method.html"><i class="fas fa-heading"></i> capitalize()</a></li>
+                        <li><a href="title-method.html"><i class="fas fa-t"></i> title()</a></li>
+                        <li><a href="swapcase-method.html"><i class="fas fa-retweet"></i> swapcase()</a></li>
+                        <li><a href="casefold-method.html"><i class="fas fa-language"></i> casefold()</a></li>
+                        <li><a href="strip-method.html"><i class="fas fa-broom"></i> strip()</a></li>
+                        <li><a href="lstrip-method.html"><i class="fas fa-arrow-left-to-line"></i> lstrip()</a></li>
+                        <li><a href="rstrip-method.html"><i class="fas fa-arrow-right-to-line"></i> rstrip()</a></li>
+                        <li><a href="replace-method.html"><i class="fas fa-arrow-right-arrow-left"></i> replace()</a></li>
+                        <li><a href="split-method.html"><i class="fas fa-boxes-packing"></i> split()</a></li>
+                        <li><a href="rsplit-method.html"><i class="fas fa-boxes-stacked"></i> rsplit()</a></li>
+                        <li><a href="splitlines-method.html"><i class="fas fa-align-justify"></i> splitlines()</a></li>
+                        <li><a href="join-method.html"><i class="fas fa-paperclip"></i> join()</a></li>
+                        <li><a href="find-method.html"><i class="fas fa-search"></i> find()</a></li>
+                        <li><a href="rfind-method.html"><i class="fas fa-search-plus"></i> rfind()</a></li>
+                        <li><a href="index-method-strings.html"><i class="fas fa-location-pin"></i> index()</a></li>
+                        <li><a href="count-method-strings.html"><i class="fas fa-calculator"></i> count()</a></li>
+                        <li><a href="startswith-method.html"><i class="fas fa-angle-right"></i> startswith()</a></li>
+                        <li><a href="endswith-method.html"><i class="fas fa-angle-left"></i> endswith()</a></li>
+                        <li><a href="partition-method.html"><i class="fas fa-diagram-predecessor"></i> partition()</a></li>
+                        <li><a href="rpartition-method.html"><i class="fas fa-diagram-successor"></i> rpartition()</a></li>
+                        <li><a href="center-method.html"><i class="fas fa-align-center"></i> center()</a></li>
+                        <li><a href="ljust-method.html"><i class="fas fa-align-left"></i> ljust()</a></li>
+                        <li><a href="rjust-method.html"><i class="fas fa-align-right"></i> rjust()</a></li>
+                        <li><a href="zfill-method.html"><i class="fas fa-0"></i> zfill()</a></li>
+                        <li><a href="removeprefix-method.html"><i class="fas fa-delete-left"></i> removeprefix()</a></li>
+                        <li><a href="removesuffix-method.html"><i class="fas fa-delete-right"></i> removesuffix()</a></li>
+                        <li><a href="isalpha-method.html"><i class="fas fa-spell-check"></i> isalpha()</a></li>
+                        <li><a href="isdigit-method.html"><i class="fas fa-1"></i> isdigit()</a></li>
+                        <li><a href="isnumeric-method.html"><i class="fas fa-hashtag"></i> isnumeric()</a></li>
+                        <li><a href="isalnum-method.html"><i class="fas fa-font-awesome"></i> isalnum()</a></li>
+                        <li><a href="isspace-method.html"><i class="fas fa-keyboard"></i> isspace()</a></li>
+                        <li><a href="islower-method.html"><i class="fas fa-a"></i> islower()</a></li>
+                        <li><a href="isupper-method.html"><i class="fas fa-arrow-up-a-z"></i> isupper()</a></li>
+                        <li><a href="istitle-method.html"><i class="fas fa-heading"></i> istitle()</a></li>
+                        <li><a href="string-escaping.html"><i class="fas fa-code"></i> String escaping</a></li>
+                        <li><a href="unicode-in-python.html"><i class="fas fa-globe"></i> Unicode</a></li>
+                        <li><a href="unicode-code-points.html"><i class="fas fa-fingerprint"></i> Unicode code points</a></li>
+                        <li><a href="ord-function.html"><i class="fas fa-calculator"></i> ord()</a></li>
+                        <li><a href="chr-function.html"><i class="fas fa-font"></i> chr()</a></li>
+                        <li><a href="string-encoding.html"><i class="fas fa-file-export"></i> Encoding</a></li>
+                        <li><a href="utf8-encoding.html"><i class="fas fa-network-wired"></i> UTF-8</a></li>
+                        <li><a href="string-decoding.html"><i class="fas fa-file-import"></i> Decoding</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 9: Lists -->
+            <div class="sidebar-module-group collapsed" data-module="module-9">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod9-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 9: Lists Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 9: Lists</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod9-list">
+                    <ul>
+                        <li><a href="creating-lists.html"><i class="fas fa-square-plus"></i> Creating lists</a></li>
+                        <li><a href="list-indexing.html"><i class="fas fa-location-dot"></i> List indexing</a></li>
+                        <li><a href="negative-list-indexing.html"><i class="fas fa-backward"></i> Negative indexing</a></li>
+                        <li><a href="list-slicing.html"><i class="fas fa-scissors"></i> List slicing</a></li>
+                        <li><a href="modifying-lists.html"><i class="fas fa-pen-to-square"></i> Modifying lists</a></li>
+                        <li><a href="adding-list-elements.html"><i class="fas fa-plus"></i> Adding elements</a></li>
+                        <li><a href="append-method.html"><i class="fas fa-circle-plus"></i> append()</a></li>
+                        <li><a href="insert-method.html"><i class="fas fa-arrow-down-to-bracket"></i> insert()</a></li>
+                        <li><a href="extend-method.html"><i class="fas fa-layer-group"></i> extend()</a></li>
+                        <li><a href="removing-list-elements.html"><i class="fas fa-minus"></i> Removing elements</a></li>
+                        <li><a href="remove-method.html"><i class="fas fa-trash"></i> remove()</a></li>
+                        <li><a href="pop-method.html"><i class="fas fa-arrow-up-from-bracket"></i> pop()</a></li>
+                        <li><a href="clear-method.html"><i class="fas fa-broom"></i> clear()</a></li>
+                        <li><a href="del-statement-lists.html"><i class="fas fa-trash-can"></i> del</a></li>
+                        <li><a href="searching-lists.html"><i class="fas fa-magnifying-glass"></i> Searching lists</a></li>
+                        <li><a href="index-method-lists.html"><i class="fas fa-crosshairs"></i> index()</a></li>
+                        <li><a href="count-method-lists.html"><i class="fas fa-calculator"></i> count()</a></li>
+                        <li><a href="sorting-lists.html"><i class="fas fa-arrow-down-a-z"></i> Sorting</a></li>
+                        <li><a href="sort-method.html"><i class="fas fa-arrow-down-short-wide"></i> sort()</a></li>
+                        <li><a href="sorted-function.html"><i class="fas fa-arrow-up-wide-short"></i> sorted()</a></li>
+                        <li><a href="reverse-sorting.html"><i class="fas fa-arrow-down-z-a"></i> Reverse sorting</a></li>
+                        <li><a href="reverse-method.html"><i class="fas fa-rotate"></i> reverse()</a></li>
+                        <li><a href="copying-lists.html"><i class="fas fa-copy"></i> Copying lists</a></li>
+                        <li><a href="shallow-copy-lists.html"><i class="fas fa-clone"></i> Shallow copy</a></li>
+                        <li><a href="deep-copy-lists.html"><i class="fas fa-cubes"></i> Deep copy</a></li>
+                        <li><a href="list-concatenation.html"><i class="fas fa-link"></i> List concatenation</a></li>
+                        <li><a href="list-repetition.html"><i class="fas fa-repeat"></i> List repetition</a></li>
+                        <li><a href="nested-lists.html"><i class="fas fa-table-cells"></i> Nested lists</a></li>
+                        <li><a href="iterating-lists.html"><i class="fas fa-arrows-spin"></i> Iterating lists</a></li>
+                        <li><a href="list-unpacking.html"><i class="fas fa-box-open"></i> List unpacking</a></li>
+                        <li><a href="extended-unpacking.html"><i class="fas fa-asterisk"></i> Extended unpacking</a></li>
+                        <li><a href="list-comprehensions.html"><i class="fas fa-wand-magic-sparkles"></i> List comprehensions</a></li>
+                        <li><a href="conditional-list-comprehensions.html"><i class="fas fa-filter"></i> Conditional list comprehensions</a></li>
+                        <li><a href="nested-list-comprehensions.html"><i class="fas fa-cubes-stacked"></i> Nested list comprehensions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 10: Tuples -->
+            <div class="sidebar-module-group collapsed" data-module="module-10">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod10-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 10: Tuples Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 10: Tuples</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod10-list">
+                    <ul>
+                        <li><a href="creating-tuples.html"><i class="fas fa-square-plus"></i> Creating tuples</a></li>
+                        <li><a href="tuple-indexing.html"><i class="fas fa-location-dot"></i> Tuple indexing</a></li>
+                        <li><a href="tuple-slicing.html"><i class="fas fa-scissors"></i> Tuple slicing</a></li>
+                        <li><a href="tuple-immutability.html"><i class="fas fa-lock"></i> Tuple immutability</a></li>
+                        <li><a href="tuple-packing.html"><i class="fas fa-box"></i> Tuple packing</a></li>
+                        <li><a href="tuple-unpacking.html"><i class="fas fa-box-open"></i> Tuple unpacking</a></li>
+                        <li><a href="nested-tuples.html"><i class="fas fa-cubes"></i> Nested tuples</a></li>
+                        <li><a href="tuple-methods.html"><i class="fas fa-wrench"></i> Tuple methods</a></li>
+                        <li><a href="tuple-vs-list.html"><i class="fas fa-scale-balanced"></i> Tuple vs list</a></li>
+                        <li><a href="when-to-use-tuples.html"><i class="fas fa-lightbulb"></i> When to use tuples</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 11: Sets -->
+            <div class="sidebar-module-group collapsed" data-module="module-11">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod11-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 11: Sets Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 11: Sets</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod11-list">
+                    <ul>
+                        <li><a href="creating-sets.html"><i class="fas fa-circle-plus"></i> Creating sets</a></li>
+                        <li><a href="set-uniqueness.html"><i class="fas fa-certificate"></i> Set uniqueness</a></li>
+                        <li><a href="adding-set-elements.html"><i class="fas fa-plus"></i> Adding elements</a></li>
+                        <li><a href="add-method-sets.html"><i class="fas fa-circle-plus"></i> add()</a></li>
+                        <li><a href="update-method-sets.html"><i class="fas fa-layer-group"></i> update()</a></li>
+                        <li><a href="removing-set-elements.html"><i class="fas fa-minus"></i> Removing elements</a></li>
+                        <li><a href="remove-method-sets.html"><i class="fas fa-trash"></i> remove()</a></li>
+                        <li><a href="discard-method-sets.html"><i class="fas fa-trash-can"></i> discard()</a></li>
+                        <li><a href="pop-method-sets.html"><i class="fas fa-arrow-up-from-bracket"></i> pop()</a></li>
+                        <li><a href="clear-method-sets.html"><i class="fas fa-broom"></i> clear()</a></li>
+                        <li><a href="set-membership.html"><i class="fas fa-magnifying-glass"></i> Set membership</a></li>
+                        <li><a href="set-union.html"><i class="fas fa-object-ungroup"></i> Union</a></li>
+                        <li><a href="set-intersection.html"><i class="fas fa-circle-nodes"></i> Intersection</a></li>
+                        <li><a href="set-difference.html"><i class="fas fa-minus-circle"></i> Difference</a></li>
+                        <li><a href="set-symmetric-difference.html"><i class="fas fa-arrows-left-right"></i> Symmetric difference</a></li>
+                        <li><a href="subsets.html"><i class="fas fa-circle-dot"></i> Subsets</a></li>
+                        <li><a href="supersets.html"><i class="fas fa-circle-check"></i> Supersets</a></li>
+                        <li><a href="disjoint-sets.html"><i class="fas fa-ban"></i> Disjoint sets</a></li>
+                        <li><a href="set-comprehensions.html"><i class="fas fa-wand-magic-sparkles"></i> Set comprehensions</a></li>
+                        <li><a href="frozen-sets.html"><i class="fas fa-snowflake"></i> Frozen sets</a></li>
+                        <li><a href="frozenset-function.html"><i class="fas fa-shield"></i> frozenset()</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 12: Dictionaries -->
+            <div class="sidebar-module-group collapsed" data-module="module-12">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod12-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 12: Dictionaries Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 12: Dictionaries</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod12-list">
+                    <ul>
+                        <li><a href="dictionary-fundamentals.html"><i class="fas fa-book"></i> Dictionary fundamentals</a></li>
+                        <li><a href="keys-and-values.html"><i class="fas fa-key"></i> Keys and values</a></li>
+                        <li><a href="creating-dictionaries.html"><i class="fas fa-square-plus"></i> Creating dictionaries</a></li>
+                        <li><a href="accessing-dictionary-values.html"><i class="fas fa-magnifying-glass"></i> Accessing values</a></li>
+                        <li><a href="adding-dictionary-entries.html"><i class="fas fa-plus"></i> Adding entries</a></li>
+                        <li><a href="updating-dictionary-entries.html"><i class="fas fa-pen-to-square"></i> Updating entries</a></li>
+                        <li><a href="removing-dictionary-entries.html"><i class="fas fa-minus"></i> Removing entries</a></li>
+                        <li><a href="get-method-dictionaries.html"><i class="fas fa-shield-halved"></i> get()</a></li>
+                        <li><a href="keys-method.html"><i class="fas fa-list-ul"></i> keys()</a></li>
+                        <li><a href="values-method.html"><i class="fas fa-list-check"></i> values()</a></li>
+                        <li><a href="items-method.html"><i class="fas fa-table-cells"></i> items()</a></li>
+                        <li><a href="update-method-dictionaries.html"><i class="fas fa-arrows-rotate"></i> update()</a></li>
+                        <li><a href="pop-method-dictionaries.html"><i class="fas fa-arrow-up-from-bracket"></i> pop()</a></li>
+                        <li><a href="popitem-method.html"><i class="fas fa-trash-arrow-up"></i> popitem()</a></li>
+                        <li><a href="setdefault-method.html"><i class="fas fa-bookmark"></i> setdefault()</a></li>
+                        <li><a href="clear-method-dictionaries.html"><i class="fas fa-broom"></i> clear()</a></li>
+                        <li><a href="dictionary-membership.html"><i class="fas fa-check-double"></i> Dictionary membership</a></li>
+                        <li><a href="nested-dictionaries.html"><i class="fas fa-sitemap"></i> Nested dictionaries</a></li>
+                        <li><a href="dictionary-iteration.html"><i class="fas fa-repeat"></i> Dictionary iteration</a></li>
+                        <li><a href="dictionary-unpacking.html"><i class="fas fa-box-open"></i> Dictionary unpacking</a></li>
+                        <li><a href="dictionary-comprehensions.html"><i class="fas fa-wand-magic-sparkles"></i> Dictionary comprehensions</a></li>
+                        <li><a href="hashable-objects.html"><i class="fas fa-fingerprint"></i> Hashable objects</a></li>
+                        <li><a href="dictionary-key-requirements.html"><i class="fas fa-triangle-exclamation"></i> Dictionary key requirements</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 13: Functions -->
+            <div class="sidebar-module-group" data-module="module-13">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod13-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 13: Functions Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 13: Functions</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod13-list">
+                    <ul>
+                        <li><a href="what-is-a-function.html"><i class="fas fa-code"></i> What is a function?</a></li>
+                        <li><a href="why-functions-matter.html"><i class="fas fa-lightbulb"></i> Why functions matter</a></li>
+                        <li><a href="defining-functions.html"><i class="fas fa-pen-ruler"></i> Defining functions</a></li>
+                        <li><a href="calling-functions.html"><i class="fas fa-play"></i> Calling functions</a></li>
+                        <li><a href="function-parameters.html"><i class="fas fa-sliders"></i> Function parameters</a></li>
+                        <li><a href="function-arguments.html"><i class="fas fa-arrow-right-to-bracket"></i> Function arguments</a></li>
+                        <li><a href="positional-arguments.html"><i class="fas fa-list-ol"></i> Positional arguments</a></li>
+                        <li><a href="keyword-arguments.html"><i class="fas fa-tag"></i> Keyword arguments</a></li>
+                        <li><a href="default-arguments.html"><i class="fas fa-gear"></i> Default arguments</a></li>
+                        <li><a href="required-arguments.html"><i class="fas fa-asterisk"></i> Required arguments</a></li>
+                        <li><a href="variable-length-arguments.html"><i class="fas fa-layer-group"></i> Variable-length arguments</a></li>
+                        <li><a href="args-parameter.html"><i class="fas fa-ellipsis"></i> *args</a></li>
+                        <li><a href="kwargs-parameter.html"><i class="fas fa-ellipsis-vertical"></i> **kwargs</a></li>
+                        <li><a href="keyword-only-arguments.html"><i class="fas fa-shield"></i> Keyword-only arguments</a></li>
+                        <li><a href="positional-only-arguments.html"><i class="fas fa-slash"></i> Positional-only arguments</a></li>
+                        <li><a href="argument-unpacking.html"><i class="fas fa-box-open"></i> Argument unpacking</a></li>
+                        <li><a href="return-values.html"><i class="fas fa-right-from-bracket"></i> Return values</a></li>
+                        <li class="active"><a href="multiple-return-values.html" class="active"><i class="fas fa-table-columns"></i> Multiple return values</a></li>
+                        <li><a href="returning-tuples.html"><i class="fas fa-cube"></i> Returning tuples</a></li>
+                        <li><a href="none-return-value.html"><i class="fas fa-ban"></i> None</a></li>
+                        <li><a href="local-variables-functions.html"><i class="fas fa-house"></i> Local variables</a></li>
+                        <li><a href="global-variables-functions.html"><i class="fas fa-earth-americas"></i> Global variables</a></li>
+                        <li><a href="global-keyword.html"><i class="fas fa-pen-nib"></i> global</a></li>
+                        <li><a href="nonlocal-keyword.html"><i class="fas fa-share-nodes"></i> nonlocal</a></li>
+                        <li><a href="function-scope.html"><i class="fas fa-eye"></i> Function scope</a></li>
+                        <li><a href="legb-rule-functions.html"><i class="fas fa-stairs"></i> LEGB rule</a></li>
+                        <li><a href="function-documentation.html"><i class="fas fa-book"></i> Function documentation</a></li>
+                        <li><a href="docstrings.html"><i class="fas fa-quote-left"></i> Docstrings</a></li>
+                        <li><a href="function-annotations.html"><i class="fas fa-tags"></i> Function annotations</a></li>
+                        <li><a href="type-hints-functions.html"><i class="fas fa-spell-check"></i> Type hints</a></li>
+                        <li><a href="lambda-functions.html"><i class="fas fa-bolt"></i> Lambda functions</a></li>
+                        <li><a href="higher-order-functions.html"><i class="fas fa-sitemap"></i> Higher-order functions</a></li>
+                        <li><a href="functions-as-objects.html"><i class="fas fa-cube"></i> Functions as objects</a></li>
+                        <li><a href="passing-functions-as-arguments.html"><i class="fas fa-arrow-right-arrow-left"></i> Passing functions as arguments</a></li>
+                        <li><a href="returning-functions.html"><i class="fas fa-arrow-turn-up"></i> Returning functions</a></li>
+                        <li><a href="nested-functions.html"><i class="fas fa-folder-tree"></i> Nested functions</a></li>
+                        <li><a href="closures.html"><i class="fas fa-lock"></i> Closures</a></li>
+                        <li><a href="recursion.html"><i class="fas fa-repeat"></i> Recursion</a></li>
+                        <li><a href="recursive-functions.html"><i class="fas fa-stairs"></i> Recursive functions</a></li>
+                        <li><a href="recursion-limits.html"><i class="fas fa-triangle-exclamation"></i> Recursion limits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 14: Functional Programming -->
+            <div class="sidebar-module-group collapsed" data-module="module-14">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod14-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 14: Functional Programming Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 14: Functional Programming</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod14-list">
+                    <ul>
+                        <li><a href="first-class-functions.html"><i class="fas fa-certificate"></i> First-class functions</a></li>
+                        <li><a href="functional-higher-order-functions.html"><i class="fas fa-sitemap"></i> Higher-order functions</a></li>
+                        <li><a href="pure-functions.html"><i class="fas fa-droplet"></i> Pure functions</a></li>
+                        <li><a href="side-effects.html"><i class="fas fa-triangle-exclamation"></i> Side effects</a></li>
+                        <li><a href="map-function.html"><i class="fas fa-arrows-split-up-and-left"></i> map()</a></li>
+                        <li><a href="filter-function.html"><i class="fas fa-filter"></i> filter()</a></li>
+                        <li><a href="reduce-function.html"><i class="fas fa-compress"></i> reduce()</a></li>
+                        <li><a href="zip-function.html"><i class="fas fa-file-zipper"></i> zip()</a></li>
+                        <li><a href="enumerate-functional.html"><i class="fas fa-list-ol"></i> enumerate()</a></li>
+                        <li><a href="any-function.html"><i class="fas fa-check"></i> any()</a></li>
+                        <li><a href="all-function.html"><i class="fas fa-check-double"></i> all()</a></li>
+                        <li><a href="sum-function.html"><i class="fas fa-plus"></i> sum()</a></li>
+                        <li><a href="min-function.html"><i class="fas fa-arrow-down"></i> min()</a></li>
+                        <li><a href="max-function.html"><i class="fas fa-arrow-up"></i> max()</a></li>
+                        <li><a href="sorted-functional.html"><i class="fas fa-arrow-down-a-z"></i> sorted()</a></li>
+                        <li><a href="lambda-expressions.html"><i class="fas fa-bolt"></i> Lambda expressions</a></li>
+                        <li><a href="generator-expressions.html"><i class="fas fa-infinity"></i> Generator expressions</a></li>
+                        <li><a href="functional-programming-patterns.html"><i class="fas fa-diagram-project"></i> Functional programming patterns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 15: Scope & Namespaces -->
+            <div class="sidebar-module-group collapsed" data-module="module-15">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod15-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 15: Scope & Namespaces Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 15: Scope & Namespaces</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod15-list">
+                    <ul>
+                        <li><a href="local-scope.html"><i class="fas fa-house"></i> Local scope</a></li>
+                        <li><a href="global-scope.html"><i class="fas fa-earth-americas"></i> Global scope</a></li>
+                        <li><a href="enclosing-scope.html"><i class="fas fa-layer-group"></i> Enclosing scope</a></li>
+                        <li><a href="builtin-scope.html"><i class="fas fa-gear"></i> Built-in scope</a></li>
+                        <li><a href="legb-rule-depth.html"><i class="fas fa-stairs"></i> LEGB rule</a></li>
+                        <li><a href="what-is-a-namespace.html"><i class="fas fa-book-atlas"></i> Namespace</a></li>
+                        <li><a href="global-namespace.html"><i class="fas fa-globe"></i> Global namespace</a></li>
+                        <li><a href="local-namespace.html"><i class="fas fa-id-card"></i> Local namespace</a></li>
+                        <li><a href="module-namespace.html"><i class="fas fa-box-archive"></i> Module namespace</a></li>
+                        <li><a href="globals-function.html"><i class="fas fa-code"></i> globals()</a></li>
+                        <li><a href="locals-function.html"><i class="fas fa-laptop-code"></i> locals()</a></li>
+                        <li><a href="global-statement.html"><i class="fas fa-arrow-up-right-from-square"></i> global</a></li>
+                        <li><a href="nonlocal-statement.html"><i class="fas fa-arrow-turn-up"></i> nonlocal</a></li>
+                        <li><a href="variable-shadowing.html"><i class="fas fa-mask"></i> Variable shadowing</a></li>
+                        <li><a href="name-binding.html"><i class="fas fa-link"></i> Name binding</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 16: Object-Oriented Programming -->
+            <div class="sidebar-module-group collapsed" data-module="module-16">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod16-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 16: Object-Oriented Programming Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 16: Object-Oriented Programming</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod16-list">
+                    <ul>
+                        <li><a href="what-is-oop.html"><i class="fas fa-sitemap"></i> What is OOP?</a></li>
+                        <li><a href="classes-in-python.html"><i class="fas fa-blueprint"></i> Classes</a></li>
+                        <li><a href="objects-in-python.html"><i class="fas fa-cube"></i> Objects</a></li>
+                        <li><a href="attributes.html"><i class="fas fa-tag"></i> Attributes</a></li>
+                        <li><a href="methods.html"><i class="fas fa-play"></i> Methods</a></li>
+                        <li><a href="constructors.html"><i class="fas fa-hammer"></i> Constructors</a></li>
+                        <li><a href="init-method.html"><i class="fas fa-star"></i> __init__</a></li>
+                        <li><a href="instance-attributes.html"><i class="fas fa-user-tag"></i> Instance attributes</a></li>
+                        <li><a href="class-attributes.html"><i class="fas fa-users"></i> Class attributes</a></li>
+                        <li><a href="instance-methods.html"><i class="fas fa-person-running"></i> Instance methods</a></li>
+                        <li><a href="class-methods.html"><i class="fas fa-chalkboard-user"></i> Class methods</a></li>
+                        <li><a href="static-methods.html"><i class="fas fa-wrench"></i> Static methods</a></li>
+                        <li><a href="classmethod-decorator.html"><i class="fas fa-at"></i> @classmethod</a></li>
+                        <li><a href="staticmethod-decorator.html"><i class="fas fa-at"></i> @staticmethod</a></li>
+                        <li><a href="self-parameter.html"><i class="fas fa-arrow-pointer"></i> self</a></li>
+                        <li><a href="object-identity-oop.html"><i class="fas fa-fingerprint"></i> Object identity</a></li>
+                        <li><a href="encapsulation.html"><i class="fas fa-box-tissue"></i> Encapsulation</a></li>
+                        <li><a href="abstraction.html"><i class="fas fa-eye-slash"></i> Abstraction</a></li>
+                        <li><a href="inheritance.html"><i class="fas fa-diagram-nested"></i> Inheritance</a></li>
+                        <li><a href="polymorphism.html"><i class="fas fa-masks-theater"></i> Polymorphism</a></li>
+                        <li><a href="composition.html"><i class="fas fa-puzzle-piece"></i> Composition</a></li>
+                        <li><a href="aggregation.html"><i class="fas fa-link"></i> Aggregation</a></li>
+                        <li><a href="association.html"><i class="fas fa-people-arrows"></i> Association</a></li>
+                        <li><a href="single-inheritance.html"><i class="fas fa-arrow-down"></i> Single inheritance</a></li>
+                        <li><a href="multiple-inheritance.html"><i class="fas fa-code-fork"></i> Multiple inheritance</a></li>
+                        <li><a href="multilevel-inheritance.html"><i class="fas fa-stairs"></i> Multilevel inheritance</a></li>
+                        <li><a href="hierarchical-inheritance.html"><i class="fas fa-network-wired"></i> Hierarchical inheritance</a></li>
+                        <li><a href="hybrid-inheritance.html"><i class="fas fa-shuffle"></i> Hybrid inheritance</a></li>
+                        <li><a href="method-overriding.html"><i class="fas fa-pen-fancy"></i> Method overriding</a></li>
+                        <li><a href="method-resolution-order.html"><i class="fas fa-list-ol"></i> Method resolution order</a></li>
+                        <li><a href="mro-in-python.html"><i class="fas fa-route"></i> MRO</a></li>
+                        <li><a href="super-function.html"><i class="fas fa-arrow-up"></i> super()</a></li>
+                        <li><a href="abstract-classes.html"><i class="fas fa-file-contract"></i> Abstract classes</a></li>
+                        <li><a href="abstract-methods.html"><i class="fas fa-pencil"></i> Abstract methods</a></li>
+                        <li><a href="abc-module-oop.html"><i class="fas fa-cube"></i> abc module</a></li>
+                        <li><a href="interfaces-in-python.html"><i class="fas fa-handshake"></i> Interfaces/conventions in Python</a></li>
+                        <li><a href="properties-oop.html"><i class="fas fa-sliders"></i> Properties</a></li>
+                        <li><a href="getters.html"><i class="fas fa-arrow-up-from-bracket"></i> Getters</a></li>
+                        <li><a href="setters.html"><i class="fas fa-arrow-down-to-bracket"></i> Setters</a></li>
+                        <li><a href="deleters.html"><i class="fas fa-trash-can"></i> Deleters</a></li>
+                        <li><a href="property-decorator.html"><i class="fas fa-at"></i> @property</a></li>
+                        <li><a href="private-naming-conventions.html"><i class="fas fa-user-secret"></i> Private naming conventions</a></li>
+                        <li><a href="name-mangling.html"><i class="fas fa-shield-halved"></i> Name mangling</a></li>
+                        <li><a href="slots-in-classes.html"><i class="fas fa-table-cells"></i> __slots__</a></li>
+                        <li><a href="dataclasses-module.html"><i class="fas fa-address-card"></i> Dataclasses</a></li>
+                        <li><a href="dataclass-decorator.html"><i class="fas fa-wand-magic-sparkles"></i> @dataclass</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 17: Special / Dunder Methods -->
+            <div class="sidebar-module-group collapsed" data-module="module-17">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod17-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 17: Special / Dunder Methods Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 17: Special / Dunder Methods</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod17-list">
+                    <ul>
+                        <li><a href="dunder-init.html"><i class="fas fa-hammer"></i> __init__</a></li>
+                        <li><a href="dunder-new.html"><i class="fas fa-plus"></i> __new__</a></li>
+                        <li><a href="dunder-str.html"><i class="fas fa-font"></i> __str__</a></li>
+                        <li><a href="dunder-repr.html"><i class="fas fa-code"></i> __repr__</a></li>
+                        <li><a href="dunder-len.html"><i class="fas fa-ruler"></i> __len__</a></li>
+                        <li><a href="dunder-bool.html"><i class="fas fa-toggle-on"></i> __bool__</a></li>
+                        <li><a href="dunder-eq.html"><i class="fas fa-equals"></i> __eq__</a></li>
+                        <li><a href="dunder-ne.html"><i class="fas fa-not-equal"></i> __ne__</a></li>
+                        <li><a href="dunder-lt.html"><i class="fas fa-less-than"></i> __lt__</a></li>
+                        <li><a href="dunder-le.html"><i class="fas fa-less-than-equal"></i> __le__</a></li>
+                        <li><a href="dunder-gt.html"><i class="fas fa-greater-than"></i> __gt__</a></li>
+                        <li><a href="dunder-ge.html"><i class="fas fa-greater-than-equal"></i> __ge__</a></li>
+                        <li><a href="dunder-add.html"><i class="fas fa-plus"></i> __add__</a></li>
+                        <li><a href="dunder-sub.html"><i class="fas fa-minus"></i> __sub__</a></li>
+                        <li><a href="dunder-mul.html"><i class="fas fa-xmark"></i> __mul__</a></li>
+                        <li><a href="dunder-truediv.html"><i class="fas fa-divide"></i> __truediv__</a></li>
+                        <li><a href="dunder-floordiv.html"><i class="fas fa-angle-down"></i> __floordiv__</a></li>
+                        <li><a href="dunder-mod.html"><i class="fas fa-percent"></i> __mod__</a></li>
+                        <li><a href="dunder-pow.html"><i class="fas fa-superscript"></i> __pow__</a></li>
+                        <li><a href="dunder-contains.html"><i class="fas fa-magnifying-glass"></i> __contains__</a></li>
+                        <li><a href="dunder-getitem.html"><i class="fas fa-bracket-square"></i> __getitem__</a></li>
+                        <li><a href="dunder-setitem.html"><i class="fas fa-pen"></i> __setitem__</a></li>
+                        <li><a href="dunder-delitem.html"><i class="fas fa-trash-can"></i> __delitem__</a></li>
+                        <li><a href="dunder-iter.html"><i class="fas fa-arrows-spin"></i> __iter__</a></li>
+                        <li><a href="dunder-next.html"><i class="fas fa-forward-step"></i> __next__</a></li>
+                        <li><a href="dunder-call.html"><i class="fas fa-phone"></i> __call__</a></li>
+                        <li><a href="dunder-enter.html"><i class="fas fa-door-open"></i> __enter__</a></li>
+                        <li><a href="dunder-exit.html"><i class="fas fa-door-closed"></i> __exit__</a></li>
+                        <li><a href="dunder-hash.html"><i class="fas fa-fingerprint"></i> __hash__</a></li>
+                        <li><a href="dunder-getattr.html"><i class="fas fa-question"></i> __getattr__</a></li>
+                        <li><a href="dunder-getattribute.html"><i class="fas fa-eye"></i> __getattribute__</a></li>
+                        <li><a href="dunder-setattr.html"><i class="fas fa-pen-to-square"></i> __setattr__</a></li>
+                        <li><a href="operator-overloading.html"><i class="fas fa-plus-minus"></i> Operator overloading</a></li>
+                        <li><a href="custom-containers.html"><i class="fas fa-box-archive"></i> Custom containers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 18: Exception Handling -->
+            <div class="sidebar-module-group collapsed" data-module="module-18">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod18-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 18: Exception Handling Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 18: Exception Handling</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod18-list">
+                    <ul>
+                        <li><a href="errors-vs-exceptions.html"><i class="fas fa-triangle-exclamation"></i> Errors vs exceptions</a></li>
+                        <li><a href="syntax-errors-exceptions.html"><i class="fas fa-circle-xmark"></i> Syntax errors</a></li>
+                        <li><a href="runtime-errors-exceptions.html"><i class="fas fa-bomb"></i> Runtime errors</a></li>
+                        <li><a href="logical-errors-exceptions.html"><i class="fas fa-lightbulb"></i> Logical errors</a></li>
+                        <li><a href="builtin-exceptions.html"><i class="fas fa-list-check"></i> Built-in exceptions</a></li>
+                        <li><a href="try-block.html"><i class="fas fa-shield"></i> try</a></li>
+                        <li><a href="except-block.html"><i class="fas fa-hand"></i> except</a></li>
+                        <li><a href="else-block-exceptions.html"><i class="fas fa-circle-check"></i> else</a></li>
+                        <li><a href="finally-block.html"><i class="fas fa-door-closed"></i> finally</a></li>
+                        <li><a href="multiple-exceptions.html"><i class="fas fa-bars-staggered"></i> Multiple exceptions</a></li>
+                        <li><a href="exception-hierarchy.html"><i class="fas fa-sitemap"></i> Exception hierarchy</a></li>
+                        <li><a href="catching-specific-exceptions.html"><i class="fas fa-bullseye"></i> Catching specific exceptions</a></li>
+                        <li><a href="generic-exception-handling.html"><i class="fas fa-umbrella"></i> Generic exception handling</a></li>
+                        <li><a href="raise-statement.html"><i class="fas fa-arrow-up-from-bracket"></i> raise</a></li>
+                        <li><a href="custom-exceptions.html"><i class="fas fa-pen-ruler"></i> Custom exceptions</a></li>
+                        <li><a href="exception-chaining.html"><i class="fas fa-link"></i> Exception chaining</a></li>
+                        <li><a href="from-keyword-exceptions.html"><i class="fas fa-arrow-right-arrow-left"></i> from</a></li>
+                        <li><a href="assert-statement.html"><i class="fas fa-check-double"></i> assert</a></li>
+                        <li><a href="assertion-error.html"><i class="fas fa-circle-exclamation"></i> AssertionError</a></li>
+                        <li><a href="creating-custom-exception-classes.html"><i class="fas fa-file-circle-plus"></i> Creating custom exception classes</a></li>
+                        <li><a href="exception-handling-best-practices.html"><i class="fas fa-award"></i> Best practices for exception handling</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 19: Modules -->
+            <div class="sidebar-module-group collapsed" data-module="module-19">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod19-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 19: Modules Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 19: Modules</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod19-list">
+                    <ul>
+                        <li><a href="what-is-a-module.html"><i class="fas fa-cube"></i> What is a module?</a></li>
+                        <li><a href="creating-modules.html"><i class="fas fa-file-code"></i> Creating modules</a></li>
+                        <li><a href="importing-modules.html"><i class="fas fa-file-import"></i> Importing modules</a></li>
+                        <li><a href="import-statement.html"><i class="fas fa-download"></i> import</a></li>
+                        <li><a href="from-import-statement.html"><i class="fas fa-arrow-right-to-bracket"></i> from ... import</a></li>
+                        <li><a href="import-aliases.html"><i class="fas fa-tag"></i> Import aliases</a></li>
+                        <li><a href="as-keyword-imports.html"><i class="fas fa-signature"></i> as</a></li>
+                        <li><a href="module-namespaces-import.html"><i class="fas fa-book-bookmark"></i> Module namespaces</a></li>
+                        <li><a href="dunder-name.html"><i class="fas fa-id-card"></i> __name__</a></li>
+                        <li><a href="if-name-main.html"><i class="fas fa-play"></i> if __name__ == '__main__'</a></li>
+                        <li><a href="module-search-path.html"><i class="fas fa-route"></i> Module search path</a></li>
+                        <li><a href="sys-path.html"><i class="fas fa-folder-tree"></i> sys.path</a></li>
+                        <li><a href="standard-library-overview.html"><i class="fas fa-toolbox"></i> Standard library</a></li>
+                        <li><a href="third-party-modules.html"><i class="fas fa-cubes-stacked"></i> Third-party modules</a></li>
+                        <li><a href="circular-imports.html"><i class="fas fa-arrows-spin"></i> Circular imports</a></li>
+                        <li><a href="import-best-practices.html"><i class="fas fa-check-double"></i> Import best practices</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 20: Packages -->
+            <div class="sidebar-module-group collapsed" data-module="module-20">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod20-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 20: Packages Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 20: Packages</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod20-list">
+                    <ul>
+                        <li><a href="what-is-a-package.html"><i class="fas fa-box-open"></i> What is a package?</a></li>
+                        <li><a href="package-structure.html"><i class="fas fa-folder-tree"></i> Package structure</a></li>
+                        <li><a href="subpackages.html"><i class="fas fa-sitemap"></i> Subpackages</a></li>
+                        <li><a href="dunder-init-py.html"><i class="fas fa-file-lines"></i> __init__.py</a></li>
+                        <li><a href="absolute-imports.html"><i class="fas fa-route"></i> Absolute imports</a></li>
+                        <li><a href="relative-imports.html"><i class="fas fa-arrows-left-right"></i> Relative imports</a></li>
+                        <li><a href="package-imports.html"><i class="fas fa-file-import"></i> Package imports</a></li>
+                        <li><a href="namespace-packages.html"><i class="fas fa-diagram-project"></i> Namespace packages</a></li>
+                        <li><a href="package-organization.html"><i class="fas fa-boxes-packing"></i> Package organization</a></li>
+                        <li><a href="python-project-structure.html"><i class="fas fa-laptop-code"></i> Python project structure</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 21: Python Standard Library -->
+            <div class="sidebar-module-group collapsed" data-module="module-21">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod21-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 21: Python Standard Library Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 21: Python Standard Library</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod21-list">
+                    <ul>
+                        <li><a href="math-module.html"><i class="fas fa-calculator"></i> math</a></li>
+                        <li><a href="statistics-module.html"><i class="fas fa-chart-line"></i> statistics</a></li>
+                        <li><a href="random-module.html"><i class="fas fa-dice"></i> random</a></li>
+                        <li><a href="decimal-module.html"><i class="fas fa-coins"></i> decimal</a></li>
+                        <li><a href="fractions-module.html"><i class="fas fa-divide"></i> fractions</a></li>
+                        <li><a href="datetime-module.html"><i class="fas fa-calendar-days"></i> datetime</a></li>
+                        <li><a href="time-module.html"><i class="fas fa-clock"></i> time</a></li>
+                        <li><a href="calendar-module.html"><i class="fas fa-calendar"></i> calendar</a></li>
+                        <li><a href="collections-module.html"><i class="fas fa-layer-group"></i> collections</a></li>
+                        <li><a href="itertools-module.html"><i class="fas fa-infinity"></i> itertools</a></li>
+                        <li><a href="functools-module.html"><i class="fas fa-wrench"></i> functools</a></li>
+                        <li><a href="operator-module.html"><i class="fas fa-plus-minus"></i> operator</a></li>
+                        <li><a href="os-module.html"><i class="fas fa-desktop"></i> os</a></li>
+                        <li><a href="sys-module.html"><i class="fas fa-microchip"></i> sys</a></li>
+                        <li><a href="pathlib-module.html"><i class="fas fa-folder-open"></i> pathlib</a></li>
+                        <li><a href="shutil-module.html"><i class="fas fa-copy"></i> shutil</a></li>
+                        <li><a href="glob-module.html"><i class="fas fa-asterisk"></i> glob</a></li>
+                        <li><a href="re-module.html"><i class="fas fa-regular-expression"></i> re</a></li>
+                        <li><a href="json-module.html"><i class="fas fa-brackets-curly"></i> json</a></li>
+                        <li><a href="csv-module.html"><i class="fas fa-table"></i> csv</a></li>
+                        <li><a href="sqlite3-module.html"><i class="fas fa-database"></i> sqlite3</a></li>
+                        <li><a href="pickle-module.html"><i class="fas fa-jar"></i> pickle</a></li>
+                        <li><a href="shelve-module.html"><i class="fas fa-boxes-stacked"></i> shelve</a></li>
+                        <li><a href="subprocess-module.html"><i class="fas fa-terminal"></i> subprocess</a></li>
+                        <li><a href="argparse-module.html"><i class="fas fa-sliders"></i> argparse</a></li>
+                        <li><a href="logging-module.html"><i class="fas fa-file-lines"></i> logging</a></li>
+                        <li><a href="configparser-module.html"><i class="fas fa-gear"></i> configparser</a></li>
+                        <li><a href="secrets-module.html"><i class="fas fa-key"></i> secrets</a></li>
+                        <li><a href="hashlib-module.html"><i class="fas fa-fingerprint"></i> hashlib</a></li>
+                        <li><a href="uuid-module.html"><i class="fas fa-barcode"></i> uuid</a></li>
+                        <li><a href="enum-module.html"><i class="fas fa-list-check"></i> enum</a></li>
+                        <li><a href="dataclasses-stdlib.html"><i class="fas fa-address-card"></i> dataclasses</a></li>
+                        <li><a href="typing-module.html"><i class="fas fa-spell-check"></i> typing</a></li>
+                        <li><a href="abc-stdlib.html"><i class="fas fa-file-contract"></i> abc</a></li>
+                        <li><a href="contextlib-module.html"><i class="fas fa-door-open"></i> contextlib</a></li>
+                        <li><a href="traceback-module.html"><i class="fas fa-bug"></i> traceback</a></li>
+                        <li><a href="warnings-module.html"><i class="fas fa-triangle-exclamation"></i> warnings</a></li>
+                        <li><a href="copy-module.html"><i class="fas fa-clone"></i> copy</a></li>
+                        <li><a href="pprint-module.html"><i class="fas fa-align-left"></i> pprint</a></li>
+                        <li><a href="textwrap-module.html"><i class="fas fa-paragraph"></i> textwrap</a></li>
+                        <li><a href="string-module.html"><i class="fas fa-font"></i> string</a></li>
+                        <li><a href="platform-module.html"><i class="fas fa-server"></i> platform</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 22: File Handling -->
+            <div class="sidebar-module-group collapsed" data-module="module-22">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod22-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 22: File Handling Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 22: File Handling</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod22-list">
+                    <ul>
+                        <li><a href="files-and-directories.html"><i class="fas fa-folder-tree"></i> Files and directories</a></li>
+                        <li><a href="file-paths.html"><i class="fas fa-route"></i> File paths</a></li>
+                        <li><a href="relative-paths.html"><i class="fas fa-location-crosshairs"></i> Relative paths</a></li>
+                        <li><a href="absolute-paths.html"><i class="fas fa-map-pin"></i> Absolute paths</a></li>
+                        <li><a href="opening-files.html"><i class="fas fa-door-open"></i> Opening files</a></li>
+                        <li><a href="open-function.html"><i class="fas fa-file"></i> open()</a></li>
+                        <li><a href="file-read-mode.html"><i class="fas fa-book-open"></i> Read mode</a></li>
+                        <li><a href="file-write-mode.html"><i class="fas fa-pen"></i> Write mode</a></li>
+                        <li><a href="file-append-mode.html"><i class="fas fa-plus"></i> Append mode</a></li>
+                        <li><a href="file-binary-mode.html"><i class="fas fa-binary"></i> Binary mode</a></li>
+                        <li><a href="file-text-mode.html"><i class="fas fa-file-lines"></i> Text mode</a></li>
+                        <li><a href="reading-files.html"><i class="fas fa-glasses"></i> Reading files</a></li>
+                        <li><a href="read-method.html"><i class="fas fa-file-export"></i> read()</a></li>
+                        <li><a href="readline-method.html"><i class="fas fa-arrow-down-short-wide"></i> readline()</a></li>
+                        <li><a href="readlines-method.html"><i class="fas fa-list"></i> readlines()</a></li>
+                        <li><a href="iterating-files.html"><i class="fas fa-repeat"></i> Iterating files</a></li>
+                        <li><a href="writing-files.html"><i class="fas fa-pen-nib"></i> Writing files</a></li>
+                        <li><a href="write-method.html"><i class="fas fa-pencil"></i> write()</a></li>
+                        <li><a href="writelines-method.html"><i class="fas fa-bars-staggered"></i> writelines()</a></li>
+                        <li><a href="file-cursor.html"><i class="fas fa-location-arrow"></i> File cursor</a></li>
+                        <li><a href="seek-method.html"><i class="fas fa-crosshairs"></i> seek()</a></li>
+                        <li><a href="tell-method.html"><i class="fas fa-compass"></i> tell()</a></li>
+                        <li><a href="closing-files.html"><i class="fas fa-door-closed"></i> Closing files</a></li>
+                        <li><a href="context-managers-files.html"><i class="fas fa-shield"></i> Context managers</a></li>
+                        <li><a href="with-statement-files.html"><i class="fas fa-handshake"></i> with</a></li>
+                        <li><a href="file-encoding.html"><i class="fas fa-font"></i> File encoding</a></li>
+                        <li><a href="utf8-file-encoding.html"><i class="fas fa-globe"></i> UTF-8</a></li>
+                        <li><a href="file-error-handling.html"><i class="fas fa-shield-halved"></i> Error handling</a></li>
+                        <li><a href="pathlib-file-handling.html"><i class="fas fa-folder"></i> pathlib</a></li>
+                        <li><a href="creating-directories.html"><i class="fas fa-folder-plus"></i> Creating directories</a></li>
+                        <li><a href="renaming-files.html"><i class="fas fa-signature"></i> Renaming files</a></li>
+                        <li><a href="moving-files.html"><i class="fas fa-truck-ramp-box"></i> Moving files</a></li>
+                        <li><a href="copying-files.html"><i class="fas fa-copy"></i> Copying files</a></li>
+                        <li><a href="deleting-files.html"><i class="fas fa-trash-can"></i> Deleting files</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Python Programming</a> &gt; <span>Module 13: Functions</span>
+                </div>
+                <h1>Multiple return values</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 8 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fab fa-python"></i> Python 3</p>
+            </div>
+
+            <div class="lesson-content">
+
+                <h2>Overview: Multiple return values</h2>
+                <p class="lead-text">
+                    In modern software engineering, <strong>Multiple return values</strong> forms an essential building block in Python programming, clean backend development, and scalable data processing. Whether you are building web microservices with FastAPI, automating data analysis, or architecting enterprise systems, mastering multiple return values gives you direct, practical control over your code's efficiency, readability, and correctness.
+                </p>
+
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+                    <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-lightbulb" style="color: #F59E0B; margin-right: 8px;"></i> Why This Matters for Beginners</h4>
+                    <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Return multiple values packed conveniently as a tuple. Python's clear syntax allows you to focus on computational thinking, problem-solving, and clean design patterns from day one.
+                    </p>
+                </div>
+
+                <h2>Key Concepts &amp; Architecture</h2>
+                <p>
+                    When programming in Python, concepts are evaluated predictably by the Python Virtual Machine (PVM). Let us break down the exact operational principles behind <strong>Multiple return values</strong>:
+                </p>
+
+                <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid var(--card-border); border-radius: var(--radius-md);">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-microchip" style="color: var(--accent); margin-right: 8px;"></i> Execution &amp; Memory</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+                            Objects are managed dynamically on the Python heap, tracked via reference counting and cyclic garbage collection for safety and high productivity.
+                        </p>
+                    </div>
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid var(--card-border); border-radius: var(--radius-md);">
+                        <h4 style="margin: 0 0 0.5rem; color: var(--text-primary);"><i class="fas fa-shield-halved" style="color: #10B981; margin-right: 8px;"></i> Python Standards &amp; PEP 8</h4>
+                        <p style="margin: 0; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6;">
+                            Adheres strictly to official Python 3 specifications and PEP 8 guidelines, guaranteeing consistency, readability, and modern idioms across platforms.
+                        </p>
+                    </div>
+                </div>
+
+                <h2>Python Code Implementation &amp; Syntax</h2>
+                <p>
+                    Below is a practical, beginner-friendly Python program demonstrating <strong>Multiple return values</strong> in action. Follow the comments to understand each step:
+                </p>
+
+                <div class="code-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Multiple return values — Code Demonstration</span>
+                        <div class="terminal-header-actions">
+                            <span class="terminal-lang">Python</span>
+                            <button class="copy-code-btn" type="button" aria-label="Copy code to clipboard"><i class="fas fa-copy"></i> Copy</button>
+                        </div>
+                    </div>
+                    <pre><code># EDMITH Python Programming — Multiple return values
+# Defining modular, reusable, testable functions
+
+def calculate_progress(completed: int, total: int = 22) -&gt; float:
+    """Calculates and returns the percentage of completed course modules."""
+    if total &lt;= 0:
+        return 0.0
+    percentage = (completed / total) * 100
+    return round(percentage, 2)
+
+# Calling the function with positional and default arguments
+score_1 = calculate_progress(11)
+score_2 = calculate_progress(22, 22)
+
+print(f"11 Modules Progress: {score_1}%")
+print(f"22 Modules Progress: {score_2}%")
+print("Docstring:", calculate_progress.__doc__.strip())</code></pre>
+                </div>
+
+                <!-- Dedicated Explanation Card for Python Code Demonstration -->
+                <div class="code-explanation-area" id="code-explanation">
+                    <div class="explanation-header">
+                        <i class="fas fa-layer-group"></i>
+                        <h4>Multiple return values Code Explanation &amp; Breakdown</h4>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 1rem;">
+                        <h5 style="margin: 0 0 0.4rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-circle-info" style="color: var(--accent); font-size: 0.9rem;"></i> What this code does
+                        </h5>
+                        <p style="margin: 0; line-height: 1.6; color: var(--text-secondary);">Defines reusable programmatic procedures, signatures, and return contracts for multiple return values.</p>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 1rem;">
+                        <h5 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-gears" style="color: var(--accent); font-size: 0.9rem;"></i> How it works (Line-by-line breakdown)
+                        </h5>
+                        <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-pen-ruler"></i>
+                            <div><strong>def Statement:</strong> Declares calculate_progress with parameter type hints and a default total=22.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-quote-left"></i>
+                            <div><strong>Docstring Documentation:</strong> Embeds standard documentation describing purpose, parameters, and return value.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-shield"></i>
+                            <div><strong>Defensive Validation:</strong> Guards against ZeroDivisionError by returning 0.0 if total is non-positive.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-right-from-bracket"></i>
+                            <div><strong>return Statement:</strong> Computes and returns the calculated percentage back to the calling scope.</div>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="explanation-block" style="margin-bottom: 0.8rem;">
+                        <h5 style="margin: 0 0 0.5rem; color: var(--text-primary); font-size: 0.95rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-check-double" style="color: #10B981; font-size: 0.9rem;"></i> Key takeaways
+                        </h5>
+                        <ul class="explanation-points">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <div><strong>DRY Principle:</strong> Functions eliminate code duplication by packaging reusable logic into named callable units.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <div><strong>Parameters vs Arguments:</strong> Parameters are defined in the function signature; arguments are concrete values passed during invocation.</div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <div><strong>Default Values:</strong> Default parameters must always appear after all non-default required parameters.</div>
+                        </li>
+                        </ul>
+                    </div>
+
+                    <div class="explanation-tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <span><strong>Fresher Tip:</strong> Never use mutable objects (like [] or {}) as default argument values in functions! Use None as the default instead.</span>
+                    </div>
+                </div>
+
+                <h2>Program Output</h2>
+                <div class="code-terminal" style="margin-bottom: 2rem;">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">Console Terminal Output</span>
+                        <span class="terminal-lang">Terminal</span>
+                    </div>
+                    <pre><code style="color: #10B981;">$ python program.py
+11 Modules Progress: 50.0%
+22 Modules Progress: 100.0%
+Docstring: Calculates and returns the percentage of completed course modules.
+[Process completed with exit code 0]</code></pre>
+                </div>
+
+                <h2>Common Beginner Mistakes &amp; How to Avoid Them</h2>
+                <div class="detail-card" style="padding: 1.25rem; background: var(--bg-surface); border: 1px solid rgba(239, 68, 68, 0.3); border-left: 4px solid #EF4444; border-radius: var(--radius-sm); margin-bottom: 2rem;">
+                    <h4 style="margin: 0 0 0.5rem; color: #EF4444;"><i class="fas fa-triangle-exclamation"></i> Mutable Default Arguments</h4>
+                    <p style="margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">
+                        Defining def add(item, target=[]): causes target to persist across calls. Always use def add(item, target=None): and initialize inside.
+                    </p>
+                </div>
+
+                <!-- Summary Section (MANDATORY) -->
+                <h2>Summary</h2>
+                <div class="summary-box summary-card" id="lesson-summary">
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-book-reader" style="color: var(--accent); margin-right: 8px;"></i> Basics</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">
+                        Multiple return values encapsulates reusable logic into named modular units, accepting inputs and producing deterministic outputs.
+                    </p>
+
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-list-check" style="color: var(--accent); margin-right: 8px;"></i> Key Points</h3>
+                    <ul class="summary-list">
+                        <li><i class="fas fa-check-circle"></i> <span>Functions are defined using the 'def' keyword followed by name, parameters, and colon.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Arguments can be passed positionally, by keyword, or with default fallback values.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>*args collects arbitrary positional arguments as a tuple; **kwargs collects keyword arguments as a dict.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>return statements send values back to the caller; without return, functions return None.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span>Type hints and PEP 257 docstrings enhance code readability and enable static analysis tools.</span></li>
+                    </ul>
+
+                    <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--text-primary);"><i class="fas fa-lightbulb" style="color: #F59E0B; margin-right: 8px;"></i> Remember</h3>
+                    <div class="detail-card" style="padding: 1.25rem; background: var(--bg-secondary); border-left: 4px solid var(--accent); border-radius: var(--radius-sm);">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin: 0; line-height: 1.6;">
+                            Functions turn repetitive code into reusable building blocks. Always document your functions with docstrings!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Professional 3-Column Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="return-values.html" title="Previous: Return values">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Return values</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="python_multiple_return_values" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="returning-tuples.html" title="Next: Returning tuples">
+                        <span class="btn-text">Next: Returning tuples</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+</body>
+</html>

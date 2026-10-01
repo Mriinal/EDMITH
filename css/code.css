@@ -1,0 +1,665 @@
+/* EDMITH Design System — Code Architecture, Terminal & Syntax Highlighting */
+/* =========================================================
+   EDMITH OBSIDIAN CODE ARCHITECTURE & SYNTAX HIGHLIGHTING
+   Universal Visibility, Obsidian Gradients & Rich Contrast
+   ========================================================= */
+
+/* All Standalone & Content Pre Elements - Guaranteed Obsidian Container */
+pre {
+    background: #110B22 !important;
+    background: linear-gradient(180deg, #160F2C 0%, #0D071B 100%) !important;
+    border: 1px solid rgba(121, 63, 224, 0.35) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 28px rgba(10, 5, 20, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    padding: 1.25rem 1.6rem !important;
+    margin: 1.5rem 0 2rem !important;
+    overflow-x: auto !important;
+    font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace) !important;
+    font-size: 0.92rem !important;
+    line-height: 1.7 !important;
+    color: #F1F5F9 !important;
+    position: relative !important;
+    tab-size: 4 !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Nested Pre Inside Windows & Terminals - Prevent Double Boxes */
+.code-terminal pre,
+.carousel-content pre,
+.code-window pre,
+.editor-workspace pre {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 1.25rem 1.5rem !important;
+}
+
+/* Pre inside Explanation Areas and List Items - Clean Contrast */
+.code-explanation-area pre,
+ul.explanation-points pre,
+.explanation-points li pre,
+.concept-bullet-list pre {
+    background: #110B22 !important;
+    background: linear-gradient(180deg, #160F2C 0%, #0D071B 100%) !important;
+    border: 1px solid rgba(121, 63, 224, 0.35) !important;
+    border-radius: 10px !important;
+    margin: 0.85rem 0 1rem !important;
+    padding: 1rem 1.35rem !important;
+    box-shadow: 0 6px 20px rgba(10, 5, 20, 0.35) !important;
+}
+
+/* Code Tag Inside Pre Blocks */
+pre code,
+.carousel-content pre code,
+.code-terminal pre code,
+.code-window pre code,
+.lesson-content pre code,
+.code-snippet-box pre code {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #F1F5F9 !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    font-family: var(--font-mono, 'JetBrains Mono', 'Fira Code', monospace) !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    display: block !important;
+    white-space: pre !important;
+}
+
+/* Code Snippet Box Container */
+.code-snippet-box {
+    margin: 1.5rem 0 2rem;
+    position: relative;
+}
+.code-snippet-box pre {
+    margin: 0 !important;
+}
+
+/* Highlight Card Callouts */
+.highlight-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    margin: 1.5rem 0 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+}
+.highlight-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+.highlight-card p {
+    color: var(--text-secondary);
+    font-size: 0.98rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+.highlight-card ul {
+    margin: 0.5rem 0 0 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+.highlight-card ul li {
+    margin-bottom: 0.5rem;
+}
+.highlight-card ul li strong {
+    color: var(--text-primary);
+}
+
+
+/* Unified EDMITH High-Contrast Syntax Highlighting Tokens */
+.code-comment { color: #94A3B8 !important; font-style: italic; }
+.code-keyword { color: #C084FC !important; font-weight: 700; } /* Vibrant Lilac */
+.code-func    { color: #38BDF8 !important; font-weight: 600; } /* Electric Cyan */
+.code-string  { color: #34D399 !important; }                   /* Mint Emerald */
+.code-number,
+.code-num     { color: #F472B6 !important; font-weight: 600; } /* Neon Rose */
+.code-op      { color: #FB923C !important; font-weight: 600; } /* Vivid Amber/Orange */
+.code-type    { color: #A78BFA !important; }
+
+/* Homepage Courses Cards Section */
+.courses {
+    padding: 4.5rem 5% 6rem;
+    background-color: var(--bg-main);
+    transition: 0.3s ease;
+}
+
+.course-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.plain-card {
+    flex: 1 1 300px;
+    max-width: 360px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 2.25rem 2rem;
+    border-radius: var(--radius-md);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+}
+
+.plain-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.card-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.plain-card h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.plain-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+    flex: 1;
+    line-height: 1.6;
+}
+
+.btn-plain {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 9px 20px;
+    background-color: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+.plain-card:hover .btn-plain {
+    background-color: var(--accent);
+    color: white;
+    box-shadow: 0 4px 12px rgba(121, 63, 224, 0.3);
+}
+
+/* 5th Card: View All Courses Styling */
+.view-all-card {
+    border: 2px dashed var(--accent);
+    background: var(--accent-subtle);
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.view-all-card .card-icon {
+    background: var(--accent);
+    color: white;
+}
+
+.view-all-card .view-all-btn {
+    background: var(--accent);
+    color: white;
+    align-self: center;
+}
+
+.view-all-card .view-all-btn:hover {
+    background: var(--accent-hover);
+}
+
+
+/* --- Code Terminal & Explanation Cards --- */
+/* =========================================================
+   CODE TERMINAL & SYNTAX HIGHLIGHTING (OBSIDIAN THEME)
+   ========================================================= */
+
+/* Code Terminal / Standalone Lesson Code Containers */
+.code-terminal,
+.lesson-content .carousel-content,
+.main-content > .carousel-content {
+    background: linear-gradient(180deg, #150F26 0%, #0E081C 100%) !important;
+    border: 1px solid rgba(121, 63, 224, 0.3) !important;
+    border-radius: 12px !important;
+    margin: 1.5rem 0 2rem;
+    overflow: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 10px 30px rgba(10, 5, 20, 0.45) !important;
+    position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.code-terminal:hover,
+.lesson-content .carousel-content:hover,
+.main-content > .carousel-content:hover {
+    border-color: rgba(157, 111, 245, 0.55) !important;
+    box-shadow: 0 14px 38px rgba(121, 63, 224, 0.2) !important;
+}
+
+/* Terminal Header / Mac Header */
+.terminal-header,
+.mac-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(25, 17, 45, 0.85);
+    border-bottom: 1px solid rgba(121, 63, 224, 0.22);
+    user-select: none;
+}
+
+.terminal-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-right: 12px;
+}
+
+.dot {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+.dot.red { background: #FF5F56; box-shadow: 0 0 6px rgba(255, 95, 86, 0.4); }
+.dot.yellow { background: #FFBD2E; box-shadow: 0 0 6px rgba(255, 189, 46, 0.4); }
+.dot.green { background: #27C93F; box-shadow: 0 0 6px rgba(39, 201, 63, 0.4); }
+
+.terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: #B9A8D3;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Copy Button */
+.copy-btn,
+.copy-code-btn,
+.code-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: #D8C5F0;
+    background: rgba(121, 63, 224, 0.2);
+    border: 1px solid rgba(121, 63, 224, 0.35);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+    background: var(--accent);
+    color: #FFFFFF;
+    border-color: var(--accent);
+}
+
+/* Try in Editor Button in Terminal Header */
+.try-editor-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #793FE0 0%, #5B21B6 100%);
+    border: 1px solid rgba(167, 139, 250, 0.45);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    box-shadow: 0 2px 8px rgba(121, 63, 224, 0.35);
+}
+
+.try-editor-btn:hover {
+    background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.55);
+    transform: translateY(-1px);
+}
+
+.try-editor-btn i {
+    font-size: 0.72rem;
+    color: #FCD34D;
+}
+
+.terminal-header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* Single Frame Code Explanation Note */
+.code-explanation-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(22, 14, 42, 0.92);
+    border-top: 1px solid rgba(121, 63, 224, 0.22);
+    border-radius: 0 0 11px 11px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #D8CBEF;
+}
+
+.code-explanation-note i {
+    color: #A78BFA;
+    font-size: 1rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.code-explanation-note .note-text {
+    flex: 1;
+}
+
+.code-explanation-note .note-text strong {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.code-explanation-note .note-text code {
+    background: rgba(121, 63, 224, 0.25);
+    color: #F3E8FF;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+}
+
+/* Dedicated Code Example Explanation Area */
+.code-explanation-area {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 1.5rem 1.75rem;
+    margin: 1.25rem 0 2.5rem 0;
+    box-shadow: var(--shadow-sm);
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.code-explanation-area:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+}
+
+.code-explanation-area .explanation-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0.9rem;
+}
+
+.code-explanation-area .explanation-header i {
+    font-size: 1.15rem;
+    color: var(--accent);
+}
+
+.code-explanation-area .explanation-header h4 {
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.code-explanation-area p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+}
+
+.code-explanation-area ul.explanation-points {
+    list-style: none;
+    padding: 0;
+    margin: 0.85rem 0 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.code-explanation-area ul.explanation-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.code-explanation-area ul.explanation-points li i {
+    color: var(--accent);
+    font-size: 0.88rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.code-explanation-area ul.explanation-points li strong {
+    color: var(--text-primary);
+}
+
+.code-explanation-area ul.explanation-points li > div {
+    min-width: 0;
+    flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.code-explanation-area code {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    font-weight: 600;
+}
+
+.code-explanation-area .explanation-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 1.15rem;
+    padding: 12px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid rgba(121, 63, 224, 0.15);
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.code-explanation-area .explanation-tip i {
+    color: #F59E0B;
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.code-explanation-area .explanation-tip strong {
+    color: var(--text-primary);
+}
+
+/* Pre and Code Block inside Terminal & Content Windows */
+.code-terminal pre,
+.carousel-content pre,
+.code-window pre {
+    margin: 0 !important;
+    padding: 1.25rem 1.4rem !important;
+    overflow-x: auto;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-family: var(--font-mono);
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: #F1F5F9 !important;
+    tab-size: 4;
+}
+
+.code-terminal pre code,
+.carousel-content pre code,
+.code-window pre code {
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    color: #F1F5F9 !important;
+    font-family: inherit;
+    font-size: inherit;
+    display: block;
+}
+
+/* Pre Scrollbar */
+pre::-webkit-scrollbar {
+    height: 7px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: rgba(15, 9, 26, 0.6);
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: rgba(121, 63, 224, 0.4);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* SQL Syntax Highlight Tokens - EDMITH Brand Vibrancy */
+.code-keyword {
+    color: #C084FC !important;
+    font-weight: 700;
+}
+
+.code-func {
+    color: #38BDF8 !important;
+    font-weight: 600;
+}
+
+.code-comment {
+    color: #94A3B8 !important;
+    font-style: italic;
+}
+
+.code-string {
+    color: #34D399 !important;
+}
+
+.code-op {
+    color: #FB923C !important;
+}
+
+.code-number,
+.code-num {
+    color: #F472B6 !important;
+    font-weight: 600;
+}
+
+/* Alphabetical Quick Jump Navigation */
+.alphabet-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 1.25rem 0 2rem;
+    justify-content: center;
+    background: var(--card-bg);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.alpha-btn {
+    min-width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.alpha-btn:hover,
+.alpha-btn.active {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(121, 63, 224, 0.3);
+}
+
+.quick-jump-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    background: var(--bg-secondary);
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--card-border);
+}
+
+.quick-jump-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quick-jump-select {
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+    min-width: 240px;
+}
+

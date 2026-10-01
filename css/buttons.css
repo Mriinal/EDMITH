@@ -1,0 +1,150 @@
+/* EDMITH Design System — Reusable Button & Action Components */
+/* --- Standard Buttons (.btn-enroll, .btn-primary) --- */
+.btn-enroll {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.35);
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-enroll:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--accent) 0%, #6830d4 100%);
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.35);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-hover) 0%, #5824b8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.5);
+    color: #ffffff !important;
+}
+
+/* --- Plain Action Buttons (.btn-plain) --- */
+.btn-plain {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 9px 20px;
+    background-color: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+.plain-card:hover .btn-plain {
+    background-color: var(--accent);
+    color: white;
+}
+
+/* --- Lesson Navigation & Completion Buttons (.btn-outline, .mark-complete-btn, .completed-btn) --- */
+.lesson-footer .btn-outline,
+.lesson-footer .btn-enroll,
+.lesson-footer .btn-primary,
+.lesson-footer .lesson-nav-prev a,
+.lesson-footer .lesson-nav-next a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 24px;
+    background: var(--bg-surface, #ffffff);
+    color: var(--text-primary);
+    border: 1.5px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    max-width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.lesson-footer .btn-enroll,
+.lesson-footer .btn-primary,
+.lesson-footer .lesson-nav-next a {
+    background: linear-gradient(135deg, var(--accent) 0%, #6830d4 100%);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(121, 63, 224, 0.38);
+}
+
+.lesson-footer .btn-enroll:hover,
+.lesson-footer .btn-primary:hover,
+.lesson-footer .lesson-nav-next a:hover {
+    background: linear-gradient(135deg, var(--accent-hover) 0%, #5824b8 100%);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(121, 63, 224, 0.52);
+}
+
+.lesson-footer .btn-outline:not(:disabled):hover,
+.lesson-footer .lesson-nav-prev a:not(:disabled):hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-subtle);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(121, 63, 224, 0.15);
+}
+
+.lesson-footer .btn-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 320px;
+    vertical-align: middle;
+}
+
+.btn-outline.completed-btn,
+.btn-enroll.completed-btn,
+.btn-primary.completed-btn,
+.mark-complete-btn.completed-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border-color: #10b981 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4) !important;
+}
+
+.btn-outline.completed-btn:hover,
+.btn-enroll.completed-btn:hover,
+.btn-primary.completed-btn:hover,
+.mark-complete-btn.completed-btn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    border-color: #059669 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16, 185, 129, 0.5) !important;
+}
+

@@ -62,7 +62,15 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/homepage.css">
+    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -85,12 +93,28 @@
             </div>
 
             <h1 class="gradient-text">Learn. Practice. Test. Improve.</h1>
-            <p>Master enterprise tech skills through hands-on lessons, instant in-browser workstations, and structured learning tracks.</p>
+            <p>Master enterprise software engineering through structured syllabi, in-browser compilation sandboxes, and timed assessments.</p>
 
             <!-- Search Bar (Preserves script.js courseSearch and searchBtn IDs) -->
             <div class="search-container">
-                <input type="text" id="courseSearch" placeholder="Search for SQL, ETL Testing, Python, C..." aria-label="Search courses">
+                <input type="text" id="courseSearch" placeholder="Search for SQL, Python, C, ETL Testing, Fundamentals..." aria-label="Search courses">
                 <button type="button" id="searchBtn" aria-label="Execute search"><i class="fas fa-search"></i></button>
+            </div>
+
+            <!-- Quick Navigation Pills -->
+            <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.75rem;">
+                <a href="#courses" class="btn-plain" style="font-size: 0.85rem; padding: 0.45rem 1rem; border-radius: var(--radius-pill); background: var(--card-bg);">
+                    <i class="fas fa-graduation-cap"></i> Browse Courses
+                </a>
+                <a href="tests/index.html" class="btn-plain" style="font-size: 0.85rem; padding: 0.45rem 1rem; border-radius: var(--radius-pill); background: var(--card-bg); color: var(--accent); border-color: var(--accent);">
+                    <i class="fas fa-file-signature"></i> Practice Tests
+                </a>
+                <a href="editors/editor.html" class="btn-plain" style="font-size: 0.85rem; padding: 0.45rem 1rem; border-radius: var(--radius-pill); background: var(--card-bg);">
+                    <i class="fas fa-terminal"></i> SQL Editor
+                </a>
+                <a href="editors/c-editor.html" class="btn-plain" style="font-size: 0.85rem; padding: 0.45rem 1rem; border-radius: var(--radius-pill); background: var(--card-bg);">
+                    <i class="fas fa-code"></i> C Compiler
+                </a>
             </div>
         </div>
     </section>
@@ -99,16 +123,16 @@
     <section class="home-stats-strip" aria-label="EDMITH Highlights">
         <div class="stats-grid">
             <div class="stat-item">
-                <span class="stat-number">47+</span>
-                <span class="stat-label">Hands-On SQL Lessons</span>
+                <span class="stat-number">1,531+</span>
+                <span class="stat-label">Structured Lessons</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">ETL</span>
-                <span class="stat-label">Data Pipeline Validation Track</span>
+                <span class="stat-number">5 Tracks</span>
+                <span class="stat-label">Full Curriculums</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">0 Setup</span>
-                <span class="stat-label">In-Browser Live Workstations</span>
+                <span class="stat-number">In-Browser</span>
+                <span class="stat-label">Compilers &amp; Sandboxes</span>
             </div>
             <div class="stat-item">
                 <span class="stat-number">100%</span>
@@ -124,101 +148,275 @@
     <section id="courses" class="courses">
         <div class="preview-section" style="padding: 0 0 2rem; background: transparent;">
             <div class="section-header">
-                <div class="section-tag-badge">Course Catalog</div>
-                <h2>Browse All Courses</h2>
-                <p class="section-subtitle">Discover our comprehensive, self-paced technical curriculums. Build real-world skills from foundational concepts to advanced production techniques.</p>
+                <div class="section-tag-badge">Curriculum Catalog</div>
+                <h2>Explore Professional Learning Tracks</h2>
+                <p class="section-subtitle">Discover our comprehensive, hands-on engineering programs. From foundational computational thinking to advanced database architectures and memory management.</p>
             </div>
         </div>
 
         <div class="course-container" id="courseList">
-            <!-- Course 1: SQL Mastery -->
-            <div class="plain-card" data-title="sql database relational query joins">
+            <!-- Track 1: Programming Fundamentals -->
+            <div class="plain-card" data-title="programming fundamentals computer science algorithms flowcharts problem solving">
+                <div class="card-icon" style="color: #06b6d4; background: rgba(6, 182, 212, 0.15);">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#06b6d4; background:rgba(6,182,212,0.1); padding:2px 8px; border-radius:999px;">Beginner Track</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 24 Lessons</span>
+                </div>
+                <h3>Programming Fundamentals</h3>
+                <p>Master universal computer science principles, computational thinking, algorithms, flowcharts, pseudocode, and debugging across 24 structured lessons.</p>
+                <div style="display:flex; gap:0.5rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="fundamentals/index.html" class="btn-plain" style="flex: 1; text-align: center;">View Course</a>
+                    <a href="tests/fundamentals-test.html" class="btn-plain" style="color: #06b6d4; border-color: rgba(6, 182, 212, 0.3);" title="Take Assessment"><i class="fas fa-check"></i> Test</a>
+                </div>
+            </div>
+
+            <!-- Track 2: SQL & Databases Mastery -->
+            <div class="plain-card" data-title="sql database relational query joins window functions ddl dml">
                 <div class="card-icon" style="color: #10b981; background: rgba(16, 185, 129, 0.15);">
                     <i class="fas fa-database"></i>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#10b981; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:999px;">Live Course</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 47 Lessons</span>
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#10b981; background:rgba(16,185,129,0.1); padding:2px 8px; border-radius:999px;">Data Track</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 50 Lessons</span>
                 </div>
                 <h3>SQL &amp; Databases Mastery</h3>
-                <p>Master relational databases from syntax and execution order to complex joins, window functions, and query optimization across 47 interactive lessons.</p>
-                <a href="sql/index.html" class="btn-plain">Explore Course</a>
+                <p>Master relational databases from execution order to complex joins, window functions, and query optimization across 50 interactive lessons.</p>
+                <div style="display:flex; gap:0.5rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="sql/index.html" class="btn-plain" style="flex: 1; text-align: center;">View Course</a>
+                    <a href="sql/tests/index.html" class="btn-plain" style="color: #10b981; border-color: rgba(16, 185, 129, 0.3);" title="Take Assessment"><i class="fas fa-check"></i> Test</a>
+                </div>
             </div>
 
-            <!-- Course 2: ETL Testing -->
-            <div class="plain-card" data-title="etl testing data warehouse pipeline reconciliation validation">
+            <!-- Track 3: ETL Testing & Data Warehouse -->
+            <div class="plain-card" data-title="etl testing data warehouse pipeline reconciliation validation dimensional modeling">
                 <div class="card-icon" style="color: var(--accent); background: var(--accent-subtle);">
                     <i class="fas fa-diagram-project"></i>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:var(--accent-subtle); padding:2px 8px; border-radius:999px;">Live Course</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 31 Lessons</span>
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:var(--accent-subtle); padding:2px 8px; border-radius:999px;">Enterprise QA Track</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 592 Lessons</span>
                 </div>
                 <h3>ETL Testing &amp; Data Warehouse</h3>
-                <p>Master Computer &amp; Data Fundamentals, data formats (CSV, JSON, Parquet, Avro, ORC), quality dimensions, and data pipeline validation across 31 structured lessons.</p>
-                <a href="etl/index.html" class="btn-plain">Explore Course</a>
+                <p>Master data formats (CSV, Parquet, Avro), data quality dimensions, Kimball dimensional modeling, SCD types, and pipeline validations across 592 lessons.</p>
+                <div style="display:flex; gap:0.5rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="etl/index.html" class="btn-plain" style="flex: 1; text-align: center;">View Course</a>
+                    <a href="tests/etl-test.html" class="btn-plain" style="color: var(--accent); border-color: rgba(121, 63, 224, 0.3);" title="Take Assessment"><i class="fas fa-check"></i> Test</a>
+                </div>
             </div>
 
-            <!-- Course 3: Python -->
-            <div class="plain-card" data-title="python backend automation scripting">
+            <!-- Track 4: Python Programming -->
+            <div class="plain-card" data-title="python backend automation scripting data structures oop dunder">
                 <div class="card-icon" style="color: #3b82f6; background: rgba(59, 130, 246, 0.15);">
                     <i class="fab fa-python"></i>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#3b82f6; background:rgba(59,130,246,0.1); padding:2px 8px; border-radius:999px;">Curriculum</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-layer-group"></i> Programming</span>
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#3b82f6; background:rgba(59,130,246,0.1); padding:2px 8px; border-radius:999px;">Software Track</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 589 Lessons</span>
                 </div>
                 <h3>Python Programming</h3>
-                <p>Go from programming fundamentals to data structures, automation scripts, and backend system development with interactive exercises.</p>
-                <a href="course.html?category=programming&search=python" class="btn-plain">Explore Course</a>
+                <p>Master Python 3 from syntax to data structures, functional paradigms, OOP, dunder protocols, standard library, and file systems across 589 lessons.</p>
+                <div style="display:flex; gap:0.5rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="python/index.html" class="btn-plain" style="flex: 1; text-align: center;">View Course</a>
+                    <a href="tests/python-test.html" class="btn-plain" style="color: #3b82f6; border-color: rgba(59, 130, 246, 0.3);" title="Take Assessment"><i class="fas fa-check"></i> Test</a>
+                </div>
             </div>
 
-            <!-- Course 4: C Programming -->
-            <div class="plain-card" data-title="c programming memory management pointers systems algorithms">
+            <!-- Track 5: C Programming Mastery -->
+            <div class="plain-card" data-title="c programming memory management pointers systems algorithms compilers">
                 <div class="card-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.15);">
                     <i class="fas fa-code"></i>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#8b5cf6; background:rgba(139,92,246,0.1); padding:2px 8px; border-radius:999px;">Live Course</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 290 Lessons</span>
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#8b5cf6; background:rgba(139,92,246,0.1); padding:2px 8px; border-radius:999px;">Systems Track</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-book-open"></i> 276 Lessons</span>
                 </div>
                 <h3>C Programming Mastery</h3>
-                <p>Master C from complete beginner fundamentals to memory addresses, deep pointer arithmetic, functions, arrays, and strings across 290 interactive lessons.</p>
-                <a href="c/index.html" class="btn-plain">Explore Course</a>
+                <p>Master C from syntax to memory layout, pointer arithmetic, memory management, functions, arrays, and algorithms across 276 interactive lessons.</p>
+                <div style="display:flex; gap:0.5rem; margin-top: auto; padding-top: 1rem;">
+                    <a href="c/index.html" class="btn-plain" style="flex: 1; text-align: center;">View Course</a>
+                    <a href="tests/c-test.html" class="btn-plain" style="color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3);" title="Take Assessment"><i class="fas fa-check"></i> Test</a>
+                </div>
             </div>
 
-            <!-- Course 5: HTML & CSS -->
-            <div class="plain-card" data-title="html css web frontend">
-                <div class="card-icon" style="color: #e34c26; background: rgba(227, 76, 38, 0.15);">
-                    <i class="fab fa-html5"></i>
+            <!-- Card 6: Central Assessment Hub -->
+            <div class="plain-card" data-title="tests assessments exams mcq coding sql python c etl certification" style="background: linear-gradient(135deg, rgba(121, 63, 224, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%); border: 1.5px solid var(--accent);">
+                <div class="card-icon" style="color: var(--accent); background: rgba(121, 63, 224, 0.15);">
+                    <i class="fas fa-award"></i>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:#e34c26; background:rgba(227,76,38,0.1); padding:2px 8px; border-radius:999px;">Curriculum</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-code"></i> Frontend</span>
+                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:rgba(121,63,224,0.1); padding:2px 8px; border-radius:999px;">Assessments</span>
+                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-vial"></i> 5 Subjects</span>
                 </div>
-                <h3>Web Development</h3>
-                <p>Build responsive, modern web interfaces from scratch. Master semantic markup, flexbox, CSS grid, and layout design systems.</p>
-                <a href="course.html?category=programming&search=html" class="btn-plain">Explore Course</a>
-            </div>
-
-            <!-- Course 6: View Full Catalog -->
-            <div class="plain-card catalog-explore-card" data-title="courses catalog curriculum edmith tracks" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(14, 165, 233, 0.08) 100%); border: 1.5px dashed var(--accent);">
-                <div class="card-icon" style="color: var(--accent); background: rgba(99, 102, 241, 0.15);">
-                    <i class="fas fa-graduation-cap"></i>
+                <h3>Central Tests Hub</h3>
+                <p>Validate your real-world readiness with timed MCQs, in-browser coding examinations, and leaderboard rankings across all five subjects.</p>
+                <div style="margin-top: auto; padding-top: 1rem;">
+                    <a href="tests/index.html" class="btn-enroll" style="display: block; text-align: center;">Enter Tests Hub</a>
                 </div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-                    <span style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); background:rgba(99,102,241,0.1); padding:2px 8px; border-radius:999px;">All Categories</span>
-                    <span style="font-size:0.8rem; color:var(--text-secondary); font-weight:600;"><i class="fas fa-arrow-up-right-from-square"></i> Full Catalog</span>
-                </div>
-                <h3>Full Course Directory</h3>
-                <p>Explore our complete library including Power BI, Microsoft Azure Cloud, Advanced Excel, and Software Quality Assurance tracks.</p>
-                <a href="course.html" class="btn-plain" style="border-color: var(--accent); color: var(--accent);">Browse All Courses</a>
             </div>
         </div>
 
         <p id="noResults" style="display: none; text-align: center; color: var(--text-secondary); margin-top: 2rem;">
             No courses found matching your search. Try another query or <a href="course.html" style="color: var(--accent); text-decoration: underline;">browse all courses</a>.
         </p>
+    </section>
+
+    <!-- Practice Tests & Assessments Showcase Section -->
+    <section class="tests-preview-section" style="padding: 4rem 5%; background: var(--bg-secondary); border-top: 1px solid var(--card-border); border-bottom: 1px solid var(--card-border);" aria-label="Practice Tests">
+        <div class="preview-section" style="padding: 0 0 2.5rem; background: transparent;">
+            <div class="section-header">
+                <div class="section-tag-badge"><i class="fas fa-file-signature"></i> Verification &amp; Certification</div>
+                <h2>Practice Tests &amp; Coding Evaluations</h2>
+                <p class="section-subtitle">Take your theoretical learning and test it against timed multiple-choice assessments and algorithmic sandbox tests. Every verified score is saved directly to your profile and the global leaderboard.</p>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto 2.5rem;">
+            <!-- SQL Test Block -->
+            <div class="profile-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(16, 185, 129, 0.12); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">SQL Mastery</h4>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">MCQ &amp; Query Evaluations</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                        Multi-round exams covering syntax, aggregate logic, multi-table joins, subqueries, and window functions.
+                    </p>
+                </div>
+                <a href="sql/tests/index.html" class="btn-plain" style="text-align: center; color: #10b981; border-color: rgba(16, 185, 129, 0.3);">
+                    <i class="fas fa-play"></i> Start SQL Assessment
+                </a>
+            </div>
+
+            <!-- Python Test Block -->
+            <div class="profile-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(59, 130, 246, 0.12); color: #3b82f6; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">Python Programming</h4>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">MCQ &amp; Coding Exam</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                        3-tier difficulty quiz and split-screen algorithmic coding examination with automated assertions.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="tests/python-test.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem;">MCQ Test</a>
+                    <a href="tests/python-coding.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem; color: #3b82f6; border-color: rgba(59, 130, 246, 0.3);">Coding Exam</a>
+                </div>
+            </div>
+
+            <!-- C Test Block -->
+            <div class="profile-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(139, 92, 246, 0.12); color: #8b5cf6; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">C Programming</h4>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">MCQ &amp; Live Web Worker Compiler</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                        Pointers, dynamic allocations, and memory tests with in-browser compilation and test cases.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="tests/c-test.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem;">MCQ Test</a>
+                    <a href="tests/c-coding.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem; color: #8b5cf6; border-color: rgba(139, 92, 246, 0.3);">Coding Exam</a>
+                </div>
+            </div>
+
+            <!-- ETL & Fundamentals Test Block -->
+            <div class="profile-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                        <div style="width: 44px; height: 44px; border-radius: 10px; background: rgba(13, 148, 136, 0.12); color: #0d9488; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.1rem; color: var(--text-primary);">ETL &amp; Fundamentals</h4>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary);">225 Verified Questions Each</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+                        Verify data warehouse reconciliation, SCD types, or computer science logic across five progressive rounds.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="tests/etl-test.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem;">ETL Test</a>
+                    <a href="tests/fundamentals-test.html" class="btn-plain" style="flex: 1; text-align: center; font-size: 0.85rem;">Fundamentals</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="tests/index.html" class="btn-enroll" style="display: inline-flex; align-items: center; gap: 8px; padding: 0.85rem 2rem; font-size: 1rem;">
+                <i class="fas fa-layer-group"></i> View Central Assessment Hub <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- In-Browser Workstations Showcase -->
+    <section class="workstations-section" style="padding: 4.5rem 5%; background: var(--bg-main);" aria-label="In-Browser Workstations">
+        <div class="preview-section" style="padding: 0 0 2.5rem; background: transparent;">
+            <div class="section-header">
+                <div class="section-tag-badge"><i class="fas fa-terminal"></i> Interactive Workstations</div>
+                <h2>Zero Local Setup. Code Directly in Your Browser.</h2>
+                <p class="section-subtitle">Practice writing code and database queries instantly with zero installation, zero drivers, and zero configuration headaches.</p>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1040px; margin: 0 auto;">
+            <!-- SQL Sandbox Card -->
+            <div class="profile-card" style="padding: 2rem; border-color: rgba(16, 185, 129, 0.3);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                    <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(16, 185, 129, 0.15); color: #10b981; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">
+                        <i class="fas fa-terminal"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.25rem; color: var(--text-primary);">Interactive SQL Sandbox</h3>
+                        <span style="font-size: 0.85rem; color: #10b981; font-weight: 700;">Client-Side SQLite Engine</span>
+                    </div>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Execute queries, create relational tables, practice joins, and verify aggregates with mock employee and sales databases right in your browser.
+                </p>
+                <a href="editors/editor.html" class="btn-enroll" style="display: inline-flex; align-items: center; gap: 8px; background: #10b981;">
+                    <i class="fas fa-play"></i> Open SQL Editor
+                </a>
+            </div>
+
+            <!-- C Compiler Sandbox Card -->
+            <div class="profile-card" style="padding: 2rem; border-color: rgba(139, 92, 246, 0.3);">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+                    <div style="width: 52px; height: 52px; border-radius: 12px; background: rgba(139, 92, 246, 0.15); color: #8b5cf6; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.25rem; color: var(--text-primary);">In-Browser C Compiler</h3>
+                        <span style="font-size: 0.85rem; color: #8b5cf6; font-weight: 700;">Web Worker Sandbox</span>
+                    </div>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                    Compile standard C code with pointers, structs, and terminal I/O in an isolated browser thread with instant output and zero lag.
+                </p>
+                <a href="editors/c-editor.html" class="btn-enroll" style="display: inline-flex; align-items: center; gap: 8px; background: #8b5cf6;">
+                    <i class="fas fa-terminal"></i> Open C Editor
+                </a>
+            </div>
+        </div>
     </section>
 
     <!-- The 5-Step EDMITH Learning Journey (Learn -> Practice -> Test -> Track -> Build Skills) -->
@@ -283,13 +481,13 @@
             <div class="why-card">
                 <div class="why-icon"><i class="fas fa-laptop-code"></i></div>
                 <h3>Zero Environment Setup</h3>
-                <p>Write, run, and debug real SQL queries with our in-browser client. Avoid frustrating local database server installations and start coding immediately.</p>
+                <p>Write, run, and debug real code with our in-browser compilers and workstations. Avoid frustrating local environment errors and start coding immediately.</p>
             </div>
 
             <div class="why-card">
                 <div class="why-icon"><i class="fas fa-network-wired"></i></div>
-                <h3>Bridge to Data Engineering</h3>
-                <p>We don't stop at basic SELECT statements. EDMITH connects SQL to enterprise ETL Testing, Data Warehousing, and pipeline verification practices.</p>
+                <h3>Bridge to Enterprise Engineering</h3>
+                <p>We don't stop at trivial tutorials. EDMITH connects SQL to enterprise ETL Testing, Data Warehousing, memory safety, and production system practices.</p>
             </div>
 
             <div class="why-card">
@@ -313,14 +511,14 @@
                 <i class="fas fa-graduation-cap"></i> Start Learning Today
             </div>
             <h2>Take Your Data &amp; Coding Skills to the Next Level</h2>
-            <p>Join thousands of learners mastering SQL, ETL Testing, Python, and modern software engineering. Free forever — zero installation needed.</p>
+            <p>Join thousands of learners mastering SQL, ETL Testing, Python, C, and modern software engineering. Free forever — zero installation needed.</p>
 
             <div class="home-cta-actions">
                 <a href="sql/index.html" class="home-cta-btn-primary">
                     <i class="fas fa-database"></i> Explore SQL Track
                 </a>
-                <a href="etl/index.html" class="home-cta-btn-secondary">
-                    <i class="fas fa-diagram-project"></i> Explore ETL Testing
+                <a href="tests/index.html" class="home-cta-btn-secondary">
+                    <i class="fas fa-file-signature"></i> Take an Assessment
                 </a>
                 <a href="course.html" class="home-cta-btn-secondary">
                     <i class="fas fa-book-open"></i> Browse All Courses

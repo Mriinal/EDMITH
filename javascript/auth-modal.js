@@ -65,9 +65,32 @@
     }
 
     function getPathPrefix() {
-        const path = window.location.pathname.replace(/\\/g, '/');
+        if (window.EdmithComponents && typeof window.EdmithComponents.getPrefix === 'function') {
+            const p = window.EdmithComponents.getPrefix();
+            if (p !== undefined && p !== null) return p;
+        }
+        const scriptTags = document.querySelectorAll('script[src*="auth-modal.js"], script[src*="components.js"]');
+        for (let i = 0; i < scriptTags.length; i++) {
+            const src = scriptTags[i].getAttribute('src') || '';
+            const match = src.match(/^((\.\.\/)+)/);
+            if (match) return match[1];
+            if (src.startsWith('../')) return '../';
+        }
+        const path = (window.location.pathname || '').replace(/\\/g, '/').toLowerCase();
         if (path.includes('/sql/tests/')) return '../../';
-        if (path.includes('/sql/') || path.includes('/editors/') || path.includes('/users/')) return '../';
+        if (
+            path.includes('/tests/') ||
+            path.includes('/sql/') ||
+            path.includes('/editors/') ||
+            path.includes('/editor/') ||
+            path.includes('/users/') ||
+            path.includes('/etl/') ||
+            path.includes('/c/') ||
+            path.includes('/python/') ||
+            path.includes('/fundamentals/')
+        ) {
+            return '../';
+        }
         return '';
     }
 
@@ -92,6 +115,29 @@
         return false;
     }
 
+    function ensureStyles() {
+        try {
+            const prefix = getPathPrefix();
+            if (!document.querySelector('link[href*="modal.css"]')) {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = prefix + 'css/modal.css';
+                document.head.appendChild(link);
+            }
+            if (!document.querySelector('link[href*="font-awesome"]') && !document.querySelector('link[href*="all.min.css"]')) {
+                const fa = document.createElement('link');
+                fa.rel = 'stylesheet';
+                fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+                document.head.appendChild(fa);
+            }
+        } catch (e) {
+            console.warn('[EDMITH AuthModal] Stylesheet auto-load warning:', e);
+        }
+    }
+
+    // Preload modal styles immediately
+    ensureStyles();
+
     let activeModalState = null;
 
     function buildModalHtml(prefix, title, subtitle, showGuest) {
@@ -107,9 +153,10 @@
                     <p class="auth-card-subtitle" id="modalCardSubtitle">${subtitle || 'Log in to continue your learning journey and access tests.'}</p>
                 </div>
 
-                <form id="modalLoginForm" class="auth-form" novalidate autocomplete="on" style="padding: 1.5rem 1.75rem 2rem;">
+                <!-- STEP 1 — Identifier (Username / Email) -->
+                <div id="modalStepIdentifier" class="login-step">
                     <!-- Login Method Toggle Tabs -->
-                    <div class="auth-toggle-group" role="tablist" aria-label="Login method" style="margin-bottom: 1.25rem;">
+                    <div class="auth-toggle-group" role="tablist" aria-label="Login method">
                         <button type="button" class="auth-toggle-tab active" id="modalTabUsername" role="tab" aria-selected="true">
                             <i class="fas fa-at" aria-hidden="true"></i>
                             <span>Username</span>
@@ -120,8 +167,7 @@
                         </button>
                     </div>
 
-                    <div class="auth-form-section" style="padding: 0; border: none;">
-                        <!-- Identifier Field (Username or Email) -->
+                    <form id="modalIdentifierForm" class="auth-form" novalidate autocomplete="on">
                         <div class="auth-field-group">
                             <label class="auth-label" for="modalIdentifier" id="modalIdentifierLabel">
                                 <span id="modalIdentifierLabelText">Username</span> <span class="auth-required" title="Required">*</span>
@@ -129,12 +175,56 @@
                             <div class="auth-input-wrap">
                                 <i class="fas fa-at auth-input-icon" id="modalIdentifierIcon" aria-hidden="true"></i>
                                 <input type="text" id="modalIdentifier" class="auth-input" placeholder="Enter your username" maxlength="100" autocomplete="username" required>
+                                <span class="auth-input-spinner" id="modalIdentifierSpinner" aria-hidden="true" style="display:none;">
+                                    <i class="fas fa-circle-notch fa-spin"></i>
+                                </span>
                             </div>
                             <span class="auth-field-error" id="modalIdentifierError" aria-live="polite"></span>
                         </div>
 
-                        <!-- Password Field -->
-                        <div class="auth-field-group" style="margin-bottom: 0.25rem;">
+                        <!-- Form-level Error Message for Step 1 -->
+                        <div class="auth-form-error" id="modalIdentifierFormError" style="display: none;" role="alert">
+                            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                            <span id="modalIdentifierFormErrorText"></span>
+                        </div>
+
+                        <!-- Submit & Action Buttons -->
+                        <div class="auth-submit-section">
+                            <button type="submit" id="modalContinueBtn" class="auth-submit-btn">
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                <span>Continue</span>
+                            </button>
+
+                            ${showGuest ? `
+                            <button type="button" id="modalGuestBtn" class="auth-guest-btn">
+                                <i class="fas fa-user-clock" aria-hidden="true"></i>
+                                <span>Continue as Guest</span>
+                            </button>` : ''}
+
+                            <p class="auth-switch-link">
+                                Don't have an account?
+                                <a href="${prefix}users/signup.html" id="modalSignupLink" class="auth-link">Sign up</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- STEP 2 — Password (shown after account is verified) -->
+                <div id="modalStepPassword" class="login-step" style="display: none;">
+                    <!-- User found pill -->
+                    <div class="auth-found-pill" id="modalFoundPill">
+                        <div class="found-pill-avatar" id="modalFoundAvatar">?</div>
+                        <div class="found-pill-info">
+                            <span class="found-pill-name" id="modalFoundName">Learner</span>
+                            <span class="found-pill-sub" id="modalFoundSub">Account verified</span>
+                        </div>
+                        <button type="button" class="found-pill-change" id="modalChangeAccountBtn" title="Use a different account" aria-label="Use a different account">
+                            <i class="fas fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <form id="modalPasswordForm" class="auth-form" novalidate autocomplete="on">
+                        <div class="auth-field-group" style="margin-bottom: 0.35rem;">
                             <label class="auth-label" for="modalPassword">
                                 Password <span class="auth-required" title="Required">*</span>
                             </label>
@@ -152,33 +242,23 @@
                         <div class="auth-forgot-row">
                             <a href="${prefix}users/forgot-password.html" class="auth-forgot-link" id="modalForgotPasswordLink">Forgot Password?</a>
                         </div>
-                    </div>
 
-                    <!-- Form-level Error Message -->
-                    <div class="auth-form-error" id="modalFormError" style="display: none; margin: 0.75rem 0 1rem;" role="alert">
-                        <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
-                        <span id="modalFormErrorText"></span>
-                    </div>
+                        <!-- Form-level Error Message for Step 2 -->
+                        <div class="auth-form-error" id="modalPasswordFormError" style="display: none;" role="alert">
+                            <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
+                            <span id="modalPasswordFormErrorText"></span>
+                        </div>
 
-                    <!-- Submit & Action Buttons -->
-                    <div class="auth-submit-section" style="padding: 0; margin-top: 1.25rem;">
-                        <button type="submit" id="modalSubmitBtn" class="auth-submit-btn">
-                            <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
-                            <span>Log In</span>
-                        </button>
+                        <!-- Submit Button -->
+                        <div class="auth-submit-section" style="margin-top: 1rem;">
+                            <button type="submit" id="modalSubmitBtn" class="auth-submit-btn">
+                                <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
+                                <span>Log In</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
-                        ${showGuest ? `
-                        <button type="button" id="modalGuestBtn" class="auth-guest-btn">
-                            <i class="fas fa-user-clock" aria-hidden="true"></i>
-                            <span>Continue as Guest</span>
-                        </button>` : ''}
-
-                        <p class="auth-switch-link" style="margin-top: 1.15rem; font-size: 0.9rem;">
-                            Don't have an account?
-                            <a href="${prefix}users/signup.html" id="modalSignupLink" class="auth-link">Sign up</a>
-                        </p>
-                    </div>
-                </form>
             </div>
         </div>
         `;
@@ -187,6 +267,7 @@
     function initModalElements() {
         let overlay = document.getElementById('edmithLoginModalOverlay');
         if (!overlay) {
+            ensureStyles();
             const prefix = getPathPrefix();
             const placeholder = document.createElement('div');
             placeholder.innerHTML = buildModalHtml(prefix, 'Welcome Back', 'Log in to continue your learning journey.', true);
@@ -197,6 +278,7 @@
     }
 
     function showLoginModal(options = {}) {
+        ensureStyles();
         const {
             returnTo = window.location.href,
             title = 'Sign In to EDMITH',
@@ -218,36 +300,80 @@
         overlay = temp.firstElementChild;
         document.body.appendChild(overlay);
 
-        const formError = overlay.querySelector('#modalFormError');
-        const formErrorText = overlay.querySelector('#modalFormErrorText');
-        const idInput = overlay.querySelector('#modalIdentifier');
-        const pwdInput = overlay.querySelector('#modalPassword');
-        const idLabelText = overlay.querySelector('#modalIdentifierLabelText');
-        const idIcon = overlay.querySelector('#modalIdentifierIcon');
-        const idError = overlay.querySelector('#modalIdentifierError');
-        const pwdError = overlay.querySelector('#modalPasswordError');
+        let mode = 'username'; // 'username' | 'email'
+        let resolvedEmail = '';
+
+        const cardTitle = overlay.querySelector('#modalCardTitle');
+        const cardSubtitle = overlay.querySelector('#modalCardSubtitle');
+
+        // Step 1 Elements
+        const step1 = overlay.querySelector('#modalStepIdentifier');
+        const idForm = overlay.querySelector('#modalIdentifierForm');
         const tabUsername = overlay.querySelector('#modalTabUsername');
         const tabEmail = overlay.querySelector('#modalTabEmail');
-        const togglePwd = overlay.querySelector('#modalTogglePassword');
-        const submitBtn = overlay.querySelector('#modalSubmitBtn');
+        const idInput = overlay.querySelector('#modalIdentifier');
+        const idLabelText = overlay.querySelector('#modalIdentifierLabelText');
+        const idIcon = overlay.querySelector('#modalIdentifierIcon');
+        const idSpinner = overlay.querySelector('#modalIdentifierSpinner');
+        const idError = overlay.querySelector('#modalIdentifierError');
+        const idFormError = overlay.querySelector('#modalIdentifierFormError');
+        const idFormErrorText = overlay.querySelector('#modalIdentifierFormErrorText');
+        const continueBtn = overlay.querySelector('#modalContinueBtn');
         const guestBtn = overlay.querySelector('#modalGuestBtn');
-        const closeBtn = overlay.querySelector('#modalCloseBtn');
-        const form = overlay.querySelector('#modalLoginForm');
-        const forgotLink = overlay.querySelector('#modalForgotPasswordLink');
         const signupLink = overlay.querySelector('#modalSignupLink');
+
+        // Step 2 Elements
+        const step2 = overlay.querySelector('#modalStepPassword');
+        const pwdForm = overlay.querySelector('#modalPasswordForm');
+        const foundAvatar = overlay.querySelector('#modalFoundAvatar');
+        const foundName = overlay.querySelector('#modalFoundName');
+        const foundSub = overlay.querySelector('#modalFoundSub');
+        const changeAccountBtn = overlay.querySelector('#modalChangeAccountBtn');
+        const pwdInput = overlay.querySelector('#modalPassword');
+        const togglePwd = overlay.querySelector('#modalTogglePassword');
+        const pwdError = overlay.querySelector('#modalPasswordError');
+        const pwdFormError = overlay.querySelector('#modalPasswordFormError');
+        const pwdFormErrorText = overlay.querySelector('#modalPasswordFormErrorText');
+        const forgotLink = overlay.querySelector('#modalForgotPasswordLink');
+        const submitBtn = overlay.querySelector('#modalSubmitBtn');
+
+        const closeBtn = overlay.querySelector('#modalCloseBtn');
 
         if (forgotLink) forgotLink.href = `${prefix}users/forgot-password.html?returnTo=${encodeURIComponent(returnTo)}`;
         if (signupLink) signupLink.href = `${prefix}users/signup.html?returnTo=${encodeURIComponent(returnTo)}`;
 
-        let mode = 'username'; // 'username' | 'email'
+        function showStep1() {
+            step1.style.display = 'flex';
+            step2.style.display = 'none';
+            cardTitle.textContent = title || 'Welcome Back';
+            cardSubtitle.textContent = subtitle || 'Log in to continue your learning journey and access tests.';
+            idFormError.style.display = 'none';
+            idError.textContent = '';
+            idInput.classList.remove('input-error');
+            idInput.focus();
+        }
+
+        function showStep2(displayName, identifierDisplay) {
+            step1.style.display = 'none';
+            step2.style.display = 'flex';
+            cardTitle.textContent = `Hi, ${displayName}! 👋`;
+            cardSubtitle.textContent = 'Enter your password to continue.';
+            foundAvatar.textContent = displayName.charAt(0).toUpperCase();
+            foundName.textContent = displayName;
+            foundSub.textContent = identifierDisplay;
+            pwdFormError.style.display = 'none';
+            pwdError.textContent = '';
+            pwdInput.value = '';
+            pwdInput.classList.remove('input-error');
+            pwdInput.focus();
+        }
 
         function setMode(newMode) {
             mode = newMode;
-            formError.style.display = 'none';
+            idFormError.style.display = 'none';
             idError.textContent = '';
-            pwdError.textContent = '';
             idInput.classList.remove('input-error');
-            pwdInput.classList.remove('input-error');
+            idInput.value = '';
 
             if (mode === 'username') {
                 tabUsername.classList.add('active');
@@ -276,16 +402,23 @@
         if (tabUsername) tabUsername.addEventListener('click', () => setMode('username'));
         if (tabEmail) tabEmail.addEventListener('click', () => setMode('email'));
 
+        if (changeAccountBtn) {
+            changeAccountBtn.addEventListener('click', () => {
+                resolvedEmail = '';
+                showStep1();
+            });
+        }
+
         idInput.addEventListener('input', () => {
             idError.textContent = '';
             idInput.classList.remove('input-error');
-            formError.style.display = 'none';
+            idFormError.style.display = 'none';
         });
 
         pwdInput.addEventListener('input', () => {
             pwdError.textContent = '';
             pwdInput.classList.remove('input-error');
-            formError.style.display = 'none';
+            pwdFormError.style.display = 'none';
         });
 
         togglePwd.addEventListener('click', () => {
@@ -345,37 +478,102 @@
             });
         }
 
-        form.addEventListener('submit', async (e) => {
+        // STEP 1 SUBMIT — Identifier Verification
+        idForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formError.style.display = 'none';
+            idFormError.style.display = 'none';
+            idError.textContent = '';
 
             const rawId = idInput.value.trim();
-            const password = pwdInput.value;
-            let valid = true;
 
             if (!rawId) {
                 idError.textContent = mode === 'username' ? 'Username is required.' : 'Email is required.';
                 idInput.classList.add('input-error');
-                valid = false;
-            } else if (mode === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawId)) {
-                idError.textContent = 'Please enter a valid email address.';
-                idInput.classList.add('input-error');
-                valid = false;
-            } else {
-                idError.textContent = '';
-                idInput.classList.remove('input-error');
+                idInput.focus();
+                return;
             }
 
+            if (mode === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawId)) {
+                idError.textContent = 'Please enter a valid email address.';
+                idInput.classList.add('input-error');
+                idInput.focus();
+                return;
+            }
+
+            continueBtn.disabled = true;
+            continueBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Checking…</span>';
+            if (idSpinner) idSpinner.style.display = 'inline-flex';
+
+            try {
+                const client = await getSupabaseClient();
+                if (!client) throw new Error('Database connection failed. Please check network.');
+
+                const isEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawId);
+                let userRow = null;
+
+                if (isEmailFormat) {
+                    const { data, error } = await client
+                        .from('users')
+                        .select('email, username, first_name')
+                        .eq('email', rawId.toLowerCase())
+                        .maybeSingle();
+
+                    if (!error && data) userRow = data;
+                } else {
+                    const cleanUser = rawId.replace(/^@+/, '').toLowerCase();
+                    const { data, error } = await client
+                        .from('users')
+                        .select('email, username, first_name')
+                        .eq('username', cleanUser)
+                        .maybeSingle();
+
+                    if (!error && data) userRow = data;
+                }
+
+                if (!userRow || !userRow.email) {
+                    const label = mode === 'username' ? 'username' : 'email address';
+                    idError.textContent = `No account found with this ${label}.`;
+                    idInput.classList.add('input-error');
+                    idInput.focus();
+                    return;
+                }
+
+                resolvedEmail = userRow.email;
+                const displayName = userRow.first_name || userRow.username || 'Learner';
+                const identifierDisplay = isEmailFormat ? userRow.email : `@${userRow.username}`;
+                showStep2(displayName, identifierDisplay);
+
+            } catch (err) {
+                console.warn('[EDMITH AuthModal] Identifier lookup error:', err);
+                idFormErrorText.textContent = err.message || 'Unable to verify your account. Please try again.';
+                idFormError.style.display = 'flex';
+            } finally {
+                continueBtn.disabled = false;
+                continueBtn.innerHTML = '<i class="fas fa-arrow-right"></i> <span>Continue</span>';
+                if (idSpinner) idSpinner.style.display = 'none';
+            }
+        });
+
+        // STEP 2 SUBMIT — Sign In with Resolved Email & Password
+        pwdForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            pwdFormError.style.display = 'none';
+            pwdError.textContent = '';
+
+            const password = pwdInput.value;
             if (!password) {
                 pwdError.textContent = 'Password is required.';
                 pwdInput.classList.add('input-error');
-                valid = false;
-            } else {
-                pwdError.textContent = '';
-                pwdInput.classList.remove('input-error');
+                pwdInput.focus();
+                return;
             }
 
-            if (!valid) return;
+            if (!resolvedEmail) {
+                pwdFormErrorText.textContent = 'Session expired. Please start again.';
+                pwdFormError.style.display = 'flex';
+                setTimeout(showStep1, 1200);
+                return;
+            }
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Logging In...</span>';
@@ -384,37 +582,15 @@
                 const client = await getSupabaseClient();
                 if (!client) throw new Error('Database connection failed. Please check network.');
 
-                let targetEmail = '';
-                const isEmailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(rawId);
-
-                if (isEmailFormat) {
-                    targetEmail = rawId.toLowerCase();
-                } else {
-                    // Username: stored lowercase — eq is exact & index-friendly
-                    const normalizedUser = rawId.replace(/^@+/, '').toLowerCase();
-                    const { data: userRow, error: uErr } = await client
-                        .from('users')
-                        .select('email')
-                        .eq('username', normalizedUser)
-                        .maybeSingle();
-
-                    if (!uErr && userRow && userRow.email) {
-                        targetEmail = userRow.email;
-                    } else {
-                        // Fallback: use input as-is (might be email typed in username tab)
-                        targetEmail = rawId.toLowerCase();
-                    }
-                }
-
                 const { data, error } = await client.auth.signInWithPassword({
-                    email: targetEmail,
+                    email: resolvedEmail,
                     password
                 });
 
                 if (error) {
                     const errStr = (error.message || '').toLowerCase();
                     if (errStr.includes('invalid') || errStr.includes('credentials')) {
-                        throw new Error('Invalid username or password.');
+                        throw new Error('Incorrect password. Please try again.');
                     }
                     throw error;
                 }
@@ -439,8 +615,9 @@
 
             } catch (err) {
                 console.warn('[EDMITH AuthModal] Sign-in error:', err);
-                formErrorText.textContent = err.message || 'Invalid username or password.';
-                formError.style.display = 'flex';
+                pwdFormErrorText.textContent = err.message || 'Incorrect password. Please try again.';
+                pwdFormError.style.display = 'flex';
+                pwdInput.classList.add('input-error');
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i> <span>Log In</span>';
             }

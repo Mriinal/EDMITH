@@ -4,182 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="EDMITH Official Leaderboards — Track rankings across SQL, Python, and Web Development assessments. Combined scores from MCQ and Coding tests.">
-    <title>Leaderboard | EDMITH</title>
-
+    <meta http-equiv="refresh" content="0; url=leaderboard/index.html">
+    <link rel="canonical" href="https://edmith.com/leaderboard/index.html">
+    <title>Redirecting to Official Leaderboards | EDMITH</title>
     <script>
-        (function () {
-            const t = localStorage.getItem('edmith-theme');
-            if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark-mode');
-                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
-            }
-        })();
+        window.location.replace("leaderboard/index.html" + window.location.hash);
     </script>
-
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/test.css">
-    <link rel="stylesheet" href="css/leaderboard.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .redirect-box {
+            padding: 2rem;
+            max-width: 420px;
+        }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(121, 63, 224, 0.2);
+            border-top-color: #793FE0;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        a {
+            color: #793FE0;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+    </style>
 </head>
 
 <body>
-
-    <!-- Centralized Header -->
-    <header id="site-header"></header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="leaderboard-hero">
-            <h1>SQL Leaderboard</h1>
-            <p>
-                Celebrating top learners and data specialists. Rankings are determined by combined scores from timed MCQ
-                assessments and hands-on coding examinations.
-            </p>
-        </section>
-
-        <!-- Subject Switcher -->
-        <div class="subject-tabs-container">
-            <button type="button" class="subject-tab-btn is-active" id="tabSql">
-                <i class="fas fa-database" style="color: #10b981;"></i>
-                <span>SQL &amp; Databases</span>
-            </button>
-            <button type="button" class="subject-tab-btn is-coming-soon" id="tabPython"
-                title="Python tests coming soon">
-                <i class="fab fa-python" style="color: #3b82f6;"></i>
-                <span>Python</span>
-                <span class="badge-soon">Coming Soon</span>
-            </button>
-            <button type="button" class="subject-tab-btn is-coming-soon" id="tabHtml" title="HTML tests coming soon">
-                <i class="fab fa-html5" style="color: #e34c26;"></i>
-                <span>HTML &amp; Web</span>
-                <span class="badge-soon">Coming Soon</span>
-            </button>
-        </div>
-
-        <!-- Leaderboard Table Container -->
-        <div class="leaderboard-container">
-
-            <!-- User's Personal Position Banner -->
-            <div id="userPositionBanner" class="user-position-card" style="display: none;">
-                <div>
-                    <span
-                        style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 800;">
-                        <i class="fas fa-user-tag"></i> Your Current Standings
-                    </span>
-                    <h3 style="margin-top: 0.25rem; font-size: 1.35rem;" id="myPositionTitle">Loading your position...
-                    </h3>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem;" id="myPositionMeta">
-                        Scores calculated from all completed SQL assessment attempts.
-                    </p>
-                </div>
-                <div id="myPositionBadge" style="text-align: right;"></div>
-            </div>
-
-            <!-- Header Controls: Title & Scoring Modal trigger -->
-            <div
-                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 1rem;">
-                <h2
-                    style="font-size: 1.35rem; font-weight: 800; color: var(--text-primary); margin: 0; display: flex; align-items: center; gap: 0.5rem;">
-                    <i class="fas fa-trophy" style="color: #f59e0b;"></i> Official Standings
-                </h2>
-                <div>
-                    <button type="button" class="btn-scoring-modal" id="openScoringModalBtn">
-                        <i class="fas fa-circle-question"></i> How scoring works
-                    </button>
-                </div>
-            </div>
-
-            <!-- Leaderboard Table -->
-            <div class="sql-leaderboard-wrap" style="box-shadow: var(--shadow-md);">
-                <table class="sql-leaderboard">
-                    <thead>
-                        <tr>
-                            <th style="width: 80px;">Rank</th>
-                            <th>Username</th>
-                            <th>MCQ Pts</th>
-                            <th>Coding Pts</th>
-                            <th>Total Score</th>
-                            <th>Accuracy</th>
-                            <th>Tests</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboardBody">
-                        <tr>
-                            <td colspan="7" style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                                <i class="fas fa-circle-notch fa-spin"
-                                    style="font-size: 1.5rem; margin-bottom: 0.5rem; display: block;"></i>
-                                Loading official leaderboard standings...
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Information Callout -->
-            <div
-                style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-md); border: 1px solid var(--card-border); font-size: 0.9rem; color: var(--text-secondary);">
-                <strong><i class="fas fa-scale-balanced"></i> Fair Assessment Rules:</strong>
-                Scores are aggregated solely from completed test attempts recorded in the database. Completed tests with
-                0 marks receive valid rank placement. Unattempted learners display "Not attempted / No rank yet".
-            </div>
-
-        </div>
-
-    </main>
-
-    <!-- Centralized Footer -->
-    <footer id="site-footer"></footer>
-
-    <!-- Grading System Modal -->
-    <div class="edmith-modal-overlay" id="gradingModal" hidden aria-hidden="true">
-        <div class="edmith-modal-card" role="dialog" aria-modal="true" aria-labelledby="gradingModalTitle">
-            <button class="edmith-modal-close" id="closeGradingModalBtn" type="button"
-                aria-label="Close scoring guide"><i class="fas fa-times"></i></button>
-            <div class="edmith-modal-header">
-                <div class="edmith-modal-icon"><i class="fas fa-award"></i></div>
-                <h2 id="gradingModalTitle">Scoring &amp; Grading Rules</h2>
-                <p>Scores are awarded based on assessment question difficulty across MCQ and Coding tests.</p>
-            </div>
-            <div class="scoring-rules-grid">
-                <div class="scoring-rule-card">
-                    <span class="scoring-badge easy">Easy</span>
-                    <div class="scoring-points">
-                        <div><strong>MCQ:</strong> 1 Mark / question</div>
-                        <div><strong>Coding:</strong> 3 Marks / problem</div>
-                    </div>
-                    <p>Fundamental syntax, SELECT filters, and basic single-table queries.</p>
-                </div>
-                <div class="scoring-rule-card">
-                    <span class="scoring-badge medium">Medium</span>
-                    <div class="scoring-points">
-                        <div><strong>MCQ:</strong> 3 Marks / question</div>
-                        <div><strong>Coding:</strong> 6 Marks / problem</div>
-                    </div>
-                    <p>Aggregate functions, GROUP BY, multi-table JOINs, and subqueries.</p>
-                </div>
-                <div class="scoring-rule-card">
-                    <span class="scoring-badge hard">Hard</span>
-                    <div class="scoring-points">
-                        <div><strong>MCQ:</strong> 6 Marks / question</div>
-                        <div><strong>Coding:</strong> 12 Marks / problem</div>
-                    </div>
-                    <p>Window functions, complex CTEs, transactions (ACID), and query optimization.</p>
-                </div>
-            </div>
-            <div class="scoring-modal-footer">
-                <button type="button" class="btn-enroll" id="gotItBtn">Got It</button>
-            </div>
-        </div>
+    <div class="redirect-box">
+        <div class="spinner"></div>
+        <h2>Opening Official Leaderboard...</h2>
+        <p>If you are not redirected automatically, <a href="leaderboard/index.html">click here to proceed to the Hall of Champions</a>.</p>
     </div>
-
-    <!-- Scripts -->
-    <script src="components/components.js"></script>
-    <script src="javascript/auth-modal.js"></script>
-    <script src="javascript/script.js"></script>
-    <script src="javascript/sql-leaderboard.js"></script>
-    <script src="javascript/leaderboard-page.js"></script>
 </body>
 
 </html>

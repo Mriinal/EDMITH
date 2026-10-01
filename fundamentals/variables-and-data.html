@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how programs store and manipulate data in memory: identifiers, variable declaration, state assignment, and mutability.">
+    <title>Variables and Data — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/variables-and-data.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/variables-and-data.html">
+    <meta property="og:title" content="Variables & Data Storage — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Learn how programs store and manipulate data in memory: identifiers, variable declaration, state assignment, and mutability.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group collapsed" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li><a href="input-processing-output.html"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li class="active"><a href="variables-and-data.html" class="active"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li><a href="data-types-concept.html"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 3: Core Programming Building Blocks</span>
+                </div>
+                <h1>Variables & Data Storage</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 8 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. What is a Variable?</h2>
+                <p class="lead-text">
+                    In computer programming, a <strong>variable</strong> is a named reference pointing to a specific location in computer memory (RAM) where data is stored, read, and updated throughout program execution.
+                </p>
+                <p>
+                    Without variables, programs would have no way to remember user names, calculate shopping cart totals, track game high scores, or preserve computational state.
+                </p>
+
+                <h2>2. The Labeled Storage Box Metaphor</h2>
+                <p>
+                    Imagine computer memory (RAM) as an immense warehouse filled with billions of identical storage boxes, each marked with an obscure hexadecimal serial number (e.g., <code>0x7FFEE4B2</code>).
+                </p>
+                <div style="text-align: center; margin: 2rem 0; padding: 1.5rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <div style="display: inline-block; padding: 15px 25px; border: 2px dashed #3B82F6; border-radius: 8px; background: var(--bg-primary);">
+                        <div style="font-size: 0.85rem; color: var(--text-secondary); font-family: monospace;">Memory Address: 0x7FFEE4B2</div>
+                        <div style="font-size: 1.25rem; font-weight: bold; color: #3B82F6; margin: 8px 0;">Variable Label: user_age</div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #10B981; background: var(--bg-secondary); padding: 6px 16px; border-radius: 4px; display: inline-block;">Value Stored: 24</div>
+                    </div>
+                </div>
+                <p>
+                    Remembering hexadecimal memory addresses is impossible for humans. A variable lets you attach a meaningful, human-friendly label (like <code>user_age</code>) to that memory address. Whenever your code mentions <code>user_age</code>, the computer knows precisely which memory location to access.
+                </p>
+
+                <h2>3. Declaration vs. Initialization vs. Assignment</h2>
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table class="table-custom" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--bg-secondary); text-align: left;">
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Operation Phase</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Technical Action</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Conceptual Analogy</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Declaration</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Tells the system to reserve a slot in memory with a given name.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Putting an empty, labeled box on a shelf.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Initialization</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Assigning the very first initial value to the newly allocated variable.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Placing the first item into the box.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Reassignment</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Overwriting the old value in that memory location with a fresh value.</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Replacing the item inside the box with a new item.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>4. Mutable Variables vs. Immutable Constants</h2>
+                <p>
+                    In software architecture, values fall into two operational classes:
+                </p>
+                <ul>
+                    <li><strong>Mutable Variables:</strong> The value in memory can change freely during program execution (e.g., <code>score</code>, <code>cart_items</code>).</li>
+                    <li><strong>Constants:</strong> The value is permanently locked after initialization. Any attempt to modify it is blocked (e.g., <code>MAX_LOGIN_ATTEMPTS = 5</code>, <code>PI = 3.14159</code>). Using constants prevents unintended mutations.</li>
+                </ul>
+
+                <h2>5. Clean Naming Best Practices Across Software Engineering</h2>
+                <ul>
+                    <li><strong>Be Descriptive:</strong> Use <code>customer_billing_address</code> instead of <code>addr</code> or <code>x</code>.</li>
+                    <li><strong>Avoid Cryptic Abbreviations:</strong> Code is read ten times more often than it is written.</li>
+                    <li><strong>Follow Conventions:</strong> Use standard casing conventions (e.g., <code>snake_case</code> or <code>camelCase</code>) consistently.</li>
+                </ul>
+
+                <h2>6. Key Takeaways</h2>
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li>Variables provide human-friendly labels for allocated memory addresses.</li>
+                        <li>Declaration allocates space; initialization supplies the first value; assignment updates it.</li>
+                        <li>Constants protect critical configuration values from accidental mutation.</li>
+                        <li>Clear, descriptive variable naming is the hallmark of professional software engineering.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="input-processing-output.html" title="Previous: The IPO Model">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: The IPO Model</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_variables_and_data" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="data-types-concept.html" title="Next: Data Types Concept">
+                        <span class="btn-text">Next: Data Types Concept</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

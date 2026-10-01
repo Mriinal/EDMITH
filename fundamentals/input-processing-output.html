@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Understand the universal Input-Processing-Output (IPO) model that forms the operational foundation of all computer software.">
+    <title>Input -> Processing -> Output — Programming Fundamentals Course | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/fundamentals/input-processing-output.html">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://edmith.com/fundamentals/input-processing-output.html">
+    <meta property="og:title" content="The IPO Model — Programming Fundamentals Tutorial">
+    <meta property="og:description" content="Understand the universal Input-Processing-Output (IPO) model that forms the operational foundation of all computer software.">
+
+    <!-- Prevent theme flicker before paint -->
+    <script>
+        (function () {
+            const theme = localStorage.getItem('edmith-theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+        <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/lesson.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Reading Progress Bar -->
+    <div aria-hidden="true" class="reading-progress-container">
+        <div class="reading-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Centralized Global Header -->
+    <header id="site-header"></header>
+
+    <!-- Main Learning Layout with Left Sidebar -->
+    <div class="learning-layout">
+
+        <!-- Left Sidebar Course Syllabus (Collapsible on Mobile/Tablet) -->
+        <aside class="course-sidebar-nav" aria-label="Course Syllabus">
+            <!-- Module 1: Computer Science & Programming Basics -->
+            <div class="sidebar-module-group collapsed" data-module="module-1">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod1-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 1: Computer Science & Programming Basics Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 1: Computer Science & Programming Basics</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod1-list">
+                    <ul>
+                        <li><a href="what-is-programming.html"><i class="fas fa-laptop-code"></i> What is Programming?</a></li>
+                        <li><a href="what-is-a-programming-language.html"><i class="fas fa-code"></i> What is a Programming Language?</a></li>
+                        <li><a href="how-programs-execute.html"><i class="fas fa-gears"></i> How Programs Execute</a></li>
+                        <li><a href="source-code-vs-machine-code.html"><i class="fas fa-binary"></i> Source Code vs. Machine Code</a></li>
+                        <li><a href="compiler-vs-interpreter.html"><i class="fas fa-language"></i> Compiler vs. Interpreter</a></li>
+                        <li><a href="runtime.html"><i class="fas fa-network-wired"></i> Runtime Environments</a></li>
+                        <li><a href="syntax-vs-semantics.html"><i class="fas fa-spell-check"></i> Syntax vs. Semantics</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 2: Computational Thinking & Problem Solving -->
+            <div class="sidebar-module-group" data-module="module-2">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="true" aria-controls="mod2-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 2: Computational Thinking & Problem Solving Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 2: Computational Thinking & Problem Solving</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod2-list">
+                    <ul>
+                        <li><a href="problem-solving-techniques.html"><i class="fas fa-puzzle-piece"></i> Problem-Solving Techniques</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-list-ol"></i> What is an Algorithm?</a></li>
+                        <li><a href="flowcharts.html"><i class="fas fa-diagram-project"></i> Flowcharts in Programming</a></li>
+                        <li><a href="pseudocode.html"><i class="fas fa-file-code"></i> Writing Clean Pseudocode</a></li>
+                        <li class="active"><a href="input-processing-output.html" class="active"><i class="fas fa-arrow-right-arrow-left"></i> The IPO Model</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 3: Core Programming Building Blocks -->
+            <div class="sidebar-module-group collapsed" data-module="module-3">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod3-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 3: Core Programming Building Blocks Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 3: Core Programming Building Blocks</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod3-list">
+                    <ul>
+                        <li><a href="variables-and-data.html"><i class="fas fa-box"></i> Variables & Data Storage</a></li>
+                        <li><a href="data-types-concept.html"><i class="fas fa-shapes"></i> Data Types Concept</a></li>
+                        <li><a href="operators-concept.html"><i class="fas fa-calculator"></i> Operators Concept</a></li>
+                        <li><a href="decision-making-concept.html"><i class="fas fa-code-branch"></i> Decision-Making & Branching</a></li>
+                        <li><a href="functions-concept.html"><i class="fas fa-cubes"></i> Functions & Modular Code</a></li>
+                        <li><a href="comments-fundamentals.html"><i class="fas fa-comment-dots"></i> Code Comments & Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Module 4: Errors, Quality & Debugging -->
+            <div class="sidebar-module-group collapsed" data-module="module-4">
+                <div class="sidebar-module-header" role="button" tabindex="0" aria-expanded="false" aria-controls="mod4-list">
+                    <div class="module-header-left">
+                        <span class="module-hamburger" title="Toggle Module 4: Errors, Quality & Debugging Menu"><i class="fas fa-bars"></i></span>
+                        <span class="module-title">Module 4: Errors, Quality & Debugging</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-chevron"></i>
+                </div>
+                <div class="sidebar-module-list" id="mod4-list">
+                    <ul>
+                        <li><a href="errors-vs-bugs.html"><i class="fas fa-bug"></i> Errors vs. Bugs in Software</a></li>
+                        <li><a href="types-of-programming-errors.html"><i class="fas fa-triangle-exclamation"></i> Three Universal Error Types</a></li>
+                        <li><a href="syntax-errors.html"><i class="fas fa-font"></i> Syntax Errors & Diagnostics</a></li>
+                        <li><a href="runtime-errors.html"><i class="fas fa-bomb"></i> Runtime Errors & Exceptions</a></li>
+                        <li><a href="logical-errors.html"><i class="fas fa-brain"></i> Logical Errors (Semantic Bugs)</a></li>
+                        <li><a href="debugging-fundamentals.html"><i class="fas fa-magnifying-glass"></i> The Scientific Method of Debugging</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Lesson Content Area -->
+        <main class="lesson-container">
+            <!-- Mobile Syllabus Toggle -->
+            <button class="mobile-toc-toggle" id="mobileTocBtn" aria-label="Toggle Syllabus Table of Contents">
+                <i class="fas fa-list"></i> Table of Contents
+            </button>
+
+            <div class="lesson-header">
+                <div class="lesson-breadcrumbs">
+                    <a href="index.html">Programming Fundamentals</a> &gt; <span>Module 2: Computational Thinking & Problem Solving</span>
+                </div>
+                <h1>The IPO Model</h1>
+                <p class="lesson-meta"><i class="fas fa-clock"></i> 7 Min Read &bull; <i class="fas fa-signal"></i> Beginner &bull; <i class="fas fa-microchip"></i> Language Agnostic</p>
+            </div>
+
+            <div class="lesson-content">
+                <h2>1. The Universal Pattern of All Computing</h2>
+                <p class="lead-text">
+                    Whether you are examining a tiny 10-line calculator script, an autonomous vehicle control system, or an enterprise cloud platform handling millions of requests per second, all software fundamentally adheres to a single conceptual architecture: <strong>The IPO Model (Input &rarr; Process &rarr; Output)</strong>.
+                </p>
+
+                <h2>2. Detailed Breakdown of the Three Stages</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin: 1.5rem 0;">
+                    <div style="background: var(--bg-secondary); border-top: 4px solid #3B82F6; padding: 1.25rem; border-radius: var(--radius-sm);">
+                        <h4 style="margin: 0 0 0.5rem; color: #3B82F6;"><i class="fas fa-arrow-right-to-bracket"></i> 1. Input Stage</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            Gathering raw information into program memory. Sources include user keyboard input, mouse coordinates, touch events, camera streams, disk files, database tables, temperature sensors, or network API payloads.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-secondary); border-top: 4px solid #F59E0B; padding: 1.25rem; border-radius: var(--radius-sm);">
+                        <h4 style="margin: 0 0 0.5rem; color: #F59E0B;"><i class="fas fa-gears"></i> 2. Processing Stage</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            Transforming the raw input into meaningful results using arithmetic calculations, boolean condition checks, text parsing, filtering, sorting, or data aggregation.
+                        </p>
+                    </div>
+                    <div style="background: var(--bg-secondary); border-top: 4px solid #10B981; padding: 1.25rem; border-radius: var(--radius-sm);">
+                        <h4 style="margin: 0 0 0.5rem; color: #10B981;"><i class="fas fa-arrow-right-from-bracket"></i> 3. Output Stage</h4>
+                        <p style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin: 0;">
+                            Delivering the processed information to the consumer. Destinations include monitor screens, audio speakers, printed receipts, database records, saved files, or outgoing network packets.
+                        </p>
+                    </div>
+                </div>
+
+                <h2>3. Real-World IPO Architectural Charts</h2>
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table class="table-custom" style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--bg-secondary); text-align: left;">
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Application Domain</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Input Stage</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Processing Stage</th>
+                                <th style="padding: 12px; border-bottom: 2px solid var(--border);">Output Stage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>E-Commerce Checkout</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Cart items, shipping address, payment token</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Compute sales tax, verify inventory, debit bank card</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Order confirmation screen, PDF invoice email</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);"><strong>Smart Home Thermostat</strong></td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Temperature sensor voltage, target setpoint</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Compare current vs target temperature</td>
+                                <td style="padding: 12px; border-bottom: 1px solid var(--border);">Trigger furnace relay, update LCD display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>4. The Supplementary Storage Phase (IPOS)</h2>
+                <p>
+                    In modern computing, the model is often expanded to <strong>IPOS (Input, Processing, Output, Storage)</strong>. While Input, Process, and Output handle immediate active execution, <strong>Storage</strong> (databases, cloud object stores, hard drives) ensures that results remain safe even after the program terminates or the machine powers down.
+                </p>
+
+                <h2>5. Key Takeaways</h2>
+                <div class="detail-card" style="margin: 1.5rem 0; padding: 1.25rem; background: var(--bg-secondary); border-radius: var(--radius-sm);">
+                    <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-secondary); line-height: 1.7;">
+                        <li>The IPO model describes the fundamental workflow of every computer program.</li>
+                        <li>Input captures raw data; Processing transforms it; Output delivers valuable results.</li>
+                        <li>Structuring problem-solving around IPO tables clarifies software boundaries before coding.</li>
+                        <li>Storage provides persistence across program executions and power cycles.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lesson Navigation Footer -->
+            <div class="lesson-footer">
+                <div class="lesson-nav-prev">
+                    <a class="btn-outline" href="pseudocode.html" title="Previous: Writing Clean Pseudocode">
+                        <i class="fas fa-arrow-left"></i> <span class="btn-text">Previous: Writing Clean Pseudocode</span>
+                    </a>
+                </div>
+                <div class="lesson-nav-center">
+                    <button class="btn-outline mark-complete-btn" data-lesson-id="pf_input_processing_output" id="markCompleteBtn" aria-label="Mark lesson as complete">
+                        <i class="fas fa-check"></i> <span>Mark Complete</span>
+                    </button>
+                </div>
+                <div class="lesson-nav-next">
+                    <a class="btn-enroll" href="variables-and-data.html" title="Next: Variables & Data Storage">
+                        <span class="btn-text">Next: Variables & Data Storage</span> <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../components/components.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+</body>
+</html>

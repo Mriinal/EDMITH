@@ -1,0 +1,354 @@
+/* EDMITH Design System — Course Catalog (course.html) */
+/* =========================================================
+   ALL COURSES CATALOG PAGE (course.html)
+   ========================================================= */
+
+.catalog-hero {
+    min-height: 38vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 30%, var(--bg-secondary) 0%, var(--bg-main) 80%);
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+    margin-top: 65px;
+    padding: 3rem 5% 3.5rem;
+}
+
+.catalog-hero-content {
+    z-index: 2;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 5%;
+}
+
+.catalog-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.5px;
+}
+
+.catalog-hero p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+/* Floating Background Icons in Hero */
+.float-icon {
+    position: absolute;
+    font-size: 2.5rem;
+    color: var(--icon-color);
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.icon-1 { top: 20%; left: 12%; animation-delay: 0s; }
+.icon-2 { bottom: 20%; right: 15%; animation-delay: 1.2s; }
+.icon-3 { top: 25%; right: 10%; font-size: 3rem; animation-delay: 2.4s; }
+.icon-4 { bottom: 22%; left: 20%; animation-delay: 3.6s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+}
+
+/* Rounded Search Container */
+.search-container {
+    display: flex;
+    max-width: 580px;
+    margin: 0 auto;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--accent);
+    box-shadow: var(--shadow-md);
+    background: var(--card-bg);
+    transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-hover);
+}
+
+.search-container input {
+    flex: 1;
+    padding: 15px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.search-container input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.search-container button {
+    padding: 15px 30px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container button:hover {
+    background: var(--accent-hover);
+}
+
+.badge-coming-soon {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.catalog-search {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* Category Filter Dropdown */
+.category-dropdown {
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: none;
+    border-right: 1px solid var(--card-border);
+    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23793FE0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3Cpolyline points='6 9 12 15 18 9'%3e%3C/polyline%3e%3C/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 15px;
+    padding-right: 38px;
+    transition: background-color 0.2s ease;
+}
+
+.category-dropdown option {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 10px;
+}
+
+.catalog-search input {
+    border-radius: 0;
+    padding-left: 20px;
+}
+
+.catalog-section {
+    padding: 5rem 5% 6rem;
+    background-color: var(--bg-main);
+    min-height: 55vh;
+}
+
+.catalog-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.catalog-card {
+    flex: 1 1 340px;
+    max-width: 380px;
+    background: var(--card-bg);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.catalog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.catalog-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 5rem;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.catalog-info {
+    padding: 1.75rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.catalog-info h3 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+.catalog-info p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+    flex: 1;
+    line-height: 1.6;
+}
+
+.btn-visit {
+    display: block;
+    text-align: center;
+    padding: 11px 20px;
+    background: transparent;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--accent);
+    transition: all 0.25s ease;
+}
+
+.catalog-card:hover .btn-visit {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 15px rgba(121, 63, 224, 0.3);
+}
+
+.btn-visit.btn-coming-soon {
+    border: 1.5px dashed var(--card-border);
+    color: var(--text-secondary);
+    background: transparent;
+    cursor: default;
+    opacity: 0.85;
+}
+
+.catalog-card:hover .btn-visit.btn-coming-soon {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--card-border);
+    box-shadow: none;
+}
+
+.sidebar-link-disabled {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    opacity: 0.7;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+.sidebar-link-disabled i {
+    width: 16px;
+    text-align: center;
+}
+
+
+/* Sticky Floating Search Bar */
+.sticky-search-bar {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--card-border);
+    padding: 14px 5%;
+    z-index: 999;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-130%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.sticky-search-bar.visible {
+    transform: translateY(0);
+}
+
+.sticky-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.sticky-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.sticky-search {
+    max-width: 520px;
+    flex: 1;
+    border-radius: var(--radius-pill);
+    border: 1.5px solid var(--accent);
+    background: var(--card-bg);
+    display: flex;
+    box-shadow: none;
+}
+
+.sticky-search .category-dropdown {
+    padding: 8px 16px;
+    font-size: 0.88rem;
+}
+
+.sticky-search input {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.sticky-search button {
+    padding: 8px 22px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+    cursor: pointer;
+}
+
+

@@ -20,7 +20,14 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/auth.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -31,13 +38,13 @@
 
     <!-- MAIN AUTH AREA (SPLIT MODERN LAYOUT ON DESKTOP, FLUID ON MOBILE) -->
     <main class="auth-main login-page-main">
-        <div class="login-split-container">
+        <!-- Decorative floating background icons -->
+        <i class="fab fa-python auth-float-icon auth-icon-1" aria-hidden="true"></i>
+        <i class="fas fa-database auth-float-icon auth-icon-2" aria-hidden="true"></i>
+        <i class="fas fa-code auth-float-icon auth-icon-3" aria-hidden="true"></i>
+        <i class="fas fa-terminal auth-float-icon auth-icon-4" aria-hidden="true"></i>
 
-            <!-- Decorative floating background icons -->
-            <i class="fab fa-python auth-float-icon auth-icon-1" aria-hidden="true"></i>
-            <i class="fas fa-database auth-float-icon auth-icon-2" aria-hidden="true"></i>
-            <i class="fas fa-code auth-float-icon auth-icon-3" aria-hidden="true"></i>
-            <i class="fas fa-terminal auth-float-icon auth-icon-4" aria-hidden="true"></i>
+        <div class="login-split-container">
 
             <!-- LEFT SHOWCASE PANEL (Desktop only) -->
             <aside class="login-showcase-panel" aria-label="EDMITH Learning Platform Features">
@@ -48,7 +55,7 @@
                 </div>
 
                 <h2 class="login-showcase-title">
-                    Master tech &amp; data skills with <span class="gradient-accent-text">real-world practice</span>.
+                    Master tech &amp; data skills with <span class="gradient-accent-text">real-world practice.</span>
                 </h2>
 
                 <p class="login-showcase-desc">
@@ -142,7 +149,7 @@
                     <div id="stepIdentifier" class="login-step">
 
                         <!-- Login Method Toggle Tabs -->
-                        <div class="auth-toggle-group" role="tablist" aria-label="Login method" style="margin: 1.5rem 2.25rem 0.5rem;">
+                        <div class="auth-toggle-group login-toggle-group" role="tablist" aria-label="Login method">
                             <button type="button" class="auth-toggle-tab active" id="tabUsername" role="tab" aria-selected="true">
                                 <i class="fas fa-at" aria-hidden="true"></i>
                                 <span>Username</span>
@@ -176,12 +183,12 @@
                             </div>
 
                             <!-- Form-level error -->
-                            <div class="auth-form-error" id="identifierFormError" style="display: none; margin: 0 2.25rem 1rem;" role="alert">
+                            <div class="auth-form-error login-form-error" id="identifierFormError" style="display: none;" role="alert">
                                 <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
                                 <span id="identifierFormErrorText"></span>
                             </div>
 
-                            <div class="auth-submit-section" style="padding-top: 0.5rem;">
+                            <div class="auth-submit-section">
                                 <button type="submit" id="continueBtn" class="auth-submit-btn">
                                     <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                     <span>Continue</span>
@@ -192,7 +199,7 @@
                                     <span>Continue as Guest</span>
                                 </button>
 
-                                <p class="auth-switch-link" style="margin-top: 1.25rem;">
+                                <p class="auth-switch-link">
                                     Don't have an account?
                                     <a href="signup.html" id="signupLink" class="auth-link">Sign up</a>
                                 </p>
@@ -207,7 +214,7 @@
                     <div id="stepPassword" class="login-step" style="display:none;">
 
                         <!-- User found pill -->
-                        <div class="auth-found-pill" id="foundPill" style="margin: 1.25rem 2.25rem 0;">
+                        <div class="auth-found-pill login-found-pill" id="foundPill">
                             <div class="found-pill-avatar" id="foundAvatar">?</div>
                             <div class="found-pill-info">
                                 <span class="found-pill-name" id="foundName">Loading…</span>
@@ -220,7 +227,7 @@
 
                         <form id="passwordForm" class="auth-form" novalidate autocomplete="on">
                             <div class="auth-form-section">
-                                <div class="auth-field-group" style="margin-bottom: 0.25rem;">
+                                <div class="auth-field-group">
                                     <label class="auth-label" for="password">
                                         Password <span class="auth-required" title="Required">*</span>
                                     </label>
@@ -231,7 +238,7 @@
                                             autocomplete="current-password" aria-required="true"
                                             aria-describedby="passwordError">
                                         <button type="button" class="auth-toggle-pwd" id="togglePassword"
-                                            title="Show / hide password" aria-label="Toggle password visibility">
+                                             title="Show / hide password" aria-label="Toggle password visibility">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </div>
@@ -247,12 +254,12 @@
                             </div>
 
                             <!-- Form-level error -->
-                            <div class="auth-form-error" id="passwordFormError" style="display: none; margin: 0 2.25rem 1rem;" role="alert">
+                            <div class="auth-form-error login-form-error" id="passwordFormError" style="display: none;" role="alert">
                                 <i class="fas fa-triangle-exclamation" aria-hidden="true"></i>
                                 <span id="passwordFormErrorText"></span>
                             </div>
 
-                            <div class="auth-submit-section" style="padding-top: 0.5rem;">
+                            <div class="auth-submit-section">
                                 <button type="submit" id="submitBtn" class="auth-submit-btn">
                                     <i class="fas fa-right-to-bracket" aria-hidden="true"></i>
                                     <span>Log In</span>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH Interactive Development Workbenches and In-Browser Code Editors for SQL and C.">
+    <title>Interactive Editors | EDMITH</title>
+    <link rel="canonical" href="https://edmith.com/editors/editor.html">
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var lang = (params.get('lang') || params.get('type') || '').toLowerCase();
+            if (lang === 'c' || window.location.hash.indexOf('c') !== -1) {
+                window.location.replace('c-editor.html' + window.location.search + window.location.hash);
+            } else {
+                window.location.replace('editor.html' + window.location.search + window.location.hash);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <h1>Interactive Code Editors</h1>
+    <p>Redirecting to <a href="editor.html">EDMITH SQL Editor</a> or <a href="c-editor.html">C Editor</a>...</p>
+</body>
+</html>

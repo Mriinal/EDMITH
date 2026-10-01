@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EDMITH Central Assessments Hub — Practice timed MCQ tests and interactive coding examinations in SQL, Python, C, ETL Testing, and Programming Fundamentals.">
+    <title>Central Tests &amp; Assessments | EDMITH</title>
+
+    <script>
+        (function(){
+            const t = localStorage.getItem('edmith-theme');
+            if (t === 'dark' || (!t && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+                document.addEventListener('DOMContentLoaded', () => document.body.classList.add('dark-mode'));
+            }
+        })();
+    </script>
+
+    <!-- Modular CSS Architecture (No monolithic loading) -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/buttons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/code.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .tests-hub-hero {
+            text-align: center;
+            padding: 3rem 1.5rem 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .tests-hub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(121, 63, 224, 0.12);
+            color: var(--accent);
+            border: 1px solid rgba(121, 63, 224, 0.25);
+            border-radius: var(--radius-pill);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .tests-hub-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 900;
+            line-height: 1.18;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .tests-hub-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .tests-tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.75rem;
+            margin-top: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .track-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .track-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 12px 28px rgba(121, 63, 224, 0.12);
+        }
+        .track-card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+        .track-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .icon-sql { background: rgba(59, 130, 246, 0.12); color: #3b82f6; }
+        .icon-python { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+        .icon-c { background: rgba(99, 102, 241, 0.12); color: #6366f1; }
+        .icon-etl { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+        .icon-fund { background: rgba(236, 72, 153, 0.12); color: #ec4899; }
+        .track-badges {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .badge-pill {
+            font-size: 0.74rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: var(--radius-pill);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--card-border);
+        }
+        .track-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+        .track-desc {
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+            line-height: 1.55;
+            margin-bottom: 1.75rem;
+            flex-grow: 1;
+        }
+        .track-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .track-btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.65rem;
+        }
+        .track-btn-single {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        .track-course-link {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .track-course-link:hover {
+            color: var(--accent);
+        }
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-tab {
+            padding: 8px 18px;
+            border-radius: var(--radius-pill);
+            background: var(--bg-secondary);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .filter-tab.active,
+        .filter-tab:hover {
+            background: var(--accent);
+            color: #ffffff;
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Centralized Header -->
+    <header id="site-header"></header>
+
+    <main class="sql-tests-index" style="max-width: 1200px; padding-top: 100px;">
+        
+        <!-- Hero Section -->
+        <div class="tests-hub-hero">
+            <span class="tests-hub-badge">
+                <i class="fas fa-certificate"></i> Official EDMITH Assessment Center
+            </span>
+            <h1 class="tests-hub-title">Practice Tests &amp; Technical Assessments</h1>
+            <p class="tests-hub-subtitle">
+                Validate your computer science knowledge with timed multiple-choice assessments and real in-browser code evaluation across 5 industry-standard domains.
+            </p>
+
+            <!-- Quick Filter Tabs -->
+            <div class="filter-tabs" role="tablist">
+                <button type="button" class="filter-tab active" data-filter="all">All Tracks (5)</button>
+                <button type="button" class="filter-tab" data-filter="mcq">MCQ Assessments</button>
+                <button type="button" class="filter-tab" data-filter="coding">Coding Workstations</button>
+            </div>
+        </div>
+
+        <!-- 5 Domain Track Cards -->
+        <div class="tests-tracks-grid" id="tracksGrid">
+
+            <!-- 1. SQL & Databases -->
+            <article class="track-card" data-types="mcq coding">
+                <div>
+                    <div class="track-card-header">
+                        <div class="track-icon icon-sql">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="track-badges">
+                            <span class="badge-pill">MCQs (300)</span>
+                            <span class="badge-pill">Coding (15)</span>
+                            <span class="badge-pill" style="color: #3b82f6;">AlaSQL Engine</span>
+                        </div>
+                    </div>
+                    <h2 class="track-title">SQL &amp; Databases Mastery</h2>
+                    <p class="track-desc">
+                        Test your query writing, data definition, JOINs, aggregations, window functions, and transaction management against live in-memory relational databases.
+                    </p>
+                </div>
+                <div class="track-actions">
+                    <div class="track-btn-group">
+                        <a href="../sql/tests/sql_basics.html" class="btn-enroll" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-list-check"></i> Take MCQ
+                        </a>
+                        <a href="../sql/tests/coding_test.html" class="btn-outline" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-code"></i> Code Exam
+                        </a>
+                    </div>
+                    <a href="../sql/tests/index.html" class="btn-plain" style="font-size: 0.85rem; text-align: center;">
+                        <i class="fas fa-layer-group"></i> View All SQL Rounds &amp; Difficulties
+                    </a>
+                    <a href="../sql/index.html" class="track-course-link">
+                        <i class="fas fa-book-open"></i> Go to SQL Course Syllabus &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- 2. Python Programming -->
+            <article class="track-card" data-types="mcq coding">
+                <div>
+                    <div class="track-card-header">
+                        <div class="track-icon icon-python">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <div class="track-badges">
+                            <span class="badge-pill">MCQs (225)</span>
+                            <span class="badge-pill">Coding (4)</span>
+                            <span class="badge-pill" style="color: #f59e0b;">Python 3</span>
+                        </div>
+                    </div>
+                    <h2 class="track-title">Python Programming</h2>
+                    <p class="track-desc">
+                        Validate core syntax, data structures, list comprehensions, functional programming, OOP, decorators, and algorithmic problem-solving with instant execution.
+                    </p>
+                </div>
+                <div class="track-actions">
+                    <div class="track-btn-group">
+                        <a href="python-test.html" class="btn-enroll" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-list-check"></i> Take MCQ
+                        </a>
+                        <a href="python-coding.html" class="btn-outline" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-code"></i> Code Exam
+                        </a>
+                    </div>
+                    <a href="../python/index.html" class="track-course-link">
+                        <i class="fas fa-book-open"></i> Go to Python Course Syllabus &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- 3. C Programming -->
+            <article class="track-card" data-types="mcq coding">
+                <div>
+                    <div class="track-card-header">
+                        <div class="track-icon icon-c">
+                            <i class="fas fa-c"></i>
+                        </div>
+                        <div class="track-badges">
+                            <span class="badge-pill">MCQs (225)</span>
+                            <span class="badge-pill">Coding (4)</span>
+                            <span class="badge-pill" style="color: #6366f1;">JSCPP Compiler</span>
+                        </div>
+                    </div>
+                    <h2 class="track-title">C Programming</h2>
+                    <p class="track-desc">
+                        Demonstrate system-level programming proficiency in memory architecture, pointers, dynamic allocation (malloc/free), structs, arrays, and standard libraries.
+                    </p>
+                </div>
+                <div class="track-actions">
+                    <div class="track-btn-group">
+                        <a href="c-test.html" class="btn-enroll" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-list-check"></i> Take MCQ
+                        </a>
+                        <a href="c-coding.html" class="btn-outline" style="padding: 10px 14px; font-size: 0.88rem;">
+                            <i class="fas fa-code"></i> Code Exam
+                        </a>
+                    </div>
+                    <a href="../c/index.html" class="track-course-link">
+                        <i class="fas fa-book-open"></i> Go to C Programming Course Syllabus &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- 4. ETL Testing & Data Warehouse -->
+            <article class="track-card" data-types="mcq">
+                <div>
+                    <div class="track-card-header">
+                        <div class="track-icon icon-etl">
+                            <i class="fas fa-diagram-project"></i>
+                        </div>
+                        <div class="track-badges">
+                            <span class="badge-pill">MCQs (225)</span>
+                            <span class="badge-pill" style="color: #10b981;">Dimensional QA</span>
+                        </div>
+                    </div>
+                    <h2 class="track-title">ETL Testing &amp; Data Warehouse</h2>
+                    <p class="track-desc">
+                        Challenge your skills in source-to-target reconciliation, Kimball dimensional modeling, Star vs. Snowflake schemas, SCD Types 1-6, and data quality assurance.
+                    </p>
+                </div>
+                <div class="track-actions">
+                    <div class="track-btn-single">
+                        <a href="etl-test.html" class="btn-enroll" style="padding: 11px 14px; font-size: 0.92rem; text-align: center;">
+                            <i class="fas fa-list-check"></i> Start ETL Testing MCQ Assessment
+                        </a>
+                    </div>
+                    <a href="../etl/index.html" class="track-course-link">
+                        <i class="fas fa-book-open"></i> Go to ETL Testing Course Syllabus &rarr;
+                    </a>
+                </div>
+            </article>
+
+            <!-- 5. Programming Fundamentals -->
+            <article class="track-card" data-types="mcq">
+                <div>
+                    <div class="track-card-header">
+                        <div class="track-icon icon-fund">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="track-badges">
+                            <span class="badge-pill">MCQs (225)</span>
+                            <span class="badge-pill" style="color: #ec4899;">Core Logic</span>
+                        </div>
+                    </div>
+                    <h2 class="track-title">Programming Fundamentals</h2>
+                    <p class="track-desc">
+                        Solidify your algorithmic problem-solving foundations, computational thinking, flowcharts, pseudocode, execution models, and debugging strategies.
+                    </p>
+                </div>
+                <div class="track-actions">
+                    <div class="track-btn-single">
+                        <a href="fundamentals-test.html" class="btn-enroll" style="padding: 11px 14px; font-size: 0.92rem; text-align: center;">
+                            <i class="fas fa-list-check"></i> Start Fundamentals MCQ Assessment
+                        </a>
+                    </div>
+                    <a href="../fundamentals/index.html" class="track-course-link">
+                        <i class="fas fa-book-open"></i> Go to Programming Fundamentals Syllabus &rarr;
+                    </a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- Leaderboard & Integrity Callout -->
+        <section style="text-align: center; padding: 2.5rem; background: var(--card-bg); border-radius: var(--radius-lg); border: 1px solid var(--card-border); box-shadow: var(--shadow-sm); margin-bottom: 3.5rem;">
+            <div style="font-size: 2.5rem; color: var(--accent); margin-bottom: 0.75rem;"><i class="fas fa-trophy"></i></div>
+            <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Compete on the EDMITH Global Leaderboard</h2>
+            <p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto 1.5rem; line-height: 1.6;">
+                Every completed MCQ test and coding challenge automatically earns points towards your global ranking. Verify your technical standing among software engineers worldwide.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="../Leaderboard.html" class="btn-enroll" style="padding: 12px 24px;">
+                    <i class="fas fa-medal"></i> View Global Rankings
+                </a>
+                <a href="../users/profile.html" class="btn-outline" style="padding: 12px 24px;">
+                    <i class="fas fa-id-badge"></i> My Profile &amp; Stats
+                </a>
+                <a href="../course.html" class="btn-outline" style="padding: 12px 24px;">
+                    <i class="fas fa-graduation-cap"></i> Browse All Courses
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Centralized Footer -->
+    <footer id="site-footer"></footer>
+
+    <!-- Scripts -->
+    <script src="../components/components.js"></script>
+    <script src="../javascript/auth-modal.js"></script>
+    <script src="../javascript/script.js"></script>
+    <script>
+        // Track Filter Tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.track-card').forEach(card => {
+                    const types = card.dataset.types || '';
+                    if (filter === 'all' || types.includes(filter)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
